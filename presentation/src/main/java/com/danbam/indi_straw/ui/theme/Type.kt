@@ -1,4 +1,4 @@
-package com.example.indi_straw.ui.theme
+package com.danbam.indi_straw.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

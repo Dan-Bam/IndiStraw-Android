@@ -1,4 +1,4 @@
-package com.example.indi_straw
+package com.danbam.indi_straw
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
