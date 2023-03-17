@@ -78,17 +78,9 @@ dependencies {
     implementation(Dependency.Room.ROOM)
     kapt(Dependency.Room.ROOM_COMPILER)
 
-    testImplementation(Dependency.UnitTest.JUNIT)
-
     implementation(Dependency.Mvi.ORBIT_CORE)
     implementation(Dependency.Mvi.ORBIT_VIEW_MODEL)
     implementation(Dependency.Mvi.ORBIT_TEST)
-
-    androidTestImplementation(Dependency.AndroidTest.ANDROID_JUNIT)
-    androidTestImplementation(Dependency.AndroidTest.ESPRESSO_CORE)
-    androidTestImplementation(Dependency.AndroidTest.COMPOSE_TEST)
-    debugImplementation(Dependency.AndroidTest.COMPOSE_TOOL)
-    debugImplementation(Dependency.AndroidTest.COMPOSE_MANIFEST)
 
     implementation(Dependency.Coil.COIL)
 
