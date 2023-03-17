@@ -16,3 +16,4 @@ rootProject.name = "indi_straw"
 include(":presentation")
 include(":data")
 include(":domain")
+include(":di")
