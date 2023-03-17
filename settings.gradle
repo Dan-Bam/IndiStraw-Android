@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "indi_straw"
-include ':app'
+include ':presentation'
