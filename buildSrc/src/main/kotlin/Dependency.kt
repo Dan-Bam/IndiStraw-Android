@@ -16,11 +16,11 @@ object Dependency {
 
     object AndroidX {
         const val CORE_KTX = "androidx.core:core-ktx:${Version.CORE_KTX}"
-        const val LIFECYCLE_VIEWMODEL_KTX =
-            "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
         const val LIFECYCLE = "androidx.lifecycle:lifecycle-runtime-ktx:${Version.LIFECYCLE_KTX}"
         const val APP_COMPAT = "androidx.appcompat:appcompat:${Version.APP_COMPAT}"
         const val PREFERENCE_KTX = "androidx.preference:preference-ktx:${Version.PREFERENCE_KTX}"
+        const val LIFECYCLE_VIEWMODEL_KTX =
+            "androidx.lifecycle:lifecycle-viewmodel-ktx:${Version.LIFECYCLE_KTX}"
     }
 
     object Compose {
@@ -46,6 +46,7 @@ object Dependency {
         const val ORBIT_VIEW_MODEL = "org.orbit-mvi:orbit-viewmodel:${Version.ORBIT}"
         const val ORBIT_TEST = "org.orbit-mvi:orbit-test:${Version.ORBIT}"
     }
+
     object Retrofit {
         const val RETROFIT = "com.squareup.retrofit2:retrofit:${Version.RETROFIT}"
         const val RETROFIT_CONVERTER_GSON =
@@ -58,7 +59,7 @@ object Dependency {
     object UnitTest {
         const val JUNIT = "junit:junit:${Version.JUNIT}"
         const val MOCKITO_KOTLIN = "org.mockito.kotlin:mockito-kotlin:${Version.MOCKITO_KOTLIN}"
-        const val MOCKITO_INLINE = "org.mockito:mockito-inline:${Version.MOCKITO_INLINE}"
+        const val MOCKITO_INLINE = "org.mockito:mockito-inline:${Version.MOCKITO_KOTLIN}"
     }
 
     object AndroidTest {
