@@ -75,9 +75,6 @@ dependencies {
     implementation(Dependency.Hilt.HILT_ANDROID)
     kapt(Dependency.Hilt.HILT_ANDROID_COMPILER)
 
-    implementation(Dependency.Room.ROOM)
-    kapt(Dependency.Room.ROOM_COMPILER)
-
     implementation(Dependency.Mvi.ORBIT_CORE)
     implementation(Dependency.Mvi.ORBIT_VIEW_MODEL)
     implementation(Dependency.Mvi.ORBIT_TEST)
@@ -85,4 +82,8 @@ dependencies {
     implementation(Dependency.Coil.COIL)
 
     implementation(Dependency.ExoPlayer.EXO_PLAYER)
+
+    debugImplementation(Dependency.AndroidTest.COMPOSE_TOOL)
+    debugImplementation(Dependency.AndroidTest.COMPOSE_MANIFEST)
+    androidTestImplementation(Dependency.AndroidTest.COMPOSE_TEST)
 }
