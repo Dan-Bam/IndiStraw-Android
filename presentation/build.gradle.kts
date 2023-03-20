@@ -13,8 +13,8 @@ android {
         applicationId = "com.danbam.indi_straw"
         minSdk = Version.MIN_SDK_VERSION
         targetSdk = Version.TARGET_SDK_VERSION
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = Version.VERSION_CODE
+        versionName = Version.VERSION_NAME
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
