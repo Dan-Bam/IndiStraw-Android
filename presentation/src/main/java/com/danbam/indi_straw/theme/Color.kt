@@ -1,4 +1,4 @@
-package com.danbam.indi_straw.ui.theme
+package com.danbam.indi_straw.theme
 
 import androidx.compose.ui.graphics.Color
 
