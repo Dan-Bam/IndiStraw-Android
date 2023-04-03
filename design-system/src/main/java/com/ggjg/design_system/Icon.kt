@@ -1,4 +1,4 @@
-package com.danbam.indi_straw.theme
+package com.ggjg.design_system
 
 import androidx.annotation.DrawableRes
 import javax.annotation.concurrent.Immutable

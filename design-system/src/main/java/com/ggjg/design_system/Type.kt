@@ -1,4 +1,4 @@
-package com.danbam.indi_straw.theme
+package com.ggjg.design_system
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
