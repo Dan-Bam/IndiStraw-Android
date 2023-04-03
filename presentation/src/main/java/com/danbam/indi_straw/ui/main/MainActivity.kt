@@ -9,7 +9,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.danbam.indi_straw.theme.Indi_strawTheme
+import com.ggjg.design_system.Indi_strawTheme
 import com.danbam.indi_straw.util.AppNavigationItem
 
 class MainActivity : ComponentActivity() {
