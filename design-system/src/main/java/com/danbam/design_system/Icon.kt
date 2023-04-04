@@ -1,4 +1,4 @@
-package com.ggjg.design_system
+package com.danbam.design_system
 
 import androidx.annotation.DrawableRes
 import javax.annotation.concurrent.Immutable

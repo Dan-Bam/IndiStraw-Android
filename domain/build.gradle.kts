@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.domain"
+    namespace = "com.danbam.domain"
     compileSdk = Version.COMPILE_SDK_VERSION
 
     defaultConfig {

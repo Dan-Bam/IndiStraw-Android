@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.ggjg.design_system"
+    namespace = "com.danbam.design_system"
     compileSdk = Version.COMPILE_SDK_VERSION
 
     defaultConfig {

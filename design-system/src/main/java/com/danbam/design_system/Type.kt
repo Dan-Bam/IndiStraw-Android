@@ -1,4 +1,4 @@
-package com.ggjg.design_system
+package com.danbam.design_system
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
