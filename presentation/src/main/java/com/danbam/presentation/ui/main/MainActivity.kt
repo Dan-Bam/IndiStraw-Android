@@ -1,4 +1,4 @@
-package com.danbam.indi_straw.ui.main
+package com.danbam.presentation.ui.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -9,16 +9,15 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.danbam.design_system.Indi_strawTheme
-import com.danbam.indi_straw.util.AppNavigationItem
+import com.danbam.design_system.IndiStrawTheme
+import com.danbam.presentation.util.AppNavigationItem
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             val navController = rememberNavController()
-
-            Indi_strawTheme {
+            IndiStrawTheme {
                 BaseApp(navController = navController)
             }
         }
@@ -29,7 +28,6 @@ class MainActivity : ComponentActivity() {
 fun BaseApp(navController: NavHostController) {
     NavHost(navController = navController, startDestination = AppNavigationItem.Login.route) {
         composable(route = AppNavigationItem.Login.route) {
-
         }
     }
 }
@@ -38,7 +36,7 @@ fun BaseApp(navController: NavHostController) {
 @Composable
 fun DefaultPreview() {
     val navController = rememberNavController()
-    Indi_strawTheme {
+    IndiStrawTheme {
         BaseApp(navController = navController)
     }
 }
