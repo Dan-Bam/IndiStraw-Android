@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.danbam.indi_straw"
+    namespace = "com.danbam.presentation"
     compileSdk = Version.COMPILE_SDK_VERSION
 
     defaultConfig {
