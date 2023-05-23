@@ -5,6 +5,7 @@ object Dependency {
         const val GRADLE_KOTLIN =
             "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.GRADLE_KOTLIN}"
         const val GRADLE_HILT = "com.google.dagger:hilt-android-gradle-plugin:${Version.HILT}"
+        const val GRADLE_KTLINT = "org.jlleitschuh.gradle.ktlint"
     }
 
     object Kotlin {
