@@ -2,43 +2,36 @@ package com.danbam.design_system
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-
-private val DarkColorPalette = darkColors(
-    primary = Purple200,
-    primaryVariant = Purple700,
-    secondary = Teal200
-)
-
-private val LightColorPalette = lightColors(
-    primary = Purple500,
-    primaryVariant = Purple700,
-    secondary = Teal200
-
-    /* Other default colors to override
-    background = Color.White,
-    surface = Color.White,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    */
-)
+import androidx.compose.runtime.CompositionLocalProvider
+import com.danbam.design_system.attribute.*
 
 @Composable
-fun Indi_strawTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
-    }
+fun IndiStrawTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
 
-    MaterialTheme(
-        colors = colors,
-        typography = Typography,
-        shapes = Shapes,
-        content = content
-    )
+    val colors = if (darkTheme) darkColor else lightColor
+
+    CompositionLocalProvider(
+        LocalIndiStrawColors provides colors,
+        LocalIndiStrawShapes provides defaultSahpe,
+        LocalIndiStrawTypography provides defaultTypography
+    ) {
+        MaterialTheme(
+            content = content
+        )
+    }
+}
+
+object IndiStrawTheme {
+    val colors: IndiStrawColor
+        @Composable
+        get() = LocalIndiStrawColors.current
+
+    val shapes: IndiStrawShape
+        @Composable
+        get() = LocalIndiStrawShapes.current
+
+    val typography: IndiStrawTypography
+        @Composable
+        get() = LocalIndiStrawTypography.current
 }
