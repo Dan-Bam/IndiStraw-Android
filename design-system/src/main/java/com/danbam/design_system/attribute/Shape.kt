@@ -8,18 +8,24 @@ import androidx.compose.ui.unit.dp
 
 @Immutable
 data class IndiStrawShape(
-    val smallRoundedShape: RoundedCornerShape,
-    val bigRoundedShape: RoundedCornerShape,
+    val smallRounded: RoundedCornerShape,
+    val defaultRounded: RoundedCornerShape,
+    val bigRounded: RoundedCornerShape,
+    val bottomSheet: RoundedCornerShape,
 )
 
 internal val LocalIndiStrawShapes = staticCompositionLocalOf {
     IndiStrawShape(
-        smallRoundedShape = RoundedCornerShape(ZeroCornerSize),
-        bigRoundedShape = RoundedCornerShape(ZeroCornerSize)
+        smallRounded = RoundedCornerShape(ZeroCornerSize),
+        defaultRounded = RoundedCornerShape(ZeroCornerSize),
+        bigRounded = RoundedCornerShape(ZeroCornerSize),
+        bottomSheet = RoundedCornerShape(ZeroCornerSize),
     )
 }
 
 val defaultSahpe = IndiStrawShape(
-    smallRoundedShape = RoundedCornerShape(10.dp),
-    bigRoundedShape = RoundedCornerShape(20.dp)
+    smallRounded = RoundedCornerShape(5.dp),
+    defaultRounded = RoundedCornerShape(10.dp),
+    bigRounded = RoundedCornerShape(20.dp),
+    bottomSheet = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)
 )
