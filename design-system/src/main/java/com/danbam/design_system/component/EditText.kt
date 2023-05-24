@@ -21,7 +21,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.attribute.IndiStrawIcon
-import com.danbam.design_system.util.noRippleClickable
+import com.danbam.design_system.util.indiStrawClickable
 
 @Composable
 fun IndiStrawTextField(
@@ -70,7 +70,7 @@ fun IndiStrawTextField(
             Image(
                 modifier = Modifier
                     .height(15.dp)
-                    .noRippleClickable(onToggleChange),
+                    .indiStrawClickable(onToggleChange),
                 painter = painterResource(id = eyesIcon.drawableId),
                 contentDescription = eyesIcon.contentDescription
             )

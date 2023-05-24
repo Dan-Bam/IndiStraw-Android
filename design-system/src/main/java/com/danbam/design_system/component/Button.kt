@@ -8,21 +8,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.danbam.design_system.IndiStrawTheme
-import com.danbam.design_system.util.noRippleClickable
+import com.danbam.design_system.util.indiStrawClickable
 
 @Composable
 fun IndiStrawButton(
     modifier: Modifier = Modifier
         .padding(horizontal = 33.dp)
         .fillMaxWidth()
-        .background(color = IndiStrawTheme.colors.main, shape = IndiStrawTheme.shapes.defaultRounded),
+        .background(
+            color = IndiStrawTheme.colors.main,
+            shape = IndiStrawTheme.shapes.defaultRounded
+        ),
     text: String,
     onClick: () -> Unit,
 ) {
     ButtonMedium(
         modifier = modifier
-            .padding(vertical = 16.dp)
-            .noRippleClickable(onClick),
+            .indiStrawClickable(onClick, rippleColor = IndiStrawTheme.colors.background)
+            .padding(vertical = 16.dp),
         text = text,
         textAlign = TextAlign.Center
     )

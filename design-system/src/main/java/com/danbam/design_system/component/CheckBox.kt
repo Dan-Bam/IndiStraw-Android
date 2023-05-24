@@ -10,7 +10,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.attribute.IndiStrawIcon
-import com.danbam.design_system.util.noRippleClickable
+import com.danbam.design_system.util.indiStrawClickable
 
 @Composable
 fun IndiStrawCheckBox(
@@ -31,7 +31,7 @@ fun IndiStrawCheckBox(
         Image(
             modifier = modifier
                 .padding(horizontal = 4.dp, vertical = 6.dp)
-                .noRippleClickable(onClick),
+                .indiStrawClickable(onClick),
             painter = painterResource(id = checkIcon.drawableId),
             contentDescription = checkIcon.contentDescription
         )
