@@ -6,7 +6,7 @@ import javax.annotation.concurrent.Immutable
 
 @Immutable
 data class IndiStrawColor(
-    val button: Color,
+    val main: Color,
     val background: Color,
     val more: Color,
     val text: Color,
@@ -14,12 +14,14 @@ data class IndiStrawColor(
     val textBox: Color,
     val exampleText: Color,
     val error: Color,
-    val check: Color,
+    val bottomSheet: Color,
+    val line: Color,
+    val category: Color,
 )
 
 internal val LocalIndiStrawColors = staticCompositionLocalOf {
     IndiStrawColor(
-        button = Color.Unspecified,
+        main = Color.Unspecified,
         background = Color.Unspecified,
         more = Color.Unspecified,
         text = Color.Unspecified,
@@ -27,12 +29,14 @@ internal val LocalIndiStrawColors = staticCompositionLocalOf {
         textBox = Color.Unspecified,
         exampleText = Color.Unspecified,
         error = Color.Unspecified,
-        check = Color.Unspecified
+        bottomSheet = Color.Unspecified,
+        line = Color.Unspecified,
+        category = Color.Unspecified
     )
 }
 
 val lightColor = IndiStrawColor(
-    button = Color(0xFFEB5959),
+    main = Color(0xFF7753DE),
     background = Color(0xFF000000),
     more = Color(0xFF81B7F8),
     text = Color(0xFFFFFFFF),
@@ -40,11 +44,13 @@ val lightColor = IndiStrawColor(
     textBox = Color(0xFF4A4A4A),
     exampleText = Color(0xFFB5B5B5),
     error = Color(0xFFFF1717),
-    check = Color(0xFF60EE5D)
+    bottomSheet = Color(0xFF3A3838),
+    line = Color(0xFF7C7C7C),
+    category = Color(0xFFFF8D8D)
 )
 
 val darkColor = IndiStrawColor(
-    button = Color(0xFFEB5959),
+    main = Color(0xFF7753DE),
     background = Color(0xFF000000),
     more = Color(0xFF81B7F8),
     text = Color(0xFFFFFFFF),
@@ -52,5 +58,7 @@ val darkColor = IndiStrawColor(
     textBox = Color(0xFF4A4A4A),
     exampleText = Color(0xFFB5B5B5),
     error = Color(0xFFFF1717),
-    check = Color(0xFF60EE5D)
+    bottomSheet = Color(0xFF3A3838),
+    line = Color(0xFF7C7C7C),
+    category = Color(0xFFFF8D8D)
 )
