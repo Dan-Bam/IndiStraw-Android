@@ -6,79 +6,91 @@ import com.danbam.design_system.R
 import javax.annotation.concurrent.Immutable
 
 @Immutable
-class Icon private constructor(
+class IndiStrawIcon private constructor(
     @DrawableRes val drawableId: Int,
     val contentDescription: String? = null,
 ) {
     companion object {
         @Stable
-        val OpenEyes = Icon(
+        val OpenEyes = IndiStrawIcon(
             drawableId = R.drawable.ic_open_eyes,
             contentDescription = "open eyes"
         )
 
         @Stable
-        val CloseEyes = Icon(
+        val CloseEyes = IndiStrawIcon(
             drawableId = R.drawable.ic_close_eyes,
             contentDescription = "close eyes"
         )
 
         @Stable
-        val Back = Icon(
+        val Back = IndiStrawIcon(
             drawableId = R.drawable.ic_back,
             contentDescription = "back"
         )
 
         @Stable
-        val down = Icon(
+        val down = IndiStrawIcon(
             drawableId = R.drawable.ic_down,
             contentDescription = "down"
         )
 
         @Stable
-        val dateUp = Icon(
+        val dateUp = IndiStrawIcon(
             drawableId = R.drawable.ic_date_up,
             contentDescription = "date up"
         )
 
         @Stable
-        val dateDown = Icon(
+        val dateDown = IndiStrawIcon(
             drawableId = R.drawable.ic_date_down,
             contentDescription = "date down"
         )
 
         @Stable
-        val fastSearch = Icon(
+        val fastSearch = IndiStrawIcon(
             drawableId = R.drawable.ic_fast_search,
             contentDescription = "fast search"
         )
 
         @Stable
-        val Gallery = Icon(
+        val Check = IndiStrawIcon(
+            drawableId = R.drawable.ic_check,
+            contentDescription = "check"
+        )
+
+        @Stable
+        val UnCheck = IndiStrawIcon(
+            drawableId = R.drawable.ic_uncheck,
+            contentDescription = "un check"
+        )
+
+        @Stable
+        val Gallery = IndiStrawIcon(
             drawableId = R.drawable.ic_gallery,
             contentDescription = "gallery"
         )
 
         @Stable
-        val Camera = Icon(
+        val Camera = IndiStrawIcon(
             drawableId = R.drawable.ic_camera,
             contentDescription = "camera"
         )
 
         @Stable
-        val search = Icon(
+        val search = IndiStrawIcon(
             drawableId = R.drawable.ic_search,
             contentDescription = "search"
         )
 
         @Stable
-        val Profile = Icon(
+        val Profile = IndiStrawIcon(
             drawableId = R.drawable.ic_profile,
             contentDescription = "profile"
         )
 
         @Stable
-        val noImage = Icon(
+        val noImage = IndiStrawIcon(
             drawableId = R.drawable.ic_no_img,
             contentDescription = "no image"
         )
