@@ -1,9 +1,13 @@
 package com.danbam.design_system
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.Modifier
 import com.danbam.design_system.attribute.*
 
 @Composable
@@ -17,7 +21,15 @@ fun IndiStrawTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composa
         LocalIndiStrawTypography provides defaultTypography
     ) {
         MaterialTheme(
-            content = content
+            content = {
+                Box(
+                    modifier = Modifier
+                        .background(IndiStrawTheme.colors.background)
+                        .fillMaxSize()
+                ) {
+                    content()
+                }
+            }
         )
     }
 }
