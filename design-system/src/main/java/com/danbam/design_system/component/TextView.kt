@@ -246,3 +246,19 @@ fun SuccessBold(
         textAlign = textAlign
     )
 }
+
+@Composable
+fun ButtonMedium(
+    modifier: Modifier = Modifier,
+    text: String,
+    color: Color = IndiStrawTheme.colors.text,
+    textAlign: TextAlign = TextAlign.Start,
+) {
+    Text(
+        modifier = modifier,
+        text = text,
+        style = IndiStrawTheme.typography.buttonMedium,
+        color = color,
+        textAlign = textAlign
+    )
+}
