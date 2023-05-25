@@ -17,7 +17,7 @@ fun IndiStrawTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composa
 
     CompositionLocalProvider(
         LocalIndiStrawColors provides colors,
-        LocalIndiStrawShapes provides defaultSahpe,
+        LocalIndiStrawShapes provides defaultShape,
         LocalIndiStrawTypography provides defaultTypography
     ) {
         MaterialTheme(
