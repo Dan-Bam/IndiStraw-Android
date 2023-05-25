@@ -28,7 +28,7 @@ fun IndiStrawHeader(
         modifier = modifier
             .padding(top = marginTop.dp)
             .fillMaxWidth()
-            .padding(horizontal = 25.dp),
+            .padding(horizontal = 21.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         if (isBackBtn) {
