@@ -1,6 +1,5 @@
 package com.danbam.design_system.component
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -13,6 +12,11 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.util.indiStrawClickable
+
+sealed class Shape {
+    object Rectangle : Shape()
+    object Circle : Shape()
+}
 
 @Composable
 fun IndiStrawButton(
@@ -36,14 +40,19 @@ fun IndiStrawButton(
 }
 
 @Composable
-fun RectangleImageButton(
+fun ImageButton(
     modifier: Modifier = Modifier,
     imgSrc: String,
+    shape: Shape,
     onClick: () -> Unit,
 ) {
+    val clipShape = when(shape) {
+        Shape.Rectangle -> IndiStrawTheme.shapes.defaultRounded
+        Shape.Circle -> IndiStrawTheme.shapes.circle
+    }
     AsyncImage(
         modifier = modifier
-            .clip(IndiStrawTheme.shapes.defaultRounded)
+            .clip(clipShape)
             .indiStrawClickable(onClick),
         model = imgSrc,
         contentDescription = "image",
