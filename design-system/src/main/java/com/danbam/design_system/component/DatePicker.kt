@@ -7,7 +7,6 @@ import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -30,10 +29,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.attribute.IndiStrawIcon
+import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.design_system.util.RemoveOverScrollLazyColumn
 import com.danbam.design_system.util.indiStrawClickable
 import java.time.LocalDate
@@ -137,12 +136,11 @@ private fun DateBox(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             ExampleTextMedium(text = date.toString())
-            Image(
+            IndiStrawIcon(
                 modifier = Modifier
                     .align(CenterVertically)
                     .rotate(rotateValue),
-                painter = painterResource(id = IndiStrawIcon.DateArrow.drawableId),
-                contentDescription = IndiStrawIcon.DateArrow.contentDescription,
+                icon = IndiStrawIconList.DateArrow
             )
         }
         ExpandDateBox(dateList = dateList, isExpand = isExpand, onDateSelect = {
