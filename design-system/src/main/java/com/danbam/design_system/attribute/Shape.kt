@@ -14,6 +14,7 @@ data class IndiStrawShape(
     val bottomSheet: RoundedCornerShape,
     val topDefaultRounded: RoundedCornerShape,
     val bottomDefaultRounded: RoundedCornerShape,
+    val circle: RoundedCornerShape,
 )
 
 internal val LocalIndiStrawShapes = staticCompositionLocalOf {
@@ -23,7 +24,8 @@ internal val LocalIndiStrawShapes = staticCompositionLocalOf {
         bigRounded = RoundedCornerShape(ZeroCornerSize),
         bottomSheet = RoundedCornerShape(ZeroCornerSize),
         topDefaultRounded = RoundedCornerShape(ZeroCornerSize),
-        bottomDefaultRounded = RoundedCornerShape(ZeroCornerSize)
+        bottomDefaultRounded = RoundedCornerShape(ZeroCornerSize),
+        circle = RoundedCornerShape(ZeroCornerSize)
     )
 }
 
@@ -33,5 +35,6 @@ val defaultShape = IndiStrawShape(
     bigRounded = RoundedCornerShape(20.dp),
     bottomSheet = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp),
     topDefaultRounded = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp),
-    bottomDefaultRounded = RoundedCornerShape(bottomStart = 10.dp, bottomEnd = 10.dp)
+    bottomDefaultRounded = RoundedCornerShape(bottomStart = 10.dp, bottomEnd = 10.dp),
+    circle = RoundedCornerShape(percent = 100)
 )
