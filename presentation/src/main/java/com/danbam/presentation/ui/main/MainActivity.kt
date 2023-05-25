@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.danbam.design_system.IndiStrawTheme
+import com.danbam.presentation.ui.login.LoginScreen
 import com.danbam.presentation.util.AppNavigationItem
 
 class MainActivity : ComponentActivity() {
@@ -28,6 +29,16 @@ class MainActivity : ComponentActivity() {
 fun BaseApp(navController: NavHostController) {
     NavHost(navController = navController, startDestination = AppNavigationItem.Login.route) {
         composable(route = AppNavigationItem.Login.route) {
+            LoginScreen(navController = navController)
+        }
+        composable(route = AppNavigationItem.FindId.route) {
+
+        }
+        composable(route = AppNavigationItem.FindPassword.route) {
+
+        }
+        composable(route = AppNavigationItem.Main.route) {
+            
         }
     }
 }
