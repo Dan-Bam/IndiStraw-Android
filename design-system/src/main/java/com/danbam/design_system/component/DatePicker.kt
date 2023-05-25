@@ -68,7 +68,6 @@ fun IndiStrawDatePicker(
         LocalDate.parse("${datePicker[0].date}-${"%02d".format(datePicker[1].date)}-01").run {
             withDayOfMonth(lengthOfMonth()).dayOfMonth
         }
-    println(endDate)
     Row(
         modifier = modifier
             .padding(horizontal = 25.dp)
