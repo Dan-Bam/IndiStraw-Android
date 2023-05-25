@@ -35,6 +35,9 @@ fun BaseApp(navController: NavHostController) {
         composable(route = AppNavigationItem.Login.route) {
             LoginScreen(navController = navController)
         }
+        composable(route = AppNavigationItem.SignUp.route) {
+
+        }
         composable(route = AppNavigationItem.FindId.route) {
 
         }
