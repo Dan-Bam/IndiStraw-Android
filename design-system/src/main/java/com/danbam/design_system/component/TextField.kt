@@ -2,11 +2,14 @@ package com.danbam.design_system.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
@@ -75,15 +78,21 @@ fun IndiStrawTextField(
             textStyle = IndiStrawTheme.typography.exampleTextMedium.copy(color = IndiStrawTheme.colors.exampleText),
             visualTransformation = if (isToggleVisible == null || isToggleVisible) VisualTransformation.None else PasswordVisualTransformation(),
         ) {
-            Box {
-                it()
-                if (value.isEmpty()) {
-                    ExampleTextMedium(text = hint, color = IndiStrawTheme.colors.exampleText)
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Box(
+                    modifier = Modifier.fillMaxWidth(0.8F)
+                ) {
+                    it()
+                    if (value.isEmpty()) {
+                        ExampleTextMedium(text = hint, color = IndiStrawTheme.colors.exampleText)
+                    }
+
                 }
                 if (isTimer) {
                     ExampleTextMedium(
                         text = "(${restTime / 60}:${"%02d".format(restTime % 60)})",
-                        modifier = Modifier.align(Alignment.CenterEnd)
                     )
                 }
                 if (value.isNotEmpty() && isToggleVisible != null) {
@@ -92,12 +101,70 @@ fun IndiStrawTextField(
                     Image(
                         modifier = Modifier
                             .height(15.dp)
-                            .align(Alignment.CenterEnd)
                             .indiStrawClickable(onToggleChange),
                         painter = painterResource(id = eyesIcon.drawableId),
                         contentDescription = eyesIcon.contentDescription
                     )
                 }
+            }
+        }
+    }
+}
+
+@Composable
+fun IndiStrawSearchTextField(
+    modifier: Modifier = Modifier
+        .fillMaxWidth()
+        .padding(start = 10.dp)
+        .background(
+            color = IndiStrawTheme.colors.background,
+            shape = IndiStrawTheme.shapes.smallRounded
+        ),
+    hint: String,
+    value: String,
+    onValueChange: (String) -> Unit,
+    imeAction: ImeAction = ImeAction.Done,
+    keyboardType: KeyboardType = KeyboardType.Text,
+    onToggleChange: () -> Unit = {},
+) {
+    var restTime by remember { mutableStateOf(RestTime) }
+    Row(
+        modifier = modifier
+            .border(
+                width = 1.dp,
+                color = IndiStrawTheme.colors.text,
+                shape = IndiStrawTheme.shapes.smallRounded
+            )
+            .padding(vertical = 10.dp, horizontal = 11.dp)
+    ) {
+        BasicTextField(
+            modifier = Modifier
+                .fillMaxWidth(),
+            value = value,
+            onValueChange = onValueChange,
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(imeAction = imeAction, keyboardType = keyboardType),
+            cursorBrush = SolidColor(IndiStrawTheme.colors.exampleText),
+            textStyle = IndiStrawTheme.typography.exampleTextMedium.copy(color = IndiStrawTheme.colors.exampleText),
+        ) {
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Box(
+                    modifier = Modifier.fillMaxWidth(0.9F)
+                ) {
+                    it()
+                    if (value.isEmpty()) {
+                        ExampleTextMedium(text = hint, color = IndiStrawTheme.colors.exampleText)
+                    }
+                }
+                Image(
+                    modifier = Modifier
+                        .height(15.dp)
+                        .indiStrawClickable(onToggleChange),
+                    painter = painterResource(id = IndiStrawIcon.Search.drawableId),
+                    contentDescription = IndiStrawIcon.Search.contentDescription
+                )
             }
         }
     }
