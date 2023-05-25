@@ -43,4 +43,8 @@ dependencies {
     implementation(Dependency.Compose.PREVIEW)
     implementation(Dependency.Compose.MATERIAL)
     implementation(Dependency.Compose.COMPOSE_HILT_NAV)
+
+    implementation(Dependency.Coil.COIL)
+
+    implementation(Dependency.ExoPlayer.EXO_PLAYER)
 }
