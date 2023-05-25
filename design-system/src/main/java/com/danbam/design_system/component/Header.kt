@@ -42,14 +42,14 @@ fun IndiStrawHeader(
                 )
                 if (backStringId != null) {
                     Spacer(modifier = Modifier.width(10.dp))
-                    TitleRegular1(
+                    TitleRegular(
                         text = stringResource(id = backStringId),
                         modifier = Modifier.align(CenterVertically)
                     )
                 }
             }
         } else {
-            HeadLineBold1(text = "로고")
+            HeadLineBold(text = "로고")
         }
         if (headerContent != null) {
             headerContent()

@@ -23,6 +23,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
@@ -72,7 +73,7 @@ fun IndiStrawTextField(
             singleLine = maxLines == 1,
             keyboardOptions = KeyboardOptions(imeAction = imeAction, keyboardType = keyboardType),
             cursorBrush = SolidColor(IndiStrawTheme.colors.exampleText),
-            textStyle = IndiStrawTheme.typography.exampleTextMedium.copy(color = IndiStrawTheme.colors.exampleText),
+            textStyle = IndiStrawTheme.typography.exampleTextMedium.copy(fontSize = 14.sp),
             visualTransformation = if (isToggleVisible == null || isToggleVisible) VisualTransformation.None else PasswordVisualTransformation(),
         ) {
             Row(
@@ -123,7 +124,6 @@ fun IndiStrawSearchTextField(
     keyboardType: KeyboardType = KeyboardType.Text,
     onToggleChange: () -> Unit = {},
 ) {
-    var restTime by remember { mutableStateOf(RestTime) }
     Row(
         modifier = modifier
             .border(
@@ -141,7 +141,7 @@ fun IndiStrawSearchTextField(
             singleLine = true,
             keyboardOptions = KeyboardOptions(imeAction = imeAction, keyboardType = keyboardType),
             cursorBrush = SolidColor(IndiStrawTheme.colors.exampleText),
-            textStyle = IndiStrawTheme.typography.exampleTextMedium.copy(color = IndiStrawTheme.colors.exampleText),
+            textStyle = IndiStrawTheme.typography.exampleTextRegular,
         ) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween
@@ -151,7 +151,7 @@ fun IndiStrawSearchTextField(
                 ) {
                     it()
                     if (value.isEmpty()) {
-                        ExampleTextMedium(text = hint, color = IndiStrawTheme.colors.exampleText)
+                        ExampleTextRegular(text = hint, color = IndiStrawTheme.colors.exampleText)
                     }
                 }
                 IndiStrawIcon(
