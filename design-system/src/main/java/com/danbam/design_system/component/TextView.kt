@@ -5,51 +5,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.sp
 import com.danbam.design_system.IndiStrawTheme
 
 @Composable
-fun HeadLineBold1(
+fun HeadLineBold(
     modifier: Modifier = Modifier,
     text: String,
     color: Color = IndiStrawTheme.colors.text,
     textAlign: TextAlign = TextAlign.Start,
+    fontSize: Int = 24,
 ) {
     Text(
         modifier = modifier,
         text = text,
-        style = IndiStrawTheme.typography.headLineBold1,
-        color = color,
-        textAlign = textAlign
-    )
-}
-
-@Composable
-fun HeadLineBold2(
-    modifier: Modifier = Modifier,
-    text: String,
-    color: Color = IndiStrawTheme.colors.text,
-    textAlign: TextAlign = TextAlign.Start,
-) {
-    Text(
-        modifier = modifier,
-        text = text,
-        style = IndiStrawTheme.typography.headLineBold2,
-        color = color,
-        textAlign = textAlign
-    )
-}
-
-@Composable
-fun HeadLineBold3(
-    modifier: Modifier = Modifier,
-    text: String,
-    color: Color = IndiStrawTheme.colors.text,
-    textAlign: TextAlign = TextAlign.Start,
-) {
-    Text(
-        modifier = modifier,
-        text = text,
-        style = IndiStrawTheme.typography.headLineBold3,
+        style = IndiStrawTheme.typography.headLineBold.copy(fontSize = fontSize.sp),
         color = color,
         textAlign = textAlign
     )
@@ -61,11 +31,12 @@ fun ExampleTextMedium(
     text: String,
     color: Color = IndiStrawTheme.colors.text,
     textAlign: TextAlign = TextAlign.Start,
+    fontSize: Int = 14,
 ) {
     Text(
         modifier = modifier,
         text = text,
-        style = IndiStrawTheme.typography.exampleTextMedium,
+        style = IndiStrawTheme.typography.exampleTextMedium.copy(fontSize = fontSize.sp),
         color = color,
         textAlign = textAlign
     )
@@ -77,11 +48,12 @@ fun ExampleTextRegular(
     text: String,
     color: Color = IndiStrawTheme.colors.text,
     textAlign: TextAlign = TextAlign.Start,
+    fontSize: Int = 16,
 ) {
     Text(
         modifier = modifier,
         text = text,
-        style = IndiStrawTheme.typography.exampleTextRegular,
+        style = IndiStrawTheme.typography.exampleTextRegular.copy(fontSize = fontSize.sp),
         color = color,
         textAlign = textAlign
     )
@@ -93,11 +65,12 @@ fun FindPasswordMedium(
     text: String,
     color: Color = IndiStrawTheme.colors.text,
     textAlign: TextAlign = TextAlign.Start,
+    fontSize: Int = 12,
 ) {
     Text(
         modifier = modifier,
         text = text,
-        style = IndiStrawTheme.typography.findPasswordMedium,
+        style = IndiStrawTheme.typography.findPasswordMedium.copy(fontSize = fontSize.sp),
         color = color,
         textAlign = textAlign
     )
@@ -109,11 +82,12 @@ fun errorMedium(
     text: String,
     color: Color = IndiStrawTheme.colors.text,
     textAlign: TextAlign = TextAlign.Start,
+    fontSize: Int = 12,
 ) {
     Text(
         modifier = modifier,
         text = text,
-        style = IndiStrawTheme.typography.errorMedium,
+        style = IndiStrawTheme.typography.errorMedium.copy(fontSize = fontSize.sp),
         color = color,
         textAlign = textAlign
     )
@@ -125,91 +99,46 @@ fun agreeMedium(
     text: String,
     color: Color = IndiStrawTheme.colors.text,
     textAlign: TextAlign = TextAlign.Start,
+    fontSize: Int = 14,
 ) {
     Text(
         modifier = modifier,
         text = text,
-        style = IndiStrawTheme.typography.agreeMedium,
+        style = IndiStrawTheme.typography.agreeMedium.copy(fontSize = fontSize.sp),
         color = color,
         textAlign = textAlign
     )
 }
 
 @Composable
-fun TitleSemiBold1(
+fun TitleSemiBold(
     modifier: Modifier = Modifier,
     text: String,
     color: Color = IndiStrawTheme.colors.text,
     textAlign: TextAlign = TextAlign.Start,
+    fontSize: Int = 14,
 ) {
     Text(
         modifier = modifier,
         text = text,
-        style = IndiStrawTheme.typography.titleSemiBold1,
+        style = IndiStrawTheme.typography.titleSemiBold.copy(fontSize = fontSize.sp),
         color = color,
         textAlign = textAlign
     )
 }
 
 @Composable
-fun TitleSemiBold2(
+fun TitleRegular(
     modifier: Modifier = Modifier,
     text: String,
     color: Color = IndiStrawTheme.colors.text,
     textAlign: TextAlign = TextAlign.Start,
+    fontSize: Int = 16,
 ) {
     Text(
         modifier = modifier,
         text = text,
-        style = IndiStrawTheme.typography.titleSemiBold2,
-        color = color,
-        textAlign = textAlign
-    )
-}
-
-@Composable
-fun TitleRegular1(
-    modifier: Modifier = Modifier,
-    text: String,
-    color: Color = IndiStrawTheme.colors.text,
-    textAlign: TextAlign = TextAlign.Start,
-) {
-    Text(
-        modifier = modifier,
-        text = text,
-        style = IndiStrawTheme.typography.titleRegular1,
-        color = color,
-        textAlign = textAlign
-    )
-}
-
-@Composable
-fun TitleRegular2(
-    modifier: Modifier = Modifier,
-    text: String,
-    color: Color = IndiStrawTheme.colors.text,
-    textAlign: TextAlign = TextAlign.Start,
-) {
-    Text(
-        modifier = modifier,
-        text = text,
-        style = IndiStrawTheme.typography.titleRegular2,
-        color = color,
-        textAlign = textAlign
-    )
-}
-
-@Composable
-fun TitleRegular3(
-    modifier: Modifier = Modifier,
-    text: String,
-    color: Color = IndiStrawTheme.colors.text,
-    textAlign: TextAlign = TextAlign.Start,
-) {
-    Text(
-        modifier = modifier,
-        text = text,
-        style = IndiStrawTheme.typography.titleRegular3,
+        style = IndiStrawTheme.typography.titleRegular.copy(fontSize = fontSize.sp),
         color = color,
         textAlign = textAlign
     )
@@ -221,11 +150,12 @@ fun PriceRegular(
     text: String,
     color: Color = IndiStrawTheme.colors.text,
     textAlign: TextAlign = TextAlign.Start,
+    fontSize: Int = 10,
 ) {
     Text(
         modifier = modifier,
         text = text,
-        style = IndiStrawTheme.typography.priceRegular,
+        style = IndiStrawTheme.typography.priceRegular.copy(fontSize = fontSize.sp),
         color = color,
         textAlign = textAlign
     )
@@ -237,11 +167,29 @@ fun SuccessBold(
     text: String,
     color: Color = IndiStrawTheme.colors.text,
     textAlign: TextAlign = TextAlign.Start,
+    fontSize: Int = 16,
 ) {
     Text(
         modifier = modifier,
         text = text,
-        style = IndiStrawTheme.typography.successBold,
+        style = IndiStrawTheme.typography.successBold.copy(fontSize = fontSize.sp),
+        color = color,
+        textAlign = textAlign
+    )
+}
+
+@Composable
+fun ButtonMedium(
+    modifier: Modifier = Modifier,
+    text: String,
+    color: Color = IndiStrawTheme.colors.text,
+    textAlign: TextAlign = TextAlign.Start,
+    fontSize: Int = 18,
+) {
+    Text(
+        modifier = modifier,
+        text = text,
+        style = IndiStrawTheme.typography.buttonMedium.copy(fontSize = fontSize.sp),
         color = color,
         textAlign = textAlign
     )
