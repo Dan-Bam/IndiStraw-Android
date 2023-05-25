@@ -35,7 +35,7 @@ const val RestTime = 301
 fun IndiStrawTextField(
     modifier: Modifier = Modifier
         .fillMaxWidth()
-        .padding(horizontal = 32.dp)
+        .padding(horizontal = 25.dp)
         .background(
             color = IndiStrawTheme.colors.textBox,
             shape = IndiStrawTheme.shapes.defaultRounded
