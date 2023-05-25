@@ -5,6 +5,8 @@ sealed class AppNavigationItem(val route: String) {
 
     object Login : AppNavigationItem("login")
 
+    object SignUp : AppNavigationItem("signUp")
+
     object FindId : AppNavigationItem("findId")
 
     object FindPassword : AppNavigationItem("findPassword")
