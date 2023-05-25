@@ -94,7 +94,7 @@ fun LoginScreen(
             )
         }
         IndiStrawButton(
-            modifier = Modifier.padding(top = 107.dp),
+            modifier = Modifier.padding(top = 32.dp),
             text = stringResource(id = R.string.login)
         ) {
             navController.navigate(AppNavigationItem.Main.route)
