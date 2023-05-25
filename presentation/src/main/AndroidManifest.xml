@@ -17,6 +17,7 @@
             android:name="com.danbam.presentation.ui.main.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Indi_straw">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
