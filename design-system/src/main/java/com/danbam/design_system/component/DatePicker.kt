@@ -20,8 +20,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.DropdownMenu
-import androidx.compose.material.DropdownMenuItem
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
@@ -143,8 +141,8 @@ private fun DateBox(
                 modifier = Modifier
                     .align(CenterVertically)
                     .rotate(rotateValue),
-                painter = painterResource(id = IndiStrawIcon.dateArrow.drawableId),
-                contentDescription = IndiStrawIcon.dateArrow.contentDescription,
+                painter = painterResource(id = IndiStrawIcon.DateArrow.drawableId),
+                contentDescription = IndiStrawIcon.DateArrow.contentDescription,
             )
         }
         ExpandDateBox(dateList = dateList, isExpand = isExpand, onDateSelect = {

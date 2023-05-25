@@ -30,19 +30,19 @@ class IndiStrawIcon private constructor(
         )
 
         @Stable
-        val down = IndiStrawIcon(
+        val Down = IndiStrawIcon(
             drawableId = R.drawable.ic_down,
             contentDescription = "down"
         )
 
         @Stable
-        val dateArrow = IndiStrawIcon(
+        val DateArrow = IndiStrawIcon(
             drawableId = R.drawable.ic_date_arrow,
             contentDescription = "date arrow"
         )
 
         @Stable
-        val fastSearch = IndiStrawIcon(
+        val FastSearch = IndiStrawIcon(
             drawableId = R.drawable.ic_fast_search,
             contentDescription = "fast search"
         )
@@ -72,7 +72,7 @@ class IndiStrawIcon private constructor(
         )
 
         @Stable
-        val search = IndiStrawIcon(
+        val Search = IndiStrawIcon(
             drawableId = R.drawable.ic_search,
             contentDescription = "search"
         )
@@ -84,7 +84,7 @@ class IndiStrawIcon private constructor(
         )
 
         @Stable
-        val noImage = IndiStrawIcon(
+        val NoImage = IndiStrawIcon(
             drawableId = R.drawable.ic_no_img,
             contentDescription = "no image"
         )
