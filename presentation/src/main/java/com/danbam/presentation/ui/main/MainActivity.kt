@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.danbam.design_system.IndiStrawTheme
+import com.danbam.presentation.ui.intro.IntroScreen
 import com.danbam.presentation.ui.login.LoginScreen
 import com.danbam.presentation.util.AppNavigationItem
 
@@ -27,7 +28,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun BaseApp(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = AppNavigationItem.Login.route) {
+    NavHost(navController = navController, startDestination = AppNavigationItem.Intro.route) {
+        composable(route = AppNavigationItem.Intro.route) {
+            IntroScreen(navController = navController)
+        }
         composable(route = AppNavigationItem.Login.route) {
             LoginScreen(navController = navController)
         }
@@ -38,7 +42,7 @@ fun BaseApp(navController: NavHostController) {
 
         }
         composable(route = AppNavigationItem.Main.route) {
-            
+
         }
     }
 }
