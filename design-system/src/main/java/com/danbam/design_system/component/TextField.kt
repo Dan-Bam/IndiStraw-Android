@@ -34,13 +34,7 @@ const val RestTime = 301
 
 @Composable
 fun IndiStrawTextField(
-    modifier: Modifier = Modifier
-        .fillMaxWidth()
-        .padding(horizontal = 25.dp)
-        .background(
-            color = IndiStrawTheme.colors.textBox,
-            shape = IndiStrawTheme.shapes.defaultRounded
-        ),
+    modifier: Modifier = Modifier,
     hint: String,
     value: String,
     onValueChange: (String) -> Unit,
@@ -62,6 +56,12 @@ fun IndiStrawTextField(
     }
     Row(
         modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 25.dp)
+            .background(
+                color = IndiStrawTheme.colors.textBox,
+                shape = IndiStrawTheme.shapes.defaultRounded
+            )
             .padding(vertical = 21.dp, horizontal = 13.dp)
     ) {
         BasicTextField(
@@ -73,7 +73,10 @@ fun IndiStrawTextField(
             singleLine = maxLines == 1,
             keyboardOptions = KeyboardOptions(imeAction = imeAction, keyboardType = keyboardType),
             cursorBrush = SolidColor(IndiStrawTheme.colors.exampleText),
-            textStyle = IndiStrawTheme.typography.exampleTextMedium.copy(fontSize = 14.sp),
+            textStyle = IndiStrawTheme.typography.exampleTextMedium.copy(
+                fontSize = 14.sp,
+                color = IndiStrawTheme.colors.text
+            ),
             visualTransformation = if (isToggleVisible == null || isToggleVisible) VisualTransformation.None else PasswordVisualTransformation(),
         ) {
             Row(
@@ -110,13 +113,7 @@ fun IndiStrawTextField(
 
 @Composable
 fun IndiStrawSearchTextField(
-    modifier: Modifier = Modifier
-        .fillMaxWidth()
-        .padding(start = 10.dp)
-        .background(
-            color = IndiStrawTheme.colors.background,
-            shape = IndiStrawTheme.shapes.smallRounded
-        ),
+    modifier: Modifier = Modifier,
     hint: String,
     value: String,
     onValueChange: (String) -> Unit,
@@ -126,6 +123,12 @@ fun IndiStrawSearchTextField(
 ) {
     Row(
         modifier = modifier
+            .fillMaxWidth()
+            .padding(start = 10.dp)
+            .background(
+                color = IndiStrawTheme.colors.background,
+                shape = IndiStrawTheme.shapes.smallRounded
+            )
             .border(
                 width = 1.dp,
                 color = IndiStrawTheme.colors.text,
