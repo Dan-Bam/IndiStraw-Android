@@ -1,12 +1,16 @@
 package com.danbam.design_system.component
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.util.indiStrawClickable
 
@@ -28,5 +32,21 @@ fun IndiStrawButton(
             .padding(vertical = 16.dp),
         text = text,
         textAlign = TextAlign.Center
+    )
+}
+
+@Composable
+fun RectangleImageButton(
+    modifier: Modifier = Modifier,
+    imgSrc: String,
+    onClick: () -> Unit,
+) {
+    AsyncImage(
+        modifier = modifier
+            .clip(IndiStrawTheme.shapes.defaultRounded)
+            .indiStrawClickable(onClick),
+        model = imgSrc,
+        contentDescription = "image",
+        contentScale = ContentScale.Crop,
     )
 }
