@@ -8,6 +8,7 @@ import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.graphics.Color
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -28,7 +29,8 @@ fun IndiStrawBottomSheetLayout(
 
     ModalBottomSheetLayout(
         sheetState = sheetState,
-        sheetContent = sheetContent
+        sheetContent = sheetContent,
+        sheetBackgroundColor = Color.Transparent
     ) {
         content {
             coroutineScope.launch {
