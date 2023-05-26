@@ -20,18 +20,18 @@ sealed class Shape {
 
 @Composable
 fun IndiStrawButton(
-    modifier: Modifier = Modifier
-        .padding(horizontal = 33.dp)
-        .fillMaxWidth()
-        .background(
-            color = IndiStrawTheme.colors.main,
-            shape = IndiStrawTheme.shapes.defaultRounded
-        ),
+    modifier: Modifier = Modifier,
     text: String,
     onClick: () -> Unit,
 ) {
     ButtonMedium(
         modifier = modifier
+            .padding(horizontal = 32.dp)
+            .fillMaxWidth()
+            .background(
+                color = IndiStrawTheme.colors.main,
+                shape = IndiStrawTheme.shapes.defaultRounded
+            )
             .indiStrawClickable(onClick, rippleColor = IndiStrawTheme.colors.background)
             .padding(vertical = 16.dp),
         text = text,
@@ -46,7 +46,7 @@ fun ImageButton(
     shape: Shape,
     onClick: () -> Unit,
 ) {
-    val clipShape = when(shape) {
+    val clipShape = when (shape) {
         Shape.Rectangle -> IndiStrawTheme.shapes.defaultRounded
         Shape.Circle -> IndiStrawTheme.shapes.circle
     }

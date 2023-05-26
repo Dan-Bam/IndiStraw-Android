@@ -194,3 +194,20 @@ fun ButtonMedium(
         textAlign = textAlign
     )
 }
+
+@Composable
+fun JoinBold(
+    modifier: Modifier = Modifier,
+    text: String,
+    color: Color = IndiStrawTheme.colors.text,
+    textAlign: TextAlign = TextAlign.Start,
+    fontSize: Int = 12,
+) {
+    Text(
+        modifier = modifier,
+        text = text,
+        style = IndiStrawTheme.typography.joinBold.copy(fontSize = fontSize.sp),
+        color = color,
+        textAlign = textAlign
+    )
+}
