@@ -5,11 +5,21 @@ sealed class AppNavigationItem(val route: String) {
 
     object Login : AppNavigationItem("login")
 
-    object SignUp : AppNavigationItem("signUp")
-
     object FindId : AppNavigationItem("findId")
 
     object FindPassword : AppNavigationItem("findPassword")
 
     object Main : AppNavigationItem("main")
+}
+
+sealed class SignUpNavigationItem(val route: String) {
+    object SetProfile : SignUpNavigationItem("setProfile")
+
+    object SetName : SignUpNavigationItem("setName")
+
+    object SetPhoneNumber : SignUpNavigationItem("setPhoneNumber")
+
+    object SetId : SignUpNavigationItem("setId")
+
+    object SetPassword : SignUpNavigationItem("setPassword")
 }
