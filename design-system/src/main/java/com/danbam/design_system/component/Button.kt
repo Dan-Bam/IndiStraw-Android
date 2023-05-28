@@ -94,7 +94,7 @@ fun SelectImageButton(
                     color = IndiStrawTheme.colors.bottomSheet,
                     shape = IndiStrawTheme.shapes.bottomSheet
                 )
-                .padding(start = 32.dp, top = 13.dp, bottom = 160.dp)
+                .padding(top = 13.dp, bottom = 160.dp)
         ) {
             Divider(
                 modifier = Modifier
@@ -108,7 +108,9 @@ fun SelectImageButton(
             )
             Spacer(modifier = Modifier.height(42.dp))
             Row(
-                modifier = Modifier.indiStrawClickable(moveGallery)
+                modifier = Modifier
+                    .indiStrawClickable(moveGallery)
+                    .padding(start = 32.dp)
             ) {
                 IndiStrawIcon(icon = IndiStrawIconList.Gallery)
                 Spacer(modifier = Modifier.width(16.dp))
@@ -119,7 +121,9 @@ fun SelectImageButton(
             }
             Spacer(modifier = Modifier.height(40.dp))
             Row(
-                modifier = Modifier.indiStrawClickable(moveCamera)
+                modifier = Modifier
+                    .indiStrawClickable(moveCamera)
+                    .padding(start = 32.dp)
             ) {
                 IndiStrawIcon(icon = IndiStrawIconList.Camera)
                 Spacer(modifier = Modifier.width(16.dp))
