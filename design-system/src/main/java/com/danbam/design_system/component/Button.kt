@@ -87,25 +87,7 @@ fun SelectImageButton(
     bottomContent: @Composable () -> Unit = {},
 ) {
     IndiStrawBottomSheetLayout(sheetContent = {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(
-                    color = IndiStrawTheme.colors.bottomSheet,
-                    shape = IndiStrawTheme.shapes.bottomSheet
-                )
-                .padding(top = 13.dp, bottom = 160.dp)
-        ) {
-            Divider(
-                modifier = Modifier
-                    .width(60.dp)
-                    .height(3.dp)
-                    .background(
-                        color = IndiStrawTheme.colors.exampleText,
-                        shape = IndiStrawTheme.shapes.smallRounded
-                    )
-                    .align(CenterHorizontally)
-            )
+        Column {
             Spacer(modifier = Modifier.height(42.dp))
             Row(
                 modifier = Modifier
@@ -132,6 +114,7 @@ fun SelectImageButton(
                     text = requireCameraString
                 )
             }
+            Spacer(modifier = Modifier.height(165.dp))
         }
     }) {
         Column {
