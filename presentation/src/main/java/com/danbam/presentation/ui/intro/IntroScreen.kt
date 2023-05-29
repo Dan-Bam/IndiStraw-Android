@@ -50,7 +50,7 @@ fun IntroScreen(
                 Row(
                     modifier = Modifier
                         .indiStrawClickable(onClick = {
-                            navController.navigate(SignUpNavigationItem.SetProfile.route)
+                            navController.navigate(SignUpNavigationItem.SetName.route)
                         })
                 ) {
                     TitleRegular(

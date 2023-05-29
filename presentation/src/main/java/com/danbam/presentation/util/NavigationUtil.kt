@@ -15,9 +15,9 @@ sealed class AppNavigationItem(val route: String) {
 }
 
 sealed class SignUpNavigationItem(val route: String) {
-    object SetProfile : SignUpNavigationItem("setProfile")
-
     object SetName : SignUpNavigationItem("setName")
+
+    object SetProfile : SignUpNavigationItem("setProfile")
 
     object SetId : SignUpNavigationItem("setId")
 

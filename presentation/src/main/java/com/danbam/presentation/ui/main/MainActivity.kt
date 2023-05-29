@@ -77,11 +77,11 @@ fun NavGraphBuilder.mainGraph(navController: NavHostController) {
 }
 
 fun NavGraphBuilder.signUpGraph(navController: NavHostController) {
-    composable(route = SignUpNavigationItem.SetProfile.route) {
-        SetProfileScreen(navController = navController)
-    }
     composable(route = SignUpNavigationItem.SetName.route) {
         SetNameScreen(navController = navController)
+    }
+    composable(route = SignUpNavigationItem.SetProfile.route) {
+        SetProfileScreen(navController = navController)
     }
     composable(route = SignUpNavigationItem.SetId.route) {
         SetIdScreen(navController = navController)

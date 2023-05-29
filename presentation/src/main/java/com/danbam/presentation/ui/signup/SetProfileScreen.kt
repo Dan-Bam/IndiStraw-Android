@@ -43,7 +43,7 @@ fun SetProfileScreen(
                 modifier = Modifier.padding(top = 156.dp),
                 text = stringResource(id = R.string.next)
             ) {
-                navController.navigate(SignUpNavigationItem.SetName.route)
+                navController.navigate(SignUpNavigationItem.SetId.route)
             }
         }
     }

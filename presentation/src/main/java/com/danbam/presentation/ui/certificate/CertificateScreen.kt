@@ -71,7 +71,7 @@ fun CertificateScreen(
                 isSendCertificateNumber = true
             } else {
                 when (certificateType) {
-                    CertificateType.SIGN_UP -> navController.navigate(SignUpNavigationItem.SetId.route)
+                    CertificateType.SIGN_UP -> navController.navigate(SignUpNavigationItem.SetProfile.route)
                     CertificateType.FIND_ID -> navController.navigate(AppNavigationItem.FindId.route)
                     CertificateType.FIND_PASSWORD -> navController.navigate(AppNavigationItem.FindPassword.route)
                 }
