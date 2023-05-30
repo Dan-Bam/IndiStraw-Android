@@ -43,18 +43,18 @@ fun IndiStrawTextField(
     imeAction: ImeAction = ImeAction.Done,
     keyboardType: KeyboardType = KeyboardType.Text,
     isTimer: Boolean = false,
+    onReTimer: ((() -> Unit) -> Unit)? = null,
     isToggleVisible: Boolean? = null,
     onToggleChange: () -> Unit = {},
 ) {
     var restTime by remember { mutableStateOf(RestTime) }
-    if (isTimer) {
-        LaunchedEffect(restTime) {
-            if (restTime != 0) {
-                delay(1_000L)
-                restTime--
-            }
+    LaunchedEffect(restTime, isTimer) {
+        if (restTime != 0 && isTimer) {
+            delay(1_000L)
+            restTime--
         }
     }
+    onReTimer?.let { onReTimer { restTime = RestTime } }
     Row(
         modifier = modifier
             .fillMaxWidth()
