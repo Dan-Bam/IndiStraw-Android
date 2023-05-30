@@ -98,7 +98,7 @@ fun IndiStrawTextField(
                         text = "(${restTime / 60}:${"%02d".format(restTime % 60)})",
                     )
                 }
-                if (value.isNotEmpty() && isToggleVisible != null) {
+                if (isToggleVisible != null) {
                     val eyesIcon =
                         if (isToggleVisible) IndiStrawIconList.CloseEyes else IndiStrawIconList.OpenEyes
                     IndiStrawIcon(
