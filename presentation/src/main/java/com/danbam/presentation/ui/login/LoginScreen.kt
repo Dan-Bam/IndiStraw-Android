@@ -26,6 +26,7 @@ import com.danbam.design_system.component.HeadLineBold
 import com.danbam.design_system.component.IndiStrawButton
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.IndiStrawTextField
+import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.presentation.R
 import com.danbam.presentation.util.AppNavigationItem
@@ -38,11 +39,12 @@ fun LoginScreen(
 ) {
     var id by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var errorText by remember { mutableStateOf("") }
     var isToggleVisible by remember { mutableStateOf(false) }
 
     Column {
         IndiStrawHeader(
-            marginTop = 46,
+            marginTop = 25,
             backStringId = R.string.back,
             pressBackBtn = { navController.popBackStack() })
         HeadLineBold(
@@ -64,11 +66,24 @@ fun LoginScreen(
             isToggleVisible = isToggleVisible,
             onToggleChange = { isToggleVisible = !isToggleVisible }
         )
+        TitleRegular(
+            modifier = Modifier.padding(start = 32.dp, top = 7.dp),
+            text = errorText,
+            color = IndiStrawTheme.colors.error,
+            fontSize = 12
+        )
+        IndiStrawButton(
+            modifier = Modifier.padding(top = 37.dp),
+            text = stringResource(id = R.string.login)
+        ) {
+//            navController.navigate(AppNavigationItem.Main.route)
+            errorText = "비밀번호는 8 ~ 20자리 사이로 입력해주세요."
+        }
         Row(
             modifier = Modifier
-                .padding(end = 32.dp, top = 10.dp)
+                .padding(top = 15.dp)
                 .fillMaxWidth(),
-            horizontalArrangement = Arrangement.End
+            horizontalArrangement = Arrangement.Center
         ) {
             ExampleTextRegular(
                 modifier = Modifier
@@ -83,7 +98,7 @@ fun LoginScreen(
             )
             Spacer(
                 modifier = Modifier
-                    .padding(horizontal = 4.dp)
+                    .padding(horizontal = 7.dp)
                     .height(14.dp)
                     .width(1.dp)
                     .background(IndiStrawTheme.colors.exampleText)
@@ -97,15 +112,9 @@ fun LoginScreen(
                                     + DeepLinkKey.CERTIFICATE_TYPE + CertificateType.FIND_PASSWORD
                         )
                     }),
-                text = stringResource(id = R.string.find_id),
+                text = stringResource(id = R.string.find_password),
                 color = IndiStrawTheme.colors.exampleText
             )
-        }
-        IndiStrawButton(
-            modifier = Modifier.padding(top = 32.dp),
-            text = stringResource(id = R.string.login)
-        ) {
-            navController.navigate(AppNavigationItem.Main.route)
         }
     }
 }

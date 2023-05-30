@@ -31,7 +31,7 @@ fun CertificateScreen(
     var certificateNumber by remember { mutableStateOf("") }
     Column {
         IndiStrawHeader(
-            marginTop = if (certificateType == CertificateType.SIGN_UP) 25 else 46,
+            marginTop = 25,
             backStringId = R.string.back,
             pressBackBtn = {
                 if (isSendCertificateNumber) {
