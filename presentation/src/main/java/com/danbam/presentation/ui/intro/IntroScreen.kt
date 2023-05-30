@@ -1,6 +1,5 @@
 package com.danbam.presentation.ui.intro
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,6 +24,7 @@ import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.presentation.R
 import com.danbam.presentation.util.AppNavigationItem
+import com.danbam.presentation.util.SignUpNavigationItem
 
 @Composable
 fun IntroScreen(
@@ -50,7 +50,7 @@ fun IntroScreen(
                 Row(
                     modifier = Modifier
                         .indiStrawClickable(onClick = {
-                            navController.navigate(AppNavigationItem.SignUp.route)
+                            navController.navigate(SignUpNavigationItem.SetName.route)
                         })
                 ) {
                     TitleRegular(

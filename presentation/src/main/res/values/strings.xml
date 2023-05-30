@@ -1,9 +1,13 @@
 <resources>
 <!--    기타-->
+    <string name="require_terms_of_use">[필수] 이용약관 동의</string>
+    <string name="require_personal_information">[필수] 개인정보 수집 및 이용 동의</string>
     <string name="app_name">Indi Straw</string>
 
 <!--    ㄱ으로 시작하는 string-->
+    <string name="approve_personal_information">개인정보 동의</string>
     <string name="choose_gallery">갤러리에서 선택</string>
+    <string name="next">계속하기</string>
     <string name="already_sign_up">계정이 없으신가요?</string>
     
 <!--    ㄴ으로 시작하는 string-->
@@ -31,15 +35,19 @@
 <!--    ㅂ으로 시작하는 string-->
     <string name="certificate_phone_number">번호 인증하기</string>
     <string name="change">변경하기</string>
+    <string name="require_name">본인의\n이름을 입력해 주세요</string>
     <string name="password">비밀번호</string>
-    <string name="wrong_password">비밀번호는 8~20자리 사이로 지정해 주세요.</string>
     <string name="change_password">비밀번호 변경</string>
     <string name="find_password">비밀번호 찾기</string>
     <string name="check_password">비밀번호 확인</string>
+    <string name="wrong_password">비밀번호는 8~20자리 사이로 지정해 주세요.</string>
 
 <!--    ㅅ으로 시작하는 string-->
+    <string name="require_id">사용하실\n아이디를 입력해 주세요</string>
+    <string name="require_picture">사용하실\n이미지를 넣어 주세요</string>
+    <string name="require_password">사용하실\n비밀번호를 입력해 주세요</string>
     <string name="edit_picture">사진 수정</string>
-    <string name="take_picture">사진 찍기</string>
+    <string name="choose_camera">사진 찍기</string>
     <string name="success_reward">성공 리워드</string>
     <string name="write_introduce">소개글 입력하기</string>
     <string name="require_write_introduce">소개글을 써주세요.</string>
@@ -57,14 +65,17 @@
     <string name="check_certificate_number">인증번호 확인</string>
     <string name="wrong_certificate_number">인증번호가 맞지 않습니다.</string>
     <string name="already_certificate_number">인증번호가 안 오셨나요?</string>
+    <string name="require_certificate_number">인증번호를 입력해 주세요</string>
     <string name="finish_certificate">인증완료</string>
     <string name="certificate">인증하기</string>
 
 <!--    ㅈ으로 시작하는 string-->
-    <string name="view_detail">자세히 보기</string>
+    <string name="view_detail">자세히보기</string>
     <string name="list_project">작품 리스트</string>
+    <string name="approve_all">전체동의</string>
     <string name="view_all">전체보기</string>
     <string name="phone_number">전화번호</string>
+    <string name="require_phone_number">전화번호를 입력해 주세요</string>
     <string name="write_title">제목 입력하기</string>
     <string name="require_write_title">제목을 입력해주세요.</string>
     <string name="finish">종료</string>
@@ -90,6 +101,7 @@
 
 <!--    ㅎ으로 시작하는 string-->
     <string name="go">하러가기</string>
+    <string name="check">확인하기</string>
     <string name="sign_up">회원가입</string>
     <string name="donate">후원하기</string>
 </resources>

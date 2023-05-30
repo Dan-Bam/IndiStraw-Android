@@ -16,7 +16,6 @@ data class IndiStrawColor(
     val error: Color,
     val bottomSheet: Color,
     val line: Color,
-    val category: Color,
 )
 
 internal val LocalIndiStrawColors = staticCompositionLocalOf {
@@ -31,7 +30,6 @@ internal val LocalIndiStrawColors = staticCompositionLocalOf {
         error = Color.Unspecified,
         bottomSheet = Color.Unspecified,
         line = Color.Unspecified,
-        category = Color.Unspecified
     )
 }
 
@@ -46,7 +44,6 @@ val lightColor = IndiStrawColor(
     error = Color(0xFFFF1717),
     bottomSheet = Color(0xFF3A3838),
     line = Color(0xFF7C7C7C),
-    category = Color(0xFFFF8D8D)
 )
 
 val darkColor = IndiStrawColor(
@@ -60,5 +57,4 @@ val darkColor = IndiStrawColor(
     error = Color(0xFFFF1717),
     bottomSheet = Color(0xFF3A3838),
     line = Color(0xFF7C7C7C),
-    category = Color(0xFFFF8D8D)
 )

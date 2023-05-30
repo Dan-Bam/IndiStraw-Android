@@ -30,7 +30,7 @@ import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.design_system.util.indiStrawClickable
 import kotlinx.coroutines.delay
 
-const val RestTime = 301
+const val RestTime = 300
 
 @Composable
 fun IndiStrawTextField(
@@ -39,6 +39,7 @@ fun IndiStrawTextField(
     value: String,
     onValueChange: (String) -> Unit,
     maxLines: Int = 1,
+    readOnly: Boolean = false,
     imeAction: ImeAction = ImeAction.Done,
     keyboardType: KeyboardType = KeyboardType.Text,
     isTimer: Boolean = false,
@@ -71,6 +72,7 @@ fun IndiStrawTextField(
             onValueChange = onValueChange,
             maxLines = maxLines,
             singleLine = maxLines == 1,
+            readOnly = readOnly,
             keyboardOptions = KeyboardOptions(imeAction = imeAction, keyboardType = keyboardType),
             cursorBrush = SolidColor(IndiStrawTheme.colors.exampleText),
             textStyle = IndiStrawTheme.typography.exampleTextMedium.copy(
@@ -102,7 +104,7 @@ fun IndiStrawTextField(
                     IndiStrawIcon(
                         modifier = Modifier
                             .height(15.dp)
-                            .indiStrawClickable(onToggleChange),
+                            .indiStrawClickable(onClick = onToggleChange),
                         icon = eyesIcon
                     )
                 }
@@ -160,7 +162,7 @@ fun IndiStrawSearchTextField(
                 IndiStrawIcon(
                     modifier = Modifier
                         .height(15.dp)
-                        .indiStrawClickable(onToggleChange),
+                        .indiStrawClickable(onClick = onToggleChange),
                     icon = IndiStrawIconList.Search
                 )
             }

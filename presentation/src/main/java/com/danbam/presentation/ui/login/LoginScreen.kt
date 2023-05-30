@@ -29,6 +29,8 @@ import com.danbam.design_system.component.IndiStrawTextField
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.presentation.R
 import com.danbam.presentation.util.AppNavigationItem
+import com.danbam.presentation.util.CertificateType
+import com.danbam.presentation.util.DeepLinkKey
 
 @Composable
 fun LoginScreen(
@@ -71,7 +73,10 @@ fun LoginScreen(
             ExampleTextRegular(
                 modifier = Modifier
                     .indiStrawClickable(onClick = {
-                        navController.navigate(AppNavigationItem.FindId.route)
+                        navController.navigate(
+                            route = AppNavigationItem.Certificate.route
+                                    + DeepLinkKey.CERTIFICATE_TYPE + CertificateType.FIND_ID
+                        )
                     }),
                 text = stringResource(id = R.string.find_id),
                 color = IndiStrawTheme.colors.exampleText
@@ -87,7 +92,10 @@ fun LoginScreen(
             ExampleTextRegular(
                 modifier = Modifier
                     .indiStrawClickable(onClick = {
-                        navController.navigate(AppNavigationItem.FindPassword.route)
+                        navController.navigate(
+                            route = AppNavigationItem.Certificate.route
+                                    + DeepLinkKey.CERTIFICATE_TYPE + CertificateType.FIND_PASSWORD
+                        )
                     }),
                 text = stringResource(id = R.string.find_id),
                 color = IndiStrawTheme.colors.exampleText
