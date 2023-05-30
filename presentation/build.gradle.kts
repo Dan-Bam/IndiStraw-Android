@@ -68,6 +68,7 @@ dependencies {
     implementation(Dependency.Compose.UI)
     implementation(Dependency.Compose.PREVIEW)
     implementation(Dependency.Compose.MATERIAL)
+    implementation(Dependency.Compose.ANIMATE_NAVIGATION)
     implementation(Dependency.Compose.COMPOSE_HILT_NAV)
 
     implementation(Dependency.Kotlin.COROUTINES_CORE)

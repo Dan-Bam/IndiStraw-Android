@@ -22,6 +22,7 @@ object Version {
     const val COMPOSE_ACTIVITY = "1.6.1"
     const val COMPOSE = "1.3.2"
     const val COMPOSE_MATERIAL = "1.3.1"
+    const val COMPOSE_ANIMATE_NAVIGATION = "0.28.0"
     const val HILT_NAV = "1.0.0"
 
     const val HILT = "2.44"
