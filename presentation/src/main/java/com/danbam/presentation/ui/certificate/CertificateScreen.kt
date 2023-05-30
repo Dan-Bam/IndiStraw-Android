@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -38,16 +39,14 @@ fun CertificateScreen(
     var phoneNumber by remember { mutableStateOf("") }
     var certificateNumber by remember { mutableStateOf("") }
     var onReTimer by remember { mutableStateOf({}) }
-    Column {
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
         IndiStrawHeader(
             marginTop = 25,
             backStringId = R.string.back,
             pressBackBtn = {
-                if (isSendCertificateNumber) {
-                    isSendCertificateNumber = false
-                } else {
-                    navController.popBackStack()
-                }
+                navController.popBackStack()
             })
         HeadLineBold(
             modifier = Modifier
