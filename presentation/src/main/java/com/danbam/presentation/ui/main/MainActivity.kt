@@ -13,6 +13,8 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.presentation.ui.certificate.CertificateScreen
+import com.danbam.presentation.ui.find.FindIdScreen
+import com.danbam.presentation.ui.find.FindPasswordScreen
 import com.danbam.presentation.ui.intro.IntroScreen
 import com.danbam.presentation.ui.login.LoginScreen
 import com.danbam.presentation.ui.signup.SetIdScreen
@@ -66,10 +68,10 @@ fun NavGraphBuilder.mainGraph(navController: NavHostController) {
         CertificateScreen(navController = navController, certificateType = certificateType)
     }
     composable(route = AppNavigationItem.FindId.route) {
-
+        FindIdScreen(navController = navController)
     }
     composable(route = AppNavigationItem.FindPassword.route) {
-
+        FindPasswordScreen(navController = navController)
     }
     composable(route = AppNavigationItem.Main.route) {
 

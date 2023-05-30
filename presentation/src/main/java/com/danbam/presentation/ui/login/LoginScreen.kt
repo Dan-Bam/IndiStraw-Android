@@ -76,8 +76,7 @@ fun LoginScreen(
             modifier = Modifier.padding(top = 37.dp),
             text = stringResource(id = R.string.login)
         ) {
-//            navController.navigate(AppNavigationItem.Main.route)
-            errorText = "비밀번호는 8 ~ 20자리 사이로 입력해주세요."
+            navController.navigate(AppNavigationItem.Main.route)
         }
         Row(
             modifier = Modifier
