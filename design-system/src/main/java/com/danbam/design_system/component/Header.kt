@@ -34,7 +34,7 @@ fun IndiStrawHeader(
         if (isBackBtn) {
             Row(
                 modifier = Modifier
-                    .indiStrawClickable(pressBackBtn)
+                    .indiStrawClickable(onClick = pressBackBtn)
                     .align(CenterVertically)
             ) {
                 IndiStrawIcon(

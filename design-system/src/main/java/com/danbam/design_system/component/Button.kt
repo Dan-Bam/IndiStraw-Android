@@ -46,7 +46,7 @@ fun IndiStrawButton(
                 color = IndiStrawTheme.colors.main,
                 shape = IndiStrawTheme.shapes.defaultRounded
             )
-            .indiStrawClickable(onClick, rippleColor = IndiStrawTheme.colors.background)
+            .indiStrawClickable(rippleColor = IndiStrawTheme.colors.background, onClick = onClick)
             .padding(vertical = 16.dp),
         text = text,
         textAlign = TextAlign.Center
@@ -67,7 +67,7 @@ fun ImageButton(
     AsyncImage(
         modifier = modifier
             .clip(clipShape)
-            .indiStrawClickable(onClick),
+            .indiStrawClickable(onClick = onClick),
         model = imgSrc,
         contentDescription = "image",
         contentScale = ContentScale.Crop,
@@ -91,7 +91,7 @@ fun SelectImageButton(
             Spacer(modifier = Modifier.height(42.dp))
             Row(
                 modifier = Modifier
-                    .indiStrawClickable(moveGallery)
+                    .indiStrawClickable(onClick = moveGallery)
                     .padding(start = 32.dp)
             ) {
                 IndiStrawIcon(icon = IndiStrawIconList.Gallery)
@@ -104,7 +104,7 @@ fun SelectImageButton(
             Spacer(modifier = Modifier.height(40.dp))
             Row(
                 modifier = Modifier
-                    .indiStrawClickable(moveCamera)
+                    .indiStrawClickable(onClick = moveCamera)
                     .padding(start = 32.dp)
             ) {
                 IndiStrawIcon(icon = IndiStrawIconList.Camera)
@@ -131,7 +131,7 @@ fun SelectImageButton(
                                 shape = if (requireString == null) IndiStrawTheme.shapes.circle else IndiStrawTheme.shapes.defaultRounded
                             )
                             .padding(paddingValues = paddingValues)
-                            .indiStrawClickable(it),
+                            .indiStrawClickable(onClick = it),
                         horizontalAlignment = CenterHorizontally,
                         verticalArrangement = Arrangement.Center
                     ) {

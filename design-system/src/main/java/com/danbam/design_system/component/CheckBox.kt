@@ -30,7 +30,7 @@ fun IndiStrawCheckBox(
         IndiStrawIcon(
             modifier = modifier
                 .padding(horizontal = 4.dp, vertical = 6.dp)
-                .indiStrawClickable(onClick),
+                .indiStrawClickable(onClick = onClick),
             icon = checkIcon
         )
     }

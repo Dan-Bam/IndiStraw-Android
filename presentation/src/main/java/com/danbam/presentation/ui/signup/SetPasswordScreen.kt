@@ -112,7 +112,7 @@ fun SetPasswordScreen(
                 modifier = Modifier
                     .padding(end = 32.dp, top = 27.dp)
                     .fillMaxWidth()
-                    .indiStrawClickable(it),
+                    .indiStrawClickable(onClick = it),
                 horizontalArrangement = Arrangement.End,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -143,7 +143,7 @@ fun PersonalInformationSheet(
         Row(
             modifier = Modifier
                 .padding(start = 35.dp, top = 42.dp)
-                .indiStrawClickable(onAll),
+                .indiStrawClickable(onClick = onAll),
             verticalAlignment = Alignment.CenterVertically
         ) {
             IndiStrawCheckBox(isCheck = isAll, isBorder = true, onClick = onAll)
@@ -172,7 +172,7 @@ fun PersonalInformationSheet(
         ) {
             Row(
                 modifier = Modifier
-                    .indiStrawClickable(onTermsOfUse)
+                    .indiStrawClickable(onClick = onTermsOfUse)
             ) {
                 IndiStrawCheckBox(isCheck = isTermsOfUse, onClick = onTermsOfUse)
                 TitleRegular(
@@ -209,7 +209,7 @@ fun PersonalInformationSheet(
         ) {
             Row(
                 modifier = Modifier
-                    .indiStrawClickable(onPersonalInformation)
+                    .indiStrawClickable(onClick = onPersonalInformation)
             ) {
                 IndiStrawCheckBox(isCheck = isPersonalInformation, onClick = onPersonalInformation)
                 TitleRegular(

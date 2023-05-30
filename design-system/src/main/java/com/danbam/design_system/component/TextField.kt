@@ -104,7 +104,7 @@ fun IndiStrawTextField(
                     IndiStrawIcon(
                         modifier = Modifier
                             .height(15.dp)
-                            .indiStrawClickable(onToggleChange),
+                            .indiStrawClickable(onClick = onToggleChange),
                         icon = eyesIcon
                     )
                 }
@@ -162,7 +162,7 @@ fun IndiStrawSearchTextField(
                 IndiStrawIcon(
                     modifier = Modifier
                         .height(15.dp)
-                        .indiStrawClickable(onToggleChange),
+                        .indiStrawClickable(onClick = onToggleChange),
                     icon = IndiStrawIconList.Search
                 )
             }
