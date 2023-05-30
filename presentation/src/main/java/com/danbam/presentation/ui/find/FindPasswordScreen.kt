@@ -1,6 +1,7 @@
 package com.danbam.presentation.ui.find
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -21,14 +22,16 @@ import com.danbam.presentation.util.AppNavigationItem
 
 @Composable
 fun FindPasswordScreen(
-    navController: NavController
+    navController: NavController,
 ) {
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
     var checkPassword by remember { mutableStateOf("") }
     var checkPasswordVisible by remember { mutableStateOf(false) }
 
-    Column {
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
         IndiStrawHeader(marginTop = 25, backStringId = R.string.back, pressBackBtn = {
             navController.popBackStack()
         })

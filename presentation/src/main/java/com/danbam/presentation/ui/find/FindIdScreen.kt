@@ -1,6 +1,7 @@
 package com.danbam.presentation.ui.find
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -24,7 +25,9 @@ fun FindIdScreen(
 ) {
     var currentId by remember { mutableStateOf("") }
 
-    Column {
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
         IndiStrawHeader(marginTop = 25, backStringId = R.string.back, pressBackBtn = {
             navController.popBackStack()
         })

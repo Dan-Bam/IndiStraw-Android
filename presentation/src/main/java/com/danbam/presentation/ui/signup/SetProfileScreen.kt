@@ -2,6 +2,7 @@ package com.danbam.presentation.ui.signup
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
@@ -20,7 +21,9 @@ import com.danbam.presentation.util.SignUpNavigationItem
 fun SetProfileScreen(
     navController: NavController,
 ) {
-    Column {
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
         IndiStrawHeader(marginTop = 25, backStringId = R.string.back, pressBackBtn = {
             navController.popBackStack()
         })
