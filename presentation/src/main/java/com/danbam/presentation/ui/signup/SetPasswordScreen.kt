@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,11 +23,9 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.component.FindPasswordMedium
 import com.danbam.design_system.component.HeadLineBold
@@ -74,7 +73,9 @@ fun SetPasswordScreen(
             }
         )
     }) {
-        Column {
+        Column(
+            modifier = Modifier.fillMaxSize()
+        ) {
             IndiStrawHeader(marginTop = 25, backStringId = R.string.back, pressBackBtn = {
                 navController.popBackStack()
             })
@@ -238,14 +239,5 @@ fun PersonalInformationSheet(
             }
         }
         Spacer(modifier = Modifier.height(117.dp))
-    }
-}
-
-@Preview
-@Composable
-fun preview() {
-    var navController = rememberNavController()
-    IndiStrawTheme {
-        SetPasswordScreen(navController = navController)
     }
 }

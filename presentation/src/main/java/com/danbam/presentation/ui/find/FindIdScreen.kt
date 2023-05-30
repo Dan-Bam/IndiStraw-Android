@@ -1,4 +1,4 @@
-package com.danbam.presentation.ui.signup
+package com.danbam.presentation.ui.find
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,14 +18,13 @@ import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.IndiStrawTextField
 import com.danbam.presentation.R
 import com.danbam.presentation.util.AppNavigationItem
-import com.danbam.presentation.util.CertificateType
-import com.danbam.presentation.util.DeepLinkKey
 
 @Composable
-fun SetNameScreen(
+fun FindIdScreen(
     navController: NavController,
 ) {
-    var name by remember { mutableStateOf("") }
+    var currentId by remember { mutableStateOf("") }
+
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -35,18 +34,22 @@ fun SetNameScreen(
         HeadLineBold(
             modifier = Modifier
                 .padding(start = 32.dp, top = 16.dp),
-            text = stringResource(id = R.string.require_name)
+            text = stringResource(id = R.string.current_id)
         )
         IndiStrawTextField(
-            modifier = Modifier.padding(top = 66.dp),
-            hint = stringResource(id = R.string.name),
-            value = name,
-            onValueChange = { name = it })
+            modifier = Modifier.padding(top = 96.dp),
+            hint = "",
+            value = currentId,
+            onValueChange = { },
+            readOnly = true
+        )
         IndiStrawButton(
             modifier = Modifier.padding(top = 78.dp),
-            text = stringResource(id = R.string.next)
+            text = stringResource(id = R.string.check)
         ) {
-            navController.navigate(AppNavigationItem.Certificate.route + DeepLinkKey.CERTIFICATE_TYPE + CertificateType.SIGN_UP)
+            navController.navigate(AppNavigationItem.Login.route) {
+                popUpTo(AppNavigationItem.Intro.route)
+            }
         }
     }
 }

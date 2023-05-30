@@ -3,16 +3,22 @@ package com.danbam.presentation.ui.main
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.presentation.ui.certificate.CertificateScreen
+import com.danbam.presentation.ui.find.FindIdScreen
+import com.danbam.presentation.ui.find.FindPasswordScreen
 import com.danbam.presentation.ui.intro.IntroScreen
 import com.danbam.presentation.ui.login.LoginScreen
 import com.danbam.presentation.ui.signup.SetIdScreen
@@ -23,12 +29,16 @@ import com.danbam.presentation.util.AppNavigationItem
 import com.danbam.presentation.util.CertificateType
 import com.danbam.presentation.util.DeepLinkKey
 import com.danbam.presentation.util.SignUpNavigationItem
+import com.google.accompanist.navigation.animation.AnimatedNavHost
+import com.google.accompanist.navigation.animation.composable
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val navController = rememberNavController()
+            val navController = rememberAnimatedNavController()
             IndiStrawTheme {
                 BaseApp(navController = navController)
             }
@@ -36,14 +46,34 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun BaseApp(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = AppNavigationItem.Intro.route) {
+    AnimatedNavHost(
+        navController = navController,
+        startDestination = AppNavigationItem.Intro.route,
+        enterTransition = {
+            slideInHorizontally(
+                initialOffsetX = { it * 2 }, animationSpec = tween(
+                    durationMillis = 500
+                )
+            )
+        },
+        popEnterTransition = { fadeIn(animationSpec = tween(durationMillis = 500)) },
+        popExitTransition = {
+            slideOutHorizontally(
+                targetOffsetX = { it * 2 }, animationSpec = tween(
+                    durationMillis = 500
+                )
+            )
+        }
+    ) {
         mainGraph(navController = navController)
         signUpGraph(navController = navController)
     }
 }
 
+@OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.mainGraph(navController: NavHostController) {
     composable(route = AppNavigationItem.Intro.route) {
         IntroScreen(navController = navController)
@@ -66,18 +96,21 @@ fun NavGraphBuilder.mainGraph(navController: NavHostController) {
         CertificateScreen(navController = navController, certificateType = certificateType)
     }
     composable(route = AppNavigationItem.FindId.route) {
-
+        FindIdScreen(navController = navController)
     }
     composable(route = AppNavigationItem.FindPassword.route) {
-
+        FindPasswordScreen(navController = navController)
     }
     composable(route = AppNavigationItem.Main.route) {
 
     }
 }
 
+@OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.signUpGraph(navController: NavHostController) {
-    composable(route = SignUpNavigationItem.SetName.route) {
+    composable(
+        route = SignUpNavigationItem.SetName.route
+    ) {
         SetNameScreen(navController = navController)
     }
     composable(route = SignUpNavigationItem.SetProfile.route) {

@@ -29,6 +29,7 @@ object Dependency {
         const val UI = "androidx.compose.ui:ui:${Version.COMPOSE}"
         const val PREVIEW = "androidx.compose.ui:ui-tooling-preview:${Version.COMPOSE}"
         const val MATERIAL = "androidx.compose.material:material:${Version.COMPOSE_MATERIAL}"
+        const val ANIMATE_NAVIGATION = "com.google.accompanist:accompanist-navigation-animation:${Version.COMPOSE_ANIMATE_NAVIGATION}"
         const val COMPOSE_HILT_NAV = "androidx.hilt:hilt-navigation-compose:${Version.HILT_NAV}"
     }
 
