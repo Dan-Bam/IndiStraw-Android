@@ -9,15 +9,15 @@ data class LoginResponse(
     val accessToken: String,
     @SerializedName("refreshToken")
     val refreshToken: String,
-    @SerializedName("accessExpiredAt")
-    val accessExpiredAt: LocalDateTime,
-    @SerializedName("refreshExpiredAt")
-    val refreshExpiredAt: LocalDateTime,
-) {
-    fun toEntity() = LoginEntity(
-        accessToken = accessToken,
-        refreshToken = refreshToken,
-        accessExpiredAt = accessExpiredAt,
-        refreshExpiredAt = refreshExpiredAt
-    )
-}
+    @SerializedName("accessTokenExpiredAt")
+    val accessExpiredAt: String,
+    @SerializedName("refreshTokenExpiredAt")
+    val refreshExpiredAt: String,
+)
+
+fun LoginResponse.toEntity() = LoginEntity(
+    accessToken = accessToken,
+    refreshToken = refreshToken,
+    accessExpiredAt = accessExpiredAt,
+    refreshExpiredAt = refreshExpiredAt
+)
