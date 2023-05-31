@@ -1,5 +1,7 @@
 package com.danbam.data.local.datasource
 
+import java.time.LocalDateTime
+
 interface AuthLocalDataSource {
     suspend fun saveAccessToken(accessToken: String)
 
@@ -15,13 +17,13 @@ interface AuthLocalDataSource {
 
     suspend fun saveAccessExpiredAt(accessExpiredAt: String)
 
-    suspend fun fetchAccessExpiredAt(): String
+    suspend fun fetchAccessExpiredAt(): LocalDateTime
 
     suspend fun clearAccessExpiredAt()
 
     suspend fun saveRefreshExpiredAt(refreshExpiredAt: String)
 
-    suspend fun fetchRefreshExpiredAt(): String
+    suspend fun fetchRefreshExpiredAt(): LocalDateTime
 
     suspend fun clearRefreshExpiredAt()
 }

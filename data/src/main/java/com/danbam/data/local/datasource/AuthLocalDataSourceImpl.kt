@@ -1,6 +1,7 @@
 package com.danbam.data.local.datasource
 
 import com.danbam.data.local.preference.AuthPreference
+import java.time.LocalDateTime
 import javax.inject.Inject
 
 class AuthLocalDataSourceImpl @Inject constructor(
@@ -27,8 +28,8 @@ class AuthLocalDataSourceImpl @Inject constructor(
     override suspend fun saveAccessExpiredAt(accessExpiredAt: String) =
         authPreference.saveAccessExpiredAt(accessExpiredAt = accessExpiredAt)
 
-    override suspend fun fetchAccessExpiredAt(): String =
-        authPreference.fetchAccessExpiredAt()
+    override suspend fun fetchAccessExpiredAt(): LocalDateTime =
+        LocalDateTime.parse(authPreference.fetchAccessExpiredAt())
 
     override suspend fun clearAccessExpiredAt() =
         authPreference.clearAccessExpiredAt()
@@ -36,8 +37,8 @@ class AuthLocalDataSourceImpl @Inject constructor(
     override suspend fun saveRefreshExpiredAt(refreshExpiredAt: String) =
         authPreference.saveRefreshExpiredAt(refreshExpiredAt = refreshExpiredAt)
 
-    override suspend fun fetchRefreshExpiredAt(): String =
-        authPreference.fetchRefreshExpiredAt()
+    override suspend fun fetchRefreshExpiredAt(): LocalDateTime =
+        LocalDateTime.parse(authPreference.fetchRefreshExpiredAt())
 
     override suspend fun clearRefreshExpiredAt() =
         authPreference.clearRefreshExpiredAt()
