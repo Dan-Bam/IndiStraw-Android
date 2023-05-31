@@ -15,7 +15,7 @@ fun Modifier.indiStrawClickable(
     runIf: Boolean = true,
     rippleColor: Color? = null,
     onLongClick: (() -> Unit)? = null,
-    onClick: () -> Unit,
+    onClick: (() -> Unit)? = null,
 ): Modifier = runIf(runIf) {
     composed {
         val multipleEventsCutter = remember { MultipleEventsCutter.get() }
