@@ -17,39 +17,39 @@ class AuthPreferenceImpl @Inject constructor(
         const val REFRESH_EXPIRED_AT = "refreshExpired_at"
     }
 
-    override suspend fun saveAccessToken(accessToken: String) =
+    override fun saveAccessToken(accessToken: String) =
         sharedPreferences.saveString(ACCESS_TOKEN, accessToken)
 
-    override suspend fun fetchAccessToken(): String? =
+    override fun fetchAccessToken(): String? =
         sharedPreferences.fetchString(ACCESS_TOKEN)
 
-    override suspend fun clearAccessToken() =
+    override fun clearAccessToken() =
         sharedPreferences.clearString(ACCESS_TOKEN)
 
-    override suspend fun saveRefreshToken(refreshToken: String) =
+    override fun saveRefreshToken(refreshToken: String) =
         sharedPreferences.saveString(REFRESH_TOKEN, refreshToken)
 
-    override suspend fun fetchRefreshToken(): String? =
+    override fun fetchRefreshToken(): String? =
         sharedPreferences.fetchString(REFRESH_TOKEN)
 
-    override suspend fun clearRefreshToken() =
+    override fun clearRefreshToken() =
         sharedPreferences.clearString(REFRESH_TOKEN)
 
-    override suspend fun saveAccessExpiredAt(accessExpiredAt: String) =
+    override fun saveAccessExpiredAt(accessExpiredAt: String) =
         sharedPreferences.saveString(ACCESS_EXPIRED_AT, accessExpiredAt)
 
-    override suspend fun fetchAccessExpiredAt(): String? =
+    override fun fetchAccessExpiredAt(): String? =
         sharedPreferences.fetchString(ACCESS_EXPIRED_AT)
 
-    override suspend fun clearAccessExpiredAt() =
+    override fun clearAccessExpiredAt() =
         sharedPreferences.clearString(ACCESS_EXPIRED_AT)
 
-    override suspend fun saveRefreshExpiredAt(refreshExpiredAt: String) =
+    override fun saveRefreshExpiredAt(refreshExpiredAt: String) =
         sharedPreferences.saveString(REFRESH_EXPIRED_AT, refreshExpiredAt)
 
-    override suspend fun fetchRefreshExpiredAt(): String? =
+    override fun fetchRefreshExpiredAt(): String? =
         sharedPreferences.fetchString(REFRESH_EXPIRED_AT)
 
-    override suspend fun clearRefreshExpiredAt() =
+    override fun clearRefreshExpiredAt() =
         sharedPreferences.clearString(REFRESH_EXPIRED_AT)
 }
