@@ -20,6 +20,11 @@ android {
             "BASE_URL",
             gradleLocalProperties(rootDir).getProperty("BASE_URL")
         )
+        buildConfigField(
+            "String",
+            "IGNORE_PATH",
+            gradleLocalProperties(rootDir).getProperty("IGNORE_PATH")
+        )
     }
 
     buildTypes {
