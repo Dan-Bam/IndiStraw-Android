@@ -20,7 +20,7 @@ class AuthPreferenceImpl @Inject constructor(
     override suspend fun saveAccessToken(accessToken: String) =
         sharedPreferences.saveString(ACCESS_TOKEN, accessToken)
 
-    override suspend fun fetchAccessToken(): String =
+    override suspend fun fetchAccessToken(): String? =
         sharedPreferences.fetchString(ACCESS_TOKEN)
 
     override suspend fun clearAccessToken() =
@@ -29,7 +29,7 @@ class AuthPreferenceImpl @Inject constructor(
     override suspend fun saveRefreshToken(refreshToken: String) =
         sharedPreferences.saveString(REFRESH_TOKEN, refreshToken)
 
-    override suspend fun fetchRefreshToken(): String =
+    override suspend fun fetchRefreshToken(): String? =
         sharedPreferences.fetchString(REFRESH_TOKEN)
 
     override suspend fun clearRefreshToken() =
@@ -38,7 +38,7 @@ class AuthPreferenceImpl @Inject constructor(
     override suspend fun saveAccessExpiredAt(accessExpiredAt: String) =
         sharedPreferences.saveString(ACCESS_EXPIRED_AT, accessExpiredAt)
 
-    override suspend fun fetchAccessExpiredAt(): String =
+    override suspend fun fetchAccessExpiredAt(): String? =
         sharedPreferences.fetchString(ACCESS_EXPIRED_AT)
 
     override suspend fun clearAccessExpiredAt() =
@@ -47,7 +47,7 @@ class AuthPreferenceImpl @Inject constructor(
     override suspend fun saveRefreshExpiredAt(refreshExpiredAt: String) =
         sharedPreferences.saveString(REFRESH_EXPIRED_AT, refreshExpiredAt)
 
-    override suspend fun fetchRefreshExpiredAt(): String =
+    override suspend fun fetchRefreshExpiredAt(): String? =
         sharedPreferences.fetchString(REFRESH_EXPIRED_AT)
 
     override suspend fun clearRefreshExpiredAt() =

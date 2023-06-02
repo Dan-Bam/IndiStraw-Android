@@ -10,7 +10,7 @@ class AuthLocalDataSourceImpl @Inject constructor(
     override suspend fun saveAccessToken(accessToken: String) =
         authPreference.saveAccessToken(accessToken = accessToken)
 
-    override suspend fun fetchAccessToken(): String =
+    override suspend fun fetchAccessToken(): String? =
         authPreference.fetchAccessToken()
 
     override suspend fun clearAccessToken() =
@@ -19,7 +19,7 @@ class AuthLocalDataSourceImpl @Inject constructor(
     override suspend fun saveRefreshToken(refreshToken: String) =
         authPreference.saveRefreshToken(refreshToken = refreshToken)
 
-    override suspend fun fetchRefreshToken(): String =
+    override suspend fun fetchRefreshToken(): String? =
         authPreference.fetchRefreshToken()
 
     override suspend fun clearRefreshToken() =
@@ -28,8 +28,8 @@ class AuthLocalDataSourceImpl @Inject constructor(
     override suspend fun saveAccessExpiredAt(accessExpiredAt: String) =
         authPreference.saveAccessExpiredAt(accessExpiredAt = accessExpiredAt)
 
-    override suspend fun fetchAccessExpiredAt(): LocalDateTime =
-        LocalDateTime.parse(authPreference.fetchAccessExpiredAt())
+    override suspend fun fetchAccessExpiredAt(): LocalDateTime? =
+        authPreference.fetchAccessExpiredAt()?.let { LocalDateTime.parse(it) }
 
     override suspend fun clearAccessExpiredAt() =
         authPreference.clearAccessExpiredAt()
@@ -37,8 +37,8 @@ class AuthLocalDataSourceImpl @Inject constructor(
     override suspend fun saveRefreshExpiredAt(refreshExpiredAt: String) =
         authPreference.saveRefreshExpiredAt(refreshExpiredAt = refreshExpiredAt)
 
-    override suspend fun fetchRefreshExpiredAt(): LocalDateTime =
-        LocalDateTime.parse(authPreference.fetchRefreshExpiredAt())
+    override suspend fun fetchRefreshExpiredAt(): LocalDateTime? =
+        authPreference.fetchRefreshExpiredAt()?.let { LocalDateTime.parse(it) }
 
     override suspend fun clearRefreshExpiredAt() =
         authPreference.clearRefreshExpiredAt()
