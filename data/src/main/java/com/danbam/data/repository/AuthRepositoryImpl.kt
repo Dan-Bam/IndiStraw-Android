@@ -22,8 +22,9 @@ class AuthRepositoryImpl @Inject constructor(
         val now = LocalDateTime.now()
         val accessExpiredAt =
             authLocalDataSource.fetchAccessExpiredAt() ?: throw ExpiredTokenException()
-        val refreshExpiredAt = authLocalDataSource.fetchRefreshExpiredAt()
-        if (refreshExpiredAt == null || now.isAfter(refreshExpiredAt)) {
+        val refreshExpiredAt =
+            authLocalDataSource.fetchRefreshExpiredAt() ?: throw ExpiredTokenException()
+        if (now.isAfter(refreshExpiredAt)) {
             with(authLocalDataSource) {
                 clearAccessToken()
                 clearRefreshToken()
@@ -36,7 +37,7 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
-    private suspend fun LoginResponse.saveToken() {
+    private fun LoginResponse.saveToken() {
         authLocalDataSource.saveAccessToken(accessToken)
         authLocalDataSource.saveRefreshToken(refreshToken)
         authLocalDataSource.saveAccessExpiredAt(accessExpiredAt)
