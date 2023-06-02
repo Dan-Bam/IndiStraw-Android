@@ -2,6 +2,7 @@ package com.danbam.di
 
 import android.util.Log
 import com.danbam.data.remote.api.AuthAPI
+import com.danbam.data.remote.interceptor.IndiStrawInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,8 +23,10 @@ object NetworkModule {
     @Provides
     fun provideOkHttpclient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
+        indiStrawInterceptor: IndiStrawInterceptor,
     ): OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(httpLoggingInterceptor)
+        .addInterceptor(indiStrawInterceptor)
         .build()
 
     @Provides
