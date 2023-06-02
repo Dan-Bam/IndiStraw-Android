@@ -4,6 +4,7 @@ import com.danbam.data.local.datasource.AuthLocalDataSource
 import com.danbam.data.remote.datasource.AuthRemoteDataSource
 import com.danbam.data.remote.request.toRequest
 import com.danbam.data.remote.response.LoginResponse
+import com.danbam.data.util.default
 import com.danbam.domain.exception.ExpiredTokenException
 import com.danbam.domain.param.LoginParam
 import com.danbam.domain.repository.AuthRepository
@@ -19,7 +20,7 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override suspend fun isLogin() {
-        val now = LocalDateTime.now()
+        val now = LocalDateTime.now().default()
         val accessExpiredAt =
             authLocalDataSource.fetchAccessExpiredAt() ?: throw ExpiredTokenException()
         val refreshExpiredAt =

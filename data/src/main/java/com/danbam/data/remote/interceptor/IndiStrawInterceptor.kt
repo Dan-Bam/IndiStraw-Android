@@ -3,6 +3,7 @@ package com.danbam.data.remote.interceptor
 import com.danbam.data.BuildConfig
 import com.danbam.data.local.datasource.AuthLocalDataSource
 import com.danbam.data.remote.response.LoginResponse
+import com.danbam.data.util.default
 import com.danbam.domain.exception.ExpiredTokenException
 import com.google.gson.Gson
 import okhttp3.Interceptor
@@ -24,7 +25,7 @@ class IndiStrawInterceptor @Inject constructor(
         ignorePath.forEach {
             if (path.startsWith(it)) return chain.proceed(request)
         }
-        val now = LocalDateTime.now()
+        val now = LocalDateTime.now().default()
         val accessExpiredAt =
             authLocalDataSource.fetchAccessExpiredAt() ?: throw ExpiredTokenException()
         val refreshExpiredAt =
