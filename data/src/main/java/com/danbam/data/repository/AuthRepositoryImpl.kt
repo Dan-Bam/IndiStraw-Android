@@ -15,9 +15,8 @@ class AuthRepositoryImpl @Inject constructor(
     private val authRemoteDataSource: AuthRemoteDataSource,
     private val authLocalDataSource: AuthLocalDataSource,
 ) : AuthRepository {
-    override suspend fun login(loginParam: LoginParam) {
+    override suspend fun login(loginParam: LoginParam) =
         authRemoteDataSource.login(loginParam.toRequest()).saveToken()
-    }
 
     override suspend fun isLogin() {
         val now = LocalDateTime.now().default()
@@ -37,6 +36,9 @@ class AuthRepositoryImpl @Inject constructor(
             authRemoteDataSource.refresh(authLocalDataSource.fetchRefreshToken()!!).saveToken()
         }
     }
+
+    override suspend fun sendCertificateNumber(phoneNumber: String) =
+        authRemoteDataSource.sendCertificateNumber(phoneNumber = phoneNumber)
 
     private fun LoginResponse.saveToken() {
         authLocalDataSource.saveAccessToken(accessToken)

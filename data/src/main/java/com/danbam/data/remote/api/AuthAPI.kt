@@ -6,6 +6,7 @@ import retrofit2.http.Body
 import retrofit2.http.Header
 import retrofit2.http.PATCH
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface AuthAPI {
     @POST("auth/signin")
@@ -17,4 +18,9 @@ interface AuthAPI {
     suspend fun refresh(
         @Header("refreshToken") refreshToken: String,
     ): LoginResponse
+
+    @POST("auth/send/phone-number/{phoneNumber}")
+    suspend fun sendCertificateNumber(
+        @Path("phoneNumber") phoneNumber: String,
+    )
 }
