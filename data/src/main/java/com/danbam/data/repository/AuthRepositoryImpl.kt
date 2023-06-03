@@ -40,6 +40,9 @@ class AuthRepositoryImpl @Inject constructor(
     override suspend fun sendCertificateNumber(phoneNumber: String) =
         authRemoteDataSource.sendCertificateNumber(phoneNumber = phoneNumber)
 
+    override suspend fun checkCertificateNumber(authCode: Int, phoneNumber: String) =
+        authRemoteDataSource.checkCertificateNumber(authCode = authCode, phoneNumber = phoneNumber)
+
     private fun LoginResponse.saveToken() {
         authLocalDataSource.saveAccessToken(accessToken)
         authLocalDataSource.saveRefreshToken(refreshToken)

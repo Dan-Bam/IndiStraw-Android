@@ -3,6 +3,7 @@ package com.danbam.data.remote.api
 import com.danbam.data.remote.request.LoginRequest
 import com.danbam.data.remote.response.LoginResponse
 import retrofit2.http.Body
+import retrofit2.http.HEAD
 import retrofit2.http.Header
 import retrofit2.http.PATCH
 import retrofit2.http.POST
@@ -21,6 +22,12 @@ interface AuthAPI {
 
     @POST("auth/send/phone-number/{phoneNumber}")
     suspend fun sendCertificateNumber(
+        @Path("phoneNumber") phoneNumber: String,
+    )
+
+    @HEAD("auth/auth-code/{authCode}/phone-number/{phoneNumber}")
+    suspend fun checkCertificateNumber(
+        @Path("authCode") authCode: Int,
         @Path("phoneNumber") phoneNumber: String,
     )
 }

@@ -20,4 +20,9 @@ class AuthRemoteDataSourceImpl @Inject constructor(
     override suspend fun sendCertificateNumber(phoneNumber: String) = indiStrawApiCall {
         authAPI.sendCertificateNumber(phoneNumber = phoneNumber)
     }
+
+    override suspend fun checkCertificateNumber(authCode: Int, phoneNumber: String) =
+        indiStrawApiCall {
+            authAPI.checkCertificateNumber(authCode = authCode, phoneNumber = phoneNumber)
+        }
 }

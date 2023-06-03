@@ -7,4 +7,5 @@ interface AuthRepository {
     suspend fun login(loginParam: LoginParam)
     suspend fun isLogin()
     suspend fun sendCertificateNumber(phoneNumber: String)
+    suspend fun checkCertificateNumber(authCode: Int, phoneNumber: String)
 }
