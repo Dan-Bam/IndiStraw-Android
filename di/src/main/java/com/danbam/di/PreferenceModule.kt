@@ -11,7 +11,7 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 abstract class PreferenceModule {
     @Binds
-    abstract fun provideAuthPreference(
+    abstract fun bindAuthPreference(
         authPreferenceImpl: AuthPreferenceImpl,
     ): AuthPreference
 }
