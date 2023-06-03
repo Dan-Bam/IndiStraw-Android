@@ -12,4 +12,8 @@ class AuthRemoteDataSourceImpl @Inject constructor(
     override suspend fun login(loginRequest: LoginRequest): LoginResponse = indiStrawApiCall {
         authAPI.login(loginRequest = loginRequest)
     }
+
+    override suspend fun refresh(refreshToken: String): LoginResponse = indiStrawApiCall {
+        authAPI.refresh(refreshToken = refreshToken)
+    }
 }

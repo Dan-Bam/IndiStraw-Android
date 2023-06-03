@@ -7,39 +7,39 @@ import javax.inject.Inject
 class AuthLocalDataSourceImpl @Inject constructor(
     private val authPreference: AuthPreference,
 ) : AuthLocalDataSource {
-    override suspend fun saveAccessToken(accessToken: String) =
+    override fun saveAccessToken(accessToken: String) =
         authPreference.saveAccessToken(accessToken = accessToken)
 
-    override suspend fun fetchAccessToken(): String =
+    override fun fetchAccessToken(): String? =
         authPreference.fetchAccessToken()
 
-    override suspend fun clearAccessToken() =
+    override fun clearAccessToken() =
         authPreference.clearAccessToken()
 
-    override suspend fun saveRefreshToken(refreshToken: String) =
+    override fun saveRefreshToken(refreshToken: String) =
         authPreference.saveRefreshToken(refreshToken = refreshToken)
 
-    override suspend fun fetchRefreshToken(): String =
+    override fun fetchRefreshToken(): String? =
         authPreference.fetchRefreshToken()
 
-    override suspend fun clearRefreshToken() =
+    override fun clearRefreshToken() =
         authPreference.clearRefreshToken()
 
-    override suspend fun saveAccessExpiredAt(accessExpiredAt: String) =
+    override fun saveAccessExpiredAt(accessExpiredAt: String) =
         authPreference.saveAccessExpiredAt(accessExpiredAt = accessExpiredAt)
 
-    override suspend fun fetchAccessExpiredAt(): LocalDateTime =
-        LocalDateTime.parse(authPreference.fetchAccessExpiredAt())
+    override fun fetchAccessExpiredAt(): LocalDateTime? =
+        authPreference.fetchAccessExpiredAt()?.let { LocalDateTime.parse(it) }
 
-    override suspend fun clearAccessExpiredAt() =
+    override fun clearAccessExpiredAt() =
         authPreference.clearAccessExpiredAt()
 
-    override suspend fun saveRefreshExpiredAt(refreshExpiredAt: String) =
+    override fun saveRefreshExpiredAt(refreshExpiredAt: String) =
         authPreference.saveRefreshExpiredAt(refreshExpiredAt = refreshExpiredAt)
 
-    override suspend fun fetchRefreshExpiredAt(): LocalDateTime =
-        LocalDateTime.parse(authPreference.fetchRefreshExpiredAt())
+    override fun fetchRefreshExpiredAt(): LocalDateTime? =
+        authPreference.fetchRefreshExpiredAt()?.let { LocalDateTime.parse(it) }
 
-    override suspend fun clearRefreshExpiredAt() =
+    override fun clearRefreshExpiredAt() =
         authPreference.clearRefreshExpiredAt()
 }

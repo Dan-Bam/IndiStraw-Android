@@ -1,27 +1,27 @@
 package com.danbam.data.local.preference
 
 interface AuthPreference {
-    suspend fun saveAccessToken(accessToken: String)
+    fun saveAccessToken(accessToken: String)
 
-    suspend fun fetchAccessToken(): String
+    fun fetchAccessToken(): String?
 
-    suspend fun clearAccessToken()
+    fun clearAccessToken()
 
-    suspend fun saveRefreshToken(refreshToken: String)
+    fun saveRefreshToken(refreshToken: String)
 
-    suspend fun fetchRefreshToken(): String
+    fun fetchRefreshToken(): String?
 
-    suspend fun clearRefreshToken()
+    fun clearRefreshToken()
 
-    suspend fun saveAccessExpiredAt(accessExpiredAt: String)
+    fun saveAccessExpiredAt(accessExpiredAt: String)
 
-    suspend fun fetchAccessExpiredAt(): String
+    fun fetchAccessExpiredAt(): String?
 
-    suspend fun clearAccessExpiredAt()
+    fun clearAccessExpiredAt()
 
-    suspend fun saveRefreshExpiredAt(refreshExpiredAt: String)
+    fun saveRefreshExpiredAt(refreshExpiredAt: String)
 
-    suspend fun fetchRefreshExpiredAt(): String
+    fun fetchRefreshExpiredAt(): String?
 
-    suspend fun clearRefreshExpiredAt()
+    fun clearRefreshExpiredAt()
 }
