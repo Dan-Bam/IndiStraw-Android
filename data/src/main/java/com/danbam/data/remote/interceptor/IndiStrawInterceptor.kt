@@ -40,12 +40,12 @@ class IndiStrawInterceptor @Inject constructor(
             throw ExpiredTokenException()
         } else if (now.isAfter(accessExpiredAt)) {
             val client = OkHttpClient()
-            val request = Request.Builder()
+            val refreshRequest = Request.Builder()
                 .url("${BuildConfig.BASE_URL}auth/reissue")
                 .patch("".toRequestBody("application/json".toMediaTypeOrNull()))
                 .addHeader("refreshToken", "Bearer ${authLocalDataSource.fetchRefreshToken()}")
                 .build()
-            val response = client.newCall(request).execute()
+            val response = client.newCall(refreshRequest).execute()
             if (response.isSuccessful) {
                 val loginResponse = Gson().fromJson(
                     response.body!!.string(),
