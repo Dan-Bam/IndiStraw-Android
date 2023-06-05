@@ -15,8 +15,8 @@ import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.presentation.ui.certificate.CertificateScreen
-import com.danbam.presentation.ui.find.FindIdScreen
-import com.danbam.presentation.ui.find.FindPasswordScreen
+import com.danbam.presentation.ui.find.find_id.FindIdScreen
+import com.danbam.presentation.ui.find.find_password.FindPasswordScreen
 import com.danbam.presentation.ui.intro.IntroScreen
 import com.danbam.presentation.ui.login.LoginScreen
 import com.danbam.presentation.ui.signup.SetIdScreen
