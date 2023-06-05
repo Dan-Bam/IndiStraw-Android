@@ -23,6 +23,7 @@ import com.danbam.presentation.util.AppNavigationItem
 @Composable
 fun FindPasswordScreen(
     navController: NavController,
+    phoneNumber: String,
 ) {
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }

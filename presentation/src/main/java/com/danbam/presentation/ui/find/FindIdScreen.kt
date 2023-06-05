@@ -22,6 +22,7 @@ import com.danbam.presentation.util.AppNavigationItem
 @Composable
 fun FindIdScreen(
     navController: NavController,
+    phoneNumber: String,
 ) {
     var currentId by remember { mutableStateOf("") }
 

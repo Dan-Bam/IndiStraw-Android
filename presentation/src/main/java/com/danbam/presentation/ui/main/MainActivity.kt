@@ -95,11 +95,29 @@ fun NavGraphBuilder.mainGraph(navController: NavHostController) {
 
         CertificateScreen(navController = navController, certificateType = certificateType)
     }
-    composable(route = AppNavigationItem.FindId.route) {
-        FindIdScreen(navController = navController)
+    composable(
+        route = AppNavigationItem.FindId.route
+                + DeepLinkKey.PHONE_NUMBER + "{${DeepLinkKey.PHONE_NUMBER}}",
+        arguments = listOf(
+            navArgument(DeepLinkKey.PHONE_NUMBER) {
+                type = NavType.StringType
+            }
+        )
+    ) {
+        val phoneNumber = it.arguments?.getString(DeepLinkKey.PHONE_NUMBER) ?: ""
+        FindIdScreen(navController = navController, phoneNumber = phoneNumber)
     }
-    composable(route = AppNavigationItem.FindPassword.route) {
-        FindPasswordScreen(navController = navController)
+    composable(
+        route = AppNavigationItem.FindPassword.route
+                + DeepLinkKey.PHONE_NUMBER + "{${DeepLinkKey.PHONE_NUMBER}}",
+        arguments = listOf(
+            navArgument(DeepLinkKey.PHONE_NUMBER) {
+                type = NavType.StringType
+            }
+        )
+    ) {
+        val phoneNumber = it.arguments?.getString(DeepLinkKey.PHONE_NUMBER) ?: ""
+        FindPasswordScreen(navController = navController, phoneNumber = phoneNumber)
     }
     composable(route = AppNavigationItem.Main.route) {
     }
@@ -115,8 +133,16 @@ fun NavGraphBuilder.signUpGraph(navController: NavHostController) {
     composable(route = SignUpNavigationItem.SetProfile.route) {
         SetProfileScreen(navController = navController)
     }
-    composable(route = SignUpNavigationItem.SetId.route) {
-        SetIdScreen(navController = navController)
+    composable(
+        route = SignUpNavigationItem.SetId.route,
+        arguments = listOf(
+            navArgument(DeepLinkKey.PHONE_NUMBER) {
+                type = NavType.StringType
+            }
+        )
+    ) {
+        val phoneNumber = it.arguments?.getString(DeepLinkKey.PHONE_NUMBER) ?: ""
+        SetIdScreen(navController = navController, phoneNumber = phoneNumber)
     }
     composable(route = SignUpNavigationItem.SetPassword.route) {
         SetPasswordScreen(navController = navController)

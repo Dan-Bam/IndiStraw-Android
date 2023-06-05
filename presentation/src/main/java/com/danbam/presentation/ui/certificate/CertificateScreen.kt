@@ -30,6 +30,7 @@ import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.presentation.R
 import com.danbam.presentation.util.AppNavigationItem
 import com.danbam.presentation.util.CertificateType
+import com.danbam.presentation.util.DeepLinkKey
 import com.danbam.presentation.util.SignUpNavigationItem
 import com.danbam.presentation.util.observeWithLifecycle
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -54,9 +55,9 @@ fun CertificateScreen(
             CertificateSideEffect.SuccessSend -> {}
             CertificateSideEffect.Certificated -> {
                 when (certificateType) {
-                    CertificateType.SIGN_UP -> navController.navigate(SignUpNavigationItem.SetProfile.route)
-                    CertificateType.FIND_ID -> navController.navigate(AppNavigationItem.FindId.route)
-                    CertificateType.FIND_PASSWORD -> navController.navigate(AppNavigationItem.FindPassword.route)
+                    CertificateType.SIGN_UP -> navController.navigate(SignUpNavigationItem.SetProfile.route + DeepLinkKey.PHONE_NUMBER + state.phoneNumber)
+                    CertificateType.FIND_ID -> navController.navigate(AppNavigationItem.FindId.route + DeepLinkKey.PHONE_NUMBER + state.phoneNumber)
+                    CertificateType.FIND_PASSWORD -> navController.navigate(AppNavigationItem.FindPassword.route + DeepLinkKey.PHONE_NUMBER + state.phoneNumber)
                 }
             }
         }
