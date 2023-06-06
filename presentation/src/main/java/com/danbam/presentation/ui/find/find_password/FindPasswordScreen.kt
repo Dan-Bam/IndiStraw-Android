@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.danbam.design_system.component.HeadLineBold
 import com.danbam.design_system.component.IndiStrawButton
@@ -23,6 +24,7 @@ import com.danbam.presentation.util.AppNavigationItem
 @Composable
 fun FindPasswordScreen(
     navController: NavController,
+    findPasswordViewModel: FindPasswordViewModel = hiltViewModel(),
     phoneNumber: String,
 ) {
     var password by remember { mutableStateOf("") }
@@ -62,6 +64,7 @@ fun FindPasswordScreen(
             modifier = Modifier.padding(top = 37.dp),
             text = stringResource(id = R.string.check)
         ) {
+            findPasswordViewModel.changePassword(phoneNumber = phoneNumber, password = password, checkPassword = checkPassword)
             navController.navigate(AppNavigationItem.Login.route) {
                 popUpTo(AppNavigationItem.Intro.route)
             }
