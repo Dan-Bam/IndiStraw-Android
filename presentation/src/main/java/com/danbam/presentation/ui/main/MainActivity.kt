@@ -130,19 +130,19 @@ fun NavGraphBuilder.signUpGraph(navController: NavHostController) {
     ) {
         SetNameScreen(navController = navController)
     }
-    composable(route = SignUpNavigationItem.SetProfile.route) {
-        SetProfileScreen(navController = navController)
-    }
     composable(
-        route = SignUpNavigationItem.SetId.route,
+        route = SignUpNavigationItem.SetProfile.route
+                + DeepLinkKey.PHONE_NUMBER + "{${DeepLinkKey.PHONE_NUMBER}}",
         arguments = listOf(
             navArgument(DeepLinkKey.PHONE_NUMBER) {
                 type = NavType.StringType
             }
-        )
-    ) {
+        )) {
         val phoneNumber = it.arguments?.getString(DeepLinkKey.PHONE_NUMBER) ?: ""
-        SetIdScreen(navController = navController, phoneNumber = phoneNumber)
+        SetProfileScreen(navController = navController, phoneNumber = phoneNumber)
+    }
+    composable(route = SignUpNavigationItem.SetId.route) {
+        SetIdScreen(navController = navController)
     }
     composable(route = SignUpNavigationItem.SetPassword.route) {
         SetPasswordScreen(navController = navController)

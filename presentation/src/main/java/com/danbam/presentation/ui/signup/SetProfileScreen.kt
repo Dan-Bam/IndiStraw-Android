@@ -20,6 +20,7 @@ import com.danbam.presentation.util.SignUpNavigationItem
 @Composable
 fun SetProfileScreen(
     navController: NavController,
+    phoneNumber: String,
 ) {
     Column(
         modifier = Modifier.fillMaxSize()

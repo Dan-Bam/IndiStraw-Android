@@ -22,7 +22,6 @@ import com.danbam.presentation.util.SignUpNavigationItem
 @Composable
 fun SetIdScreen(
     navController: NavController,
-    phoneNumber: String,
 ) {
     var id by remember { mutableStateOf("") }
     Column(
