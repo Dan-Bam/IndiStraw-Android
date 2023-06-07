@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Divider
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.BottomEnd
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
@@ -74,6 +75,7 @@ fun ImageButton(
     )
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun SelectImageButton(
     modifier: Modifier = Modifier,
@@ -116,7 +118,7 @@ fun SelectImageButton(
             }
             Spacer(modifier = Modifier.height(165.dp))
         }
-    }) {
+    }) { _, bottomSheetAction ->
         Column {
             Row(
                 modifier = Modifier
@@ -131,7 +133,7 @@ fun SelectImageButton(
                                 shape = if (requireString == null) IndiStrawTheme.shapes.circle else IndiStrawTheme.shapes.defaultRounded
                             )
                             .padding(paddingValues = paddingValues)
-                            .indiStrawClickable(onClick = it),
+                            .indiStrawClickable(onClick = bottomSheetAction),
                         horizontalAlignment = CenterHorizontally,
                         verticalArrangement = Arrangement.Center
                     ) {
