@@ -20,6 +20,11 @@ interface AuthAPI {
         @Header("refreshToken") refreshToken: String,
     ): LoginResponse
 
+    @HEAD("auth/check/phone-number/{phoneNumber}")
+    suspend fun checkPhoneNumber(
+        @Path("phoneNumber") phoneNumber: String,
+    ): Void
+
     @POST("auth/send/phone-number/{phoneNumber}")
     suspend fun sendCertificateNumber(
         @Path("phoneNumber") phoneNumber: String,
