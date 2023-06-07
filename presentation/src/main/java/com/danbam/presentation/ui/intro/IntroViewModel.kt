@@ -25,7 +25,7 @@ class IntroViewModel @Inject constructor(
                 postSideEffect(IntroSideEffect.SuccessLogin)
             }.onFailure {
                 it.errorHandling(
-                    unknownAction = {},
+                    unknownAction = { reduce { state.copy(isNeedLogin = true) } },
                     expiredTokenException = { reduce { state.copy(isNeedLogin = true) } }
                 )
             }
