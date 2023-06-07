@@ -45,7 +45,7 @@ fun FindPasswordScreen(
     var checkPasswordVisible by remember { mutableStateOf(false) }
 
     val errorList = mapOf(
-        FindPasswordSideEffect.EmptyException to stringResource(id = R.string.wrong_change_password_empty),
+        FindPasswordSideEffect.EmptyException to stringResource(id = R.string.require_change_password),
         FindPasswordSideEffect.DifferentException to stringResource(id = R.string.wrong_password_different),
         FindPasswordSideEffect.LengthException to stringResource(id = R.string.wrong_password_length),
         FindPasswordSideEffect.MatchException to stringResource(id = R.string.wrong_password_match),

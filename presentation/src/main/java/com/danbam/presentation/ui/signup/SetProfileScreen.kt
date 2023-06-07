@@ -35,7 +35,7 @@ fun SetProfileScreen(
         )
         SelectImageButton(
             modifier = Modifier
-                .padding(top = 54.dp)
+                .padding(top = 84.dp)
                 .align(CenterHorizontally),
             requireGalleryString = stringResource(id = R.string.choose_gallery),
             requireCameraString = stringResource(id = R.string.choose_camera),

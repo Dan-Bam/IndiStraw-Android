@@ -36,7 +36,7 @@ fun SetIdScreen(
             text = stringResource(id = R.string.require_id)
         )
         IndiStrawTextField(
-            modifier = Modifier.padding(top = 66.dp),
+            modifier = Modifier.padding(top = 96.dp),
             hint = stringResource(id = R.string.id),
             value = id,
             onValueChange = { id = it })

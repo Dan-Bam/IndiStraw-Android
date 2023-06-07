@@ -87,7 +87,7 @@ fun SetPasswordScreen(
                 text = stringResource(id = R.string.require_password)
             )
             IndiStrawTextField(
-                modifier = Modifier.padding(top = 66.dp),
+                modifier = Modifier.padding(top = 65.dp),
                 hint = stringResource(id = R.string.password),
                 value = password,
                 onValueChange = { password = it },
