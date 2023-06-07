@@ -37,11 +37,11 @@ class CertificateViewModel @Inject constructor(
 
     private fun sendCertificateNumber(phoneNumber: String) = intent {
         viewModelScope.launch {
-            sendCertificateNumberUseCase(phoneNumber = phoneNumber).onFailure {
-                it.errorHandling(unknownAction = {}, noContentException = {
-                    postSideEffect(CertificateSideEffect.SuccessSend)
-                    reduce { state.copy(phoneNumber = phoneNumber) }
-                })
+            sendCertificateNumberUseCase(phoneNumber = phoneNumber).onSuccess {
+                postSideEffect(CertificateSideEffect.SuccessSend)
+                reduce { state.copy(phoneNumber = phoneNumber) }
+            }.onFailure {
+                it.errorHandling(unknownAction = {})
             }
         }
     }
