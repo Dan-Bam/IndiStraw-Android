@@ -55,9 +55,9 @@ fun CertificateScreen(
             CertificateSideEffect.SuccessSend -> {}
             CertificateSideEffect.Certificated -> {
                 when (certificateType) {
-                    CertificateType.SIGN_UP -> navController.navigate(SignUpNavigationItem.SetProfile.route + DeepLinkKey.PHONE_NUMBER + state.phoneNumber)
-                    CertificateType.FIND_ID -> navController.navigate(AppNavigationItem.FindId.route + DeepLinkKey.PHONE_NUMBER + state.phoneNumber)
-                    CertificateType.FIND_PASSWORD -> navController.navigate(AppNavigationItem.FindPassword.route + DeepLinkKey.PHONE_NUMBER + state.phoneNumber)
+                    CertificateType.SIGN_UP -> navController.navigate(SignUpNavigationItem.SetProfile.route + DeepLinkKey.PHONE_NUMBER + phoneNumber)
+                    CertificateType.FIND_ID -> navController.navigate(AppNavigationItem.FindId.route + DeepLinkKey.PHONE_NUMBER + phoneNumber)
+                    CertificateType.FIND_PASSWORD -> navController.navigate(AppNavigationItem.FindPassword.route + DeepLinkKey.PHONE_NUMBER + phoneNumber)
                 }
             }
         }
@@ -101,7 +101,10 @@ fun CertificateScreen(
             text = stringResource(id = if (state.phoneNumber.isNotEmpty()) R.string.check_certificate_number else R.string.certificate_number)
         ) {
             if (state.phoneNumber.isEmpty()) {
-                certificateViewModel.sendCertificateNumber(phoneNumber = phoneNumber)
+                certificateViewModel.checkPhoneNumber(
+                    phoneNumber = phoneNumber,
+                    isSignUp = certificateType == CertificateType.SIGN_UP
+                )
             } else {
                 certificateViewModel.checkCertificateNumber(authCode = certificateNumber)
             }
