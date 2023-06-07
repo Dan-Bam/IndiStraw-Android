@@ -4,6 +4,7 @@ import android.util.Log
 import com.danbam.domain.exception.ConflictDataException
 import com.danbam.domain.exception.ExpiredTokenException
 import com.danbam.domain.exception.InvalidTokenException
+import com.danbam.domain.exception.NoContentException
 import com.danbam.domain.exception.NotFoundException
 import com.danbam.domain.exception.ServerErrorException
 import com.danbam.domain.exception.WrongDataException
@@ -16,6 +17,7 @@ suspend fun Throwable.errorHandling(
     conflictException: suspend () -> Unit = unknownAction,
     serverErrorException: suspend () -> Unit = unknownAction,
     expiredTokenException: suspend () -> Unit = unknownAction,
+    noContentException: suspend () -> Unit = unknownAction,
 ) =
     when (this) {
         is WrongDataException -> {
@@ -46,6 +48,11 @@ suspend fun Throwable.errorHandling(
         is ExpiredTokenException -> {
             errorLog("ExpiredTokenException", message)
             expiredTokenException()
+        }
+
+        is NoContentException -> {
+            errorLog("NoContentException", message)
+            noContentException()
         }
 
         else -> {
