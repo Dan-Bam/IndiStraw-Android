@@ -41,6 +41,8 @@ import com.danbam.presentation.util.AppNavigationItem
 import com.danbam.presentation.util.CertificateType
 import com.danbam.presentation.util.DeepLinkKey
 import com.danbam.presentation.util.observeWithLifecycle
+import com.danbam.presentation.util.popBackStack
+import com.danbam.presentation.util.requestFocus
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @OptIn(InternalCoroutinesApi::class, ExperimentalComposeUiApi::class)
@@ -77,14 +79,12 @@ fun LoginScreen(
             }
 
             is LoginSideEffect.IdEmpty, LoginSideEffect.WrongId -> {
-                keyboardController?.show()
-                idFocusRequester.requestFocus()
+                idFocusRequester.requestFocus(keyboardController = keyboardController)
                 errorText = errorList[it]!!
             }
 
             is LoginSideEffect.PasswordEmpty, LoginSideEffect.WrongPassword -> {
-                keyboardController?.show()
-                passwordFocusRequester.requestFocus()
+                passwordFocusRequester.requestFocus(keyboardController = keyboardController)
                 errorText = errorList[it]!!
             }
 
@@ -103,7 +103,7 @@ fun LoginScreen(
         IndiStrawHeader(
             marginTop = 25,
             backStringId = R.string.back,
-            pressBackBtn = { navController.popBackStack() })
+            pressBackBtn = { navController.popBackStack(keyboardController = keyboardController) })
         HeadLineBold(
             text = stringResource(id = R.string.do_login),
             modifier = Modifier.padding(start = 32.dp, top = 16.dp)

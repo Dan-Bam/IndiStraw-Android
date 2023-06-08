@@ -34,12 +34,13 @@ import com.danbam.design_system.component.IndiStrawTextField
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.presentation.R
-import com.danbam.presentation.ui.login.LoginSideEffect
 import com.danbam.presentation.util.AppNavigationItem
 import com.danbam.presentation.util.CertificateType
 import com.danbam.presentation.util.DeepLinkKey
 import com.danbam.presentation.util.SignUpNavigationItem
 import com.danbam.presentation.util.observeWithLifecycle
+import com.danbam.presentation.util.popBackStack
+import com.danbam.presentation.util.requestFocus
 import com.danbam.presentation.util.toPhoneNumber
 import kotlinx.coroutines.InternalCoroutinesApi
 
@@ -76,14 +77,12 @@ fun CertificateScreen(
     sideEffect.observeWithLifecycle {
         when (it) {
             is CertificateSideEffect.EmptyPhoneNumberException, CertificateSideEffect.MatchPhoneNumberException, CertificateSideEffect.EnrollPhoneNumberException, CertificateSideEffect.NotEnrollPhoneNumberException -> {
-                keyboardController?.show()
-                phoneNumberFocusRequester.requestFocus()
+                phoneNumberFocusRequester.requestFocus(keyboardController = keyboardController)
                 errorText = errorList[it]!!
             }
 
             is CertificateSideEffect.EmptyCertificateNumberException, CertificateSideEffect.WrongCertificateNumberException, CertificateSideEffect.ExpiredCertificateNumberException -> {
-                keyboardController?.show()
-                certificateNumberFocusRequester.requestFocus()
+                certificateNumberFocusRequester.requestFocus(keyboardController = keyboardController)
                 errorText = errorList[it]!!
             }
 
@@ -109,9 +108,7 @@ fun CertificateScreen(
         IndiStrawHeader(
             marginTop = 25,
             backStringId = R.string.back,
-            pressBackBtn = {
-                navController.popBackStack()
-            })
+            pressBackBtn = { navController.popBackStack(keyboardController = keyboardController) })
         HeadLineBold(
             modifier = Modifier
                 .padding(start = 32.dp, top = 16.dp),
