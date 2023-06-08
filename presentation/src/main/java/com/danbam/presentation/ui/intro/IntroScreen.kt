@@ -3,11 +3,9 @@ package com.danbam.presentation.ui.intro
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -21,6 +19,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.component.HeadLineBold
+import com.danbam.design_system.component.IndiStrawBoxBackground
 import com.danbam.design_system.component.IndiStrawButton
 import com.danbam.design_system.component.JoinBold
 import com.danbam.design_system.component.TitleRegular
@@ -55,9 +54,7 @@ fun IntroScreen(
         introViewModel.isLogin()
     }
 
-    Box(
-        modifier = Modifier.fillMaxSize()
-    ) {
+    IndiStrawBoxBackground {
         HeadLineBold(
             modifier = Modifier.align(Alignment.Center),
             text = stringResource(id = R.string.app_name),
@@ -104,4 +101,5 @@ fun IntroScreen(
             }
         }
     }
+
 }
