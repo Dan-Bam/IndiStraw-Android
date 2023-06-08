@@ -9,6 +9,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -23,6 +24,7 @@ import com.danbam.presentation.ui.signup.SetIdScreen
 import com.danbam.presentation.ui.signup.SetNameScreen
 import com.danbam.presentation.ui.signup.SetPasswordScreen
 import com.danbam.presentation.ui.signup.SetProfileScreen
+import com.danbam.presentation.ui.signup.SignUpViewModel
 import com.danbam.presentation.util.AppNavigationItem
 import com.danbam.presentation.util.CertificateType
 import com.danbam.presentation.util.DeepLinkKey
@@ -49,6 +51,7 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun BaseApp(navController: NavHostController) {
+    val signUpViewModel: SignUpViewModel = hiltViewModel()
     AnimatedNavHost(
         navController = navController,
         startDestination = AppNavigationItem.Intro.route,
@@ -69,7 +72,7 @@ fun BaseApp(navController: NavHostController) {
         }
     ) {
         mainGraph(navController = navController)
-        signUpGraph(navController = navController)
+        signUpGraph(navController = navController, signUpViewModel = signUpViewModel)
     }
 }
 
@@ -124,11 +127,14 @@ fun NavGraphBuilder.mainGraph(navController: NavHostController) {
 }
 
 @OptIn(ExperimentalAnimationApi::class)
-fun NavGraphBuilder.signUpGraph(navController: NavHostController) {
+fun NavGraphBuilder.signUpGraph(
+    navController: NavHostController,
+    signUpViewModel: SignUpViewModel,
+) {
     composable(
         route = SignUpNavigationItem.SetName.route
     ) {
-        SetNameScreen(navController = navController)
+        SetNameScreen(navController = navController, signUpViewModel = signUpViewModel)
     }
     composable(
         route = SignUpNavigationItem.SetProfile.route
@@ -139,12 +145,16 @@ fun NavGraphBuilder.signUpGraph(navController: NavHostController) {
             }
         )) {
         val phoneNumber = it.arguments?.getString(DeepLinkKey.PHONE_NUMBER) ?: ""
-        SetProfileScreen(navController = navController, phoneNumber = phoneNumber)
+        SetProfileScreen(
+            navController = navController,
+            signUpViewModel = signUpViewModel,
+            phoneNumber = phoneNumber
+        )
     }
     composable(route = SignUpNavigationItem.SetId.route) {
-        SetIdScreen(navController = navController)
+        SetIdScreen(navController = navController, signUpViewModel = signUpViewModel)
     }
     composable(route = SignUpNavigationItem.SetPassword.route) {
-        SetPasswordScreen(navController = navController)
+        SetPasswordScreen(navController = navController, signUpViewModel = signUpViewModel)
     }
 }

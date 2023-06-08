@@ -1,6 +1,7 @@
 <resources>
 <!--    기타-->
-    <string name="wrong_password_length">8~20자 사이로 입력해 주세요.</string>
+    <string name="wrong_length_id">6~15자 사이로 입력해 주세요.</string>
+    <string name="wrong_length_password">8~20자 사이로 입력해 주세요.</string>
     <string name="require_terms_of_use">[필수] 이용약관 동의</string>
     <string name="require_personal_information">[필수] 개인정보 수집 및 이용 동의</string>
     <string name="app_name">Indi Straw</string>
@@ -62,6 +63,7 @@
     <string name="enroll_movie_thumbnail">영화 썸네일 등록하기</string>
     <string name="name">이름</string>
     <string name="require_name">이름을 입력해 주세요.</string>
+    <string name="wrong_enroll_id">이미 등록된 아이디입니다.</string>
     <string name="wrong_enroll_phone_number">이미 등록된 전화번호입니다.</string>
     <string name="popular_search">인기 검색어</string>
     <string name="popular_movie">인기 독립영화</string>

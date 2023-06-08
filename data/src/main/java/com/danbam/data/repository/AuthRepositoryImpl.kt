@@ -7,6 +7,7 @@ import com.danbam.data.remote.response.LoginResponse
 import com.danbam.data.util.default
 import com.danbam.domain.exception.ExpiredTokenException
 import com.danbam.domain.param.LoginParam
+import com.danbam.domain.param.SignUpParam
 import com.danbam.domain.repository.AuthRepository
 import java.time.LocalDateTime
 import javax.inject.Inject
@@ -15,6 +16,9 @@ class AuthRepositoryImpl @Inject constructor(
     private val authRemoteDataSource: AuthRemoteDataSource,
     private val authLocalDataSource: AuthLocalDataSource,
 ) : AuthRepository {
+    override suspend fun signup(signUpParam: SignUpParam) =
+        authRemoteDataSource.signup(signUpRequest = signUpParam.toRequest())
+
     override suspend fun login(loginParam: LoginParam) =
         authRemoteDataSource.login(loginParam.toRequest()).saveToken()
 
@@ -39,6 +43,9 @@ class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun checkPhoneNumber(phoneNumber: String): Void =
         authRemoteDataSource.checkPhoneNumber(phoneNumber = phoneNumber)
+
+    override suspend fun checkId(id: String): Void =
+        authRemoteDataSource.checkId(id = id)
 
     override suspend fun sendCertificateNumber(phoneNumber: String) =
         authRemoteDataSource.sendCertificateNumber(phoneNumber = phoneNumber)

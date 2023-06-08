@@ -2,10 +2,8 @@ package com.danbam.presentation.ui.login
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -32,6 +30,7 @@ import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.component.ExampleTextRegular
 import com.danbam.design_system.component.HeadLineBold
 import com.danbam.design_system.component.IndiStrawButton
+import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.IndiStrawTextField
 import com.danbam.design_system.component.TitleRegular
@@ -41,6 +40,8 @@ import com.danbam.presentation.util.AppNavigationItem
 import com.danbam.presentation.util.CertificateType
 import com.danbam.presentation.util.DeepLinkKey
 import com.danbam.presentation.util.observeWithLifecycle
+import com.danbam.presentation.util.popBackStack
+import com.danbam.presentation.util.requestFocus
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @OptIn(InternalCoroutinesApi::class, ExperimentalComposeUiApi::class)
@@ -77,14 +78,12 @@ fun LoginScreen(
             }
 
             is LoginSideEffect.IdEmpty, LoginSideEffect.WrongId -> {
-                keyboardController?.show()
-                idFocusRequester.requestFocus()
+                idFocusRequester.requestFocus(keyboardController = keyboardController)
                 errorText = errorList[it]!!
             }
 
             is LoginSideEffect.PasswordEmpty, LoginSideEffect.WrongPassword -> {
-                keyboardController?.show()
-                passwordFocusRequester.requestFocus()
+                passwordFocusRequester.requestFocus(keyboardController = keyboardController)
                 errorText = errorList[it]!!
             }
 
@@ -92,18 +91,16 @@ fun LoginScreen(
         }
     }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .indiStrawClickable {
-                focusManager.clearFocus()
-                keyboardController?.hide()
-            }
+    IndiStrawColumnBackground(
+        onClickAction = {
+            focusManager.clearFocus()
+            keyboardController?.hide()
+        }
     ) {
         IndiStrawHeader(
             marginTop = 25,
             backStringId = R.string.back,
-            pressBackBtn = { navController.popBackStack() })
+            pressBackBtn = { navController.popBackStack(keyboardController = keyboardController) })
         HeadLineBold(
             text = stringResource(id = R.string.do_login),
             modifier = Modifier.padding(start = 32.dp, top = 16.dp)

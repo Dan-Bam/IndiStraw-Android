@@ -1,5 +1,9 @@
 package com.danbam.presentation.util
 
+import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.platform.SoftwareKeyboardController
+import androidx.navigation.NavController
+
 sealed class AppNavigationItem(val route: String) {
     object Intro : AppNavigationItem("intro")
     object Login : AppNavigationItem("login")
@@ -25,4 +29,10 @@ object CertificateType {
     const val SIGN_UP = "signUp"
     const val FIND_ID = "findId"
     const val FIND_PASSWORD = "findPassword"
+}
+
+@OptIn(ExperimentalComposeUiApi::class)
+fun NavController.popBackStack(keyboardController: SoftwareKeyboardController? = null) {
+    keyboardController?.hide()
+    this.popBackStack()
 }

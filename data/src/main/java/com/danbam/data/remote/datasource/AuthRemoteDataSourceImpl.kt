@@ -2,6 +2,7 @@ package com.danbam.data.remote.datasource
 
 import com.danbam.data.remote.api.AuthAPI
 import com.danbam.data.remote.request.LoginRequest
+import com.danbam.data.remote.request.SignUpRequest
 import com.danbam.data.remote.response.LoginResponse
 import com.danbam.data.remote.util.indiStrawApiCall
 import javax.inject.Inject
@@ -9,6 +10,10 @@ import javax.inject.Inject
 class AuthRemoteDataSourceImpl @Inject constructor(
     private val authAPI: AuthAPI,
 ) : AuthRemoteDataSource {
+    override suspend fun signup(signUpRequest: SignUpRequest) = indiStrawApiCall {
+        authAPI.signup(signUpRequest = signUpRequest)
+    }
+
     override suspend fun login(loginRequest: LoginRequest): LoginResponse = indiStrawApiCall {
         authAPI.login(loginRequest = loginRequest)
     }
@@ -19,6 +24,10 @@ class AuthRemoteDataSourceImpl @Inject constructor(
 
     override suspend fun checkPhoneNumber(phoneNumber: String): Void = indiStrawApiCall {
         authAPI.checkPhoneNumber(phoneNumber = phoneNumber)
+    }
+
+    override suspend fun checkId(id: String): Void = indiStrawApiCall {
+        authAPI.checkId(id = id)
     }
 
     override suspend fun sendCertificateNumber(phoneNumber: String) = indiStrawApiCall {

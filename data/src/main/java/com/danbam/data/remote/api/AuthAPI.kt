@@ -1,6 +1,7 @@
 package com.danbam.data.remote.api
 
 import com.danbam.data.remote.request.LoginRequest
+import com.danbam.data.remote.request.SignUpRequest
 import com.danbam.data.remote.response.LoginResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -11,6 +12,11 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface AuthAPI {
+    @POST("auth/signup")
+    suspend fun signup(
+        @Body signUpRequest: SignUpRequest,
+    )
+
     @POST("auth/signin")
     suspend fun login(
         @Body loginRequest: LoginRequest,
@@ -24,6 +30,11 @@ interface AuthAPI {
     @HEAD("auth/check/phone-number/{phoneNumber}")
     suspend fun checkPhoneNumber(
         @Path("phoneNumber") phoneNumber: String,
+    ): Void
+
+    @HEAD("auth/check/id/{id}")
+    suspend fun checkId(
+        @Path("id") id: String,
     ): Void
 
     @POST("auth/send/phone-number/{phoneNumber}")
