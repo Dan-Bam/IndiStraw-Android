@@ -26,8 +26,10 @@ import com.danbam.design_system.component.HeadLineBold
 import com.danbam.design_system.component.IndiStrawButton
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.IndiStrawTextField
+import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.presentation.R
+import com.danbam.presentation.ui.login.LoginSideEffect
 import com.danbam.presentation.util.AppNavigationItem
 import com.danbam.presentation.util.CertificateType
 import com.danbam.presentation.util.DeepLinkKey
@@ -48,12 +50,27 @@ fun CertificateScreen(
 
     var phoneNumber by remember { mutableStateOf("") }
     var certificateNumber by remember { mutableStateOf("") }
+    var errorText by remember { mutableStateOf("") }
     var onReTimer by remember { mutableStateOf({}) }
+
+    val errorList = mapOf(
+        CertificateSideEffect.EmptyPhoneNumberException to stringResource(id = R.string.require_phone_number),
+        CertificateSideEffect.MatchPhoneNumberException to stringResource(id = R.string.wrong_match_phone_number),
+        CertificateSideEffect.EnrollPhoneNumberException to stringResource(id = R.string.wrong_enroll_phone_number),
+        CertificateSideEffect.NotEnrollPhoneNumberException to stringResource(id = R.string.wrong_not_enroll_phone_number),
+        CertificateSideEffect.EmptyCertificateNumberException to stringResource(id = R.string.require_certificate_number),
+        CertificateSideEffect.WrongCertificateNumberException to stringResource(id = R.string.wrong_certificate_number),
+        CertificateSideEffect.ExpiredCertificateNumberException to stringResource(id = R.string.wrong_expired_certificate_number),
+    )
 
     sideEffect.observeWithLifecycle {
         when (it) {
-            CertificateSideEffect.SuccessSend -> {}
-            CertificateSideEffect.Certificated -> {
+            is CertificateSideEffect.EmptyPhoneNumberException, CertificateSideEffect.MatchPhoneNumberException, CertificateSideEffect.EnrollPhoneNumberException, CertificateSideEffect.NotEnrollPhoneNumberException, CertificateSideEffect.EmptyCertificateNumberException, CertificateSideEffect.WrongCertificateNumberException, CertificateSideEffect.ExpiredCertificateNumberException -> {
+                errorText = errorList[it]!!
+            }
+
+            is CertificateSideEffect.SuccessSend -> {}
+            is CertificateSideEffect.SuccessCertificate -> {
                 when (certificateType) {
                     CertificateType.SIGN_UP -> navController.navigate(SignUpNavigationItem.SetProfile.route + DeepLinkKey.PHONE_NUMBER + phoneNumber)
                     CertificateType.FIND_ID -> navController.navigate(AppNavigationItem.FindId.route + DeepLinkKey.PHONE_NUMBER + phoneNumber)
@@ -93,9 +110,16 @@ fun CertificateScreen(
                 onValueChange = { certificateNumber = it },
                 keyboardType = KeyboardType.Number,
                 isTimer = true,
-                onReTimer = { onReTimer = it }
+                onReTimer = { onReTimer = it },
+                onExpiredTime = { certificateViewModel.expiredCertificateNumber() }
             )
         }
+        TitleRegular(
+            modifier = Modifier.padding(start = 32.dp, top = 7.dp),
+            text = errorText,
+            color = IndiStrawTheme.colors.error,
+            fontSize = 12
+        )
         IndiStrawButton(
             modifier = Modifier.padding(top = (if (state.phoneNumber.isNotEmpty()) 37 else 78).dp),
             text = stringResource(id = if (state.phoneNumber.isNotEmpty()) R.string.check_certificate_number else R.string.certificate_number)

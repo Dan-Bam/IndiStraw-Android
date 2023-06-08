@@ -24,20 +24,28 @@ class CertificateViewModel @Inject constructor(
     override val container = container<CertificateState, CertificateSideEffect>(CertificateState())
 
     fun checkPhoneNumber(phoneNumber: String, isSignUp: Boolean) = intent {
-        viewModelScope.launch {
-            checkPhoneNumberUseCase(phoneNumber = phoneNumber).onFailure {
-                it.errorHandling(unknownAction = {}, conflictException = {
-                    if (!isSignUp) sendCertificateNumber(phoneNumber = phoneNumber)
-                }, noContentException = {
-                    if (isSignUp) sendCertificateNumber(phoneNumber = phoneNumber)
-                })
+        if (phoneNumber.isEmpty()) postSideEffect(CertificateSideEffect.EmptyPhoneNumberException)
+        else if (!"^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$".toRegex()
+                .matches(phoneNumber)
+        ) postSideEffect(CertificateSideEffect.MatchPhoneNumberException)
+        else {
+            viewModelScope.launch {
+                checkPhoneNumberUseCase(phoneNumber = phoneNumber).onFailure {
+                    it.errorHandling(unknownAction = {}, conflictException = {
+                        if (!isSignUp) sendCertificateNumber(phoneNumber = phoneNumber)
+                        else postSideEffect(CertificateSideEffect.NotEnrollPhoneNumberException)
+                    }, noContentException = {
+                        if (isSignUp) sendCertificateNumber(phoneNumber = phoneNumber)
+                        else postSideEffect(CertificateSideEffect.EnrollPhoneNumberException)
+                    })
+                }
             }
         }
     }
 
     private fun sendCertificateNumber(phoneNumber: String) = intent {
         viewModelScope.launch {
-            sendCertificateNumberUseCase(phoneNumber = phoneNumber).onSuccess {
+            sendCertificateNumberUseCase(phoneNumber = phoneNumber.replace("-", "")).onSuccess {
                 postSideEffect(CertificateSideEffect.SuccessSend)
                 reduce { state.copy(phoneNumber = phoneNumber) }
             }.onFailure {
@@ -47,16 +55,25 @@ class CertificateViewModel @Inject constructor(
     }
 
     fun checkCertificateNumber(authCode: String) = intent {
-        viewModelScope.launch {
-            checkCertificateNumberUseCase(
-                authCode = authCode.toInt(),
-                phoneNumber = state.phoneNumber
-            ).onFailure {
-                it.errorHandling(unknownAction = {}, noContentException = {
-                    postSideEffect(CertificateSideEffect.Certificated)
-                    reduce { state.copy(phoneNumber = "") }
-                })
+        if (authCode.isEmpty()) postSideEffect(CertificateSideEffect.EmptyCertificateNumberException)
+        else {
+            viewModelScope.launch {
+                checkCertificateNumberUseCase(
+                    authCode = authCode.toInt(),
+                    phoneNumber = state.phoneNumber
+                ).onFailure {
+                    it.errorHandling(unknownAction = {}, wrongDataException = {
+                        postSideEffect(CertificateSideEffect.WrongCertificateNumberException)
+                    }, noContentException = {
+                        postSideEffect(CertificateSideEffect.SuccessCertificate)
+                        reduce { state.copy(phoneNumber = "") }
+                    })
+                }
             }
         }
+    }
+
+    fun expiredCertificateNumber() = intent {
+        postSideEffect(CertificateSideEffect.ExpiredCertificateNumberException)
     }
 }
