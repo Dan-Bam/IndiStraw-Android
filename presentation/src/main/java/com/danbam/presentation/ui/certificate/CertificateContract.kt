@@ -9,7 +9,6 @@ sealed class CertificateSideEffect {
     object MatchPhoneNumberException : CertificateSideEffect()
     object EnrollPhoneNumberException : CertificateSideEffect()
     object NotEnrollPhoneNumberException : CertificateSideEffect()
-    object SuccessSend : CertificateSideEffect()
     object EmptyCertificateNumberException : CertificateSideEffect()
     object WrongCertificateNumberException : CertificateSideEffect()
     object ExpiredCertificateNumberException : CertificateSideEffect()

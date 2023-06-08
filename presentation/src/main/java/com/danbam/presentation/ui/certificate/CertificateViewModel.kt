@@ -7,6 +7,7 @@ import com.danbam.domain.usecase.auth.CheckPhoneNumberUseCase
 import com.danbam.domain.usecase.auth.SendCertificateNumberUseCase
 import com.danbam.presentation.util.errorHandling
 import com.danbam.presentation.util.isPhoneNumber
+import com.danbam.presentation.util.toPhoneNumber
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
@@ -44,8 +45,7 @@ class CertificateViewModel @Inject constructor(
 
     private fun sendCertificateNumber(phoneNumber: String) = intent {
         viewModelScope.launch {
-            sendCertificateNumberUseCase(phoneNumber = phoneNumber.replace("-", "")).onSuccess {
-                postSideEffect(CertificateSideEffect.SuccessSend)
+            sendCertificateNumberUseCase(phoneNumber = phoneNumber).onSuccess {
                 reduce { state.copy(phoneNumber = phoneNumber) }
             }.onFailure {
                 it.errorHandling(unknownAction = {})
