@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.danbam.domain.param.ChangePasswordParam
 import com.danbam.domain.usecase.account.ChangePasswordUseCase
 import com.danbam.presentation.util.errorHandling
+import com.danbam.presentation.util.isPassword
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
@@ -23,9 +24,7 @@ class FindPasswordViewModel @Inject constructor(
         if (password.isEmpty() || checkPassword.isEmpty()) postSideEffect(FindPasswordSideEffect.EmptyException)
         else if (password != checkPassword) postSideEffect(FindPasswordSideEffect.DifferentException)
         else if (password.length !in (8..20)) postSideEffect(FindPasswordSideEffect.LengthException)
-        else if (!"^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#\$%^&*?~])[0-9a-zA-Z!@#\$%^&*?~]+\$".toRegex()
-                .matches(password)
-        ) {
+        else if (!password.isPassword()) {
             postSideEffect(FindPasswordSideEffect.MatchException)
         } else {
             viewModelScope.launch {
