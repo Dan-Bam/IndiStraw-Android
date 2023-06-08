@@ -14,7 +14,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -35,9 +40,10 @@ import com.danbam.presentation.util.CertificateType
 import com.danbam.presentation.util.DeepLinkKey
 import com.danbam.presentation.util.SignUpNavigationItem
 import com.danbam.presentation.util.observeWithLifecycle
+import com.danbam.presentation.util.toPhoneNumber
 import kotlinx.coroutines.InternalCoroutinesApi
 
-@OptIn(InternalCoroutinesApi::class)
+@OptIn(InternalCoroutinesApi::class, ExperimentalComposeUiApi::class)
 @Composable
 fun CertificateScreen(
     navController: NavController,
@@ -52,6 +58,10 @@ fun CertificateScreen(
     var certificateNumber by remember { mutableStateOf("") }
     var errorText by remember { mutableStateOf("") }
     var onReTimer by remember { mutableStateOf({}) }
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val focusManager = LocalFocusManager.current
+    val phoneNumberFocusRequester = remember { FocusRequester() }
+    val certificateNumberFocusRequester = remember { FocusRequester() }
 
     val errorList = mapOf(
         CertificateSideEffect.EmptyPhoneNumberException to stringResource(id = R.string.require_phone_number),
@@ -65,23 +75,36 @@ fun CertificateScreen(
 
     sideEffect.observeWithLifecycle {
         when (it) {
-            is CertificateSideEffect.EmptyPhoneNumberException, CertificateSideEffect.MatchPhoneNumberException, CertificateSideEffect.EnrollPhoneNumberException, CertificateSideEffect.NotEnrollPhoneNumberException, CertificateSideEffect.EmptyCertificateNumberException, CertificateSideEffect.WrongCertificateNumberException, CertificateSideEffect.ExpiredCertificateNumberException -> {
+            is CertificateSideEffect.EmptyPhoneNumberException, CertificateSideEffect.MatchPhoneNumberException, CertificateSideEffect.EnrollPhoneNumberException, CertificateSideEffect.NotEnrollPhoneNumberException -> {
+                keyboardController?.show()
+                phoneNumberFocusRequester.requestFocus()
                 errorText = errorList[it]!!
             }
 
-            is CertificateSideEffect.SuccessSend -> {}
+            is CertificateSideEffect.EmptyCertificateNumberException, CertificateSideEffect.WrongCertificateNumberException, CertificateSideEffect.ExpiredCertificateNumberException -> {
+                keyboardController?.show()
+                certificateNumberFocusRequester.requestFocus()
+                errorText = errorList[it]!!
+            }
+
             is CertificateSideEffect.SuccessCertificate -> {
+                keyboardController?.hide()
                 when (certificateType) {
-                    CertificateType.SIGN_UP -> navController.navigate(SignUpNavigationItem.SetProfile.route + DeepLinkKey.PHONE_NUMBER + phoneNumber)
-                    CertificateType.FIND_ID -> navController.navigate(AppNavigationItem.FindId.route + DeepLinkKey.PHONE_NUMBER + phoneNumber)
-                    CertificateType.FIND_PASSWORD -> navController.navigate(AppNavigationItem.FindPassword.route + DeepLinkKey.PHONE_NUMBER + phoneNumber)
+                    CertificateType.SIGN_UP -> navController.navigate(SignUpNavigationItem.SetProfile.route + DeepLinkKey.PHONE_NUMBER + phoneNumber.toPhoneNumber())
+                    CertificateType.FIND_ID -> navController.navigate(AppNavigationItem.FindId.route + DeepLinkKey.PHONE_NUMBER + phoneNumber.toPhoneNumber())
+                    CertificateType.FIND_PASSWORD -> navController.navigate(AppNavigationItem.FindPassword.route + DeepLinkKey.PHONE_NUMBER + phoneNumber.toPhoneNumber())
                 }
             }
         }
     }
 
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .indiStrawClickable {
+                focusManager.clearFocus()
+                keyboardController?.hide()
+            }
     ) {
         IndiStrawHeader(
             marginTop = 25,
@@ -95,7 +118,9 @@ fun CertificateScreen(
             text = stringResource(id = if (state.phoneNumber.isNotEmpty()) R.string.require_certificate_number else R.string.require_phone_number)
         )
         IndiStrawTextField(
-            modifier = Modifier.padding(top = 96.dp),
+            modifier = Modifier
+                .padding(top = 96.dp)
+                .focusRequester(focusRequester = phoneNumberFocusRequester),
             hint = stringResource(id = R.string.phone_number),
             value = phoneNumber,
             onValueChange = {
@@ -107,7 +132,9 @@ fun CertificateScreen(
         )
         if (state.phoneNumber.isNotEmpty()) {
             IndiStrawTextField(
-                modifier = Modifier.padding(top = 20.dp),
+                modifier = Modifier
+                    .padding(top = 20.dp)
+                    .focusRequester(focusRequester = certificateNumberFocusRequester),
                 hint = stringResource(id = R.string.certificate_number),
                 value = certificateNumber,
                 onValueChange = {
@@ -132,7 +159,7 @@ fun CertificateScreen(
         ) {
             if (state.phoneNumber.isEmpty()) {
                 certificateViewModel.checkPhoneNumber(
-                    phoneNumber = phoneNumber,
+                    phoneNumber = phoneNumber.toPhoneNumber(),
                     isSignUp = certificateType == CertificateType.SIGN_UP
                 )
             } else {
