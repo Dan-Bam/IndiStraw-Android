@@ -45,6 +45,7 @@ class SignUpViewModel @Inject constructor(
                     it.errorHandling(unknownAction = {}, conflictException = {
                         postSideEffect(SignUpSideEffect.EnrollIdException)
                     }, noContentException = {
+                        reduce { state.copy(id = id) }
                         postSideEffect(SignUpSideEffect.Next)
                     })
                 }
