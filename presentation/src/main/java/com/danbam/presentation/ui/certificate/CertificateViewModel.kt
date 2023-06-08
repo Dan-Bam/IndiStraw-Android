@@ -6,6 +6,7 @@ import com.danbam.domain.usecase.auth.CheckCertificateNumberUseCase
 import com.danbam.domain.usecase.auth.CheckPhoneNumberUseCase
 import com.danbam.domain.usecase.auth.SendCertificateNumberUseCase
 import com.danbam.presentation.util.errorHandling
+import com.danbam.presentation.util.isPhoneNumber
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
@@ -25,9 +26,7 @@ class CertificateViewModel @Inject constructor(
 
     fun checkPhoneNumber(phoneNumber: String, isSignUp: Boolean) = intent {
         if (phoneNumber.isEmpty()) postSideEffect(CertificateSideEffect.EmptyPhoneNumberException)
-        else if (!"^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$".toRegex()
-                .matches(phoneNumber)
-        ) postSideEffect(CertificateSideEffect.MatchPhoneNumberException)
+        else if (!phoneNumber.isPhoneNumber()) postSideEffect(CertificateSideEffect.MatchPhoneNumberException)
         else {
             viewModelScope.launch {
                 checkPhoneNumberUseCase(phoneNumber = phoneNumber).onFailure {
