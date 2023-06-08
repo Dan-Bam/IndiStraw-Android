@@ -39,7 +39,7 @@ fun SetIdScreen(
 
     val errorList = mapOf(
         SignUpSideEffect.EmptyIdException to stringResource(id = R.string.require_id),
-        SignUpSideEffect.MatchIdException to stringResource(id = R.string.wrong_id_length),
+        SignUpSideEffect.MatchIdException to stringResource(id = R.string.wrong_length_id),
         SignUpSideEffect.EnrollIdException to stringResource(id = R.string.wrong_enroll_id)
     )
 

@@ -47,7 +47,7 @@ fun FindPasswordScreen(
     val errorList = mapOf(
         FindPasswordSideEffect.EmptyException to stringResource(id = R.string.require_change_password),
         FindPasswordSideEffect.DifferentException to stringResource(id = R.string.wrong_different_password),
-        FindPasswordSideEffect.LengthException to stringResource(id = R.string.wrong_password_length),
+        FindPasswordSideEffect.LengthException to stringResource(id = R.string.wrong_length_password),
         FindPasswordSideEffect.MatchException to stringResource(id = R.string.wrong_match_password),
         FindPasswordSideEffect.FailChangeException to stringResource(id = R.string.wait)
     )
