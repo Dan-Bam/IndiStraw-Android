@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -40,6 +39,7 @@ import com.danbam.design_system.component.HeadLineBold
 import com.danbam.design_system.component.IndiStrawBottomSheetLayout
 import com.danbam.design_system.component.IndiStrawButton
 import com.danbam.design_system.component.IndiStrawCheckBox
+import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.IndiStrawTextField
 import com.danbam.design_system.component.TitleRegular
@@ -118,13 +118,11 @@ fun SetPasswordScreen(
         )
     }) { sheetState, bottomSheetAction ->
         sheetVisible = sheetState.isVisible
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .indiStrawClickable {
-                    focusManager.clearFocus()
-                    keyboardController?.hide()
-                }
+        IndiStrawColumnBackground(
+            onClickAction = {
+                focusManager.clearFocus()
+                keyboardController?.hide()
+            }
         ) {
             IndiStrawHeader(marginTop = 25, backStringId = R.string.back, pressBackBtn = {
                 navController.popBackStack(keyboardController = keyboardController)

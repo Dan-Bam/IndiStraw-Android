@@ -1,7 +1,5 @@
 package com.danbam.presentation.ui.signup
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -21,16 +19,14 @@ import androidx.navigation.NavController
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.component.HeadLineBold
 import com.danbam.design_system.component.IndiStrawButton
+import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.IndiStrawTextField
 import com.danbam.design_system.component.TitleRegular
-import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.presentation.R
-import com.danbam.presentation.ui.certificate.CertificateSideEffect
 import com.danbam.presentation.util.AppNavigationItem
 import com.danbam.presentation.util.CertificateType
 import com.danbam.presentation.util.DeepLinkKey
-import com.danbam.presentation.util.SignUpNavigationItem
 import com.danbam.presentation.util.observeWithLifecycle
 import com.danbam.presentation.util.popBackStack
 import com.danbam.presentation.util.requestFocus
@@ -74,13 +70,11 @@ fun SetNameScreen(
         }
     }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .indiStrawClickable {
-                focusManager.clearFocus()
-                keyboardController?.hide()
-            }
+    IndiStrawColumnBackground(
+        onClickAction = {
+            focusManager.clearFocus()
+            keyboardController?.hide()
+        }
     ) {
         IndiStrawHeader(marginTop = 25, backStringId = R.string.back, pressBackBtn = {
             navController.popBackStack(keyboardController = keyboardController)
