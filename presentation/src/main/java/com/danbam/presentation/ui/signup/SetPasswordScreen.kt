@@ -12,9 +12,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -26,11 +26,9 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.component.FindPasswordMedium
 import com.danbam.design_system.component.HeadLineBold
@@ -44,25 +42,56 @@ import com.danbam.design_system.component.TitleSemiBold
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.presentation.R
 import com.danbam.presentation.util.AppNavigationItem
+import com.danbam.presentation.util.observeWithLifecycle
 import com.danbam.presentation.util.toDp
+import kotlinx.coroutines.InternalCoroutinesApi
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterialApi::class, InternalCoroutinesApi::class)
 @Composable
 fun SetPasswordScreen(
     navController: NavController,
+    signUpViewModel: SignUpViewModel,
 ) {
+    val container = signUpViewModel.container
+    val state = container.stateFlow.collectAsState().value
+    val sideEffect = container.sideEffectFlow
+
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
-    var checkPassword by remember { mutableStateOf("") }
-    var checkPasswordVisible by remember { mutableStateOf(false) }
+    var rePassword by remember { mutableStateOf("") }
+    var rePasswordVisible by remember { mutableStateOf(false) }
     var isAllApprove by remember { mutableStateOf(false) }
     var sheetVisible by remember { mutableStateOf(false) }
+    var errorText by remember { mutableStateOf("") }
+
+    val errorList = mapOf(
+        SignUpSideEffect.EmptyNameException to stringResource(id = R.string.require_password),
+        SignUpSideEffect.DifferentPasswordException to stringResource(id = R.string.wrong_different_password),
+        SignUpSideEffect.LengthPasswordException to stringResource(id = R.string.wrong_length_password),
+        SignUpSideEffect.MatchPasswordException to stringResource(id = R.string.wrong_match_password),
+    )
+
+    sideEffect.observeWithLifecycle {
+        when (it) {
+            is SignUpSideEffect.EmptyPasswordException, SignUpSideEffect.DifferentPasswordException, SignUpSideEffect.LengthPasswordException, SignUpSideEffect.MatchPasswordException -> {
+                errorText = errorList[it]!!
+            }
+
+            is SignUpSideEffect.SuccessSignUp -> {
+                navController.navigate(AppNavigationItem.Login.route) {
+                    popUpTo(AppNavigationItem.Intro.route)
+                }
+            }
+
+            else -> {
+
+            }
+        }
+    }
 
     LaunchedEffect(sheetVisible) {
         if (!sheetVisible && isAllApprove) {
-            navController.navigate(AppNavigationItem.Login.route) {
-                popUpTo(AppNavigationItem.Intro.route)
-            }
+            signUpViewModel.signUp()
         }
     }
 
@@ -90,7 +119,10 @@ fun SetPasswordScreen(
                 modifier = Modifier.padding(top = 65.dp),
                 hint = stringResource(id = R.string.password),
                 value = password,
-                onValueChange = { password = it },
+                onValueChange = {
+                    if (errorText.isNotEmpty()) errorText = ""
+                    password = it
+                },
                 imeAction = ImeAction.Next,
                 isToggleVisible = passwordVisible,
                 onToggleChange = { passwordVisible = !passwordVisible }
@@ -98,16 +130,27 @@ fun SetPasswordScreen(
             IndiStrawTextField(
                 modifier = Modifier.padding(top = 20.dp),
                 hint = stringResource(id = R.string.check_password),
-                value = checkPassword,
-                onValueChange = { checkPassword = it },
-                isToggleVisible = checkPasswordVisible,
-                onToggleChange = { checkPasswordVisible = !checkPasswordVisible }
+                value = rePassword,
+                onValueChange = {
+                    if (errorText.isNotEmpty()) errorText = ""
+                    rePassword = it
+                },
+                isToggleVisible = rePasswordVisible,
+                onToggleChange = { rePasswordVisible = !rePasswordVisible }
+            )
+            TitleRegular(
+                modifier = Modifier.padding(start = 32.dp, top = 7.dp),
+                text = errorText,
+                color = IndiStrawTheme.colors.error,
+                fontSize = 12
             )
             IndiStrawButton(
                 modifier = Modifier.padding(top = 37.dp),
                 text = stringResource(id = R.string.check)
             ) {
-                bottomSheetAction()
+                signUpViewModel.setPassword(password = password, rePassword = rePassword) {
+                    bottomSheetAction()
+                }
             }
         }
     }

@@ -2,8 +2,12 @@ package com.danbam.presentation.ui.signup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.danbam.domain.param.SignUpParam
 import com.danbam.domain.usecase.auth.CheckIdUseCase
+import com.danbam.domain.usecase.auth.SignUpUseCase
 import com.danbam.presentation.util.errorHandling
+import com.danbam.presentation.util.isId
+import com.danbam.presentation.util.isPassword
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
@@ -16,6 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
     private val checkIdUseCase: CheckIdUseCase,
+    private val signUpUseCase: SignUpUseCase,
 ) : ContainerHost<SignUpState, SignUpSideEffect>, ViewModel() {
     override val container = container<SignUpState, SignUpSideEffect>(SignUpState())
 
@@ -33,7 +38,7 @@ class SignUpViewModel @Inject constructor(
 
     fun setId(id: String) = intent {
         if (id.isEmpty()) postSideEffect(SignUpSideEffect.EmptyIdException)
-        else if (id.length !in (6..15)) postSideEffect(SignUpSideEffect.MatchIdException)
+        else if (!id.isId()) postSideEffect(SignUpSideEffect.MatchIdException)
         else {
             viewModelScope.launch {
                 checkIdUseCase(id = id).onFailure {
@@ -43,6 +48,35 @@ class SignUpViewModel @Inject constructor(
                         postSideEffect(SignUpSideEffect.Next)
                     })
                 }
+            }
+        }
+    }
+
+    fun setPassword(password: String, rePassword: String, onNext: () -> Unit) = intent {
+        if (password.isEmpty() || rePassword.isEmpty()) postSideEffect(SignUpSideEffect.EmptyPasswordException)
+        else if (password != rePassword) postSideEffect(SignUpSideEffect.DifferentPasswordException)
+        else if (password.length !in (5..20)) postSideEffect(SignUpSideEffect.LengthPasswordException)
+        else if (!password.isPassword()) postSideEffect(SignUpSideEffect.MatchPasswordException)
+        else {
+            reduce { state.copy(password = password) }
+            onNext()
+        }
+    }
+
+    fun signUp() = intent {
+        viewModelScope.launch {
+            signUpUseCase(
+                SignUpParam(
+                    id = state.id,
+                    password = state.password,
+                    name = state.name,
+                    phoneNumber = state.phoneNumber,
+                    profileUrl = state.profileUrl
+                )
+            ).onSuccess {
+                postSideEffect(SignUpSideEffect.SuccessSignUp)
+            }.onFailure {
+                it.errorHandling(unknownAction = {})
             }
         }
     }
