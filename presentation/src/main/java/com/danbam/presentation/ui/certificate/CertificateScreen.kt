@@ -98,7 +98,10 @@ fun CertificateScreen(
             modifier = Modifier.padding(top = 96.dp),
             hint = stringResource(id = R.string.phone_number),
             value = phoneNumber,
-            onValueChange = { phoneNumber = it },
+            onValueChange = {
+                if (errorText.isNotEmpty()) errorText = ""
+                phoneNumber = it
+            },
             readOnly = state.phoneNumber.isNotEmpty(),
             keyboardType = KeyboardType.Number
         )
@@ -107,7 +110,10 @@ fun CertificateScreen(
                 modifier = Modifier.padding(top = 20.dp),
                 hint = stringResource(id = R.string.certificate_number),
                 value = certificateNumber,
-                onValueChange = { certificateNumber = it },
+                onValueChange = {
+                    if (errorText.isNotEmpty()) errorText = ""
+                    certificateNumber = it
+                },
                 keyboardType = KeyboardType.Number,
                 isTimer = true,
                 onReTimer = { onReTimer = it },
