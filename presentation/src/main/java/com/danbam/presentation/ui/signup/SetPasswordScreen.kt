@@ -21,9 +21,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.IntSize
@@ -43,10 +48,15 @@ import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.presentation.R
 import com.danbam.presentation.util.AppNavigationItem
 import com.danbam.presentation.util.observeWithLifecycle
+import com.danbam.presentation.util.popBackStack
+import com.danbam.presentation.util.requestFocus
 import com.danbam.presentation.util.toDp
 import kotlinx.coroutines.InternalCoroutinesApi
 
-@OptIn(ExperimentalMaterialApi::class, InternalCoroutinesApi::class)
+@OptIn(
+    ExperimentalMaterialApi::class, InternalCoroutinesApi::class,
+    ExperimentalComposeUiApi::class
+)
 @Composable
 fun SetPasswordScreen(
     navController: NavController,
@@ -63,6 +73,9 @@ fun SetPasswordScreen(
     var isAllApprove by remember { mutableStateOf(false) }
     var sheetVisible by remember { mutableStateOf(false) }
     var errorText by remember { mutableStateOf("") }
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val focusManager = LocalFocusManager.current
+    val passwordFocusRequester = remember { FocusRequester() }
 
     val errorList = mapOf(
         SignUpSideEffect.EmptyNameException to stringResource(id = R.string.require_password),
@@ -74,6 +87,7 @@ fun SetPasswordScreen(
     sideEffect.observeWithLifecycle {
         when (it) {
             is SignUpSideEffect.EmptyPasswordException, SignUpSideEffect.DifferentPasswordException, SignUpSideEffect.LengthPasswordException, SignUpSideEffect.MatchPasswordException -> {
+                passwordFocusRequester.requestFocus(keyboardController = keyboardController)
                 errorText = errorList[it]!!
             }
 
@@ -105,10 +119,15 @@ fun SetPasswordScreen(
     }) { sheetState, bottomSheetAction ->
         sheetVisible = sheetState.isVisible
         Column(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .indiStrawClickable {
+                    focusManager.clearFocus()
+                    keyboardController?.hide()
+                }
         ) {
             IndiStrawHeader(marginTop = 25, backStringId = R.string.back, pressBackBtn = {
-                navController.popBackStack()
+                navController.popBackStack(keyboardController = keyboardController)
             })
             HeadLineBold(
                 modifier = Modifier
@@ -116,7 +135,9 @@ fun SetPasswordScreen(
                 text = stringResource(id = R.string.require_password)
             )
             IndiStrawTextField(
-                modifier = Modifier.padding(top = 65.dp),
+                modifier = Modifier
+                    .padding(top = 65.dp)
+                    .focusRequester(focusRequester = passwordFocusRequester),
                 hint = stringResource(id = R.string.password),
                 value = password,
                 onValueChange = {
@@ -149,6 +170,7 @@ fun SetPasswordScreen(
                 text = stringResource(id = R.string.check)
             ) {
                 signUpViewModel.setPassword(password = password, rePassword = rePassword) {
+                    keyboardController?.hide()
                     bottomSheetAction()
                 }
             }
