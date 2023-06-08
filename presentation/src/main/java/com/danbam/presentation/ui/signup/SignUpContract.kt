@@ -13,6 +13,7 @@ sealed class SignUpSideEffect {
     object EmptyIdException : SignUpSideEffect()
     object MatchIdException : SignUpSideEffect()
     object EnrollIdException : SignUpSideEffect()
+    object EmptyPasswordException : SignUpSideEffect()
     object DifferentPasswordException : SignUpSideEffect()
     object LengthPasswordException : SignUpSideEffect()
     object MatchPasswordException : SignUpSideEffect()
