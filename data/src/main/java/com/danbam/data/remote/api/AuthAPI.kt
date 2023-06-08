@@ -26,6 +26,11 @@ interface AuthAPI {
         @Path("phoneNumber") phoneNumber: String,
     ): Void
 
+    @HEAD("auth/check/id/{id}")
+    suspend fun checkId(
+        @Path("id") id: String,
+    ): Void
+
     @POST("auth/send/phone-number/{phoneNumber}")
     suspend fun sendCertificateNumber(
         @Path("phoneNumber") phoneNumber: String,
