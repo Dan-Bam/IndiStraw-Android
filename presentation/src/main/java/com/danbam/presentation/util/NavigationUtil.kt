@@ -33,6 +33,6 @@ object CertificateType {
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun NavController.popBackStack(keyboardController: SoftwareKeyboardController? = null) {
-    keyboardController?.let { it.hide() }
+    keyboardController?.hide()
     this.popBackStack()
 }
