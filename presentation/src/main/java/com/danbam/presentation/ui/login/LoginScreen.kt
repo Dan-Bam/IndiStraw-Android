@@ -63,8 +63,8 @@ fun LoginScreen(
     val idFocusRequester = remember { FocusRequester() }
 
     val errorList = mapOf(
-        LoginSideEffect.IdEmpty to stringResource(id = R.string.wrong_id_empty),
-        LoginSideEffect.PasswordEmpty to stringResource(id = R.string.wrong_password_empty),
+        LoginSideEffect.IdEmpty to stringResource(id = R.string.require_id),
+        LoginSideEffect.PasswordEmpty to stringResource(id = R.string.require_password),
         LoginSideEffect.WrongId to stringResource(id = R.string.wrong_id),
         LoginSideEffect.WrongPassword to stringResource(id = R.string.wrong_password)
     )

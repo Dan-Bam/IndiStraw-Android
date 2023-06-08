@@ -1,4 +1,4 @@
-package com.danbam.presentation.ui.find
+package com.danbam.presentation.ui.find.find_id
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,7 +10,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.danbam.design_system.component.HeadLineBold
@@ -21,13 +20,11 @@ import com.danbam.presentation.R
 import com.danbam.presentation.util.AppNavigationItem
 
 @Composable
-fun FindPasswordScreen(
+fun FindIdScreen(
     navController: NavController,
+    phoneNumber: String,
 ) {
-    var password by remember { mutableStateOf("") }
-    var passwordVisible by remember { mutableStateOf(false) }
-    var checkPassword by remember { mutableStateOf("") }
-    var checkPasswordVisible by remember { mutableStateOf(false) }
+    var currentId by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -38,27 +35,17 @@ fun FindPasswordScreen(
         HeadLineBold(
             modifier = Modifier
                 .padding(start = 32.dp, top = 16.dp),
-            text = stringResource(id = R.string.change_password)
+            text = stringResource(id = R.string.current_id)
         )
         IndiStrawTextField(
-            modifier = Modifier.padding(top = 66.dp),
-            hint = stringResource(id = R.string.password),
-            value = password,
-            onValueChange = { password = it },
-            imeAction = ImeAction.Next,
-            isToggleVisible = passwordVisible,
-            onToggleChange = { passwordVisible = !passwordVisible }
-        )
-        IndiStrawTextField(
-            modifier = Modifier.padding(top = 20.dp),
-            hint = stringResource(id = R.string.check_password),
-            value = checkPassword,
-            onValueChange = { checkPassword = it },
-            isToggleVisible = checkPasswordVisible,
-            onToggleChange = { checkPasswordVisible = !checkPasswordVisible }
+            modifier = Modifier.padding(top = 96.dp),
+            hint = "",
+            value = currentId,
+            onValueChange = { },
+            readOnly = true
         )
         IndiStrawButton(
-            modifier = Modifier.padding(top = 37.dp),
+            modifier = Modifier.padding(top = 78.dp),
             text = stringResource(id = R.string.check)
         ) {
             navController.navigate(AppNavigationItem.Login.route) {

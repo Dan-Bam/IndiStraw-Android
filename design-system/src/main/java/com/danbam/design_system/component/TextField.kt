@@ -44,6 +44,7 @@ fun IndiStrawTextField(
     keyboardType: KeyboardType = KeyboardType.Text,
     isTimer: Boolean = false,
     onReTimer: ((() -> Unit) -> Unit)? = null,
+    onExpiredTime: () -> Unit = {},
     isToggleVisible: Boolean? = null,
     onToggleChange: () -> Unit = {},
 ) {
@@ -52,6 +53,8 @@ fun IndiStrawTextField(
         if (restTime != 0 && isTimer) {
             delay(1_000L)
             restTime--
+        } else {
+            onExpiredTime()
         }
     }
     onReTimer?.let { onReTimer { restTime = RestTime } }

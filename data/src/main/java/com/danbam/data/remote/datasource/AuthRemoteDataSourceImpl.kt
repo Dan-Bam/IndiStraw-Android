@@ -14,6 +14,19 @@ class AuthRemoteDataSourceImpl @Inject constructor(
     }
 
     override suspend fun refresh(refreshToken: String): LoginResponse = indiStrawApiCall {
-        authAPI.refresh(refreshToken = refreshToken)
+        authAPI.refresh(refreshToken = "Bearer $refreshToken")
     }
+
+    override suspend fun checkPhoneNumber(phoneNumber: String): Void = indiStrawApiCall {
+        authAPI.checkPhoneNumber(phoneNumber = phoneNumber)
+    }
+
+    override suspend fun sendCertificateNumber(phoneNumber: String) = indiStrawApiCall {
+        authAPI.sendCertificateNumber(phoneNumber = phoneNumber)
+    }
+
+    override suspend fun checkCertificateNumber(authCode: Int, phoneNumber: String) =
+        indiStrawApiCall {
+            authAPI.checkCertificateNumber(authCode = authCode, phoneNumber = phoneNumber)
+        }
 }

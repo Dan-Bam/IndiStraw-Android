@@ -3,6 +3,7 @@ package com.danbam.data.remote.util
 import com.danbam.domain.exception.ConflictDataException
 import com.danbam.domain.exception.ExpiredTokenException
 import com.danbam.domain.exception.InvalidTokenException
+import com.danbam.domain.exception.NoContentException
 import com.danbam.domain.exception.NotFoundException
 import com.danbam.domain.exception.ServerErrorException
 import com.danbam.domain.exception.UnKnownHttpException
@@ -10,13 +11,14 @@ import com.danbam.domain.exception.WrongDataException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
+import java.lang.NullPointerException
 
 suspend inline fun <T> indiStrawApiCall(
     crossinline callFunction: suspend () -> T,
 ): T {
     return try {
         withContext(Dispatchers.IO) {
-            callFunction.invoke()
+            callFunction()
         }
     } catch (e: HttpException) {
         throw when (e.code()) {
@@ -24,10 +26,12 @@ suspend inline fun <T> indiStrawApiCall(
             401 -> InvalidTokenException(e.message)
             404 -> NotFoundException(e.message)
             409 -> ConflictDataException(e.message)
-            500 -> ServerErrorException(e.message)
+            in 500..600 -> ServerErrorException(e.message)
             else -> UnKnownHttpException(e.message)
         }
     } catch (e: ExpiredTokenException) {
         throw ExpiredTokenException()
+    } catch (e: KotlinNullPointerException) {
+        throw NoContentException(e.message)
     }
 }

@@ -15,8 +15,8 @@ import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.presentation.ui.certificate.CertificateScreen
-import com.danbam.presentation.ui.find.FindIdScreen
-import com.danbam.presentation.ui.find.FindPasswordScreen
+import com.danbam.presentation.ui.find.find_id.FindIdScreen
+import com.danbam.presentation.ui.find.find_password.FindPasswordScreen
 import com.danbam.presentation.ui.intro.IntroScreen
 import com.danbam.presentation.ui.login.LoginScreen
 import com.danbam.presentation.ui.signup.SetIdScreen
@@ -95,11 +95,29 @@ fun NavGraphBuilder.mainGraph(navController: NavHostController) {
 
         CertificateScreen(navController = navController, certificateType = certificateType)
     }
-    composable(route = AppNavigationItem.FindId.route) {
-        FindIdScreen(navController = navController)
+    composable(
+        route = AppNavigationItem.FindId.route
+                + DeepLinkKey.PHONE_NUMBER + "{${DeepLinkKey.PHONE_NUMBER}}",
+        arguments = listOf(
+            navArgument(DeepLinkKey.PHONE_NUMBER) {
+                type = NavType.StringType
+            }
+        )
+    ) {
+        val phoneNumber = it.arguments?.getString(DeepLinkKey.PHONE_NUMBER) ?: ""
+        FindIdScreen(navController = navController, phoneNumber = phoneNumber)
     }
-    composable(route = AppNavigationItem.FindPassword.route) {
-        FindPasswordScreen(navController = navController)
+    composable(
+        route = AppNavigationItem.FindPassword.route
+                + DeepLinkKey.PHONE_NUMBER + "{${DeepLinkKey.PHONE_NUMBER}}",
+        arguments = listOf(
+            navArgument(DeepLinkKey.PHONE_NUMBER) {
+                type = NavType.StringType
+            }
+        )
+    ) {
+        val phoneNumber = it.arguments?.getString(DeepLinkKey.PHONE_NUMBER) ?: ""
+        FindPasswordScreen(navController = navController, phoneNumber = phoneNumber)
     }
     composable(route = AppNavigationItem.Main.route) {
     }
@@ -112,8 +130,16 @@ fun NavGraphBuilder.signUpGraph(navController: NavHostController) {
     ) {
         SetNameScreen(navController = navController)
     }
-    composable(route = SignUpNavigationItem.SetProfile.route) {
-        SetProfileScreen(navController = navController)
+    composable(
+        route = SignUpNavigationItem.SetProfile.route
+                + DeepLinkKey.PHONE_NUMBER + "{${DeepLinkKey.PHONE_NUMBER}}",
+        arguments = listOf(
+            navArgument(DeepLinkKey.PHONE_NUMBER) {
+                type = NavType.StringType
+            }
+        )) {
+        val phoneNumber = it.arguments?.getString(DeepLinkKey.PHONE_NUMBER) ?: ""
+        SetProfileScreen(navController = navController, phoneNumber = phoneNumber)
     }
     composable(route = SignUpNavigationItem.SetId.route) {
         SetIdScreen(navController = navController)

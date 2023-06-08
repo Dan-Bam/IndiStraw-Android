@@ -1,5 +1,7 @@
 package com.danbam.di
 
+import com.danbam.data.remote.datasource.AccountRemoteDataSource
+import com.danbam.data.remote.datasource.AccountRemoteDataSourceImpl
 import com.danbam.data.remote.datasource.AuthRemoteDataSource
 import com.danbam.data.remote.datasource.AuthRemoteDataSourceImpl
 import dagger.Binds
@@ -11,7 +13,12 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 abstract class RemoteDataSourceModule {
     @Binds
-    abstract fun provideAuthRemoteDataSource(
+    abstract fun bindAuthRemoteDataSource(
         authRemoteDataSourceImpl: AuthRemoteDataSourceImpl,
     ): AuthRemoteDataSource
+
+    @Binds
+    abstract fun bindAccountRemoteDataSource(
+        accountRemoteDataSourceImpl: AccountRemoteDataSourceImpl,
+    ): AccountRemoteDataSource
 }

@@ -1,6 +1,7 @@
 package com.danbam.di
 
 import android.util.Log
+import com.danbam.data.remote.api.AccountAPI
 import com.danbam.data.remote.api.AuthAPI
 import com.danbam.data.remote.interceptor.IndiStrawInterceptor
 import dagger.Module
@@ -40,4 +41,7 @@ object NetworkModule {
 
     @Provides
     fun provideAuthAPI(retrofit: Retrofit): AuthAPI = retrofit.create(AuthAPI::class.java)
+
+    @Provides
+    fun provideAccountAPI(retrofit: Retrofit): AccountAPI = retrofit.create(AccountAPI::class.java)
 }

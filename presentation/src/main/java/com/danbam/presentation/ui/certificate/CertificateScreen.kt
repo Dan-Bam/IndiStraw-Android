@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -17,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.component.FindPasswordMedium
@@ -24,21 +26,60 @@ import com.danbam.design_system.component.HeadLineBold
 import com.danbam.design_system.component.IndiStrawButton
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.IndiStrawTextField
+import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.presentation.R
+import com.danbam.presentation.ui.login.LoginSideEffect
 import com.danbam.presentation.util.AppNavigationItem
 import com.danbam.presentation.util.CertificateType
+import com.danbam.presentation.util.DeepLinkKey
 import com.danbam.presentation.util.SignUpNavigationItem
+import com.danbam.presentation.util.observeWithLifecycle
+import kotlinx.coroutines.InternalCoroutinesApi
 
+@OptIn(InternalCoroutinesApi::class)
 @Composable
 fun CertificateScreen(
     navController: NavController,
+    certificateViewModel: CertificateViewModel = hiltViewModel(),
     certificateType: String,
 ) {
-    var isSendCertificateNumber by remember { mutableStateOf(false) }
+    val container = certificateViewModel.container
+    val state = container.stateFlow.collectAsState().value
+    val sideEffect = container.sideEffectFlow
+
     var phoneNumber by remember { mutableStateOf("") }
     var certificateNumber by remember { mutableStateOf("") }
+    var errorText by remember { mutableStateOf("") }
     var onReTimer by remember { mutableStateOf({}) }
+
+    val errorList = mapOf(
+        CertificateSideEffect.EmptyPhoneNumberException to stringResource(id = R.string.require_phone_number),
+        CertificateSideEffect.MatchPhoneNumberException to stringResource(id = R.string.wrong_match_phone_number),
+        CertificateSideEffect.EnrollPhoneNumberException to stringResource(id = R.string.wrong_enroll_phone_number),
+        CertificateSideEffect.NotEnrollPhoneNumberException to stringResource(id = R.string.wrong_not_enroll_phone_number),
+        CertificateSideEffect.EmptyCertificateNumberException to stringResource(id = R.string.require_certificate_number),
+        CertificateSideEffect.WrongCertificateNumberException to stringResource(id = R.string.wrong_certificate_number),
+        CertificateSideEffect.ExpiredCertificateNumberException to stringResource(id = R.string.wrong_expired_certificate_number),
+    )
+
+    sideEffect.observeWithLifecycle {
+        when (it) {
+            is CertificateSideEffect.EmptyPhoneNumberException, CertificateSideEffect.MatchPhoneNumberException, CertificateSideEffect.EnrollPhoneNumberException, CertificateSideEffect.NotEnrollPhoneNumberException, CertificateSideEffect.EmptyCertificateNumberException, CertificateSideEffect.WrongCertificateNumberException, CertificateSideEffect.ExpiredCertificateNumberException -> {
+                errorText = errorList[it]!!
+            }
+
+            is CertificateSideEffect.SuccessSend -> {}
+            is CertificateSideEffect.SuccessCertificate -> {
+                when (certificateType) {
+                    CertificateType.SIGN_UP -> navController.navigate(SignUpNavigationItem.SetProfile.route + DeepLinkKey.PHONE_NUMBER + phoneNumber)
+                    CertificateType.FIND_ID -> navController.navigate(AppNavigationItem.FindId.route + DeepLinkKey.PHONE_NUMBER + phoneNumber)
+                    CertificateType.FIND_PASSWORD -> navController.navigate(AppNavigationItem.FindPassword.route + DeepLinkKey.PHONE_NUMBER + phoneNumber)
+                }
+            }
+        }
+    }
+
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -51,17 +92,17 @@ fun CertificateScreen(
         HeadLineBold(
             modifier = Modifier
                 .padding(start = 32.dp, top = 16.dp),
-            text = stringResource(id = if (isSendCertificateNumber) R.string.require_certificate_number else R.string.require_phone_number)
+            text = stringResource(id = if (state.phoneNumber.isNotEmpty()) R.string.require_certificate_number else R.string.require_phone_number)
         )
         IndiStrawTextField(
             modifier = Modifier.padding(top = 96.dp),
             hint = stringResource(id = R.string.phone_number),
             value = phoneNumber,
             onValueChange = { phoneNumber = it },
-            readOnly = isSendCertificateNumber,
+            readOnly = state.phoneNumber.isNotEmpty(),
             keyboardType = KeyboardType.Number
         )
-        if (isSendCertificateNumber) {
+        if (state.phoneNumber.isNotEmpty()) {
             IndiStrawTextField(
                 modifier = Modifier.padding(top = 20.dp),
                 hint = stringResource(id = R.string.certificate_number),
@@ -69,24 +110,30 @@ fun CertificateScreen(
                 onValueChange = { certificateNumber = it },
                 keyboardType = KeyboardType.Number,
                 isTimer = true,
-                onReTimer = { onReTimer = it }
+                onReTimer = { onReTimer = it },
+                onExpiredTime = { certificateViewModel.expiredCertificateNumber() }
             )
         }
+        TitleRegular(
+            modifier = Modifier.padding(start = 32.dp, top = 7.dp),
+            text = errorText,
+            color = IndiStrawTheme.colors.error,
+            fontSize = 12
+        )
         IndiStrawButton(
-            modifier = Modifier.padding(top = (if (isSendCertificateNumber) 37 else 78).dp),
-            text = stringResource(id = if (isSendCertificateNumber) R.string.check_certificate_number else R.string.certificate_number)
+            modifier = Modifier.padding(top = (if (state.phoneNumber.isNotEmpty()) 37 else 78).dp),
+            text = stringResource(id = if (state.phoneNumber.isNotEmpty()) R.string.check_certificate_number else R.string.certificate_number)
         ) {
-            if (!isSendCertificateNumber) {
-                isSendCertificateNumber = true
+            if (state.phoneNumber.isEmpty()) {
+                certificateViewModel.checkPhoneNumber(
+                    phoneNumber = phoneNumber,
+                    isSignUp = certificateType == CertificateType.SIGN_UP
+                )
             } else {
-                when (certificateType) {
-                    CertificateType.SIGN_UP -> navController.navigate(SignUpNavigationItem.SetProfile.route)
-                    CertificateType.FIND_ID -> navController.navigate(AppNavigationItem.FindId.route)
-                    CertificateType.FIND_PASSWORD -> navController.navigate(AppNavigationItem.FindPassword.route)
-                }
+                certificateViewModel.checkCertificateNumber(authCode = certificateNumber)
             }
         }
-        if (isSendCertificateNumber) {
+        if (state.phoneNumber.isNotEmpty()) {
             Row(
                 modifier = Modifier
                     .padding(top = 15.dp)

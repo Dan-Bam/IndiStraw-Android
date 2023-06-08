@@ -11,7 +11,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Divider
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -23,9 +26,11 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.component.FindPasswordMedium
 import com.danbam.design_system.component.HeadLineBold
@@ -41,6 +46,7 @@ import com.danbam.presentation.R
 import com.danbam.presentation.util.AppNavigationItem
 import com.danbam.presentation.util.toDp
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun SetPasswordScreen(
     navController: NavController,
@@ -50,29 +56,25 @@ fun SetPasswordScreen(
     var checkPassword by remember { mutableStateOf("") }
     var checkPasswordVisible by remember { mutableStateOf(false) }
     var isAllApprove by remember { mutableStateOf(false) }
-    var isTermsOfUseApprove by remember { mutableStateOf(false) }
-    var isPersonalInformationApprove by remember { mutableStateOf(false) }
+    var sheetVisible by remember { mutableStateOf(false) }
+
+    LaunchedEffect(sheetVisible) {
+        if (!sheetVisible && isAllApprove) {
+            navController.navigate(AppNavigationItem.Login.route) {
+                popUpTo(AppNavigationItem.Intro.route)
+            }
+        }
+    }
 
     IndiStrawBottomSheetLayout(sheetContent = {
         PersonalInformationSheet(
             isAll = isAllApprove,
             onAll = {
                 isAllApprove = !isAllApprove
-                isTermsOfUseApprove = isAllApprove
-                isPersonalInformationApprove = isAllApprove
             },
-            isTermsOfUse = isTermsOfUseApprove,
-            onTermsOfUse = {
-                isTermsOfUseApprove = !isTermsOfUseApprove
-                isAllApprove = isTermsOfUseApprove && isPersonalInformationApprove
-            },
-            isPersonalInformation = isPersonalInformationApprove,
-            onPersonalInformation = {
-                isPersonalInformationApprove = !isPersonalInformationApprove
-                isAllApprove = isTermsOfUseApprove && isPersonalInformationApprove
-            }
         )
-    }) {
+    }) { sheetState, bottomSheetAction ->
+        sheetVisible = sheetState.isVisible
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
@@ -85,7 +87,7 @@ fun SetPasswordScreen(
                 text = stringResource(id = R.string.require_password)
             )
             IndiStrawTextField(
-                modifier = Modifier.padding(top = 66.dp),
+                modifier = Modifier.padding(top = 65.dp),
                 hint = stringResource(id = R.string.password),
                 value = password,
                 onValueChange = { password = it },
@@ -105,25 +107,7 @@ fun SetPasswordScreen(
                 modifier = Modifier.padding(top = 37.dp),
                 text = stringResource(id = R.string.check)
             ) {
-                navController.navigate(AppNavigationItem.Login.route) {
-                    popUpTo(AppNavigationItem.Intro.route)
-                }
-            }
-            Row(
-                modifier = Modifier
-                    .padding(end = 32.dp, top = 27.dp)
-                    .fillMaxWidth()
-                    .indiStrawClickable(onClick = it),
-                horizontalArrangement = Arrangement.End,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                FindPasswordMedium(text = stringResource(id = R.string.approve_personal_information))
-                IndiStrawCheckBox(
-                    modifier = Modifier
-                        .width(20.dp)
-                        .height(20.dp),
-                    isCheck = isAllApprove,
-                    onClick = {})
+                bottomSheetAction()
             }
         }
     }
@@ -133,10 +117,6 @@ fun SetPasswordScreen(
 fun PersonalInformationSheet(
     isAll: Boolean,
     onAll: () -> Unit,
-    isTermsOfUse: Boolean,
-    onTermsOfUse: () -> Unit,
-    isPersonalInformation: Boolean,
-    onPersonalInformation: () -> Unit,
 ) {
     var context = LocalContext.current
     var size by remember { mutableStateOf(IntSize.Zero) }
@@ -171,11 +151,8 @@ fun PersonalInformationSheet(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = CenterVertically
         ) {
-            Row(
-                modifier = Modifier
-                    .indiStrawClickable(onClick = onTermsOfUse)
-            ) {
-                IndiStrawCheckBox(isCheck = isTermsOfUse, onClick = onTermsOfUse)
+            Row {
+                IndiStrawCheckBox(isCheck = isAll, onClick = { })
                 TitleRegular(
                     modifier = Modifier
                         .padding(start = 13.dp)
@@ -208,11 +185,8 @@ fun PersonalInformationSheet(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = CenterVertically
         ) {
-            Row(
-                modifier = Modifier
-                    .indiStrawClickable(onClick = onPersonalInformation)
-            ) {
-                IndiStrawCheckBox(isCheck = isPersonalInformation, onClick = onPersonalInformation)
+            Row {
+                IndiStrawCheckBox(isCheck = isAll, onClick = { })
                 TitleRegular(
                     modifier = Modifier
                         .padding(start = 13.dp)

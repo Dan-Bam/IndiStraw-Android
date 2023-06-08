@@ -38,7 +38,7 @@ fun SetNameScreen(
             text = stringResource(id = R.string.require_name)
         )
         IndiStrawTextField(
-            modifier = Modifier.padding(top = 66.dp),
+            modifier = Modifier.padding(top = 96.dp),
             hint = stringResource(id = R.string.name),
             value = name,
             onValueChange = { name = it })
