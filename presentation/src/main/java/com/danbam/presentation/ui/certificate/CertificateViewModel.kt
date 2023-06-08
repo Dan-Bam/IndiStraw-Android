@@ -33,10 +33,10 @@ class CertificateViewModel @Inject constructor(
                 checkPhoneNumberUseCase(phoneNumber = phoneNumber).onFailure {
                     it.errorHandling(unknownAction = {}, conflictException = {
                         if (!isSignUp) sendCertificateNumber(phoneNumber = phoneNumber)
-                        else postSideEffect(CertificateSideEffect.NotEnrollPhoneNumberException)
+                        else postSideEffect(CertificateSideEffect.EnrollPhoneNumberException)
                     }, noContentException = {
                         if (isSignUp) sendCertificateNumber(phoneNumber = phoneNumber)
-                        else postSideEffect(CertificateSideEffect.EnrollPhoneNumberException)
+                        else postSideEffect(CertificateSideEffect.NotEnrollPhoneNumberException)
                     })
                 }
             }
@@ -45,10 +45,10 @@ class CertificateViewModel @Inject constructor(
 
     private fun sendCertificateNumber(phoneNumber: String) = intent {
         viewModelScope.launch {
-            sendCertificateNumberUseCase(phoneNumber = phoneNumber).onSuccess {
-                reduce { state.copy(phoneNumber = phoneNumber) }
-            }.onFailure {
-                it.errorHandling(unknownAction = {})
+            sendCertificateNumberUseCase(phoneNumber = phoneNumber).onFailure {
+                it.errorHandling(unknownAction = {}, noContentException = {
+                    reduce { state.copy(phoneNumber = phoneNumber) }
+                })
             }
         }
     }
