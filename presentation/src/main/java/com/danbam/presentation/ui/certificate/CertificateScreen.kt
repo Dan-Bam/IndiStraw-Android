@@ -72,9 +72,26 @@ fun CertificateScreen(
             is CertificateSideEffect.SuccessSend -> {}
             is CertificateSideEffect.SuccessCertificate -> {
                 when (certificateType) {
-                    CertificateType.SIGN_UP -> navController.navigate(SignUpNavigationItem.SetProfile.route + DeepLinkKey.PHONE_NUMBER + phoneNumber)
-                    CertificateType.FIND_ID -> navController.navigate(AppNavigationItem.FindId.route + DeepLinkKey.PHONE_NUMBER + phoneNumber)
-                    CertificateType.FIND_PASSWORD -> navController.navigate(AppNavigationItem.FindPassword.route + DeepLinkKey.PHONE_NUMBER + phoneNumber)
+                    CertificateType.SIGN_UP -> navController.navigate(
+                        SignUpNavigationItem.SetProfile.route + DeepLinkKey.PHONE_NUMBER + phoneNumber.replace(
+                            "-",
+                            ""
+                        )
+                    )
+
+                    CertificateType.FIND_ID -> navController.navigate(
+                        AppNavigationItem.FindId.route + DeepLinkKey.PHONE_NUMBER + phoneNumber.replace(
+                            "-",
+                            ""
+                        )
+                    )
+
+                    CertificateType.FIND_PASSWORD -> navController.navigate(
+                        AppNavigationItem.FindPassword.route + DeepLinkKey.PHONE_NUMBER + phoneNumber.replace(
+                            "-",
+                            ""
+                        )
+                    )
                 }
             }
         }
