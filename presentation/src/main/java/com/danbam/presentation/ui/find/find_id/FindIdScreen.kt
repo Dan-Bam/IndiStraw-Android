@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -11,6 +13,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.danbam.design_system.component.HeadLineBold
 import com.danbam.design_system.component.IndiStrawButton
@@ -22,9 +25,17 @@ import com.danbam.presentation.util.AppNavigationItem
 @Composable
 fun FindIdScreen(
     navController: NavController,
+    findIdViewModel: FindIdViewModel = hiltViewModel(),
     phoneNumber: String,
 ) {
-    var currentId by remember { mutableStateOf("") }
+    val container = findIdViewModel.container
+    val state = container.stateFlow.collectAsState().value
+    val sideEffect = container.sideEffectFlow
+
+
+    LaunchedEffect(Unit) {
+        findIdViewModel.findId(phoneNumber = phoneNumber)
+    }
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -40,7 +51,7 @@ fun FindIdScreen(
         IndiStrawTextField(
             modifier = Modifier.padding(top = 96.dp),
             hint = "",
-            value = currentId,
+            value = state.id,
             onValueChange = { },
             readOnly = true
         )
