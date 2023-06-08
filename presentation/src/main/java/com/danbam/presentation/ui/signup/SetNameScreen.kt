@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -12,20 +13,54 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.component.HeadLineBold
 import com.danbam.design_system.component.IndiStrawButton
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.IndiStrawTextField
+import com.danbam.design_system.component.TitleRegular
 import com.danbam.presentation.R
+import com.danbam.presentation.ui.certificate.CertificateSideEffect
 import com.danbam.presentation.util.AppNavigationItem
 import com.danbam.presentation.util.CertificateType
 import com.danbam.presentation.util.DeepLinkKey
+import com.danbam.presentation.util.SignUpNavigationItem
+import com.danbam.presentation.util.observeWithLifecycle
+import kotlinx.coroutines.InternalCoroutinesApi
 
+@OptIn(InternalCoroutinesApi::class)
 @Composable
 fun SetNameScreen(
     navController: NavController,
+    signUpViewModel: SignUpViewModel,
 ) {
+    val container = signUpViewModel.container
+    val state = container.stateFlow.collectAsState().value
+    val sideEffect = container.sideEffectFlow
+
     var name by remember { mutableStateOf("") }
+    var errorText by remember { mutableStateOf("") }
+
+    val errorList = mapOf(
+        SignUpSideEffect.EmptyNameException to stringResource(id = R.string.require_name),
+    )
+
+    sideEffect.observeWithLifecycle {
+        when (it) {
+            is SignUpSideEffect.EmptyNameException -> {
+                errorText = errorList[it]!!
+            }
+
+            is SignUpSideEffect.Next -> {
+                navController.navigate(AppNavigationItem.Certificate.route + DeepLinkKey.CERTIFICATE_TYPE + CertificateType.SIGN_UP)
+            }
+
+            else -> {
+
+            }
+        }
+    }
+
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -41,12 +76,21 @@ fun SetNameScreen(
             modifier = Modifier.padding(top = 96.dp),
             hint = stringResource(id = R.string.name),
             value = name,
-            onValueChange = { name = it })
+            onValueChange = {
+                if (errorText.isNotEmpty()) errorText = ""
+                name = it
+            })
+        TitleRegular(
+            modifier = Modifier.padding(start = 32.dp, top = 7.dp),
+            text = errorText,
+            color = IndiStrawTheme.colors.error,
+            fontSize = 12
+        )
         IndiStrawButton(
             modifier = Modifier.padding(top = 78.dp),
             text = stringResource(id = R.string.next)
         ) {
-            navController.navigate(AppNavigationItem.Certificate.route + DeepLinkKey.CERTIFICATE_TYPE + CertificateType.SIGN_UP)
+            signUpViewModel.setName(name = name)
         }
     }
 }
