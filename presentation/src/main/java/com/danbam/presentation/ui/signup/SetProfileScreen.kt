@@ -5,8 +5,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -17,6 +22,8 @@ import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.SelectImageButton
 import com.danbam.presentation.R
 import com.danbam.presentation.util.SignUpNavigationItem
+import com.danbam.presentation.util.toFile
+import java.io.File
 
 @Composable
 fun SetProfileScreen(
@@ -27,6 +34,9 @@ fun SetProfileScreen(
     val container = signUpViewModel.container
     val state = container.stateFlow.collectAsState().value
     val sideEffect = container.sideEffectFlow
+
+    val context = LocalContext.current
+    var file: File? by remember { mutableStateOf(null) }
 
     LaunchedEffect(Unit) {
         signUpViewModel.setPhoneNumber(phoneNumber = phoneNumber)
@@ -49,8 +59,13 @@ fun SetProfileScreen(
             requireCameraString = stringResource(id = R.string.choose_camera),
             paddingValues = PaddingValues(36.dp),
             isFirst = true,
-            moveGallery = {},
-            moveCamera = {}) {
+            imageView = file,
+            selectGallery = {
+                it?.let { file = it.toFile(context) }
+            },
+            selectCamera = {
+                it?.let { file = it.toFile(context) }
+            }) {
             IndiStrawButton(
                 modifier = Modifier.padding(top = 156.dp),
                 text = stringResource(id = R.string.next)
