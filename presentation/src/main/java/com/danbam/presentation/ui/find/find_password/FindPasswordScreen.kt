@@ -26,10 +26,10 @@ import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.IndiStrawTextField
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.presentation.R
-import com.danbam.presentation.util.AppNavigationItem
-import com.danbam.presentation.util.observeWithLifecycle
-import com.danbam.presentation.util.popBackStack
-import com.danbam.presentation.util.requestFocus
+import com.danbam.presentation.util.view.AppNavigationItem
+import com.danbam.presentation.util.android.observeWithLifecycle
+import com.danbam.presentation.util.view.popBackStack
+import com.danbam.presentation.util.view.requestFocus
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @OptIn(InternalCoroutinesApi::class, ExperimentalComposeUiApi::class)

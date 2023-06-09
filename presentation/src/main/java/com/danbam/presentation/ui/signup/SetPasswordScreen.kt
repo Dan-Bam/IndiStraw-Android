@@ -46,11 +46,11 @@ import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.component.TitleSemiBold
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.presentation.R
-import com.danbam.presentation.util.AppNavigationItem
-import com.danbam.presentation.util.observeWithLifecycle
-import com.danbam.presentation.util.popBackStack
-import com.danbam.presentation.util.requestFocus
-import com.danbam.presentation.util.toDp
+import com.danbam.presentation.util.view.AppNavigationItem
+import com.danbam.presentation.util.android.observeWithLifecycle
+import com.danbam.presentation.util.view.popBackStack
+import com.danbam.presentation.util.view.requestFocus
+import com.danbam.presentation.util.parser.toDp
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @OptIn(

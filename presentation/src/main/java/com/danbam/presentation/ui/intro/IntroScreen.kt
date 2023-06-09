@@ -25,9 +25,9 @@ import com.danbam.design_system.component.JoinBold
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.presentation.R
-import com.danbam.presentation.util.AppNavigationItem
-import com.danbam.presentation.util.SignUpNavigationItem
-import com.danbam.presentation.util.observeWithLifecycle
+import com.danbam.presentation.util.view.AppNavigationItem
+import com.danbam.presentation.util.view.SignUpNavigationItem
+import com.danbam.presentation.util.android.observeWithLifecycle
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.delay
 

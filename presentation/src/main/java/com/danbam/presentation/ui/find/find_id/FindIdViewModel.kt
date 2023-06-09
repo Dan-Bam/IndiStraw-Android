@@ -3,7 +3,7 @@ package com.danbam.presentation.ui.find.find_id
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.danbam.domain.usecase.account.FindIdUseCase
-import com.danbam.presentation.util.errorHandling
+import com.danbam.presentation.util.android.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost

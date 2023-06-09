@@ -25,10 +25,10 @@ import com.danbam.presentation.ui.signup.SetNameScreen
 import com.danbam.presentation.ui.signup.SetPasswordScreen
 import com.danbam.presentation.ui.signup.SetProfileScreen
 import com.danbam.presentation.ui.signup.SignUpViewModel
-import com.danbam.presentation.util.AppNavigationItem
-import com.danbam.presentation.util.CertificateType
-import com.danbam.presentation.util.DeepLinkKey
-import com.danbam.presentation.util.SignUpNavigationItem
+import com.danbam.presentation.util.view.AppNavigationItem
+import com.danbam.presentation.util.view.CertificateType
+import com.danbam.presentation.util.view.DeepLinkKey
+import com.danbam.presentation.util.view.SignUpNavigationItem
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController

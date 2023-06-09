@@ -21,8 +21,8 @@ import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.SelectImageButton
 import com.danbam.presentation.R
-import com.danbam.presentation.util.SignUpNavigationItem
-import com.danbam.presentation.util.toFile
+import com.danbam.presentation.util.view.SignUpNavigationItem
+import com.danbam.presentation.util.parser.toFile
 import java.io.File
 
 @Composable

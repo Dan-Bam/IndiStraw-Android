@@ -1,4 +1,4 @@
-package com.danbam.presentation.util
+package com.danbam.presentation.util.android
 
 import android.util.Log
 import com.danbam.domain.exception.ConflictDataException

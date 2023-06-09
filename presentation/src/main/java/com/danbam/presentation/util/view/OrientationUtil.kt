@@ -1,4 +1,4 @@
-package com.danbam.presentation.util
+package com.danbam.presentation.util.view
 
 import android.app.Activity
 import android.content.Context
@@ -15,7 +15,6 @@ fun LockScreenOrientation(orientation: Int) {
         val originalOrientation = activity.requestedOrientation
         activity.requestedOrientation = orientation
         onDispose {
-            // restore original orientation when view disappears
             activity.requestedOrientation = originalOrientation
         }
     }
