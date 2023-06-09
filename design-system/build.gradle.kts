@@ -46,5 +46,6 @@ dependencies {
 
     implementation(Dependency.Coil.COIL)
 
-    implementation(Dependency.ExoPlayer.EXO_PLAYER)
+    implementation(Dependency.ExoPlayer.EXO_PLAYER_CORE)
+    implementation(Dependency.ExoPlayer.EXO_PLAYER_UI)
 }

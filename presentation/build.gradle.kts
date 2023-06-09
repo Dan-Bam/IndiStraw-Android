@@ -20,7 +20,8 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -83,7 +84,8 @@ dependencies {
 
     implementation(Dependency.Coil.COIL)
 
-    implementation(Dependency.ExoPlayer.EXO_PLAYER)
+    implementation(Dependency.ExoPlayer.EXO_PLAYER_CORE)
+    implementation(Dependency.ExoPlayer.EXO_PLAYER_UI)
 
     debugImplementation(Dependency.AndroidTest.COMPOSE_TOOL)
     debugImplementation(Dependency.AndroidTest.COMPOSE_MANIFEST)
