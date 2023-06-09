@@ -1,4 +1,4 @@
-package com.danbam.presentation.util
+package com.danbam.design_system.util
 
 import android.content.Context
 import android.content.pm.PackageManager
