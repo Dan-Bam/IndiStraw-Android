@@ -19,3 +19,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keep class com.danbam.data.** {*;}
+-keep interface com.danbam.data.** {*;}
+
+-keep class com.danbam.domain.** {*;}
+-keep interface com.danbam.domain.** {*;}
