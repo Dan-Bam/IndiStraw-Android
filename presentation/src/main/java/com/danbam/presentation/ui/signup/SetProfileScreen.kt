@@ -61,10 +61,16 @@ fun SetProfileScreen(
             isFirst = true,
             imageView = file,
             selectGallery = {
-                it?.let { file = it.toFile(context) }
+                it?.let {
+                    file = it.toFile(context)
+                    signUpViewModel.setProfile(it.toFile(context))
+                }
             },
             selectCamera = {
-                it?.let { file = it.toFile(context) }
+                it?.let {
+                    file = it.toFile(context)
+                    signUpViewModel.setProfile(it.toFile(context))
+                }
             }) {
             IndiStrawButton(
                 modifier = Modifier.padding(top = 156.dp),
