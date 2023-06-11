@@ -1,4 +1,4 @@
-package com.danbam.presentation.ui.main
+package com.danbam.presentation.app
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -35,7 +35,7 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class BaseActivity : ComponentActivity() {
     @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
