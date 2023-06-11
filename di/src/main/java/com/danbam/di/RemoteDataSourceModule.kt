@@ -4,6 +4,8 @@ import com.danbam.data.remote.datasource.AccountRemoteDataSource
 import com.danbam.data.remote.datasource.AccountRemoteDataSourceImpl
 import com.danbam.data.remote.datasource.AuthRemoteDataSource
 import com.danbam.data.remote.datasource.AuthRemoteDataSourceImpl
+import com.danbam.data.remote.datasource.FileRemoteDataSource
+import com.danbam.data.remote.datasource.FileRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -21,4 +23,9 @@ abstract class RemoteDataSourceModule {
     abstract fun bindAccountRemoteDataSource(
         accountRemoteDataSourceImpl: AccountRemoteDataSourceImpl,
     ): AccountRemoteDataSource
+
+    @Binds
+    abstract fun bindFileRemoteDataSource(
+        fileRemoteDataSourceImpl: FileRemoteDataSourceImpl,
+    ): FileRemoteDataSource
 }

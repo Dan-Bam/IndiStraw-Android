@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.danbam.domain.param.SignUpParam
 import com.danbam.domain.usecase.auth.CheckIdUseCase
 import com.danbam.domain.usecase.auth.SignUpUseCase
+import com.danbam.domain.usecase.file.SendFileUseCase
 import com.danbam.presentation.util.android.errorHandling
 import com.danbam.presentation.util.parser.isId
 import com.danbam.presentation.util.parser.isPassword
@@ -15,12 +16,14 @@ import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 import org.orbitmvi.orbit.viewmodel.container
+import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
     private val checkIdUseCase: CheckIdUseCase,
     private val signUpUseCase: SignUpUseCase,
+    private val sendFileUseCase: SendFileUseCase,
 ) : ContainerHost<SignUpState, SignUpSideEffect>, ViewModel() {
     override val container = container<SignUpState, SignUpSideEffect>(SignUpState())
 
@@ -34,6 +37,17 @@ class SignUpViewModel @Inject constructor(
 
     fun setPhoneNumber(phoneNumber: String) = intent {
         reduce { state.copy(phoneNumber = phoneNumber) }
+    }
+
+    fun setProfile(file: File) = intent {
+        viewModelScope.launch {
+            sendFileUseCase(file = file).onSuccess {
+                postSideEffect(SignUpSideEffect.SuccessUpload(it.file))
+                reduce { state.copy(profileUrl = it.file) }
+            }.onFailure {
+                it.errorHandling(unknownAction = {})
+            }
+        }
     }
 
     fun setId(id: String) = intent {

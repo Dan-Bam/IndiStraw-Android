@@ -33,6 +33,8 @@ class CertificateViewModel @Inject constructor(
                     it.errorHandling(unknownAction = {}, conflictException = {
                         if (!isSignUp) sendCertificateNumber(phoneNumber = phoneNumber)
                         else postSideEffect(CertificateSideEffect.EnrollPhoneNumberException)
+                    }, tooManyRequestException = {
+                        postSideEffect(CertificateSideEffect.TooManyRequestPhoneNumberException)
                     }, noContentException = {
                         if (isSignUp) sendCertificateNumber(phoneNumber = phoneNumber)
                         else postSideEffect(CertificateSideEffect.NotEnrollPhoneNumberException)
@@ -45,7 +47,9 @@ class CertificateViewModel @Inject constructor(
     private fun sendCertificateNumber(phoneNumber: String) = intent {
         viewModelScope.launch {
             sendCertificateNumberUseCase(phoneNumber = phoneNumber).onFailure {
-                it.errorHandling(unknownAction = {}, noContentException = {
+                it.errorHandling(unknownAction = {}, tooManyRequestException = {
+                    postSideEffect(CertificateSideEffect.TooManyRequestCertificateNumberException)
+                }, noContentException = {
                     reduce { state.copy(phoneNumber = phoneNumber) }
                 })
             }
