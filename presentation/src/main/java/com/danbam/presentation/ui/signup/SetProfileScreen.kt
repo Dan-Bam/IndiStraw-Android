@@ -21,10 +21,13 @@ import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.SelectImageButton
 import com.danbam.presentation.R
+import com.danbam.presentation.util.android.observeWithLifecycle
 import com.danbam.presentation.util.view.SignUpNavigationItem
 import com.danbam.presentation.util.parser.toFile
+import kotlinx.coroutines.InternalCoroutinesApi
 import java.io.File
 
+@OptIn(InternalCoroutinesApi::class)
 @Composable
 fun SetProfileScreen(
     navController: NavController,
@@ -36,10 +39,18 @@ fun SetProfileScreen(
     val sideEffect = container.sideEffectFlow
 
     val context = LocalContext.current
-    var file: File? by remember { mutableStateOf(null) }
+    var file: String? by remember { mutableStateOf(null) }
 
     LaunchedEffect(Unit) {
         signUpViewModel.setPhoneNumber(phoneNumber = phoneNumber)
+    }
+
+    sideEffect.observeWithLifecycle {
+        if (it is SignUpSideEffect.SuccessUpload) {
+            file = it.imageUrl
+        } else {
+            
+        }
     }
 
     IndiStrawColumnBackground {
@@ -59,18 +70,12 @@ fun SetProfileScreen(
             requireCameraString = stringResource(id = R.string.choose_camera),
             paddingValues = PaddingValues(36.dp),
             isFirst = true,
-            imageView = file,
+            imageUrl = file,
             selectGallery = {
-                it?.let {
-                    file = it.toFile(context)
-                    signUpViewModel.setProfile(it.toFile(context))
-                }
+                it?.let { signUpViewModel.setProfile(it.toFile(context)) }
             },
             selectCamera = {
-                it?.let {
-                    file = it.toFile(context)
-                    signUpViewModel.setProfile(it.toFile(context))
-                }
+                it?.let { signUpViewModel.setProfile(it.toFile(context)) }
             }) {
             IndiStrawButton(
                 modifier = Modifier.padding(top = 156.dp),

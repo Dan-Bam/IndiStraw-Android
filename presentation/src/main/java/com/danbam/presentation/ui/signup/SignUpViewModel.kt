@@ -42,6 +42,7 @@ class SignUpViewModel @Inject constructor(
     fun setProfile(file: File) = intent {
         viewModelScope.launch {
             sendFileUseCase(file = file).onSuccess {
+                postSideEffect(SignUpSideEffect.SuccessUpload(it.file))
                 reduce { state.copy(profileUrl = it.file) }
             }.onFailure {
                 it.errorHandling(unknownAction = {})
