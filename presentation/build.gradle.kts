@@ -65,8 +65,9 @@ dependencies {
     implementation(Dependency.AndroidX.CORE_KTX)
     implementation(Dependency.AndroidX.LIFECYCLE)
 
-    implementation(Dependency.Compose.Activity)
+    implementation(Dependency.Compose.ACTIVITY)
     implementation(Dependency.Compose.UI)
+    implementation(Dependency.Compose.VIEW_BINDING)
     implementation(Dependency.Compose.PREVIEW)
     implementation(Dependency.Compose.MATERIAL)
     implementation(Dependency.Compose.ANIMATE_NAVIGATION)
