@@ -68,19 +68,21 @@ fun CertificateScreen(
         CertificateSideEffect.MatchPhoneNumberException to stringResource(id = R.string.wrong_match_phone_number),
         CertificateSideEffect.EnrollPhoneNumberException to stringResource(id = R.string.wrong_enroll_phone_number),
         CertificateSideEffect.NotEnrollPhoneNumberException to stringResource(id = R.string.wrong_not_enroll_phone_number),
+        CertificateSideEffect.TooManyRequestPhoneNumberException to stringResource(id = R.string.wrong_over_request_phone_number),
         CertificateSideEffect.EmptyCertificateNumberException to stringResource(id = R.string.require_certificate_number),
         CertificateSideEffect.WrongCertificateNumberException to stringResource(id = R.string.wrong_certificate_number),
         CertificateSideEffect.ExpiredCertificateNumberException to stringResource(id = R.string.wrong_expired_certificate_number),
+        CertificateSideEffect.TooManyRequestCertificateNumberException to stringResource(id = R.string.wrong_over_request_certificate_number)
     )
 
     sideEffect.observeWithLifecycle {
         when (it) {
-            is CertificateSideEffect.EmptyPhoneNumberException, CertificateSideEffect.MatchPhoneNumberException, CertificateSideEffect.EnrollPhoneNumberException, CertificateSideEffect.NotEnrollPhoneNumberException -> {
+            is CertificateSideEffect.EmptyPhoneNumberException, CertificateSideEffect.MatchPhoneNumberException, CertificateSideEffect.EnrollPhoneNumberException, CertificateSideEffect.NotEnrollPhoneNumberException, CertificateSideEffect.TooManyRequestPhoneNumberException -> {
                 phoneNumberFocusRequester.requestFocus(keyboardController = keyboardController)
                 errorText = errorList[it]!!
             }
 
-            is CertificateSideEffect.EmptyCertificateNumberException, CertificateSideEffect.WrongCertificateNumberException, CertificateSideEffect.ExpiredCertificateNumberException -> {
+            is CertificateSideEffect.EmptyCertificateNumberException, CertificateSideEffect.WrongCertificateNumberException, CertificateSideEffect.ExpiredCertificateNumberException, CertificateSideEffect.TooManyRequestCertificateNumberException -> {
                 certificateNumberFocusRequester.requestFocus(keyboardController = keyboardController)
                 errorText = errorList[it]!!
             }
