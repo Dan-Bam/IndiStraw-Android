@@ -2,6 +2,7 @@ package com.danbam.design_system.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -29,13 +30,13 @@ fun IndiStrawHeader(
             .padding(top = marginTop.dp)
             .fillMaxWidth()
             .padding(horizontal = 21.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = CenterVertically
     ) {
         if (isBackBtn) {
             Row(
                 modifier = Modifier
                     .indiStrawClickable(onClick = pressBackBtn)
-                    .align(CenterVertically)
             ) {
                 IndiStrawIcon(
                     icon = IndiStrawIconList.Back
