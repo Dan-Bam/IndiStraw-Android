@@ -2,8 +2,10 @@ package com.danbam.di
 
 import com.danbam.data.repository.AccountRepositoryImpl
 import com.danbam.data.repository.AuthRepositoryImpl
+import com.danbam.data.repository.FileRepositoryImpl
 import com.danbam.domain.repository.AccountRepository
 import com.danbam.domain.repository.AuthRepository
+import com.danbam.domain.repository.FileRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -21,4 +23,9 @@ abstract class RepositoryModule {
     abstract fun bindAccountRepository(
         accountRepositoryImpl: AccountRepositoryImpl,
     ): AccountRepository
+
+    @Binds
+    abstract fun bindFileRepository(
+        fileRepositoryImpl: FileRepositoryImpl,
+    ): FileRepository
 }
