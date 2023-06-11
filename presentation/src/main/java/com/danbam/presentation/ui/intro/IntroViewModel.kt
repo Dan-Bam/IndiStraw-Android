@@ -3,7 +3,7 @@ package com.danbam.presentation.ui.intro
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.danbam.domain.usecase.auth.IsLoginUseCase
-import com.danbam.presentation.util.errorHandling
+import com.danbam.presentation.util.android.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost

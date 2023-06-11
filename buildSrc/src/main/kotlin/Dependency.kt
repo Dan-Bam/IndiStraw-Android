@@ -25,8 +25,9 @@ object Dependency {
     }
 
     object Compose {
-        const val Activity = "androidx.activity:activity-compose:${Version.COMPOSE_ACTIVITY}"
+        const val ACTIVITY = "androidx.activity:activity-compose:${Version.COMPOSE_ACTIVITY}"
         const val UI = "androidx.compose.ui:ui:${Version.COMPOSE}"
+        const val VIEW_BINDING = "androidx.compose.ui:ui-viewbinding:${Version.COMPOSE}"
         const val PREVIEW = "androidx.compose.ui:ui-tooling-preview:${Version.COMPOSE}"
         const val MATERIAL = "androidx.compose.material:material:${Version.COMPOSE_MATERIAL}"
         const val ANIMATE_NAVIGATION = "com.google.accompanist:accompanist-navigation-animation:${Version.COMPOSE_ANIMATE_NAVIGATION}"
@@ -77,7 +78,8 @@ object Dependency {
     }
 
     object ExoPlayer {
-        const val EXO_PLAYER = "com.google.android.exoplayer:exoplayer:${Version.EXO_PLAYER}"
+        const val EXO_PLAYER_CORE = "com.google.android.exoplayer:exoplayer-core:${Version.EXO_PLAYER}"
+        const val EXO_PLAYER_UI = "com.google.android.exoplayer:exoplayer-ui:${Version.EXO_PLAYER}"
     }
 
     object JavaX {

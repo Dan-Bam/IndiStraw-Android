@@ -31,6 +31,7 @@ android {
     }
     buildFeatures {
         compose = true
+        viewBinding = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = Version.COMPOSE
@@ -38,13 +39,16 @@ android {
 }
 
 dependencies {
-    implementation(Dependency.Compose.Activity)
+    implementation(Dependency.Compose.ACTIVITY)
     implementation(Dependency.Compose.UI)
+    implementation(Dependency.Compose.VIEW_BINDING)
     implementation(Dependency.Compose.PREVIEW)
     implementation(Dependency.Compose.MATERIAL)
     implementation(Dependency.Compose.COMPOSE_HILT_NAV)
 
     implementation(Dependency.Coil.COIL)
 
-    implementation(Dependency.ExoPlayer.EXO_PLAYER)
+    implementation(Dependency.ExoPlayer.EXO_PLAYER_CORE)
+    implementation(Dependency.ExoPlayer.EXO_PLAYER_UI)
+    implementation("androidx.constraintlayout:constraintlayout:2.1.3")
 }

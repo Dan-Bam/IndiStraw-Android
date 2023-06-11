@@ -4,20 +4,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.viewinterop.AndroidView
+import androidx.compose.ui.viewinterop.AndroidViewBinding
+import com.danbam.design_system.databinding.IndistrawPlayerBinding
 import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
-import com.google.android.exoplayer2.ui.StyledPlayerView
 
 @Composable
 fun IndiStrawPlayer(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     videoUrl: String,
 ) {
-    val context = LocalContext.current
-
     val exoPlayer = ExoPlayer.Builder(LocalContext.current)
         .build()
         .also { exoPlayer ->
@@ -30,12 +28,14 @@ fun IndiStrawPlayer(
         }
 
     DisposableEffect(
-        AndroidView(modifier = modifier, factory = {
-            StyledPlayerView(context).apply {
+        AndroidViewBinding(modifier = modifier, factory = IndistrawPlayerBinding::inflate) {
+            this.exoPlayer.apply {
+                hideController()
+                useController = true
+                resizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
                 player = exoPlayer
-                resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL
             }
-        })
+        }
     ) {
         onDispose { exoPlayer.release() }
     }

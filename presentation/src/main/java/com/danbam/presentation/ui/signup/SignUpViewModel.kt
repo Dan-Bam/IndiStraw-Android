@@ -5,9 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.danbam.domain.param.SignUpParam
 import com.danbam.domain.usecase.auth.CheckIdUseCase
 import com.danbam.domain.usecase.auth.SignUpUseCase
-import com.danbam.presentation.util.errorHandling
-import com.danbam.presentation.util.isId
-import com.danbam.presentation.util.isPassword
+import com.danbam.presentation.util.android.errorHandling
+import com.danbam.presentation.util.parser.isId
+import com.danbam.presentation.util.parser.isPassword
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost

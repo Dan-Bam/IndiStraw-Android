@@ -1,4 +1,4 @@
-package com.danbam.presentation.util
+package com.danbam.presentation.util.parser
 
 import android.annotation.SuppressLint
 import android.content.Context

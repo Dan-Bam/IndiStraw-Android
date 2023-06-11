@@ -5,9 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.danbam.domain.usecase.auth.CheckCertificateNumberUseCase
 import com.danbam.domain.usecase.auth.CheckPhoneNumberUseCase
 import com.danbam.domain.usecase.auth.SendCertificateNumberUseCase
-import com.danbam.presentation.util.errorHandling
-import com.danbam.presentation.util.isPhoneNumber
-import com.danbam.presentation.util.toPhoneNumber
+import com.danbam.presentation.util.android.errorHandling
+import com.danbam.presentation.util.parser.isPhoneNumber
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost

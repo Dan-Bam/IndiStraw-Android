@@ -6,6 +6,7 @@ import com.danbam.domain.exception.InvalidTokenException
 import com.danbam.domain.exception.NoContentException
 import com.danbam.domain.exception.NotFoundException
 import com.danbam.domain.exception.ServerErrorException
+import com.danbam.domain.exception.TooManyRequestException
 import com.danbam.domain.exception.UnKnownHttpException
 import com.danbam.domain.exception.WrongDataException
 import kotlinx.coroutines.Dispatchers
@@ -15,8 +16,8 @@ import java.lang.NullPointerException
 
 suspend inline fun <T> indiStrawApiCall(
     crossinline callFunction: suspend () -> T,
-): T {
-    return try {
+): T =
+    try {
         withContext(Dispatchers.IO) {
             callFunction()
         }
@@ -26,6 +27,7 @@ suspend inline fun <T> indiStrawApiCall(
             401 -> InvalidTokenException(e.message)
             404 -> NotFoundException(e.message)
             409 -> ConflictDataException(e.message)
+            429 -> TooManyRequestException(e.message)
             in 500..600 -> ServerErrorException(e.message)
             else -> UnKnownHttpException(e.message)
         }
@@ -34,4 +36,3 @@ suspend inline fun <T> indiStrawApiCall(
     } catch (e: KotlinNullPointerException) {
         throw NoContentException(e.message)
     }
-}

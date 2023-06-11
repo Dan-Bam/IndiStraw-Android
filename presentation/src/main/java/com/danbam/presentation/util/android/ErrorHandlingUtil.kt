@@ -1,4 +1,4 @@
-package com.danbam.presentation.util
+package com.danbam.presentation.util.android
 
 import android.util.Log
 import com.danbam.domain.exception.ConflictDataException
@@ -7,6 +7,7 @@ import com.danbam.domain.exception.InvalidTokenException
 import com.danbam.domain.exception.NoContentException
 import com.danbam.domain.exception.NotFoundException
 import com.danbam.domain.exception.ServerErrorException
+import com.danbam.domain.exception.TooManyRequestException
 import com.danbam.domain.exception.WrongDataException
 
 suspend fun Throwable.errorHandling(
@@ -17,6 +18,7 @@ suspend fun Throwable.errorHandling(
     conflictException: suspend () -> Unit = unknownAction,
     serverErrorException: suspend () -> Unit = unknownAction,
     expiredTokenException: suspend () -> Unit = unknownAction,
+    tooManyRequestException: suspend () -> Unit = unknownAction,
     noContentException: suspend () -> Unit = unknownAction,
 ) =
     when (this) {
@@ -48,6 +50,11 @@ suspend fun Throwable.errorHandling(
         is ExpiredTokenException -> {
             errorLog("ExpiredTokenException", message)
             expiredTokenException()
+        }
+
+        is TooManyRequestException -> {
+            errorLog("TooManyRequestException", message)
+            tooManyRequestException()
         }
 
         is NoContentException -> {

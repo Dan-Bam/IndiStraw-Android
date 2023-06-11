@@ -1,4 +1,4 @@
-package com.danbam.presentation.util
+package com.danbam.presentation.util.android
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
