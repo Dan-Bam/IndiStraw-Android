@@ -95,7 +95,7 @@ fun SelectImageButton(
     requireCameraString: String,
     requireString: String? = null,
     isFirst: Boolean = false,
-    imageView: File?,
+    imageUrl: String?,
     selectCamera: (Bitmap?) -> Unit,
     selectGallery: (Uri?) -> Unit,
     bottomContent: @Composable () -> Unit = {},
@@ -187,7 +187,7 @@ fun SelectImageButton(
                     modifier = Modifier
                         .indiStrawClickable(onClick = bottomSheetAction)
                 ) {
-                    if (imageView != null) {
+                    if (imageUrl != null) {
                         Box(
                             modifier = modifier
                         ) {
@@ -196,7 +196,7 @@ fun SelectImageButton(
                                     .width(if (isFirst) 125.dp else 80.dp)
                                     .height(if (isFirst) 125.dp else 80.dp)
                                     .clip(shape = if (requireString == null) IndiStrawTheme.shapes.circle else IndiStrawTheme.shapes.defaultRounded),
-                                model = imageView, contentDescription = "",
+                                model = imageUrl, contentDescription = "",
                                 contentScale = ContentScale.Crop
                             )
                         }
