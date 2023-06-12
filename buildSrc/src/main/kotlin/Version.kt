@@ -18,9 +18,11 @@ object Version {
     const val LIFECYCLE_KTX = "2.5.1"
     const val APP_COMPAT = "1.6.0"
     const val PREFERENCE_KTX = "1.2.0"
+    const val CONTRAINT_LAYOUT = "2.1.3"
 
     const val COMPOSE_ACTIVITY = "1.6.1"
     const val COMPOSE = "1.3.2"
+    const val COMPOSE_VIEW_PAGER = "0.28.0"
     const val COMPOSE_MATERIAL = "1.3.1"
     const val COMPOSE_ANIMATE_NAVIGATION = "0.28.0"
     const val HILT_NAV = "1.0.0"
