@@ -31,7 +31,7 @@ suspend inline fun <T> indiStrawApiCall(
             callFunction()
         }
     } catch (e: HttpException) {
-        val error = getError(exception = e)
+        val error = getError(exception = e) ?: Error("", e.code())
         throw when (error.status) {
             400 -> WrongDataException(error.message)
             401 -> InvalidTokenException(error.message)
@@ -47,5 +47,5 @@ suspend inline fun <T> indiStrawApiCall(
         throw NoContentException(e.message)
     }
 
-fun getError(exception: HttpException): Error =
-    Gson().fromJson(exception.response()?.errorBody()?.string(), Error::class.java)
+fun getError(exception: HttpException): Error? =
+    exception.response()?.errorBody()?.let { Gson().fromJson(it.string(), Error::class.java) }
