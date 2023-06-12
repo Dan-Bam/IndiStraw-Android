@@ -48,3 +48,53 @@ fun IndiStrawChip(
             .padding(horizontal = 11.dp, vertical = 4.dp), text = text
     )
 }
+
+@Composable
+fun IndiStrawChipList(
+    itemList: List<String>,
+    chipHeader: @Composable () -> Unit,
+    moreData: () -> Unit,
+    isCrowdFunding: Boolean = false,
+) {
+    val state = rememberLazyListState()
+
+    LaunchedEffect(itemList) {
+        withContext(NonCancellable) {
+            state.animateScrollToItem(0)
+        }
+    }
+
+    chipHeader()
+    RemoveOverScrollLazyRow(
+        modifier = Modifier.padding(top = 28.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        state = state
+    ) {
+        item {
+            Spacer(modifier = Modifier.width(15.dp))
+        }
+        items(itemList.size) {
+            Column {
+                ImageButton(
+                    modifier = Modifier
+                        .width(if (isCrowdFunding) 120.dp else 110.dp)
+                        .height(if (isCrowdFunding) 100.dp else 150.dp)
+                        .background(Color.White),
+                    imgSrc = it.toString(),
+                    shape = Shape.Rectangle
+                ) {
+
+                }
+            }
+            Spacer(modifier = Modifier.width(9.dp))
+        }
+        item {
+            IndiStrawIcon(
+                modifier = Modifier
+                    .indiStrawClickable(onClick = moreData)
+                    .padding(start = 30.dp, end = 44.dp),
+                icon = IndiStrawIconList.Plus
+            )
+        }
+    }
+}
