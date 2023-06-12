@@ -20,6 +20,7 @@ import com.danbam.presentation.ui.find.find_id.FindIdScreen
 import com.danbam.presentation.ui.find.find_password.FindPasswordScreen
 import com.danbam.presentation.ui.intro.IntroScreen
 import com.danbam.presentation.ui.login.LoginScreen
+import com.danbam.presentation.ui.main.MainScreen
 import com.danbam.presentation.ui.signup.SetIdScreen
 import com.danbam.presentation.ui.signup.SetNameScreen
 import com.danbam.presentation.ui.signup.SetPasswordScreen
@@ -123,6 +124,7 @@ fun NavGraphBuilder.mainGraph(navController: NavHostController) {
         FindPasswordScreen(navController = navController, phoneNumber = phoneNumber)
     }
     composable(route = AppNavigationItem.Main.route) {
+        MainScreen(navController = navController)
     }
 }
 
