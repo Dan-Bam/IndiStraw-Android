@@ -122,5 +122,11 @@ class IndiStrawIconList private constructor(
             drawableId = R.drawable.ic_plus,
             contentDescription = "plus"
         )
+
+        @Stable
+        val Setting = IndiStrawIconList(
+            drawableId = R.drawable.ic_setting,
+            contentDescription = "setting"
+        )
     }
 }
