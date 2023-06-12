@@ -11,6 +11,7 @@ sealed class AppNavigationItem(val route: String) {
     object FindId : AppNavigationItem("findId")
     object FindPassword : AppNavigationItem("findPassword")
     object Main : AppNavigationItem("main")
+    object Profile : AppNavigationItem("profile")
 }
 
 sealed class SignUpNavigationItem(val route: String) {
