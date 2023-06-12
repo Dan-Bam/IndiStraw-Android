@@ -22,6 +22,7 @@ object Dependency {
         const val PREFERENCE_KTX = "androidx.preference:preference-ktx:${Version.PREFERENCE_KTX}"
         const val LIFECYCLE_VIEWMODEL_KTX =
             "androidx.lifecycle:lifecycle-viewmodel-ktx:${Version.LIFECYCLE_KTX}"
+        const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:${Version.CONTRAINT_LAYOUT}"
     }
 
     object Compose {
@@ -32,6 +33,7 @@ object Dependency {
         const val MATERIAL = "androidx.compose.material:material:${Version.COMPOSE_MATERIAL}"
         const val ANIMATE_NAVIGATION = "com.google.accompanist:accompanist-navigation-animation:${Version.COMPOSE_ANIMATE_NAVIGATION}"
         const val COMPOSE_HILT_NAV = "androidx.hilt:hilt-navigation-compose:${Version.HILT_NAV}"
+        const val VIEW_PAGER = "com.google.accompanist:accompanist-pager:${Version.COMPOSE_VIEW_PAGER}"
     }
 
     object Hilt {
