@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.danbam.design_system.R
 import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.design_system.util.indiStrawClickable
@@ -21,8 +22,8 @@ fun IndiStrawHeader(
     modifier: Modifier = Modifier,
     marginTop: Int = 7,
     isBackBtn: Boolean = true,
-    backStringId: Int? = null,
-    pressBackBtn: () -> Unit = {},
+    isBackString: Boolean = true,
+    pressBackBtn: (() -> Unit)? = null,
     headerContent: (@Composable () -> Unit)? = null,
 ) {
     Row(
@@ -41,10 +42,10 @@ fun IndiStrawHeader(
                 IndiStrawIcon(
                     icon = IndiStrawIconList.Back
                 )
-                if (backStringId != null) {
+                if (isBackString) {
                     Spacer(modifier = Modifier.width(10.dp))
                     TitleRegular(
-                        text = stringResource(id = backStringId),
+                        text = stringResource(id = R.string.back),
                         modifier = Modifier.align(CenterVertically)
                     )
                 }
