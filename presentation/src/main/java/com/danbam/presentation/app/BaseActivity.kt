@@ -1,4 +1,4 @@
-package com.danbam.presentation.app
+package com.danbam.presentation.ui.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
