@@ -99,7 +99,6 @@ fun LoginScreen(
     ) {
         IndiStrawHeader(
             marginTop = 25,
-            backStringId = R.string.back,
             pressBackBtn = { navController.popBackStack(keyboardController = keyboardController) })
         HeadLineBold(
             text = stringResource(id = R.string.do_login),

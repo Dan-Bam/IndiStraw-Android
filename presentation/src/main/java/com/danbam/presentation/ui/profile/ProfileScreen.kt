@@ -58,7 +58,6 @@ fun ProfileScreen(
 
     IndiStrawColumnBackground {
         IndiStrawHeader(
-            backStringId = R.string.back,
             pressBackBtn = { navController.popBackStack() }) {
             Row {
                 IndiStrawIcon(icon = IndiStrawIconList.Setting)
