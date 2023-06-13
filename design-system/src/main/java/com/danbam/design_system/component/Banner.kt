@@ -53,12 +53,11 @@ fun IndiStrawBanner(
     ) {
         HorizontalPager(
             modifier = Modifier
-                .background(Color.White)
                 .fillMaxHeight(0.26F),
             count = itemCount,
             state = state
         ) {
-            content(it % itemCount)
+            content(it)
         }
         Spacer(modifier = Modifier.height(16.dp))
         RemoveOverScrollLazyRow(
