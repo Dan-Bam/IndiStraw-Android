@@ -33,10 +33,12 @@ class FindPasswordViewModel @Inject constructor(
                         phoneNumber = phoneNumber,
                         password = password
                     )
-                ).onSuccess {
-                    postSideEffect(FindPasswordSideEffect.SuccessChange)
-                }.onFailure {
-                    it.errorHandling(unknownAction = { postSideEffect(FindPasswordSideEffect.FailChangeException) })
+                ).onFailure {
+                    it.errorHandling(
+                        unknownAction = { postSideEffect(FindPasswordSideEffect.FailChangeException) },
+                        noContentException = {
+                            postSideEffect(FindPasswordSideEffect.SuccessChange)
+                        })
                 }
             }
         }

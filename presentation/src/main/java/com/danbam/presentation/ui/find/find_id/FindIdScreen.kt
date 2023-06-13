@@ -14,7 +14,7 @@ import com.danbam.design_system.component.IndiStrawButton
 import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.IndiStrawTextField
-import com.danbam.presentation.R
+import com.danbam.design_system.R
 import com.danbam.presentation.util.view.AppNavigationItem
 
 @Composable

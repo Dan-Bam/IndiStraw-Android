@@ -20,12 +20,11 @@ import com.danbam.design_system.component.IndiStrawButton
 import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.SelectImageButton
-import com.danbam.presentation.R
+import com.danbam.design_system.R
 import com.danbam.presentation.util.android.observeWithLifecycle
 import com.danbam.presentation.util.view.SignUpNavigationItem
 import com.danbam.presentation.util.parser.toFile
 import kotlinx.coroutines.InternalCoroutinesApi
-import java.io.File
 
 @OptIn(InternalCoroutinesApi::class)
 @Composable
@@ -49,7 +48,7 @@ fun SetProfileScreen(
         if (it is SignUpSideEffect.SuccessUpload) {
             file = it.imageUrl
         } else {
-            
+
         }
     }
 
