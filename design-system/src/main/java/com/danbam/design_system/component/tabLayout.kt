@@ -22,9 +22,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.danbam.design_system.IndiStrawTheme
+import com.danbam.design_system.R
 import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.design_system.util.RemoveOverScrollLazyRow
@@ -114,13 +116,12 @@ fun IndiStrawTabRow(
         item {
             Spacer(modifier = Modifier.width(15.dp))
         }
-        items(itemList.size) {
+        items(10) {
             Column {
                 ImageButton(
                     modifier = Modifier
                         .width(if (isCrowdFunding) 120.dp else 110.dp)
-                        .height(if (isCrowdFunding) 100.dp else 150.dp)
-                        .background(Color.White),
+                        .height(if (isCrowdFunding) 100.dp else 150.dp),
                     imgSrc = it.toString(),
                     shape = Shape.Rectangle
                 ) {
@@ -130,12 +131,17 @@ fun IndiStrawTabRow(
             Spacer(modifier = Modifier.width(9.dp))
         }
         item {
-            IndiStrawIcon(
+            Column(
                 modifier = Modifier
                     .indiStrawClickable(onClick = moreData)
-                    .padding(start = 30.dp, end = 44.dp),
-                icon = IndiStrawIconList.Plus
-            )
+                    .padding(start = 34.dp, end = 48.dp)
+            ) {
+                IndiStrawIcon(
+                    icon = IndiStrawIconList.More
+                )
+                Spacer(modifier = Modifier.height(10.dp))
+                TitleRegular(text = stringResource(id = R.string.more))
+            }
         }
     }
 }
