@@ -168,12 +168,3 @@ fun ProfileScreen(
         )
     }
 }
-
-@Preview
-@Composable
-fun preview() {
-    val navController = rememberNavController()
-    IndiStrawTheme {
-        ProfileScreen(navController = navController)
-    }
-}
