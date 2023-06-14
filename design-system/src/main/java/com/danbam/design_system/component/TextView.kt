@@ -12,7 +12,7 @@ import com.danbam.design_system.IndiStrawTheme
 fun HeadLineBold(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = IndiStrawTheme.colors.text,
+    color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 24,
 ) {
@@ -29,7 +29,7 @@ fun HeadLineBold(
 fun ExampleTextMedium(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = IndiStrawTheme.colors.text,
+    color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 14,
 ) {
@@ -46,7 +46,7 @@ fun ExampleTextMedium(
 fun ExampleTextRegular(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = IndiStrawTheme.colors.text,
+    color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 16,
 ) {
@@ -63,7 +63,7 @@ fun ExampleTextRegular(
 fun FindPasswordMedium(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = IndiStrawTheme.colors.text,
+    color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 12,
 ) {
@@ -80,7 +80,7 @@ fun FindPasswordMedium(
 fun errorMedium(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = IndiStrawTheme.colors.text,
+    color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 12,
 ) {
@@ -97,7 +97,7 @@ fun errorMedium(
 fun agreeMedium(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = IndiStrawTheme.colors.text,
+    color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 14,
 ) {
@@ -114,7 +114,7 @@ fun agreeMedium(
 fun TitleSemiBold(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = IndiStrawTheme.colors.text,
+    color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 14,
 ) {
@@ -131,7 +131,7 @@ fun TitleSemiBold(
 fun TitleRegular(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = IndiStrawTheme.colors.text,
+    color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 16,
 ) {
@@ -148,7 +148,7 @@ fun TitleRegular(
 fun PriceRegular(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = IndiStrawTheme.colors.text,
+    color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 10,
 ) {
@@ -165,7 +165,7 @@ fun PriceRegular(
 fun SuccessBold(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = IndiStrawTheme.colors.text,
+    color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 16,
 ) {
@@ -182,7 +182,7 @@ fun SuccessBold(
 fun ButtonMedium(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = IndiStrawTheme.colors.text,
+    color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 18,
 ) {
@@ -199,7 +199,7 @@ fun ButtonMedium(
 fun JoinBold(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = IndiStrawTheme.colors.text,
+    color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 12,
 ) {

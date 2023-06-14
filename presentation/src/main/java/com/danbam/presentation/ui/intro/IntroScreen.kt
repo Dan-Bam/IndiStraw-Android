@@ -84,7 +84,7 @@ fun IntroScreen(
                 ) {
                     TitleRegular(
                         text = stringResource(id = R.string.already_sign_up),
-                        color = IndiStrawTheme.colors.exampleText,
+                        color = IndiStrawTheme.colors.gray,
                         fontSize = 12
                     )
                     JoinBold(
@@ -94,7 +94,7 @@ fun IntroScreen(
                     )
                     TitleRegular(
                         text = stringResource(id = R.string.go),
-                        color = IndiStrawTheme.colors.exampleText,
+                        color = IndiStrawTheme.colors.gray,
                         fontSize = 12
                     )
                 }

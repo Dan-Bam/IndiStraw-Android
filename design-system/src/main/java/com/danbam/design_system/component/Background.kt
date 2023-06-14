@@ -7,10 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusManager
-import androidx.compose.ui.platform.SoftwareKeyboardController
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.util.indiStrawClickable
 
@@ -23,7 +20,7 @@ fun IndiStrawColumnBackground(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(IndiStrawTheme.colors.background)
+            .background(IndiStrawTheme.colors.black)
             .indiStrawClickable {
                 onClickAction?.invoke()
             },
@@ -40,7 +37,7 @@ fun IndiStrawBoxBackground(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(IndiStrawTheme.colors.background)
+            .background(IndiStrawTheme.colors.black)
             .indiStrawClickable {
                 onClickAction?.invoke()
             },

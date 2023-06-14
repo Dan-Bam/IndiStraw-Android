@@ -63,7 +63,7 @@ fun IndiStrawTextField(
             .fillMaxWidth()
             .padding(horizontal = 32.dp)
             .background(
-                color = IndiStrawTheme.colors.textBox,
+                color = IndiStrawTheme.colors.darkGray,
                 shape = IndiStrawTheme.shapes.defaultRounded
             )
             .padding(vertical = 21.dp, horizontal = 13.dp)
@@ -77,10 +77,10 @@ fun IndiStrawTextField(
             singleLine = maxLines == 1,
             readOnly = readOnly,
             keyboardOptions = KeyboardOptions(imeAction = imeAction, keyboardType = keyboardType),
-            cursorBrush = SolidColor(IndiStrawTheme.colors.exampleText),
+            cursorBrush = SolidColor(IndiStrawTheme.colors.gray),
             textStyle = IndiStrawTheme.typography.exampleTextMedium.copy(
                 fontSize = 14.sp,
-                color = IndiStrawTheme.colors.text
+                color = IndiStrawTheme.colors.white
             ),
             visualTransformation = if (isToggleVisible == null || isToggleVisible) VisualTransformation.None else PasswordVisualTransformation(),
         ) {
@@ -92,7 +92,7 @@ fun IndiStrawTextField(
                 ) {
                     it()
                     if (value.isEmpty()) {
-                        ExampleTextMedium(text = hint, color = IndiStrawTheme.colors.exampleText)
+                        ExampleTextMedium(text = hint, color = IndiStrawTheme.colors.gray)
                     }
 
                 }
@@ -131,12 +131,12 @@ fun IndiStrawSearchTextField(
             .fillMaxWidth()
             .padding(start = 10.dp)
             .background(
-                color = IndiStrawTheme.colors.background,
+                color = IndiStrawTheme.colors.black,
                 shape = IndiStrawTheme.shapes.smallRounded
             )
             .border(
                 width = 1.dp,
-                color = IndiStrawTheme.colors.text,
+                color = IndiStrawTheme.colors.white,
                 shape = IndiStrawTheme.shapes.smallRounded
             )
             .padding(vertical = 10.dp, horizontal = 11.dp)
@@ -148,7 +148,7 @@ fun IndiStrawSearchTextField(
             onValueChange = onValueChange,
             singleLine = true,
             keyboardOptions = KeyboardOptions(imeAction = imeAction, keyboardType = keyboardType),
-            cursorBrush = SolidColor(IndiStrawTheme.colors.exampleText),
+            cursorBrush = SolidColor(IndiStrawTheme.colors.gray),
             textStyle = IndiStrawTheme.typography.exampleTextRegular,
         ) {
             Row(
@@ -159,7 +159,7 @@ fun IndiStrawSearchTextField(
                 ) {
                     it()
                     if (value.isEmpty()) {
-                        ExampleTextRegular(text = hint, color = IndiStrawTheme.colors.exampleText)
+                        ExampleTextRegular(text = hint, color = IndiStrawTheme.colors.gray)
                     }
                 }
                 IndiStrawIcon(

@@ -37,7 +37,6 @@ import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.design_system.util.checkAndRequestPermissions
 import com.danbam.design_system.util.indiStrawClickable
-import java.io.File
 
 sealed class Shape {
     object Rectangle : Shape()
@@ -58,7 +57,7 @@ fun IndiStrawButton(
                 color = IndiStrawTheme.colors.main,
                 shape = IndiStrawTheme.shapes.defaultRounded
             )
-            .indiStrawClickable(rippleColor = IndiStrawTheme.colors.background, onClick = onClick)
+            .indiStrawClickable(rippleColor = IndiStrawTheme.colors.black, onClick = onClick)
             .padding(vertical = 16.dp),
         text = text,
         textAlign = TextAlign.Center
@@ -204,7 +203,7 @@ fun SelectImageButton(
                         Box(
                             modifier = modifier
                                 .background(
-                                    color = IndiStrawTheme.colors.exampleText,
+                                    color = IndiStrawTheme.colors.gray,
                                     shape = if (requireString == null) IndiStrawTheme.shapes.circle else IndiStrawTheme.shapes.defaultRounded
                                 )
                                 .padding(paddingValues = paddingValues),

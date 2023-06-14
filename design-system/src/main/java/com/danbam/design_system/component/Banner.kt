@@ -1,8 +1,6 @@
 package com.danbam.design_system.component
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,7 +14,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.util.RemoveOverScrollLazyRow
@@ -75,7 +72,7 @@ fun IndiStrawBanner(
                                 .width(9.dp)
                                 .height(9.dp)
                                 .background(
-                                    color = IndiStrawTheme.colors.text,
+                                    color = IndiStrawTheme.colors.white,
                                     shape = IndiStrawTheme.shapes.circle
                                 )
                         )
@@ -87,7 +84,7 @@ fun IndiStrawBanner(
                             .width(5.dp)
                             .height(5.dp)
                             .background(
-                                color = if (it == state.currentPage) IndiStrawTheme.colors.main else IndiStrawTheme.colors.text,
+                                color = if (it == state.currentPage) IndiStrawTheme.colors.main else IndiStrawTheme.colors.white,
                                 shape = IndiStrawTheme.shapes.circle
                             )
                     )

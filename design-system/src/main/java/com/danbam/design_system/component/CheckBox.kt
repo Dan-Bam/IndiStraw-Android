@@ -23,7 +23,7 @@ fun IndiStrawCheckBox(
         modifier = if (isBorder) Modifier
             .border(
                 width = 2.dp,
-                color = IndiStrawTheme.colors.exampleText,
+                color = IndiStrawTheme.colors.gray,
                 shape = IndiStrawTheme.shapes.smallRounded
             ) else Modifier
     ) {

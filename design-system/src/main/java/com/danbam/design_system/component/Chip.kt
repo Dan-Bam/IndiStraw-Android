@@ -41,7 +41,7 @@ fun IndiStrawChip(
     TitleRegular(
         modifier = modifier
             .background(
-                color = if (isSelect) IndiStrawTheme.colors.main else IndiStrawTheme.colors.textBox,
+                color = if (isSelect) IndiStrawTheme.colors.main else IndiStrawTheme.colors.darkGray,
                 shape = IndiStrawTheme.shapes.smallRounded
             )
             .indiStrawClickable(onClick = onSelect)
