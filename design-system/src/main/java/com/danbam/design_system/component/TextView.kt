@@ -4,7 +4,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import com.danbam.design_system.IndiStrawTheme
 
@@ -15,13 +19,27 @@ fun HeadLineBold(
     color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 24,
+    letterSpacing: TextUnit = TextUnit.Unspecified,
+    textDecoration: TextDecoration? = null,
+    lineHeight: TextUnit = TextUnit.Unspecified,
+    overflow: TextOverflow = TextOverflow.Ellipsis,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
 ) {
     Text(
         modifier = modifier,
         text = text,
         style = IndiStrawTheme.typography.headLineBold.copy(fontSize = fontSize.sp),
         color = color,
-        textAlign = textAlign
+        textAlign = textAlign,
+        letterSpacing = letterSpacing,
+        textDecoration = textDecoration,
+        lineHeight = lineHeight,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        onTextLayout = onTextLayout
     )
 }
 
@@ -32,13 +50,27 @@ fun ExampleTextMedium(
     color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 14,
+    letterSpacing: TextUnit = TextUnit.Unspecified,
+    textDecoration: TextDecoration? = null,
+    lineHeight: TextUnit = TextUnit.Unspecified,
+    overflow: TextOverflow = TextOverflow.Ellipsis,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
 ) {
     Text(
         modifier = modifier,
         text = text,
         style = IndiStrawTheme.typography.exampleTextMedium.copy(fontSize = fontSize.sp),
         color = color,
-        textAlign = textAlign
+        textAlign = textAlign,
+        letterSpacing = letterSpacing,
+        textDecoration = textDecoration,
+        lineHeight = lineHeight,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        onTextLayout = onTextLayout
     )
 }
 
@@ -49,13 +81,27 @@ fun ExampleTextRegular(
     color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 16,
+    letterSpacing: TextUnit = TextUnit.Unspecified,
+    textDecoration: TextDecoration? = null,
+    lineHeight: TextUnit = TextUnit.Unspecified,
+    overflow: TextOverflow = TextOverflow.Ellipsis,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
 ) {
     Text(
         modifier = modifier,
         text = text,
         style = IndiStrawTheme.typography.exampleTextRegular.copy(fontSize = fontSize.sp),
         color = color,
-        textAlign = textAlign
+        textAlign = textAlign,
+        letterSpacing = letterSpacing,
+        textDecoration = textDecoration,
+        lineHeight = lineHeight,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        onTextLayout = onTextLayout
     )
 }
 
@@ -66,13 +112,27 @@ fun FindPasswordMedium(
     color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 12,
+    letterSpacing: TextUnit = TextUnit.Unspecified,
+    textDecoration: TextDecoration? = null,
+    lineHeight: TextUnit = TextUnit.Unspecified,
+    overflow: TextOverflow = TextOverflow.Ellipsis,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
 ) {
     Text(
         modifier = modifier,
         text = text,
         style = IndiStrawTheme.typography.findPasswordMedium.copy(fontSize = fontSize.sp),
         color = color,
-        textAlign = textAlign
+        textAlign = textAlign,
+        letterSpacing = letterSpacing,
+        textDecoration = textDecoration,
+        lineHeight = lineHeight,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        onTextLayout = onTextLayout
     )
 }
 
@@ -83,13 +143,27 @@ fun errorMedium(
     color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 12,
+    letterSpacing: TextUnit = TextUnit.Unspecified,
+    textDecoration: TextDecoration? = null,
+    lineHeight: TextUnit = TextUnit.Unspecified,
+    overflow: TextOverflow = TextOverflow.Ellipsis,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
 ) {
     Text(
         modifier = modifier,
         text = text,
         style = IndiStrawTheme.typography.errorMedium.copy(fontSize = fontSize.sp),
         color = color,
-        textAlign = textAlign
+        textAlign = textAlign,
+        letterSpacing = letterSpacing,
+        textDecoration = textDecoration,
+        lineHeight = lineHeight,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        onTextLayout = onTextLayout
     )
 }
 
@@ -100,13 +174,27 @@ fun agreeMedium(
     color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 14,
+    letterSpacing: TextUnit = TextUnit.Unspecified,
+    textDecoration: TextDecoration? = null,
+    lineHeight: TextUnit = TextUnit.Unspecified,
+    overflow: TextOverflow = TextOverflow.Ellipsis,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
 ) {
     Text(
         modifier = modifier,
         text = text,
         style = IndiStrawTheme.typography.agreeMedium.copy(fontSize = fontSize.sp),
         color = color,
-        textAlign = textAlign
+        textAlign = textAlign,
+        letterSpacing = letterSpacing,
+        textDecoration = textDecoration,
+        lineHeight = lineHeight,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        onTextLayout = onTextLayout
     )
 }
 
@@ -117,13 +205,27 @@ fun TitleSemiBold(
     color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 14,
+    letterSpacing: TextUnit = TextUnit.Unspecified,
+    textDecoration: TextDecoration? = null,
+    lineHeight: TextUnit = TextUnit.Unspecified,
+    overflow: TextOverflow = TextOverflow.Ellipsis,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
 ) {
     Text(
         modifier = modifier,
         text = text,
         style = IndiStrawTheme.typography.titleSemiBold.copy(fontSize = fontSize.sp),
         color = color,
-        textAlign = textAlign
+        textAlign = textAlign,
+        letterSpacing = letterSpacing,
+        textDecoration = textDecoration,
+        lineHeight = lineHeight,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        onTextLayout = onTextLayout
     )
 }
 
@@ -134,13 +236,27 @@ fun TitleRegular(
     color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 16,
+    letterSpacing: TextUnit = TextUnit.Unspecified,
+    textDecoration: TextDecoration? = null,
+    lineHeight: TextUnit = TextUnit.Unspecified,
+    overflow: TextOverflow = TextOverflow.Ellipsis,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
 ) {
     Text(
         modifier = modifier,
         text = text,
         style = IndiStrawTheme.typography.titleRegular.copy(fontSize = fontSize.sp),
         color = color,
-        textAlign = textAlign
+        textAlign = textAlign,
+        letterSpacing = letterSpacing,
+        textDecoration = textDecoration,
+        lineHeight = lineHeight,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        onTextLayout = onTextLayout
     )
 }
 
@@ -151,13 +267,27 @@ fun PriceRegular(
     color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 10,
+    letterSpacing: TextUnit = TextUnit.Unspecified,
+    textDecoration: TextDecoration? = null,
+    lineHeight: TextUnit = TextUnit.Unspecified,
+    overflow: TextOverflow = TextOverflow.Ellipsis,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
 ) {
     Text(
         modifier = modifier,
         text = text,
         style = IndiStrawTheme.typography.priceRegular.copy(fontSize = fontSize.sp),
         color = color,
-        textAlign = textAlign
+        textAlign = textAlign,
+        letterSpacing = letterSpacing,
+        textDecoration = textDecoration,
+        lineHeight = lineHeight,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        onTextLayout = onTextLayout
     )
 }
 
@@ -168,13 +298,27 @@ fun SuccessBold(
     color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 16,
+    letterSpacing: TextUnit = TextUnit.Unspecified,
+    textDecoration: TextDecoration? = null,
+    lineHeight: TextUnit = TextUnit.Unspecified,
+    overflow: TextOverflow = TextOverflow.Ellipsis,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
 ) {
     Text(
         modifier = modifier,
         text = text,
         style = IndiStrawTheme.typography.successBold.copy(fontSize = fontSize.sp),
         color = color,
-        textAlign = textAlign
+        textAlign = textAlign,
+        letterSpacing = letterSpacing,
+        textDecoration = textDecoration,
+        lineHeight = lineHeight,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        onTextLayout = onTextLayout
     )
 }
 
@@ -185,13 +329,27 @@ fun ButtonMedium(
     color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 18,
+    letterSpacing: TextUnit = TextUnit.Unspecified,
+    textDecoration: TextDecoration? = null,
+    lineHeight: TextUnit = TextUnit.Unspecified,
+    overflow: TextOverflow = TextOverflow.Ellipsis,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
 ) {
     Text(
         modifier = modifier,
         text = text,
         style = IndiStrawTheme.typography.buttonMedium.copy(fontSize = fontSize.sp),
         color = color,
-        textAlign = textAlign
+        textAlign = textAlign,
+        letterSpacing = letterSpacing,
+        textDecoration = textDecoration,
+        lineHeight = lineHeight,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        onTextLayout = onTextLayout
     )
 }
 
@@ -202,12 +360,26 @@ fun JoinBold(
     color: Color = IndiStrawTheme.colors.white,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: Int = 12,
+    letterSpacing: TextUnit = TextUnit.Unspecified,
+    textDecoration: TextDecoration? = null,
+    lineHeight: TextUnit = TextUnit.Unspecified,
+    overflow: TextOverflow = TextOverflow.Ellipsis,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
 ) {
     Text(
         modifier = modifier,
         text = text,
         style = IndiStrawTheme.typography.joinBold.copy(fontSize = fontSize.sp),
         color = color,
-        textAlign = textAlign
+        textAlign = textAlign,
+        letterSpacing = letterSpacing,
+        textDecoration = textDecoration,
+        lineHeight = lineHeight,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        onTextLayout = onTextLayout
     )
 }
