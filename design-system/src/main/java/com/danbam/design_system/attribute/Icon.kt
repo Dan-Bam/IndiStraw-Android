@@ -46,12 +46,6 @@ class IndiStrawIconList private constructor(
         )
 
         @Stable
-        val CloseEyes = IndiStrawIconList(
-            drawableId = R.drawable.ic_close_eyes,
-            contentDescription = "close eyes"
-        )
-
-        @Stable
         val Back = IndiStrawIconList(
             drawableId = R.drawable.ic_back,
             contentDescription = "back"

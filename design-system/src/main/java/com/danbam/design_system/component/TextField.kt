@@ -102,13 +102,11 @@ fun IndiStrawTextField(
                     )
                 }
                 if (isToggleVisible != null) {
-                    val eyesIcon =
-                        if (isToggleVisible) IndiStrawIconList.CloseEyes else IndiStrawIconList.OpenEyes
                     IndiStrawIcon(
                         modifier = Modifier
                             .height(15.dp)
                             .indiStrawClickable(onClick = onToggleChange),
-                        icon = eyesIcon
+                        icon = IndiStrawIconList.OpenEyes
                     )
                 }
             }
