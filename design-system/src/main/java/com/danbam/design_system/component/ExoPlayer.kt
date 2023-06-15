@@ -25,6 +25,7 @@ fun IndiStrawPlayer(
             exoPlayer.videoScalingMode = C.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING
             exoPlayer.setMediaItem(mediaItem)
             exoPlayer.prepare()
+            exoPlayer.play()
         }
 
     DisposableEffect(
