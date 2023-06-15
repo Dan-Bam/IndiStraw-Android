@@ -104,6 +104,7 @@ fun IndiStrawTabRow(
     tabHeader: List<@Composable () -> Unit>,
     moreData: () -> Unit,
     isCrowdFunding: Boolean = false,
+    onClickItem: (Int) -> Unit,
 ) {
     val state = rememberLazyListState()
 
@@ -126,7 +127,9 @@ fun IndiStrawTabRow(
     if (isCrowdFunding) {
         Spacer(modifier = Modifier.height(10.dp))
         repeat(4) {
-            FundingItem()
+            FundingItem {
+                onClickItem(it)
+            }
             Spacer(modifier = Modifier.height(16.dp))
         }
         MoreIcon(
@@ -145,7 +148,9 @@ fun IndiStrawTabRow(
                 Spacer(modifier = Modifier.width(15.dp))
             }
             items(10) {
-                MovieItem()
+                MovieItem {
+                    onClickItem(it)
+                }
                 Spacer(modifier = Modifier.width(9.dp))
             }
             item {
@@ -160,25 +165,29 @@ fun IndiStrawTabRow(
 }
 
 @Composable
-private fun MovieItem() {
+private fun MovieItem(
+    onClickItem: () -> Unit,
+) {
     ImageButton(
         modifier = Modifier
             .width(110.dp)
             .height(150.dp),
         imgSrc = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
-        shape = Shape.Rectangle
-    ) {
-
-    }
+        shape = Shape.Rectangle,
+        onClick = onClickItem
+    )
 }
 
 @Composable
-private fun FundingItem() {
+private fun FundingItem(
+    onClickItem: () -> Unit,
+) {
     val context = LocalContext.current
     var crowdFundImgHeight by remember { mutableStateOf(0) }
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .indiStrawClickable(onClick = onClickItem)
             .padding(horizontal = 15.dp)
             .background(
                 color = IndiStrawTheme.colors.lightBlack,
