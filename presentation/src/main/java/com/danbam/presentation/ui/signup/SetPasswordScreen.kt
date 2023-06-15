@@ -124,7 +124,7 @@ fun SetPasswordScreen(
                 keyboardController?.hide()
             }
         ) {
-            IndiStrawHeader(marginTop = 25, backStringId = R.string.back, pressBackBtn = {
+            IndiStrawHeader(marginTop = 25, pressBackBtn = {
                 navController.popBackStack(keyboardController = keyboardController)
             })
             HeadLineBold(
@@ -160,7 +160,7 @@ fun SetPasswordScreen(
             TitleRegular(
                 modifier = Modifier.padding(start = 32.dp, top = 7.dp),
                 text = errorText,
-                color = IndiStrawTheme.colors.error,
+                color = IndiStrawTheme.colors.red,
                 fontSize = 12
             )
             IndiStrawButton(
@@ -203,7 +203,7 @@ fun PersonalInformationSheet(
                 .fillMaxWidth()
                 .height(1.dp)
                 .background(
-                    color = IndiStrawTheme.colors.exampleText,
+                    color = IndiStrawTheme.colors.gray,
                     shape = IndiStrawTheme.shapes.smallRounded
                 )
         )
@@ -237,7 +237,7 @@ fun PersonalInformationSheet(
                     modifier = Modifier
                         .width(size.width.toDp(context).dp)
                         .height(1.dp)
-                        .background(IndiStrawTheme.colors.exampleText)
+                        .background(IndiStrawTheme.colors.gray)
                 )
             }
         }
@@ -271,7 +271,7 @@ fun PersonalInformationSheet(
                     modifier = Modifier
                         .width(size.width.toDp(context).dp)
                         .height(1.dp)
-                        .background(IndiStrawTheme.colors.exampleText)
+                        .background(IndiStrawTheme.colors.gray)
                 )
             }
         }

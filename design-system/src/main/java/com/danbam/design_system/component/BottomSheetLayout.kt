@@ -47,7 +47,7 @@ fun IndiStrawBottomSheetLayout(
                         .width(60.dp)
                         .height(3.dp)
                         .background(
-                            color = IndiStrawTheme.colors.exampleText,
+                            color = IndiStrawTheme.colors.gray,
                             shape = IndiStrawTheme.shapes.smallRounded
                         )
                         .align(Alignment.CenterHorizontally)
@@ -57,7 +57,7 @@ fun IndiStrawBottomSheetLayout(
         },
         sheetState = sheetState,
         sheetShape = IndiStrawTheme.shapes.bottomSheet,
-        sheetBackgroundColor = IndiStrawTheme.colors.bottomSheet
+        sheetBackgroundColor = IndiStrawTheme.colors.darkGray2
     ) {
         content(sheetState) {
             coroutineScope.launch {

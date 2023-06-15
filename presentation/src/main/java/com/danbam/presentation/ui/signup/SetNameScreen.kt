@@ -76,7 +76,7 @@ fun SetNameScreen(
             keyboardController?.hide()
         }
     ) {
-        IndiStrawHeader(marginTop = 25, backStringId = R.string.back, pressBackBtn = {
+        IndiStrawHeader(marginTop = 25, pressBackBtn = {
             navController.popBackStack(keyboardController = keyboardController)
         })
         HeadLineBold(
@@ -97,7 +97,7 @@ fun SetNameScreen(
         TitleRegular(
             modifier = Modifier.padding(start = 32.dp, top = 7.dp),
             text = errorText,
-            color = IndiStrawTheme.colors.error,
+            color = IndiStrawTheme.colors.red,
             fontSize = 12
         )
         IndiStrawButton(

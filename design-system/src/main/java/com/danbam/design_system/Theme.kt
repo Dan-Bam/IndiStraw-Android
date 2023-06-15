@@ -24,7 +24,7 @@ fun IndiStrawTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composa
             content = {
                 Box(
                     modifier = Modifier
-                        .background(IndiStrawTheme.colors.background)
+                        .background(IndiStrawTheme.colors.black)
                         .fillMaxSize()
                 ) {
                     content()

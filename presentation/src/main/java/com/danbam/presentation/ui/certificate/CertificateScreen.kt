@@ -106,7 +106,6 @@ fun CertificateScreen(
     ) {
         IndiStrawHeader(
             marginTop = 25,
-            backStringId = R.string.back,
             pressBackBtn = { navController.popBackStack(keyboardController = keyboardController) })
         HeadLineBold(
             modifier = Modifier
@@ -146,7 +145,7 @@ fun CertificateScreen(
         TitleRegular(
             modifier = Modifier.padding(start = 32.dp, top = 7.dp),
             text = errorText,
-            color = IndiStrawTheme.colors.error,
+            color = IndiStrawTheme.colors.red,
             fontSize = 12
         )
         IndiStrawButton(
@@ -172,7 +171,7 @@ fun CertificateScreen(
             ) {
                 FindPasswordMedium(
                     text = stringResource(id = R.string.already_certificate_number),
-                    color = IndiStrawTheme.colors.exampleText
+                    color = IndiStrawTheme.colors.gray
                 )
                 Spacer(modifier = Modifier.width(2.dp))
                 FindPasswordMedium(text = stringResource(id = R.string.re_send))

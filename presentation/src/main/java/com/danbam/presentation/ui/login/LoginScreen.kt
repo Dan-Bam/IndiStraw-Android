@@ -99,7 +99,6 @@ fun LoginScreen(
     ) {
         IndiStrawHeader(
             marginTop = 25,
-            backStringId = R.string.back,
             pressBackBtn = { navController.popBackStack(keyboardController = keyboardController) })
         HeadLineBold(
             text = stringResource(id = R.string.do_login),
@@ -133,7 +132,7 @@ fun LoginScreen(
         TitleRegular(
             modifier = Modifier.padding(start = 32.dp, top = 7.dp),
             text = errorText,
-            color = IndiStrawTheme.colors.error,
+            color = IndiStrawTheme.colors.red,
             fontSize = 12
         )
         IndiStrawButton(
@@ -157,7 +156,7 @@ fun LoginScreen(
                         )
                     }),
                 text = stringResource(id = R.string.find_id),
-                color = IndiStrawTheme.colors.exampleText,
+                color = IndiStrawTheme.colors.gray,
                 fontSize = 12
             )
             Spacer(
@@ -165,7 +164,7 @@ fun LoginScreen(
                     .padding(horizontal = 7.dp)
                     .height(14.dp)
                     .width(1.dp)
-                    .background(IndiStrawTheme.colors.textBox)
+                    .background(IndiStrawTheme.colors.darkGray)
                     .align(CenterVertically)
             )
             ExampleTextRegular(
@@ -177,7 +176,7 @@ fun LoginScreen(
                         )
                     }),
                 text = stringResource(id = R.string.find_password),
-                color = IndiStrawTheme.colors.exampleText,
+                color = IndiStrawTheme.colors.gray,
                 fontSize = 12
             )
         }

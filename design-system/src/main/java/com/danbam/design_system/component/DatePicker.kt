@@ -123,7 +123,7 @@ private fun DateBox(
         Row(
             modifier = Modifier
                 .background(
-                    color = IndiStrawTheme.colors.textBox,
+                    color = IndiStrawTheme.colors.darkGray,
                     shape = if (isExpand) IndiStrawTheme.shapes.topDefaultRounded else IndiStrawTheme.shapes.defaultRounded
                 )
                 .fillMaxWidth()
@@ -185,7 +185,7 @@ private fun ExpandDateBox(
                 items(dateList) {
                     ExampleTextMedium(
                         modifier = Modifier
-                            .background(IndiStrawTheme.colors.textBox)
+                            .background(IndiStrawTheme.colors.darkGray)
                             .padding(start = 10.dp, bottom = 13.dp)
                             .indiStrawClickable(onClick = { onDateSelect(it);println("안녕") })
                             .fillMaxWidth(),
@@ -198,7 +198,7 @@ private fun ExpandDateBox(
                     .fillMaxWidth()
                     .height(13.dp)
                     .background(
-                        color = IndiStrawTheme.colors.textBox,
+                        color = IndiStrawTheme.colors.darkGray,
                         shape = IndiStrawTheme.shapes.bottomDefaultRounded
                     )
             )
