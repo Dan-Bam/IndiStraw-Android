@@ -21,6 +21,11 @@ sealed class SignUpNavigationItem(val route: String) {
     object SetPassword : SignUpNavigationItem("setPassword")
 }
 
+sealed class MovieNavigationItem(val route: String) {
+    object MovieDetail : MovieNavigationItem("movieDetail")
+    object MoviePlay : MovieNavigationItem("moviePlay")
+}
+
 object DeepLinkKey {
     const val CERTIFICATE_TYPE = "certificateType"
     const val PHONE_NUMBER = "phoneNumber"

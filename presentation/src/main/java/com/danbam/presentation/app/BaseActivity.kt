@@ -21,6 +21,8 @@ import com.danbam.presentation.ui.find.find_password.FindPasswordScreen
 import com.danbam.presentation.ui.intro.IntroScreen
 import com.danbam.presentation.ui.login.LoginScreen
 import com.danbam.presentation.ui.main.MainScreen
+import com.danbam.presentation.ui.movie.detail.MovieDetailScreen
+import com.danbam.presentation.ui.movie.play.MoviePlayScreen
 import com.danbam.presentation.ui.profile.ProfileScreen
 import com.danbam.presentation.ui.signup.SetIdScreen
 import com.danbam.presentation.ui.signup.SetNameScreen
@@ -30,6 +32,7 @@ import com.danbam.presentation.ui.signup.SignUpViewModel
 import com.danbam.presentation.util.view.AppNavigationItem
 import com.danbam.presentation.util.view.CertificateType
 import com.danbam.presentation.util.view.DeepLinkKey
+import com.danbam.presentation.util.view.MovieNavigationItem
 import com.danbam.presentation.util.view.SignUpNavigationItem
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
@@ -75,6 +78,7 @@ fun BaseApp(navController: NavHostController) {
     ) {
         mainGraph(navController = navController)
         signUpGraph(navController = navController, signUpViewModel = signUpViewModel)
+        movieGraph(navController = navController)
     }
 }
 
@@ -162,5 +166,18 @@ fun NavGraphBuilder.signUpGraph(
     }
     composable(route = SignUpNavigationItem.SetPassword.route) {
         SetPasswordScreen(navController = navController, signUpViewModel = signUpViewModel)
+    }
+}
+
+@OptIn(ExperimentalAnimationApi::class)
+fun NavGraphBuilder.movieGraph(
+    navController: NavHostController,
+) {
+
+    composable(route = MovieNavigationItem.MovieDetail.route) {
+        MovieDetailScreen(navController = navController)
+    }
+    composable(route = MovieNavigationItem.MoviePlay.route) {
+        MoviePlayScreen()
     }
 }
