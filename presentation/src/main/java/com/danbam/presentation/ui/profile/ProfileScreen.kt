@@ -5,13 +5,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -37,6 +34,7 @@ import com.danbam.design_system.component.IndiStrawTabRow
 import com.danbam.design_system.R
 import com.danbam.design_system.component.FundingTab
 import com.danbam.design_system.component.MovieTab
+import com.danbam.presentation.util.view.MovieNavigationItem
 
 @Composable
 fun ProfileScreen(
@@ -44,10 +42,9 @@ fun ProfileScreen(
 ) {
     var currentMovieTab: MovieTab by remember { mutableStateOf(MovieTab.RecentMovie) }
     var currentFundingTab: FundingTab by remember { mutableStateOf(FundingTab.ParticipantFunding) }
-    val scrollState = rememberScrollState()
 
     IndiStrawColumnBackground(
-        modifier = Modifier.verticalScroll(scrollState)
+        scrollEnabled = true
     ) {
         IndiStrawHeader(
             pressBackBtn = { navController.popBackStack() }) {
@@ -119,7 +116,9 @@ fun ProfileScreen(
                         currentMovieTab = MovieTab.ParticipantMovie
                     }
                 }), moreData = { }
-        )
+        ) {
+            navController.navigate(MovieNavigationItem.MovieDetail.route)
+        }
         IndiStrawTabRow(
             modifier = Modifier
                 .padding(top = 43.dp, start = 15.dp),
@@ -140,6 +139,7 @@ fun ProfileScreen(
                         currentFundingTab = FundingTab.MyFunding
                     }
                 }), moreData = { }, isCrowdFunding = true
-        )
+        ) {
+        }
     }
 }
