@@ -1,15 +1,10 @@
 package com.danbam.presentation.ui.main
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -34,6 +29,7 @@ import com.danbam.design_system.component.MovieTab
 import com.danbam.design_system.component.Shape
 import com.danbam.design_system.component.TitleSemiBold
 import com.danbam.presentation.util.view.AppNavigationItem
+import com.danbam.presentation.util.view.MovieNavigationItem
 import com.danbam.presentation.util.view.findActivity
 import com.google.accompanist.pager.ExperimentalPagerApi
 
@@ -43,7 +39,6 @@ fun MainScreen(
     navController: NavController,
 ) {
     val context = LocalContext.current
-    val scrollState = rememberScrollState()
     var currentMovieTab: MovieTab by remember { mutableStateOf(MovieTab.RecentMovie) }
 
     BackHandler {
@@ -51,8 +46,7 @@ fun MainScreen(
     }
 
     IndiStrawColumnBackground(
-        modifier = Modifier
-            .verticalScroll(scrollState)
+        scrollEnabled = true
     ) {
         IndiStrawHeader(
             isBackBtn = false
@@ -110,7 +104,9 @@ fun MainScreen(
                     }
                 }
             ), moreData = { }
-        )
+        ) {
+            navController.navigate(MovieNavigationItem.MovieDetail.route)
+        }
         IndiStrawTabRow(
             itemList = listOf(),
             tabHeader = listOf {
@@ -122,6 +118,7 @@ fun MainScreen(
             },
             moreData = { },
             isCrowdFunding = true
-        )
+        ) {
+        }
     }
 }

@@ -20,6 +20,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.ZeroCornerSize
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.BottomEnd
@@ -39,6 +41,7 @@ import com.danbam.design_system.util.checkAndRequestPermissions
 import com.danbam.design_system.util.indiStrawClickable
 
 sealed class Shape {
+    object None : Shape()
     object Rectangle : Shape()
     object Circle : Shape()
 }
@@ -72,6 +75,7 @@ fun ImageButton(
     onClick: () -> Unit,
 ) {
     val clipShape = when (shape) {
+        Shape.None -> RoundedCornerShape(ZeroCornerSize)
         Shape.Rectangle -> IndiStrawTheme.shapes.defaultRounded
         Shape.Circle -> IndiStrawTheme.shapes.circle
     }
