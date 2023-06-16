@@ -76,12 +76,15 @@ fun SetPasswordScreen(
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
     val passwordFocusRequester = remember { FocusRequester() }
+    val rePasswordFocusRequester = remember { FocusRequester() }
 
     val errorList = mapOf(
         SignUpSideEffect.EmptyNameException to stringResource(id = R.string.require_password),
+        SignUpSideEffect.EmptyRePasswordException to stringResource(id = R.string.require_check_password),
         SignUpSideEffect.DifferentPasswordException to stringResource(id = R.string.wrong_different_password),
         SignUpSideEffect.LengthPasswordException to stringResource(id = R.string.wrong_length_password),
         SignUpSideEffect.MatchPasswordException to stringResource(id = R.string.wrong_match_password),
+        SignUpSideEffect.FailSignUp to stringResource(id = R.string.fail_sign_up)
     )
 
     sideEffect.observeWithLifecycle {
@@ -91,10 +94,19 @@ fun SetPasswordScreen(
                 errorText = errorList[it]!!
             }
 
+            is SignUpSideEffect.EmptyRePasswordException -> {
+                rePasswordFocusRequester.requestFocus(keyboardController = keyboardController)
+                errorText = errorList[it]!!
+            }
+
             is SignUpSideEffect.SuccessSignUp -> {
                 navController.navigate(AppNavigationItem.Login.route) {
                     popUpTo(AppNavigationItem.Intro.route)
                 }
+            }
+
+            is SignUpSideEffect.FailSignUp -> {
+                errorText = errorList[it]!!
             }
 
             else -> {
@@ -147,7 +159,9 @@ fun SetPasswordScreen(
                 onToggleChange = { passwordVisible = !passwordVisible }
             )
             IndiStrawTextField(
-                modifier = Modifier.padding(top = 20.dp),
+                modifier = Modifier
+                    .padding(top = 20.dp)
+                    .focusRequester(focusRequester = rePasswordFocusRequester),
                 hint = stringResource(id = R.string.check_password),
                 value = rePassword,
                 onValueChange = {

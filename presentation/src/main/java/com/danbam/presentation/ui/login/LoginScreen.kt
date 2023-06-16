@@ -64,10 +64,10 @@ fun LoginScreen(
     val idFocusRequester = remember { FocusRequester() }
 
     val errorList = mapOf(
-        LoginSideEffect.IdEmpty to stringResource(id = R.string.require_id),
-        LoginSideEffect.PasswordEmpty to stringResource(id = R.string.require_password),
-        LoginSideEffect.WrongId to stringResource(id = R.string.wrong_id),
-        LoginSideEffect.WrongPassword to stringResource(id = R.string.wrong_password)
+        LoginSideEffect.EmptyIdException to stringResource(id = R.string.require_id),
+        LoginSideEffect.EmptyPasswordException to stringResource(id = R.string.require_password),
+        LoginSideEffect.MatchIdException to stringResource(id = R.string.wrong_id),
+        LoginSideEffect.MatchPasswordException to stringResource(id = R.string.wrong_password)
     )
 
     sideEffect.observeWithLifecycle {
@@ -77,17 +77,17 @@ fun LoginScreen(
                 navController.navigate(AppNavigationItem.Main.route)
             }
 
-            is LoginSideEffect.IdEmpty, LoginSideEffect.WrongId -> {
+            is LoginSideEffect.EmptyIdException, LoginSideEffect.MatchIdException -> {
                 idFocusRequester.requestFocus(keyboardController = keyboardController)
                 errorText = errorList[it]!!
             }
 
-            is LoginSideEffect.PasswordEmpty, LoginSideEffect.WrongPassword -> {
+            is LoginSideEffect.EmptyPasswordException, LoginSideEffect.MatchPasswordException -> {
                 passwordFocusRequester.requestFocus(keyboardController = keyboardController)
                 errorText = errorList[it]!!
             }
 
-            is LoginSideEffect.UnKnownError -> {}
+            is LoginSideEffect.UnKnownException -> {}
         }
     }
 

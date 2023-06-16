@@ -41,8 +41,8 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun checkPhoneNumber(phoneNumber: String): Void =
-        authRemoteDataSource.checkPhoneNumber(phoneNumber = phoneNumber)
+    override suspend fun checkPhoneNumber(phoneNumber: String, type: String): Void =
+        authRemoteDataSource.checkPhoneNumber(phoneNumber = phoneNumber, type = type)
 
     override suspend fun checkId(id: String): Void =
         authRemoteDataSource.checkId(id = id)

@@ -22,10 +22,10 @@ class LoginViewModel @Inject constructor(
     override val container = container<Unit, LoginSideEffect>(Unit)
 
     fun login(id: String, password: String) = intent {
-        if (id.isEmpty()) postSideEffect(LoginSideEffect.IdEmpty)
-        else if (password.isEmpty()) postSideEffect(LoginSideEffect.PasswordEmpty)
-        else if (!id.isId()) postSideEffect(LoginSideEffect.WrongId)
-        else if (!password.isPassword()) postSideEffect(LoginSideEffect.WrongPassword)
+        if (id.isEmpty()) postSideEffect(LoginSideEffect.EmptyIdException)
+        else if (password.isEmpty()) postSideEffect(LoginSideEffect.EmptyPasswordException)
+        else if (!id.isId()) postSideEffect(LoginSideEffect.MatchIdException)
+        else if (!password.isPassword()) postSideEffect(LoginSideEffect.MatchPasswordException)
         else {
             viewModelScope.launch {
                 loginUseCase(LoginParam(id = id, password = password)).onSuccess {
@@ -33,8 +33,8 @@ class LoginViewModel @Inject constructor(
                 }.onFailure {
                     it.errorHandling(
                         unknownAction = {},
-                        wrongDataException = { postSideEffect(LoginSideEffect.WrongPassword) },
-                        notFoundException = { postSideEffect(LoginSideEffect.WrongId) }
+                        wrongDataException = { postSideEffect(LoginSideEffect.MatchPasswordException) },
+                        notFoundException = { postSideEffect(LoginSideEffect.MatchIdException) }
                     )
                 }
             }

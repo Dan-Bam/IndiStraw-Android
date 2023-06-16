@@ -14,10 +14,12 @@ sealed class SignUpSideEffect {
     object MatchIdException : SignUpSideEffect()
     object EnrollIdException : SignUpSideEffect()
     object EmptyPasswordException : SignUpSideEffect()
+    object EmptyRePasswordException : SignUpSideEffect()
     object DifferentPasswordException : SignUpSideEffect()
     object LengthPasswordException : SignUpSideEffect()
     object MatchPasswordException : SignUpSideEffect()
     object Next : SignUpSideEffect()
     object SuccessSignUp : SignUpSideEffect()
+    object FailSignUp : SignUpSideEffect()
     data class SuccessUpload(val imageUrl: String) : SignUpSideEffect()
 }

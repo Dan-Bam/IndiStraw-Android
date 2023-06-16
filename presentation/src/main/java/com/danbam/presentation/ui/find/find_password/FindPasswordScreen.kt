@@ -51,19 +51,26 @@ fun FindPasswordScreen(
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
     val passwordFocusRequester = remember { FocusRequester() }
+    val rePasswordFocusRequester = remember { FocusRequester() }
 
     val errorList = mapOf(
-        FindPasswordSideEffect.EmptyException to stringResource(id = R.string.require_change_password),
-        FindPasswordSideEffect.DifferentException to stringResource(id = R.string.wrong_different_password),
-        FindPasswordSideEffect.LengthException to stringResource(id = R.string.wrong_length_password),
-        FindPasswordSideEffect.MatchException to stringResource(id = R.string.wrong_match_password),
+        FindPasswordSideEffect.EmptyPasswordException to stringResource(id = R.string.require_change_password),
+        FindPasswordSideEffect.EmptyRePasswordException to stringResource(id = R.string.require_check_password),
+        FindPasswordSideEffect.EmptyRePasswordException to stringResource(id = R.string.wrong_different_password),
+        FindPasswordSideEffect.LengthPasswordException to stringResource(id = R.string.wrong_length_password),
+        FindPasswordSideEffect.MatchPasswordException to stringResource(id = R.string.wrong_match_password),
         FindPasswordSideEffect.FailChangeException to stringResource(id = R.string.wait)
     )
 
     sideEffect.observeWithLifecycle {
         when (it) {
-            is FindPasswordSideEffect.EmptyException, FindPasswordSideEffect.DifferentException, FindPasswordSideEffect.LengthException, FindPasswordSideEffect.MatchException, FindPasswordSideEffect.FailChangeException -> {
+            is FindPasswordSideEffect.EmptyPasswordException, FindPasswordSideEffect.DifferentPasswordException, FindPasswordSideEffect.LengthPasswordException, FindPasswordSideEffect.MatchPasswordException, FindPasswordSideEffect.FailChangeException -> {
                 passwordFocusRequester.requestFocus(keyboardController = keyboardController)
+                errorText = errorList[it]!!
+            }
+
+            is FindPasswordSideEffect.EmptyRePasswordException -> {
+                rePasswordFocusRequester.requestFocus(keyboardController = keyboardController)
                 errorText = errorList[it]!!
             }
 
@@ -105,7 +112,9 @@ fun FindPasswordScreen(
             onToggleChange = { passwordVisible = !passwordVisible }
         )
         IndiStrawTextField(
-            modifier = Modifier.padding(top = 20.dp),
+            modifier = Modifier
+                .padding(top = 20.dp)
+                .focusRequester(focusRequester = rePasswordFocusRequester),
             hint = stringResource(id = R.string.check_password),
             value = checkPassword,
             onValueChange = {

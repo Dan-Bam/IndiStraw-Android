@@ -27,9 +27,10 @@ interface AuthAPI {
         @Header("refreshToken") refreshToken: String,
     ): LoginResponse
 
-    @HEAD("auth/check/phone-number/{phoneNumber}")
+    @HEAD("auth/check/phone-number/{phoneNumber}/type/{type}")
     suspend fun checkPhoneNumber(
         @Path("phoneNumber") phoneNumber: String,
+        @Path("type") type: String,
     ): Void
 
     @HEAD("auth/check/id/{id}")
