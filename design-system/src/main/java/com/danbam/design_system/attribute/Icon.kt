@@ -134,5 +134,17 @@ class IndiStrawIconList private constructor(
             drawableId = R.drawable.ic_play,
             contentDescription = "play"
         )
+
+        @Stable
+        val Shield = IndiStrawIconList(
+            drawableId = R.drawable.ic_shield,
+            contentDescription = "shield"
+        )
+
+        @Stable
+        val Earth = IndiStrawIconList(
+            drawableId = R.drawable.ic_earth,
+            contentDescription = "earth"
+        )
     }
 }
