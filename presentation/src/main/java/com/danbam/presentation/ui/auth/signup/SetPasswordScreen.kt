@@ -137,7 +137,7 @@ fun SetPasswordScreen(
                 keyboardController?.hide()
             }
         ) {
-            IndiStrawHeader(marginTop = 25, pressBackBtn = {
+            IndiStrawHeader(pressBackBtn = {
                 navController.popBackStack(keyboardController = keyboardController)
             })
             HeadLineBold(

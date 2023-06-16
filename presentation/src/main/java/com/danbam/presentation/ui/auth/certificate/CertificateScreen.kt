@@ -105,7 +105,6 @@ fun CertificateScreen(
         }
     ) {
         IndiStrawHeader(
-            marginTop = 25,
             pressBackBtn = { navController.popBackStack(keyboardController = keyboardController) })
         HeadLineBold(
             modifier = Modifier

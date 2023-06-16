@@ -53,7 +53,7 @@ fun SetProfileScreen(
     }
 
     IndiStrawColumnBackground {
-        IndiStrawHeader(marginTop = 25, pressBackBtn = {
+        IndiStrawHeader(pressBackBtn = {
             navController.popBackStack()
         })
         HeadLineBold(
