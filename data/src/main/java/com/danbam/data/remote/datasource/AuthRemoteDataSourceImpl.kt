@@ -22,9 +22,10 @@ class AuthRemoteDataSourceImpl @Inject constructor(
         authAPI.refresh(refreshToken = "Bearer $refreshToken")
     }
 
-    override suspend fun checkPhoneNumber(phoneNumber: String): Void = indiStrawApiCall {
-        authAPI.checkPhoneNumber(phoneNumber = phoneNumber)
-    }
+    override suspend fun checkPhoneNumber(phoneNumber: String, type: String): Void =
+        indiStrawApiCall {
+            authAPI.checkPhoneNumber(phoneNumber = phoneNumber, type = type)
+        }
 
     override suspend fun checkId(id: String): Void = indiStrawApiCall {
         authAPI.checkId(id = id)
