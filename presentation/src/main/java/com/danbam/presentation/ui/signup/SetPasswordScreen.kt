@@ -76,9 +76,11 @@ fun SetPasswordScreen(
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
     val passwordFocusRequester = remember { FocusRequester() }
+    val rePasswordFocusRequester = remember { FocusRequester() }
 
     val errorList = mapOf(
         SignUpSideEffect.EmptyNameException to stringResource(id = R.string.require_password),
+        SignUpSideEffect.EmptyRePasswordException to stringResource(id = R.string.require_check_password),
         SignUpSideEffect.DifferentPasswordException to stringResource(id = R.string.wrong_different_password),
         SignUpSideEffect.LengthPasswordException to stringResource(id = R.string.wrong_length_password),
         SignUpSideEffect.MatchPasswordException to stringResource(id = R.string.wrong_match_password),
@@ -89,6 +91,11 @@ fun SetPasswordScreen(
         when (it) {
             is SignUpSideEffect.EmptyPasswordException, SignUpSideEffect.DifferentPasswordException, SignUpSideEffect.LengthPasswordException, SignUpSideEffect.MatchPasswordException -> {
                 passwordFocusRequester.requestFocus(keyboardController = keyboardController)
+                errorText = errorList[it]!!
+            }
+
+            is SignUpSideEffect.EmptyRePasswordException -> {
+                rePasswordFocusRequester.requestFocus(keyboardController = keyboardController)
                 errorText = errorList[it]!!
             }
 
@@ -152,7 +159,9 @@ fun SetPasswordScreen(
                 onToggleChange = { passwordVisible = !passwordVisible }
             )
             IndiStrawTextField(
-                modifier = Modifier.padding(top = 20.dp),
+                modifier = Modifier
+                    .padding(top = 20.dp)
+                    .focusRequester(focusRequester = rePasswordFocusRequester),
                 hint = stringResource(id = R.string.check_password),
                 value = rePassword,
                 onValueChange = {

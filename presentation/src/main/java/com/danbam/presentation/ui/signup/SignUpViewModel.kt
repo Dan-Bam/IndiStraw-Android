@@ -68,7 +68,8 @@ class SignUpViewModel @Inject constructor(
     }
 
     fun setPassword(password: String, rePassword: String, onNext: () -> Unit) = intent {
-        if (password.isEmpty() || rePassword.isEmpty()) postSideEffect(SignUpSideEffect.EmptyPasswordException)
+        if (password.isEmpty()) postSideEffect(SignUpSideEffect.EmptyPasswordException)
+        else if (rePassword.isEmpty()) postSideEffect(SignUpSideEffect.EmptyRePasswordException)
         else if (password != rePassword) postSideEffect(SignUpSideEffect.DifferentPasswordException)
         else if (password.length !in (5..20)) postSideEffect(SignUpSideEffect.LengthPasswordException)
         else if (!password.isPassword()) postSideEffect(SignUpSideEffect.MatchPasswordException)

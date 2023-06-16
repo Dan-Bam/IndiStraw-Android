@@ -21,11 +21,12 @@ class FindPasswordViewModel @Inject constructor(
     override val container = container<Unit, FindPasswordSideEffect>(Unit)
 
     fun changePassword(phoneNumber: String, password: String, checkPassword: String) = intent {
-        if (password.isEmpty() || checkPassword.isEmpty()) postSideEffect(FindPasswordSideEffect.EmptyException)
-        else if (password != checkPassword) postSideEffect(FindPasswordSideEffect.DifferentException)
-        else if (password.length !in (8..20)) postSideEffect(FindPasswordSideEffect.LengthException)
+        if (password.isEmpty()) postSideEffect(FindPasswordSideEffect.EmptyPasswordException)
+        else if (checkPassword.isEmpty()) postSideEffect(FindPasswordSideEffect.EmptyRePasswordException)
+        else if (password != checkPassword) postSideEffect(FindPasswordSideEffect.DifferentPasswordException)
+        else if (password.length !in (8..20)) postSideEffect(FindPasswordSideEffect.LengthPasswordException)
         else if (!password.isPassword()) {
-            postSideEffect(FindPasswordSideEffect.MatchException)
+            postSideEffect(FindPasswordSideEffect.MatchPasswordException)
         } else {
             viewModelScope.launch {
                 changePasswordUseCase(

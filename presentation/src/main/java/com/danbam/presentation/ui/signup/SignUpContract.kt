@@ -14,6 +14,7 @@ sealed class SignUpSideEffect {
     object MatchIdException : SignUpSideEffect()
     object EnrollIdException : SignUpSideEffect()
     object EmptyPasswordException : SignUpSideEffect()
+    object EmptyRePasswordException : SignUpSideEffect()
     object DifferentPasswordException : SignUpSideEffect()
     object LengthPasswordException : SignUpSideEffect()
     object MatchPasswordException : SignUpSideEffect()
