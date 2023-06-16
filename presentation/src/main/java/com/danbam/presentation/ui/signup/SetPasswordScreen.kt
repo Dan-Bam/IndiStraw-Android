@@ -82,6 +82,7 @@ fun SetPasswordScreen(
         SignUpSideEffect.DifferentPasswordException to stringResource(id = R.string.wrong_different_password),
         SignUpSideEffect.LengthPasswordException to stringResource(id = R.string.wrong_length_password),
         SignUpSideEffect.MatchPasswordException to stringResource(id = R.string.wrong_match_password),
+        SignUpSideEffect.FailSignUp to stringResource(id = R.string.fail_sign_up)
     )
 
     sideEffect.observeWithLifecycle {
@@ -95,6 +96,10 @@ fun SetPasswordScreen(
                 navController.navigate(AppNavigationItem.Login.route) {
                     popUpTo(AppNavigationItem.Intro.route)
                 }
+            }
+
+            is SignUpSideEffect.FailSignUp -> {
+                errorText = errorList[it]!!
             }
 
             else -> {

@@ -19,5 +19,6 @@ sealed class SignUpSideEffect {
     object MatchPasswordException : SignUpSideEffect()
     object Next : SignUpSideEffect()
     object SuccessSignUp : SignUpSideEffect()
+    object FailSignUp : SignUpSideEffect()
     data class SuccessUpload(val imageUrl: String) : SignUpSideEffect()
 }

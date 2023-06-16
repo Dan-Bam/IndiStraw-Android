@@ -91,7 +91,9 @@ class SignUpViewModel @Inject constructor(
             ).onSuccess {
                 postSideEffect(SignUpSideEffect.SuccessSignUp)
             }.onFailure {
-                it.errorHandling(unknownAction = {})
+                it.errorHandling(unknownAction = {
+                    postSideEffect(SignUpSideEffect.FailSignUp)
+                })
             }
         }
     }
