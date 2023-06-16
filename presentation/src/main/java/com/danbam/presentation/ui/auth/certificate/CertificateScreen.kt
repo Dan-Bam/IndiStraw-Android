@@ -91,7 +91,8 @@ fun CertificateScreen(
                 when (certificateType) {
                     CertificateType.SIGN_UP -> navController.navigate(AuthNavigationItem.SetProfile.route + AuthDeepLinkKey.PHONE_NUMBER + phoneNumber.toPhoneNumber())
                     CertificateType.FIND_ID -> navController.navigate(AuthNavigationItem.FindId.route + AuthDeepLinkKey.PHONE_NUMBER + phoneNumber.toPhoneNumber())
-                    CertificateType.FIND_PASSWORD -> navController.navigate(AuthNavigationItem.FindPassword.route + AuthDeepLinkKey.PHONE_NUMBER + phoneNumber.toPhoneNumber())
+                    CertificateType.FIND_PASSWORD -> navController.navigate(AuthNavigationItem.FindPassword.route + AuthDeepLinkKey.PHONE_NUMBER + phoneNumber.toPhoneNumber() + AuthDeepLinkKey.IS_FIND_PASSWORD + true)
+                    CertificateType.ChangePassword -> navController.navigate(AuthNavigationItem.FindPassword.route + AuthDeepLinkKey.PHONE_NUMBER + phoneNumber.toPhoneNumber() + AuthDeepLinkKey.IS_FIND_PASSWORD + false)
                 }
             }
         }

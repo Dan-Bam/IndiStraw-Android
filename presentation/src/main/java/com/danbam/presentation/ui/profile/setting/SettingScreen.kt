@@ -28,6 +28,9 @@ import com.danbam.design_system.R
 import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.design_system.component.IndiStrawBottomSheetLayout
+import com.danbam.presentation.ui.auth.navigation.AuthDeepLinkKey
+import com.danbam.presentation.ui.auth.navigation.AuthNavigationItem
+import com.danbam.presentation.ui.auth.navigation.CertificateType
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -40,7 +43,9 @@ fun SettingScreen(
         stringResource(id = R.string.change_profile) to { }
     )
     val secondLine = mapOf(
-        stringResource(id = R.string.change_password) to { },
+        stringResource(id = R.string.change_password) to {
+            navController.navigate(AuthNavigationItem.Certificate.route + AuthDeepLinkKey.CERTIFICATE_TYPE + CertificateType.ChangePassword)
+        },
         stringResource(id = R.string.change_language) to { changeLanguage() }
     )
     val thirdLine = mapOf(
@@ -87,7 +92,7 @@ fun SettingItem(
 ) {
     Column(
         modifier = modifier
-            .padding(horizontal = 32.dp)
+            .padding(horizontal = 15.dp)
             .fillMaxWidth()
             .background(
                 color = IndiStrawTheme.colors.lightBlack,
@@ -99,6 +104,7 @@ fun SettingItem(
         repeat(itemMap.size) {
             Row(
                 modifier = Modifier
+                    .fillMaxWidth()
                     .padding(horizontal = 13.dp)
                     .indiStrawClickable(onClick = itemMap[itemKeys[it]]),
                 verticalAlignment = Alignment.CenterVertically

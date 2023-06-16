@@ -28,6 +28,7 @@ import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.R
 import com.danbam.presentation.ui.auth.navigation.AuthNavigationItem
 import com.danbam.presentation.ui.main.navigation.MainNavigationItem
+import com.danbam.presentation.ui.profile.navigation.ProfileNavigationItem
 import com.danbam.presentation.util.android.observeWithLifecycle
 import com.danbam.presentation.util.view.popBackStack
 import com.danbam.presentation.util.view.requestFocus
@@ -39,6 +40,7 @@ fun FindPasswordScreen(
     navController: NavController,
     findPasswordViewModel: FindPasswordViewModel = hiltViewModel(),
     phoneNumber: String,
+    isFindPassword: Boolean,
 ) {
     val container = findPasswordViewModel.container
     val state = container.stateFlow.collectAsState().value
@@ -77,8 +79,14 @@ fun FindPasswordScreen(
 
             is FindPasswordSideEffect.SuccessChange -> {
                 keyboardController?.hide()
-                navController.navigate(AuthNavigationItem.Login.route) {
-                    popUpTo(MainNavigationItem.Intro.route)
+                if (isFindPassword) {
+                    navController.navigate(AuthNavigationItem.Login.route) {
+                        popUpTo(MainNavigationItem.Intro.route)
+                    }
+                } else {
+                    navController.navigate(ProfileNavigationItem.Setting.route) {
+                        popUpTo(ProfileNavigationItem.Profile.route)
+                    }
                 }
             }
         }

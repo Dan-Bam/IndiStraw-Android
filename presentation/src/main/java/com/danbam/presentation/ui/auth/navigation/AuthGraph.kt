@@ -29,6 +29,7 @@ sealed class AuthNavigationItem(val route: String) {
 
 object AuthDeepLinkKey {
     const val CERTIFICATE_TYPE = "certificateType"
+    const val IS_FIND_PASSWORD = "isFindPassword"
     const val PHONE_NUMBER = "phoneNumber"
 }
 
@@ -36,6 +37,7 @@ object CertificateType {
     const val SIGN_UP = "signUp"
     const val FIND_ID = "findId"
     const val FIND_PASSWORD = "findPassword"
+    const val ChangePassword = "changePassword"
 }
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -71,15 +73,24 @@ fun NavGraphBuilder.authGraph(navController: NavHostController) {
     }
     composable(
         route = AuthNavigationItem.FindPassword.route
-                + AuthDeepLinkKey.PHONE_NUMBER + "{${AuthDeepLinkKey.PHONE_NUMBER}}",
+                + AuthDeepLinkKey.PHONE_NUMBER + "{${AuthDeepLinkKey.PHONE_NUMBER}}"
+                + AuthDeepLinkKey.IS_FIND_PASSWORD + "{${AuthDeepLinkKey.IS_FIND_PASSWORD}}",
         arguments = listOf(
             navArgument(AuthDeepLinkKey.PHONE_NUMBER) {
                 type = NavType.StringType
+            },
+            navArgument(AuthDeepLinkKey.IS_FIND_PASSWORD) {
+                type = NavType.BoolType
             }
         )
     ) {
         val phoneNumber = it.arguments?.getString(AuthDeepLinkKey.PHONE_NUMBER) ?: ""
-        FindPasswordScreen(navController = navController, phoneNumber = phoneNumber)
+        val isFindPassword = it.arguments?.getBoolean(AuthDeepLinkKey.IS_FIND_PASSWORD) ?: true
+        FindPasswordScreen(
+            navController = navController,
+            phoneNumber = phoneNumber,
+            isFindPassword = isFindPassword
+        )
     }
 }
 
