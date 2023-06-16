@@ -46,6 +46,7 @@
     <string name="change_password">비밀번호 변경</string>
     <string name="find_password">비밀번호 찾기</string>
     <string name="check_password">비밀번호 확인</string>
+    <string name="require_check_password">비밀번호 확인을 입력해주세요.</string>
     <string name="wrong_different_password">비밀번호가 일치하지 않습니다.</string>
     <string name="require_password">비밀번호를 입력해 주세요.</string>
     <string name="wrong_password">올바르지 않은 비밀번호입니다.</string>
