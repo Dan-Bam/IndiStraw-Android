@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
@@ -24,7 +25,6 @@ import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.design_system.component.ButtonMedium
 import com.danbam.design_system.component.FindPasswordMedium
-import com.danbam.design_system.component.HeadLineBold
 import com.danbam.design_system.component.ImageButton
 import com.danbam.design_system.component.IndiStrawBottomSheetLayout
 import com.danbam.design_system.component.IndiStrawColumnBackground
@@ -34,6 +34,7 @@ import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.component.TitleSemiBold
 import com.danbam.design_system.util.RemoveOverScrollLazyRow
 import com.danbam.design_system.util.indiStrawClickable
+import com.danbam.design_system.R
 import com.danbam.presentation.util.view.MovieNavigationItem
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -58,7 +59,11 @@ fun MovieDetailScreen(
             )
             FindPasswordMedium(modifier = Modifier.padding(top = 4.dp), text = "이동욱", fontSize = 14)
         }
-        ButtonMedium(modifier = Modifier.padding(start = 20.dp, top = 29.dp), text = "출연작품")
+        ButtonMedium(
+            modifier = Modifier.padding(start = 20.dp, top = 29.dp), text = stringResource(
+                id = R.string.participate_movie
+            )
+        )
         RemoveOverScrollLazyRow(
             modifier = Modifier.padding(top = 12.dp, bottom = 24.dp)
         ) {
@@ -116,7 +121,11 @@ fun MovieDetailScreen(
                 text = "스파이더맨은 스티브 딧코가 창작한 마블 코믹스의 슈퍼 히어로이다. 그는 1962년 8월의 어메이징 판타지15호에 처음 등장했다.그는 마블 코믹스에서 출판한 만화책뿐만 아니라 마블 유니버스를 배경으로 한 여러영화, tv프로이다.",
                 color = IndiStrawTheme.colors.gray
             )
-            TitleRegular(modifier = Modifier.padding(start = 25.dp, top = 44.dp), text = "주요장면")
+            TitleRegular(
+                modifier = Modifier.padding(start = 25.dp, top = 44.dp), text = stringResource(
+                    id = R.string.highlight
+                )
+            )
             RemoveOverScrollLazyRow(
                 modifier = Modifier.padding(top = 14.dp)
             ) {
@@ -138,7 +147,7 @@ fun MovieDetailScreen(
             }
             ButtonMedium(
                 modifier = Modifier.padding(top = 60.dp, start = 25.dp, bottom = 10.dp),
-                text = "출연진"
+                text = stringResource(id = R.string.actor)
             )
             RemoveOverScrollLazyRow {
                 item {
