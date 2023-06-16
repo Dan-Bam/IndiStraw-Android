@@ -155,7 +155,7 @@ fun CertificateScreen(
             if (state.phoneNumber.isEmpty()) {
                 certificateViewModel.checkPhoneNumber(
                     phoneNumber = phoneNumber.toPhoneNumber(),
-                    isSignUp = certificateType == CertificateType.SIGN_UP
+                    type = if (certificateType == CertificateType.SIGN_UP) "SIGNUP" else "FIND_ACCOUNT"
                 )
             } else {
                 certificateViewModel.checkCertificateNumber(authCode = certificateNumber)

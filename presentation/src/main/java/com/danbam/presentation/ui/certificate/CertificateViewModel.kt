@@ -24,20 +24,20 @@ class CertificateViewModel @Inject constructor(
 ) : ContainerHost<CertificateState, CertificateSideEffect>, ViewModel() {
     override val container = container<CertificateState, CertificateSideEffect>(CertificateState())
 
-    fun checkPhoneNumber(phoneNumber: String, isSignUp: Boolean) = intent {
+    fun checkPhoneNumber(phoneNumber: String, type: String) = intent {
         if (phoneNumber.isEmpty()) postSideEffect(CertificateSideEffect.EmptyPhoneNumberException)
         else if (!phoneNumber.isPhoneNumber()) postSideEffect(CertificateSideEffect.MatchPhoneNumberException)
         else {
             viewModelScope.launch {
-                checkPhoneNumberUseCase(phoneNumber = phoneNumber).onFailure {
-                    it.errorHandling(unknownAction = {}, conflictException = {
-                        if (!isSignUp) sendCertificateNumber(phoneNumber = phoneNumber)
-                        else postSideEffect(CertificateSideEffect.EnrollPhoneNumberException)
+                checkPhoneNumberUseCase(phoneNumber = phoneNumber, type = type).onFailure {
+                    it.errorHandling(unknownAction = {}, notFoundException = {
+                        postSideEffect(CertificateSideEffect.NotEnrollPhoneNumberException)
+                    }, conflictException = {
+                        postSideEffect(CertificateSideEffect.EnrollPhoneNumberException)
                     }, tooManyRequestException = {
                         postSideEffect(CertificateSideEffect.TooManyRequestPhoneNumberException)
                     }, noContentException = {
-                        if (isSignUp) sendCertificateNumber(phoneNumber = phoneNumber)
-                        else postSideEffect(CertificateSideEffect.NotEnrollPhoneNumberException)
+                        sendCertificateNumber(phoneNumber = phoneNumber)
                     })
                 }
             }
