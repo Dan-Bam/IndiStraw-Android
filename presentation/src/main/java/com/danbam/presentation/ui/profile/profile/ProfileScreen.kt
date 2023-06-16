@@ -34,7 +34,9 @@ import com.danbam.design_system.component.IndiStrawTabRow
 import com.danbam.design_system.R
 import com.danbam.design_system.component.FundingTab
 import com.danbam.design_system.component.MovieTab
-import com.danbam.presentation.util.view.MovieNavigationItem
+import com.danbam.design_system.util.indiStrawClickable
+import com.danbam.presentation.ui.movie.navigation.MovieNavigationItem
+import com.danbam.presentation.ui.profile.navigation.ProfileNavigationItem
 
 @Composable
 fun ProfileScreen(
@@ -49,7 +51,9 @@ fun ProfileScreen(
         IndiStrawHeader(
             pressBackBtn = { navController.popBackStack() }) {
             Row {
-                IndiStrawIcon(icon = IndiStrawIconList.Setting)
+                IndiStrawIcon(modifier = Modifier.indiStrawClickable {
+                    navController.navigate(ProfileNavigationItem.Setting.route)
+                }, icon = IndiStrawIconList.Setting)
             }
         }
         Row(

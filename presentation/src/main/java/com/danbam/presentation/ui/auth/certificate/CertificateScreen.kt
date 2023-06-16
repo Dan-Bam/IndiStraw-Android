@@ -33,10 +33,9 @@ import com.danbam.design_system.component.IndiStrawTextField
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.R
-import com.danbam.presentation.util.view.AppNavigationItem
-import com.danbam.presentation.util.view.CertificateType
-import com.danbam.presentation.util.view.DeepLinkKey
-import com.danbam.presentation.util.view.SignUpNavigationItem
+import com.danbam.presentation.ui.auth.navigation.AuthDeepLinkKey
+import com.danbam.presentation.ui.auth.navigation.AuthNavigationItem
+import com.danbam.presentation.ui.auth.navigation.CertificateType
 import com.danbam.presentation.util.android.observeWithLifecycle
 import com.danbam.presentation.util.view.popBackStack
 import com.danbam.presentation.util.view.requestFocus
@@ -90,9 +89,9 @@ fun CertificateScreen(
             is CertificateSideEffect.SuccessCertificate -> {
                 keyboardController?.hide()
                 when (certificateType) {
-                    CertificateType.SIGN_UP -> navController.navigate(SignUpNavigationItem.SetProfile.route + DeepLinkKey.PHONE_NUMBER + phoneNumber.toPhoneNumber())
-                    CertificateType.FIND_ID -> navController.navigate(AppNavigationItem.FindId.route + DeepLinkKey.PHONE_NUMBER + phoneNumber.toPhoneNumber())
-                    CertificateType.FIND_PASSWORD -> navController.navigate(AppNavigationItem.FindPassword.route + DeepLinkKey.PHONE_NUMBER + phoneNumber.toPhoneNumber())
+                    CertificateType.SIGN_UP -> navController.navigate(AuthNavigationItem.SetProfile.route + AuthDeepLinkKey.PHONE_NUMBER + phoneNumber.toPhoneNumber())
+                    CertificateType.FIND_ID -> navController.navigate(AuthNavigationItem.FindId.route + AuthDeepLinkKey.PHONE_NUMBER + phoneNumber.toPhoneNumber())
+                    CertificateType.FIND_PASSWORD -> navController.navigate(AuthNavigationItem.FindPassword.route + AuthDeepLinkKey.PHONE_NUMBER + phoneNumber.toPhoneNumber())
                 }
             }
         }

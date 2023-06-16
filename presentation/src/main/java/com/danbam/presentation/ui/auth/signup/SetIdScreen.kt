@@ -24,7 +24,7 @@ import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.IndiStrawTextField
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.R
-import com.danbam.presentation.util.view.SignUpNavigationItem
+import com.danbam.presentation.ui.auth.navigation.AuthNavigationItem
 import com.danbam.presentation.util.android.observeWithLifecycle
 import com.danbam.presentation.util.view.popBackStack
 import com.danbam.presentation.util.view.requestFocus
@@ -61,7 +61,7 @@ fun SetIdScreen(
 
             is SignUpSideEffect.Next -> {
                 keyboardController?.hide()
-                navController.navigate(SignUpNavigationItem.SetPassword.route)
+                navController.navigate(AuthNavigationItem.SetPassword.route)
             }
 
             else -> {

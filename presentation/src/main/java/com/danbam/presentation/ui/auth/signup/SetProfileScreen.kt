@@ -21,8 +21,8 @@ import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.SelectImageButton
 import com.danbam.design_system.R
+import com.danbam.presentation.ui.auth.navigation.AuthNavigationItem
 import com.danbam.presentation.util.android.observeWithLifecycle
-import com.danbam.presentation.util.view.SignUpNavigationItem
 import com.danbam.presentation.util.parser.toFile
 import kotlinx.coroutines.InternalCoroutinesApi
 
@@ -80,7 +80,7 @@ fun SetProfileScreen(
                 modifier = Modifier.padding(top = 156.dp),
                 text = stringResource(id = R.string.next)
             ) {
-                navController.navigate(SignUpNavigationItem.SetId.route)
+                navController.navigate(AuthNavigationItem.SetId.route)
             }
         }
     }

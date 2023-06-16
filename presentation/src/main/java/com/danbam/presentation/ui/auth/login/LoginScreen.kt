@@ -36,9 +36,10 @@ import com.danbam.design_system.component.IndiStrawTextField
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.R
-import com.danbam.presentation.util.view.AppNavigationItem
-import com.danbam.presentation.util.view.CertificateType
-import com.danbam.presentation.util.view.DeepLinkKey
+import com.danbam.presentation.ui.auth.navigation.AuthDeepLinkKey
+import com.danbam.presentation.ui.auth.navigation.AuthNavigationItem
+import com.danbam.presentation.ui.auth.navigation.CertificateType
+import com.danbam.presentation.ui.main.navigation.MainNavigationItem
 import com.danbam.presentation.util.android.observeWithLifecycle
 import com.danbam.presentation.util.view.popBackStack
 import com.danbam.presentation.util.view.requestFocus
@@ -74,7 +75,7 @@ fun LoginScreen(
         when (it) {
             is LoginSideEffect.LoginSuccess -> {
                 keyboardController?.hide()
-                navController.navigate(AppNavigationItem.Main.route)
+                navController.navigate(MainNavigationItem.Main.route)
             }
 
             is LoginSideEffect.EmptyIdException, LoginSideEffect.MatchIdException -> {
@@ -151,8 +152,8 @@ fun LoginScreen(
                 modifier = Modifier
                     .indiStrawClickable(onClick = {
                         navController.navigate(
-                            route = AppNavigationItem.Certificate.route
-                                    + DeepLinkKey.CERTIFICATE_TYPE + CertificateType.FIND_ID
+                            route = AuthNavigationItem.Certificate.route
+                                    + AuthDeepLinkKey.CERTIFICATE_TYPE + CertificateType.FIND_ID
                         )
                     }),
                 text = stringResource(id = R.string.find_id),
@@ -171,8 +172,8 @@ fun LoginScreen(
                 modifier = Modifier
                     .indiStrawClickable(onClick = {
                         navController.navigate(
-                            route = AppNavigationItem.Certificate.route
-                                    + DeepLinkKey.CERTIFICATE_TYPE + CertificateType.FIND_PASSWORD
+                            route = AuthNavigationItem.Certificate.route
+                                    + AuthDeepLinkKey.CERTIFICATE_TYPE + CertificateType.FIND_PASSWORD
                         )
                     }),
                 text = stringResource(id = R.string.find_password),

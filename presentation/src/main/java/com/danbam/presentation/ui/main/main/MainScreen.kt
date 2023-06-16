@@ -28,8 +28,8 @@ import com.danbam.design_system.component.IndiStrawTabRow
 import com.danbam.design_system.component.MovieTab
 import com.danbam.design_system.component.Shape
 import com.danbam.design_system.component.TitleSemiBold
-import com.danbam.presentation.util.view.AppNavigationItem
-import com.danbam.presentation.util.view.MovieNavigationItem
+import com.danbam.presentation.ui.movie.navigation.MovieNavigationItem
+import com.danbam.presentation.ui.profile.navigation.ProfileNavigationItem
 import com.danbam.presentation.util.view.findActivity
 import com.google.accompanist.pager.ExperimentalPagerApi
 
@@ -63,7 +63,7 @@ fun MainScreen(
                     imgSrc = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
                     shape = Shape.Circle
                 ) {
-                    navController.navigate(AppNavigationItem.Profile.route)
+                    navController.navigate(ProfileNavigationItem.Profile.route)
                 }
             }
         }

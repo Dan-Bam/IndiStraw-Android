@@ -46,7 +46,8 @@ import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.component.TitleSemiBold
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.R
-import com.danbam.presentation.util.view.AppNavigationItem
+import com.danbam.presentation.ui.auth.navigation.AuthNavigationItem
+import com.danbam.presentation.ui.main.navigation.MainNavigationItem
 import com.danbam.presentation.util.android.observeWithLifecycle
 import com.danbam.presentation.util.view.popBackStack
 import com.danbam.presentation.util.view.requestFocus
@@ -100,8 +101,8 @@ fun SetPasswordScreen(
             }
 
             is SignUpSideEffect.SuccessSignUp -> {
-                navController.navigate(AppNavigationItem.Login.route) {
-                    popUpTo(AppNavigationItem.Intro.route)
+                navController.navigate(AuthNavigationItem.Login.route) {
+                    popUpTo(MainNavigationItem.Intro.route)
                 }
             }
 

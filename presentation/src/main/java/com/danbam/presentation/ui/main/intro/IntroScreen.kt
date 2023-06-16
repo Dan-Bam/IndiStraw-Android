@@ -25,8 +25,8 @@ import com.danbam.design_system.component.JoinBold
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.R
-import com.danbam.presentation.util.view.AppNavigationItem
-import com.danbam.presentation.util.view.SignUpNavigationItem
+import com.danbam.presentation.ui.auth.navigation.AuthNavigationItem
+import com.danbam.presentation.ui.main.navigation.MainNavigationItem
 import com.danbam.presentation.util.android.observeWithLifecycle
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.delay
@@ -45,7 +45,7 @@ fun IntroScreen(
         when (it) {
             is IntroSideEffect.SuccessLogin -> {
                 delay(1_000L)
-                navController.navigate(AppNavigationItem.Main.route)
+                navController.navigate(MainNavigationItem.Main.route)
             }
         }
     }
@@ -73,13 +73,13 @@ fun IntroScreen(
                 IndiStrawButton(
                     text = stringResource(id = R.string.login)
                 ) {
-                    navController.navigate(AppNavigationItem.Login.route)
+                    navController.navigate(AuthNavigationItem.Login.route)
                 }
                 Spacer(modifier = Modifier.height(33.dp))
                 Row(
                     modifier = Modifier
                         .indiStrawClickable(onClick = {
-                            navController.navigate(SignUpNavigationItem.SetName.route)
+                            navController.navigate(AuthNavigationItem.SetName.route)
                         })
                 ) {
                     TitleRegular(

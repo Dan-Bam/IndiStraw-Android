@@ -15,7 +15,8 @@ import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.IndiStrawTextField
 import com.danbam.design_system.R
-import com.danbam.presentation.util.view.AppNavigationItem
+import com.danbam.presentation.ui.auth.navigation.AuthNavigationItem
+import com.danbam.presentation.ui.main.navigation.MainNavigationItem
 
 @Composable
 fun FindIdScreen(
@@ -52,8 +53,8 @@ fun FindIdScreen(
             modifier = Modifier.padding(top = 78.dp),
             text = stringResource(id = R.string.check)
         ) {
-            navController.navigate(AppNavigationItem.Login.route) {
-                popUpTo(AppNavigationItem.Intro.route)
+            navController.navigate(AuthNavigationItem.Login.route) {
+                popUpTo(MainNavigationItem.Intro.route)
             }
         }
     }

@@ -35,7 +35,7 @@ import com.danbam.design_system.component.TitleSemiBold
 import com.danbam.design_system.util.RemoveOverScrollLazyRow
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.R
-import com.danbam.presentation.util.view.MovieNavigationItem
+import com.danbam.presentation.ui.movie.navigation.MovieNavigationItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

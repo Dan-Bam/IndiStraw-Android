@@ -24,9 +24,9 @@ import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.IndiStrawTextField
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.R
-import com.danbam.presentation.util.view.AppNavigationItem
-import com.danbam.presentation.util.view.CertificateType
-import com.danbam.presentation.util.view.DeepLinkKey
+import com.danbam.presentation.ui.auth.navigation.AuthDeepLinkKey
+import com.danbam.presentation.ui.auth.navigation.AuthNavigationItem
+import com.danbam.presentation.ui.auth.navigation.CertificateType
 import com.danbam.presentation.util.android.observeWithLifecycle
 import com.danbam.presentation.util.view.popBackStack
 import com.danbam.presentation.util.view.requestFocus
@@ -61,7 +61,7 @@ fun SetNameScreen(
 
             is SignUpSideEffect.Next -> {
                 keyboardController?.hide()
-                navController.navigate(AppNavigationItem.Certificate.route + DeepLinkKey.CERTIFICATE_TYPE + CertificateType.SIGN_UP)
+                navController.navigate(AuthNavigationItem.Certificate.route + AuthDeepLinkKey.CERTIFICATE_TYPE + CertificateType.SIGN_UP)
             }
 
             else -> {
