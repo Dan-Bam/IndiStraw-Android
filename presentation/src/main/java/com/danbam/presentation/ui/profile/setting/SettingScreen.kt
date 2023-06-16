@@ -31,6 +31,7 @@ import com.danbam.design_system.component.IndiStrawBottomSheetLayout
 import com.danbam.presentation.ui.auth.navigation.AuthDeepLinkKey
 import com.danbam.presentation.ui.auth.navigation.AuthNavigationItem
 import com.danbam.presentation.ui.auth.navigation.CertificateType
+import com.danbam.presentation.ui.profile.navigation.ProfileNavigationItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -40,7 +41,9 @@ fun SettingScreen(
     var changeLanguage: () -> Unit by remember { mutableStateOf({}) }
 
     val firstLine = mapOf(
-        stringResource(id = R.string.change_profile) to { }
+        stringResource(id = R.string.change_profile) to {
+            navController.navigate(ProfileNavigationItem.EditProfile.route)
+        }
     )
     val secondLine = mapOf(
         stringResource(id = R.string.change_password) to {
