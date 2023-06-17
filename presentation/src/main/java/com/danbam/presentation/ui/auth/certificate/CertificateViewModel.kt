@@ -44,7 +44,7 @@ class CertificateViewModel @Inject constructor(
         }
     }
 
-    private fun sendCertificateNumber(phoneNumber: String) = intent {
+    fun sendCertificateNumber(phoneNumber: String) = intent {
         viewModelScope.launch {
             sendCertificateNumberUseCase(phoneNumber = phoneNumber).onFailure {
                 it.errorHandling(unknownAction = {}, tooManyRequestException = {

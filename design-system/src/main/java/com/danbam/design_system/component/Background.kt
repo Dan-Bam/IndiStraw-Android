@@ -28,10 +28,15 @@ fun IndiStrawColumnBackground(
         LocalOverscrollConfiguration provides null
     ) {
         val scrollState = rememberScrollState()
-        Column(
-            modifier = modifier
+        val columnModifier = if (scrollEnabled) {
+            modifier
                 .fillMaxSize()
-                .verticalScroll(scrollState, enabled = scrollEnabled)
+                .verticalScroll(scrollState)
+        } else {
+            modifier.fillMaxSize()
+        }
+        Column(
+            modifier = columnModifier
                 .background(IndiStrawTheme.colors.black)
                 .indiStrawClickable {
                     onClickAction?.invoke()
@@ -53,10 +58,15 @@ fun IndiStrawBoxBackground(
         LocalOverscrollConfiguration provides null
     ) {
         val scrollState = rememberScrollState()
-        Box(
-            modifier = modifier
+        val boxModifier = if (scrollEnabled) {
+            modifier
                 .fillMaxSize()
-                .verticalScroll(scrollState, enabled = scrollEnabled)
+                .verticalScroll(scrollState)
+        } else {
+            modifier.fillMaxSize()
+        }
+        Box(
+            modifier = boxModifier
                 .background(IndiStrawTheme.colors.black)
                 .indiStrawClickable {
                     onClickAction?.invoke()

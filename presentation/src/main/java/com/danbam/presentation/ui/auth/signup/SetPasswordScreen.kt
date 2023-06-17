@@ -46,6 +46,8 @@ import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.component.TitleSemiBold
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.R
+import com.danbam.design_system.attribute.IndiStrawIcon
+import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.presentation.ui.auth.navigation.AuthNavigationItem
 import com.danbam.presentation.ui.main.navigation.MainNavigationItem
 import com.danbam.presentation.util.android.observeWithLifecycle
@@ -68,9 +70,9 @@ fun SetPasswordScreen(
     val sideEffect = container.sideEffectFlow
 
     var password by remember { mutableStateOf("") }
-    var passwordVisible by remember { mutableStateOf(false) }
-    var rePassword by remember { mutableStateOf("") }
-    var rePasswordVisible by remember { mutableStateOf(false) }
+    var checkPassword by remember { mutableStateOf("") }
+    var isPasswordVisible by remember { mutableStateOf(true) }
+    var isCheckPasswordVisible by remember { mutableStateOf(true) }
     var isAllApprove by remember { mutableStateOf(false) }
     var sheetVisible by remember { mutableStateOf(false) }
     var errorText by remember { mutableStateOf("") }
@@ -137,7 +139,7 @@ fun SetPasswordScreen(
                 keyboardController?.hide()
             }
         ) {
-            IndiStrawHeader(marginTop = 25, pressBackBtn = {
+            IndiStrawHeader(pressBackBtn = {
                 navController.popBackStack(keyboardController = keyboardController)
             })
             HeadLineBold(
@@ -156,21 +158,39 @@ fun SetPasswordScreen(
                     password = it
                 },
                 imeAction = ImeAction.Next,
-                isToggleVisible = passwordVisible,
-                onToggleChange = { passwordVisible = !passwordVisible }
+                isPasswordVisible = isPasswordVisible,
+                tailingIcon = {
+                    IndiStrawIcon(
+                        modifier = Modifier
+                            .height(15.dp)
+                            .indiStrawClickable(onClick = {
+                                isPasswordVisible = !isPasswordVisible
+                            }),
+                        icon = IndiStrawIconList.OpenEyes
+                    )
+                }
             )
             IndiStrawTextField(
                 modifier = Modifier
                     .padding(top = 20.dp)
                     .focusRequester(focusRequester = rePasswordFocusRequester),
                 hint = stringResource(id = R.string.check_password),
-                value = rePassword,
+                value = checkPassword,
                 onValueChange = {
                     if (errorText.isNotEmpty()) errorText = ""
-                    rePassword = it
+                    checkPassword = it
                 },
-                isToggleVisible = rePasswordVisible,
-                onToggleChange = { rePasswordVisible = !rePasswordVisible }
+                isPasswordVisible = isCheckPasswordVisible,
+                tailingIcon = {
+                    IndiStrawIcon(
+                        modifier = Modifier
+                            .height(15.dp)
+                            .indiStrawClickable(onClick = {
+                                isCheckPasswordVisible = !isCheckPasswordVisible
+                            }),
+                        icon = IndiStrawIconList.OpenEyes
+                    )
+                }
             )
             TitleRegular(
                 modifier = Modifier.padding(start = 32.dp, top = 7.dp),
@@ -182,7 +202,7 @@ fun SetPasswordScreen(
                 modifier = Modifier.padding(top = 37.dp),
                 text = stringResource(id = R.string.check)
             ) {
-                signUpViewModel.setPassword(password = password, rePassword = rePassword) {
+                signUpViewModel.setPassword(password = password, rePassword = checkPassword) {
                     keyboardController?.hide()
                     bottomSheetAction()
                 }

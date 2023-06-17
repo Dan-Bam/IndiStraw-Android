@@ -34,7 +34,7 @@ fun FindIdScreen(
     }
 
     IndiStrawColumnBackground {
-        IndiStrawHeader(marginTop = 25, pressBackBtn = {
+        IndiStrawHeader(pressBackBtn = {
             navController.popBackStack()
         })
         HeadLineBold(

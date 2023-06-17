@@ -85,6 +85,7 @@
     <string name="view_detail">자세히보기</string>
     <string name="list_project">작품 리스트</string>
     <string name="wait">잠시 후 다시 시도해주세요.</string>
+    <string name="save">저장하기</string>
     <string name="approve_all">전체동의</string>
     <string name="view_all">전체보기</string>
     <string name="phone_number">전화번호</string>

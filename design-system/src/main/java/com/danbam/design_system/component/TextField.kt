@@ -30,34 +30,19 @@ import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.design_system.util.indiStrawClickable
 import kotlinx.coroutines.delay
 
-const val RestTime = 300
-
 @Composable
 fun IndiStrawTextField(
     modifier: Modifier = Modifier,
     hint: String,
     value: String,
-    onValueChange: (String) -> Unit,
+    onValueChange: (String) -> Unit = {},
     maxLines: Int = 1,
     readOnly: Boolean = false,
     imeAction: ImeAction = ImeAction.Done,
     keyboardType: KeyboardType = KeyboardType.Text,
-    isTimer: Boolean = false,
-    onReTimer: ((() -> Unit) -> Unit)? = null,
-    onExpiredTime: () -> Unit = {},
-    isToggleVisible: Boolean? = null,
-    onToggleChange: () -> Unit = {},
+    isPasswordVisible: Boolean = false,
+    tailingIcon: (@Composable () -> Unit)? = null,
 ) {
-    var restTime by remember { mutableStateOf(RestTime) }
-    LaunchedEffect(restTime, isTimer) {
-        if (restTime != 0 && isTimer) {
-            delay(1_000L)
-            restTime--
-        } else {
-            onExpiredTime()
-        }
-    }
-    onReTimer?.let { onReTimer { restTime = RestTime } }
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -82,13 +67,13 @@ fun IndiStrawTextField(
                 fontSize = 14.sp,
                 color = IndiStrawTheme.colors.white
             ),
-            visualTransformation = if (isToggleVisible == null || isToggleVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            visualTransformation = if (!isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
         ) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Box(
-                    modifier = Modifier.fillMaxWidth(0.8F)
+                    modifier = Modifier.fillMaxWidth(if (tailingIcon == null) 1F else 0.8F)
                 ) {
                     it()
                     if (value.isEmpty()) {
@@ -96,19 +81,7 @@ fun IndiStrawTextField(
                     }
 
                 }
-                if (isTimer) {
-                    ExampleTextMedium(
-                        text = "(${restTime / 60}:${"%02d".format(restTime % 60)})",
-                    )
-                }
-                if (isToggleVisible != null) {
-                    IndiStrawIcon(
-                        modifier = Modifier
-                            .height(15.dp)
-                            .indiStrawClickable(onClick = onToggleChange),
-                        icon = IndiStrawIconList.OpenEyes
-                    )
-                }
+                tailingIcon?.let { it() }
             }
         }
     }

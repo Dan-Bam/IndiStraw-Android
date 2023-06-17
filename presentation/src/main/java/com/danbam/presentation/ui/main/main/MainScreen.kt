@@ -49,6 +49,7 @@ fun MainScreen(
         scrollEnabled = true
     ) {
         IndiStrawHeader(
+            marginTop = 6,
             isBackBtn = false
         ) {
             Row(

@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,6 +34,7 @@ import com.danbam.design_system.component.IndiStrawTextField
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.R
+import com.danbam.design_system.component.ExampleTextMedium
 import com.danbam.presentation.ui.auth.navigation.AuthDeepLinkKey
 import com.danbam.presentation.ui.auth.navigation.AuthNavigationItem
 import com.danbam.presentation.ui.auth.navigation.CertificateType
@@ -41,6 +43,9 @@ import com.danbam.presentation.util.view.popBackStack
 import com.danbam.presentation.util.view.requestFocus
 import com.danbam.presentation.util.parser.toPhoneNumber
 import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.delay
+
+const val RestTime = 300
 
 @OptIn(InternalCoroutinesApi::class, ExperimentalComposeUiApi::class)
 @Composable
@@ -49,6 +54,7 @@ fun CertificateScreen(
     certificateViewModel: CertificateViewModel = hiltViewModel(),
     certificateType: String,
 ) {
+
     val container = certificateViewModel.container
     val state = container.stateFlow.collectAsState().value
     val sideEffect = container.sideEffectFlow
@@ -56,7 +62,7 @@ fun CertificateScreen(
     var phoneNumber by remember { mutableStateOf("") }
     var certificateNumber by remember { mutableStateOf("") }
     var errorText by remember { mutableStateOf("") }
-    var onReTimer by remember { mutableStateOf({}) }
+    var restTime by remember { mutableStateOf(RestTime) }
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
     val phoneNumberFocusRequester = remember { FocusRequester() }
@@ -73,6 +79,15 @@ fun CertificateScreen(
         CertificateSideEffect.ExpiredCertificateNumberException to stringResource(id = R.string.wrong_expired_certificate_number),
         CertificateSideEffect.TooManyRequestCertificateNumberException to stringResource(id = R.string.wrong_over_request_certificate_number)
     )
+
+    LaunchedEffect(restTime) {
+        if (restTime != 0) {
+            delay(1_000L)
+            restTime--
+        } else {
+            certificateViewModel.expiredCertificateNumber()
+        }
+    }
 
     sideEffect.observeWithLifecycle {
         when (it) {
@@ -105,7 +120,6 @@ fun CertificateScreen(
         }
     ) {
         IndiStrawHeader(
-            marginTop = 25,
             pressBackBtn = { navController.popBackStack(keyboardController = keyboardController) })
         HeadLineBold(
             modifier = Modifier
@@ -137,9 +151,11 @@ fun CertificateScreen(
                     certificateNumber = it
                 },
                 keyboardType = KeyboardType.Number,
-                isTimer = true,
-                onReTimer = { onReTimer = it },
-                onExpiredTime = { certificateViewModel.expiredCertificateNumber() }
+                tailingIcon = {
+                    ExampleTextMedium(
+                        text = "(${restTime / 60}:${"%02d".format(restTime % 60)})",
+                    )
+                }
             )
         }
         TitleRegular(
@@ -166,7 +182,10 @@ fun CertificateScreen(
                 modifier = Modifier
                     .padding(top = 15.dp)
                     .fillMaxWidth()
-                    .indiStrawClickable(onClick = onReTimer),
+                    .indiStrawClickable(onClick = {
+                        certificateViewModel.sendCertificateNumber(phoneNumber = phoneNumber.toPhoneNumber())
+                        restTime = RestTime
+                    }),
                 horizontalArrangement = Arrangement.Center
             ) {
                 FindPasswordMedium(

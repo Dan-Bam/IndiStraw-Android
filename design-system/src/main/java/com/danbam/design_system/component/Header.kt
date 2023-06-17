@@ -20,7 +20,7 @@ import com.danbam.design_system.util.indiStrawClickable
 @Composable
 fun IndiStrawHeader(
     modifier: Modifier = Modifier,
-    marginTop: Int = 7,
+    marginTop: Int = 25,
     isBackBtn: Boolean = true,
     isBackString: Boolean = true,
     pressBackBtn: (() -> Unit)? = null,
