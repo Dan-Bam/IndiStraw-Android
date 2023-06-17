@@ -36,6 +36,8 @@ import com.danbam.design_system.component.IndiStrawTextField
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.R
+import com.danbam.design_system.attribute.IndiStrawIcon
+import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.presentation.ui.auth.navigation.AuthDeepLinkKey
 import com.danbam.presentation.ui.auth.navigation.AuthNavigationItem
 import com.danbam.presentation.ui.auth.navigation.CertificateType
@@ -58,7 +60,7 @@ fun LoginScreen(
     var id by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var errorText by remember { mutableStateOf("") }
-    var isToggleVisible by remember { mutableStateOf(false) }
+    var isPasswordVisible by remember { mutableStateOf(true) }
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
     val passwordFocusRequester = remember { FocusRequester() }
@@ -126,8 +128,15 @@ fun LoginScreen(
                 if (errorText.isNotEmpty()) errorText = ""
                 password = it
             },
-            isToggleVisible = isToggleVisible,
-            onToggleChange = { isToggleVisible = !isToggleVisible }
+            isPasswordVisible = isPasswordVisible,
+            tailingIcon = {
+                IndiStrawIcon(
+                    modifier = Modifier
+                        .height(15.dp)
+                        .indiStrawClickable(onClick = { isPasswordVisible = !isPasswordVisible }),
+                    icon = IndiStrawIconList.OpenEyes
+                )
+            }
         )
         TitleRegular(
             modifier = Modifier.padding(start = 32.dp, top = 7.dp),

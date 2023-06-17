@@ -1,5 +1,6 @@
 package com.danbam.presentation.ui.auth.find.find_password
 
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -26,6 +27,9 @@ import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.IndiStrawTextField
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.R
+import com.danbam.design_system.attribute.IndiStrawIcon
+import com.danbam.design_system.attribute.IndiStrawIconList
+import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.presentation.ui.auth.navigation.AuthNavigationItem
 import com.danbam.presentation.ui.main.navigation.MainNavigationItem
 import com.danbam.presentation.ui.profile.navigation.ProfileNavigationItem
@@ -49,8 +53,8 @@ fun FindPasswordScreen(
     var password by remember { mutableStateOf("") }
     var errorText by remember { mutableStateOf("") }
     var checkPassword by remember { mutableStateOf("") }
-    var passwordVisible by remember { mutableStateOf(false) }
-    var checkPasswordVisible by remember { mutableStateOf(false) }
+    var isPasswordVisible by remember { mutableStateOf(true) }
+    var isCheckPasswordVisible by remember { mutableStateOf(true) }
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
     val passwordFocusRequester = remember { FocusRequester() }
@@ -117,8 +121,15 @@ fun FindPasswordScreen(
                 password = it
             },
             imeAction = ImeAction.Next,
-            isToggleVisible = passwordVisible,
-            onToggleChange = { passwordVisible = !passwordVisible }
+            isPasswordVisible = isPasswordVisible,
+            tailingIcon = {
+                IndiStrawIcon(
+                    modifier = Modifier
+                        .height(15.dp)
+                        .indiStrawClickable(onClick = { isPasswordVisible = !isPasswordVisible }),
+                    icon = IndiStrawIconList.OpenEyes
+                )
+            }
         )
         IndiStrawTextField(
             modifier = Modifier
@@ -130,8 +141,17 @@ fun FindPasswordScreen(
                 if (errorText.isNotEmpty()) errorText = ""
                 checkPassword = it
             },
-            isToggleVisible = checkPasswordVisible,
-            onToggleChange = { checkPasswordVisible = !checkPasswordVisible }
+            isPasswordVisible = isCheckPasswordVisible,
+            tailingIcon = {
+                IndiStrawIcon(
+                    modifier = Modifier
+                        .height(15.dp)
+                        .indiStrawClickable(onClick = {
+                            isCheckPasswordVisible = !isCheckPasswordVisible
+                        }),
+                    icon = IndiStrawIconList.OpenEyes
+                )
+            }
         )
         TitleRegular(
             modifier = Modifier.padding(start = 32.dp, top = 7.dp),
