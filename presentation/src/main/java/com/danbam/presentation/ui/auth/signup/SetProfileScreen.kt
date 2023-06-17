@@ -65,10 +65,8 @@ fun SetProfileScreen(
             modifier = Modifier
                 .padding(top = 84.dp)
                 .align(CenterHorizontally),
-            requireGalleryString = stringResource(id = R.string.choose_gallery),
-            requireCameraString = stringResource(id = R.string.choose_camera),
             paddingValues = PaddingValues(36.dp),
-            isFirst = true,
+            isSignUp = true,
             imageUrl = file,
             selectGallery = {
                 it?.let { signUpViewModel.setProfile(it.toFile(context)) }
