@@ -35,7 +35,7 @@ fun IndiStrawTextField(
     modifier: Modifier = Modifier,
     hint: String,
     value: String,
-    onValueChange: (String) -> Unit,
+    onValueChange: (String) -> Unit = {},
     maxLines: Int = 1,
     readOnly: Boolean = false,
     imeAction: ImeAction = ImeAction.Done,
@@ -73,7 +73,7 @@ fun IndiStrawTextField(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Box(
-                    modifier = Modifier.fillMaxWidth(0.8F)
+                    modifier = Modifier.fillMaxWidth(if (tailingIcon == null) 1F else 0.8F)
                 ) {
                     it()
                     if (value.isEmpty()) {
