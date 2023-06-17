@@ -31,10 +31,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.danbam.design_system.IndiStrawTheme
+import com.danbam.design_system.R
 import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.design_system.util.checkAndRequestPermissions
@@ -94,10 +96,7 @@ fun ImageButton(
 fun SelectImageButton(
     modifier: Modifier = Modifier,
     paddingValues: PaddingValues,
-    requireGalleryString: String,
-    requireCameraString: String,
-    requireString: String? = null,
-    isFirst: Boolean = false,
+    isSignUp: Boolean = false,
     imageUrl: String?,
     selectCamera: (Bitmap?) -> Unit,
     selectGallery: (Uri?) -> Unit,
@@ -138,44 +137,28 @@ fun SelectImageButton(
     IndiStrawBottomSheetLayout(sheetContent = {
         Column {
             Spacer(modifier = Modifier.height(42.dp))
-            Row(
-                modifier = Modifier
-                    .indiStrawClickable(onClick = {
-                        takePhotoFromAlbumLauncher.launch(
-                            takePhotoFromAlbumIntent
-                        )
-                    })
-                    .padding(start = 32.dp)
+            ChooseImageItem(
+                icon = IndiStrawIconList.Gallery,
+                text = stringResource(id = R.string.choose_gallery)
             ) {
-                IndiStrawIcon(icon = IndiStrawIconList.Gallery)
-                Spacer(modifier = Modifier.width(16.dp))
-                TitleRegular(
-                    modifier = Modifier.align(CenterVertically),
-                    text = requireGalleryString
+                takePhotoFromAlbumLauncher.launch(
+                    takePhotoFromAlbumIntent
                 )
             }
             Spacer(modifier = Modifier.height(40.dp))
-            Row(
-                modifier = Modifier
-                    .indiStrawClickable(onClick = {
-                        if (checkAndRequestPermissions(
-                                context = context,
-                                permissions = arrayOf(Manifest.permission.CAMERA),
-                            )
-                        ) {
-                            takePhotoFromCameraLauncher.launch()
-                        } else {
-                            launcherMultiplePermissions.launch(arrayOf(Manifest.permission.CAMERA))
-                        }
-                    })
-                    .padding(start = 32.dp)
+            ChooseImageItem(
+                icon = IndiStrawIconList.Camera,
+                text = stringResource(id = R.string.choose_camera)
             ) {
-                IndiStrawIcon(icon = IndiStrawIconList.Camera)
-                Spacer(modifier = Modifier.width(16.dp))
-                TitleRegular(
-                    modifier = Modifier.align(CenterVertically),
-                    text = requireCameraString
-                )
+                if (checkAndRequestPermissions(
+                        context = context,
+                        permissions = arrayOf(Manifest.permission.CAMERA),
+                    )
+                ) {
+                    takePhotoFromCameraLauncher.launch()
+                } else {
+                    launcherMultiplePermissions.launch(arrayOf(Manifest.permission.CAMERA))
+                }
             }
             Spacer(modifier = Modifier.height(165.dp))
         }
@@ -196,9 +179,9 @@ fun SelectImageButton(
                         ) {
                             AsyncImage(
                                 modifier = Modifier
-                                    .width(if (isFirst) 125.dp else 80.dp)
-                                    .height(if (isFirst) 125.dp else 80.dp)
-                                    .clip(shape = if (requireString == null) IndiStrawTheme.shapes.circle else IndiStrawTheme.shapes.defaultRounded),
+                                    .width(if (isSignUp) 125.dp else 80.dp)
+                                    .height(if (isSignUp) 125.dp else 80.dp)
+                                    .clip(shape = IndiStrawTheme.shapes.circle),
                                 model = imageUrl, contentDescription = "",
                                 contentScale = ContentScale.Crop
                             )
@@ -208,20 +191,17 @@ fun SelectImageButton(
                             modifier = modifier
                                 .background(
                                     color = IndiStrawTheme.colors.gray,
-                                    shape = if (requireString == null) IndiStrawTheme.shapes.circle else IndiStrawTheme.shapes.defaultRounded
+                                    shape = IndiStrawTheme.shapes.circle
                                 )
                                 .padding(paddingValues = paddingValues),
                         ) {
                             IndiStrawIcon(
                                 modifier = Modifier
                                     .align(Center)
-                                    .width(if (isFirst) 56.dp else 35.dp)
-                                    .height(if (isFirst) 56.dp else 35.dp),
+                                    .width(if (isSignUp) 56.dp else 35.dp)
+                                    .height(if (isSignUp) 56.dp else 35.dp),
                                 icon = IndiStrawIconList.NoImage
                             )
-                            if (requireString != null) {
-                                ExampleTextMedium(text = requireString)
-                            }
                         }
                         IndiStrawIcon(
                             modifier = Modifier.align(BottomEnd),
@@ -232,5 +212,26 @@ fun SelectImageButton(
             }
             bottomContent()
         }
+    }
+}
+
+@Composable
+private fun ChooseImageItem(
+    modifier: Modifier = Modifier,
+    icon: IndiStrawIconList,
+    text: String,
+    onClick: () -> Unit,
+) {
+    Row(
+        modifier = modifier
+            .indiStrawClickable(onClick = onClick)
+            .padding(start = 32.dp)
+    ) {
+        IndiStrawIcon(icon = icon)
+        Spacer(modifier = Modifier.width(16.dp))
+        TitleRegular(
+            modifier = Modifier.align(CenterVertically),
+            text = text
+        )
     }
 }
