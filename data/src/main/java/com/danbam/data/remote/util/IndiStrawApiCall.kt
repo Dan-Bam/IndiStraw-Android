@@ -13,6 +13,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
+import retrofit2.Response
 
 data class Error(
     @SerializedName("message")
@@ -42,6 +43,20 @@ suspend inline fun <T> indiStrawApiCall(
     } catch (e: ExpiredTokenException) {
         throw ExpiredTokenException()
     }
+
+fun <T> Response<T>.errorHandling() {
+    if (!isSuccessful) {
+        throw when (code()) {
+            400 -> WrongDataException(message())
+            401 -> InvalidTokenException(message())
+            404 -> NotFoundException(message())
+            409 -> ConflictDataException(message())
+            429 -> TooManyRequestException(message())
+            in 500..600 -> ServerErrorException(message())
+            else -> UnKnownHttpException(message())
+        }
+    }
+}
 
 fun getError(exception: HttpException): Error? =
     exception.response()?.errorBody()?.let { Gson().fromJson(it.string(), Error::class.java) }
