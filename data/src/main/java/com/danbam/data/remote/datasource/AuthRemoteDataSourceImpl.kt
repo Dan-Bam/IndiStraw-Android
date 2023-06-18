@@ -22,21 +22,21 @@ class AuthRemoteDataSourceImpl @Inject constructor(
         authAPI.refresh(refreshToken = "Bearer $refreshToken")
     }
 
-    override suspend fun checkPhoneNumber(phoneNumber: String, type: String): Void =
+    override suspend fun checkPhoneNumber(phoneNumber: String, type: String): Void? =
         indiStrawApiCall {
-            authAPI.checkPhoneNumber(phoneNumber = phoneNumber, type = type)
+            authAPI.checkPhoneNumber(phoneNumber = phoneNumber, type = type).body()
         }
 
-    override suspend fun checkId(id: String): Void = indiStrawApiCall {
-        authAPI.checkId(id = id)
+    override suspend fun checkId(id: String): Void? = indiStrawApiCall {
+        authAPI.checkId(id = id).body()
     }
 
-    override suspend fun sendCertificateNumber(phoneNumber: String) = indiStrawApiCall {
-        authAPI.sendCertificateNumber(phoneNumber = phoneNumber)
+    override suspend fun sendCertificateNumber(phoneNumber: String): Void? = indiStrawApiCall {
+        authAPI.sendCertificateNumber(phoneNumber = phoneNumber).body()
     }
 
-    override suspend fun checkCertificateNumber(authCode: Int, phoneNumber: String) =
+    override suspend fun checkCertificateNumber(authCode: Int, phoneNumber: String): Void? =
         indiStrawApiCall {
-            authAPI.checkCertificateNumber(authCode = authCode, phoneNumber = phoneNumber)
+            authAPI.checkCertificateNumber(authCode = authCode, phoneNumber = phoneNumber).body()
         }
 }

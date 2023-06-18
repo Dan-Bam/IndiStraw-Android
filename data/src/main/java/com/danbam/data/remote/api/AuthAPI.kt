@@ -3,6 +3,7 @@ package com.danbam.data.remote.api
 import com.danbam.data.remote.request.LoginRequest
 import com.danbam.data.remote.request.SignUpRequest
 import com.danbam.data.remote.response.LoginResponse
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.HEAD
@@ -31,21 +32,21 @@ interface AuthAPI {
     suspend fun checkPhoneNumber(
         @Path("phoneNumber") phoneNumber: String,
         @Path("type") type: String,
-    ): Void
+    ): Response<Void?>
 
     @HEAD("auth/check/id/{id}")
     suspend fun checkId(
         @Path("id") id: String,
-    ): Void
+    ): Response<Void?>
 
     @POST("auth/send/phone-number/{phoneNumber}")
     suspend fun sendCertificateNumber(
         @Path("phoneNumber") phoneNumber: String,
-    )
+    ): Response<Void?>
 
     @GET("auth/auth-code/{authCode}/phone-number/{phoneNumber}")
     suspend fun checkCertificateNumber(
         @Path("authCode") authCode: Int,
         @Path("phoneNumber") phoneNumber: String,
-    )
+    ): Response<Void?>
 }
