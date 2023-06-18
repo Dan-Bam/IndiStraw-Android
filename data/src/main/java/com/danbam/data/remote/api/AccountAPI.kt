@@ -2,6 +2,7 @@ package com.danbam.data.remote.api
 
 import com.danbam.data.remote.request.ChangePasswordRequest
 import com.danbam.data.remote.response.FindIdResponse
+import com.danbam.data.remote.response.ProfileResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.PATCH
@@ -17,4 +18,7 @@ interface AccountAPI {
     suspend fun changePassword(
         @Body changePasswordRequest: ChangePasswordRequest,
     )
+
+    @GET("account/profile")
+    suspend fun getProfile(): ProfileResponse
 }
