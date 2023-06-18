@@ -51,7 +51,7 @@ interface AuthAPI {
         @Path("phoneNumber") phoneNumber: String,
     ): Response<Void?>
 
-    @DELETE("account/logout")
+    @DELETE("auth/logout")
     suspend fun logout(
         @Header("refreshToken") refreshToken: String,
     ): Response<Void?>
