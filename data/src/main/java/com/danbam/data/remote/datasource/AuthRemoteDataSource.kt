@@ -12,4 +12,5 @@ interface AuthRemoteDataSource {
     suspend fun checkId(id: String)
     suspend fun sendCertificateNumber(phoneNumber: String)
     suspend fun checkCertificateNumber(authCode: Int, phoneNumber: String)
+    suspend fun logout(refreshToken: String)
 }

@@ -53,6 +53,17 @@ class AuthRepositoryImpl @Inject constructor(
     override suspend fun checkCertificateNumber(authCode: Int, phoneNumber: String) =
         authRemoteDataSource.checkCertificateNumber(authCode = authCode, phoneNumber = phoneNumber)
 
+    override suspend fun logout() {
+        val refreshToken = authLocalDataSource.fetchRefreshToken() ?: throw ExpiredTokenException()
+        authRemoteDataSource.logout(refreshToken)
+        with(authLocalDataSource) {
+            clearAccessToken()
+            clearRefreshToken()
+            clearAccessExpiredAt()
+            clearRefreshExpiredAt()
+        }
+    }
+
     private fun LoginResponse.saveToken() {
         authLocalDataSource.saveAccessToken(accessToken)
         authLocalDataSource.saveRefreshToken(refreshToken)
