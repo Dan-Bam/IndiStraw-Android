@@ -29,15 +29,15 @@ class CertificateViewModel @Inject constructor(
         else if (!phoneNumber.isPhoneNumber()) postSideEffect(CertificateSideEffect.MatchPhoneNumberException)
         else {
             viewModelScope.launch {
-                checkPhoneNumberUseCase(phoneNumber = phoneNumber, type = type).onFailure {
+                checkPhoneNumberUseCase(phoneNumber = phoneNumber, type = type).onSuccess {
+                    sendCertificateNumber(phoneNumber = phoneNumber)
+                }.onFailure {
                     it.errorHandling(unknownAction = {}, notFoundException = {
                         postSideEffect(CertificateSideEffect.NotEnrollPhoneNumberException)
                     }, conflictException = {
                         postSideEffect(CertificateSideEffect.EnrollPhoneNumberException)
                     }, tooManyRequestException = {
                         postSideEffect(CertificateSideEffect.TooManyRequestPhoneNumberException)
-                    }, noContentException = {
-                        sendCertificateNumber(phoneNumber = phoneNumber)
                     })
                 }
             }
@@ -46,11 +46,11 @@ class CertificateViewModel @Inject constructor(
 
     fun sendCertificateNumber(phoneNumber: String) = intent {
         viewModelScope.launch {
-            sendCertificateNumberUseCase(phoneNumber = phoneNumber).onFailure {
+            sendCertificateNumberUseCase(phoneNumber = phoneNumber).onSuccess {
+                reduce { state.copy(phoneNumber = phoneNumber) }
+            }.onFailure {
                 it.errorHandling(unknownAction = {}, tooManyRequestException = {
                     postSideEffect(CertificateSideEffect.TooManyRequestCertificateNumberException)
-                }, noContentException = {
-                    reduce { state.copy(phoneNumber = phoneNumber) }
                 })
             }
         }
@@ -63,12 +63,12 @@ class CertificateViewModel @Inject constructor(
                 checkCertificateNumberUseCase(
                     authCode = authCode.toInt(),
                     phoneNumber = state.phoneNumber
-                ).onFailure {
+                ).onSuccess {
+                    postSideEffect(CertificateSideEffect.SuccessCertificate)
+                    reduce { state.copy(phoneNumber = "") }
+                }.onFailure {
                     it.errorHandling(unknownAction = {}, wrongDataException = {
                         postSideEffect(CertificateSideEffect.WrongCertificateNumberException)
-                    }, noContentException = {
-                        postSideEffect(CertificateSideEffect.SuccessCertificate)
-                        reduce { state.copy(phoneNumber = "") }
                     })
                 }
             }

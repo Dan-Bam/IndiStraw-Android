@@ -55,12 +55,12 @@ class SignUpViewModel @Inject constructor(
         else if (!id.isId()) postSideEffect(SignUpSideEffect.MatchIdException)
         else {
             viewModelScope.launch {
-                checkIdUseCase(id = id).onFailure {
+                checkIdUseCase(id = id).onSuccess {
+                    reduce { state.copy(id = id) }
+                    postSideEffect(SignUpSideEffect.Next)
+                }.onFailure {
                     it.errorHandling(unknownAction = {}, conflictException = {
                         postSideEffect(SignUpSideEffect.EnrollIdException)
-                    }, noContentException = {
-                        reduce { state.copy(id = id) }
-                        postSideEffect(SignUpSideEffect.Next)
                     })
                 }
             }
