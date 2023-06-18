@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -18,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.component.ExampleTextMedium
@@ -31,13 +33,31 @@ import com.danbam.design_system.component.IndiStrawBottomSheetLayout
 import com.danbam.presentation.ui.auth.navigation.AuthDeepLinkKey
 import com.danbam.presentation.ui.auth.navigation.AuthNavigationItem
 import com.danbam.presentation.ui.auth.navigation.CertificateType
+import com.danbam.presentation.ui.main.navigation.MainNavigationItem
 import com.danbam.presentation.ui.profile.navigation.ProfileNavigationItem
+import com.danbam.presentation.util.android.observeWithLifecycle
+import kotlinx.coroutines.InternalCoroutinesApi
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterialApi::class, InternalCoroutinesApi::class)
 @Composable
 fun SettingScreen(
     navController: NavController,
+    settingViewModel: SettingViewModel = hiltViewModel(),
 ) {
+    val container = settingViewModel.container
+    val state = container.stateFlow.collectAsState().value
+    val sideEffect = container.sideEffectFlow
+
+    sideEffect.observeWithLifecycle {
+        when (it) {
+            is SettingSideEffect.SuccessLogout -> {
+                navController.navigate(AuthNavigationItem.Login.route) {
+                    popUpTo(MainNavigationItem.Intro.route)
+                }
+            }
+        }
+    }
+
     var changeLanguage: () -> Unit by remember { mutableStateOf({}) }
 
     val firstLine = mapOf(
@@ -52,7 +72,9 @@ fun SettingScreen(
         stringResource(id = R.string.change_language) to { changeLanguage() }
     )
     val thirdLine = mapOf(
-        stringResource(id = R.string.logout) to { }
+        stringResource(id = R.string.logout) to {
+            settingViewModel.logout()
+        }
     )
     val forthLine = mapOf(
         stringResource(id = R.string.withdrawal) to { }
