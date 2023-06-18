@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,6 +23,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.danbam.design_system.IndiStrawTheme
@@ -41,9 +44,18 @@ import com.danbam.presentation.ui.profile.navigation.ProfileNavigationItem
 @Composable
 fun ProfileScreen(
     navController: NavController,
+    profileViewModel: ProfileViewModel = hiltViewModel(),
 ) {
+    val container = profileViewModel.container
+    val state = container.stateFlow.collectAsState().value
+    val sideEffect = container.sideEffectFlow
+
     var currentMovieTab: MovieTab by remember { mutableStateOf(MovieTab.RecentMovie) }
     var currentFundingTab: FundingTab by remember { mutableStateOf(FundingTab.ParticipantFunding) }
+
+    LaunchedEffect(Unit) {
+        profileViewModel.getProfile()
+    }
 
     IndiStrawColumnBackground(
         scrollEnabled = true
@@ -62,7 +74,7 @@ fun ProfileScreen(
                 .padding(top = 32.dp),
             horizontalArrangement = Arrangement.Center
         ) {
-            if (false) {
+            if (state.profileUrl != null) {
                 AsyncImage(
                     modifier = Modifier
                         .width(80.dp)
@@ -70,7 +82,7 @@ fun ProfileScreen(
                         .clip(
                             shape = IndiStrawTheme.shapes.circle
                         ),
-                    model = "", contentDescription = "",
+                    model = state.profileUrl, contentDescription = "",
                     contentScale = ContentScale.Crop
                 )
             } else {
@@ -96,7 +108,7 @@ fun ProfileScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 7.dp),
-            text = "이동욱님",
+            text = "${state.name}님",
             fontSize = 20,
             textAlign = TextAlign.Center
         )
