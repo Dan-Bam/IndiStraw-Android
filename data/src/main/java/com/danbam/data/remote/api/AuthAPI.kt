@@ -5,6 +5,7 @@ import com.danbam.data.remote.request.SignUpRequest
 import com.danbam.data.remote.response.LoginResponse
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.HEAD
 import retrofit2.http.Header
@@ -48,5 +49,10 @@ interface AuthAPI {
     suspend fun checkCertificateNumber(
         @Path("authCode") authCode: Int,
         @Path("phoneNumber") phoneNumber: String,
+    ): Response<Void?>
+
+    @DELETE("account/logout")
+    suspend fun logout(
+        @Header("refreshToken") refreshToken: String,
     ): Response<Void?>
 }

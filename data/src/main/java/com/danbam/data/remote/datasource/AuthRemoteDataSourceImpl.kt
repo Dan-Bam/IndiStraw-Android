@@ -41,4 +41,8 @@ class AuthRemoteDataSourceImpl @Inject constructor(
             authAPI.checkCertificateNumber(authCode = authCode, phoneNumber = phoneNumber)
                 .errorHandling()
         }
+
+    override suspend fun logout(refreshToken: String) = indiStrawApiCall {
+        authAPI.logout(refreshToken = "Bearer $refreshToken").errorHandling()
+    }
 }
