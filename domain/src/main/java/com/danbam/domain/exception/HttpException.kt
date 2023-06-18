@@ -27,7 +27,3 @@ class UnKnownHttpException(
 class TooManyRequestException(
     override val message: String?,
 ) : RuntimeException()
-
-class NoContentException(
-    override val message: String?,
-) : RuntimeException()

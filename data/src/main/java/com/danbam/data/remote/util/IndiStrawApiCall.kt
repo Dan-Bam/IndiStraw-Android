@@ -3,7 +3,6 @@ package com.danbam.data.remote.util
 import com.danbam.domain.exception.ConflictDataException
 import com.danbam.domain.exception.ExpiredTokenException
 import com.danbam.domain.exception.InvalidTokenException
-import com.danbam.domain.exception.NoContentException
 import com.danbam.domain.exception.NotFoundException
 import com.danbam.domain.exception.ServerErrorException
 import com.danbam.domain.exception.TooManyRequestException
@@ -14,7 +13,6 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
-import java.lang.NullPointerException
 
 data class Error(
     @SerializedName("message")
@@ -43,8 +41,6 @@ suspend inline fun <T> indiStrawApiCall(
         }
     } catch (e: ExpiredTokenException) {
         throw ExpiredTokenException()
-    } catch (e: KotlinNullPointerException) {
-        throw NoContentException(e.message)
     }
 
 fun getError(exception: HttpException): Error? =

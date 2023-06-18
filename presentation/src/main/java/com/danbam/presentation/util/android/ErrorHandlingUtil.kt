@@ -4,7 +4,6 @@ import android.util.Log
 import com.danbam.domain.exception.ConflictDataException
 import com.danbam.domain.exception.ExpiredTokenException
 import com.danbam.domain.exception.InvalidTokenException
-import com.danbam.domain.exception.NoContentException
 import com.danbam.domain.exception.NotFoundException
 import com.danbam.domain.exception.ServerErrorException
 import com.danbam.domain.exception.TooManyRequestException
@@ -19,7 +18,6 @@ suspend fun Throwable.errorHandling(
     serverErrorException: suspend () -> Unit = unknownAction,
     expiredTokenException: suspend () -> Unit = unknownAction,
     tooManyRequestException: suspend () -> Unit = unknownAction,
-    noContentException: suspend () -> Unit = unknownAction,
 ) =
     when (this) {
         is WrongDataException -> {
@@ -55,11 +53,6 @@ suspend fun Throwable.errorHandling(
         is TooManyRequestException -> {
             errorLog("TooManyRequestException", message)
             tooManyRequestException()
-        }
-
-        is NoContentException -> {
-            errorLog("NoContentException", message)
-            noContentException()
         }
 
         else -> {
