@@ -2,6 +2,7 @@ package com.danbam.presentation.ui.auth.certificate
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.danbam.domain.usecase.account.ChangePhoneNumberUseCase
 import com.danbam.domain.usecase.auth.CheckCertificateNumberUseCase
 import com.danbam.domain.usecase.auth.CheckPhoneNumberUseCase
 import com.danbam.domain.usecase.auth.SendCertificateNumberUseCase
@@ -21,6 +22,7 @@ class CertificateViewModel @Inject constructor(
     private val checkPhoneNumberUseCase: CheckPhoneNumberUseCase,
     private val sendCertificateNumberUseCase: SendCertificateNumberUseCase,
     private val checkCertificateNumberUseCase: CheckCertificateNumberUseCase,
+    private val changePhoneNumberUseCase: ChangePhoneNumberUseCase,
 ) : ContainerHost<CertificateState, CertificateSideEffect>, ViewModel() {
     override val container = container<CertificateState, CertificateSideEffect>(CertificateState())
 
@@ -77,5 +79,15 @@ class CertificateViewModel @Inject constructor(
 
     fun expiredCertificateNumber() = intent {
         postSideEffect(CertificateSideEffect.ExpiredCertificateNumberException)
+    }
+
+    fun changePhoneNumber() = intent {
+        viewModelScope.launch {
+            changePhoneNumberUseCase(phoneNumber = state.phoneNumber).onSuccess {
+                postSideEffect(CertificateSideEffect.SuccessChangePhoneNumber)
+            }.onFailure {
+                it.errorHandling(unknownAction = {})
+            }
+        }
     }
 }

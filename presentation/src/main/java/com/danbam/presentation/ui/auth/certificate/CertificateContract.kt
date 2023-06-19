@@ -15,4 +15,5 @@ sealed class CertificateSideEffect {
     object ExpiredCertificateNumberException : CertificateSideEffect()
     object TooManyRequestCertificateNumberException : CertificateSideEffect()
     object SuccessCertificate : CertificateSideEffect()
+    object SuccessChangePhoneNumber : CertificateSideEffect()
 }
