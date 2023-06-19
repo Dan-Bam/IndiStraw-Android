@@ -6,6 +6,7 @@ import com.danbam.data.remote.response.toEntity
 import com.danbam.domain.entity.FindIdEntity
 import com.danbam.domain.entity.ProfileEntity
 import com.danbam.domain.param.ChangePasswordParam
+import com.danbam.domain.param.EditProfileParam
 import com.danbam.domain.repository.AccountRepository
 import javax.inject.Inject
 
@@ -20,6 +21,9 @@ class AccountRepositoryImpl @Inject constructor(
 
     override suspend fun getProfile(): ProfileEntity =
         accountRemoteDataSource.getProfile().toEntity()
+
+    override suspend fun editProfile(editProfileParam: EditProfileParam) =
+        accountRemoteDataSource.editProfile(editProfileRequest = editProfileParam.toRequest())
 
     override suspend fun withdraw() =
         accountRemoteDataSource.withdraw()

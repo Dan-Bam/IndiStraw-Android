@@ -1,6 +1,7 @@
 package com.danbam.data.remote.api
 
 import com.danbam.data.remote.request.ChangePasswordRequest
+import com.danbam.data.remote.request.EditProfileRequest
 import com.danbam.data.remote.response.FindIdResponse
 import com.danbam.data.remote.response.ProfileResponse
 import retrofit2.Response
@@ -23,6 +24,11 @@ interface AccountAPI {
 
     @GET("account/profile")
     suspend fun getProfile(): ProfileResponse
+
+    @PATCH("account/profile")
+    suspend fun editProfile(
+        @Body editProfileRequest: EditProfileRequest,
+    ): Response<Void?>
 
     @DELETE("account")
     suspend fun withdraw(): Response<Void?>
