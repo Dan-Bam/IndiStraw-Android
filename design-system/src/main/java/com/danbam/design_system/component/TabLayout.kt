@@ -1,6 +1,7 @@
 package com.danbam.design_system.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -115,13 +116,27 @@ fun IndiStrawTabRow(
     }
 
     Column(
-        modifier = modifier
+        modifier = modifier,
     ) {
-        Row {
-            tabHeader.forEach {
-                it()
-                Spacer(modifier = Modifier.width(16.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.Bottom
+        ) {
+            Row {
+                tabHeader.forEach {
+                    it()
+                    Spacer(modifier = Modifier.width(16.dp))
+                }
             }
+            TitleRegular(
+                modifier = Modifier
+                    .indiStrawClickable(onClick = moreData)
+                    .padding(end = 15.dp, bottom = if (isCrowdFunding) 0.dp else 6.dp),
+                text = stringResource(id = R.string.view_all),
+                fontSize = 12,
+                color = IndiStrawTheme.colors.gray
+            )
         }
     }
     if (isCrowdFunding) {
@@ -132,12 +147,6 @@ fun IndiStrawTabRow(
             }
             Spacer(modifier = Modifier.height(16.dp))
         }
-        MoreIcon(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 20.dp, bottom = 19.dp),
-            moreData = moreData
-        )
     } else {
         RemoveOverScrollLazyRow(
             modifier = Modifier.padding(top = 10.dp),
@@ -152,13 +161,6 @@ fun IndiStrawTabRow(
                     onClickItem(it)
                 }
                 Spacer(modifier = Modifier.width(9.dp))
-            }
-            item {
-                MoreIcon(
-                    modifier = Modifier
-                        .padding(start = 34.dp, end = 48.dp),
-                    moreData = moreData
-                )
             }
         }
     }
@@ -227,23 +229,5 @@ private fun FundingItem(
             contentDescription = "crowdFundingImg",
             contentScale = ContentScale.Crop
         )
-    }
-}
-
-@Composable
-private fun MoreIcon(
-    modifier: Modifier = Modifier,
-    moreData: () -> Unit,
-) {
-    Column(
-        modifier = modifier
-            .indiStrawClickable(onClick = moreData),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        IndiStrawIcon(
-            icon = IndiStrawIconList.More
-        )
-        Spacer(modifier = Modifier.height(10.dp))
-        TitleRegular(text = stringResource(id = R.string.more))
     }
 }
