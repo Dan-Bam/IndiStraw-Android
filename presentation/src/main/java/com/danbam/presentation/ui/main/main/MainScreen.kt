@@ -98,8 +98,7 @@ fun MainScreen(
                     ) {
                         IndiStrawIcon(
                             modifier = Modifier
-                                .align(Alignment.Center)
-                                .clip(IndiStrawTheme.shapes.circle),
+                                .align(Alignment.Center),
                             icon = IndiStrawIconList.Profile,
                             contentScale = ContentScale.Crop
                         )
