@@ -9,6 +9,6 @@ data class EditProfileParam(
     data class AddressParam(
         val zipcode: String,
         val streetAddress: String,
-        val detailAddress: String?,
+        val detailAddress: String,
     )
 }

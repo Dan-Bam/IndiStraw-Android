@@ -19,7 +19,7 @@ data class EditProfileRequest(
         @SerializedName("streetAddress")
         val streetAddress: String,
         @SerializedName("detailAddress")
-        val detailAddress: String?,
+        val detailAddress: String,
     )
 }
 
