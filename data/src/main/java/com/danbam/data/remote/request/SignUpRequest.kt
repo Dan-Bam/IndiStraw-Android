@@ -13,7 +13,7 @@ data class SignUpRequest(
     @SerializedName("phoneNumber")
     val phoneNumber: String,
     @SerializedName("profileUrl")
-    val profileUrl: String,
+    val profileUrl: String?,
 )
 
 fun SignUpParam.toRequest() = SignUpRequest(

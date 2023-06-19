@@ -5,7 +5,7 @@ data class SignUpState(
     val password: String = "",
     val name: String = "",
     val phoneNumber: String = "",
-    val profileUrl: String = "",
+    val profileUrl: String? = null,
 )
 
 sealed class SignUpSideEffect {
