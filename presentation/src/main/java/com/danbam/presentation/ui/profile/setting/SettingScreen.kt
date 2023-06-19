@@ -55,6 +55,12 @@ fun SettingScreen(
                     popUpTo(MainNavigationItem.Intro.route)
                 }
             }
+
+            is SettingSideEffect.SuccessWithdraw -> {
+                navController.navigate(AuthNavigationItem.Login.route) {
+                    popUpTo(MainNavigationItem.Intro.route)
+                }
+            }
         }
     }
 
@@ -77,7 +83,9 @@ fun SettingScreen(
         }
     )
     val forthLine = mapOf(
-        stringResource(id = R.string.withdrawal) to { }
+        stringResource(id = R.string.withdrawal) to {
+            settingViewModel.withdraw()
+        }
     )
 
     IndiStrawBottomSheetLayout(sheetContent = {
