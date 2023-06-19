@@ -22,6 +22,9 @@ class AccountRepositoryImpl @Inject constructor(
     override suspend fun getProfile(): ProfileEntity =
         accountRemoteDataSource.getProfile().toEntity()
 
+    override suspend fun changePhoneNumber(phoneNumber: String) =
+        accountRemoteDataSource.changePhoneNumber(phoneNumber = phoneNumber)
+
     override suspend fun editProfile(editProfileParam: EditProfileParam) =
         accountRemoteDataSource.editProfile(editProfileRequest = editProfileParam.toRequest())
 

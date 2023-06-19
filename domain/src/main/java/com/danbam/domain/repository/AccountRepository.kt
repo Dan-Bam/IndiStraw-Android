@@ -9,6 +9,7 @@ interface AccountRepository {
     suspend fun findId(phoneNumber: String): FindIdEntity
     suspend fun changePassword(changePasswordParam: ChangePasswordParam)
     suspend fun getProfile(): ProfileEntity
+    suspend fun changePhoneNumber(phoneNumber: String)
     suspend fun editProfile(editProfileParam: EditProfileParam)
     suspend fun withdraw()
 }

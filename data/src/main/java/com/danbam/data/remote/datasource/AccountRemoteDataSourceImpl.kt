@@ -25,6 +25,10 @@ class AccountRemoteDataSourceImpl @Inject constructor(
         accountAPI.getProfile()
     }
 
+    override suspend fun changePhoneNumber(phoneNumber: String) = indiStrawApiCall {
+        accountAPI.changePhoneNumber(phoneNumber = phoneNumber).errorHandling()
+    }
+
     override suspend fun editProfile(editProfileRequest: EditProfileRequest) = indiStrawApiCall {
         accountAPI.editProfile(editProfileRequest = editProfileRequest).errorHandling()
     }

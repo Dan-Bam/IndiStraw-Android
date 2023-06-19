@@ -25,6 +25,11 @@ interface AccountAPI {
     @GET("account/profile")
     suspend fun getProfile(): ProfileResponse
 
+    @PATCH("account/phone-number/{phoneNumber}")
+    suspend fun changePhoneNumber(
+        @Path("phoneNumber") phoneNumber: String,
+    ): Response<Void?>
+
     @PATCH("account/profile")
     suspend fun editProfile(
         @Body editProfileRequest: EditProfileRequest,
