@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -48,13 +49,21 @@ fun EditProfileScreen(
     val focusManager = LocalFocusManager.current
     val context = LocalContext.current
     var name by remember { mutableStateOf("") }
-    var file: String? by remember { mutableStateOf(null) }
     val nameFocusRequester = remember { FocusRequester() }
 
     sideEffect.observeWithLifecycle {
-        if (it is EditProfileSideEffect.SuccessUpload) {
-            file = it.imageUrl
+        when (it) {
+            is EditProfileSideEffect.GetProfile -> {
+                name = it.name
+            }
+
+            is EditProfileSideEffect.SuccessUpload -> {
+            }
         }
+    }
+
+    LaunchedEffect(Unit) {
+        editProfileVieModel.getProfile()
     }
 
     IndiStrawColumnBackground(
@@ -69,12 +78,12 @@ fun EditProfileScreen(
                 .padding(top = 22.dp)
                 .align(Alignment.CenterHorizontally),
             paddingValues = PaddingValues(22.dp),
-            imageUrl = file,
+            imageUrl = state.profileUrl,
             selectGallery = {
-                it?.let { editProfileVieModel.setProfile(it.toFile(context)) }
+                it?.let { editProfileVieModel.setProfileImage(it.toFile(context)) }
             },
             selectCamera = {
-                it?.let { editProfileVieModel.setProfile(it.toFile(context)) }
+                it?.let { editProfileVieModel.setProfileImage(it.toFile(context)) }
             }) {
             Spacer(modifier = Modifier.height(64.dp))
             IndiStrawTextField(
@@ -84,7 +93,7 @@ fun EditProfileScreen(
             Spacer(modifier = Modifier.height(20.dp))
             IndiStrawTextField(
                 hint = stringResource(id = R.string.phone_number),
-                value = "",
+                value = state.phoneNumber,
                 readOnly = true,
                 tailingIcon = {
                     FindPasswordMedium(
@@ -96,7 +105,7 @@ fun EditProfileScreen(
             Spacer(modifier = Modifier.height(20.dp))
             IndiStrawTextField(
                 hint = stringResource(id = R.string.address),
-                value = "",
+                value = state.address ?: "",
                 readOnly = true,
                 tailingIcon = {
                     FindPasswordMedium(
