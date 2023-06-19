@@ -4,6 +4,7 @@ import com.danbam.data.remote.api.AuthAPI
 import com.danbam.data.remote.request.LoginRequest
 import com.danbam.data.remote.request.SignUpRequest
 import com.danbam.data.remote.response.LoginResponse
+import com.danbam.data.remote.util.errorHandling
 import com.danbam.data.remote.util.indiStrawApiCall
 import javax.inject.Inject
 
@@ -22,21 +23,26 @@ class AuthRemoteDataSourceImpl @Inject constructor(
         authAPI.refresh(refreshToken = "Bearer $refreshToken")
     }
 
-    override suspend fun checkPhoneNumber(phoneNumber: String, type: String): Void =
+    override suspend fun checkPhoneNumber(phoneNumber: String, type: String) =
         indiStrawApiCall {
-            authAPI.checkPhoneNumber(phoneNumber = phoneNumber, type = type)
+            authAPI.checkPhoneNumber(phoneNumber = phoneNumber, type = type).errorHandling()
         }
 
-    override suspend fun checkId(id: String): Void = indiStrawApiCall {
-        authAPI.checkId(id = id)
+    override suspend fun checkId(id: String) = indiStrawApiCall {
+        authAPI.checkId(id = id).errorHandling()
     }
 
     override suspend fun sendCertificateNumber(phoneNumber: String) = indiStrawApiCall {
-        authAPI.sendCertificateNumber(phoneNumber = phoneNumber)
+        authAPI.sendCertificateNumber(phoneNumber = phoneNumber).errorHandling()
     }
 
     override suspend fun checkCertificateNumber(authCode: Int, phoneNumber: String) =
         indiStrawApiCall {
             authAPI.checkCertificateNumber(authCode = authCode, phoneNumber = phoneNumber)
+                .errorHandling()
         }
+
+    override suspend fun logout(refreshToken: String) = indiStrawApiCall {
+        authAPI.logout(refreshToken = "Bearer $refreshToken").errorHandling()
+    }
 }

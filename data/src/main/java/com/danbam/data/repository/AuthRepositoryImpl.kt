@@ -41,10 +41,10 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun checkPhoneNumber(phoneNumber: String, type: String): Void =
+    override suspend fun checkPhoneNumber(phoneNumber: String, type: String) =
         authRemoteDataSource.checkPhoneNumber(phoneNumber = phoneNumber, type = type)
 
-    override suspend fun checkId(id: String): Void =
+    override suspend fun checkId(id: String) =
         authRemoteDataSource.checkId(id = id)
 
     override suspend fun sendCertificateNumber(phoneNumber: String) =
@@ -52,6 +52,17 @@ class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun checkCertificateNumber(authCode: Int, phoneNumber: String) =
         authRemoteDataSource.checkCertificateNumber(authCode = authCode, phoneNumber = phoneNumber)
+
+    override suspend fun logout() {
+        val refreshToken = authLocalDataSource.fetchRefreshToken() ?: throw ExpiredTokenException()
+        authRemoteDataSource.logout(refreshToken)
+        with(authLocalDataSource) {
+            clearAccessToken()
+            clearRefreshToken()
+            clearAccessExpiredAt()
+            clearRefreshExpiredAt()
+        }
+    }
 
     private fun LoginResponse.saveToken() {
         authLocalDataSource.saveAccessToken(accessToken)
