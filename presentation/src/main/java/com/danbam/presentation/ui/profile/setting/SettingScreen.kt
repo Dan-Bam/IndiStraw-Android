@@ -73,7 +73,7 @@ fun SettingScreen(
     )
     val secondLine = mapOf(
         stringResource(id = R.string.change_password) to {
-            navController.navigate(AuthNavigationItem.Certificate.route + AuthDeepLinkKey.CERTIFICATE_TYPE + CertificateType.ChangePassword)
+            navController.navigate(AuthNavigationItem.Certificate.route + AuthDeepLinkKey.CERTIFICATE_TYPE + CertificateType.CHANGE_PASSWORD)
         },
         stringResource(id = R.string.change_language) to { changeLanguage() }
     )
