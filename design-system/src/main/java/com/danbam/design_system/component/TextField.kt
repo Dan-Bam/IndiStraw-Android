@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -93,9 +94,9 @@ fun IndiStrawSearchTextField(
     hint: String,
     value: String,
     onValueChange: (String) -> Unit,
-    imeAction: ImeAction = ImeAction.Done,
+    imeAction: ImeAction = ImeAction.Search,
     keyboardType: KeyboardType = KeyboardType.Text,
-    onToggleChange: () -> Unit = {},
+    onSearch: () -> Unit,
 ) {
     Row(
         modifier = modifier
@@ -119,8 +120,14 @@ fun IndiStrawSearchTextField(
             onValueChange = onValueChange,
             singleLine = true,
             keyboardOptions = KeyboardOptions(imeAction = imeAction, keyboardType = keyboardType),
+            keyboardActions = KeyboardActions(
+                onSearch = { onSearch() }
+            ),
             cursorBrush = SolidColor(IndiStrawTheme.colors.gray),
-            textStyle = IndiStrawTheme.typography.exampleTextRegular,
+            textStyle = IndiStrawTheme.typography.exampleTextMedium.copy(
+                fontSize = 16.sp,
+                color = IndiStrawTheme.colors.white
+            ),
         ) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween
@@ -136,7 +143,7 @@ fun IndiStrawSearchTextField(
                 IndiStrawIcon(
                     modifier = Modifier
                         .height(15.dp)
-                        .indiStrawClickable(onClick = onToggleChange),
+                        .indiStrawClickable(onClick = onSearch),
                     icon = IndiStrawIconList.Search
                 )
             }
