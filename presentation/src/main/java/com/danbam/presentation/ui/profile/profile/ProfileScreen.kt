@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -77,8 +78,7 @@ fun ProfileScreen(
             if (state.profileUrl != null) {
                 AsyncImage(
                     modifier = Modifier
-                        .width(80.dp)
-                        .height(80.dp)
+                        .size(80.dp)
                         .clip(
                             shape = IndiStrawTheme.shapes.circle
                         ),
@@ -96,10 +96,11 @@ fun ProfileScreen(
                 ) {
                     IndiStrawIcon(
                         modifier = Modifier
+                            .clip(IndiStrawTheme.shapes.circle)
                             .align(Alignment.Center)
-                            .width(35.dp)
-                            .height(35.dp),
-                        icon = IndiStrawIconList.NoImage
+                            .size(35.dp),
+                        icon = IndiStrawIconList.Profile,
+                        contentScale = ContentScale.Crop
                     )
                 }
             }
