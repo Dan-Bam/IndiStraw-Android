@@ -16,7 +16,7 @@ interface AccountAPI {
         @Path("phoneNumber") phoneNumber: String,
     ): FindIdResponse
 
-    @PATCH("account/update/password")
+    @PATCH("account/password")
     suspend fun changePassword(
         @Body changePasswordRequest: ChangePasswordRequest,
     )
@@ -24,6 +24,6 @@ interface AccountAPI {
     @GET("account/profile")
     suspend fun getProfile(): ProfileResponse
 
-    @DELETE("account/withdraw")
+    @DELETE("account")
     suspend fun withdraw(): Response<Void?>
 }
