@@ -25,6 +25,11 @@ android {
             "IGNORE_PATH",
             gradleLocalProperties(rootDir).getProperty("IGNORE_PATH")
         )
+        buildConfigField(
+            "String",
+            "JUSO_KEY",
+            gradleLocalProperties(rootDir).getProperty("JUSO_KEY")
+        )
     }
 
     buildTypes {
@@ -57,6 +62,8 @@ dependencies {
     implementation(Dependency.Retrofit.RETROFIT_CONVERTER_GSON)
     implementation(Dependency.Retrofit.OKHTTP)
     implementation(Dependency.Retrofit.OKHTTP_LOGGING_INTERCEPTOR)
+
+    implementation(Dependency.AndroidX.PAGING)
 
     testImplementation(Dependency.UnitTest.JUNIT)
     testImplementation(Dependency.UnitTest.MOCKITO_KOTLIN)
