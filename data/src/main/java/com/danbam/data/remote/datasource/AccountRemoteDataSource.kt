@@ -8,4 +8,5 @@ interface AccountRemoteDataSource {
     suspend fun findId(phoneNumber: String): FindIdResponse
     suspend fun changePassword(changePasswordRequest: ChangePasswordRequest)
     suspend fun getProfile(): ProfileResponse
+    suspend fun withdraw()
 }

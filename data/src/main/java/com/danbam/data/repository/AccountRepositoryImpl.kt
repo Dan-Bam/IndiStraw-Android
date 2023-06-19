@@ -20,4 +20,7 @@ class AccountRepositoryImpl @Inject constructor(
 
     override suspend fun getProfile(): ProfileEntity =
         accountRemoteDataSource.getProfile().toEntity()
+
+    override suspend fun withdraw() =
+        accountRemoteDataSource.withdraw()
 }
