@@ -25,7 +25,7 @@ import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
-const val BannerTime = 3_000L
+const val BannerTime = 4_000L
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
