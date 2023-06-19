@@ -19,7 +19,7 @@ class ProfileViewModel @Inject constructor(
     fun getProfile() = intent {
         viewModelScope.launch {
             getProfileUseCase().onSuccess {
-                reduce { state.copy(id = it.id, name = it.name, profileUrl = it.profileUrl) }
+                reduce { state.copy(id = it.id, name = "${it.name}님", profileUrl = it.profileUrl) }
             }
         }
     }

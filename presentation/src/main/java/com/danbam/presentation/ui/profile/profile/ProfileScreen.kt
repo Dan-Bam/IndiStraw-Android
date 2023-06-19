@@ -86,30 +86,23 @@ fun ProfileScreen(
                     contentScale = ContentScale.Crop
                 )
             } else {
-                Box(
+                IndiStrawIcon(
                     modifier = Modifier
                         .background(
                             color = IndiStrawTheme.colors.gray,
                             shape = IndiStrawTheme.shapes.circle,
                         )
-                        .padding(paddingValues = PaddingValues(23.dp)),
-                ) {
-                    IndiStrawIcon(
-                        modifier = Modifier
-                            .clip(IndiStrawTheme.shapes.circle)
-                            .align(Alignment.Center)
-                            .size(35.dp),
-                        icon = IndiStrawIconList.Profile,
-                        contentScale = ContentScale.Crop
-                    )
-                }
+                        .padding(23.dp)
+                        .size(35.dp),
+                    icon = IndiStrawIconList.Profile,
+                )
             }
         }
         HeadLineBold(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 7.dp),
-            text = "${state.name}님",
+            text = state.name,
             fontSize = 20,
             textAlign = TextAlign.Center
         )
