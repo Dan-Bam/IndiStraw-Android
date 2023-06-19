@@ -80,9 +80,7 @@ fun SettingScreen(
     val thirdLine = mapOf(
         stringResource(id = R.string.logout) to {
             settingViewModel.logout()
-        }
-    )
-    val forthLine = mapOf(
+        },
         stringResource(id = R.string.withdrawal) to {
             settingViewModel.withdraw()
         }
@@ -110,8 +108,6 @@ fun SettingScreen(
             )
             Spacer(modifier = Modifier.height(36.dp))
             SettingItem(itemMap = thirdLine)
-            Spacer(modifier = Modifier.height(12.dp))
-            SettingItem(itemMap = forthLine)
         }
 
     }
