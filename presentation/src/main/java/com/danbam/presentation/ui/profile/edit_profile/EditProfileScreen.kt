@@ -30,6 +30,11 @@ import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.IndiStrawTextField
 import com.danbam.design_system.component.SelectImageButton
+import com.danbam.design_system.util.indiStrawClickable
+import com.danbam.presentation.ui.auth.navigation.AuthDeepLinkKey
+import com.danbam.presentation.ui.auth.navigation.AuthNavigationItem
+import com.danbam.presentation.ui.auth.navigation.CertificateType
+import com.danbam.presentation.ui.profile.navigation.ProfileNavigationItem
 import com.danbam.presentation.util.android.observeWithLifecycle
 import com.danbam.presentation.util.parser.toFile
 import com.danbam.presentation.util.view.popBackStack
@@ -48,7 +53,7 @@ fun EditProfileScreen(
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
     val context = LocalContext.current
-    var name by remember { mutableStateOf("") }
+    var name by remember { mutableStateOf(state.name) }
     val nameFocusRequester = remember { FocusRequester() }
 
     sideEffect.observeWithLifecycle {
@@ -97,6 +102,11 @@ fun EditProfileScreen(
                 readOnly = true,
                 tailingIcon = {
                     FindPasswordMedium(
+                        modifier = Modifier.indiStrawClickable {
+                            navController.navigate(
+                                AuthNavigationItem.Certificate.route + AuthDeepLinkKey.CERTIFICATE_TYPE + CertificateType.CHANGE_PHONE_NUMBER
+                            )
+                        },
                         text = stringResource(id = R.string.change),
                         color = IndiStrawTheme.colors.skyBlue
                     )
@@ -109,6 +119,11 @@ fun EditProfileScreen(
                 readOnly = true,
                 tailingIcon = {
                     FindPasswordMedium(
+                        modifier = Modifier.indiStrawClickable {
+                            navController.navigate(
+                                ProfileNavigationItem.FindAddress.route
+                            )
+                        },
                         text = stringResource(id = R.string.find_address),
                         color = IndiStrawTheme.colors.skyBlue
                     )
@@ -118,6 +133,7 @@ fun EditProfileScreen(
                 modifier = Modifier.padding(top = 70.dp),
                 text = stringResource(id = R.string.save)
             ) {
+                editProfileVieModel.saveProfile()
             }
         }
     }

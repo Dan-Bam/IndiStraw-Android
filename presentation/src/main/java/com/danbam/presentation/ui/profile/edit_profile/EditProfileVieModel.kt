@@ -2,6 +2,8 @@ package com.danbam.presentation.ui.profile.edit_profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.danbam.domain.param.EditProfileParam
+import com.danbam.domain.usecase.account.EditProfileUseCase
 import com.danbam.domain.usecase.account.GetProfileUseCase
 import com.danbam.domain.usecase.file.SendFileUseCase
 import com.danbam.presentation.util.android.errorHandling
@@ -19,6 +21,7 @@ import javax.inject.Inject
 class EditProfileVieModel @Inject constructor(
     private val sendFileUseCase: SendFileUseCase,
     private val getProfileUseCase: GetProfileUseCase,
+    private val editProfileUseCase: EditProfileUseCase,
 ) : ContainerHost<EditProfileState, EditProfileSideEffect>, ViewModel() {
     override val container = container<EditProfileState, EditProfileSideEffect>(EditProfileState())
 
@@ -46,6 +49,17 @@ class EditProfileVieModel @Inject constructor(
             }.onFailure {
                 it.errorHandling(unknownAction = {})
             }
+        }
+    }
+
+    fun saveProfile() = intent {
+        viewModelScope.launch {
+            editProfileUseCase(
+                EditProfileParam(
+                    name = state.name,
+                    profileUrl = state.profileUrl
+                )
+            )
         }
     }
 }
