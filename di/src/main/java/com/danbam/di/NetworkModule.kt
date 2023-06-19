@@ -2,6 +2,7 @@ package com.danbam.di
 
 import android.util.Log
 import com.danbam.data.remote.api.AccountAPI
+import com.danbam.data.remote.api.AddressAPI
 import com.danbam.data.remote.api.AuthAPI
 import com.danbam.data.remote.api.FileAPI
 import com.danbam.data.remote.interceptor.IndiStrawInterceptor
@@ -48,4 +49,7 @@ object NetworkModule {
 
     @Provides
     fun provideFileAPI(retrofit: Retrofit): FileAPI = retrofit.create(FileAPI::class.java)
+
+    @Provides
+    fun provideAddressAPI(retrofit: Retrofit): AddressAPI = retrofit.create(AddressAPI::class.java)
 }
