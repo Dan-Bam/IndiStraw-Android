@@ -12,4 +12,5 @@ interface AuthRepository {
     suspend fun sendCertificateNumber(phoneNumber: String)
     suspend fun checkCertificateNumber(authCode: Int, phoneNumber: String)
     suspend fun logout()
+    suspend fun clearToken()
 }

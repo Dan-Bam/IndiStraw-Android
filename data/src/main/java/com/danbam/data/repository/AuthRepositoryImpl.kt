@@ -56,6 +56,10 @@ class AuthRepositoryImpl @Inject constructor(
     override suspend fun logout() {
         val refreshToken = authLocalDataSource.fetchRefreshToken() ?: throw ExpiredTokenException()
         authRemoteDataSource.logout(refreshToken)
+        clearToken()
+    }
+
+    override suspend fun clearToken() {
         with(authLocalDataSource) {
             clearAccessToken()
             clearRefreshToken()
