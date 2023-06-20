@@ -55,6 +55,7 @@
     <string name="edit_picture">사진 수정</string>
     <string name="choose_camera">사진 찍기</string>
     <string name="detail_address">상세주소</string>
+    <string name="require_detail_address">상세주소를 입력해주세요.</string>
     <string name="require_new_phone_number">새로운 전화번호를 입력해주세요.</string>
     <string name="success_reward">성공 리워드</string>
     <string name="write_introduce">소개글 입력하기</string>
