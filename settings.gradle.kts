@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "indi_straw"
-include(":presentation")
+include(":mobile")
 include(":data")
 include(":domain")
 include(":di")
