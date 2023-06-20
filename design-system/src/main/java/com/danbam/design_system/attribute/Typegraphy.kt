@@ -30,6 +30,7 @@ data class IndiStrawTypography(
     val successBold: TextStyle,
     val buttonMedium: TextStyle,
     val joinBold: TextStyle,
+    val dialogMedium: TextStyle,
 )
 
 internal val LocalIndiStrawTypography = staticCompositionLocalOf {
@@ -45,7 +46,8 @@ internal val LocalIndiStrawTypography = staticCompositionLocalOf {
         priceRegular = TextStyle.Default,
         successBold = TextStyle.Default,
         buttonMedium = TextStyle.Default,
-        joinBold = TextStyle.Default
+        joinBold = TextStyle.Default,
+        dialogMedium = TextStyle.Default
     )
 }
 
@@ -61,5 +63,6 @@ val defaultTypography = IndiStrawTypography(
     priceRegular = TextStyle(fontFamily = suit, fontWeight = FontWeight.Normal),
     successBold = TextStyle(fontFamily = suit, fontWeight = FontWeight.Bold),
     buttonMedium = TextStyle(fontFamily = suit, fontWeight = FontWeight.Medium),
-    joinBold = TextStyle(fontFamily = suit, fontWeight = FontWeight.Bold)
+    joinBold = TextStyle(fontFamily = suit, fontWeight = FontWeight.Bold),
+    dialogMedium = TextStyle(fontFamily = suit, fontWeight = FontWeight.Medium)
 )

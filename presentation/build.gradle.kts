@@ -64,6 +64,7 @@ dependencies {
 
     implementation(Dependency.AndroidX.CORE_KTX)
     implementation(Dependency.AndroidX.LIFECYCLE)
+    implementation(Dependency.AndroidX.PAGING_COMPOSE)
 
     implementation(Dependency.Compose.ACTIVITY)
     implementation(Dependency.Compose.UI)

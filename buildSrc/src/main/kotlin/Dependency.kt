@@ -23,6 +23,8 @@ object Dependency {
         const val LIFECYCLE_VIEWMODEL_KTX =
             "androidx.lifecycle:lifecycle-viewmodel-ktx:${Version.LIFECYCLE_KTX}"
         const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:${Version.CONTRAINT_LAYOUT}"
+        const val PAGING = "androidx.paging:paging-runtime:${Version.PAGING}"
+        const val PAGING_COMPOSE = "androidx.paging:paging-compose:${Version.PAGING_COMPOSE}"
     }
 
     object Compose {

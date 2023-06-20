@@ -37,7 +37,8 @@ object CertificateType {
     const val SIGN_UP = "signUp"
     const val FIND_ID = "findId"
     const val FIND_PASSWORD = "findPassword"
-    const val ChangePassword = "changePassword"
+    const val CHANGE_PASSWORD = "changePassword"
+    const val CHANGE_PHONE_NUMBER = "changePhoneNumber"
 }
 
 @OptIn(ExperimentalAnimationApi::class)

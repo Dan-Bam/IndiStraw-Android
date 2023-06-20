@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -77,8 +78,7 @@ fun ProfileScreen(
             if (state.profileUrl != null) {
                 AsyncImage(
                     modifier = Modifier
-                        .width(80.dp)
-                        .height(80.dp)
+                        .size(80.dp)
                         .clip(
                             shape = IndiStrawTheme.shapes.circle
                         ),
@@ -86,29 +86,23 @@ fun ProfileScreen(
                     contentScale = ContentScale.Crop
                 )
             } else {
-                Box(
+                IndiStrawIcon(
                     modifier = Modifier
                         .background(
                             color = IndiStrawTheme.colors.gray,
                             shape = IndiStrawTheme.shapes.circle,
                         )
-                        .padding(paddingValues = PaddingValues(23.dp)),
-                ) {
-                    IndiStrawIcon(
-                        modifier = Modifier
-                            .align(Alignment.Center)
-                            .width(35.dp)
-                            .height(35.dp),
-                        icon = IndiStrawIconList.NoImage
-                    )
-                }
+                        .padding(23.dp)
+                        .size(35.dp),
+                    icon = IndiStrawIconList.Profile,
+                )
             }
         }
         HeadLineBold(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 7.dp),
-            text = "${state.name}님",
+            text = state.name,
             fontSize = 20,
             textAlign = TextAlign.Center
         )

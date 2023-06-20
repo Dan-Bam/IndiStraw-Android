@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.shape.ZeroCornerSize
@@ -179,8 +180,7 @@ fun SelectImageButton(
                         ) {
                             AsyncImage(
                                 modifier = Modifier
-                                    .width(if (isSignUp) 125.dp else 80.dp)
-                                    .height(if (isSignUp) 125.dp else 80.dp)
+                                    .size(if (isSignUp) 125.dp else 80.dp)
                                     .clip(shape = IndiStrawTheme.shapes.circle),
                                 model = imageUrl, contentDescription = "",
                                 contentScale = ContentScale.Crop
@@ -198,13 +198,14 @@ fun SelectImageButton(
                             IndiStrawIcon(
                                 modifier = Modifier
                                     .align(Center)
-                                    .width(if (isSignUp) 56.dp else 35.dp)
-                                    .height(if (isSignUp) 56.dp else 35.dp),
+                                    .size(if (isSignUp) 56.dp else 35.dp),
                                 icon = IndiStrawIconList.NoImage
                             )
                         }
                         IndiStrawIcon(
-                            modifier = Modifier.align(BottomEnd),
+                            modifier = Modifier
+                                .align(BottomEnd)
+                                .size(if (isSignUp) 40.dp else 25.dp),
                             icon = IndiStrawIconList.Plus
                         )
                     }

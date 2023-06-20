@@ -101,13 +101,18 @@ fun CertificateScreen(
                 errorText = errorList[it]!!
             }
 
+            is CertificateSideEffect.SuccessChangePhoneNumber -> {
+                navController.popBackStack()
+            }
+
             is CertificateSideEffect.SuccessCertificate -> {
                 keyboardController?.hide()
                 when (certificateType) {
                     CertificateType.SIGN_UP -> navController.navigate(AuthNavigationItem.SetProfile.route + AuthDeepLinkKey.PHONE_NUMBER + phoneNumber.toPhoneNumber())
                     CertificateType.FIND_ID -> navController.navigate(AuthNavigationItem.FindId.route + AuthDeepLinkKey.PHONE_NUMBER + phoneNumber.toPhoneNumber())
                     CertificateType.FIND_PASSWORD -> navController.navigate(AuthNavigationItem.FindPassword.route + AuthDeepLinkKey.PHONE_NUMBER + phoneNumber.toPhoneNumber() + AuthDeepLinkKey.IS_FIND_PASSWORD + true)
-                    CertificateType.ChangePassword -> navController.navigate(AuthNavigationItem.FindPassword.route + AuthDeepLinkKey.PHONE_NUMBER + phoneNumber.toPhoneNumber() + AuthDeepLinkKey.IS_FIND_PASSWORD + false)
+                    CertificateType.CHANGE_PASSWORD -> navController.navigate(AuthNavigationItem.FindPassword.route + AuthDeepLinkKey.PHONE_NUMBER + phoneNumber.toPhoneNumber() + AuthDeepLinkKey.IS_FIND_PASSWORD + false)
+                    CertificateType.CHANGE_PHONE_NUMBER -> certificateViewModel.changePhoneNumber()
                 }
             }
         }
@@ -124,7 +129,7 @@ fun CertificateScreen(
         HeadLineBold(
             modifier = Modifier
                 .padding(start = 32.dp, top = 16.dp),
-            text = stringResource(id = if (state.phoneNumber.isNotEmpty()) R.string.require_certificate_number else R.string.require_phone_number)
+            text = stringResource(id = if (state.phoneNumber.isNotEmpty()) R.string.require_certificate_number else if (certificateType != CertificateType.CHANGE_PHONE_NUMBER) R.string.require_phone_number else R.string.require_new_phone_number)
         )
         IndiStrawTextField(
             modifier = Modifier
@@ -171,7 +176,7 @@ fun CertificateScreen(
             if (state.phoneNumber.isEmpty()) {
                 certificateViewModel.checkPhoneNumber(
                     phoneNumber = phoneNumber.toPhoneNumber(),
-                    type = if (certificateType == CertificateType.SIGN_UP) "SIGNUP" else "FIND_ACCOUNT"
+                    type = if (certificateType == CertificateType.SIGN_UP) "SIGNUP" else if (certificateType == CertificateType.CHANGE_PHONE_NUMBER) "CHANGE_PHONE" else "FIND_ACCOUNT"
                 )
             } else {
                 certificateViewModel.checkCertificateNumber(authCode = certificateNumber)

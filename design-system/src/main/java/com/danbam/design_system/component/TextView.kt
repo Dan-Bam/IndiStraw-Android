@@ -383,3 +383,34 @@ fun JoinBold(
         onTextLayout = onTextLayout
     )
 }
+
+@Composable
+fun DialogMedium(
+    modifier: Modifier = Modifier,
+    text: String,
+    color: Color = IndiStrawTheme.colors.white,
+    textAlign: TextAlign = TextAlign.Start,
+    fontSize: Int = 16,
+    letterSpacing: TextUnit = TextUnit.Unspecified,
+    textDecoration: TextDecoration? = null,
+    lineHeight: TextUnit = TextUnit.Unspecified,
+    overflow: TextOverflow = TextOverflow.Ellipsis,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+) {
+    Text(
+        modifier = modifier,
+        text = text,
+        style = IndiStrawTheme.typography.dialogMedium.copy(fontSize = fontSize.sp),
+        color = color,
+        textAlign = textAlign,
+        letterSpacing = letterSpacing,
+        textDecoration = textDecoration,
+        lineHeight = lineHeight,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        onTextLayout = onTextLayout
+    )
+}

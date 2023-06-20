@@ -73,16 +73,14 @@ fun SettingScreen(
     )
     val secondLine = mapOf(
         stringResource(id = R.string.change_password) to {
-            navController.navigate(AuthNavigationItem.Certificate.route + AuthDeepLinkKey.CERTIFICATE_TYPE + CertificateType.ChangePassword)
+            navController.navigate(AuthNavigationItem.Certificate.route + AuthDeepLinkKey.CERTIFICATE_TYPE + CertificateType.CHANGE_PASSWORD)
         },
         stringResource(id = R.string.change_language) to { changeLanguage() }
     )
     val thirdLine = mapOf(
         stringResource(id = R.string.logout) to {
             settingViewModel.logout()
-        }
-    )
-    val forthLine = mapOf(
+        },
         stringResource(id = R.string.withdrawal) to {
             settingViewModel.withdraw()
         }
@@ -110,8 +108,6 @@ fun SettingScreen(
             )
             Spacer(modifier = Modifier.height(36.dp))
             SettingItem(itemMap = thirdLine)
-            Spacer(modifier = Modifier.height(12.dp))
-            SettingItem(itemMap = forthLine)
         }
 
     }

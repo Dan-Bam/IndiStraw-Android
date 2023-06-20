@@ -8,6 +8,10 @@ data class ProfileResponse(
     val id: String,
     @SerializedName("name")
     val name: String,
+    @SerializedName("phoneNumber")
+    val phoneNumber: String,
+    @SerializedName("address")
+    val address: String?,
     @SerializedName("profileUrl")
     val profileUrl: String?,
 )
@@ -15,5 +19,7 @@ data class ProfileResponse(
 fun ProfileResponse.toEntity() = ProfileEntity(
     id = id,
     name = name,
-    profileUrl = if (profileUrl.isNullOrEmpty()) null else profileUrl
+    phoneNumber = phoneNumber,
+    address = address,
+    profileUrl = profileUrl
 )
