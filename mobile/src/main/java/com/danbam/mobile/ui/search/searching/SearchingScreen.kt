@@ -15,10 +15,11 @@ import com.danbam.design_system.component.ExampleTextMedium
 import com.danbam.design_system.component.FindPasswordMedium
 import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.util.RemoveOverScrollLazyColumn
+import com.danbam.design_system.util.indiStrawClickable
 
 @Composable
 fun SearchingScreen(
-
+    onSearch: (String) -> Unit,
 ) {
     IndiStrawColumnBackground {
         Spacer(modifier = Modifier.height(37.dp))
@@ -38,7 +39,9 @@ fun SearchingScreen(
                 )
             ) { _, item ->
                 Row(
-                    modifier = Modifier.padding(horizontal = 25.dp)
+                    modifier = Modifier
+                        .padding(horizontal = 25.dp)
+                        .indiStrawClickable { onSearch(item) }
                 ) {
                     IndiStrawIcon(icon = IndiStrawIconList.Search)
                     Spacer(modifier = Modifier.width(14.dp))

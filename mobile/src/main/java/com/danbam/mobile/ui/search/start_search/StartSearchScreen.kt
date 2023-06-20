@@ -15,10 +15,11 @@ import com.danbam.design_system.R
 import com.danbam.design_system.component.ExampleTextMedium
 import com.danbam.design_system.component.IndiStrawChipList
 import com.danbam.design_system.util.RemoveOverScrollLazyColumn
+import com.danbam.design_system.util.indiStrawClickable
 
 @Composable
 fun StartSearchScreen(
-
+    onSearch: (String) -> Unit,
 ) {
     IndiStrawColumnBackground {
         TitleSemiBold(
@@ -27,7 +28,7 @@ fun StartSearchScreen(
             color = IndiStrawTheme.colors.gray
         )
         Spacer(modifier = Modifier.height(16.dp))
-        IndiStrawChipList(itemList = listOf("최신영화", "신규영화"))
+        IndiStrawChipList(itemList = listOf("최신영화", "신규영화"), onItemSelect = onSearch)
         TitleSemiBold(
             modifier = Modifier.padding(start = 25.dp, 36.dp),
             text = stringResource(id = R.string.recent_search),
@@ -49,7 +50,12 @@ fun StartSearchScreen(
                     "슬램덩크"
                 )
             ) { _, item ->
-                ExampleTextMedium(modifier = Modifier.padding(start = 25.dp), text = item)
+                ExampleTextMedium(
+                    modifier = Modifier
+                        .padding(start = 25.dp)
+                        .indiStrawClickable { onSearch(item) },
+                    text = item
+                )
                 Spacer(modifier = Modifier.height(16.dp))
             }
         }
