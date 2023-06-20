@@ -19,6 +19,7 @@ import com.danbam.design_system.IndiStrawTheme
 fun IndiStrawProgress(
     modifier: Modifier = Modifier,
     currentProgress: Float,
+    isSearch: Boolean = false,
 ) {
     val progressAnimation by animateFloatAsState(targetValue = currentProgress / 100)
     Row(
@@ -28,13 +29,13 @@ fun IndiStrawProgress(
         LinearProgressIndicator(
             modifier = Modifier
                 .fillMaxWidth(0.7F)
-                .height(17.dp)
+                .height(if (isSearch) 12.dp else 17.dp)
                 .clip(IndiStrawTheme.shapes.defaultRounded),
             color = IndiStrawTheme.colors.main,
-            backgroundColor = IndiStrawTheme.colors.darkGray3,
+            backgroundColor = if (isSearch) IndiStrawTheme.colors.navy else IndiStrawTheme.colors.darkGray3,
             progress = progressAnimation
         )
         Spacer(modifier = Modifier.width(5.45.dp))
-        ExampleTextMedium(text = "$currentProgress%")
+        ExampleTextMedium(text = "${currentProgress.toInt()}%", fontSize = if (isSearch) 12 else 14)
     }
 }

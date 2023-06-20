@@ -121,7 +121,7 @@ fun IndiStrawSearchTextField(
             singleLine = true,
             keyboardOptions = KeyboardOptions(imeAction = imeAction, keyboardType = keyboardType),
             keyboardActions = KeyboardActions(
-                onSearch = { onSearch() }
+                onSearch = { if (value.isNotEmpty()) onSearch() }
             ),
             cursorBrush = SolidColor(IndiStrawTheme.colors.gray),
             textStyle = IndiStrawTheme.typography.exampleTextMedium.copy(
@@ -143,7 +143,7 @@ fun IndiStrawSearchTextField(
                 IndiStrawIcon(
                     modifier = Modifier
                         .height(15.dp)
-                        .indiStrawClickable(onClick = onSearch),
+                        .indiStrawClickable(onClick = { if (value.isNotEmpty()) onSearch() }),
                     icon = IndiStrawIconList.Search
                 )
             }

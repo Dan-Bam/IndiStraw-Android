@@ -19,6 +19,7 @@ import com.danbam.mobile.ui.movie.navigation.movieGraph
 import com.danbam.mobile.ui.profile.navigation.profileGraph
 import com.danbam.mobile.ui.auth.navigation.signUpGraph
 import com.danbam.mobile.ui.auth.signup.SignUpViewModel
+import com.danbam.mobile.ui.search.navigation.searchGraph
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -65,5 +66,6 @@ fun BaseApp(navController: NavHostController) {
         signUpGraph(navController = navController, signUpViewModel = signUpViewModel)
         movieGraph(navController = navController)
         profileGraph(navController = navController)
+        searchGraph(navController = navController)
     }
 }

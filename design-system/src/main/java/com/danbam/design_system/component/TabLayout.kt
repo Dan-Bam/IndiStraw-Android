@@ -51,6 +51,11 @@ sealed class FundingTab {
     object MyFunding : FundingTab()
 }
 
+sealed class SearchTab {
+    object Movie : SearchTab()
+    object Funding : SearchTab()
+}
+
 @Composable
 fun IndiStrawTab(
     modifier: Modifier = Modifier,
