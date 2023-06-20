@@ -32,6 +32,9 @@ import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.design_system.component.DialogMedium
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.util.RemoveOverScrollLazyColumn
+import com.danbam.design_system.util.indiStrawClickable
+import com.danbam.presentation.ui.profile.navigation.ProfileDeepLinkKey
+import com.danbam.presentation.ui.profile.navigation.ProfileNavigationItem
 
 @Composable
 fun FindAddressScreen(
@@ -76,7 +79,11 @@ fun FindAddressScreen(
                         itemsIndexed(it) { _, item ->
                             item?.let {
                                 Row(
-                                    modifier = Modifier.fillMaxWidth(),
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .indiStrawClickable {
+                                            navController.navigate(ProfileNavigationItem.DetailAddress.route + ProfileDeepLinkKey.ADDRESS + "${item.streetAddress} ${item.buildName}" + ProfileDeepLinkKey.ZIP_CODE + item.zipcode)
+                                        },
                                     verticalAlignment = Alignment.CenterVertically,
                                     horizontalArrangement = Arrangement.SpaceBetween
                                 ) {
