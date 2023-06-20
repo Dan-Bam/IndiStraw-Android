@@ -37,6 +37,7 @@ import com.danbam.design_system.component.TitleSemiBold
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 import com.danbam.mobile.ui.profile.navigation.ProfileNavigationItem
+import com.danbam.mobile.ui.search.navigation.SearchNavigationItem
 import com.danbam.mobile.util.view.findActivity
 import com.google.accompanist.pager.ExperimentalPagerApi
 
@@ -71,7 +72,11 @@ fun MainScreen(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                IndiStrawIcon(icon = IndiStrawIconList.Search)
+                IndiStrawIcon(modifier = Modifier.indiStrawClickable {
+                    navController.navigate(
+                        SearchNavigationItem.Search.route
+                    )
+                }, icon = IndiStrawIconList.Search)
                 if (state.profileUrl != null) {
                     ImageButton(
                         modifier = Modifier
