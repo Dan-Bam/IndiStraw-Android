@@ -5,6 +5,7 @@ import com.danbam.data.remote.request.toRequest
 import com.danbam.data.remote.response.toEntity
 import com.danbam.domain.entity.FindIdEntity
 import com.danbam.domain.entity.ProfileEntity
+import com.danbam.domain.param.ChangeAddressParam
 import com.danbam.domain.param.ChangePasswordParam
 import com.danbam.domain.param.EditProfileParam
 import com.danbam.domain.repository.AccountRepository
@@ -24,6 +25,9 @@ class AccountRepositoryImpl @Inject constructor(
 
     override suspend fun changePhoneNumber(phoneNumber: String) =
         accountRemoteDataSource.changePhoneNumber(phoneNumber = phoneNumber)
+
+    override suspend fun changeAddress(changeAddressParam: ChangeAddressParam) =
+        accountRemoteDataSource.changeAddress(changeAddressRequest = changeAddressParam.toRequest())
 
     override suspend fun editProfile(editProfileParam: EditProfileParam) =
         accountRemoteDataSource.editProfile(editProfileRequest = editProfileParam.toRequest())
