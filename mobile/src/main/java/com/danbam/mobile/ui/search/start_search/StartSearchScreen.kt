@@ -23,6 +23,7 @@ import com.danbam.design_system.util.indiStrawClickable
 @Composable
 fun StartSearchScreen(
     startSearchViewModel: StartSearchViewModel = hiltViewModel(),
+    onClickAction: (() -> Unit),
     onSearch: (String) -> Unit,
 ) {
     val container = startSearchViewModel.container
@@ -33,7 +34,9 @@ fun StartSearchScreen(
         startSearchViewModel.getRecentSearch()
     }
 
-    IndiStrawColumnBackground {
+    IndiStrawColumnBackground(
+        onClickAction = onClickAction
+    ) {
         TitleSemiBold(
             modifier = Modifier.padding(start = 25.dp, top = 24.dp),
             text = stringResource(id = R.string.popular_search),
@@ -56,7 +59,10 @@ fun StartSearchScreen(
                         ExampleTextMedium(
                             modifier = Modifier
                                 .padding(start = 25.dp)
-                                .indiStrawClickable { onSearch(item.search) },
+                                .indiStrawClickable {
+                                    onClickAction()
+                                    onSearch(item.search)
+                                },
                             text = item.search
                         )
                     }

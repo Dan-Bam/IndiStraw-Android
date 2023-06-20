@@ -38,6 +38,7 @@ import com.danbam.design_system.util.RemoveOverScrollLazyColumn
 @Composable
 fun ResultSearchScreen(
     resultSearchViewModel: ResultSearchViewModel = hiltViewModel(),
+    onClickAction: (() -> Unit),
     keyword: String,
 ) {
     var currentTab: SearchTab by remember { mutableStateOf(SearchTab.Movie) }
@@ -46,7 +47,9 @@ fun ResultSearchScreen(
         resultSearchViewModel.search(keyword = keyword)
     }
 
-    IndiStrawColumnBackground {
+    IndiStrawColumnBackground(
+        onClickAction = onClickAction
+    ) {
         Row(
             modifier = Modifier.padding(start = 25.dp, top = 22.dp)
         ) {

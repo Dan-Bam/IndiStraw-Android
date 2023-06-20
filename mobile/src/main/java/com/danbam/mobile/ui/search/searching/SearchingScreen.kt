@@ -19,9 +19,12 @@ import com.danbam.design_system.util.indiStrawClickable
 
 @Composable
 fun SearchingScreen(
+    onClickAction: (() -> Unit),
     onSearch: (String) -> Unit,
 ) {
-    IndiStrawColumnBackground {
+    IndiStrawColumnBackground(
+        onClickAction = onClickAction
+    ) {
         Spacer(modifier = Modifier.height(37.dp))
         RemoveOverScrollLazyColumn {
             itemsIndexed(
@@ -41,7 +44,10 @@ fun SearchingScreen(
                 Row(
                     modifier = Modifier
                         .padding(horizontal = 25.dp)
-                        .indiStrawClickable { onSearch(item) }
+                        .indiStrawClickable {
+                            onClickAction()
+                            onSearch(item)
+                        }
                 ) {
                     IndiStrawIcon(icon = IndiStrawIconList.Search)
                     Spacer(modifier = Modifier.width(14.dp))

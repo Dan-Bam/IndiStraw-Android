@@ -17,6 +17,7 @@ import com.danbam.design_system.R
 import com.danbam.mobile.ui.search.result_search.ResultSearchScreen
 import com.danbam.mobile.ui.search.searching.SearchingScreen
 import com.danbam.mobile.ui.search.start_search.StartSearchScreen
+import com.danbam.mobile.util.view.popBackStack
 
 sealed class SearchType {
     object Start : SearchType()
@@ -41,7 +42,7 @@ fun SearchScreen(
     ) {
         IndiStrawHeader(
             isBackString = false,
-            pressBackBtn = { navController.popBackStack() }
+            pressBackBtn = { navController.popBackStack(keyboardController = keyboardController) }
         ) {
             IndiStrawSearchTextField(
                 hint = stringResource(id = R.string.looking_for),
@@ -58,25 +59,34 @@ fun SearchScreen(
         }
         when (searchType) {
             is SearchType.Start -> {
-                StartSearchScreen {
-                    focusManager.clearFocus()
-                    keyboardController?.hide()
+                StartSearchScreen(
+                    onClickAction = {
+                        focusManager.clearFocus()
+                        keyboardController?.hide()
+                    }
+                ) {
                     search = it
                     searchType = SearchType.Result
                 }
             }
 
             is SearchType.Searching -> {
-                SearchingScreen {
-                    focusManager.clearFocus()
-                    keyboardController?.hide()
+                SearchingScreen(
+                    onClickAction = {
+                        focusManager.clearFocus()
+                        keyboardController?.hide()
+                    }
+                ) {
                     search = it
                     searchType = SearchType.Result
                 }
             }
 
             is SearchType.Result -> {
-                ResultSearchScreen(keyword = search)
+                ResultSearchScreen(keyword = search, onClickAction = {
+                    focusManager.clearFocus()
+                    keyboardController?.hide()
+                })
             }
         }
     }
