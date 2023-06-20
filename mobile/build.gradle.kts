@@ -10,7 +10,7 @@ android {
     compileSdk = Version.COMPILE_SDK_VERSION
 
     defaultConfig {
-        applicationId = "com.danbam.indi_straw"
+        applicationId = "com.danbam.indi_straw.mobile"
         minSdk = Version.MIN_SDK_VERSION
         targetSdk = Version.TARGET_SDK_VERSION
         versionCode = Version.VERSION_CODE
