@@ -1,0 +1,4 @@
+<resources>
+
+    <style name="Theme.Indi_straw" parent="@style/Theme.Leanback" />
+</resources>

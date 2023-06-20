@@ -16,7 +16,8 @@
             <option value="$PROJECT_DIR$/design-system" />
             <option value="$PROJECT_DIR$/di" />
             <option value="$PROJECT_DIR$/domain" />
-            <option value="$PROJECT_DIR$/presentation" />
+            <option value="$PROJECT_DIR$/mobile" />
+            <option value="$PROJECT_DIR$/tv" />
           </set>
         </option>
       </GradleProjectSettings>
