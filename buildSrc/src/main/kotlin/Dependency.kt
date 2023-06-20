@@ -25,6 +25,7 @@ object Dependency {
         const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:${Version.CONTRAINT_LAYOUT}"
         const val PAGING = "androidx.paging:paging-runtime:${Version.PAGING}"
         const val PAGING_COMPOSE = "androidx.paging:paging-compose:${Version.PAGING_COMPOSE}"
+        const val LEANBACK = "androidx.leanback:leanback:${Version.LEANBACK}"
     }
 
     object Compose {

@@ -21,6 +21,7 @@ object Version {
     const val CONTRAINT_LAYOUT = "2.1.3"
     const val PAGING = "3.1.1"
     const val PAGING_COMPOSE = "1.0.0-alpha16"
+    const val LEANBACK = "1.0.0"
 
     const val COMPOSE_ACTIVITY = "1.6.1"
     const val COMPOSE = "1.3.2"
