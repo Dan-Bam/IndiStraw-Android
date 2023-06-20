@@ -43,7 +43,10 @@ fun StartSearchScreen(
             color = IndiStrawTheme.colors.gray
         )
         Spacer(modifier = Modifier.height(16.dp))
-        IndiStrawChipList(itemList = listOf("최신영화", "신규영화"), onItemSelect = onSearch)
+        IndiStrawChipList(itemList = listOf("최신영화", "신규영화"), onItemSelect = {
+            onClickAction()
+            onSearch(it)
+        })
         if (state.recentSearchList.isNotEmpty()) {
             TitleSemiBold(
                 modifier = Modifier.padding(start = 25.dp, 36.dp),
