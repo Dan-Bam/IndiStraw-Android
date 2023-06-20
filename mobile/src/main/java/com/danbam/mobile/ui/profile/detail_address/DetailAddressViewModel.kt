@@ -19,15 +19,18 @@ class DetailAddressViewModel @Inject constructor(
     override val container = container<Unit, DetailAddressSideEffect>(Unit)
 
     fun changeAddress(detailAddress: String, streetAddress: String, zipCode: String) = intent {
-        viewModelScope.launch {
-            changeAddressUseCase(
-                ChangeAddressParam(
-                    zipCode = zipCode,
-                    streetAddress = streetAddress,
-                    detailAddress = detailAddress
-                )
-            ).onSuccess {
-                postSideEffect(DetailAddressSideEffect.SuccessChangeAddress)
+        if (detailAddress.isEmpty()) postSideEffect(DetailAddressSideEffect.EmptyDetailAddressException)
+        else {
+            viewModelScope.launch {
+                changeAddressUseCase(
+                    ChangeAddressParam(
+                        zipCode = zipCode,
+                        streetAddress = streetAddress,
+                        detailAddress = detailAddress
+                    )
+                ).onSuccess {
+                    postSideEffect(DetailAddressSideEffect.SuccessChangeAddress)
+                }
             }
         }
     }
