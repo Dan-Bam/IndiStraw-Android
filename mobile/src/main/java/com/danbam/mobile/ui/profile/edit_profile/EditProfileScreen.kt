@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
@@ -30,6 +31,7 @@ import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.IndiStrawTextField
 import com.danbam.design_system.component.SelectImageButton
+import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.mobile.ui.auth.navigation.AuthDeepLinkKey
 import com.danbam.mobile.ui.auth.navigation.AuthNavigationItem
@@ -54,7 +56,12 @@ fun EditProfileScreen(
     val focusManager = LocalFocusManager.current
     val context = LocalContext.current
     var name by remember { mutableStateOf(state.name) }
+    var errorText by remember { mutableStateOf("") }
     val nameFocusRequester = remember { FocusRequester() }
+
+    val errorList = mapOf(
+        EditProfileSideEffect.EmptyNameException to stringResource(id = R.string.require_name),
+    )
 
     sideEffect.observeWithLifecycle {
         when (it) {
@@ -63,6 +70,11 @@ fun EditProfileScreen(
             }
 
             is EditProfileSideEffect.SuccessUpload -> {
+            }
+
+            is EditProfileSideEffect.EmptyNameException -> {
+                nameFocusRequester.requestFocus()
+                errorText = errorList[it]!!
             }
         }
     }
@@ -92,9 +104,13 @@ fun EditProfileScreen(
             }) {
             Spacer(modifier = Modifier.height(64.dp))
             IndiStrawTextField(
+                modifier = Modifier.focusRequester(focusRequester = nameFocusRequester),
                 hint = stringResource(id = R.string.name),
                 value = name,
-                onValueChange = { name = it })
+                onValueChange = {
+                    if (errorText.isNotEmpty()) errorText = ""
+                    name = it
+                })
             Spacer(modifier = Modifier.height(20.dp))
             IndiStrawTextField(
                 hint = stringResource(id = R.string.phone_number),
@@ -129,8 +145,14 @@ fun EditProfileScreen(
                     )
                 }
             )
+            TitleRegular(
+                modifier = Modifier.padding(start = 32.dp, top = 7.dp),
+                text = errorText,
+                color = IndiStrawTheme.colors.red,
+                fontSize = 12
+            )
             IndiStrawButton(
-                modifier = Modifier.padding(top = 70.dp),
+                modifier = Modifier.padding(top = 63.dp),
                 text = stringResource(id = R.string.save)
             ) {
                 editProfileVieModel.saveProfile(name)

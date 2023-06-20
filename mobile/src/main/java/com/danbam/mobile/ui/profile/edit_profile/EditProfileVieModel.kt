@@ -53,13 +53,16 @@ class EditProfileVieModel @Inject constructor(
     }
 
     fun saveProfile(name: String) = intent {
-        viewModelScope.launch {
-            editProfileUseCase(
-                EditProfileParam(
-                    name = name,
-                    profileUrl = state.profileUrl
+        if (name.isEmpty()) postSideEffect(EditProfileSideEffect.EmptyNameException)
+        else {
+            viewModelScope.launch {
+                editProfileUseCase(
+                    EditProfileParam(
+                        name = name,
+                        profileUrl = state.profileUrl
+                    )
                 )
-            )
+            }
         }
     }
 }
