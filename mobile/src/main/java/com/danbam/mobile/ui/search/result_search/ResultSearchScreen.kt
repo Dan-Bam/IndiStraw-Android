@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,6 +22,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.component.IndiStrawColumnBackground
@@ -35,9 +37,15 @@ import com.danbam.design_system.util.RemoveOverScrollLazyColumn
 
 @Composable
 fun ResultSearchScreen(
-
+    resultSearchViewModel: ResultSearchViewModel = hiltViewModel(),
+    keyword: String,
 ) {
     var currentTab: SearchTab by remember { mutableStateOf(SearchTab.Movie) }
+
+    LaunchedEffect(Unit) {
+        resultSearchViewModel.search(keyword = keyword)
+    }
+
     IndiStrawColumnBackground {
         Row(
             modifier = Modifier.padding(start = 25.dp, top = 22.dp)

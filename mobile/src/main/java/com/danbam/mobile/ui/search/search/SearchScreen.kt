@@ -76,7 +76,7 @@ fun SearchScreen(
             }
 
             is SearchType.Result -> {
-                ResultSearchScreen()
+                ResultSearchScreen(keyword = search)
             }
         }
     }
