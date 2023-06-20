@@ -1,6 +1,7 @@
 package com.danbam.mobile.ui.search.search
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -9,6 +10,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawHeader
@@ -19,21 +21,19 @@ import com.danbam.mobile.ui.search.searching.SearchingScreen
 import com.danbam.mobile.ui.search.start_search.StartSearchScreen
 import com.danbam.mobile.util.view.popBackStack
 
-sealed class SearchType {
-    object Start : SearchType()
-    object Searching : SearchType()
-    object Result : SearchType()
-}
-
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SearchScreen(
     navController: NavController,
+    searchViewModel: SearchViewModel = hiltViewModel(),
 ) {
+    val container = searchViewModel.container
+    val state = container.stateFlow.collectAsState().value
+    val sideEffect = container.sideEffectFlow
+
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
-    var search by remember { mutableStateOf("") }
-    var searchType: SearchType by remember { mutableStateOf(SearchType.Start) }
+    var search by remember { mutableStateOf(state.keyword) }
     IndiStrawColumnBackground(
         onClickAction = {
             focusManager.clearFocus()
@@ -49,15 +49,15 @@ fun SearchScreen(
                 value = search,
                 onValueChange = {
                     search = it
-                    searchType = if (search.isEmpty()) SearchType.Start else SearchType.Searching
+                    searchViewModel.changeSearchType(if (search.isEmpty()) SearchType.Start else SearchType.Searching)
                 }
             ) {
                 focusManager.clearFocus()
                 keyboardController?.hide()
-                searchType = SearchType.Result
+                searchViewModel.changeSearchType(SearchType.Result, keyword = search)
             }
         }
-        when (searchType) {
+        when (state.searchType) {
             is SearchType.Start -> {
                 StartSearchScreen(
                     onClickAction = {
@@ -66,7 +66,7 @@ fun SearchScreen(
                     }
                 ) {
                     search = it
-                    searchType = SearchType.Result
+                    searchViewModel.changeSearchType(SearchType.Result, keyword = search)
                 }
             }
 
@@ -78,7 +78,7 @@ fun SearchScreen(
                     }
                 ) {
                     search = it
-                    searchType = SearchType.Result
+                    searchViewModel.changeSearchType(SearchType.Result, keyword = search)
                 }
             }
 
