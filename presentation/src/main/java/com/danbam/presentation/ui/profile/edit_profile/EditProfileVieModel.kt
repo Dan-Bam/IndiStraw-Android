@@ -52,11 +52,11 @@ class EditProfileVieModel @Inject constructor(
         }
     }
 
-    fun saveProfile() = intent {
+    fun saveProfile(name: String) = intent {
         viewModelScope.launch {
             editProfileUseCase(
                 EditProfileParam(
-                    name = state.name,
+                    name = name,
                     profileUrl = state.profileUrl
                 )
             )

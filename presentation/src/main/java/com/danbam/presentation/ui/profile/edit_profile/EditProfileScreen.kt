@@ -133,7 +133,7 @@ fun EditProfileScreen(
                 modifier = Modifier.padding(top = 70.dp),
                 text = stringResource(id = R.string.save)
             ) {
-                editProfileVieModel.saveProfile()
+                editProfileVieModel.saveProfile(name)
             }
         }
     }
