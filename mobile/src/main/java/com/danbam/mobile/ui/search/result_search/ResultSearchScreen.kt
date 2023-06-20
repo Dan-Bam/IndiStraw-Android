@@ -23,6 +23,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.component.IndiStrawColumnBackground
@@ -34,9 +35,12 @@ import com.danbam.design_system.component.IndiStrawProgress
 import com.danbam.design_system.component.SearchTab
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.util.RemoveOverScrollLazyColumn
+import com.danbam.design_system.util.indiStrawClickable
+import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 
 @Composable
 fun ResultSearchScreen(
+    navController: NavController,
     resultSearchViewModel: ResultSearchViewModel = hiltViewModel(),
     onClickAction: (() -> Unit),
     keyword: String,
@@ -79,11 +83,15 @@ fun ResultSearchScreen(
                         Row {
                             MovieItem(
                                 modifier = Modifier.weight(1F)
-                            )
+                            ) {
+                                navController.navigate(MovieNavigationItem.MovieDetail.route)
+                            }
                             Spacer(modifier = Modifier.width(15.dp))
                             MovieItem(
                                 modifier = Modifier.weight(1F)
-                            )
+                            ) {
+                                navController.navigate(MovieNavigationItem.MovieDetail.route)
+                            }
                         }
                         Spacer(modifier = Modifier.height(24.dp))
                     }
@@ -118,9 +126,11 @@ fun ResultSearchScreen(
 @Composable
 private fun MovieItem(
     modifier: Modifier = Modifier,
+    onSelect: () -> Unit,
 ) {
     Column(
         modifier = modifier
+            .indiStrawClickable(onClick = onSelect)
             .background(
                 color = IndiStrawTheme.colors.darkGray,
                 shape = IndiStrawTheme.shapes.smallRounded

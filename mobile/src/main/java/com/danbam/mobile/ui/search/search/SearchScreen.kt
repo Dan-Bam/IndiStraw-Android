@@ -83,10 +83,14 @@ fun SearchScreen(
             }
 
             is SearchType.Result -> {
-                ResultSearchScreen(keyword = search, onClickAction = {
-                    focusManager.clearFocus()
-                    keyboardController?.hide()
-                })
+                ResultSearchScreen(
+                    navController = navController,
+                    keyword = search,
+                    onClickAction = {
+                        focusManager.clearFocus()
+                        keyboardController?.hide()
+                    }
+                )
             }
         }
     }
