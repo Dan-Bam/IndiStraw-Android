@@ -58,17 +58,15 @@ fun StartSearchScreen(
                 itemsIndexed(
                     state.recentSearchList
                 ) { _, item ->
-                    item?.let {
-                        ExampleTextMedium(
-                            modifier = Modifier
-                                .padding(start = 25.dp)
-                                .indiStrawClickable {
-                                    onClickAction()
-                                    onSearch(item.search)
-                                },
-                            text = item.search
-                        )
-                    }
+                    ExampleTextMedium(
+                        modifier = Modifier
+                            .padding(start = 25.dp)
+                            .indiStrawClickable {
+                                onClickAction()
+                                onSearch(item.search)
+                            },
+                        text = item.search
+                    )
                     Spacer(modifier = Modifier.height(16.dp))
                 }
             }
