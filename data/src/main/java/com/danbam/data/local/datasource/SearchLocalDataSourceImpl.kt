@@ -10,6 +10,9 @@ class SearchLocalDataSourceImpl @Inject constructor(
     override suspend fun search(recentSearchEntity: RecentSearchEntity) =
         recentSearchDao.search(recentSearchEntity = recentSearchEntity)
 
-    override suspend fun getRecentSearch(): List<RecentSearchEntity?> =
+    override suspend fun getRecentSearch(): List<RecentSearchEntity> =
         recentSearchDao.getRecentSearch().reversed()
+
+    override suspend fun deleteRecentSearch(elements: List<RecentSearchEntity>) =
+        recentSearchDao.deleteRecentSearch(elements = elements)
 }
