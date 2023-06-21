@@ -20,9 +20,11 @@ class IndiStrawInterceptor @Inject constructor(
 ) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
+        val method = request.method
         val path = request.url.encodedPath
         val ignorePath = BuildConfig.IGNORE_PATH.split(", ")
         ignorePath.forEach {
+            if (path.startsWith(ignorePath[1]) && method == "PATCH") return@forEach
             if (path.startsWith(it)) return chain.proceed(request)
         }
         val now = LocalDateTime.now().default()
