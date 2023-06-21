@@ -80,6 +80,10 @@ fun CertificateScreen(
         CertificateSideEffect.TooManyRequestCertificateNumberException to stringResource(id = R.string.wrong_over_request_certificate_number)
     )
 
+    LaunchedEffect(Unit) {
+        certificateViewModel.clearPhoneNumber()
+    }
+
     LaunchedEffect(restTime) {
         if (restTime != 0) {
             delay(1_000L)
@@ -102,7 +106,7 @@ fun CertificateScreen(
             }
 
             is CertificateSideEffect.SuccessChangePhoneNumber -> {
-                navController.popBackStack()
+                navController.popBackStack(keyboardController = keyboardController)
             }
 
             is CertificateSideEffect.SuccessCertificate -> {
@@ -112,7 +116,9 @@ fun CertificateScreen(
                     CertificateType.FIND_ID -> navController.navigate(AuthNavigationItem.FindId.route + AuthDeepLinkKey.PHONE_NUMBER + phoneNumber.toPhoneNumber())
                     CertificateType.FIND_PASSWORD -> navController.navigate(AuthNavigationItem.FindPassword.route + AuthDeepLinkKey.PHONE_NUMBER + phoneNumber.toPhoneNumber() + AuthDeepLinkKey.IS_FIND_PASSWORD + true)
                     CertificateType.CHANGE_PASSWORD -> navController.navigate(AuthNavigationItem.FindPassword.route + AuthDeepLinkKey.PHONE_NUMBER + phoneNumber.toPhoneNumber() + AuthDeepLinkKey.IS_FIND_PASSWORD + false)
-                    CertificateType.CHANGE_PHONE_NUMBER -> certificateViewModel.changePhoneNumber()
+                    CertificateType.CHANGE_PHONE_NUMBER -> certificateViewModel.changePhoneNumber(
+                        phoneNumber = phoneNumber
+                    )
                 }
             }
         }

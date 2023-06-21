@@ -26,6 +26,10 @@ class CertificateViewModel @Inject constructor(
 ) : ContainerHost<CertificateState, CertificateSideEffect>, ViewModel() {
     override val container = container<CertificateState, CertificateSideEffect>(CertificateState())
 
+    fun clearPhoneNumber() = intent {
+        reduce { state.copy(phoneNumber = "") }
+    }
+
     fun checkPhoneNumber(phoneNumber: String, type: String) = intent {
         if (phoneNumber.isEmpty()) postSideEffect(CertificateSideEffect.EmptyPhoneNumberException)
         else if (!phoneNumber.isPhoneNumber()) postSideEffect(CertificateSideEffect.MatchPhoneNumberException)
@@ -67,7 +71,6 @@ class CertificateViewModel @Inject constructor(
                     phoneNumber = state.phoneNumber
                 ).onSuccess {
                     postSideEffect(CertificateSideEffect.SuccessCertificate)
-                    reduce { state.copy(phoneNumber = "") }
                 }.onFailure {
                     it.errorHandling(unknownAction = {}, wrongDataException = {
                         postSideEffect(CertificateSideEffect.WrongCertificateNumberException)
@@ -81,9 +84,9 @@ class CertificateViewModel @Inject constructor(
         postSideEffect(CertificateSideEffect.ExpiredCertificateNumberException)
     }
 
-    fun changePhoneNumber() = intent {
+    fun changePhoneNumber(phoneNumber: String) = intent {
         viewModelScope.launch {
-            changePhoneNumberUseCase(phoneNumber = state.phoneNumber).onSuccess {
+            changePhoneNumberUseCase(phoneNumber = phoneNumber).onSuccess {
                 postSideEffect(CertificateSideEffect.SuccessChangePhoneNumber)
             }.onFailure {
                 it.errorHandling(unknownAction = {})
