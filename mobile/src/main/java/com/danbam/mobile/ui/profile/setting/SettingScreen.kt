@@ -104,7 +104,7 @@ fun SettingScreen(
             SettingItem(itemMap = firstLine, frontIcon = listOf(IndiStrawIconList.Profile))
             Spacer(modifier = Modifier.height(36.dp))
             ExampleTextMedium(
-                modifier = Modifier.padding(start = 32.dp),
+                modifier = Modifier.padding(start = 15.dp),
                 text = stringResource(id = R.string.setting_account)
             )
             Spacer(modifier = Modifier.height(10.dp))
