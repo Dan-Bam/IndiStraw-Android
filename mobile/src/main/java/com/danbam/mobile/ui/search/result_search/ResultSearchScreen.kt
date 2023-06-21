@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,6 +22,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.component.IndiStrawColumnBackground
@@ -32,13 +35,25 @@ import com.danbam.design_system.component.IndiStrawProgress
 import com.danbam.design_system.component.SearchTab
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.util.RemoveOverScrollLazyColumn
+import com.danbam.design_system.util.indiStrawClickable
+import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 
 @Composable
 fun ResultSearchScreen(
-
+    navController: NavController,
+    resultSearchViewModel: ResultSearchViewModel = hiltViewModel(),
+    onClickAction: (() -> Unit),
+    keyword: String,
 ) {
     var currentTab: SearchTab by remember { mutableStateOf(SearchTab.Movie) }
-    IndiStrawColumnBackground {
+
+    LaunchedEffect(Unit) {
+        resultSearchViewModel.search(keyword = keyword)
+    }
+
+    IndiStrawColumnBackground(
+        onClickAction = onClickAction
+    ) {
         Row(
             modifier = Modifier.padding(start = 25.dp, top = 22.dp)
         ) {
@@ -68,11 +83,15 @@ fun ResultSearchScreen(
                         Row {
                             MovieItem(
                                 modifier = Modifier.weight(1F)
-                            )
+                            ) {
+                                navController.navigate(MovieNavigationItem.MovieDetail.route)
+                            }
                             Spacer(modifier = Modifier.width(15.dp))
                             MovieItem(
                                 modifier = Modifier.weight(1F)
-                            )
+                            ) {
+                                navController.navigate(MovieNavigationItem.MovieDetail.route)
+                            }
                         }
                         Spacer(modifier = Modifier.height(24.dp))
                     }
@@ -107,9 +126,11 @@ fun ResultSearchScreen(
 @Composable
 private fun MovieItem(
     modifier: Modifier = Modifier,
+    onSelect: () -> Unit,
 ) {
     Column(
         modifier = modifier
+            .indiStrawClickable(onClick = onSelect)
             .background(
                 color = IndiStrawTheme.colors.darkGray,
                 shape = IndiStrawTheme.shapes.smallRounded
