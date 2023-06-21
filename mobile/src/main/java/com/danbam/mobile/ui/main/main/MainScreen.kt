@@ -144,7 +144,9 @@ fun MainScreen(
                         currentMovieTab = MovieTab.PopularMovie
                     }
                 }
-            ), moreData = { }
+            ), moreData = {
+                navController.navigate(MovieNavigationItem.MovieAll.route)
+            }
         ) {
             navController.navigate(MovieNavigationItem.MovieDetail.route)
         }
