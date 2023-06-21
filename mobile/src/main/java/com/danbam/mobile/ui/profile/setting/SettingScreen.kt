@@ -30,6 +30,7 @@ import com.danbam.design_system.R
 import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.design_system.component.IndiStrawBottomSheetLayout
+import com.danbam.design_system.component.IndiStrawDialog
 import com.danbam.mobile.ui.auth.navigation.AuthDeepLinkKey
 import com.danbam.mobile.ui.auth.navigation.AuthNavigationItem
 import com.danbam.mobile.ui.auth.navigation.CertificateType
@@ -48,16 +49,21 @@ fun SettingScreen(
     val state = container.stateFlow.collectAsState().value
     val sideEffect = container.sideEffectFlow
 
+    var logoutDialogVisible by remember { mutableStateOf(false) }
+    var withdrawDialogVisible by remember { mutableStateOf(false) }
+
     sideEffect.observeWithLifecycle {
         when (it) {
             is SettingSideEffect.SuccessLogout -> {
                 navController.navigate(AuthNavigationItem.Login.route) {
+                    logoutDialogVisible = false
                     popUpTo(MainNavigationItem.Intro.route)
                 }
             }
 
             is SettingSideEffect.SuccessWithdraw -> {
                 navController.navigate(AuthNavigationItem.Login.route) {
+                    withdrawDialogVisible = false
                     popUpTo(MainNavigationItem.Intro.route)
                 }
             }
@@ -79,10 +85,10 @@ fun SettingScreen(
     )
     val thirdLine = mapOf(
         stringResource(id = R.string.logout) to {
-            settingViewModel.logout()
+            logoutDialogVisible = true
         },
         stringResource(id = R.string.withdrawal) to {
-            settingViewModel.withdraw()
+            withdrawDialogVisible = true
         }
     )
 
@@ -98,7 +104,7 @@ fun SettingScreen(
             SettingItem(itemMap = firstLine, frontIcon = listOf(IndiStrawIconList.Profile))
             Spacer(modifier = Modifier.height(36.dp))
             ExampleTextMedium(
-                modifier = Modifier.padding(start = 32.dp),
+                modifier = Modifier.padding(start = 15.dp),
                 text = stringResource(id = R.string.setting_account)
             )
             Spacer(modifier = Modifier.height(10.dp))
@@ -108,6 +114,22 @@ fun SettingScreen(
             )
             Spacer(modifier = Modifier.height(36.dp))
             SettingItem(itemMap = thirdLine)
+
+            IndiStrawDialog(
+                visible = logoutDialogVisible,
+                title = stringResource(id = R.string.logout),
+                content = stringResource(id = R.string.want_you_logout),
+                onDismissRequest = { logoutDialogVisible = false }) {
+                settingViewModel.logout()
+            }
+
+            IndiStrawDialog(
+                visible = withdrawDialogVisible,
+                title = stringResource(id = R.string.withdrawal),
+                content = stringResource(id = R.string.want_you_withdrawal),
+                onDismissRequest = { withdrawDialogVisible = false }) {
+                settingViewModel.withdraw()
+            }
         }
 
     }
