@@ -120,7 +120,7 @@ fun ProfileScreen(
                     ) {
                         currentMovieTab = MovieTab.ParticipantMovie
                     }
-                }), moreData = { }
+                })
         ) {
             navController.navigate(MovieNavigationItem.MovieDetail.route)
         }
@@ -143,7 +143,7 @@ fun ProfileScreen(
                     ) {
                         currentFundingTab = FundingTab.MyFunding
                     }
-                }), moreData = { }, isCrowdFunding = true
+                }), isCrowdFunding = true
         ) {
         }
     }
