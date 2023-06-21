@@ -108,7 +108,7 @@ fun IndiStrawTabRow(
     modifier: Modifier = Modifier,
     itemList: List<String>,
     tabHeader: List<@Composable () -> Unit>,
-    moreData: () -> Unit,
+    moreData: (() -> Unit)? = null,
     isCrowdFunding: Boolean = false,
     onClickItem: (Int) -> Unit,
 ) {
@@ -134,14 +134,16 @@ fun IndiStrawTabRow(
                     Spacer(modifier = Modifier.width(16.dp))
                 }
             }
-            TitleRegular(
-                modifier = Modifier
-                    .indiStrawClickable(onClick = moreData)
-                    .padding(end = 15.dp, bottom = if (isCrowdFunding) 0.dp else 6.dp),
-                text = stringResource(id = R.string.view_all),
-                fontSize = 12,
-                color = IndiStrawTheme.colors.gray
-            )
+            moreData?.let {
+                TitleRegular(
+                    modifier = Modifier
+                        .indiStrawClickable(onClick = moreData)
+                        .padding(end = 15.dp, bottom = if (isCrowdFunding) 0.dp else 6.dp),
+                    text = stringResource(id = R.string.view_all),
+                    fontSize = 12,
+                    color = IndiStrawTheme.colors.gray
+                )
+            }
         }
     }
     if (isCrowdFunding) {
