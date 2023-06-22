@@ -184,7 +184,7 @@ fun MainScreen(
                     shape = IndiStrawTheme.shapes.defaultRounded
                 )
                 .padding(vertical = 14.dp, horizontal = 20.dp),
-            text = "독립 영화 만들기",
+            text = stringResource(id = R.string.make_indi_movie),
             fontSize = 20,
             textAlign = TextAlign.End
         )
@@ -198,7 +198,7 @@ fun MainScreen(
                     shape = IndiStrawTheme.shapes.defaultRounded
                 )
                 .padding(vertical = 14.dp, horizontal = 20.dp),
-            text = "크라우드 펀딩 만들기",
+            text = stringResource(id = R.string.make_crowd_fund),
             fontSize = 20,
             textAlign = TextAlign.End
         )
