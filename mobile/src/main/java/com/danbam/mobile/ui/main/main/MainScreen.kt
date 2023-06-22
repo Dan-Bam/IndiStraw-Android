@@ -4,6 +4,9 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -18,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -25,6 +29,7 @@ import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.R
 import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
+import com.danbam.design_system.component.HeadLineBold
 import com.danbam.design_system.component.ImageButton
 import com.danbam.design_system.component.IndiStrawBanner
 import com.danbam.design_system.component.IndiStrawColumnBackground
@@ -163,5 +168,40 @@ fun MainScreen(
             isCrowdFunding = true
         ) {
         }
+        Spacer(
+            modifier = Modifier
+                .padding(top = 14.dp, bottom = 30.dp)
+                .height(1.dp)
+                .fillMaxWidth()
+                .background(IndiStrawTheme.colors.gray)
+        )
+        HeadLineBold(
+            modifier = Modifier
+                .padding(horizontal = 15.dp)
+                .fillMaxWidth()
+                .background(
+                    color = IndiStrawTheme.colors.lightBlack,
+                    shape = IndiStrawTheme.shapes.defaultRounded
+                )
+                .padding(vertical = 14.dp, horizontal = 20.dp),
+            text = "독립 영화 만들기",
+            fontSize = 20,
+            textAlign = TextAlign.End
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        HeadLineBold(
+            modifier = Modifier
+                .padding(horizontal = 15.dp)
+                .fillMaxWidth()
+                .background(
+                    color = IndiStrawTheme.colors.lightBlack,
+                    shape = IndiStrawTheme.shapes.defaultRounded
+                )
+                .padding(vertical = 14.dp, horizontal = 20.dp),
+            text = "크라우드 펀딩 만들기",
+            fontSize = 20,
+            textAlign = TextAlign.End
+        )
+        Spacer(modifier = Modifier.height(40.dp))
     }
 }
