@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -106,17 +107,21 @@ fun FindAddressScreen(
                                             navController.navigate(ProfileNavigationItem.DetailAddress.route + ProfileDeepLinkKey.ADDRESS + "${item.streetAddress} ${item.buildName}" + ProfileDeepLinkKey.ZIP_CODE + item.zipcode)
                                         },
                                     verticalAlignment = Alignment.CenterVertically,
-                                    horizontalArrangement = Arrangement.SpaceBetween
                                 ) {
+                                    IndiStrawIcon(icon = IndiStrawIconList.Search)
+                                    Spacer(modifier = Modifier.width(15.dp))
                                     Column {
                                         DialogMedium(text = item.streetAddress)
                                         Spacer(modifier = Modifier.height(4.dp))
-                                        TitleRegular(
-                                            text = item.buildName,
-                                            fontSize = 14,
-                                            color = IndiStrawTheme.colors.gray
-                                        )
+                                        if (item.buildName.isNotEmpty()) {
+                                            TitleRegular(
+                                                text = item.buildName,
+                                                fontSize = 14,
+                                                color = IndiStrawTheme.colors.gray
+                                            )
+                                        }
                                     }
+                                    Spacer(modifier = Modifier.weight(1F))
                                     IndiStrawIcon(icon = IndiStrawIconList.FastSearch)
                                 }
                                 Spacer(modifier = Modifier.height(28.dp))
