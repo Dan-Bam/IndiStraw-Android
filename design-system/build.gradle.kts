@@ -51,5 +51,12 @@ dependencies {
 
     implementation(Dependency.ExoPlayer.EXO_PLAYER_CORE)
     implementation(Dependency.ExoPlayer.EXO_PLAYER_UI)
+
+    implementation(Dependency.Camera.CAMERA)
+    implementation(Dependency.Camera.LIFECYCLE)
+    implementation(Dependency.Camera.VIEW)
+
+    implementation(Dependency.Barcode.BARCODE)
+
     implementation(Dependency.AndroidX.CONSTRAINT_LAYOUT)
 }
