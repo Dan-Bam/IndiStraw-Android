@@ -5,6 +5,7 @@ import com.danbam.data.remote.api.AccountAPI
 import com.danbam.data.remote.api.AddressAPI
 import com.danbam.data.remote.api.AuthAPI
 import com.danbam.data.remote.api.FileAPI
+import com.danbam.data.remote.api.SearchAPI
 import com.danbam.data.remote.interceptor.IndiStrawInterceptor
 import dagger.Module
 import dagger.Provides
@@ -52,4 +53,7 @@ object NetworkModule {
 
     @Provides
     fun provideAddressAPI(retrofit: Retrofit): AddressAPI = retrofit.create(AddressAPI::class.java)
+
+    @Provides
+    fun provideSearchAPI(retrofit: Retrofit): SearchAPI = retrofit.create(SearchAPI::class.java)
 }

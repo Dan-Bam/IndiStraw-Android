@@ -8,6 +8,8 @@ import com.danbam.data.remote.datasource.AuthRemoteDataSource
 import com.danbam.data.remote.datasource.AuthRemoteDataSourceImpl
 import com.danbam.data.remote.datasource.FileRemoteDataSource
 import com.danbam.data.remote.datasource.FileRemoteDataSourceImpl
+import com.danbam.data.remote.datasource.SearchRemoteDataSource
+import com.danbam.data.remote.datasource.SearchRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -35,4 +37,9 @@ abstract class RemoteDataSourceModule {
     abstract fun bindAddressRemoteDataSource(
         addressRemoteDataSourceImpl: AddressRemoteDataSourceImpl,
     ): AddressRemoteDataSource
+
+    @Binds
+    abstract fun bindSearchRemoteDataSource(
+        searchRemoteDataSourceImpl: SearchRemoteDataSourceImpl,
+    ): SearchRemoteDataSource
 }
