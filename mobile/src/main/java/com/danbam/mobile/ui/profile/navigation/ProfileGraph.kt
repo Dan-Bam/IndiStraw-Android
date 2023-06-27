@@ -9,6 +9,7 @@ import com.danbam.mobile.ui.profile.detail_address.DetailAddressScreen
 import com.danbam.mobile.ui.profile.edit_profile.EditProfileScreen
 import com.danbam.mobile.ui.profile.find_address.FindAddressScreen
 import com.danbam.mobile.ui.profile.profile.ProfileScreen
+import com.danbam.mobile.ui.profile.qr_login.QRLoginScreen
 import com.danbam.mobile.ui.profile.setting.SettingScreen
 import com.google.accompanist.navigation.animation.composable
 
@@ -18,6 +19,7 @@ sealed class ProfileNavigationItem(val route: String) {
     object EditProfile : ProfileNavigationItem("editProfile")
     object FindAddress : ProfileNavigationItem("findAddress")
     object DetailAddress : ProfileNavigationItem("detailAddress")
+    object QRLogin : ProfileNavigationItem("qrLogin")
 }
 
 object ProfileDeepLinkKey {
@@ -57,5 +59,8 @@ fun NavGraphBuilder.profileGraph(
         val address = it.arguments?.getString(ProfileDeepLinkKey.ADDRESS) ?: ""
         val zipCode = it.arguments?.getString(ProfileDeepLinkKey.ZIP_CODE) ?: ""
         DetailAddressScreen(navController = navController, address = address, zipCode = zipCode)
+    }
+    composable(route = ProfileNavigationItem.QRLogin.route) {
+        QRLoginScreen(navController = navController)
     }
 }
