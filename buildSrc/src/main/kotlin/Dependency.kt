@@ -87,6 +87,16 @@ object Dependency {
         const val EXO_PLAYER_UI = "com.google.android.exoplayer:exoplayer-ui:${Version.EXO_PLAYER}"
     }
 
+    object Camera {
+        const val CAMERA = "androidx.camera:camera-camera2:${Version.CAMERA}"
+        const val LIFECYCLE = "androidx.camera:camera-lifecycle:${Version.CAMERA}"
+        const val VIEW = "androidx.camera:camera-view:${Version.CAMERA}"
+    }
+
+    object Barcode {
+        const val BARCODE = "com.google.mlkit:barcode-scanning:${Version.BARCODE}"
+    }
+
     object JavaX {
         const val INJECT = "javax.inject:javax.inject:${Version.INJECT}"
     }

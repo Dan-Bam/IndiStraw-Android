@@ -140,5 +140,17 @@ class IndiStrawIconList private constructor(
             drawableId = R.drawable.ic_earth,
             contentDescription = "earth"
         )
+
+        @Stable
+        val QR = IndiStrawIconList(
+            drawableId = R.drawable.ic_qr,
+            contentDescription = "qr"
+        )
+
+        @Stable
+        val QRGrid = IndiStrawIconList(
+            drawableId = R.drawable.ic_qr_grid,
+            contentDescription = "qrGrid"
+        )
     }
 }
