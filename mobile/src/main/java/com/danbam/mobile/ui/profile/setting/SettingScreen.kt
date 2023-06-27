@@ -81,7 +81,10 @@ fun SettingScreen(
         stringResource(id = R.string.change_password) to {
             navController.navigate(AuthNavigationItem.Certificate.route + AuthDeepLinkKey.CERTIFICATE_TYPE + CertificateType.CHANGE_PASSWORD)
         },
-        stringResource(id = R.string.change_language) to { changeLanguage() }
+        stringResource(id = R.string.change_language) to { changeLanguage() },
+        stringResource(id = R.string.qr_login) to {
+            navController.navigate(ProfileNavigationItem.QRLogin.route)
+        }
     )
     val thirdLine = mapOf(
         stringResource(id = R.string.logout) to {
@@ -110,7 +113,7 @@ fun SettingScreen(
             Spacer(modifier = Modifier.height(10.dp))
             SettingItem(
                 itemMap = secondLine,
-                frontIcon = listOf(IndiStrawIconList.Shield, IndiStrawIconList.Earth)
+                frontIcon = listOf(IndiStrawIconList.Shield, IndiStrawIconList.Earth, IndiStrawIconList.QR)
             )
             Spacer(modifier = Modifier.height(36.dp))
             SettingItem(itemMap = thirdLine)
