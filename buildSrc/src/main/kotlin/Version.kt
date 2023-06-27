@@ -49,5 +49,9 @@ object Version {
 
     const val EXO_PLAYER = "2.18.1"
 
+    const val CAMERA = "1.2.2"
+
+    const val BARCODE = "17.1.0"
+
     const val INJECT = "1"
 }
