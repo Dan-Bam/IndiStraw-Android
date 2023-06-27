@@ -3,6 +3,7 @@ package com.danbam.data.remote.api
 import com.danbam.data.remote.request.LoginRequest
 import com.danbam.data.remote.request.SignUpRequest
 import com.danbam.data.remote.response.LoginResponse
+import com.danbam.data.remote.util.EndPoint
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -14,44 +15,44 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface AuthAPI {
-    @POST("auth/signup")
+    @POST("${EndPoint.AUTH}/signup")
     suspend fun signup(
         @Body signUpRequest: SignUpRequest,
     )
 
-    @POST("auth/signin")
+    @POST("${EndPoint.AUTH}/signin")
     suspend fun login(
         @Body loginRequest: LoginRequest,
     ): LoginResponse
 
-    @PATCH("auth/reissue")
+    @PATCH("${EndPoint.AUTH}/reissue")
     suspend fun refresh(
         @Header("refreshToken") refreshToken: String,
     ): LoginResponse
 
-    @HEAD("auth/check/phone-number/{phoneNumber}/type/{type}")
+    @HEAD("${EndPoint.AUTH}/check/phone-number/{phoneNumber}/type/{type}")
     suspend fun checkPhoneNumber(
         @Path("phoneNumber") phoneNumber: String,
         @Path("type") type: String,
     ): Response<Void?>
 
-    @HEAD("auth/check/id/{id}")
+    @HEAD("${EndPoint.AUTH}/check/id/{id}")
     suspend fun checkId(
         @Path("id") id: String,
     ): Response<Void?>
 
-    @POST("auth/send/phone-number/{phoneNumber}")
+    @POST("${EndPoint.AUTH}/send/phone-number/{phoneNumber}")
     suspend fun sendCertificateNumber(
         @Path("phoneNumber") phoneNumber: String,
     ): Response<Void?>
 
-    @GET("auth/auth-code/{authCode}/phone-number/{phoneNumber}")
+    @GET("${EndPoint.AUTH}/auth-code/{authCode}/phone-number/{phoneNumber}")
     suspend fun checkCertificateNumber(
         @Path("authCode") authCode: Int,
         @Path("phoneNumber") phoneNumber: String,
     ): Response<Void?>
 
-    @DELETE("auth/logout")
+    @DELETE("${EndPoint.AUTH}/logout")
     suspend fun logout(
         @Header("refreshToken") refreshToken: String,
     ): Response<Void?>
