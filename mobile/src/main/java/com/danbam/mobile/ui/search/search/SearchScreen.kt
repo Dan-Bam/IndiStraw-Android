@@ -72,6 +72,7 @@ fun SearchScreen(
 
             is SearchType.Searching -> {
                 SearchingScreen(
+                    keyword = search,
                     onClickAction = {
                         focusManager.clearFocus()
                         keyboardController?.hide()
