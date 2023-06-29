@@ -1,5 +1,6 @@
 package com.danbam.design_system.component
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -18,6 +19,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -147,6 +150,55 @@ fun IndiStrawSearchTextField(
                     icon = IndiStrawIconList.Search
                 )
             }
+        }
+    }
+}
+
+@Composable
+fun IndiStrawTvTextField(
+    modifier: Modifier = Modifier,
+    hint: String,
+    value: String,
+    onValueChange: (String) -> Unit,
+    imeAction: ImeAction = ImeAction.Done,
+    keyboardType: KeyboardType = KeyboardType.Text,
+    visualTransformation: VisualTransformation = VisualTransformation.None
+) {
+    var focused by remember { mutableStateOf(false) }
+    BasicTextField(
+        modifier = modifier
+            .onFocusChanged {
+                focused = it.hasFocus || it.isFocused
+            }
+            .background(
+                color = if (focused) IndiStrawTheme.colors.navy else IndiStrawTheme.colors.gray,
+                shape = IndiStrawTheme.shapes.defaultRounded
+            )
+            .border(
+                width = 3.dp,
+                color = if (focused) IndiStrawTheme.colors.main else Color.Transparent,
+                shape = IndiStrawTheme.shapes.defaultRounded
+            )
+            .fillMaxWidth(0.4F)
+            .padding(horizontal = 20.dp, vertical = 15.dp),
+        value = value,
+        onValueChange = onValueChange,
+        keyboardOptions = KeyboardOptions(imeAction = imeAction, keyboardType = keyboardType),
+        cursorBrush = SolidColor(IndiStrawTheme.colors.gray),
+        textStyle = IndiStrawTheme.typography.exampleTextMedium.copy(
+            fontSize = 24.sp,
+            color = IndiStrawTheme.colors.white
+        ),
+        visualTransformation = visualTransformation,
+    ) {
+        Box(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            it()
+            if (value.isEmpty()) {
+                ExampleTextRegular(text = hint, color = IndiStrawTheme.colors.white, fontSize = 24)
+            }
+
         }
     }
 }
