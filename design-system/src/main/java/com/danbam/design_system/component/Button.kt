@@ -100,10 +100,9 @@ fun IndiStrawTvButton(
                 shape = IndiStrawTheme.shapes.defaultRounded
             )
             .indiStrawClickable(rippleColor = IndiStrawTheme.colors.black, onClick = onClick)
-            .padding(vertical = 15.dp),
+            .padding(vertical = 16.dp),
         text = text,
-        textAlign = TextAlign.Center,
-        fontSize = 24
+        textAlign = TextAlign.Center
     )
 }
 
