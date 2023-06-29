@@ -10,6 +10,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,11 +26,17 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.shape.ZeroCornerSize
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment.Companion.BottomEnd
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -61,6 +68,35 @@ fun IndiStrawButton(
             .fillMaxWidth()
             .background(
                 color = IndiStrawTheme.colors.main,
+                shape = IndiStrawTheme.shapes.defaultRounded
+            )
+            .indiStrawClickable(rippleColor = IndiStrawTheme.colors.black, onClick = onClick)
+            .padding(vertical = 16.dp),
+        text = text,
+        textAlign = TextAlign.Center
+    )
+}
+
+@Composable
+fun IndiStrawTvButton(
+    modifier: Modifier = Modifier,
+    text: String,
+    onClick: () -> Unit,
+) {
+    var focused by remember { mutableStateOf(false) }
+    ButtonMedium(
+        modifier = modifier
+            .fillMaxWidth(0.4F)
+            .onFocusChanged {
+                focused = it.hasFocus || it.isFocused
+            }
+            .background(
+                color = if (focused) IndiStrawTheme.colors.navy else IndiStrawTheme.colors.main,
+                shape = IndiStrawTheme.shapes.defaultRounded
+            )
+            .border(
+                width = 3.dp,
+                color = if (focused) IndiStrawTheme.colors.main else Color.Transparent,
                 shape = IndiStrawTheme.shapes.defaultRounded
             )
             .indiStrawClickable(rippleColor = IndiStrawTheme.colors.black, onClick = onClick)
