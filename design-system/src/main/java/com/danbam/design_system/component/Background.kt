@@ -3,10 +3,13 @@ package com.danbam.design_system.component
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.LocalOverscrollConfiguration
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -75,3 +78,34 @@ fun IndiStrawBoxBackground(
         )
     }
 }
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun IndiStrawRowBackground(
+    modifier: Modifier = Modifier,
+    onClickAction: (() -> Unit)? = null,
+    scrollEnabled: Boolean = false,
+    content: @Composable RowScope.() -> Unit,
+) {
+    CompositionLocalProvider(
+        LocalOverscrollConfiguration provides null
+    ) {
+        val scrollState = rememberScrollState()
+        val rowModifier = if (scrollEnabled) {
+            modifier
+                .fillMaxSize()
+                .horizontalScroll(scrollState)
+        } else {
+            modifier.fillMaxSize()
+        }
+        Row(
+            modifier = rowModifier
+                .background(IndiStrawTheme.colors.black)
+                .indiStrawClickable {
+                    onClickAction?.invoke()
+                },
+            content = content
+        )
+    }
+}
+
