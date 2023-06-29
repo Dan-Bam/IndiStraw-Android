@@ -183,6 +183,8 @@ fun IndiStrawTvTextField(
             .padding(horizontal = 20.dp, vertical = 15.dp),
         value = value,
         onValueChange = onValueChange,
+        maxLines = 1,
+        singleLine = true,
         keyboardOptions = KeyboardOptions(imeAction = imeAction, keyboardType = keyboardType),
         cursorBrush = SolidColor(IndiStrawTheme.colors.gray),
         textStyle = IndiStrawTheme.typography.exampleTextMedium.copy(
