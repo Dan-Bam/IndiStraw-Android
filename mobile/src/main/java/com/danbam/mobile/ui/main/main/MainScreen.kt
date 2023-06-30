@@ -40,6 +40,7 @@ import com.danbam.design_system.component.MovieTab
 import com.danbam.design_system.component.Shape
 import com.danbam.design_system.component.TitleSemiBold
 import com.danbam.design_system.util.indiStrawClickable
+import com.danbam.domain.entity.FundingEntity
 import com.danbam.mobile.ui.funding.navigation.FundingNavigationItem
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 import com.danbam.mobile.ui.profile.navigation.ProfileNavigationItem
@@ -66,6 +67,7 @@ fun MainScreen(
 
     LaunchedEffect(Unit) {
         mainViewModel.getProfile()
+        mainViewModel.fundingPopularLst()
     }
 
     IndiStrawColumnBackground(
@@ -157,7 +159,7 @@ fun MainScreen(
             navController.navigate(MovieNavigationItem.MovieDetail.route)
         }
         IndiStrawTabRow(
-            itemList = listOf(),
+            itemList = state.fundingPopularList,
             tabHeader = listOf {
                 TitleSemiBold(
                     modifier = Modifier.padding(start = 15.dp, top = 28.dp),
@@ -168,6 +170,7 @@ fun MainScreen(
             moreData = { },
             isCrowdFunding = true
         ) {
+
         }
         Spacer(
             modifier = Modifier

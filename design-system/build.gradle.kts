@@ -39,6 +39,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":domain"))
+
     implementation(Dependency.Compose.ACTIVITY)
     implementation(Dependency.Compose.UI)
     implementation(Dependency.Compose.VIEW_BINDING)

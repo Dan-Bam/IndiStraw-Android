@@ -36,6 +36,7 @@ import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.design_system.util.RemoveOverScrollLazyRow
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.util.toDp
+import com.danbam.domain.entity.FundingEntity
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
 
@@ -104,9 +105,9 @@ private fun IndiStrawTabIndicator(
 }
 
 @Composable
-fun IndiStrawTabRow(
+fun <T> IndiStrawTabRow(
     modifier: Modifier = Modifier,
-    itemList: List<String>,
+    itemList: List<T>,
     tabHeader: List<@Composable () -> Unit>,
     moreData: (() -> Unit)? = null,
     isCrowdFunding: Boolean = false,
@@ -148,8 +149,8 @@ fun IndiStrawTabRow(
     }
     if (isCrowdFunding) {
         Spacer(modifier = Modifier.height(10.dp))
-        repeat(4) {
-            FundingItem {
+        repeat(itemList.size) {
+            FundingItem(itemList[it] as FundingEntity) {
                 onClickItem(it)
             }
             Spacer(modifier = Modifier.height(16.dp))
@@ -189,6 +190,7 @@ private fun MovieItem(
 
 @Composable
 private fun FundingItem(
+    item: FundingEntity,
     onClickItem: () -> Unit,
 ) {
     val context = LocalContext.current
@@ -211,20 +213,20 @@ private fun FundingItem(
         ) {
             Spacer(modifier = Modifier.height(7.dp))
             HeadLineBold(
-                text = "존윅",
+                text = item.title,
                 fontSize = 16,
                 maxLines = 1
             )
             Spacer(modifier = Modifier.height(8.dp))
             TitleRegular(
                 modifier = Modifier.height(50.dp),
-                text = "과거에 진 빛을 갚아야만 하는 존 윅 처단하고 싶지 않은 표적을 어쩔수 없이 암살한다. 이후 후원자에게 배반을 당하는데....",
+                text = item.description,
                 color = IndiStrawTheme.colors.gray,
                 maxLines = 3,
                 fontSize = 12
             )
             Spacer(modifier = Modifier.height(20.dp))
-            IndiStrawProgress(currentProgress = 70F)
+            IndiStrawProgress(currentProgress = item.percentage.toFloat())
         }
         Spacer(modifier = Modifier.width(8.dp))
         AsyncImage(
@@ -232,7 +234,7 @@ private fun FundingItem(
                 .height(crowdFundImgHeight.toDp(context).dp)
                 .align(CenterVertically)
                 .clip(IndiStrawTheme.shapes.smallRounded),
-            model = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
+            model = item.thumbnail,
             contentDescription = "crowdFundingImg",
             contentScale = ContentScale.Crop
         )
