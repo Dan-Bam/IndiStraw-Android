@@ -4,11 +4,13 @@ import com.danbam.data.repository.AccountRepositoryImpl
 import com.danbam.data.repository.AddressRepositoryImpl
 import com.danbam.data.repository.AuthRepositoryImpl
 import com.danbam.data.repository.FileRepositoryImpl
+import com.danbam.data.repository.FundingRepositoryImpl
 import com.danbam.data.repository.SearchRepositoryImpl
 import com.danbam.domain.repository.AccountRepository
 import com.danbam.domain.repository.AddressRepository
 import com.danbam.domain.repository.AuthRepository
 import com.danbam.domain.repository.FileRepository
+import com.danbam.domain.repository.FundingRepository
 import com.danbam.domain.repository.SearchRepository
 import dagger.Binds
 import dagger.Module
@@ -42,4 +44,9 @@ abstract class RepositoryModule {
     abstract fun bindSearchRepository(
         searchRepositoryImpl: SearchRepositoryImpl,
     ): SearchRepository
+
+    @Binds
+    abstract fun bindFundingRepository(
+        fundingRepositoryImpl: FundingRepositoryImpl,
+    ): FundingRepository
 }
