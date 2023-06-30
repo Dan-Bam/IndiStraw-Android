@@ -118,6 +118,12 @@ class IndiStrawIconList private constructor(
         )
 
         @Stable
+        val PlusCircle = IndiStrawIconList(
+            drawableId = R.drawable.ic_plus_circle,
+            contentDescription = "plus circle"
+        )
+
+        @Stable
         val Setting = IndiStrawIconList(
             drawableId = R.drawable.ic_setting,
             contentDescription = "setting"

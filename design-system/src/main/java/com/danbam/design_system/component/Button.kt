@@ -206,7 +206,7 @@ fun SelectImageButton(
                             modifier = Modifier
                                 .align(BottomEnd)
                                 .size(if (isSignUp) 40.dp else 25.dp),
-                            icon = IndiStrawIconList.Plus
+                            icon = IndiStrawIconList.PlusCircle
                         )
                     }
                 }
