@@ -79,33 +79,16 @@ fun IndiStrawBoxBackground(
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun IndiStrawRowBackground(
+fun IndiStrawTvBackground(
     modifier: Modifier = Modifier,
-    onClickAction: (() -> Unit)? = null,
-    scrollEnabled: Boolean = false,
     content: @Composable RowScope.() -> Unit,
 ) {
-    CompositionLocalProvider(
-        LocalOverscrollConfiguration provides null
-    ) {
-        val scrollState = rememberScrollState()
-        val rowModifier = if (scrollEnabled) {
-            modifier
-                .fillMaxSize()
-                .horizontalScroll(scrollState)
-        } else {
-            modifier.fillMaxSize()
-        }
-        Row(
-            modifier = rowModifier
-                .background(IndiStrawTheme.colors.black)
-                .indiStrawClickable {
-                    onClickAction?.invoke()
-                },
-            content = content
-        )
-    }
+    Row(
+        modifier = modifier
+            .fillMaxSize()
+            .background(IndiStrawTheme.colors.black),
+        content = content
+    )
 }
 
