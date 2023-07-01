@@ -19,6 +19,7 @@ import com.danbam.design_system.component.ExampleTextRegular
 import com.danbam.design_system.component.IndiStrawTvBackground
 import com.danbam.design_system.component.IndiStrawTvButton
 import com.danbam.design_system.component.IndiStrawTvTextField
+import com.danbam.tv.ui.main.navigation.MainNavigationItem
 
 @Composable
 fun LoginScreen(
@@ -52,7 +53,7 @@ fun LoginScreen(
             ExampleTextRegular(text = "OR", fontSize = 24)
             Spacer(modifier = Modifier.fillMaxHeight(0.02F))
             IndiStrawTvButton(text = stringResource(id = R.string.qr_login)) {
-
+                navController.navigate(MainNavigationItem.QRLogin.route)
             }
         }
     }
