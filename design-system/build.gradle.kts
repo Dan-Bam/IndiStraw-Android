@@ -46,8 +46,10 @@ dependencies {
     implementation(Dependency.Compose.VIEW_BINDING)
     implementation(Dependency.Compose.PREVIEW)
     implementation(Dependency.Compose.MATERIAL)
+    implementation(Dependency.Compose.MATERIAL3)
     implementation(Dependency.Compose.COMPOSE_HILT_NAV)
-    implementation(Dependency.Compose.VIEW_PAGER)
+
+    implementation(Dependency.Accompanist.VIEW_PAGER)
 
     implementation(Dependency.Coil.COIL)
 
@@ -58,7 +60,11 @@ dependencies {
     implementation(Dependency.Camera.LIFECYCLE)
     implementation(Dependency.Camera.VIEW)
 
-    implementation(Dependency.Barcode.BARCODE)
+    implementation(Dependency.Barcode.SCANNING)
+    implementation(Dependency.Barcode.DRAWING)
+
+    implementation(Dependency.Tv.MATERIAL)
+    implementation(Dependency.Tv.FOUNDATION)
 
     implementation(Dependency.AndroidX.CONSTRAINT_LAYOUT)
 }

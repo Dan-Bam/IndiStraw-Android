@@ -73,7 +73,7 @@ fun IndiStrawMakeProgress(
                         .weight(1F)
                         .height(1.dp)
                         .padding(horizontal = 4.dp)
-                        .background(if (position.progress > it) IndiStrawTheme.colors.main else IndiStrawTheme.colors.gary3)
+                        .background(if (position.progress > it) IndiStrawTheme.colors.main else IndiStrawTheme.colors.gray3)
                 )
             }
         }

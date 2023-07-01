@@ -74,9 +74,11 @@ dependencies {
     implementation(Dependency.Compose.VIEW_BINDING)
     implementation(Dependency.Compose.PREVIEW)
     implementation(Dependency.Compose.MATERIAL)
-    implementation(Dependency.Compose.ANIMATE_NAVIGATION)
+    implementation(Dependency.Compose.MATERIAL3)
     implementation(Dependency.Compose.COMPOSE_HILT_NAV)
-    implementation(Dependency.Compose.VIEW_PAGER)
+
+    implementation(Dependency.Accompanist.ANIMATE_NAVIGATION)
+    implementation(Dependency.Accompanist.VIEW_PAGER)
 
     implementation(Dependency.Kotlin.COROUTINES_CORE)
     implementation(Dependency.Kotlin.COROUTINES_ANDROID)
@@ -92,6 +94,8 @@ dependencies {
 
     implementation(Dependency.ExoPlayer.EXO_PLAYER_CORE)
     implementation(Dependency.ExoPlayer.EXO_PLAYER_UI)
+
+    implementation(Dependency.Tv.MATERIAL)
 
     debugImplementation(Dependency.AndroidTest.COMPOSE_TOOL)
     debugImplementation(Dependency.AndroidTest.COMPOSE_MANIFEST)
