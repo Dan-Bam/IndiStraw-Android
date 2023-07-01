@@ -40,7 +40,6 @@ import com.danbam.design_system.component.MovieTab
 import com.danbam.design_system.component.Shape
 import com.danbam.design_system.component.TitleSemiBold
 import com.danbam.design_system.util.indiStrawClickable
-import com.danbam.domain.entity.FundingEntity
 import com.danbam.mobile.ui.funding.navigation.FundingNavigationItem
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 import com.danbam.mobile.ui.profile.navigation.ProfileNavigationItem
@@ -170,7 +169,7 @@ fun MainScreen(
             moreData = { },
             isCrowdFunding = true
         ) {
-
+            navController.navigate(FundingNavigationItem.FundingDetail.route)
         }
         Spacer(
             modifier = Modifier
@@ -202,7 +201,7 @@ fun MainScreen(
                     shape = IndiStrawTheme.shapes.defaultRounded
                 )
                 .indiStrawClickable {
-                    navController.navigate(FundingNavigationItem.MakeFunding.route)
+                    navController.navigate(FundingNavigationItem.FundingMake.route)
                 }
                 .padding(vertical = 14.dp, horizontal = 20.dp),
             text = stringResource(id = R.string.make_crowd_fund),
