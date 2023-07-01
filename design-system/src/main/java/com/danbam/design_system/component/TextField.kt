@@ -171,7 +171,7 @@ fun IndiStrawTvTextField(
                 focused = it.hasFocus || it.isFocused
             }
             .background(
-                color = if (focused) IndiStrawTheme.colors.navy else IndiStrawTheme.colors.gray,
+                color = if (focused) IndiStrawTheme.colors.navy else IndiStrawTheme.colors.darkGray3,
                 shape = IndiStrawTheme.shapes.defaultRounded
             )
             .border(
@@ -198,7 +198,7 @@ fun IndiStrawTvTextField(
         ) {
             it()
             if (value.isEmpty()) {
-                ExampleTextRegular(text = hint, color = IndiStrawTheme.colors.white, fontSize = 24)
+                ExampleTextRegular(text = hint, fontSize = 24)
             }
 
         }
