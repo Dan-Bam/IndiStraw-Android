@@ -179,15 +179,15 @@ fun IndiStrawTvTextField(
                 color = if (focused) IndiStrawTheme.colors.main else Color.Transparent,
                 shape = IndiStrawTheme.shapes.defaultRounded
             )
-            .fillMaxWidth(0.4F)
+            .fillMaxWidth(0.42F)
             .padding(horizontal = 20.dp, vertical = 15.dp),
         value = value,
         onValueChange = onValueChange,
         maxLines = 1,
         singleLine = true,
         keyboardOptions = KeyboardOptions(imeAction = imeAction, keyboardType = keyboardType),
-        cursorBrush = SolidColor(IndiStrawTheme.colors.gray),
-        textStyle = IndiStrawTheme.typography.exampleTextMedium.copy(
+        cursorBrush = SolidColor(IndiStrawTheme.colors.white),
+        textStyle = IndiStrawTheme.typography.exampleTextRegular.copy(
             fontSize = 24.sp,
             color = IndiStrawTheme.colors.white
         ),
