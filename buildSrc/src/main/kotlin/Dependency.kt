@@ -102,7 +102,8 @@ object Dependency {
     }
 
     object Barcode {
-        const val BARCODE = "com.google.mlkit:barcode-scanning:${Version.BARCODE}"
+        const val SCANNING = "com.google.mlkit:barcode-scanning:${Version.BARCODE_SCANNING}"
+        const val DRAWING = "com.simonsickle:composed-barcodes:${Version.BARCODE_DRAWING}"
     }
 
     object Tv {

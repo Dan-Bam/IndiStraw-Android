@@ -60,7 +60,8 @@ dependencies {
     implementation(Dependency.Camera.LIFECYCLE)
     implementation(Dependency.Camera.VIEW)
 
-    implementation(Dependency.Barcode.BARCODE)
+    implementation(Dependency.Barcode.SCANNING)
+    implementation(Dependency.Barcode.DRAWING)
 
     implementation(Dependency.Tv.MATERIAL)
     implementation(Dependency.Tv.FOUNDATION)

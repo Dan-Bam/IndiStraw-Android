@@ -52,7 +52,8 @@ object Version {
 
     const val CAMERA = "1.2.2"
 
-    const val BARCODE = "17.1.0"
+    const val BARCODE_SCANNING = "17.1.0"
+    const val BARCODE_DRAWING = "1.1.1"
 
     const val TV = "1.0.0-alpha06"
 
