@@ -5,12 +5,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -20,7 +21,6 @@ import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.R
 import com.danbam.design_system.util.indiStrawClickable
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun IndiStrawDialog(
     visible: Boolean,
@@ -66,6 +66,47 @@ fun IndiStrawDialog(
                         fontSize = 16
                     )
                 }
+            }
+        }
+    }
+}
+
+@Composable
+fun IndiStrawTvDialog(
+    visible: Boolean,
+    content: String,
+    onDismissRequest: () -> Unit,
+    onOkay: () -> Unit = onDismissRequest,
+) {
+    if (visible) {
+        Dialog(
+            properties = DialogProperties(usePlatformDefaultWidth = false),
+            onDismissRequest = onDismissRequest
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth(0.6F)
+                    .fillMaxHeight(0.5F)
+                    .background(
+                        color = IndiStrawTheme.colors.lightBlack.copy(alpha = 0.9F),
+                        shape = IndiStrawTheme.shapes.defaultRounded
+                    )
+                    .padding(vertical = 60.dp, horizontal = 60.dp),
+                verticalArrangement = Arrangement.SpaceBetween
+            ) {
+                ExampleTextRegular(text = content, fontSize = 35)
+                ExampleTextRegular(
+                    modifier = Modifier
+                        .align(End)
+                        .background(
+                            color = IndiStrawTheme.colors.main,
+                            shape = IndiStrawTheme.shapes.defaultRounded
+                        )
+                        .padding(horizontal = 30.dp, vertical = 15.dp)
+                        .indiStrawClickable(onClick = onOkay),
+                    text = stringResource(id = R.string.approve),
+                    fontSize = 35
+                )
             }
         }
     }
