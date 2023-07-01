@@ -84,23 +84,23 @@ fun IndiStrawTvButton(
     onClick: () -> Unit,
 ) {
     var focused by remember { mutableStateOf(false) }
-    ButtonMedium(
+    JoinBold(
         modifier = modifier
-            .fillMaxWidth(0.4F)
+            .fillMaxWidth(0.28F)
             .onFocusChanged {
                 focused = it.hasFocus || it.isFocused
             }
             .background(
-                color = if (focused) IndiStrawTheme.colors.navy else IndiStrawTheme.colors.main,
+                color = if (focused) IndiStrawTheme.colors.main else Color.Transparent,
                 shape = IndiStrawTheme.shapes.defaultRounded
             )
             .border(
                 width = 3.dp,
-                color = if (focused) IndiStrawTheme.colors.main else Color.Transparent,
+                color = if (focused) Color.Transparent else IndiStrawTheme.colors.white,
                 shape = IndiStrawTheme.shapes.defaultRounded
             )
             .indiStrawClickable(rippleColor = IndiStrawTheme.colors.black, onClick = onClick)
-            .padding(vertical = 15.dp),
+            .padding(vertical = 10.dp),
         text = text,
         textAlign = TextAlign.Center,
         fontSize = 24
