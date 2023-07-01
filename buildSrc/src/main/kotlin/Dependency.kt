@@ -22,7 +22,8 @@ object Dependency {
         const val PREFERENCE_KTX = "androidx.preference:preference-ktx:${Version.PREFERENCE_KTX}"
         const val LIFECYCLE_VIEWMODEL_KTX =
             "androidx.lifecycle:lifecycle-viewmodel-ktx:${Version.LIFECYCLE_KTX}"
-        const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:${Version.CONTRAINT_LAYOUT}"
+        const val CONSTRAINT_LAYOUT =
+            "androidx.constraintlayout:constraintlayout:${Version.CONTRAINT_LAYOUT}"
         const val PAGING = "androidx.paging:paging-runtime:${Version.PAGING}"
         const val PAGING_COMPOSE = "androidx.paging:paging-compose:${Version.PAGING_COMPOSE}"
         const val LEANBACK = "androidx.leanback:leanback:${Version.LEANBACK}"
@@ -34,9 +35,15 @@ object Dependency {
         const val VIEW_BINDING = "androidx.compose.ui:ui-viewbinding:${Version.COMPOSE}"
         const val PREVIEW = "androidx.compose.ui:ui-tooling-preview:${Version.COMPOSE}"
         const val MATERIAL = "androidx.compose.material:material:${Version.COMPOSE_MATERIAL}"
-        const val ANIMATE_NAVIGATION = "com.google.accompanist:accompanist-navigation-animation:${Version.COMPOSE_ANIMATE_NAVIGATION}"
+        const val MATERIAL3 = "androidx.compose.material3:material3:${Version.COMPOSE_MATERIAL3}"
         const val COMPOSE_HILT_NAV = "androidx.hilt:hilt-navigation-compose:${Version.HILT_NAV}"
-        const val VIEW_PAGER = "com.google.accompanist:accompanist-pager:${Version.COMPOSE_VIEW_PAGER}"
+    }
+
+    object Accompanist {
+        const val ANIMATE_NAVIGATION =
+            "com.google.accompanist:accompanist-navigation-animation:${Version.ACCOMPANIST}"
+        const val VIEW_PAGER =
+            "com.google.accompanist:accompanist-pager:${Version.ACCOMPANIST}"
     }
 
     object Hilt {
@@ -83,7 +90,8 @@ object Dependency {
     }
 
     object ExoPlayer {
-        const val EXO_PLAYER_CORE = "com.google.android.exoplayer:exoplayer-core:${Version.EXO_PLAYER}"
+        const val EXO_PLAYER_CORE =
+            "com.google.android.exoplayer:exoplayer-core:${Version.EXO_PLAYER}"
         const val EXO_PLAYER_UI = "com.google.android.exoplayer:exoplayer-ui:${Version.EXO_PLAYER}"
     }
 
@@ -95,6 +103,11 @@ object Dependency {
 
     object Barcode {
         const val BARCODE = "com.google.mlkit:barcode-scanning:${Version.BARCODE}"
+    }
+
+    object Tv {
+        const val MATERIAL = "androidx.tv:tv-material:${Version.TV}"
+        const val FOUNDATION = "androidx.tv:tv-foundation:${Version.TV}"
     }
 
     object JavaX {
