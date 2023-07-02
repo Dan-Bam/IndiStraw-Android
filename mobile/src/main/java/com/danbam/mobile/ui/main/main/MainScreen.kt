@@ -46,7 +46,7 @@ import com.danbam.mobile.ui.funding.navigation.FundingNavigationItem
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 import com.danbam.mobile.ui.profile.navigation.ProfileNavigationItem
 import com.danbam.mobile.ui.search.navigation.SearchNavigationItem
-import com.danbam.mobile.util.view.findActivity
+import com.danbam.mobile.util.android.findActivity
 
 @Composable
 fun MainScreen(
