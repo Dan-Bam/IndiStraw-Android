@@ -71,7 +71,7 @@ fun FundingItem(
                 fontSize = 12
             )
             Spacer(modifier = Modifier.weight(1F))
-            IndiStrawProgress(currentProgress = item.percentage.toFloat())
+            IndiStrawProgress(currentProgress = item.percentage)
         }
     }
 }
