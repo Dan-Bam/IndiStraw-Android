@@ -33,7 +33,7 @@ sealed class MakeFundingProgress(val progress: Int) {
 fun IndiStrawProgress(
     modifier: Modifier = Modifier,
     currentProgress: Float,
-    isSearch: Boolean = false,
+    enableText: Boolean = true
 ) {
     val progressAnimation by animateFloatAsState(targetValue = currentProgress / 100)
     Row(
@@ -42,15 +42,17 @@ fun IndiStrawProgress(
     ) {
         LinearProgressIndicator(
             modifier = Modifier
-                .fillMaxWidth(0.7F)
-                .height(if (isSearch) 12.dp else 17.dp)
+                .weight(1F)
+                .height(16.dp)
                 .clip(IndiStrawTheme.shapes.defaultRounded),
             color = IndiStrawTheme.colors.main,
-            backgroundColor = if (isSearch) IndiStrawTheme.colors.navy else IndiStrawTheme.colors.darkGray3,
+            backgroundColor = IndiStrawTheme.colors.darkGray3,
             progress = progressAnimation
         )
-        Spacer(modifier = Modifier.width(5.45.dp))
-        ExampleTextMedium(text = "${currentProgress.toInt()}%", fontSize = if (isSearch) 12 else 14)
+        if (enableText) {
+            Spacer(modifier = Modifier.width(4.dp))
+            ExampleTextMedium(text = "${currentProgress.toInt()}%", fontSize = 14)
+        }
     }
 }
 
@@ -63,7 +65,7 @@ fun IndiStrawMakeProgress(
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 32.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.Bottom
     ) {
         repeat(4) {
             MakeProgressDot(currentPosition = position, position = it)
