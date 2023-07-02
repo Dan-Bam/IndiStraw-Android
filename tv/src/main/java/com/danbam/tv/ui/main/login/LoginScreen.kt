@@ -51,6 +51,7 @@ fun LoginScreen(
     sideEffect.observeWithLifecycle {
         when (it) {
             is LoginSideEffect.LoginSuccess -> {
+                navController.navigate(MainNavigationItem.Main.route)
             }
 
             is LoginSideEffect.EmptyIdException, LoginSideEffect.MatchIdException -> {
