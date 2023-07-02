@@ -33,13 +33,15 @@ import com.danbam.design_system.component.HeadLineBold
 import com.danbam.design_system.component.ImageButton
 import com.danbam.design_system.component.IndiStrawBanner
 import com.danbam.design_system.component.IndiStrawColumnBackground
+import com.danbam.design_system.component.IndiStrawColumnTab
 import com.danbam.design_system.component.IndiStrawHeader
+import com.danbam.design_system.component.IndiStrawRowTab
 import com.danbam.design_system.component.IndiStrawTab
-import com.danbam.design_system.component.IndiStrawTabRow
 import com.danbam.design_system.component.MovieTab
 import com.danbam.design_system.component.Shape
 import com.danbam.design_system.component.TitleSemiBold
 import com.danbam.design_system.util.indiStrawClickable
+import com.danbam.mobile.ui.funding.navigation.FundingDeepLinkKey
 import com.danbam.mobile.ui.funding.navigation.FundingNavigationItem
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 import com.danbam.mobile.ui.profile.navigation.ProfileNavigationItem
@@ -123,7 +125,7 @@ fun MainScreen(
             ) {
             }
         }
-        IndiStrawTabRow(
+        IndiStrawRowTab(
             modifier = Modifier
                 .padding(top = 20.dp, start = 15.dp),
             itemList = listOf(""),
@@ -158,7 +160,7 @@ fun MainScreen(
         ) {
             navController.navigate(MovieNavigationItem.MovieDetail.route)
         }
-        IndiStrawTabRow(
+        IndiStrawColumnTab(
             itemList = state.fundingPopularList,
             tabHeader = listOf {
                 TitleSemiBold(
@@ -168,9 +170,8 @@ fun MainScreen(
                 )
             },
             moreData = { },
-            isCrowdFunding = true
         ) {
-            navController.navigate(FundingNavigationItem.FundingDetail.route)
+            navController.navigate(FundingNavigationItem.FundingDetail.route + FundingDeepLinkKey.FUNDING_INDEX + it)
         }
         Spacer(
             modifier = Modifier
