@@ -164,5 +164,29 @@ class IndiStrawIconList private constructor(
             drawableId = R.drawable.ic_attaced,
             contentDescription = "attaced"
         )
+
+        @Stable
+        val NavSearch = IndiStrawIconList(
+            drawableId = R.drawable.ic_nav_search,
+            contentDescription = "navSearch"
+        )
+
+        @Stable
+        val NavHome = IndiStrawIconList(
+            drawableId = R.drawable.ic_nav_home,
+            contentDescription = "navHome"
+        )
+
+        @Stable
+        val NavMovie = IndiStrawIconList(
+            drawableId = R.drawable.ic_nav_movie,
+            contentDescription = "navMovie"
+        )
+
+        @Stable
+        val NavSetting = IndiStrawIconList(
+            drawableId = R.drawable.ic_nav_setting,
+            contentDescription = "navSetting"
+        )
     }
 }
