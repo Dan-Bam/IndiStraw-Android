@@ -17,7 +17,7 @@ data class FundingDetailResponse(
     val remainingDay: Int,
     @SerializedName("fundingCount")
     val fundingCount: Long,
-    @SerializedName("reword")
+    @SerializedName("reward")
     val reward: List<RewardResponse>,
     @SerializedName("status")
     val status: String,
@@ -25,7 +25,7 @@ data class FundingDetailResponse(
     val thumbnailUrl: String,
     @SerializedName("imageList")
     val imageList: List<String>,
-    @SerializedName("detailList")
+    @SerializedName("fileList")
     val fileList: List<String>,
 ) {
     data class WriterResponse(
