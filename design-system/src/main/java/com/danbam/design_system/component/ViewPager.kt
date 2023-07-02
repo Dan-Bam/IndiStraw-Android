@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -62,6 +61,70 @@ fun IndiStrawBanner(
         RemoveOverScrollLazyRow(
             modifier = Modifier
                 .fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            items(itemCount) {
+                Box {
+                    if (it == state.currentPage) {
+                        Box(
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .width(9.dp)
+                                .height(9.dp)
+                                .background(
+                                    color = IndiStrawTheme.colors.white,
+                                    shape = IndiStrawTheme.shapes.circle
+                                )
+                        )
+                    }
+                    Box(
+                        modifier = Modifier
+                            .align(Alignment.Center)
+                            .padding(horizontal = 5.dp)
+                            .width(5.dp)
+                            .height(5.dp)
+                            .background(
+                                color = if (it == state.currentPage) IndiStrawTheme.colors.main else IndiStrawTheme.colors.white,
+                                shape = IndiStrawTheme.shapes.circle
+                            )
+                    )
+                }
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun IndiStrawSlider(
+    modifier: Modifier = Modifier,
+    itemCount: Int,
+    content: @Composable (page: Int) -> Unit,
+) {
+    val state = rememberPagerState()
+    val sliderHeight = LocalConfiguration.current.screenHeightDp * 0.23
+
+    Box(
+        modifier = modifier
+            .padding(top = 8.dp)
+            .fillMaxWidth()
+    ) {
+        HorizontalPager(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(sliderHeight.dp),
+            pageCount = itemCount,
+            state = state
+        ) {
+            content(it)
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        RemoveOverScrollLazyRow(
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
+                .padding(bottom = 10.dp),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
