@@ -1,16 +1,10 @@
 package com.danbam.mobile.ui.search.result_search
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -18,28 +12,20 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import coil.compose.AsyncImage
-import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawTab
 import com.danbam.design_system.R
-import com.danbam.design_system.component.ExampleTextMedium
 import com.danbam.design_system.component.FundingItem
-import com.danbam.design_system.component.HeadLineBold
-import com.danbam.design_system.component.IndiStrawProgress
 import com.danbam.design_system.component.MovieItem
 import com.danbam.design_system.component.MovieType
 import com.danbam.design_system.component.SearchTab
-import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.util.RemoveOverScrollLazyColumn
-import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.domain.entity.FundingEntity
+import com.danbam.mobile.ui.funding.navigation.FundingDeepLinkKey
 import com.danbam.mobile.ui.funding.navigation.FundingNavigationItem
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 
@@ -103,7 +89,7 @@ fun ResultSearchScreen(
                                 ""
                             )
                         ) {
-                            navController.navigate(FundingNavigationItem.FundingDetail.route)
+                            navController.navigate(FundingNavigationItem.FundingDetail.route + FundingDeepLinkKey.FUNDING_INDEX + it)
                         }
                         Spacer(modifier = Modifier.height(24.dp))
                     }

@@ -21,18 +21,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.R
-import com.danbam.design_system.attribute.IndiStrawIcon
-import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.design_system.util.RemoveOverScrollLazyRow
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.util.toDp
@@ -105,13 +100,12 @@ private fun IndiStrawTabIndicator(
 }
 
 @Composable
-fun <T> IndiStrawTabRow(
+fun IndiStrawColumnTab(
     modifier: Modifier = Modifier,
-    itemList: List<T>,
+    itemList: List<FundingEntity>,
     tabHeader: List<@Composable () -> Unit>,
     moreData: (() -> Unit)? = null,
-    isCrowdFunding: Boolean = false,
-    onClickItem: (Int) -> Unit,
+    onClickItem: (Long) -> Unit,
 ) {
     val state = rememberLazyListState()
 
@@ -139,7 +133,7 @@ fun <T> IndiStrawTabRow(
                 TitleRegular(
                     modifier = Modifier
                         .indiStrawClickable(onClick = moreData)
-                        .padding(end = 15.dp, bottom = if (isCrowdFunding) 0.dp else 6.dp),
+                        .padding(end = 15.dp),
                     text = stringResource(id = R.string.view_all),
                     fontSize = 12,
                     color = IndiStrawTheme.colors.gray
@@ -147,29 +141,73 @@ fun <T> IndiStrawTabRow(
             }
         }
     }
-    if (isCrowdFunding) {
-        Spacer(modifier = Modifier.height(10.dp))
-        repeat(itemList.size) {
-            FundingItem(itemList[it] as FundingEntity) {
-                onClickItem(it)
+    Spacer(modifier = Modifier.height(10.dp))
+    repeat(itemList.size) {
+        (itemList[it] as FundingEntity).let { item ->
+            FundingItem(item) {
+                onClickItem(item.idx)
             }
-            Spacer(modifier = Modifier.height(16.dp))
         }
-    } else {
-        RemoveOverScrollLazyRow(
-            modifier = Modifier.padding(top = 10.dp),
-            verticalAlignment = CenterVertically,
-            state = state
+        Spacer(modifier = Modifier.height(16.dp))
+    }
+}
+
+@Composable
+fun IndiStrawRowTab(
+    modifier: Modifier = Modifier,
+    itemList: List<String>,
+    tabHeader: List<@Composable () -> Unit>,
+    moreData: (() -> Unit)? = null,
+    onClickItem: (Long) -> Unit,
+) {
+    val state = rememberLazyListState()
+
+    LaunchedEffect(itemList) {
+        withContext(NonCancellable) {
+            state.animateScrollToItem(0)
+        }
+    }
+
+    Column(
+        modifier = modifier,
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.Bottom
         ) {
-            item {
-                Spacer(modifier = Modifier.width(15.dp))
-            }
-            items(10) {
-                MovieItem {
-                    onClickItem(it)
+            Row {
+                tabHeader.forEach {
+                    it()
+                    Spacer(modifier = Modifier.width(16.dp))
                 }
-                Spacer(modifier = Modifier.width(9.dp))
             }
+            moreData?.let {
+                TitleRegular(
+                    modifier = Modifier
+                        .indiStrawClickable(onClick = moreData)
+                        .padding(end = 15.dp),
+                    text = stringResource(id = R.string.view_all),
+                    fontSize = 12,
+                    color = IndiStrawTheme.colors.gray
+                )
+            }
+        }
+    }
+    Spacer(modifier = Modifier.height(10.dp))
+    RemoveOverScrollLazyRow(
+        modifier = Modifier.padding(top = 10.dp),
+        verticalAlignment = CenterVertically,
+        state = state
+    ) {
+        item {
+            Spacer(modifier = Modifier.width(15.dp))
+        }
+        items(10) {
+            MovieItem {
+                onClickItem(0L)
+            }
+            Spacer(modifier = Modifier.width(9.dp))
         }
     }
 }
