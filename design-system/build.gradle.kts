@@ -48,8 +48,7 @@ dependencies {
     implementation(Dependency.Compose.MATERIAL)
     implementation(Dependency.Compose.MATERIAL3)
     implementation(Dependency.Compose.COMPOSE_HILT_NAV)
-
-    implementation(Dependency.Accompanist.VIEW_PAGER)
+    implementation(Dependency.Compose.FOUNDATION)
 
     implementation(Dependency.Coil.COIL)
 

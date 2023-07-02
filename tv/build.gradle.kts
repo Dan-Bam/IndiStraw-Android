@@ -78,7 +78,6 @@ dependencies {
     implementation(Dependency.Compose.COMPOSE_HILT_NAV)
 
     implementation(Dependency.Accompanist.ANIMATE_NAVIGATION)
-    implementation(Dependency.Accompanist.VIEW_PAGER)
 
     implementation(Dependency.Kotlin.COROUTINES_CORE)
     implementation(Dependency.Kotlin.COROUTINES_ANDROID)
