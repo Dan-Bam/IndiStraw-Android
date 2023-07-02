@@ -18,6 +18,8 @@ import com.danbam.design_system.component.ImageButton
 import com.danbam.design_system.component.IndiStrawChipList
 import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawHeader
+import com.danbam.design_system.component.MovieItem
+import com.danbam.design_system.component.MovieType
 import com.danbam.design_system.component.Shape
 import com.danbam.design_system.util.RemoveOverScrollLazyColumn
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
@@ -41,38 +43,8 @@ fun MovieAllScreen(
         Spacer(modifier = Modifier.height(20.dp))
         RemoveOverScrollLazyColumn {
             items(30) {
-                Row(
-                    modifier = Modifier.padding(horizontal = 15.dp)
-                ) {
-                    ImageButton(
-                        modifier = Modifier
-                            .weight(1F)
-                            .height(160.dp),
-                        imgSrc = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
-                        shape = Shape.Rectangle
-                    ) {
-                        navController.navigate(MovieNavigationItem.MovieDetail.route)
-                    }
-                    Spacer(modifier = Modifier.width(9.dp))
-                    ImageButton(
-                        modifier = Modifier
-                            .weight(1F)
-                            .height(160.dp),
-                        imgSrc = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
-                        shape = Shape.Rectangle
-                    ) {
-                        navController.navigate(MovieNavigationItem.MovieDetail.route)
-                    }
-                    Spacer(modifier = Modifier.width(9.dp))
-                    ImageButton(
-                        modifier = Modifier
-                            .weight(1F)
-                            .height(160.dp),
-                        imgSrc = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
-                        shape = Shape.Rectangle
-                    ) {
-                        navController.navigate(MovieNavigationItem.MovieDetail.route)
-                    }
+                MovieItem(movieType = MovieType.Detail) {
+                    navController.navigate(MovieNavigationItem.MovieDetail.route)
                 }
                 Spacer(modifier = Modifier.height(16.dp))
             }
