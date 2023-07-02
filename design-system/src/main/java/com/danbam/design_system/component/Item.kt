@@ -29,13 +29,13 @@ sealed class MovieType {
 @Composable
 fun FundingItem(
     item: FundingEntity,
-    onClickItem: () -> Unit,
+    onClickItem: (Long) -> Unit,
 ) {
     val crowdFundingImageSize = LocalConfiguration.current.screenWidthDp * 0.3
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .indiStrawClickable(onClick = onClickItem)
+            .indiStrawClickable(onClick = { onClickItem(item.idx) })
             .padding(horizontal = 15.dp)
             .background(
                 color = IndiStrawTheme.colors.lightBlack,
