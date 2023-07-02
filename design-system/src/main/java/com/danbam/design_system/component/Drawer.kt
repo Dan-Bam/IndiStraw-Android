@@ -15,17 +15,14 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.tv.material3.Border
 import androidx.tv.material3.ClickableSurfaceDefaults
@@ -34,14 +31,15 @@ import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.ModalNavigationDrawer
 import androidx.tv.material3.Surface
 import com.danbam.design_system.IndiStrawTheme
+import com.danbam.design_system.R
 import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
 
-sealed class TvNavigationItem(val route: String, val icon: IndiStrawIconList) {
-    object Search : TvNavigationItem("search", IndiStrawIconList.NavSearch)
-    object Home : TvNavigationItem("home", IndiStrawIconList.NavHome)
-    object Movie : TvNavigationItem("movie", IndiStrawIconList.NavMovie)
-    object Setting : TvNavigationItem("setting", IndiStrawIconList.NavSetting)
+sealed class TvNavigationItem(val route: String, val icon: IndiStrawIconList, val titleId: Int) {
+    object Search : TvNavigationItem("search", IndiStrawIconList.NavSearch, R.string.search)
+    object Home : TvNavigationItem("home", IndiStrawIconList.NavHome, R.string.home)
+    object Movie : TvNavigationItem("movie", IndiStrawIconList.NavMovie, R.string.movie_all)
+    object Setting : TvNavigationItem("setting", IndiStrawIconList.NavSetting, R.string.setting)
 }
 
 @OptIn(ExperimentalTvMaterial3Api::class)
@@ -118,7 +116,7 @@ private val navigationRow: @Composable (
                         modifier = Modifier
                             .padding(horizontal = 30.dp)
                             .fillMaxWidth(0.15F),
-                        text = menu.route,
+                        text = stringResource(id = menu.titleId),
                         fontSize = 31
                     )
                 }
