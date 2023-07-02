@@ -169,7 +169,7 @@ fun MainScreen(
                     fontSize = 16
                 )
             },
-            moreData = { },
+            moreData = { navController.navigate(FundingNavigationItem.FundingAll.route) },
         ) {
             navController.navigate(FundingNavigationItem.FundingDetail.route + FundingDeepLinkKey.FUNDING_INDEX + it)
         }
