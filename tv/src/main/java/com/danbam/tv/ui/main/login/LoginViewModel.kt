@@ -3,6 +3,7 @@ package com.danbam.tv.ui.main.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.danbam.domain.param.LoginParam
+import com.danbam.domain.usecase.auth.IsLoginUseCase
 import com.danbam.domain.usecase.auth.LoginUseCase
 import com.danbam.tv.util.android.errorHandling
 import com.danbam.tv.util.parser.isId
@@ -18,8 +19,17 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
+    private val isLoginUseCase: IsLoginUseCase
 ) : ContainerHost<Unit, LoginSideEffect>, ViewModel() {
     override val container = container<Unit, LoginSideEffect>(Unit)
+
+    fun isLogin() = intent {
+        viewModelScope.launch {
+            isLoginUseCase().onSuccess {
+                postSideEffect(LoginSideEffect.LoginSuccess)
+            }
+        }
+    }
 
     fun login(id: String, password: String) = intent {
         if (id.isEmpty()) postSideEffect(LoginSideEffect.EmptyIdException)
