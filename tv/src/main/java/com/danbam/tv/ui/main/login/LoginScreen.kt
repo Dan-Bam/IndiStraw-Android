@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -65,6 +66,10 @@ fun LoginScreen(
 
             is LoginSideEffect.UnKnownException -> {}
         }
+    }
+
+    LaunchedEffect(Unit) {
+        loginViewModel.isLogin()
     }
 
     IndiStrawTvBackground {
