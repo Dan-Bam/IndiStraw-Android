@@ -30,12 +30,14 @@ import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawTab
 import com.danbam.design_system.R
 import com.danbam.design_system.component.ExampleTextMedium
+import com.danbam.design_system.component.FundingItem
 import com.danbam.design_system.component.HeadLineBold
 import com.danbam.design_system.component.IndiStrawProgress
 import com.danbam.design_system.component.SearchTab
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.util.RemoveOverScrollLazyColumn
 import com.danbam.design_system.util.indiStrawClickable
+import com.danbam.domain.entity.FundingEntity
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 
 @Composable
@@ -99,21 +101,20 @@ fun ResultSearchScreen(
             }
 
             is SearchTab.Funding -> {
-                RemoveOverScrollLazyColumn(
-                    modifier = Modifier.padding(horizontal = 15.dp)
-                ) {
-                    item {
-                        Spacer(modifier = Modifier.height(32.dp))
-                    }
+                Spacer(modifier = Modifier.height(11.dp))
+                RemoveOverScrollLazyColumn {
                     items(20) {
-                        Row {
-                            FundingItem(
-                                modifier = Modifier.weight(1F)
+                        FundingItem(
+                            item = FundingEntity(
+                                0,
+                                "존윅",
+                                "진짜 재밌음",
+                                50,
+                                "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
+                                ""
                             )
-                            Spacer(modifier = Modifier.width(15.dp))
-                            FundingItem(
-                                modifier = Modifier.weight(1F)
-                            )
+                        ) {
+
                         }
                         Spacer(modifier = Modifier.height(24.dp))
                     }
@@ -154,39 +155,5 @@ private fun MovieItem(
             fontSize = 12,
             maxLines = 2
         )
-    }
-}
-
-@Composable
-private fun FundingItem(
-    modifier: Modifier = Modifier,
-) {
-    Column(
-        modifier = modifier
-            .background(
-                color = IndiStrawTheme.colors.darkGray,
-                shape = IndiStrawTheme.shapes.smallRounded
-            )
-            .padding(start = 7.dp, end = 7.dp, top = 7.dp, bottom = 10.dp)
-    ) {
-        AsyncImage(
-            modifier = Modifier
-                .height(130.dp)
-                .fillMaxWidth()
-                .clip(IndiStrawTheme.shapes.smallRounded),
-            model = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
-            contentDescription = "image",
-            contentScale = ContentScale.Crop
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        HeadLineBold(text = "존 윅: 리로드", fontSize = 16)
-        Spacer(modifier = Modifier.height(4.dp))
-        TitleRegular(
-            text = "과거에 진 빛을 갚아야만 하는 존 윅 처단고 싶지 않은 표적을 어...과거에 진 빛을 갚아야만 하는 존 윅 처단고 싶지 않은 표적을 어...과거에 진 빛을 갚아야만 하는 존 윅 처단고 싶지 않은 표적을 어...과거에 진 빛을 갚아야만 하는 존 윅 처단고 싶지 않은 표적을 어...",
-            fontSize = 12,
-            maxLines = 2
-        )
-        Spacer(modifier = Modifier.height(14.dp))
-        IndiStrawProgress(currentProgress = 20F, isSearch = true)
     }
 }
