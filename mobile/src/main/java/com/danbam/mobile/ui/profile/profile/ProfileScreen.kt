@@ -29,9 +29,10 @@ import com.danbam.design_system.component.HeadLineBold
 import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.IndiStrawTab
-import com.danbam.design_system.component.IndiStrawTabRow
 import com.danbam.design_system.R
 import com.danbam.design_system.component.FundingTab
+import com.danbam.design_system.component.IndiStrawColumnTab
+import com.danbam.design_system.component.IndiStrawRowTab
 import com.danbam.design_system.component.MovieTab
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
@@ -101,10 +102,10 @@ fun ProfileScreen(
             fontSize = 20,
             textAlign = TextAlign.Center
         )
-        IndiStrawTabRow(
+        IndiStrawRowTab(
             modifier = Modifier
                 .padding(top = 32.dp, start = 15.dp),
-            itemList = listOf(""),
+            itemList = listOf(),
             tabHeader = listOf(
                 {
                     IndiStrawTab(
@@ -124,10 +125,10 @@ fun ProfileScreen(
         ) {
             navController.navigate(MovieNavigationItem.MovieDetail.route)
         }
-        IndiStrawTabRow(
+        IndiStrawColumnTab(
             modifier = Modifier
                 .padding(top = 43.dp, start = 15.dp),
-            itemList = listOf(""),
+            itemList = listOf(),
             tabHeader = listOf(
                 {
                     IndiStrawTab(
@@ -143,7 +144,7 @@ fun ProfileScreen(
                     ) {
                         currentFundingTab = FundingTab.MyFunding
                     }
-                }), isCrowdFunding = true
+                })
         ) {
         }
     }
