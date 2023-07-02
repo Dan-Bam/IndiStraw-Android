@@ -108,7 +108,11 @@ fun FundingDetailScreen(
             text = stringResource(id = R.string.target_money),
             color = IndiStrawTheme.colors.lightGray
         )
-        IndiStrawProgress(modifier = Modifier.padding(top = 12.dp), currentProgress = 50F)
+        IndiStrawProgress(
+            modifier = Modifier.padding(start = 15.dp, end = 15.dp, top = 12.dp),
+            currentProgress = 50F,
+            enableText = false
+        )
         Divider(
             modifier = Modifier
                 .padding(vertical = 28.dp)
