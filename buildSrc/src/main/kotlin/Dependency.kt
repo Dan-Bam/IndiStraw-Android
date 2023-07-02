@@ -37,6 +37,7 @@ object Dependency {
         const val MATERIAL = "androidx.compose.material:material:${Version.COMPOSE_MATERIAL}"
         const val MATERIAL3 = "androidx.compose.material3:material3:${Version.COMPOSE_MATERIAL3}"
         const val COMPOSE_HILT_NAV = "androidx.hilt:hilt-navigation-compose:${Version.HILT_NAV}"
+        const val FOUNDATION = "androidx.compose.foundation:foundation:${Version.COMPOSE}"
     }
 
     object Accompanist {

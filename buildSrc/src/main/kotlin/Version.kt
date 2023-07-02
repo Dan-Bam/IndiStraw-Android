@@ -2,7 +2,7 @@ import org.gradle.api.JavaVersion
 
 object Version {
     const val GRADLE_ANDROID = "7.4.2"
-    const val GRADLE_KOTLIN = "1.7.20"
+    const val GRADLE_KOTLIN = "1.8.10"
     const val GRADLE_KTLINT = "11.1.0"
 
     val JAVA_VERSION = JavaVersion.VERSION_1_8
@@ -24,7 +24,7 @@ object Version {
     const val LEANBACK = "1.0.0"
 
     const val COMPOSE_ACTIVITY = "1.6.1"
-    const val COMPOSE = "1.3.2"
+    const val COMPOSE = "1.4.3"
     const val COMPOSE_MATERIAL = "1.3.1"
     const val COMPOSE_MATERIAL3 = "1.0.1"
     const val HILT_NAV = "1.0.0"

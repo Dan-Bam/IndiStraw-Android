@@ -1,14 +1,18 @@
 package com.danbam.design_system.component
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -17,22 +21,18 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.util.RemoveOverScrollLazyRow
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.PagerScope
-import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
 const val BannerTime = 4_000L
 
-@OptIn(ExperimentalPagerApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun IndiStrawBanner(
     modifier: Modifier = Modifier,
     itemCount: Int,
-    content: @Composable PagerScope.(page: Int) -> Unit,
+    content: @Composable (page: Int) -> Unit,
 ) {
     val state = rememberPagerState()
     val bannerHeight = LocalConfiguration.current.screenHeightDp * 0.26
@@ -46,13 +46,14 @@ fun IndiStrawBanner(
 
     Column(
         modifier = modifier
-            .padding(start = 15.dp, end = 15.dp, top = 21.dp)
+            .padding(top = 21.dp)
             .fillMaxWidth()
     ) {
         HorizontalPager(
             modifier = Modifier
+                .fillMaxWidth()
                 .height(bannerHeight.dp),
-            count = itemCount,
+            pageCount = itemCount,
             state = state
         ) {
             content(it)

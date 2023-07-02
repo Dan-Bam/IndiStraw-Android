@@ -45,9 +45,7 @@ import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 import com.danbam.mobile.ui.profile.navigation.ProfileNavigationItem
 import com.danbam.mobile.ui.search.navigation.SearchNavigationItem
 import com.danbam.mobile.util.view.findActivity
-import com.google.accompanist.pager.ExperimentalPagerApi
 
-@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun MainScreen(
     navController: NavController,
@@ -117,6 +115,9 @@ fun MainScreen(
         }
         IndiStrawBanner(itemCount = 4) {
             ImageButton(
+                modifier = Modifier
+                    .padding(horizontal = 15.dp)
+                    .fillMaxWidth(),
                 imgSrc = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
                 shape = Shape.Rectangle
             ) {
