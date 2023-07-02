@@ -95,6 +95,7 @@ dependencies {
     implementation(Dependency.ExoPlayer.EXO_PLAYER_UI)
 
     implementation(Dependency.Tv.MATERIAL)
+    implementation(Dependency.Tv.FOUNDATION)
 
     debugImplementation(Dependency.AndroidTest.COMPOSE_TOOL)
     debugImplementation(Dependency.AndroidTest.COMPOSE_MANIFEST)
