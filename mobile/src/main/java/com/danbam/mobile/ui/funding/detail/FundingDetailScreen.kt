@@ -9,12 +9,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.danbam.design_system.IndiStrawTheme
@@ -31,12 +35,28 @@ import com.danbam.design_system.component.IndiStrawProgress
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.component.TitleSemiBold
 import com.danbam.design_system.R
+import com.danbam.design_system.attribute.IndiStrawIcon
+import com.danbam.design_system.attribute.IndiStrawIconList
+import com.danbam.design_system.component.IndiStrawSlider
+import com.danbam.design_system.component.RewardItem
+import com.danbam.mobile.util.parser.toMoney
 
 @Composable
 fun FundingDetailScreen(
-    navController: NavController
+    navController: NavController,
+    fundingIndex: Long,
+    fundingDetailViewModel: FundingDetailViewModel = hiltViewModel()
 ) {
+    val container = fundingDetailViewModel.container
+    val state = container.stateFlow.collectAsState().value
+    val sideEffect = container.sideEffectFlow
+
     val fundingHeight = LocalConfiguration.current.screenHeightDp * 0.3
+
+    LaunchedEffect(Unit) {
+        fundingDetailViewModel.getDetail(fundingIndex = fundingIndex)
+    }
+
     IndiStrawColumnBackground(
         scrollEnabled = true
     ) {
@@ -48,21 +68,28 @@ fun FundingDetailScreen(
                 .padding(top = 30.dp)
                 .height(fundingHeight.dp)
                 .fillMaxWidth(),
-            model = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
+            model = state.fundingDetailEntity.thumbnailUrl,
             contentDescription = "fundingBanner",
             contentScale = ContentScale.Crop
         )
         FindPasswordMedium(
             modifier = Modifier.padding(start = 15.dp, top = 12.dp),
-            text = "${stringResource(id = R.string.mc)}: 이동욱",
+            text = "${stringResource(id = R.string.mc)}: ${state.fundingDetailEntity.writer.name}",
             color = IndiStrawTheme.colors.lightGray
         )
-        ButtonMedium(modifier = Modifier.padding(15.dp, top = 8.dp), text = "제목")
+        ButtonMedium(
+            modifier = Modifier.padding(15.dp, top = 8.dp),
+            text = state.fundingDetailEntity.title
+        )
         Row(
             modifier = Modifier.padding(start = 15.dp, top = 20.dp),
             verticalAlignment = Alignment.Bottom
         ) {
-            HeadLineBold(text = "97", fontSize = 18, color = IndiStrawTheme.colors.main)
+            HeadLineBold(
+                text = state.fundingDetailEntity.amount.percentage.toInt().toString(),
+                fontSize = 18,
+                color = IndiStrawTheme.colors.main
+            )
             ExampleTextMedium(text = "%", fontSize = 12, color = IndiStrawTheme.colors.main)
             Spacer(modifier = Modifier.width(4.dp))
             ExampleTextRegular(
@@ -78,7 +105,11 @@ fun FundingDetailScreen(
                         shape = IndiStrawTheme.shapes.smallRounded
                     )
                     .padding(horizontal = 4.dp, vertical = 1.dp),
-                text = "18${stringResource(id = R.string.date)} ${stringResource(id = R.string.rest)}",
+                text = "${state.fundingDetailEntity.remainingDay}${stringResource(id = R.string.date)} ${
+                    stringResource(
+                        id = R.string.rest
+                    )
+                }",
                 fontSize = 12
             )
         }
@@ -86,7 +117,10 @@ fun FundingDetailScreen(
             modifier = Modifier.padding(start = 15.dp, top = 8.dp),
             verticalAlignment = Alignment.Bottom
         ) {
-            TitleSemiBold(text = "123,000", fontSize = 18)
+            TitleSemiBold(
+                text = state.fundingDetailEntity.amount.totalAmount.toMoney(),
+                fontSize = 18
+            )
             ExampleTextRegular(text = stringResource(id = R.string.money_unit))
             Spacer(modifier = Modifier.width(4.dp))
             ExampleTextRegular(text = stringResource(id = R.string.complete), fontSize = 14)
@@ -98,19 +132,19 @@ fun FundingDetailScreen(
                         shape = IndiStrawTheme.shapes.smallRounded
                     )
                     .padding(horizontal = 4.dp, vertical = 1.dp),
-                text = "1,200${stringResource(id = R.string.participate)}",
+                text = "${state.fundingDetailEntity.fundingCount}${stringResource(id = R.string.participate)}",
                 color = IndiStrawTheme.colors.lightGray,
                 fontSize = 12
             )
         }
         FindPasswordMedium(
             modifier = Modifier.padding(start = 15.dp, top = 7.dp),
-            text = stringResource(id = R.string.target_money),
+            text = "${stringResource(id = R.string.target_money)} ${state.fundingDetailEntity.amount.targetAmount.toMoney()}",
             color = IndiStrawTheme.colors.lightGray
         )
         IndiStrawProgress(
             modifier = Modifier.padding(start = 15.dp, end = 15.dp, top = 12.dp),
-            currentProgress = 50F,
+            currentProgress = state.fundingDetailEntity.amount.percentage,
             enableText = false
         )
         Divider(
@@ -124,12 +158,40 @@ fun FundingDetailScreen(
             modifier = Modifier.padding(start = 15.dp, bottom = 16.dp),
             text = stringResource(id = R.string.introduce_project)
         )
-        TitleRegular(modifier = Modifier.padding(horizontal = 15.dp), text = "프로젝트 소개 내용")
+        TitleRegular(
+            modifier = Modifier.padding(horizontal = 15.dp),
+            text = state.fundingDetailEntity.description
+        )
+        IndiStrawSlider(itemCount = state.fundingDetailEntity.imageList.size) {
+            AsyncImage(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 15.dp)
+                    .clip(IndiStrawTheme.shapes.defaultRounded),
+                model = state.fundingDetailEntity.imageList[it],
+                contentDescription = "fundingImage",
+                contentScale = ContentScale.Crop
+            )
+        }
         HeadLineBold(
             modifier = Modifier.padding(start = 15.dp, top = 28.dp),
             text = stringResource(id = R.string.attached_file),
             fontSize = 16
         )
+        repeat(state.fundingDetailEntity.fileList.size) {
+            Row(
+                modifier = Modifier.padding(start = 15.dp, end = 15.dp, top = 8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                IndiStrawIcon(icon = IndiStrawIconList.Attached)
+                Spacer(modifier = Modifier.width(8.dp))
+                TitleRegular(
+                    text = state.fundingDetailEntity.fileList[it],
+                    fontSize = 14,
+                    color = IndiStrawTheme.colors.skyBlue
+                )
+            }
+        }
         Divider(
             modifier = Modifier
                 .padding(vertical = 28.dp)
@@ -142,8 +204,12 @@ fun FundingDetailScreen(
                 id = R.string.choose_reward
             )
         )
+        repeat(state.fundingDetailEntity.reward.size) {
+            RewardItem(item = state.fundingDetailEntity.reward[it])
+            Spacer(modifier = Modifier.height(16.dp))
+        }
         IndiStrawButton(
-            modifier = Modifier.padding(top = 37.dp, bottom = 160.dp), text = stringResource(
+            modifier = Modifier.padding(top = 21.dp, bottom = 160.dp), text = stringResource(
                 id = R.string.do_funding
             )
         ) {
