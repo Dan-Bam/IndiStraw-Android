@@ -5,5 +5,5 @@ import com.danbam.domain.entity.RelatedSearchEntity
 import kotlinx.coroutines.flow.Flow
 
 data class SearchingState(
-    val relatedSearchPager: Flow<PagingData<RelatedSearchEntity>>? = null
+    val relatedSearchPager: List<RelatedSearchEntity>? = null
 )
