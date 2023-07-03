@@ -19,7 +19,7 @@ import com.danbam.design_system.component.HeadLineBold
 import com.danbam.design_system.component.IndiStrawButton
 import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawHeader
-import com.danbam.design_system.component.SelectImageButton
+import com.danbam.design_system.component.SelectProfileButton
 import com.danbam.design_system.R
 import com.danbam.mobile.ui.auth.navigation.AuthNavigationItem
 import com.danbam.mobile.util.android.observeWithLifecycle
@@ -61,7 +61,7 @@ fun SetProfileScreen(
                 .padding(start = 32.dp, top = 16.dp),
             text = stringResource(id = R.string.require_picture)
         )
-        SelectImageButton(
+        SelectProfileButton(
             modifier = Modifier
                 .padding(top = 84.dp)
                 .align(CenterHorizontally),

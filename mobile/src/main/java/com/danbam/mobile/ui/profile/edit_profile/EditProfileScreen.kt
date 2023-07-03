@@ -30,7 +30,7 @@ import com.danbam.design_system.component.IndiStrawButton
 import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.IndiStrawTextField
-import com.danbam.design_system.component.SelectImageButton
+import com.danbam.design_system.component.SelectProfileButton
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.mobile.ui.auth.navigation.AuthDeepLinkKey
@@ -90,7 +90,7 @@ fun EditProfileScreen(
         }
     ) {
         IndiStrawHeader(pressBackBtn = { navController.popBackStack(keyboardController = keyboardController) })
-        SelectImageButton(
+        SelectProfileButton(
             modifier = Modifier
                 .padding(top = 22.dp)
                 .align(Alignment.CenterHorizontally),
