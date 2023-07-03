@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -30,6 +31,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.BottomEnd
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterVertically
@@ -38,6 +40,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -131,7 +134,7 @@ fun ImageButton(
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun SelectImageButton(
+fun SelectProfileButton(
     modifier: Modifier = Modifier,
     paddingValues: PaddingValues,
     isSignUp: Boolean = false,
@@ -249,6 +252,87 @@ fun SelectImageButton(
                 }
             }
             bottomContent()
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+fun SelectImageButton(
+    modifier: Modifier = Modifier,
+    imageUrl: String?,
+    selectGallery: (Uri?) -> Unit,
+) {
+    val thumbnailHeight = LocalConfiguration.current.screenHeightDp * 0.17
+
+    val takePhotoFromAlbumLauncher =
+        rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                selectGallery(result.data?.data)
+
+            }
+        }
+    val takePhotoFromAlbumIntent =
+        Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).apply {
+            type = "image/*"
+            action = Intent.ACTION_PICK
+            putExtra(
+                Intent.EXTRA_MIME_TYPES,
+                arrayOf("image/jpeg", "image/png", "image/bmp", "image/webp")
+            )
+            putExtra(Intent.EXTRA_ALLOW_MULTIPLE, false)
+        }
+
+    if (imageUrl != null) {
+        ImageButton(
+            modifier = Modifier
+                .height(thumbnailHeight.dp)
+                .fillMaxWidth()
+                .padding(horizontal = 32.dp),
+            imgSrc = imageUrl,
+            shape = Shape.Rectangle
+        ) {
+            takePhotoFromAlbumLauncher.launch(
+                takePhotoFromAlbumIntent
+            )
+        }
+    } else {
+        Column(
+            modifier = modifier
+                .fillMaxWidth()
+                .height(thumbnailHeight.dp)
+                .padding(horizontal = 32.dp)
+                .background(
+                    color = IndiStrawTheme.colors.darkGray3,
+                    shape = IndiStrawTheme.shapes.bigRounded
+                )
+                .indiStrawClickable {
+                    takePhotoFromAlbumLauncher.launch(
+                        takePhotoFromAlbumIntent
+                    )
+                },
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            TitleSemiBold(
+                text = stringResource(id = R.string.require_thumbnail),
+                color = IndiStrawTheme.colors.white,
+                fontSize = 16
+            )
+            Spacer(modifier = Modifier.height(29.dp))
+            Row(
+                modifier = Modifier
+                    .background(
+                        color = IndiStrawTheme.colors.main,
+                        shape = IndiStrawTheme.shapes.bigRounded
+                    )
+                    .padding(horizontal = 12.dp, vertical = 6.dp),
+                verticalAlignment = CenterVertically
+            ) {
+                IndiStrawIcon(icon = IndiStrawIconList.Plus)
+                Spacer(modifier = Modifier.width(6.dp))
+                TitleRegular(text = stringResource(id = R.string.upload_image), fontSize = 14)
+            }
         }
     }
 }
