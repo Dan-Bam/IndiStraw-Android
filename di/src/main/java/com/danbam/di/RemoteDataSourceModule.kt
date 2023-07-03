@@ -8,6 +8,8 @@ import com.danbam.data.remote.datasource.AuthRemoteDataSource
 import com.danbam.data.remote.datasource.AuthRemoteDataSourceImpl
 import com.danbam.data.remote.datasource.FileRemoteDataSource
 import com.danbam.data.remote.datasource.FileRemoteDataSourceImpl
+import com.danbam.data.remote.datasource.SearchRemoteDataSource
+import com.danbam.data.remote.datasource.SearchRemoteDataSourceImpl
 import com.danbam.data.remote.datasource.FundingRemoteDataSource
 import com.danbam.data.remote.datasource.FundingRemoteDataSourceImpl
 import dagger.Binds
@@ -42,4 +44,9 @@ abstract class RemoteDataSourceModule {
     abstract fun bindFundingRemoteDataSource(
         fundingRemoteDataSourceImpl: FundingRemoteDataSourceImpl,
     ): FundingRemoteDataSource
+
+    @Binds
+    abstract fun bindSearchRemoteDataSource(
+        searchRemoteDataSourceImpl: SearchRemoteDataSourceImpl,
+    ): SearchRemoteDataSource
 }
