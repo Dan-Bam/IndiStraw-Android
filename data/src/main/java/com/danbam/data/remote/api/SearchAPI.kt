@@ -8,6 +8,6 @@ import retrofit2.http.Query
 interface SearchAPI {
     @GET("${EndPoint.SEARCH}/")
     suspend fun gerRelatedSearch(
-        @Query("searchField") keyword: String
-    ): RelatedSearchResponse
+        @Query("keyword") keyword: String
+    ): List<RelatedSearchResponse>
 }
