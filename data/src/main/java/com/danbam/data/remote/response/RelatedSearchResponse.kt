@@ -4,19 +4,13 @@ import com.danbam.domain.entity.RelatedSearchEntity
 import com.google.gson.annotations.SerializedName
 
 data class RelatedSearchResponse(
-    @SerializedName("pageSize")
-    val pageSize: Int,
-    @SerializedName("isLast")
-    val isLast: Boolean,
-    @SerializedName("searchList")
-    val searchList: List<RelatedSearchItem>,
-) {
-    data class RelatedSearchItem(
-        @SerializedName("title")
-        val title: String,
-    )
-}
+    @SerializedName("id")
+    val id: Int,
+    @SerializedName("title")
+    val title: String,
+)
 
-fun RelatedSearchResponse.RelatedSearchItem.toEntity() = RelatedSearchEntity(
+fun RelatedSearchResponse.toEntity() = RelatedSearchEntity(
+    id = id,
     title = title
 )

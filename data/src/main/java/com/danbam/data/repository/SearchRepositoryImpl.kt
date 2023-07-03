@@ -18,10 +18,8 @@ class SearchRepositoryImpl @Inject constructor(
     private val searchLocalDataSource: SearchLocalDataSource,
     private val searchRemoteDataSource: SearchRemoteDataSource
 ) : SearchRepository {
-    override suspend fun getRelatedSearch(keyword: String): Flow<PagingData<RelatedSearchEntity>> =
-        searchRemoteDataSource.getRelatedSearch(keyword = keyword).map {
-            it.map { it.toEntity() }
-        }
+    override suspend fun getRelatedSearch(keyword: String): List<RelatedSearchEntity> =
+        searchRemoteDataSource.getRelatedSearch(keyword = keyword).map { it.toEntity() }
 
     override suspend fun search(recentSearchEntity: RecentSearchEntity) {
         searchLocalDataSource.search(recentSearchEntity = recentSearchEntity.toDB())

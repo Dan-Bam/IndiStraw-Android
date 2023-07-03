@@ -5,5 +5,5 @@ import com.danbam.data.remote.response.RelatedSearchResponse
 import kotlinx.coroutines.flow.Flow
 
 interface SearchRemoteDataSource {
-    suspend fun getRelatedSearch(keyword: String): Flow<PagingData<RelatedSearchResponse.RelatedSearchItem>>
+    suspend fun getRelatedSearch(keyword: String): List<RelatedSearchResponse>
 }

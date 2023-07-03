@@ -6,7 +6,7 @@ import com.danbam.domain.entity.RelatedSearchEntity
 import kotlinx.coroutines.flow.Flow
 
 interface SearchRepository {
-    suspend fun getRelatedSearch(keyword: String): Flow<PagingData<RelatedSearchEntity>>
+    suspend fun getRelatedSearch(keyword: String): List<RelatedSearchEntity>
     suspend fun search(recentSearchEntity: RecentSearchEntity)
     suspend fun getRecentSearch(): List<RecentSearchEntity>
 }
