@@ -65,7 +65,7 @@ fun IndiStrawMakeProgress(
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 32.dp),
-        verticalAlignment = Alignment.Bottom
+        verticalAlignment = Alignment.CenterVertically
     ) {
         repeat(4) {
             MakeProgressDot(currentPosition = position, position = it)

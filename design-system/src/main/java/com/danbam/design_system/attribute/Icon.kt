@@ -188,5 +188,11 @@ class IndiStrawIconList private constructor(
             drawableId = R.drawable.ic_nav_setting,
             contentDescription = "navSetting"
         )
+
+        @Stable
+        val FastPlay = IndiStrawIconList(
+            drawableId = R.drawable.ic_fast_play,
+            contentDescription = "fastPlay"
+        )
     }
 }
