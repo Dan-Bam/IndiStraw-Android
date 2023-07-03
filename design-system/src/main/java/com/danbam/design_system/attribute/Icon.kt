@@ -194,5 +194,11 @@ class IndiStrawIconList private constructor(
             drawableId = R.drawable.ic_fast_play,
             contentDescription = "fastPlay"
         )
+
+        @Stable
+        val Delete = IndiStrawIconList(
+            drawableId = R.drawable.ic_delete,
+            contentDescription = "delete"
+        )
     }
 }
