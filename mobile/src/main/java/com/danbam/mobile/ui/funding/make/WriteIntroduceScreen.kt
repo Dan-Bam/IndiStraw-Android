@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -17,6 +18,7 @@ import com.danbam.design_system.component.IndiStrawButton
 import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.R
+import com.danbam.design_system.component.AddImageList
 import com.danbam.design_system.component.IndiStrawTextField
 import com.danbam.design_system.component.SelectImageButton
 import com.danbam.mobile.util.parser.toFile
@@ -31,16 +33,20 @@ fun WriteIntroduceScreen(
     val sideEffect = container.sideEffectFlow
 
     val context = LocalContext.current
-    var title by remember { mutableStateOf("") }
-    var description by remember { mutableStateOf("") }
-    var thumbnailUrl: String? by remember { mutableStateOf(null) }
-    IndiStrawColumnBackground {
+    var title by remember { mutableStateOf(state.title) }
+    var description by remember { mutableStateOf(state.description) }
+    var thumbnailUrl: String? by remember { mutableStateOf(state.thumbnailUrl) }
+    val imageList = remember { mutableStateListOf(*state.imageList.toTypedArray()) }
+    Spacer(modifier = Modifier.height(36.dp))
+    IndiStrawColumnBackground(
+        scrollEnabled = true
+    ) {
         TitleRegular(
-            modifier = Modifier.padding(start = 32.dp, top = 36.dp, bottom = 16.dp),
+            modifier = Modifier.padding(start = 32.dp, bottom = 16.dp),
             text = stringResource(id = R.string.thumbnail)
         )
         SelectImageButton(
-            imageUrl = state.thumbnailUrl,
+            imageUrl = thumbnailUrl,
             selectGallery = {
                 it?.let {
                     makeFundingViewModel.uploadImage(it.toFile(context)) { thumbnail ->
@@ -68,13 +74,24 @@ fun WriteIntroduceScreen(
             modifier = Modifier.padding(start = 32.dp, top = 28.dp),
             text = stringResource(id = R.string.highlight)
         )
+        Spacer(modifier = Modifier.height(16.dp))
+        AddImageList(
+            modifier = Modifier.padding(start = 32.dp),
+            imageList = imageList,
+            onRemove = { imageList.removeAt(it) }) {
+            it?.let {
+                makeFundingViewModel.uploadImage(it.toFile(context)) {
+                    imageList.add(it)
+                }
+            }
+        }
         Spacer(modifier = Modifier.height(36.dp))
         IndiStrawButton(text = stringResource(id = R.string.next)) {
             makeFundingViewModel.saveIntroduce(
                 thumbnailUrl = thumbnailUrl,
                 title = title,
                 description = description,
-                imageList = listOf(),
+                imageList = imageList,
                 onNext = onNext
             )
         }
