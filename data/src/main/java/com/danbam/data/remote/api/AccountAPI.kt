@@ -23,7 +23,7 @@ interface AccountAPI {
         @Body changePasswordRequest: ChangePasswordRequest,
     )
 
-    @GET("account/profile")
+    @GET("account/info")
     suspend fun getProfile(): ProfileResponse
 
     @PATCH("account/phone-number/{phoneNumber}")
@@ -36,7 +36,7 @@ interface AccountAPI {
         @Body changeAddressRequest: ChangeAddressRequest,
     ): Response<Void?>
 
-    @PATCH("account/profile")
+    @PATCH("account/info")
     suspend fun editProfile(
         @Body editProfileRequest: EditProfileRequest,
     ): Response<Void?>
