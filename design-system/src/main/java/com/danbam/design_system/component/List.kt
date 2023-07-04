@@ -6,8 +6,11 @@ import android.net.Uri
 import android.provider.MediaStore
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -19,11 +22,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.danbam.design_system.IndiStrawTheme
+import com.danbam.design_system.R
 import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
+import com.danbam.design_system.util.RemoveOverScrollLazyColumn
 import com.danbam.design_system.util.RemoveOverScrollLazyRow
 import com.danbam.design_system.util.indiStrawClickable
 
@@ -94,6 +100,55 @@ fun AddImageList(
                     )
                 }
                 Spacer(modifier = Modifier.width(8.dp))
+            }
+        }
+    }
+}
+
+@Composable
+fun AddFileList(
+    fileList: List<String>,
+    onDelete: (Int) -> Unit,
+    selectFile: (Uri?) -> Unit
+) {
+    val takeFileLauncher =
+        rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { result ->
+            selectFile(result)
+        }
+    if (fileList.isEmpty()) {
+        FileItem(openFile = {
+            takeFileLauncher.launch("application/*")
+        })
+    } else {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            repeat(fileList.size) {
+                FileItem(file = fileList[it], isDelete = { onDelete(it) })
+                Spacer(modifier = Modifier.height(16.dp))
+            }
+            Column(
+                modifier = Modifier.indiStrawClickable {
+                    takeFileLauncher.launch("application/*")
+                },
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Box(
+                    modifier = Modifier
+                        .padding(top = 8.dp, bottom = 13.dp)
+                        .border(
+                            BorderStroke(1.dp, IndiStrawTheme.colors.white),
+                            shape = IndiStrawTheme.shapes.circle
+                        )
+                        .padding(9.dp)
+                ) {
+                    IndiStrawIcon(icon = IndiStrawIconList.Plus)
+                }
+                TitleRegular(
+                    text = stringResource(id = R.string.add_file),
+                    color = IndiStrawTheme.colors.main,
+                    fontSize = 14
+                )
             }
         }
     }
