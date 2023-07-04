@@ -200,5 +200,11 @@ class IndiStrawIconList private constructor(
             drawableId = R.drawable.ic_delete,
             contentDescription = "delete"
         )
+
+        @Stable
+        val Minus = IndiStrawIconList(
+            drawableId = R.drawable.ic_minus,
+            contentDescription = "minus"
+        )
     }
 }
