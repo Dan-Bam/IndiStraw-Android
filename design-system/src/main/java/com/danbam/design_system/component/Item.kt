@@ -1,5 +1,9 @@
 package com.danbam.design_system.component
 
+import android.app.DownloadManager
+import android.content.Context
+import android.net.Uri
+import android.os.Environment
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,13 +19,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
 import coil.compose.AsyncImage
 import com.danbam.design_system.IndiStrawTheme
+import com.danbam.design_system.R
+import com.danbam.design_system.attribute.IndiStrawIcon
+import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.util.toMoney
 import com.danbam.domain.entity.FundingDetailEntity
 import com.danbam.domain.entity.FundingEntity
+import java.io.File
 
 sealed class MovieType {
     object Poster : MovieType()
@@ -186,6 +197,43 @@ fun RewardItem(
             )
             Spacer(modifier = Modifier.weight(1F))
             TitleSemiBold(text = "${item.price.toMoney()}원")
+        }
+    }
+}
+
+@Composable
+fun FileItem(
+    file: String? = null,
+    openFile: (() -> Unit)? = null,
+    isDelete: (() -> Unit)? = null
+) {
+    val context = LocalContext.current
+    Row(
+        modifier = Modifier
+            .padding(horizontal = 32.dp)
+            .fillMaxWidth()
+            .background(
+                IndiStrawTheme.colors.darkGray,
+                IndiStrawTheme.shapes.defaultRounded
+            )
+            .padding(horizontal = 13.dp, vertical = 17.dp)
+            .indiStrawClickable {
+                openFile?.let { openFile() }
+            }
+    ) {
+        IndiStrawIcon(icon = IndiStrawIconList.Attached)
+        Spacer(modifier = Modifier.width(8.dp))
+        ExampleTextMedium(
+            modifier = Modifier.fillMaxWidth(0.9F),
+            text = file ?: stringResource(id = R.string.require_file),
+            maxLines = 1
+        )
+        Spacer(modifier = Modifier.weight(1F))
+        isDelete?.let {
+            IndiStrawIcon(
+                modifier = Modifier.indiStrawClickable(onClick = isDelete),
+                icon = IndiStrawIconList.Minus
+            )
         }
     }
 }
