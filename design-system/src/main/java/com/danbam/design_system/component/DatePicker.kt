@@ -1,207 +1,113 @@
 package com.danbam.design_system.component
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.expandVertically
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkVertically
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.CenterVertically
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import com.danbam.design_system.IndiStrawTheme
-import com.danbam.design_system.attribute.IndiStrawIcon
-import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.design_system.util.RemoveOverScrollLazyColumn
-import com.danbam.design_system.util.indiStrawClickable
+import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.filter
 import java.time.LocalDate
+import kotlin.math.abs
 
-sealed class Date {
-    object Year : Date()
-    object Month : Date()
-    object Day : Date()
+sealed class DatePicker {
+    object Year : DatePicker()
+    object Month : DatePicker()
+    object Day : DatePicker()
 }
 
-data class DatePicker(
-    val date: Int,
-    val dateType: Date,
-    val isExpand: Boolean,
-    val maxWidth: Int,
-)
-
 @Composable
-fun IndiStrawDatePicker(
+fun DatePicker(
     modifier: Modifier = Modifier,
-    onSelect: (List<Int>) -> Unit,
+    itemList: List<Int>,
+    currentItem: Int,
+    dateType: DatePicker,
+    state: LazyListState = rememberLazyListState(),
+    onScrollFinish: (index: Int) -> Unit,
 ) {
-    val datePicker = LocalDate.now().run {
-        remember {
-            mutableStateListOf(
-                DatePicker(year, Date.Year, false, 90),
-                DatePicker(month.value, Date.Month, false, 76),
-                DatePicker(dayOfMonth, Date.Day, false, 76),
-            )
+    val itemHeight = 50.dp
+    val itemHalfHeightToPx = with(LocalDensity.current) { itemHeight.toPx() / 2 }
+
+    val currentOnScrollFinish by rememberUpdatedState(onScrollFinish)
+
+    LaunchedEffect(Unit) {
+        state.animateScrollToItem(currentItem - if (dateType == DatePicker.Year) LocalDate.now().year else 1)
+    }
+
+    LaunchedEffect(state.isScrollInProgress) {
+        if (!state.isScrollInProgress && state.firstVisibleItemScrollOffset != 0) {
+            if (state.firstVisibleItemScrollOffset < itemHalfHeightToPx) {
+                state.animateScrollToItem(state.firstVisibleItemIndex)
+            } else if (state.firstVisibleItemScrollOffset > itemHalfHeightToPx) {
+                state.animateScrollToItem(state.firstVisibleItemIndex + 1)
+            }
         }
     }
-    val endDate =
-        LocalDate.parse("${datePicker[0].date}-${"%02d".format(datePicker[1].date)}-01").run {
-            withDayOfMonth(lengthOfMonth()).dayOfMonth
-        }
-    Row(
+
+    LaunchedEffect(state.firstVisibleItemIndex) {
+        currentOnScrollFinish(itemList[state.firstVisibleItemIndex])
+    }
+
+    LaunchedEffect(state) {
+        snapshotFlow { state.isScrollInProgress }
+            .filter { !it && state.firstVisibleItemScrollOffset == 0 }
+            .drop(1)
+    }
+
+    RemoveOverScrollLazyColumn(
         modifier = modifier
-            .padding(horizontal = 25.dp)
-            .fillMaxWidth()
-    ) {
-        datePicker.forEachIndexed { i, it ->
-            DateBox(
-                date = it.date,
-                endDate = endDate,
-                dateType = it.dateType,
-                maxWidth = it.maxWidth,
-                isExpand = it.isExpand,
-                onDateSelect = { selectDate ->
-                    datePicker[i] = it.copy(date = selectDate, isExpand = false)
-                    onSelect(datePicker.map { it.date })
-                },
-                onClick = {
-                    datePicker[i] = it.copy(isExpand = !it.isExpand)
-                })
-            if (i != datePicker.lastIndex) {
-                Spacer(modifier = Modifier.width(26.dp))
-            }
-        }
-    }
-}
-
-@Composable
-private fun DateBox(
-    date: Int,
-    endDate: Int,
-    dateType: Date,
-    maxWidth: Int,
-    isExpand: Boolean,
-    onDateSelect: (Int) -> Unit,
-    onClick: () -> Unit,
-) {
-    var targetValue by remember { mutableStateOf(0F) }
-    val rotateValue: Float by animateFloatAsState(
-        targetValue = targetValue,
-        tween(500)
-    )
-    val dateList = when (dateType) {
-        Date.Month -> (1..12)
-        Date.Day -> (1..endDate)
-        Date.Year -> LocalDate.now().run {
-            (year..year + 100)
-        }
-    }.toList()
-
-    Column(
-        modifier = Modifier.widthIn(max = maxWidth.dp)
-    ) {
-        Row(
-            modifier = Modifier
-                .background(
-                    color = IndiStrawTheme.colors.darkGray,
-                    shape = if (isExpand) IndiStrawTheme.shapes.topDefaultRounded else IndiStrawTheme.shapes.defaultRounded
-                )
-                .fillMaxWidth()
-                .padding(horizontal = 10.dp, vertical = 16.dp)
-                .indiStrawClickable(onClick = {
-                    targetValue = if (isExpand) 0F else 180F
-                    onClick()
-                }),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            ExampleTextMedium(text = date.toString())
-            IndiStrawIcon(
-                modifier = Modifier
-                    .align(CenterVertically)
-                    .rotate(rotateValue),
-                icon = IndiStrawIconList.DateArrow
-            )
-        }
-        ExpandDateBox(dateList = dateList, isExpand = isExpand, onDateSelect = {
-            targetValue = if (isExpand) 0F else 180F
-            onDateSelect(it)
-        })
-    }
-}
-
-@Composable
-private fun ExpandDateBox(
-    dateList: List<Int>,
-    isExpand: Boolean,
-    onDateSelect: (Int) -> Unit,
-) {
-    val expandTransition = remember {
-        expandVertically(
-            expandFrom = Alignment.Top,
-            animationSpec = tween(300)
-        ) + fadeIn(
-            animationSpec = tween(300)
-        )
-    }
-
-    val collapseTransition = remember {
-        shrinkVertically(
-            shrinkTowards = Alignment.Top,
-            animationSpec = tween(300)
-        ) + fadeOut(
-            animationSpec = tween(300)
-        )
-    }
-
-    AnimatedVisibility(
-        visible = isExpand,
-        enter = expandTransition,
-        exit = collapseTransition
-    ) {
-        Column {
-            RemoveOverScrollLazyColumn(
-                modifier = Modifier.height(100.dp)
-            ) {
-                items(dateList) {
-                    ExampleTextMedium(
-                        modifier = Modifier
-                            .background(IndiStrawTheme.colors.darkGray)
-                            .padding(start = 10.dp, bottom = 13.dp)
-                            .indiStrawClickable(onClick = { onDateSelect(it);println("안녕") })
-                            .fillMaxWidth(),
-                        text = it.toString()
-                    )
+            .fillMaxWidth(
+                when (dateType) {
+                    DatePicker.Year -> 0.7F
+                    DatePicker.Month -> 0.25F
+                    DatePicker.Day -> 0.3F
                 }
-            }
+            )
+            .height(itemHeight * 5),
+        state = state,
+        contentPadding = PaddingValues(vertical = itemHeight * (5 / 2)),
+        horizontalAlignment = CenterHorizontally
+    ) {
+        items(itemList) {
             Box(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .height(13.dp)
-                    .background(
-                        color = IndiStrawTheme.colors.darkGray,
-                        shape = IndiStrawTheme.shapes.bottomDefaultRounded
-                    )
-            )
+                    .height(itemHeight),
+                contentAlignment = Alignment.Center
+            ) {
+                ButtonMedium(
+                    text = "$it${
+                        when (dateType) {
+                            DatePicker.Year -> "년"
+                            DatePicker.Month -> "월"
+                            DatePicker.Day -> "일"
+                        }
+                    }",
+                    fontSize = when (abs(currentItem - it)) {
+                        0 -> 28
+                        1 -> 24
+                        else -> 20
+                    },
+                    color = when (abs(currentItem - it)) {
+                        0 -> IndiStrawTheme.colors.white
+                        1 -> IndiStrawTheme.colors.lightGray
+                        else -> IndiStrawTheme.colors.gray2
+                    }
+                )
+            }
         }
     }
 }
