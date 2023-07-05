@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -256,7 +255,6 @@ fun SelectProfileButton(
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun SelectImageButton(
     modifier: Modifier = Modifier,
