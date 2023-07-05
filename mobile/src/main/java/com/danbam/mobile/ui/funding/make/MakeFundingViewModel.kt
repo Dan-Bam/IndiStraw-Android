@@ -2,6 +2,7 @@ package com.danbam.mobile.ui.funding.make
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.danbam.domain.param.FundingCreateParam
 import com.danbam.domain.usecase.file.SendFileUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -59,9 +60,10 @@ class MakeFundingViewModel @Inject constructor(
         fileList: List<String>,
         onNext: () -> Unit
     ) = intent {
+        onNext()
         if (targetAmount == 0L) return@intent
         else if (endDate.isEmpty()) return@intent
-//        else if (fileList.isEmpty()) return@intent
+        else if (fileList.isEmpty()) return@intent
         else {
             reduce {
                 state.copy(
@@ -71,6 +73,37 @@ class MakeFundingViewModel @Inject constructor(
                 )
             }
             onNext()
+        }
+    }
+
+    fun addReward(
+        thumbnailUrl: String?,
+        title: String,
+        description: String,
+        isReal: Boolean,
+        amount: Long?,
+        onAdded: () -> Unit
+    ) = intent {
+        if (thumbnailUrl.isNullOrBlank()) return@intent
+        else if (title.isEmpty()) return@intent
+        else if (description.isEmpty()) return@intent
+        else if (isReal && amount == 0L) return@intent
+        else {
+            reduce {
+                state.copy(
+                    rewardList = state.rewardList.plus(
+                        FundingCreateParam.RewardParam(
+                            title = title,
+                            description = description,
+                            price = 0L,
+                            imageUrl = thumbnailUrl,
+                            isReal = isReal,
+                            totalCount = amount
+                        )
+                    )
+                )
+            }
+            onAdded()
         }
     }
 }
