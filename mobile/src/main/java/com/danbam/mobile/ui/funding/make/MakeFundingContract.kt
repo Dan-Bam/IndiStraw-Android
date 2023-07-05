@@ -5,7 +5,7 @@ import java.time.LocalDate
 data class MakeFundingState(
     val title: String = "",
     val description: String = "",
-    val targetAmount: String = "",
+    val targetAmount: Long = 0,
     val endDate: LocalDate = LocalDate.now(),
     val thumbnailUrl: String? = null,
     val imageList: List<String> = listOf(),
