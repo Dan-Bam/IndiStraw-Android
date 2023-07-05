@@ -10,6 +10,8 @@ import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
 import org.orbitmvi.orbit.viewmodel.container
 import java.io.File
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
@@ -33,6 +35,7 @@ class MakeFundingViewModel @Inject constructor(
         imageList: List<String>,
         onNext: () -> Unit
     ) = intent {
+        onNext()
         if (thumbnailUrl.isNullOrBlank()) return@intent
         else if (title.isEmpty()) return@intent
         else if (description.isEmpty()) return@intent
@@ -44,6 +47,27 @@ class MakeFundingViewModel @Inject constructor(
                     title = title,
                     description = description,
                     imageList = imageList
+                )
+            }
+            onNext()
+        }
+    }
+
+    fun saveTarget(
+        targetAmount: Long,
+        endDate: String,
+        fileList: List<String>,
+        onNext: () -> Unit
+    ) = intent {
+        if (targetAmount == 0L) return@intent
+        else if (endDate.isEmpty()) return@intent
+//        else if (fileList.isEmpty()) return@intent
+        else {
+            reduce {
+                state.copy(
+                    targetAmount = targetAmount,
+                    endDate = LocalDate.parse(endDate, DateTimeFormatter.ofPattern("yyyy:MM:dd")),
+                    fileList = fileList
                 )
             }
             onNext()
