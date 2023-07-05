@@ -68,7 +68,7 @@ fun MakeFundingScreen(
             }
 
             is MakeFundingProgress.WriteTarget -> {
-                WriteTargetScreen {
+                WriteTargetScreen(makeFundingViewModel = makeFundingViewModel) {
                     makeProgress = MakeFundingProgress.AddReward
                 }
             }
