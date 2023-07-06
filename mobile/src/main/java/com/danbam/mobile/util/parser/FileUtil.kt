@@ -5,9 +5,11 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Environment
+import android.provider.OpenableColumns
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
+import java.lang.RuntimeException
 import java.net.URLDecoder
 import java.time.LocalDateTime
 
@@ -20,9 +22,12 @@ fun Uri.toFile(context: Context): File {
 }
 
 private fun Uri.getFileName(context: Context): String {
-    val name = URLDecoder.decode(toString().split("/").last(), Charsets.UTF_8.name())
-    val ext = context.contentResolver.getType(this)!!.split("/").last()
-    return "$name.$ext"
+    val name = context.contentResolver.query(this, null, null, null)?.use {
+        val nameIndex = it.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+        it.moveToFirst()
+        it.getString(nameIndex).split(".")
+    }
+    return name?.let { "${it.first()}.${it.last()}" } ?: throw NotFoundFileException()
 }
 
 private fun createTempFile(context: Context, fileName: String): File {
@@ -64,3 +69,5 @@ fun Bitmap.toFile(context: Context): File {
     }
     return tempFile
 }
+
+class NotFoundFileException : RuntimeException()

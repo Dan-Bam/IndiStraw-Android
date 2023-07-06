@@ -1,7 +1,9 @@
 package com.danbam.design_system.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,9 +17,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.danbam.design_system.IndiStrawTheme
+import com.danbam.design_system.R
+import com.danbam.design_system.attribute.IndiStrawIcon
+import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.util.toMoney
 import com.danbam.domain.entity.FundingDetailEntity
@@ -144,48 +150,103 @@ fun MovieItem(
 
 @Composable
 fun RewardItem(
-    item: FundingDetailEntity.RewardEntity
+    item: FundingDetailEntity.RewardEntity,
+    onDelete: (() -> Unit)? = null
 ) {
     val rewardImageSize = LocalConfiguration.current.screenWidthDp * 0.3
+    Box(
+        modifier = Modifier
+            .padding(horizontal = 15.dp)
+            .fillMaxWidth()
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(
+                    if (onDelete != null) {
+                        PaddingValues(top = 4.dp, end = 4.dp)
+                    } else PaddingValues()
+                )
+                .fillMaxWidth()
+                .background(
+                    color = IndiStrawTheme.colors.darkGray,
+                    shape = IndiStrawTheme.shapes.defaultRounded
+                )
+                .padding(12.dp)
+        ) {
+            AsyncImage(
+                modifier = Modifier
+                    .size(rewardImageSize.dp)
+                    .align(Alignment.CenterVertically)
+                    .clip(IndiStrawTheme.shapes.smallRounded),
+                model = item.imageUrl,
+                contentDescription = "crowdFundingImg",
+                contentScale = ContentScale.Crop
+            )
+            Spacer(modifier = Modifier.width(12.dp))
+            Column(
+                modifier = Modifier
+                    .weight(1F)
+                    .height(rewardImageSize.dp)
+            ) {
+                HeadLineBold(
+                    text = item.title,
+                    fontSize = 14,
+                    maxLines = 1
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                TitleRegular(
+                    text = item.description,
+                    color = IndiStrawTheme.colors.gray,
+                    maxLines = 2,
+                    fontSize = 14
+                )
+                Spacer(modifier = Modifier.weight(1F))
+                TitleSemiBold(text = "${item.price.toMoney()}원")
+            }
+        }
+        onDelete?.let {
+            IndiStrawIcon(
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .indiStrawClickable(onClick = onDelete),
+                icon = IndiStrawIconList.Delete
+            )
+        }
+    }
+}
+
+@Composable
+fun FileItem(
+    file: String? = null,
+    openFile: (() -> Unit)? = null,
+    isDelete: (() -> Unit)? = null
+) {
     Row(
         modifier = Modifier
+            .padding(horizontal = 32.dp)
             .fillMaxWidth()
-            .padding(horizontal = 15.dp)
             .background(
-                color = IndiStrawTheme.colors.darkGray,
-                shape = IndiStrawTheme.shapes.defaultRounded
+                IndiStrawTheme.colors.darkGray,
+                IndiStrawTheme.shapes.defaultRounded
             )
-            .padding(12.dp)
+            .padding(horizontal = 13.dp, vertical = 17.dp)
+            .indiStrawClickable {
+                openFile?.let { openFile() }
+            }
     ) {
-        AsyncImage(
-            modifier = Modifier
-                .size(rewardImageSize.dp)
-                .align(Alignment.CenterVertically)
-                .clip(IndiStrawTheme.shapes.smallRounded),
-            model = item.imageUrl,
-            contentDescription = "crowdFundingImg",
-            contentScale = ContentScale.Crop
+        IndiStrawIcon(icon = IndiStrawIconList.Attached)
+        Spacer(modifier = Modifier.width(8.dp))
+        ExampleTextMedium(
+            modifier = Modifier.fillMaxWidth(0.9F),
+            text = file ?: stringResource(id = R.string.require_file),
+            maxLines = 1
         )
-        Spacer(modifier = Modifier.width(12.dp))
-        Column(
-            modifier = Modifier
-                .weight(1F)
-                .height(rewardImageSize.dp)
-        ) {
-            HeadLineBold(
-                text = item.title,
-                fontSize = 14,
-                maxLines = 1
+        Spacer(modifier = Modifier.weight(1F))
+        isDelete?.let {
+            IndiStrawIcon(
+                modifier = Modifier.indiStrawClickable(onClick = isDelete),
+                icon = IndiStrawIconList.Minus
             )
-            Spacer(modifier = Modifier.height(4.dp))
-            TitleRegular(
-                text = item.description,
-                color = IndiStrawTheme.colors.gray,
-                maxLines = 2,
-                fontSize = 14
-            )
-            Spacer(modifier = Modifier.weight(1F))
-            TitleSemiBold(text = "${item.price.toMoney()}원")
         }
     }
 }

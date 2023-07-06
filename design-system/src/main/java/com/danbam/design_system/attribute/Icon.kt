@@ -58,8 +58,8 @@ class IndiStrawIconList private constructor(
         )
 
         @Stable
-        val DateArrow = IndiStrawIconList(
-            drawableId = R.drawable.ic_date_arrow,
+        val DownArrow = IndiStrawIconList(
+            drawableId = R.drawable.ic_down_arrow,
             contentDescription = "date arrow"
         )
 
@@ -193,6 +193,72 @@ class IndiStrawIconList private constructor(
         val FastPlay = IndiStrawIconList(
             drawableId = R.drawable.ic_fast_play,
             contentDescription = "fastPlay"
+        )
+
+        @Stable
+        val Delete = IndiStrawIconList(
+            drawableId = R.drawable.ic_delete,
+            contentDescription = "delete"
+        )
+
+        @Stable
+        val Minus = IndiStrawIconList(
+            drawableId = R.drawable.ic_minus,
+            contentDescription = "minus"
+        )
+
+        @Stable
+        val BankGwangju = IndiStrawIconList(
+            drawableId = R.drawable.ic_bank_gwang,
+            contentDescription = "gwangjuBank"
+        )
+
+        @Stable
+        val BankHana = IndiStrawIconList(
+            drawableId = R.drawable.ic_bank_hana,
+            contentDescription = "hanaBank"
+        )
+
+        @Stable
+        val BankKakao = IndiStrawIconList(
+            drawableId = R.drawable.ic_bank_kakao,
+            contentDescription = "kakaoBank"
+        )
+
+        @Stable
+        val BankNh = IndiStrawIconList(
+            drawableId = R.drawable.ic_bank_nh,
+            contentDescription = "nhBank"
+        )
+
+        @Stable
+        val BankPost = IndiStrawIconList(
+            drawableId = R.drawable.ic_bank_post,
+            contentDescription = "postBank"
+        )
+
+        @Stable
+        val BankShinhyeop = IndiStrawIconList(
+            drawableId = R.drawable.ic_bank_shinhyeop,
+            contentDescription = "shinhyeopBank"
+        )
+
+        @Stable
+        val BankShinhan = IndiStrawIconList(
+            drawableId = R.drawable.ic_bank_shinhan,
+            contentDescription = "shinhanBank"
+        )
+
+        @Stable
+        val BankToss = IndiStrawIconList(
+            drawableId = R.drawable.ic_bank_toss,
+            contentDescription = "tossBank"
+        )
+
+        @Stable
+        val BankWoori = IndiStrawIconList(
+            drawableId = R.drawable.ic_bank_woori,
+            contentDescription = "wooriBank"
         )
     }
 }
