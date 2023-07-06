@@ -88,7 +88,7 @@ fun MakeFundingScreen(
             }
 
             is MakeFundingProgress.WriteAccount -> {
-                WriteAccountScreen {
+                WriteAccountScreen(makeFundingViewModel = makeFundingViewModel) {
                     navController.popBackStack()
                 }
             }
