@@ -74,13 +74,15 @@ fun MakeFundingScreen(
             }
 
             is MakeFundingProgress.AddReward -> {
-                AddRewardScreen(onAdd = { makeProgress = MakeFundingProgress.WriteReward }) {
+                AddRewardScreen(
+                    makeFundingViewModel = makeFundingViewModel,
+                    onAdd = { makeProgress = MakeFundingProgress.WriteReward }) {
                     makeProgress = MakeFundingProgress.WriteAccount
                 }
             }
 
             is MakeFundingProgress.WriteReward -> {
-                WriteRewardScreen {
+                WriteRewardScreen(makeFundingViewModel = makeFundingViewModel) {
                     makeProgress = MakeFundingProgress.AddReward
                 }
             }
