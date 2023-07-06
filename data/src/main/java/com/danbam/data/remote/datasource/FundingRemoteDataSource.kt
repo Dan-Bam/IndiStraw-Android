@@ -1,11 +1,14 @@
 package com.danbam.data.remote.datasource
 
+import androidx.paging.PagingData
 import com.danbam.data.remote.request.FundingCreateRequest
 import com.danbam.data.remote.response.FundingDetailResponse
 import com.danbam.data.remote.response.FundingResponse
+import kotlinx.coroutines.flow.Flow
 
 interface FundingRemoteDataSource {
     suspend fun fundingCreate(fundingCreateRequest: FundingCreateRequest)
     suspend fun fundingPopularList(): List<FundingResponse>
     suspend fun fundingDetail(fundingIndex: Long): FundingDetailResponse
+    suspend fun fundingAll(): Flow<PagingData<FundingResponse>>
 }
