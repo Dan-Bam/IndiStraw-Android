@@ -1,4 +1,15 @@
 <resources>
+    <!--    은행 리스트-->
+    <string name="gwangju_bank">광주</string>
+    <string name="hana_bank">하나</string>
+    <string name="nh_bank">NH농협</string>
+    <string name="post_bank">우체국</string>
+    <string name="shinhyeop_bank">신협</string>
+    <string name="shinhan_bank">신한</string>
+    <string name="toss_bank">토스뱅크</string>
+    <string name="woori_bank">우리</string>
+    <string name="kakao_bank">카카오뱅크</string>
+
     <!--    기타-->
     <string name="wrong_length_id">6~15자 사이로 입력해 주세요.</string>
     <string name="wrong_length_password">8~20자 사이로 입력해 주세요.</string>
