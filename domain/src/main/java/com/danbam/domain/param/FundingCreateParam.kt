@@ -1,14 +1,12 @@
 package com.danbam.domain.param
 
-import java.time.LocalDate
-
 data class FundingCreateParam(
     val title: String,
     val description: String,
     val targetAmount: Long,
     val directorAccount: DirectorAccountParam,
     val reward: List<RewardParam>,
-    val endDate: LocalDate,
+    val endDate: String,
     val thumbnailUrl: String,
     val imageList: List<String>,
     val fileList: List<String>,

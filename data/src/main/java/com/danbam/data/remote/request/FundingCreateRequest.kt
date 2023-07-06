@@ -2,7 +2,6 @@ package com.danbam.data.remote.request
 
 import com.danbam.domain.param.FundingCreateParam
 import com.google.gson.annotations.SerializedName
-import java.time.LocalDate
 
 data class FundingCreateRequest(
     @SerializedName("title")
@@ -16,7 +15,7 @@ data class FundingCreateRequest(
     @SerializedName("reward")
     val reward: List<RewardRequest>,
     @SerializedName("endDate")
-    val endDate: LocalDate,
+    val endDate: String,
     @SerializedName("thumbnailUrl")
     val thumbnailUrl: String,
     @SerializedName("imageList")
