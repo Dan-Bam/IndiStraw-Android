@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.danbam.domain.param.FundingCreateParam
 import com.danbam.domain.usecase.file.SendFileUseCase
+import com.danbam.domain.usecase.funding.FundingCreateUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
@@ -17,7 +18,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MakeFundingViewModel @Inject constructor(
-    private val sendFileUseCase: SendFileUseCase
+    private val sendFileUseCase: SendFileUseCase,
+    private val fundingCreateUseCase: FundingCreateUseCase
 ) : ContainerHost<MakeFundingState, Unit>, ViewModel() {
     override val container = container<MakeFundingState, Unit>(MakeFundingState())
 
@@ -112,6 +114,36 @@ class MakeFundingViewModel @Inject constructor(
             state.copy(
                 rewardList = state.rewardList.filterIndexed { index, _ -> index != removeIndex }
             )
+        }
+    }
+
+    fun fundingCreate(
+        bank: Bank,
+        account: String,
+        onFinished: () -> Unit
+    ) = intent {
+        if (account.isEmpty()) return@intent
+        else {
+            viewModelScope.launch {
+                fundingCreateUseCase(
+                    FundingCreateParam(
+                        title = state.title,
+                        description = state.description,
+                        targetAmount = state.targetAmount,
+                        directorAccount = FundingCreateParam.DirectorAccountParam(
+                            bank = bank.name,
+                            account = account
+                        ),
+                        reward = state.rewardList,
+                        endDate = state.endDate.toString(),
+                        thumbnailUrl = state.thumbnailUrl!!,
+                        imageList = state.imageList,
+                        fileList = state.fileList
+                    )
+                ).onSuccess {
+                    onFinished()
+                }
+            }
         }
     }
 }
