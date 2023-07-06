@@ -108,7 +108,7 @@ fun WriteTargetScreen(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 ExampleTextMedium(text = "${year}년 ${month}월 ${day}일")
-                IndiStrawIcon(icon = IndiStrawIconList.DateArrow)
+                IndiStrawIcon(icon = IndiStrawIconList.DownArrow)
 
             }
             TitleRegular(

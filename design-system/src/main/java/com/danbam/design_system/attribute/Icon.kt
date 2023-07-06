@@ -58,8 +58,8 @@ class IndiStrawIconList private constructor(
         )
 
         @Stable
-        val DateArrow = IndiStrawIconList(
-            drawableId = R.drawable.ic_date_arrow,
+        val DownArrow = IndiStrawIconList(
+            drawableId = R.drawable.ic_down_arrow,
             contentDescription = "date arrow"
         )
 
