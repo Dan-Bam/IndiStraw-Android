@@ -36,7 +36,6 @@ class MakeFundingViewModel @Inject constructor(
         imageList: List<String>,
         onNext: () -> Unit
     ) = intent {
-        onNext()
         if (thumbnailUrl.isNullOrBlank()) return@intent
         else if (title.isEmpty()) return@intent
         else if (description.isEmpty()) return@intent
@@ -60,7 +59,6 @@ class MakeFundingViewModel @Inject constructor(
         fileList: List<String>,
         onNext: () -> Unit
     ) = intent {
-        onNext()
         if (targetAmount == 0L) return@intent
         else if (endDate.isEmpty()) return@intent
         else if (fileList.isEmpty()) return@intent
@@ -81,12 +79,14 @@ class MakeFundingViewModel @Inject constructor(
         title: String,
         description: String,
         isReal: Boolean,
+        price: Long,
         amount: Long?,
         onAdded: () -> Unit
     ) = intent {
         if (thumbnailUrl.isNullOrBlank()) return@intent
         else if (title.isEmpty()) return@intent
         else if (description.isEmpty()) return@intent
+        else if (price == 0L) return@intent
         else if (isReal && amount == 0L) return@intent
         else {
             reduce {
@@ -95,7 +95,7 @@ class MakeFundingViewModel @Inject constructor(
                         FundingCreateParam.RewardParam(
                             title = title,
                             description = description,
-                            price = 0L,
+                            price = price,
                             imageUrl = thumbnailUrl,
                             isReal = isReal,
                             totalCount = amount
@@ -104,6 +104,14 @@ class MakeFundingViewModel @Inject constructor(
                 )
             }
             onAdded()
+        }
+    }
+
+    fun removeReward(removeIndex: Int) = intent {
+        reduce {
+            state.copy(
+                rewardList = state.rewardList.filterIndexed { index, _ -> index != removeIndex }
+            )
         }
     }
 }
