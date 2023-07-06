@@ -100,6 +100,7 @@
     <string name="change_language">언어변경</string>
     <string name="enroll_movie_thumbnail">영화 썸네일 등록하기</string>
     <string name="money_unit">원</string>
+    <string name="require_bank">은행을 선택해주세요.</string>
     <string name="name">이름</string>
     <string name="require_name">이름을 입력해 주세요.</string>
     <string name="wrong_enroll_id">이미 등록된 아이디입니다.</string>
