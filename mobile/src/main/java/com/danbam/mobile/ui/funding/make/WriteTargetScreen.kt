@@ -48,7 +48,6 @@ fun WriteTargetScreen(
 
     val context = LocalContext.current
     var targetAmount by remember { mutableStateOf(state.targetAmount.toString()) }
-    println("안녕 ${state.endDate.year} ${state.endDate.monthValue} ${state.endDate.dayOfMonth}")
     var year by remember { mutableStateOf(state.endDate.year) }
     var month by remember { mutableStateOf(state.endDate.monthValue) }
     var day by remember { mutableStateOf(state.endDate.dayOfMonth) }
