@@ -27,6 +27,7 @@ import com.danbam.design_system.component.IndiStrawToggle
 import com.danbam.design_system.component.SelectImageButton
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.mobile.util.parser.toFile
+import okhttp3.internal.toLongOrDefault
 
 @Composable
 fun WriteRewardScreen(
@@ -36,6 +37,7 @@ fun WriteRewardScreen(
     val context = LocalContext.current
     var title by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
+    var price by remember { mutableStateOf("") }
     var isReal by remember { mutableStateOf(false) }
     var amount by remember { mutableStateOf("") }
     var thumbnailUrl: String? by remember { mutableStateOf(null) }
@@ -63,20 +65,20 @@ fun WriteRewardScreen(
             onValueChange = { title = it })
         TitleRegular(
             modifier = Modifier.padding(start = 32.dp, top = 28.dp, bottom = 16.dp),
-            text = stringResource(id = R.string.money)
-        )
-        IndiStrawTextField(
-            hint = stringResource(id = R.string.require_money),
-            value = description,
-            onValueChange = { description = it })
-        TitleRegular(
-            modifier = Modifier.padding(start = 32.dp, top = 28.dp, bottom = 16.dp),
             text = stringResource(id = R.string.introduce)
         )
         IndiStrawTextField(
             hint = stringResource(id = R.string.require_introduce),
             value = description,
             onValueChange = { description = it })
+        TitleRegular(
+            modifier = Modifier.padding(start = 32.dp, top = 28.dp, bottom = 16.dp),
+            text = stringResource(id = R.string.money)
+        )
+        IndiStrawTextField(
+            hint = stringResource(id = R.string.require_money),
+            value = price,
+            onValueChange = { price = it })
         TitleRegular(
             modifier = Modifier.padding(start = 32.dp, top = 28.dp, bottom = 16.dp),
             text = stringResource(id = R.string.is_real)
@@ -109,6 +111,7 @@ fun WriteRewardScreen(
                 thumbnailUrl = thumbnailUrl,
                 title = title,
                 description = description,
+                price = price.toLongOrDefault(0L),
                 isReal = isReal,
                 amount = amount.toLongOrNull(),
                 onAdded = onAdd
