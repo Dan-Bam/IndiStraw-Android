@@ -7,10 +7,6 @@ data class MakeFundingState(
     val title: String = "",
     val description: String = "",
     val targetAmount: Long = 0,
-    val directorAccountParam: FundingCreateParam.DirectorAccountParam = FundingCreateParam.DirectorAccountParam(
-        "",
-        ""
-    ),
     val rewardList: List<FundingCreateParam.RewardParam> = listOf(),
     val endDate: LocalDate = LocalDate.now(),
     val thumbnailUrl: String? = null,
