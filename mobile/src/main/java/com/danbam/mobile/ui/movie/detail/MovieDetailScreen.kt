@@ -83,7 +83,7 @@ fun MovieDetailScreen(
                 Spacer(modifier = Modifier.width(16.dp))
             }
             item {
-                Spacer(modifier = Modifier.width(4.dp))
+                Spacer(modifier = Modifier.width(20.dp))
             }
         }
     }) { _, moreInfo ->
@@ -110,19 +110,19 @@ fun MovieDetailScreen(
                 )
             }
             TitleSemiBold(
-                modifier = Modifier.padding(start = 25.dp, top = 15.dp, bottom = 8.dp),
+                modifier = Modifier.padding(start = 15.dp, top = 15.dp, bottom = 8.dp),
                 text = "스파이더맨",
                 fontSize = 18
             )
             FindPasswordMedium(
                 modifier = Modifier
-                    .padding(horizontal = 25.dp)
+                    .padding(horizontal = 15.dp)
                     .fillMaxWidth(),
                 text = "스파이더맨은 스티브 딧코가 창작한 마블 코믹스의 슈퍼 히어로이다. 그는 1962년 8월의 어메이징 판타지15호에 처음 등장했다.그는 마블 코믹스에서 출판한 만화책뿐만 아니라 마블 유니버스를 배경으로 한 여러영화, tv프로이다.",
                 color = IndiStrawTheme.colors.gray
             )
             TitleRegular(
-                modifier = Modifier.padding(start = 25.dp, top = 44.dp), text = stringResource(
+                modifier = Modifier.padding(start = 15.dp, top = 44.dp), text = stringResource(
                     id = R.string.highlight
                 )
             )
@@ -130,7 +130,7 @@ fun MovieDetailScreen(
                 modifier = Modifier.padding(top = 14.dp)
             ) {
                 item {
-                    Spacer(modifier = Modifier.width(25.dp))
+                    Spacer(modifier = Modifier.width(15.dp))
                 }
                 items(10) {
                     AsyncImage(
@@ -144,14 +144,17 @@ fun MovieDetailScreen(
                     )
                     Spacer(modifier = Modifier.width(16.dp))
                 }
+                item {
+                    Spacer(modifier = Modifier.width(15.dp))
+                }
             }
             ButtonMedium(
-                modifier = Modifier.padding(top = 60.dp, start = 25.dp, bottom = 10.dp),
+                modifier = Modifier.padding(top = 60.dp, start = 15.dp, bottom = 10.dp),
                 text = stringResource(id = R.string.actor)
             )
             RemoveOverScrollLazyRow {
                 item {
-                    Spacer(modifier = Modifier.width(25.dp))
+                    Spacer(modifier = Modifier.width(15.dp))
                 }
                 items(10) {
                     Column(
@@ -175,6 +178,9 @@ fun MovieDetailScreen(
                         )
                     }
                     Spacer(modifier = Modifier.width(16.dp))
+                }
+                item {
+                    Spacer(modifier = Modifier.width(15.dp))
                 }
             }
         }
