@@ -26,12 +26,14 @@ import com.danbam.design_system.component.QRScanner
 import com.danbam.design_system.R
 import com.danbam.design_system.component.IndiStrawButton
 import com.danbam.design_system.component.TitleRegular
+import com.danbam.mobile.BuildConfig
+import java.util.UUID
 
 @Composable
 fun QRLoginScreen(
     navController: NavController,
 ) {
-    var isScan by remember { mutableStateOf(false) }
+    var uuid: UUID? by remember { mutableStateOf(null) }
     IndiStrawColumnBackground {
         IndiStrawHeader(
             pressBackBtn = { navController.popBackStack() }
@@ -56,7 +58,9 @@ fun QRLoginScreen(
                     .size(265.dp)
             ) {
                 it?.let {
-                    isScan = true
+                    if (it.startsWith(BuildConfig.QR_URL)) {
+                        uuid = UUID.fromString(it.split("/").last())
+                    }
                 }
             }
         }
@@ -66,10 +70,9 @@ fun QRLoginScreen(
             text = stringResource(id = R.string.require_qr),
             textAlign = TextAlign.Center
         )
-        if (isScan) {
+        uuid?.let {
             Spacer(modifier = Modifier.height(112.dp))
             IndiStrawButton(text = stringResource(id = R.string.check)) {
-
             }
         }
     }
