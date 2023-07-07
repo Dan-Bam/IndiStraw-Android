@@ -75,7 +75,7 @@ fun WriteAccountScreen(
     var sheetAction: () -> Unit by remember { mutableStateOf({}) }
     IndiStrawBottomSheetLayout(sheetContent = {
         ButtonMedium(
-            modifier = Modifier.padding(start = 32.dp, top = 20.dp),
+            modifier = Modifier.padding(start = 15.dp, top = 20.dp),
             text = stringResource(id = R.string.require_bank)
         )
         Spacer(modifier = Modifier.height(20.dp))
@@ -111,13 +111,13 @@ fun WriteAccountScreen(
     }) { _, openSheet ->
         IndiStrawColumnBackground {
             HeadLineBold(
-                modifier = Modifier.padding(start = 32.dp, top = 16.dp, bottom = 20.dp),
+                modifier = Modifier.padding(start = 15.dp, top = 16.dp, bottom = 20.dp),
                 text = stringResource(id = R.string.account_number)
             )
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 32.dp)
+                    .padding(horizontal = 15.dp)
                     .background(
                         color = IndiStrawTheme.colors.darkGray,
                         shape = IndiStrawTheme.shapes.defaultRounded

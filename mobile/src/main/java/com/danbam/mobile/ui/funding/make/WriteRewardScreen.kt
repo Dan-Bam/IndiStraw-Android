@@ -45,7 +45,7 @@ fun WriteRewardScreen(
         scrollEnabled = true
     ) {
         TitleRegular(
-            modifier = Modifier.padding(start = 32.dp, top = 36.dp, bottom = 16.dp),
+            modifier = Modifier.padding(start = 15.dp, top = 36.dp, bottom = 16.dp),
             text = stringResource(id = R.string.thumbnail)
         )
         SelectImageButton(imageUrl = thumbnailUrl, selectGallery = {
@@ -56,7 +56,7 @@ fun WriteRewardScreen(
             }
         })
         TitleRegular(
-            modifier = Modifier.padding(start = 32.dp, top = 28.dp, bottom = 16.dp),
+            modifier = Modifier.padding(start = 15.dp, top = 28.dp, bottom = 16.dp),
             text = stringResource(id = R.string.title)
         )
         IndiStrawTextField(
@@ -64,7 +64,7 @@ fun WriteRewardScreen(
             value = title,
             onValueChange = { title = it })
         TitleRegular(
-            modifier = Modifier.padding(start = 32.dp, top = 28.dp, bottom = 16.dp),
+            modifier = Modifier.padding(start = 15.dp, top = 28.dp, bottom = 16.dp),
             text = stringResource(id = R.string.introduce)
         )
         IndiStrawTextField(
@@ -72,7 +72,7 @@ fun WriteRewardScreen(
             value = description,
             onValueChange = { description = it })
         TitleRegular(
-            modifier = Modifier.padding(start = 32.dp, top = 28.dp, bottom = 16.dp),
+            modifier = Modifier.padding(start = 15.dp, top = 28.dp, bottom = 16.dp),
             text = stringResource(id = R.string.money)
         )
         IndiStrawTextField(
@@ -80,12 +80,12 @@ fun WriteRewardScreen(
             value = price,
             onValueChange = { price = it })
         TitleRegular(
-            modifier = Modifier.padding(start = 32.dp, top = 28.dp, bottom = 16.dp),
+            modifier = Modifier.padding(start = 15.dp, top = 28.dp, bottom = 16.dp),
             text = stringResource(id = R.string.is_real)
         )
         Row(
             modifier = Modifier
-                .padding(horizontal = 32.dp)
+                .padding(horizontal = 15.dp)
                 .fillMaxWidth()
                 .background(IndiStrawTheme.colors.darkGray, IndiStrawTheme.shapes.defaultRounded)
                 .padding(horizontal = 13.dp, 14.dp),
@@ -97,7 +97,7 @@ fun WriteRewardScreen(
         }
         if (isReal) {
             TitleRegular(
-                modifier = Modifier.padding(start = 32.dp, top = 28.dp, bottom = 16.dp),
+                modifier = Modifier.padding(start = 15.dp, top = 28.dp, bottom = 16.dp),
                 text = stringResource(id = R.string.amount)
             )
             IndiStrawTextField(
