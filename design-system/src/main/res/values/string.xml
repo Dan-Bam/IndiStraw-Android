@@ -48,7 +48,7 @@
     <string name="want_you_logout">로그아웃 하시겠습니까?</string>
     <string name="login">로그인</string>
     <string name="do_login">로그인 하기</string>
-    <string name="choose_reward">리워드 선택</string>
+    <string name="choose_reward">리워드 종류</string>
     <string name="add_reward">리워드 추가</string>
     <string name="do_add_reward">리워드 추가하기</string>
     <string name="want_you_add_reward">리워드를 추가하시겠습니까?</string>
