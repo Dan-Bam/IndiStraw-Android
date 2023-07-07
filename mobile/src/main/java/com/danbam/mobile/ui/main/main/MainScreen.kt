@@ -3,12 +3,14 @@ package com.danbam.mobile.ui.main.main
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -29,6 +31,7 @@ import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.R
 import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
+import com.danbam.design_system.component.ExampleTextMedium
 import com.danbam.design_system.component.HeadLineBold
 import com.danbam.design_system.component.ImageButton
 import com.danbam.design_system.component.IndiStrawBanner
@@ -126,7 +129,7 @@ fun MainScreen(
         }
         IndiStrawRowTab(
             modifier = Modifier
-                .padding(top = 20.dp, start = 15.dp),
+                .padding(start = 15.dp, top = 20.dp),
             itemList = listOf(""),
             tabHeader = listOf(
                 {
@@ -172,43 +175,32 @@ fun MainScreen(
         ) {
             navController.navigate(FundingNavigationItem.FundingDetail.route + FundingDeepLinkKey.FUNDING_INDEX + it)
         }
-        Spacer(
-            modifier = Modifier
-                .padding(top = 14.dp, bottom = 30.dp)
-                .height(0.6.dp)
-                .fillMaxWidth()
-                .background(IndiStrawTheme.colors.gray)
-        )
-        HeadLineBold(
+        Spacer(modifier = Modifier.height(16.dp))
+        Column(
             modifier = Modifier
                 .padding(horizontal = 15.dp)
                 .fillMaxWidth()
-                .background(
-                    color = IndiStrawTheme.colors.lightBlack,
-                    shape = IndiStrawTheme.shapes.defaultRounded
-                )
-                .padding(vertical = 14.dp, horizontal = 20.dp),
-            text = stringResource(id = R.string.make_indi_movie),
-            fontSize = 20,
-            textAlign = TextAlign.End
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        HeadLineBold(
-            modifier = Modifier
-                .padding(horizontal = 15.dp)
-                .fillMaxWidth()
-                .background(
-                    color = IndiStrawTheme.colors.lightBlack,
-                    shape = IndiStrawTheme.shapes.defaultRounded
-                )
-                .indiStrawClickable {
-                    navController.navigate(FundingNavigationItem.FundingMake.route)
-                }
-                .padding(vertical = 14.dp, horizontal = 20.dp),
-            text = stringResource(id = R.string.make_crowd_fund),
-            fontSize = 20,
-            textAlign = TextAlign.End
-        )
+                .background(IndiStrawTheme.colors.lightBlack, IndiStrawTheme.shapes.defaultRounded)
+                .padding(vertical = 18.dp),
+        ) {
+            ExampleTextMedium(
+                modifier = Modifier.padding(horizontal = 13.dp),
+                text = stringResource(id = R.string.make_indi_movie)
+            )
+            Divider(
+                modifier = Modifier
+                    .padding(vertical = 18.dp)
+                    .height(1.dp)
+                    .fillMaxWidth()
+                    .background(IndiStrawTheme.colors.darkGray3)
+            )
+            ExampleTextMedium(
+                modifier = Modifier
+                    .padding(horizontal = 13.dp)
+                    .indiStrawClickable { navController.navigate(FundingNavigationItem.FundingMake.route) },
+                text = stringResource(id = R.string.make_crowd_fund)
+            )
+        }
         Spacer(modifier = Modifier.height(40.dp))
     }
 }
