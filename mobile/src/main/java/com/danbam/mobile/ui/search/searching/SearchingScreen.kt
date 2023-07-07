@@ -43,7 +43,7 @@ fun SearchingScreen(
                 items(it) { item ->
                     Row(
                         modifier = Modifier
-                            .padding(horizontal = 25.dp)
+                            .padding(horizontal = 15.dp)
                             .indiStrawClickable {
                                 onClickAction()
                                 onSearch(item.title)

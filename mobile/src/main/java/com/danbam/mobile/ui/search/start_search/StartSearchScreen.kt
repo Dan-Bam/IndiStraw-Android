@@ -38,7 +38,7 @@ fun StartSearchScreen(
         onClickAction = onClickAction
     ) {
         TitleSemiBold(
-            modifier = Modifier.padding(start = 25.dp, top = 24.dp),
+            modifier = Modifier.padding(start = 15.dp, top = 24.dp),
             text = stringResource(id = R.string.popular_search),
             color = IndiStrawTheme.colors.gray
         )
@@ -49,7 +49,7 @@ fun StartSearchScreen(
         })
         if (state.recentSearchList.isNotEmpty()) {
             TitleSemiBold(
-                modifier = Modifier.padding(start = 25.dp, 36.dp),
+                modifier = Modifier.padding(start = 15.dp, 36.dp),
                 text = stringResource(id = R.string.recent_search),
                 color = IndiStrawTheme.colors.gray
             )
@@ -60,7 +60,7 @@ fun StartSearchScreen(
                 ) { _, item ->
                     ExampleTextMedium(
                         modifier = Modifier
-                            .padding(start = 25.dp)
+                            .padding(start = 15.dp)
                             .indiStrawClickable {
                                 onClickAction()
                                 onSearch(item.search)

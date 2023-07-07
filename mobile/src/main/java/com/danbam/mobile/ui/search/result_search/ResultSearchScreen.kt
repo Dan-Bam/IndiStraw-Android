@@ -46,7 +46,7 @@ fun ResultSearchScreen(
         onClickAction = onClickAction
     ) {
         Row(
-            modifier = Modifier.padding(start = 25.dp, top = 22.dp)
+            modifier = Modifier.padding(start = 15.dp, top = 22.dp)
         ) {
             IndiStrawTab(
                 text = stringResource(id = R.string.indi_movie),
