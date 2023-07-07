@@ -5,5 +5,6 @@ import java.util.UUID
 
 interface QRCodeRemoteDataSource {
     suspend fun getQRCode(): GetQRCodeResponse
+    suspend fun checkQRCode(uuid: UUID)
     suspend fun connectQRCode(uuid: UUID, onSuccess: () -> Unit)
 }

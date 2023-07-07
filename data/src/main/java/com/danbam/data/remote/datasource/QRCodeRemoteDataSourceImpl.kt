@@ -4,6 +4,7 @@ import com.danbam.data.BuildConfig
 import com.danbam.data.remote.api.QRCodeAPI
 import com.danbam.data.remote.response.GetQRCodeResponse
 import com.danbam.data.remote.util.EndPoint
+import com.danbam.data.remote.util.errorHandling
 import com.danbam.data.remote.util.indiStrawApiCall
 import okhttp3.Call
 import okhttp3.Callback
@@ -23,6 +24,10 @@ class QRCodeRemoteDataSourceImpl @Inject constructor(
 ) : QRCodeRemoteDataSource {
     override suspend fun getQRCode(): GetQRCodeResponse = indiStrawApiCall {
         qrCodeAPI.getQRCode()
+    }
+
+    override suspend fun checkQRCode(uuid: UUID) = indiStrawApiCall {
+        qrCodeAPI.checkQRCode(uuid = uuid).errorHandling()
     }
 
     override suspend fun connectQRCode(uuid: UUID, onSuccess: () -> Unit) {
