@@ -50,7 +50,7 @@ fun IndiStrawTextField(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 32.dp)
+            .padding(horizontal = 15.dp)
             .background(
                 color = IndiStrawTheme.colors.darkGray,
                 shape = IndiStrawTheme.shapes.defaultRounded
