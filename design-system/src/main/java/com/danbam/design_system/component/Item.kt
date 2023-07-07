@@ -223,7 +223,7 @@ fun FileItem(
 ) {
     Row(
         modifier = Modifier
-            .padding(horizontal = 32.dp)
+            .padding(horizontal = 15.dp)
             .fillMaxWidth()
             .background(
                 IndiStrawTheme.colors.darkGray,
