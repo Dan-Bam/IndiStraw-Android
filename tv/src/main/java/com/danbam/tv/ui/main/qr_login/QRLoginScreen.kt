@@ -25,6 +25,7 @@ import com.danbam.design_system.component.IndiStrawTvBackground
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.R
 import com.danbam.design_system.component.QRPainter
+import com.danbam.tv.ui.main.navigation.MainNavigationItem
 import kotlinx.coroutines.delay
 
 const val QR_LOGIN_TIME = 300
@@ -41,7 +42,9 @@ fun QRLoginScreen(
     var restTime by remember { mutableStateOf(QR_LOGIN_TIME) }
 
     LaunchedEffect(Unit) {
-        qrLoginViewModel.getQRCode()
+        qrLoginViewModel.getQRCode {
+            navController.navigate(MainNavigationItem.Main.route)
+        }
     }
 
     LaunchedEffect(restTime) {
