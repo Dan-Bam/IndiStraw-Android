@@ -286,7 +286,7 @@ fun SelectImageButton(
             modifier = Modifier
                 .height(thumbnailHeight.dp)
                 .fillMaxWidth()
-                .padding(horizontal = 32.dp),
+                .padding(horizontal = 15.dp),
             imgSrc = imageUrl,
             shape = Shape.Rectangle
         ) {
@@ -299,7 +299,7 @@ fun SelectImageButton(
             modifier = modifier
                 .fillMaxWidth()
                 .height(thumbnailHeight.dp)
-                .padding(horizontal = 32.dp)
+                .padding(horizontal = 15.dp)
                 .background(
                     color = IndiStrawTheme.colors.darkGray3,
                     shape = IndiStrawTheme.shapes.bigRounded
