@@ -9,4 +9,6 @@ class QRCodeRepositoryImpl @Inject constructor(
     private val qrCodeRemoteDataSource: QRCodeRemoteDataSource
 ) : QRCodeRepository {
     override suspend fun getQRCode(): UUID = qrCodeRemoteDataSource.getQRCode().uuid
+    override suspend fun connectQRCode(uuid: UUID, onSuccess: () -> Unit) =
+        qrCodeRemoteDataSource.connectQRCode(uuid = uuid, onSuccess = onSuccess)
 }
