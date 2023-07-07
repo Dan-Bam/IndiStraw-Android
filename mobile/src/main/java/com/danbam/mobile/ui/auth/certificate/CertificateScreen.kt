@@ -170,7 +170,7 @@ fun CertificateScreen(
             )
         }
         TitleRegular(
-            modifier = Modifier.padding(start = 32.dp, top = 7.dp),
+            modifier = Modifier.padding(start = 15.dp, top = 7.dp),
             text = errorText,
             color = IndiStrawTheme.colors.red,
             fontSize = 12
