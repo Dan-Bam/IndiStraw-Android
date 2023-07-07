@@ -78,12 +78,12 @@ fun DetailAddressScreen(
     ) {
         IndiStrawHeader(pressBackBtn = { navController.popBackStack(keyboardController = keyboardController) })
         TitleSemiBold(
-            modifier = Modifier.padding(start = 32.dp, top = 60.dp),
+            modifier = Modifier.padding(start = 15.dp, top = 60.dp),
             text = stringResource(id = R.string.current_address),
             fontSize = 18
         )
         TitleRegular(
-            modifier = Modifier.padding(start = 32.dp, end = 32.dp, top = 13.dp),
+            modifier = Modifier.padding(start = 15.dp, end = 15.dp, top = 13.dp),
             text = "$zipCode\n$address",
             fontSize = 14
         )

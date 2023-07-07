@@ -104,7 +104,7 @@ fun ProfileScreen(
         )
         IndiStrawRowTab(
             modifier = Modifier
-                .padding(top = 32.dp, start = 15.dp),
+                .padding(start = 15.dp, top = 32.dp),
             itemList = listOf(),
             tabHeader = listOf(
                 {
@@ -127,7 +127,7 @@ fun ProfileScreen(
         }
         IndiStrawColumnTab(
             modifier = Modifier
-                .padding(top = 43.dp, start = 15.dp),
+                .padding(start = 15.dp, top = 43.dp),
             itemList = listOf(),
             tabHeader = listOf(
                 {

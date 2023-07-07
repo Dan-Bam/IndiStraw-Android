@@ -1,10 +1,13 @@
 package com.danbam.mobile.ui.search.result_search
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -21,7 +24,6 @@ import com.danbam.design_system.component.IndiStrawTab
 import com.danbam.design_system.R
 import com.danbam.design_system.component.FundingItem
 import com.danbam.design_system.component.MovieItem
-import com.danbam.design_system.component.MovieType
 import com.danbam.design_system.component.SearchTab
 import com.danbam.design_system.util.RemoveOverScrollLazyColumn
 import com.danbam.domain.entity.FundingEntity
@@ -46,7 +48,7 @@ fun ResultSearchScreen(
         onClickAction = onClickAction
     ) {
         Row(
-            modifier = Modifier.padding(start = 25.dp, top = 22.dp)
+            modifier = Modifier.padding(start = 15.dp, top = 22.dp)
         ) {
             IndiStrawTab(
                 text = stringResource(id = R.string.indi_movie),
@@ -65,12 +67,16 @@ fun ResultSearchScreen(
         when (currentTab) {
             is SearchTab.Movie -> {
                 Spacer(modifier = Modifier.height(11.dp))
-                RemoveOverScrollLazyColumn {
+                LazyVerticalGrid(
+                    modifier = Modifier.padding(horizontal = 15.dp),
+                    columns = GridCells.Fixed(3),
+                    verticalArrangement = Arrangement.spacedBy(10.dp),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
                     items(20) {
-                        MovieItem(movieType = MovieType.Detail) {
+                        MovieItem {
                             navController.navigate(MovieNavigationItem.MovieDetail.route)
                         }
-                        Spacer(modifier = Modifier.height(24.dp))
                     }
                 }
             }

@@ -83,7 +83,7 @@ fun WriteTargetScreen(
             scrollEnabled = true
         ) {
             TitleRegular(
-                modifier = Modifier.padding(start = 32.dp, bottom = 16.dp),
+                modifier = Modifier.padding(start = 15.dp, bottom = 16.dp),
                 text = stringResource(id = R.string.target_money)
             )
             IndiStrawTextField(
@@ -91,12 +91,12 @@ fun WriteTargetScreen(
                 value = targetAmount,
                 onValueChange = { targetAmount = it })
             TitleRegular(
-                modifier = Modifier.padding(start = 32.dp, top = 28.dp, bottom = 16.dp),
+                modifier = Modifier.padding(start = 15.dp, top = 28.dp, bottom = 16.dp),
                 text = stringResource(id = R.string.end_date)
             )
             Row(
                 modifier = Modifier
-                    .padding(horizontal = 32.dp)
+                    .padding(horizontal = 15.dp)
                     .fillMaxWidth()
                     .background(
                         IndiStrawTheme.colors.darkGray,
@@ -111,7 +111,7 @@ fun WriteTargetScreen(
 
             }
             TitleRegular(
-                modifier = Modifier.padding(start = 32.dp, top = 28.dp, bottom = 16.dp),
+                modifier = Modifier.padding(start = 15.dp, top = 28.dp, bottom = 16.dp),
                 text = stringResource(id = R.string.file)
             )
             Spacer(modifier = Modifier.height(16.dp))

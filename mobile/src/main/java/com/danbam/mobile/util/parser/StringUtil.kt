@@ -13,4 +13,4 @@ fun String.isId(): Boolean = this.length in (6..15)
 
 fun String.toPhoneNumber() = this.replace("-", "")
 
-fun Float.toMoney(): String = DecimalFormat("#,###").format(this)
+fun Float.toCommaString(): String = DecimalFormat("#,###").format(this)

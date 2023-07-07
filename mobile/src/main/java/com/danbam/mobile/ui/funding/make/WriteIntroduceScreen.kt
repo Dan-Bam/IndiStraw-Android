@@ -42,7 +42,7 @@ fun WriteIntroduceScreen(
         scrollEnabled = true
     ) {
         TitleRegular(
-            modifier = Modifier.padding(start = 32.dp, bottom = 16.dp),
+            modifier = Modifier.padding(start = 15.dp, bottom = 16.dp),
             text = stringResource(id = R.string.thumbnail)
         )
         SelectImageButton(
@@ -55,7 +55,7 @@ fun WriteIntroduceScreen(
                 }
             })
         TitleRegular(
-            modifier = Modifier.padding(start = 32.dp, top = 28.dp, bottom = 16.dp),
+            modifier = Modifier.padding(start = 15.dp, top = 28.dp, bottom = 16.dp),
             text = stringResource(id = R.string.title)
         )
         IndiStrawTextField(
@@ -63,7 +63,7 @@ fun WriteIntroduceScreen(
             value = title,
             onValueChange = { title = it })
         TitleRegular(
-            modifier = Modifier.padding(start = 32.dp, top = 28.dp, bottom = 16.dp),
+            modifier = Modifier.padding(start = 15.dp, top = 28.dp, bottom = 16.dp),
             text = stringResource(id = R.string.introduce)
         )
         IndiStrawTextField(
@@ -71,12 +71,12 @@ fun WriteIntroduceScreen(
             value = description,
             onValueChange = { description = it })
         TitleRegular(
-            modifier = Modifier.padding(start = 32.dp, top = 28.dp),
+            modifier = Modifier.padding(start = 15.dp, top = 28.dp),
             text = stringResource(id = R.string.highlight)
         )
         Spacer(modifier = Modifier.height(16.dp))
         AddImageList(
-            modifier = Modifier.padding(start = 32.dp),
+            modifier = Modifier.padding(start = 15.dp),
             imageList = imageList,
             onRemove = { imageList.removeAt(it) }) {
             it?.let {

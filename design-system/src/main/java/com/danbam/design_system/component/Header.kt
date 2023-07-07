@@ -1,13 +1,16 @@
 package com.danbam.design_system.component
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -20,7 +23,7 @@ import com.danbam.design_system.util.indiStrawClickable
 @Composable
 fun IndiStrawHeader(
     modifier: Modifier = Modifier,
-    marginTop: Int = 25,
+    backIconSize: Int = 15,
     isBackBtn: Boolean = true,
     isBackString: Boolean = true,
     pressBackBtn: (() -> Unit)? = null,
@@ -28,26 +31,31 @@ fun IndiStrawHeader(
 ) {
     Row(
         modifier = modifier
-            .padding(top = marginTop.dp)
+            .padding(top = 8.dp, bottom = 8.dp)
             .fillMaxWidth()
-            .padding(horizontal = 21.dp),
+            .padding(horizontal = 15.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = CenterVertically
     ) {
         if (isBackBtn) {
             Row(
                 modifier = Modifier
-                    .indiStrawClickable(onClick = pressBackBtn)
+                    .indiStrawClickable(onClick = pressBackBtn),
+                verticalAlignment = CenterVertically
             ) {
-                IndiStrawIcon(
-                    icon = IndiStrawIconList.Back
-                )
-                if (isBackString) {
-                    Spacer(modifier = Modifier.width(10.dp))
-                    TitleRegular(
-                        text = stringResource(id = R.string.back),
-                        modifier = Modifier.align(CenterVertically)
+                Box(
+                    modifier = Modifier.width(28.dp)
+                ) {
+                    IndiStrawIcon(
+                        modifier = Modifier
+                            .size(backIconSize.dp)
+                            .align(Center),
+                        icon = IndiStrawIconList.Back
                     )
+                }
+                if (isBackString) {
+                    Spacer(modifier = Modifier.width(4.dp))
+                    TitleRegular(text = stringResource(id = R.string.back))
                 }
             }
         } else {

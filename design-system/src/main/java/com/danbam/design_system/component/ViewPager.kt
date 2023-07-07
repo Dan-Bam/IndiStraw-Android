@@ -103,9 +103,9 @@ fun IndiStrawSlider(
     content: @Composable (page: Int) -> Unit,
 ) {
     val state = rememberPagerState()
-    val sliderHeight = LocalConfiguration.current.screenHeightDp * 0.23
+    val sliderHeight = LocalConfiguration.current.screenHeightDp * 0.22
 
-    Box(
+    Column(
         modifier = modifier
             .padding(top = 8.dp)
             .fillMaxWidth()
@@ -119,10 +119,9 @@ fun IndiStrawSlider(
         ) {
             content(it)
         }
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(8.dp))
         RemoveOverScrollLazyRow(
             modifier = Modifier
-                .align(Alignment.BottomCenter)
                 .fillMaxWidth()
                 .padding(bottom = 10.dp),
             horizontalArrangement = Arrangement.Center,

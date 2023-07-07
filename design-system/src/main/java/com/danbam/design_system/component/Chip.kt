@@ -20,7 +20,7 @@ fun IndiStrawChipList(
 ) {
     RemoveOverScrollLazyRow {
         item {
-            Spacer(modifier = Modifier.width(if (selectedItem == null) 25.dp else 15.dp))
+            Spacer(modifier = Modifier.width(15.dp))
         }
         itemsIndexed(itemList) { _, item ->
             IndiStrawChip(

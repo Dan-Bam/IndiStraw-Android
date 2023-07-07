@@ -69,6 +69,7 @@ fun FindAddressScreen(
         }
     ) {
         IndiStrawHeader(
+            backIconSize = 22,
             pressBackBtn = { navController.popBackStack(keyboardController = keyboardController) },
             isBackString = false
         ) {
@@ -94,7 +95,7 @@ fun FindAddressScreen(
                     RemoveOverScrollLazyColumn(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(start = 25.dp, end = 25.dp, top = 36.dp)
+                            .padding(start = 15.dp, end = 15.dp, top = 36.dp)
                     ) {
                         itemsIndexed(it) { _, item ->
                             item?.let {

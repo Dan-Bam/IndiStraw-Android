@@ -39,7 +39,8 @@ import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.design_system.component.IndiStrawSlider
 import com.danbam.design_system.component.RewardItem
-import com.danbam.mobile.util.parser.toMoney
+import com.danbam.design_system.util.toCommaString
+import com.danbam.mobile.util.parser.toCommaString
 
 @Composable
 fun FundingDetailScreen(
@@ -82,7 +83,7 @@ fun FundingDetailScreen(
             text = state.fundingDetailEntity.title
         )
         Row(
-            modifier = Modifier.padding(start = 15.dp, top = 20.dp),
+            modifier = Modifier.padding(start = 15.dp, top = 16.dp),
             verticalAlignment = Alignment.Bottom
         ) {
             HeadLineBold(
@@ -105,45 +106,45 @@ fun FundingDetailScreen(
                         shape = IndiStrawTheme.shapes.smallRounded
                     )
                     .padding(horizontal = 4.dp, vertical = 1.dp),
-                text = "${state.fundingDetailEntity.remainingDay}${stringResource(id = R.string.date)} ${
-                    stringResource(
-                        id = R.string.rest
-                    )
-                }",
+                text = "D-${state.fundingDetailEntity.remainingDay}",
                 fontSize = 12
             )
         }
         Row(
-            modifier = Modifier.padding(start = 15.dp, top = 8.dp),
+            modifier = Modifier.padding(start = 15.dp, top = 9.dp),
             verticalAlignment = Alignment.Bottom
         ) {
             TitleSemiBold(
-                text = state.fundingDetailEntity.amount.totalAmount.toMoney(),
+                text = state.fundingDetailEntity.amount.totalAmount.toCommaString(),
                 fontSize = 18
             )
-            ExampleTextRegular(text = stringResource(id = R.string.money_unit))
+            TitleSemiBold(
+                text = "/${state.fundingDetailEntity.amount.targetAmount.toCommaString()}",
+                fontSize = 18,
+                color = IndiStrawTheme.colors.lightGray
+            )
             Spacer(modifier = Modifier.width(4.dp))
-            ExampleTextRegular(text = stringResource(id = R.string.complete), fontSize = 14)
-            Spacer(modifier = Modifier.width(10.dp))
-            ExampleTextMedium(
+            ExampleTextRegular(text = stringResource(id = R.string.money_unit))
+            Spacer(modifier = Modifier.width(8.dp))
+            Row(
                 modifier = Modifier
                     .background(
                         color = IndiStrawTheme.colors.darkGray,
                         shape = IndiStrawTheme.shapes.smallRounded
                     )
                     .padding(horizontal = 4.dp, vertical = 1.dp),
-                text = "${state.fundingDetailEntity.fundingCount}${stringResource(id = R.string.participate)}",
-                color = IndiStrawTheme.colors.lightGray,
-                fontSize = 12
-            )
+            ) {
+                IndiStrawIcon(icon = IndiStrawIconList.People)
+                Spacer(modifier = Modifier.width(2.dp))
+                ExampleTextMedium(
+                    text = state.fundingDetailEntity.fundingCount.toCommaString(),
+                    color = IndiStrawTheme.colors.lightGray,
+                    fontSize = 12
+                )
+            }
         }
-        FindPasswordMedium(
-            modifier = Modifier.padding(start = 15.dp, top = 7.dp),
-            text = "${stringResource(id = R.string.target_money)} ${state.fundingDetailEntity.amount.targetAmount.toMoney()}",
-            color = IndiStrawTheme.colors.lightGray
-        )
         IndiStrawProgress(
-            modifier = Modifier.padding(start = 15.dp, end = 15.dp, top = 12.dp),
+            modifier = Modifier.padding(start = 15.dp, end = 15.dp, top = 20.dp),
             currentProgress = state.fundingDetailEntity.amount.percentage,
             enableText = false
         )
@@ -153,10 +154,6 @@ fun FundingDetailScreen(
                 .fillMaxWidth()
                 .height(1.dp)
                 .background(IndiStrawTheme.colors.darkGray)
-        )
-        DialogMedium(
-            modifier = Modifier.padding(start = 15.dp, bottom = 16.dp),
-            text = stringResource(id = R.string.introduce_project)
         )
         TitleRegular(
             modifier = Modifier.padding(horizontal = 15.dp),
