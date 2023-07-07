@@ -41,6 +41,7 @@ fun SearchScreen(
         }
     ) {
         IndiStrawHeader(
+            backIconSize = 22,
             isBackString = false,
             pressBackBtn = { navController.popBackStack(keyboardController = keyboardController) }
         ) {
