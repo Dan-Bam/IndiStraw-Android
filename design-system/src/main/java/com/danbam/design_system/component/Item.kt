@@ -25,7 +25,7 @@ import com.danbam.design_system.R
 import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.design_system.util.indiStrawClickable
-import com.danbam.design_system.util.toMoney
+import com.danbam.design_system.util.toCommaString
 import com.danbam.domain.entity.FundingDetailEntity
 import com.danbam.domain.entity.FundingEntity
 
@@ -201,7 +201,7 @@ fun RewardItem(
                     fontSize = 14
                 )
                 Spacer(modifier = Modifier.weight(1F))
-                TitleSemiBold(text = "${item.price.toMoney()}원")
+                TitleSemiBold(text = "${item.price.toCommaString()}원")
             }
         }
         onDelete?.let {
