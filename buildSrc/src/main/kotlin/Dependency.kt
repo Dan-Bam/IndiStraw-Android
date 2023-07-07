@@ -70,6 +70,7 @@ object Dependency {
         const val OKHTTP = "com.squareup.okhttp3:okhttp:${Version.OKHTTP}"
         const val OKHTTP_LOGGING_INTERCEPTOR =
             "com.squareup.okhttp3:logging-interceptor:${Version.OKHTTP}"
+        const val SSE = "com.squareup.okhttp3:okhttp-sse:${Version.OKHTTP}"
     }
 
     object UnitTest {
