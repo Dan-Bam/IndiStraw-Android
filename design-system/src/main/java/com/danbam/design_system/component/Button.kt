@@ -66,7 +66,7 @@ fun IndiStrawButton(
 ) {
     ButtonMedium(
         modifier = modifier
-            .padding(horizontal = 32.dp)
+            .padding(horizontal = 15.dp)
             .fillMaxWidth()
             .background(
                 color = IndiStrawTheme.colors.main,
