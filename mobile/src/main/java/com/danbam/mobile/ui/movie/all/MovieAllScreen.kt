@@ -1,7 +1,11 @@
 package com.danbam.mobile.ui.movie.all
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -14,8 +18,6 @@ import com.danbam.design_system.component.IndiStrawChipList
 import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.MovieItem
-import com.danbam.design_system.component.MovieType
-import com.danbam.design_system.util.RemoveOverScrollLazyColumn
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 
 @Composable
@@ -35,12 +37,16 @@ fun MovieAllScreen(
                 currentGenre = it
             })
         Spacer(modifier = Modifier.height(20.dp))
-        RemoveOverScrollLazyColumn {
+        LazyVerticalGrid(
+            modifier = Modifier.padding(horizontal = 15.dp),
+            columns = GridCells.Fixed(3),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
             items(30) {
-                MovieItem(movieType = MovieType.Detail) {
+                MovieItem {
                     navController.navigate(MovieNavigationItem.MovieDetail.route)
                 }
-                Spacer(modifier = Modifier.height(16.dp))
             }
         }
     }
