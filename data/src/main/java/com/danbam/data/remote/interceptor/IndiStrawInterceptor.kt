@@ -30,7 +30,7 @@ class IndiStrawInterceptor @Inject constructor(
             if (path.startsWith(it)) return chain.proceed(request)
         }
         postIgnorePath.forEach {
-            if (path.startsWith(it) && method == "post") return chain.proceed(request)
+            if (path == it && method == "post") return chain.proceed(request)
         }
         getIgnorePath.forEach {
             if (path.startsWith(it) && method == "get") return chain.proceed(request)
