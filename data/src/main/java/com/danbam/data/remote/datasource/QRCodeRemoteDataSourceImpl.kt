@@ -2,19 +2,18 @@ package com.danbam.data.remote.datasource
 
 import com.danbam.data.BuildConfig
 import com.danbam.data.remote.api.QRCodeAPI
+import com.danbam.data.remote.request.CheckQRCodeRequest
 import com.danbam.data.remote.response.GetQRCodeResponse
 import com.danbam.data.remote.util.EndPoint
 import com.danbam.data.remote.util.errorHandling
 import com.danbam.data.remote.util.indiStrawApiCall
-import okhttp3.Call
-import okhttp3.Callback
+import okhttp3.CacheControl
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.sse.EventSource
 import okhttp3.sse.EventSourceListener
 import okhttp3.sse.EventSources
-import java.io.IOException
 import java.util.UUID
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -27,14 +26,14 @@ class QRCodeRemoteDataSourceImpl @Inject constructor(
     }
 
     override suspend fun checkQRCode(uuid: UUID) = indiStrawApiCall {
-        qrCodeAPI.checkQRCode(uuid = uuid).errorHandling()
+        qrCodeAPI.checkQRCode(checkQRCodeRequest = CheckQRCodeRequest(uuid = uuid)).errorHandling()
     }
 
     override suspend fun connectQRCode(uuid: UUID, onSuccess: () -> Unit) {
         val eventSourceListener = object : EventSourceListener() {
-            override fun onOpen(eventSource: EventSource, response: Response) {
-                super.onOpen(eventSource, response)
-                println("안녕 열림")
+            override fun onFailure(eventSource: EventSource, t: Throwable?, response: Response?) {
+                super.onFailure(eventSource, t, response)
+                println("안녕 $t")
             }
 
             override fun onClosed(eventSource: EventSource) {
@@ -49,31 +48,26 @@ class QRCodeRemoteDataSourceImpl @Inject constructor(
                 data: String
             ) {
                 super.onEvent(eventSource, id, type, data)
-                println("안녕 이벤트 받음")
-            }
-
-            override fun onFailure(eventSource: EventSource, t: Throwable?, response: Response?) {
-                super.onFailure(eventSource, t, response)
-                println("안녕 에러 $t")
+                println("안녕 $id, $type, $data")
+//                runCatching {
+//                    Gson().fromJson(data, LoginResponse::class.java)
+//                }.onSuccess {
+//                    println("안녕 $it")
+//                }.onFailure {
+//                    println("안녕 $it")
+//                }
             }
         }
         val client = OkHttpClient.Builder().connectTimeout(5, TimeUnit.SECONDS)
-            .readTimeout(10, TimeUnit.MINUTES)
-            .writeTimeout(10, TimeUnit.MINUTES)
+            .readTimeout(5, TimeUnit.MINUTES)
+            .writeTimeout(5, TimeUnit.MINUTES)
             .build()
         val request = Request.Builder()
+            .get()
             .url("${BuildConfig.BASE_URL}${EndPoint.QRCODE}/connect/${uuid}")
-            .header("Accept", "application/json; q=0.5")
-            .addHeader("Accept", "text/event-stream")
+            .cacheControl(CacheControl.FORCE_NETWORK)
             .build()
         EventSources.createFactory(client)
             .newEventSource(request = request, listener = eventSourceListener)
-        client.newCall(request).enqueue(responseCallback = object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-            }
-        })
     }
 }
