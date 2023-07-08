@@ -3,7 +3,7 @@ package com.danbam.mobile.ui.main.main
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.danbam.domain.usecase.account.GetProfileUseCase
-import com.danbam.domain.usecase.funding.FundingPopularListUseCase
+import com.danbam.domain.usecase.crowd_funding.FundingPopularListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost

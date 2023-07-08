@@ -6,7 +6,7 @@ class EndPoint {
         const val AUTH = "auth"
         const val FILE = "file"
         const val SEARCH = "search"
-        const val FUNDING = "crowdfunding"
+        const val CROWD_FUNDING = "crowdfunding"
         const val QRCODE = "qr-code"
     }
 }

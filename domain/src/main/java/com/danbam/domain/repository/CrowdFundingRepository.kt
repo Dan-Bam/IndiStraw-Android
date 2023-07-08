@@ -6,7 +6,7 @@ import com.danbam.domain.entity.FundingEntity
 import com.danbam.domain.param.FundingCreateParam
 import kotlinx.coroutines.flow.Flow
 
-interface FundingRepository {
+interface CrowdFundingRepository {
     suspend fun fundingCreate(fundingCreateParam: FundingCreateParam)
     suspend fun fundingPopularList(): List<FundingEntity>
     suspend fun fundingDetail(fundingIndex: Long): FundingDetailEntity

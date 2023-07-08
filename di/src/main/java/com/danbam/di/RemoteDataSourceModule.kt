@@ -10,8 +10,8 @@ import com.danbam.data.remote.datasource.FileRemoteDataSource
 import com.danbam.data.remote.datasource.FileRemoteDataSourceImpl
 import com.danbam.data.remote.datasource.SearchRemoteDataSource
 import com.danbam.data.remote.datasource.SearchRemoteDataSourceImpl
-import com.danbam.data.remote.datasource.FundingRemoteDataSource
-import com.danbam.data.remote.datasource.FundingRemoteDataSourceImpl
+import com.danbam.data.remote.datasource.CrowdFundingRemoteDataSource
+import com.danbam.data.remote.datasource.CrowdFundingRemoteDataSourceImpl
 import com.danbam.data.remote.datasource.QRCodeRemoteDataSource
 import com.danbam.data.remote.datasource.QRCodeRemoteDataSourceImpl
 import dagger.Binds
@@ -43,9 +43,9 @@ abstract class RemoteDataSourceModule {
     ): AddressRemoteDataSource
 
     @Binds
-    abstract fun bindFundingRemoteDataSource(
-        fundingRemoteDataSourceImpl: FundingRemoteDataSourceImpl,
-    ): FundingRemoteDataSource
+    abstract fun bindCrowdFundingRemoteDataSource(
+        fundingRemoteDataSourceImpl: CrowdFundingRemoteDataSourceImpl,
+    ): CrowdFundingRemoteDataSource
 
     @Binds
     abstract fun bindSearchRemoteDataSource(

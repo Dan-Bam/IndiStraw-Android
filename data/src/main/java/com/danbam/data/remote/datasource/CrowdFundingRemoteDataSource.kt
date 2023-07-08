@@ -6,7 +6,7 @@ import com.danbam.data.remote.response.FundingDetailResponse
 import com.danbam.data.remote.response.FundingResponse
 import kotlinx.coroutines.flow.Flow
 
-interface FundingRemoteDataSource {
+interface CrowdFundingRemoteDataSource {
     suspend fun fundingCreate(fundingCreateRequest: FundingCreateRequest)
     suspend fun fundingPopularList(): List<FundingResponse>
     suspend fun fundingDetail(fundingIndex: Long): FundingDetailResponse
