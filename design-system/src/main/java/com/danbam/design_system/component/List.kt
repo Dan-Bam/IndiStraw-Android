@@ -1,11 +1,6 @@
 package com.danbam.design_system.component
 
-import android.app.Activity
-import android.content.Intent
 import android.net.Uri
-import android.provider.MediaStore
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -29,9 +24,11 @@ import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.R
 import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
-import com.danbam.design_system.util.RemoveOverScrollLazyColumn
+import com.danbam.design_system.util.LaunchType
 import com.danbam.design_system.util.RemoveOverScrollLazyRow
 import com.danbam.design_system.util.indiStrawClickable
+import com.danbam.design_system.util.rememberLauncher
+import com.danbam.design_system.util.typedLaunch
 
 @Composable
 fun AddImageList(
@@ -40,22 +37,7 @@ fun AddImageList(
     onRemove: (Int) -> Unit,
     selectGallery: (Uri?) -> Unit
 ) {
-    val takePhotoFromAlbumLauncher =
-        rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                selectGallery(result.data?.data)
-            }
-        }
-    val takePhotoFromAlbumIntent =
-        Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).apply {
-            type = "image/*"
-            action = Intent.ACTION_PICK
-            putExtra(
-                Intent.EXTRA_MIME_TYPES,
-                arrayOf("image/jpeg", "image/png", "image/bmp", "image/webp")
-            )
-            putExtra(Intent.EXTRA_ALLOW_MULTIPLE, false)
-        }
+    val launcher = rememberLauncher(selectFile = selectGallery)
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
@@ -68,9 +50,7 @@ fun AddImageList(
                 )
                 .padding(21.dp)
                 .indiStrawClickable {
-                    takePhotoFromAlbumLauncher.launch(
-                        takePhotoFromAlbumIntent
-                    )
+                    launcher.typedLaunch(launchType = LaunchType.Image)
                 }
         ) {
             IndiStrawIcon(
@@ -111,13 +91,10 @@ fun AddFileList(
     onDelete: (Int) -> Unit,
     selectFile: (Uri?) -> Unit
 ) {
-    val takeFileLauncher =
-        rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { result ->
-            selectFile(result)
-        }
+    val launcher = rememberLauncher(selectFile = selectFile)
     if (fileList.isEmpty()) {
         FileItem(openFile = {
-            takeFileLauncher.launch("application/*")
+            launcher.typedLaunch(launchType = LaunchType.File)
         })
     } else {
         Column(
@@ -129,7 +106,7 @@ fun AddFileList(
             }
             Column(
                 modifier = Modifier.indiStrawClickable {
-                    takeFileLauncher.launch("application/*")
+                    launcher.typedLaunch(launchType = LaunchType.File)
                 },
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {

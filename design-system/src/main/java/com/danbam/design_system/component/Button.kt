@@ -1,11 +1,8 @@
 package com.danbam.design_system.component
 
 import android.Manifest
-import android.app.Activity
-import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
-import android.provider.MediaStore
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
@@ -49,8 +46,11 @@ import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.R
 import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
+import com.danbam.design_system.util.LaunchType
 import com.danbam.design_system.util.checkAndRequestPermissions
 import com.danbam.design_system.util.indiStrawClickable
+import com.danbam.design_system.util.rememberLauncher
+import com.danbam.design_system.util.typedLaunch
 
 sealed class Shape {
     object None : Shape()
@@ -143,26 +143,10 @@ fun SelectProfileButton(
     bottomContent: @Composable () -> Unit = {},
 ) {
     val context = LocalContext.current
+    val launcher = rememberLauncher(selectFile = selectGallery)
     val takePhotoFromCameraLauncher =
         rememberLauncherForActivityResult(ActivityResultContracts.TakePicturePreview()) { takenPhoto ->
             selectCamera(takenPhoto)
-        }
-    val takePhotoFromAlbumLauncher =
-        rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                selectGallery(result.data?.data)
-
-            }
-        }
-    val takePhotoFromAlbumIntent =
-        Intent(Intent.ACTION_GET_CONTENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).apply {
-            type = "image/*"
-            action = Intent.ACTION_GET_CONTENT
-            putExtra(
-                Intent.EXTRA_MIME_TYPES,
-                arrayOf("image/jpeg", "image/png", "image/bmp", "image/webp")
-            )
-            putExtra(Intent.EXTRA_ALLOW_MULTIPLE, false)
         }
     val launcherMultiplePermissions = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -181,9 +165,7 @@ fun SelectProfileButton(
                 icon = IndiStrawIconList.Gallery,
                 text = stringResource(id = R.string.choose_gallery)
             ) {
-                takePhotoFromAlbumLauncher.launch(
-                    takePhotoFromAlbumIntent
-                )
+                launcher.typedLaunch(launchType = LaunchType.Image)
             }
             Spacer(modifier = Modifier.height(40.dp))
             ChooseImageItem(
@@ -261,25 +243,8 @@ fun SelectImageButton(
     imageUrl: String?,
     selectGallery: (Uri?) -> Unit,
 ) {
+    val launcher = rememberLauncher(selectFile = selectGallery)
     val thumbnailHeight = LocalConfiguration.current.screenHeightDp * 0.17
-
-    val takePhotoFromAlbumLauncher =
-        rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                selectGallery(result.data?.data)
-
-            }
-        }
-    val takePhotoFromAlbumIntent =
-        Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).apply {
-            type = "image/*"
-            action = Intent.ACTION_PICK
-            putExtra(
-                Intent.EXTRA_MIME_TYPES,
-                arrayOf("image/jpeg", "image/png", "image/bmp", "image/webp")
-            )
-            putExtra(Intent.EXTRA_ALLOW_MULTIPLE, false)
-        }
 
     if (imageUrl != null) {
         ImageButton(
@@ -290,9 +255,7 @@ fun SelectImageButton(
             imgSrc = imageUrl,
             shape = Shape.Rectangle
         ) {
-            takePhotoFromAlbumLauncher.launch(
-                takePhotoFromAlbumIntent
-            )
+            launcher.typedLaunch(launchType = LaunchType.Image)
         }
     } else {
         Column(
@@ -305,9 +268,7 @@ fun SelectImageButton(
                     shape = IndiStrawTheme.shapes.bigRounded
                 )
                 .indiStrawClickable {
-                    takePhotoFromAlbumLauncher.launch(
-                        takePhotoFromAlbumIntent
-                    )
+                    launcher.typedLaunch(launchType = LaunchType.Image)
                 },
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
