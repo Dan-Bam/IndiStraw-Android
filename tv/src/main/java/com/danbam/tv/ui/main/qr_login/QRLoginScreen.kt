@@ -26,10 +26,13 @@ import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.R
 import com.danbam.design_system.component.QRPainter
 import com.danbam.tv.ui.main.navigation.MainNavigationItem
+import com.danbam.tv.util.android.observeWithLifecycle
+import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.delay
 
 const val QR_LOGIN_TIME = 300
 
+@OptIn(InternalCoroutinesApi::class)
 @Composable
 fun QRLoginScreen(
     navController: NavController,
@@ -42,15 +45,19 @@ fun QRLoginScreen(
     var restTime by remember { mutableStateOf(QR_LOGIN_TIME) }
 
     LaunchedEffect(Unit) {
-        qrLoginViewModel.getQRCode {
-            navController.navigate(MainNavigationItem.Main.route)
-        }
+        qrLoginViewModel.getQRCode()
     }
 
     LaunchedEffect(restTime) {
         if (restTime != 0) {
             delay(1_000L)
             restTime--
+        }
+    }
+
+    sideEffect.observeWithLifecycle {
+        when (it) {
+            is QRLoginSideEffect.SuccessLogin -> navController.navigate(MainNavigationItem.Main.route)
         }
     }
 
