@@ -184,6 +184,9 @@ fun MainScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 13.dp),
+                modifier = Modifier
+                    .padding(horizontal = 13.dp)
+                    .indiStrawClickable { navController.navigate(MovieNavigationItem.WriteIntroduce.route) },
                 text = stringResource(id = R.string.make_indi_movie)
             )
             Divider(
