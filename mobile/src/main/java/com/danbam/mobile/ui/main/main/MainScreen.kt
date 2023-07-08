@@ -157,7 +157,7 @@ fun MainScreen(
                 navController.navigate(MovieNavigationItem.MovieAll.route)
             }
         ) {
-            navController.navigate(MovieNavigationItem.MovieDetail.route)
+            navController.navigate(MovieNavigationItem.Detail.route)
         }
         IndiStrawColumnTab(
             itemList = state.fundingPopularList,
@@ -168,9 +168,9 @@ fun MainScreen(
                     fontSize = 16
                 )
             },
-            moreData = { navController.navigate(FundingNavigationItem.FundingAll.route) },
+            moreData = { navController.navigate(FundingNavigationItem.All.route) },
         ) {
-            navController.navigate(FundingNavigationItem.FundingDetail.route + FundingDeepLinkKey.FUNDING_INDEX + it)
+            navController.navigate(FundingNavigationItem.Detail.route + FundingDeepLinkKey.FUNDING_INDEX + it)
         }
         Spacer(modifier = Modifier.height(16.dp))
         Column(
@@ -197,7 +197,7 @@ fun MainScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 13.dp)
-                    .indiStrawClickable { navController.navigate(FundingNavigationItem.FundingMake.route) },
+                    .indiStrawClickable { navController.navigate(FundingNavigationItem.Make.route) },
                 text = stringResource(id = R.string.make_crowd_fund)
             )
         }
