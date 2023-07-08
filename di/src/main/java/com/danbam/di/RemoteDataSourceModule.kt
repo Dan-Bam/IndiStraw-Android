@@ -12,6 +12,8 @@ import com.danbam.data.remote.datasource.SearchRemoteDataSource
 import com.danbam.data.remote.datasource.SearchRemoteDataSourceImpl
 import com.danbam.data.remote.datasource.FundingRemoteDataSource
 import com.danbam.data.remote.datasource.FundingRemoteDataSourceImpl
+import com.danbam.data.remote.datasource.QRCodeRemoteDataSource
+import com.danbam.data.remote.datasource.QRCodeRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -49,4 +51,9 @@ abstract class RemoteDataSourceModule {
     abstract fun bindSearchRemoteDataSource(
         searchRemoteDataSourceImpl: SearchRemoteDataSourceImpl,
     ): SearchRemoteDataSource
+
+    @Binds
+    abstract fun bindQRCodeRemoteDataSource(
+        qrCodeRemoteDataSourceImpl: QRCodeRemoteDataSourceImpl,
+    ): QRCodeRemoteDataSource
 }

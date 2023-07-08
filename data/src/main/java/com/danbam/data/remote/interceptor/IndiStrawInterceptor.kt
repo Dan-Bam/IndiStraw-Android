@@ -20,12 +20,23 @@ class IndiStrawInterceptor @Inject constructor(
 ) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
-        val method = request.method
+        val method = request.method.lowercase()
         val path = request.url.encodedPath
-        val ignorePath = BuildConfig.IGNORE_PATH.split(", ")
-        ignorePath.forEach {
-            if (path.startsWith(ignorePath[1]) && method == "PATCH") return@forEach
+        val allIgnorePath = BuildConfig.ALL_IGNORE_PATH.split(", ")
+        val postIgnorePath = BuildConfig.POST_IGNORE_PATH.split(", ")
+        val getIgnorePath = BuildConfig.GET_IGNORE_PATH.split(", ")
+        val patchIgnorePath = BuildConfig.PATCH_IGNORE_PATH.split(", ")
+        allIgnorePath.forEach {
             if (path.startsWith(it)) return chain.proceed(request)
+        }
+        postIgnorePath.forEach {
+            if (path == it && method == "post") return chain.proceed(request)
+        }
+        getIgnorePath.forEach {
+            if (path.startsWith(it) && method == "get") return chain.proceed(request)
+        }
+        patchIgnorePath.forEach {
+            if (path.startsWith(it) && method == "patch") return chain.proceed(request)
         }
         val now = LocalDateTime.now().default()
         val accessExpiredAt =

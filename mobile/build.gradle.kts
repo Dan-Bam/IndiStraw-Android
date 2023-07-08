@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -16,6 +18,11 @@ android {
         versionCode = Version.VERSION_CODE
         versionName = Version.VERSION_NAME
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField(
+            "String",
+            "QR_URL",
+            gradleLocalProperties(rootDir).getProperty("QR_URL")
+        )
     }
 
     buildTypes {

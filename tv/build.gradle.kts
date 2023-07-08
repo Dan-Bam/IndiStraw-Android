@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -15,7 +17,11 @@ android {
         targetSdk = Version.TARGET_SDK_VERSION
         versionCode = Version.VERSION_CODE
         versionName = Version.VERSION_NAME
-
+        buildConfigField(
+            "String",
+            "QR_URL",
+            gradleLocalProperties(rootDir).getProperty("QR_URL")
+        )
     }
 
     buildTypes {

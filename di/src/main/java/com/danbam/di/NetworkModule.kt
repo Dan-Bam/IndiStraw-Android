@@ -7,6 +7,7 @@ import com.danbam.data.remote.api.AuthAPI
 import com.danbam.data.remote.api.FileAPI
 import com.danbam.data.remote.api.SearchAPI
 import com.danbam.data.remote.api.FundingAPI
+import com.danbam.data.remote.api.QRCodeAPI
 import com.danbam.data.remote.interceptor.IndiStrawInterceptor
 import dagger.Module
 import dagger.Provides
@@ -60,4 +61,7 @@ object NetworkModule {
 
     @Provides
     fun provideSearchAPI(retrofit: Retrofit): SearchAPI = retrofit.create(SearchAPI::class.java)
+
+    @Provides
+    fun provideQRCodeAPI(retrofit: Retrofit): QRCodeAPI = retrofit.create(QRCodeAPI::class.java)
 }

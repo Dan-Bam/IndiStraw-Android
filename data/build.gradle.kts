@@ -22,8 +22,23 @@ android {
         )
         buildConfigField(
             "String",
-            "IGNORE_PATH",
-            gradleLocalProperties(rootDir).getProperty("IGNORE_PATH")
+            "ALL_IGNORE_PATH",
+            gradleLocalProperties(rootDir).getProperty("ALL_IGNORE_PATH")
+        )
+        buildConfigField(
+            "String",
+            "POST_IGNORE_PATH",
+            gradleLocalProperties(rootDir).getProperty("POST_IGNORE_PATH")
+        )
+        buildConfigField(
+            "String",
+            "GET_IGNORE_PATH",
+            gradleLocalProperties(rootDir).getProperty("GET_IGNORE_PATH")
+        )
+        buildConfigField(
+            "String",
+            "PATCH_IGNORE_PATH",
+            gradleLocalProperties(rootDir).getProperty("PATCH_IGNORE_PATH")
         )
         buildConfigField(
             "String",
@@ -62,6 +77,8 @@ dependencies {
     implementation(Dependency.Retrofit.RETROFIT_CONVERTER_GSON)
     implementation(Dependency.Retrofit.OKHTTP)
     implementation(Dependency.Retrofit.OKHTTP_LOGGING_INTERCEPTOR)
+    implementation(Dependency.Retrofit.SSE)
+    testImplementation(Dependency.Retrofit.SSE)
 
     implementation(Dependency.AndroidX.PAGING)
 
