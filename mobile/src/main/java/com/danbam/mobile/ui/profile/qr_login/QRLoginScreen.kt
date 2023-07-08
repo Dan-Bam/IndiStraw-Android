@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
@@ -32,6 +33,7 @@ import java.util.UUID
 @Composable
 fun QRLoginScreen(
     navController: NavController,
+    qrLoginViewModel: QRLoginViewModel = hiltViewModel()
 ) {
     var uuid: UUID? by remember { mutableStateOf(null) }
     IndiStrawColumnBackground {
@@ -73,6 +75,7 @@ fun QRLoginScreen(
         uuid?.let {
             Spacer(modifier = Modifier.height(112.dp))
             IndiStrawButton(text = stringResource(id = R.string.check)) {
+                qrLoginViewModel.checkQRCode(it)
             }
         }
     }
