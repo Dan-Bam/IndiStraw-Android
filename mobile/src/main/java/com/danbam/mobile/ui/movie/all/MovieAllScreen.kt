@@ -45,7 +45,7 @@ fun MovieAllScreen(
         ) {
             items(30) {
                 MovieItem {
-                    navController.navigate(MovieNavigationItem.MovieDetail.route)
+                    navController.navigate(MovieNavigationItem.Detail.route)
                 }
             }
         }

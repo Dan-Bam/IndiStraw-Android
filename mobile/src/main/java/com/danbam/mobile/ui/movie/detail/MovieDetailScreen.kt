@@ -102,7 +102,7 @@ fun MovieDetailScreen(
                     imgSrc = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
                     shape = Shape.None
                 ) {
-                    navController.navigate(MovieNavigationItem.MoviePlay.route)
+                    navController.navigate(MovieNavigationItem.Play.route)
                 }
                 IndiStrawIcon(
                     modifier = Modifier.align(Alignment.Center),
