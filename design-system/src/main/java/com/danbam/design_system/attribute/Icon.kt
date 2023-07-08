@@ -214,6 +214,12 @@ class IndiStrawIconList private constructor(
         )
 
         @Stable
+        val Movie = IndiStrawIconList(
+            drawableId = R.drawable.ic_movie,
+            contentDescription = "movie"
+        )
+
+        @Stable
         val BankGwangju = IndiStrawIconList(
             drawableId = R.drawable.ic_bank_gwang,
             contentDescription = "gwangjuBank"
