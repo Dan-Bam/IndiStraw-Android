@@ -123,7 +123,7 @@ fun ProfileScreen(
                     }
                 })
         ) {
-            navController.navigate(MovieNavigationItem.MovieDetail.route)
+            navController.navigate(MovieNavigationItem.Detail.route)
         }
         IndiStrawColumnTab(
             modifier = Modifier
