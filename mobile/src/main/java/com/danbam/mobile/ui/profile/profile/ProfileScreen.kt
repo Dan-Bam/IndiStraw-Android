@@ -3,9 +3,11 @@ package com.danbam.mobile.ui.profile.profile
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -106,46 +108,44 @@ fun ProfileScreen(
             modifier = Modifier
                 .padding(start = 15.dp, top = 32.dp),
             itemList = listOf(),
-            tabHeader = listOf(
-                {
-                    IndiStrawTab(
-                        text = stringResource(id = R.string.recent_watch_movie),
-                        isSelect = currentMovieTab == MovieTab.RecentMovie
-                    ) {
-                        currentMovieTab = MovieTab.RecentMovie
-                    }
-                }, {
-                    IndiStrawTab(
-                        text = stringResource(id = R.string.participate_movie),
-                        isSelect = currentMovieTab == MovieTab.ParticipantMovie
-                    ) {
-                        currentMovieTab = MovieTab.ParticipantMovie
-                    }
-                })
+            tabHeader = {
+                IndiStrawTab(
+                    text = stringResource(id = R.string.recent_watch_movie),
+                    isSelect = currentMovieTab == MovieTab.RecentMovie
+                ) {
+                    currentMovieTab = MovieTab.RecentMovie
+                }
+                Spacer(modifier = Modifier.width(16.dp))
+                IndiStrawTab(
+                    text = stringResource(id = R.string.participate_movie),
+                    isSelect = currentMovieTab == MovieTab.ParticipantMovie
+                ) {
+                    currentMovieTab = MovieTab.ParticipantMovie
+                }
+            }
         ) {
             navController.navigate(MovieNavigationItem.MovieDetail.route)
         }
         IndiStrawColumnTab(
             modifier = Modifier
                 .padding(start = 15.dp, top = 43.dp),
-            itemList = listOf(),
-            tabHeader = listOf(
-                {
-                    IndiStrawTab(
-                        text = stringResource(id = R.string.participate_funding),
-                        isSelect = currentFundingTab == FundingTab.ParticipantFunding
-                    ) {
-                        currentFundingTab = FundingTab.ParticipantFunding
-                    }
-                }, {
-                    IndiStrawTab(
-                        text = stringResource(id = R.string.my_funding),
-                        isSelect = currentFundingTab == FundingTab.MyFunding
-                    ) {
-                        currentFundingTab = FundingTab.MyFunding
-                    }
-                })
-        ) {
+            itemList = state.fundingList,
+            tabHeader = {
+                IndiStrawTab(
+                    text = stringResource(id = R.string.participate_funding),
+                    isSelect = currentFundingTab == FundingTab.ParticipantFunding
+                ) {
+                    currentFundingTab = FundingTab.ParticipantFunding
+                }
+                Spacer(modifier = Modifier.width(16.dp))
+                IndiStrawTab(
+                    text = stringResource(id = R.string.my_funding),
+                    isSelect = currentFundingTab == FundingTab.MyFunding
+                ) {
+                    profileViewModel.getMyFunding()
+                    currentFundingTab = FundingTab.MyFunding
+                }
+            }) {
         }
     }
 }
