@@ -24,7 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -33,7 +32,6 @@ import com.danbam.design_system.R
 import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.design_system.component.ExampleTextMedium
-import com.danbam.design_system.component.HeadLineBold
 import com.danbam.design_system.component.ImageButton
 import com.danbam.design_system.component.IndiStrawBanner
 import com.danbam.design_system.component.IndiStrawColumnBackground
@@ -154,7 +152,7 @@ fun MainScreen(
                     currentMovieTab = MovieTab.PopularMovie
                 }
             }, moreData = {
-                navController.navigate(MovieNavigationItem.MovieAll.route)
+                navController.navigate(MovieNavigationItem.All.route)
             }
         ) {
             navController.navigate(MovieNavigationItem.Detail.route)
@@ -183,8 +181,6 @@ fun MainScreen(
             ExampleTextMedium(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 13.dp),
-                modifier = Modifier
                     .padding(horizontal = 13.dp)
                     .indiStrawClickable { navController.navigate(MovieNavigationItem.WriteIntroduce.route) },
                 text = stringResource(id = R.string.make_indi_movie)
