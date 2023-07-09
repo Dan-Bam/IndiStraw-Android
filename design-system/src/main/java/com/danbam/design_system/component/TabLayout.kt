@@ -103,7 +103,7 @@ private fun IndiStrawTabIndicator(
 fun IndiStrawColumnTab(
     modifier: Modifier = Modifier,
     itemList: List<FundingEntity>,
-    tabHeader: List<@Composable () -> Unit>,
+    tabHeader: @Composable () -> Unit,
     moreData: (() -> Unit)? = null,
     onClickItem: (Long) -> Unit,
 ) {
@@ -124,10 +124,7 @@ fun IndiStrawColumnTab(
             verticalAlignment = Alignment.Bottom
         ) {
             Row {
-                tabHeader.forEach {
-                    it()
-                    Spacer(modifier = Modifier.width(16.dp))
-                }
+                tabHeader()
             }
             moreData?.let {
                 TitleRegular(
@@ -156,7 +153,7 @@ fun IndiStrawColumnTab(
 fun IndiStrawRowTab(
     modifier: Modifier = Modifier,
     itemList: List<String>,
-    tabHeader: List<@Composable () -> Unit>,
+    tabHeader: @Composable () -> Unit,
     moreData: (() -> Unit)? = null,
     onClickItem: (Long) -> Unit,
 ) {
@@ -177,10 +174,7 @@ fun IndiStrawRowTab(
             verticalAlignment = Alignment.Bottom
         ) {
             Row {
-                tabHeader.forEach {
-                    it()
-                    Spacer(modifier = Modifier.width(16.dp))
-                }
+                tabHeader()
             }
             moreData?.let {
                 TitleRegular(
