@@ -24,6 +24,8 @@ import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.R
 import com.danbam.design_system.component.IndiStrawButton
+import com.danbam.design_system.util.indiStrawClickable
+import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 
 sealed class AddPeopleType {
     object Director : AddPeopleType()
@@ -47,7 +49,8 @@ fun AddActorScreen(
         TitleRegular(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 25.dp, vertical = 20.dp),
+                .padding(horizontal = 25.dp, vertical = 20.dp)
+                .indiStrawClickable { navController.navigate(MovieNavigationItem.SearchActor.route) },
             text = stringResource(id = if (addPeopleType == AddPeopleType.Director) R.string.add_search_director else R.string.add_search_actor)
         )
         Divider(
@@ -59,7 +62,8 @@ fun AddActorScreen(
         TitleRegular(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 25.dp, vertical = 20.dp),
+                .padding(horizontal = 25.dp, vertical = 20.dp)
+                .indiStrawClickable { navController.navigate(MovieNavigationItem.WriteActor.route) },
             text = stringResource(id = if (addPeopleType == AddPeopleType.Director) R.string.add_new_director else R.string.add_new_actor)
         )
         Divider(
