@@ -27,4 +27,7 @@ class CrowdFundingRepositoryImpl @Inject constructor(
 
     override suspend fun fundingAll(): Flow<PagingData<FundingEntity>> =
         crowdFundingRemoteDataSource.fundingAll().map { it.map { it.toEntity() } }
+
+    override suspend fun fundingMy(): List<FundingEntity> =
+        crowdFundingRemoteDataSource.fundingMy().map { it.toEntity() }
 }

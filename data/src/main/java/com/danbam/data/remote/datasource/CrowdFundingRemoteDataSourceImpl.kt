@@ -37,4 +37,8 @@ class CrowdFundingRemoteDataSourceImpl @Inject constructor(
                     crowdFundingAPI = crowdFundingAPI
                 )
             }).flow
+
+    override suspend fun fundingMy(): List<FundingResponse> = indiStrawApiCall {
+        crowdFundingAPI.fundingMy()
+    }
 }

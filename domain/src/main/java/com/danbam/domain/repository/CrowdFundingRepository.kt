@@ -11,4 +11,5 @@ interface CrowdFundingRepository {
     suspend fun fundingPopularList(): List<FundingEntity>
     suspend fun fundingDetail(fundingIndex: Long): FundingDetailEntity
     suspend fun fundingAll(): Flow<PagingData<FundingEntity>>
+    suspend fun fundingMy(): List<FundingEntity>
 }

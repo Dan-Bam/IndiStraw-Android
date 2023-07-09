@@ -31,4 +31,7 @@ interface CrowdFundingAPI {
         @Query("page") page: Int = 0,
         @Query("size") size: Int = 10,
     ): FundingPageResponse
+
+    @GET("${EndPoint.CROWD_FUNDING}/my")
+    suspend fun fundingMy(): List<FundingResponse>
 }

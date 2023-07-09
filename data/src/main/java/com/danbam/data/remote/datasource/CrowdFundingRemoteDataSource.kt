@@ -11,4 +11,5 @@ interface CrowdFundingRemoteDataSource {
     suspend fun fundingPopularList(): List<FundingResponse>
     suspend fun fundingDetail(fundingIndex: Long): FundingDetailResponse
     suspend fun fundingAll(): Flow<PagingData<FundingResponse>>
+    suspend fun fundingMy(): List<FundingResponse>
 }
