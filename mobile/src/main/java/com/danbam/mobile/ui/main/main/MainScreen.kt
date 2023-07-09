@@ -181,7 +181,9 @@ fun MainScreen(
                 .padding(vertical = 18.dp),
         ) {
             ExampleTextMedium(
-                modifier = Modifier.padding(horizontal = 13.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 13.dp),
                 text = stringResource(id = R.string.make_indi_movie)
             )
             Divider(
@@ -193,6 +195,7 @@ fun MainScreen(
             )
             ExampleTextMedium(
                 modifier = Modifier
+                    .fillMaxWidth()
                     .padding(horizontal = 13.dp)
                     .indiStrawClickable { navController.navigate(FundingNavigationItem.FundingMake.route) },
                 text = stringResource(id = R.string.make_crowd_fund)
