@@ -2,12 +2,12 @@ package com.danbam.data.remote.pagingsource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.danbam.data.remote.api.FundingAPI
+import com.danbam.data.remote.api.CrowdFundingAPI
 import com.danbam.data.remote.response.FundingResponse
 import javax.inject.Inject
 
 class FundingPagingSource(
-    @Inject private val fundingAPI: FundingAPI,
+    @Inject private val crowdFundingAPI: CrowdFundingAPI,
 ) : PagingSource<Int, FundingResponse>() {
     override fun getRefreshKey(state: PagingState<Int, FundingResponse>): Int? =
         state.anchorPosition?.let { anchorPosition ->
@@ -18,7 +18,7 @@ class FundingPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, FundingResponse> {
         return try {
             val page = params.key ?: 0
-            val response = fundingAPI.fundingAll(page = page)
+            val response = crowdFundingAPI.fundingAll(page = page)
 
             LoadResult.Page(
                 data = response.list,

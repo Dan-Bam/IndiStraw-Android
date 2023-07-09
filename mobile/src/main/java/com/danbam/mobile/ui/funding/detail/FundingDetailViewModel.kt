@@ -2,7 +2,7 @@ package com.danbam.mobile.ui.funding.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.domain.usecase.funding.FundingDetailUseCase
+import com.danbam.domain.usecase.crowd_funding.FundingDetailUseCase
 import com.danbam.mobile.util.android.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -131,32 +132,28 @@ fun MainScreen(
             modifier = Modifier
                 .padding(start = 15.dp, top = 20.dp),
             itemList = listOf(""),
-            tabHeader = listOf(
-                {
-                    IndiStrawTab(
-                        text = stringResource(id = R.string.recent),
-                        isSelect = currentMovieTab == MovieTab.RecentMovie
-                    ) {
-                        currentMovieTab = MovieTab.RecentMovie
-                    }
-                },
-                {
-                    IndiStrawTab(
-                        text = stringResource(id = R.string.recommend),
-                        isSelect = currentMovieTab == MovieTab.RecommendMovie
-                    ) {
-                        currentMovieTab = MovieTab.RecommendMovie
-                    }
-                },
-                {
-                    IndiStrawTab(
-                        text = stringResource(id = R.string.popular),
-                        isSelect = currentMovieTab == MovieTab.PopularMovie
-                    ) {
-                        currentMovieTab = MovieTab.PopularMovie
-                    }
+            tabHeader = {
+                IndiStrawTab(
+                    text = stringResource(id = R.string.recent),
+                    isSelect = currentMovieTab == MovieTab.RecentMovie
+                ) {
+                    currentMovieTab = MovieTab.RecentMovie
                 }
-            ), moreData = {
+                Spacer(modifier = Modifier.width(16.dp))
+                IndiStrawTab(
+                    text = stringResource(id = R.string.recommend),
+                    isSelect = currentMovieTab == MovieTab.RecommendMovie
+                ) {
+                    currentMovieTab = MovieTab.RecommendMovie
+                }
+                Spacer(modifier = Modifier.width(16.dp))
+                IndiStrawTab(
+                    text = stringResource(id = R.string.popular),
+                    isSelect = currentMovieTab == MovieTab.PopularMovie
+                ) {
+                    currentMovieTab = MovieTab.PopularMovie
+                }
+            }, moreData = {
                 navController.navigate(MovieNavigationItem.MovieAll.route)
             }
         ) {
@@ -164,7 +161,7 @@ fun MainScreen(
         }
         IndiStrawColumnTab(
             itemList = state.fundingPopularList,
-            tabHeader = listOf {
+            tabHeader = {
                 TitleSemiBold(
                     modifier = Modifier.padding(start = 15.dp, top = 28.dp),
                     text = stringResource(id = R.string.crowd_funding),
@@ -184,7 +181,9 @@ fun MainScreen(
                 .padding(vertical = 18.dp),
         ) {
             ExampleTextMedium(
-                modifier = Modifier.padding(horizontal = 13.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 13.dp),
                 text = stringResource(id = R.string.make_indi_movie)
             )
             Divider(
@@ -196,6 +195,7 @@ fun MainScreen(
             )
             ExampleTextMedium(
                 modifier = Modifier
+                    .fillMaxWidth()
                     .padding(horizontal = 13.dp)
                     .indiStrawClickable { navController.navigate(FundingNavigationItem.FundingMake.route) },
                 text = stringResource(id = R.string.make_crowd_fund)

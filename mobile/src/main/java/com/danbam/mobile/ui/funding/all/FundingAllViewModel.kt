@@ -2,7 +2,7 @@ package com.danbam.mobile.ui.funding.all
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.domain.usecase.funding.FundingAllUseCase
+import com.danbam.domain.usecase.crowd_funding.FundingAllUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
