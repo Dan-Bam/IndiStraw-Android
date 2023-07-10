@@ -1,6 +1,7 @@
 package com.danbam.tv.ui.home
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -68,7 +69,8 @@ fun HomeScreen(
         Spacer(modifier = Modifier.height(20.dp))
         TvLazyRow(
             modifier = Modifier.padding(end = 50.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            contentPadding = PaddingValues(horizontal = 8.dp, vertical = 20.dp)
         ) {
             items(10) {
                 MovieTvItem {
