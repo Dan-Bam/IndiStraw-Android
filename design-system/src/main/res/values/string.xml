@@ -113,8 +113,9 @@
     <string name="wrong_enroll_phone_number">이미 등록된 전화번호입니다.</string>
     <string name="upload_image">이미지 업로드</string>
     <string name="require_thumbnail">이미지를 등록해주세요.</string>
-    <string name="popular_search">인기 태그</string>
     <string name="popular">인기</string>
+    <string name="popular_search_movie">인기 검색 영화</string>
+    <string name="popular_search">인기 태그</string>
     <string name="certificate_number">인증번호</string>
     <string name="check_certificate_number">인증번호 확인</string>
     <string name="wrong_expired_certificate_number">인증번호가 만료되었습니다.</string>

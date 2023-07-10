@@ -104,7 +104,7 @@ fun SearchScreen(
                     .padding(top = 60.dp, end = 40.dp)
             ) {
                 ExampleTextMedium(
-                    text = stringResource(id = R.string.popular),
+                    text = stringResource(id = R.string.popular_search_movie),
                     fontSize = 35,
                     color = IndiStrawTheme.colors.gray
                 )
