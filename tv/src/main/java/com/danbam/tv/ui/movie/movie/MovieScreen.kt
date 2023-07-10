@@ -1,4 +1,4 @@
-package com.danbam.tv.ui.movie
+package com.danbam.tv.ui.movie.movie
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement

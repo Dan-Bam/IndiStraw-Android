@@ -16,12 +16,11 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
-import androidx.tv.material3.ExperimentalTvMaterial3Api
 import com.danbam.design_system.component.IndiStrawTvBackground
 import com.danbam.design_system.component.IndiStrawTvNavigationDrawer
 import com.danbam.design_system.component.TvNavigationItem
 import com.danbam.tv.ui.home.HomeScreen
-import com.danbam.tv.ui.movie.MovieScreen
+import com.danbam.tv.ui.movie.movie.MovieScreen
 import com.danbam.tv.ui.search.SearchScreen
 import com.danbam.tv.ui.setting.SettingScreen
 import com.danbam.tv.util.android.findActivity
