@@ -11,9 +11,9 @@ import com.danbam.mobile.ui.funding.make.MakeFundingScreen
 import com.google.accompanist.navigation.animation.composable
 
 sealed class FundingNavigationItem(val route: String) {
-    object FundingMake : FundingNavigationItem("fundingMake")
-    object FundingDetail : FundingNavigationItem("fundingDetail")
-    object FundingAll : FundingNavigationItem("fundingAll")
+    object Make : FundingNavigationItem("fundingMake")
+    object Detail : FundingNavigationItem("fundingDetail")
+    object All : FundingNavigationItem("fundingAll")
 }
 
 object FundingDeepLinkKey {
@@ -22,11 +22,11 @@ object FundingDeepLinkKey {
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.fundingGraph(navController: NavHostController) {
-    composable(route = FundingNavigationItem.FundingMake.route) {
+    composable(route = FundingNavigationItem.Make.route) {
         MakeFundingScreen(navController = navController)
     }
     composable(
-        route = FundingNavigationItem.FundingDetail.route
+        route = FundingNavigationItem.Detail.route
             + FundingDeepLinkKey.FUNDING_INDEX + "{${FundingDeepLinkKey.FUNDING_INDEX}}",
         arguments = listOf(
             navArgument(FundingDeepLinkKey.FUNDING_INDEX) {
@@ -37,7 +37,7 @@ fun NavGraphBuilder.fundingGraph(navController: NavHostController) {
         val fundingIndex = it.arguments?.getLong(FundingDeepLinkKey.FUNDING_INDEX) ?: 0L
         FundingDetailScreen(navController = navController, fundingIndex = fundingIndex)
     }
-    composable(route = FundingNavigationItem.FundingAll.route) {
+    composable(route = FundingNavigationItem.All.route) {
         FundingAllScreen(navController = navController)
     }
 }

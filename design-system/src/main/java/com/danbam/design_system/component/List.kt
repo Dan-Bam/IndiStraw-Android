@@ -1,11 +1,6 @@
 package com.danbam.design_system.component
 
-import android.app.Activity
-import android.content.Intent
 import android.net.Uri
-import android.provider.MediaStore
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -15,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
@@ -29,9 +25,11 @@ import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.R
 import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
-import com.danbam.design_system.util.RemoveOverScrollLazyColumn
+import com.danbam.design_system.util.LaunchType
 import com.danbam.design_system.util.RemoveOverScrollLazyRow
 import com.danbam.design_system.util.indiStrawClickable
+import com.danbam.design_system.util.rememberLauncher
+import com.danbam.design_system.util.typedLaunch
 
 @Composable
 fun AddImageList(
@@ -40,22 +38,7 @@ fun AddImageList(
     onRemove: (Int) -> Unit,
     selectGallery: (Uri?) -> Unit
 ) {
-    val takePhotoFromAlbumLauncher =
-        rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                selectGallery(result.data?.data)
-            }
-        }
-    val takePhotoFromAlbumIntent =
-        Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).apply {
-            type = "image/*"
-            action = Intent.ACTION_PICK
-            putExtra(
-                Intent.EXTRA_MIME_TYPES,
-                arrayOf("image/jpeg", "image/png", "image/bmp", "image/webp")
-            )
-            putExtra(Intent.EXTRA_ALLOW_MULTIPLE, false)
-        }
+    val launcher = rememberLauncher(selectFile = selectGallery)
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
@@ -68,9 +51,7 @@ fun AddImageList(
                 )
                 .padding(21.dp)
                 .indiStrawClickable {
-                    takePhotoFromAlbumLauncher.launch(
-                        takePhotoFromAlbumIntent
-                    )
+                    launcher.typedLaunch(launchType = LaunchType.Image)
                 }
         ) {
             IndiStrawIcon(
@@ -111,13 +92,10 @@ fun AddFileList(
     onDelete: (Int) -> Unit,
     selectFile: (Uri?) -> Unit
 ) {
-    val takeFileLauncher =
-        rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { result ->
-            selectFile(result)
-        }
+    val launcher = rememberLauncher(selectFile = selectFile)
     if (fileList.isEmpty()) {
         FileItem(openFile = {
-            takeFileLauncher.launch("application/*")
+            launcher.typedLaunch(launchType = LaunchType.File)
         })
     } else {
         Column(
@@ -129,7 +107,7 @@ fun AddFileList(
             }
             Column(
                 modifier = Modifier.indiStrawClickable {
-                    takeFileLauncher.launch("application/*")
+                    launcher.typedLaunch(launchType = LaunchType.File)
                 },
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -149,6 +127,75 @@ fun AddFileList(
                     color = IndiStrawTheme.colors.main,
                     fontSize = 14
                 )
+            }
+        }
+    }
+}
+
+@Composable
+fun AddPeopleList(
+    modifier: Modifier = Modifier,
+    onAddPeople: () -> Unit,
+    peopleList: List<String>,
+    onRemove: (Int) -> Unit
+) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Box(
+            modifier = Modifier
+                .padding(start = 15.dp)
+                .background(
+                    IndiStrawTheme.colors.lightBlack,
+                    IndiStrawTheme.shapes.bigRounded
+                )
+                .width(120.dp)
+                .height(140.dp)
+                .indiStrawClickable(onClick = onAddPeople)
+        ) {
+            IndiStrawIcon(
+                modifier = Modifier
+                    .size(30.dp)
+                    .align(Alignment.Center),
+                icon = IndiStrawIconList.Plus
+            )
+        }
+        Spacer(modifier = Modifier.width(9.dp))
+        RemoveOverScrollLazyRow {
+            itemsIndexed(peopleList) { index, item ->
+                Box {
+                    Column(
+                        modifier = Modifier
+                            .padding(top = 3.dp, end = 3.dp)
+                            .height(140.dp)
+                            .width(120.dp)
+                            .background(
+                                IndiStrawTheme.colors.darkGray,
+                                IndiStrawTheme.shapes.bigRounded
+                            ),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Spacer(modifier = Modifier.height(25.dp))
+                        AsyncImage(
+                            modifier = modifier
+                                .size(60.dp)
+                                .clip(IndiStrawTheme.shapes.circle),
+                            model = item,
+                            contentDescription = "Image",
+                            contentScale = ContentScale.Crop
+                        )
+                        Spacer(modifier = Modifier.height(20.dp))
+                        TitleSemiBold(text = "이름")
+                    }
+                    IndiStrawIcon(
+                        modifier = Modifier
+                            .align(Alignment.TopEnd)
+                            .indiStrawClickable { onRemove(index) },
+                        icon = IndiStrawIconList.Delete
+                    )
+                }
+                Spacer(modifier = Modifier.width(9.dp))
             }
         }
     }

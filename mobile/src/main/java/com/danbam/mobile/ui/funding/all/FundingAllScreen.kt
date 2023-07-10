@@ -16,7 +16,6 @@ import com.danbam.design_system.component.FundingItem
 import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.util.RemoveOverScrollLazyColumn
-import com.danbam.domain.entity.FundingEntity
 import com.danbam.mobile.ui.funding.navigation.FundingDeepLinkKey
 import com.danbam.mobile.ui.funding.navigation.FundingNavigationItem
 
@@ -56,7 +55,7 @@ fun FundingAllScreen(
                             it?.let {
                                 FundingItem(
                                     item = it,
-                                    onClickItem = { navController.navigate(FundingNavigationItem.FundingDetail.route + FundingDeepLinkKey.FUNDING_INDEX + it) }
+                                    onClickItem = { navController.navigate(FundingNavigationItem.Detail.route + FundingDeepLinkKey.FUNDING_INDEX + it) }
                                 )
                             }
                             Spacer(modifier = Modifier.height(16.dp))

@@ -75,7 +75,7 @@ fun ResultSearchScreen(
                 ) {
                     items(20) {
                         MovieItem {
-                            navController.navigate(MovieNavigationItem.MovieDetail.route)
+                            navController.navigate(MovieNavigationItem.Detail.route)
                         }
                     }
                 }
@@ -95,7 +95,7 @@ fun ResultSearchScreen(
                                 ""
                             )
                         ) {
-                            navController.navigate(FundingNavigationItem.FundingDetail.route + FundingDeepLinkKey.FUNDING_INDEX + it)
+                            navController.navigate(FundingNavigationItem.Detail.route + FundingDeepLinkKey.FUNDING_INDEX + it)
                         }
                         Spacer(modifier = Modifier.height(24.dp))
                     }
