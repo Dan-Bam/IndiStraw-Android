@@ -1,5 +1,6 @@
 package com.danbam.design_system.component
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,6 +21,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.tv.material3.Border
+import androidx.tv.material3.ClickableSurfaceDefaults
+import androidx.tv.material3.ExperimentalTvMaterial3Api
+import androidx.tv.material3.Surface
 import coil.compose.AsyncImage
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.R
@@ -91,6 +97,36 @@ fun MovieItem(
         shape = Shape.Rectangle,
         onClick = onClickItem
     )
+}
+
+@OptIn(ExperimentalTvMaterial3Api::class)
+@Composable
+fun MovieTvItem(
+    onClickItem: () -> Unit,
+) {
+    val movieHeight = LocalConfiguration.current.screenHeightDp * 0.35
+    val movieWidth = LocalConfiguration.current.screenWidthDp * 0.13
+    Surface(
+        shape = ClickableSurfaceDefaults.shape(
+            shape = IndiStrawTheme.shapes.smallRounded
+        ),
+        border = ClickableSurfaceDefaults.border(
+            focusedBorder = Border(
+                border = BorderStroke(2.dp, IndiStrawTheme.colors.main),
+                shape = IndiStrawTheme.shapes.smallRounded
+            )
+        ),
+        onClick = onClickItem
+    ) {
+        AsyncImage(
+            modifier = Modifier
+                .width(movieWidth.dp)
+                .height(movieHeight.dp),
+            model = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
+            contentDescription = "moviePoster",
+            contentScale = ContentScale.Crop
+        )
+    }
 }
 
 @Composable
