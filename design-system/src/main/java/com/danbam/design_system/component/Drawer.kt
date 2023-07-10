@@ -45,28 +45,34 @@ sealed class TvNavigationItem(val route: String, val icon: IndiStrawIconList, va
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 fun IndiStrawTvNavigationDrawer(
+    modifier: Modifier = Modifier,
     content: @Composable () -> Unit,
     currentMenu: TvNavigationItem,
-    onMenuSelected: (TvNavigationItem) -> Unit
+    onMenuSelected: (TvNavigationItem) -> Unit,
+    saveDrawerState: (Boolean) -> Unit
 ) {
-    ModalNavigationDrawer(drawerContent = { drawer ->
-        Column(
-            modifier = Modifier
-                .fillMaxHeight()
-                .background(if (drawer == DrawerValue.Open) IndiStrawTheme.colors.lightBlack else IndiStrawTheme.colors.black),
-            verticalArrangement = Arrangement.Center
-        ) {
-            listOf(
-                TvNavigationItem.Search,
-                TvNavigationItem.Home,
-                TvNavigationItem.Movie,
-                TvNavigationItem.Setting
-            ).forEach {
-                navigationRow(drawer, it, currentMenu, Modifier, onMenuSelected)
-                Spacer(modifier = Modifier.height(25.dp))
+    ModalNavigationDrawer(
+        modifier = modifier,
+        drawerContent = { drawer ->
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .background(if (drawer == DrawerValue.Open) IndiStrawTheme.colors.lightBlack else IndiStrawTheme.colors.black),
+                verticalArrangement = Arrangement.Center
+            ) {
+                saveDrawerState(drawer == DrawerValue.Open)
+                listOf(
+                    TvNavigationItem.Search,
+                    TvNavigationItem.Home,
+                    TvNavigationItem.Movie,
+                    TvNavigationItem.Setting
+                ).forEach {
+                    navigationRow(drawer, it, currentMenu, Modifier, onMenuSelected)
+                    Spacer(modifier = Modifier.height(25.dp))
+                }
             }
-        }
-    }, content = content)
+        }, content = content
+    )
 }
 
 @OptIn(ExperimentalTvMaterial3Api::class)
