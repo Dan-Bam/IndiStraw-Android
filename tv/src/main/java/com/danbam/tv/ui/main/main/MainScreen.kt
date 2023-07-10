@@ -11,6 +11,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.tv.material3.ExperimentalTvMaterial3Api
@@ -32,17 +35,27 @@ fun MainScreen() {
     val context = LocalContext.current
     val navController = rememberAnimatedNavController()
     var currentMenu: TvNavigationItem by remember { mutableStateOf(TvNavigationItem.Home) }
+    var isOpenDrawer by remember { mutableStateOf(false) }
+    val drawerFocusRequest = FocusRequester()
 
     BackHandler {
-        context.findActivity()?.finish()
+        if (isOpenDrawer) {
+            context.findActivity()?.finish()
+        } else {
+            drawerFocusRequest.requestFocus()
+        }
     }
     IndiStrawTvBackground {
-        IndiStrawTvNavigationDrawer(content = {
-            HomeApp(navController = navController)
-        }, currentMenu = currentMenu, onMenuSelected = {
-            currentMenu = it
-            navController.navigate(it.route)
-        })
+        IndiStrawTvNavigationDrawer(
+            modifier = Modifier.focusRequester(focusRequester = drawerFocusRequest),
+            content = {
+                HomeApp(navController = navController)
+            }, saveDrawerState = {
+                isOpenDrawer = it
+            }, currentMenu = currentMenu, onMenuSelected = {
+                currentMenu = it
+                navController.navigate(it.route)
+            })
     }
 }
 
