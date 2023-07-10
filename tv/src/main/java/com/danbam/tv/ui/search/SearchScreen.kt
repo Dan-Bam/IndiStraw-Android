@@ -3,6 +3,7 @@ package com.danbam.tv.ui.search
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -139,7 +140,8 @@ fun SearchScreen(
                 TvLazyVerticalGrid(
                     columns = TvGridCells.Fixed(4),
                     horizontalArrangement = Arrangement.spacedBy(15.dp),
-                    verticalArrangement = Arrangement.spacedBy(30.dp)
+                    verticalArrangement = Arrangement.spacedBy(30.dp),
+                    contentPadding = PaddingValues(horizontal = 8.dp, vertical = 20.dp)
                 ) {
                     items(10) {
                         MovieTvItem {
