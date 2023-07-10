@@ -15,6 +15,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.tv.foundation.lazy.list.TvLazyRow
 import com.danbam.design_system.component.ImageButton
 import com.danbam.design_system.component.IndiStrawTvBackground
 import com.danbam.design_system.component.IndiStrawTvBanner
@@ -65,7 +66,8 @@ fun HomeScreen(
             }
         }
         Spacer(modifier = Modifier.height(20.dp))
-        RemoveOverScrollLazyRow(
+        TvLazyRow(
+            modifier = Modifier.padding(end = 50.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             items(10) {
