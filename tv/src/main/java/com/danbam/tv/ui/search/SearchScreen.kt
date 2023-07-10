@@ -9,7 +9,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -17,10 +20,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.tv.foundation.lazy.grid.TvGridCells
 import androidx.tv.foundation.lazy.grid.TvLazyVerticalGrid
 import androidx.tv.foundation.lazy.list.TvLazyColumn
+import androidx.tv.foundation.lazy.list.items
 import androidx.tv.material3.Border
 import androidx.tv.material3.ClickableSurfaceDefaults
 import androidx.tv.material3.ExperimentalTvMaterial3Api
@@ -37,9 +43,22 @@ import com.danbam.design_system.component.TitleRegular
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 fun SearchScreen(
-
+    searchViewModel: SearchViewModel = hiltViewModel()
 ) {
+    val container = searchViewModel.container
+    val state = container.stateFlow.collectAsState().value
+    val sideEffect = container.sideEffectFlow
+
     var search by remember { mutableStateOf("") }
+
+    LaunchedEffect(search) {
+        if (search.isEmpty()) {
+            searchViewModel.getRecentSearch()
+        } else {
+            searchViewModel.getRelatedSearch(keyword = search)
+        }
+    }
+
     IndiStrawTvBackground {
         Row {
             Column(
@@ -51,7 +70,12 @@ fun SearchScreen(
                     modifier = Modifier.fillMaxWidth(),
                     hint = stringResource(id = R.string.looking_for),
                     value = search,
-                    onValueChange = { search = it })
+                    onValueChange = { search = it },
+                    imeAction = ImeAction.Search,
+                    keyboardActions = KeyboardActions(onSearch = {
+                        searchViewModel.search(keyword = search)
+                    })
+                )
                 Spacer(modifier = Modifier.height(30.dp))
                 Column(
                     modifier = Modifier
@@ -63,7 +87,7 @@ fun SearchScreen(
                     TvLazyColumn(
                         verticalArrangement = Arrangement.spacedBy(5.dp)
                     ) {
-                        items(10) {
+                        items(state.relatedSearchList) {
                             Surface(
                                 modifier = Modifier.fillMaxWidth(),
                                 scale = ClickableSurfaceDefaults.scale(
@@ -81,14 +105,17 @@ fun SearchScreen(
                                         shape = IndiStrawTheme.shapes.smallRounded
                                     )
                                 ),
-                                onClick = { search = it.toString() }
+                                onClick = {
+                                    search = it
+                                    searchViewModel.search(keyword = search)
+                                }
                             ) {
                                 TitleRegular(
                                     modifier = Modifier.padding(
                                         horizontal = 12.dp,
                                         vertical = 4.dp
                                     ),
-                                    text = it.toString(),
+                                    text = it,
                                     fontSize = 24,
                                     color = IndiStrawTheme.colors.gray
                                 )
