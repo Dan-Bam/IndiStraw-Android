@@ -82,9 +82,9 @@ fun IndiStrawBoxBackground(
 @Composable
 fun IndiStrawTvBackground(
     modifier: Modifier = Modifier,
-    content: @Composable RowScope.() -> Unit,
+    content: @Composable ColumnScope.() -> Unit,
 ) {
-    Row(
+    Column(
         modifier = modifier
             .fillMaxSize()
             .background(IndiStrawTheme.colors.black),
