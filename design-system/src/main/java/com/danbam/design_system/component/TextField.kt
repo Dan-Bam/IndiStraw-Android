@@ -165,7 +165,8 @@ fun IndiStrawTvTextField(
     onValueChange: (String) -> Unit,
     imeAction: ImeAction = ImeAction.Done,
     keyboardType: KeyboardType = KeyboardType.Text,
-    visualTransformation: VisualTransformation = VisualTransformation.None
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    keyboardActions: KeyboardActions = KeyboardActions()
 ) {
     var focused by remember { mutableStateOf(false) }
     BasicTextField(
@@ -189,6 +190,7 @@ fun IndiStrawTvTextField(
         maxLines = 1,
         singleLine = true,
         keyboardOptions = KeyboardOptions(imeAction = imeAction, keyboardType = keyboardType),
+        keyboardActions = keyboardActions,
         cursorBrush = SolidColor(IndiStrawTheme.colors.white),
         textStyle = IndiStrawTheme.typography.exampleTextRegular.copy(
             fontSize = 24.sp,
