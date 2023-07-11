@@ -51,7 +51,11 @@ fun MainScreen(
         IndiStrawTvNavigationDrawer(
             modifier = Modifier.focusRequester(focusRequester = drawerFocusRequest),
             content = {
-                HomeApp(mainNavController = mainNavController, navController = navController)
+                HomeApp(
+                    mainNavController = mainNavController,
+                    navController = navController,
+                    isOpenDrawer = isOpenDrawer
+                )
             }, saveDrawerState = {
                 isOpenDrawer = it
             }, currentMenu = currentMenu, onMenuSelected = {
@@ -63,7 +67,11 @@ fun MainScreen(
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun HomeApp(mainNavController: NavHostController, navController: NavController) {
+fun HomeApp(
+    mainNavController: NavHostController,
+    navController: NavController,
+    isOpenDrawer: Boolean
+) {
     AnimatedNavHost(
         navController = mainNavController,
         startDestination = TvNavigationItem.Home.route,
@@ -87,7 +95,7 @@ fun HomeApp(mainNavController: NavHostController, navController: NavController) 
             SearchScreen(navController = navController)
         }
         composable(route = TvNavigationItem.Home.route) {
-            HomeScreen(navController = navController)
+            HomeScreen(navController = navController, isOpenDrawer = isOpenDrawer)
         }
         composable(route = TvNavigationItem.Movie.route) {
             MovieScreen(navController = navController)

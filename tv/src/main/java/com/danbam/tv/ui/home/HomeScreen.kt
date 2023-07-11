@@ -33,13 +33,16 @@ import com.danbam.tv.ui.main.navigation.MainNavigationItem
 
 @Composable
 fun HomeScreen(
-    navController: NavController
+    navController: NavController,
+    isOpenDrawer: Boolean
 ) {
     val itemFocusRequester = remember { FocusRequester() }
     var homeTab: MovieTab by remember { mutableStateOf(MovieTab.RecentMovie) }
 
     LaunchedEffect(Unit) {
-        itemFocusRequester.requestFocus()
+        if (!isOpenDrawer) {
+            itemFocusRequester.requestFocus()
+        }
     }
 
     IndiStrawTvBackground {
