@@ -7,6 +7,7 @@ import com.danbam.tv.ui.main.login.LoginScreen
 import com.danbam.tv.ui.main.main.MainScreen
 import com.danbam.tv.ui.main.qr_login.QRLoginScreen
 import com.danbam.tv.ui.movie.detail.MovieDetailScreen
+import com.danbam.tv.ui.movie.play.MoviePlayScreen
 import com.google.accompanist.navigation.animation.composable
 
 sealed class MainNavigationItem(val route: String) {
@@ -14,6 +15,7 @@ sealed class MainNavigationItem(val route: String) {
     object QRLogin : MainNavigationItem("QRLogin")
     object Main : MainNavigationItem("main")
     object MovieDetail : MainNavigationItem("movieDetail")
+    object MoviePlay : MainNavigationItem("moviePlay")
 }
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -28,6 +30,9 @@ fun NavGraphBuilder.mainGraph(navController: NavHostController) {
         MainScreen(navController = navController)
     }
     composable(route = MainNavigationItem.MovieDetail.route) {
-        MovieDetailScreen()
+        MovieDetailScreen(navController = navController)
+    }
+    composable(route = MainNavigationItem.MoviePlay.route) {
+        MoviePlayScreen()
     }
 }
