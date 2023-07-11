@@ -30,6 +30,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.tv.foundation.lazy.list.TvLazyRow
 import androidx.tv.material3.ClickableSurfaceDefaults
 import androidx.tv.material3.ExperimentalTvMaterial3Api
@@ -45,6 +46,7 @@ import com.danbam.design_system.component.IndiStrawTvBackground
 import com.danbam.design_system.R
 import com.danbam.design_system.component.JoinBold
 import com.danbam.design_system.component.TitleRegular
+import com.danbam.tv.ui.main.navigation.MainNavigationItem
 
 sealed class MovieTabItem(val stringId: Int) {
     object Highlight : MovieTabItem(R.string.highlight)
@@ -54,6 +56,7 @@ sealed class MovieTabItem(val stringId: Int) {
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 fun MovieDetailScreen(
+    navController: NavController
 ) {
     var currentTab: MovieTabItem by remember { mutableStateOf(MovieTabItem.Highlight) }
     IndiStrawTvBackground {
@@ -91,11 +94,11 @@ fun MovieDetailScreen(
                 }
                 Row {
                     MoviePlayButton(icon = IndiStrawIconList.FastPlay, title = "이어서 보기") {
-
+                        navController.navigate(MainNavigationItem.MoviePlay.route)
                     }
                     Spacer(modifier = Modifier.width(10.dp))
                     MoviePlayButton(icon = IndiStrawIconList.PlayFirst, title = "처음부터 보기") {
-
+                        navController.navigate(MainNavigationItem.MoviePlay.route)
                     }
                 }
             }
