@@ -136,6 +136,12 @@ class IndiStrawIconList private constructor(
         )
 
         @Stable
+        val PlayFirst = IndiStrawIconList(
+            drawableId = R.drawable.ic_play_first,
+            contentDescription = "playFirst"
+        )
+
+        @Stable
         val Shield = IndiStrawIconList(
             drawableId = R.drawable.ic_shield,
             contentDescription = "shield"

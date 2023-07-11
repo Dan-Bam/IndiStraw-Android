@@ -24,6 +24,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.tv.foundation.lazy.grid.TvGridCells
 import androidx.tv.foundation.lazy.grid.TvLazyVerticalGrid
 import androidx.tv.foundation.lazy.list.TvLazyColumn
@@ -40,10 +41,12 @@ import com.danbam.design_system.component.ExampleTextMedium
 import com.danbam.design_system.component.HeadLineBold
 import com.danbam.design_system.component.MovieTvItem
 import com.danbam.design_system.component.TitleRegular
+import com.danbam.tv.ui.main.navigation.MainNavigationItem
 
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 fun SearchScreen(
+    navController: NavController,
     searchViewModel: SearchViewModel = hiltViewModel()
 ) {
     val container = searchViewModel.container
@@ -145,7 +148,7 @@ fun SearchScreen(
                 ) {
                     items(10) {
                         MovieTvItem {
-
+                            navController.navigate(MainNavigationItem.MovieDetail.route)
                         }
                     }
                 }
