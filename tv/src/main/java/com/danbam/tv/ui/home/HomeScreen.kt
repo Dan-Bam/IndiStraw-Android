@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -19,6 +20,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.tv.foundation.lazy.list.TvLazyRow
 import com.danbam.design_system.component.ImageButton
@@ -34,8 +36,13 @@ import com.danbam.tv.ui.main.navigation.MainNavigationItem
 @Composable
 fun HomeScreen(
     navController: NavController,
-    isOpenDrawer: Boolean
+    isOpenDrawer: Boolean,
+    homeViewModel: HomeViewModel = hiltViewModel()
 ) {
+    val container = homeViewModel.container
+    val state = container.stateFlow.collectAsState().value
+    val sideEffect = container.sideEffectFlow
+    
     val itemFocusRequester = remember { FocusRequester() }
     var homeTab: MovieTab by remember { mutableStateOf(MovieTab.RecentMovie) }
 
@@ -87,8 +94,9 @@ fun HomeScreen(
         ) {
             items(10) {
                 MovieTvItem(
-                    modifier = Modifier.focusRequester(if (it == 0) itemFocusRequester else FocusRequester())
+                    modifier = Modifier.focusRequester(if (it == state.currentMovieIndex) itemFocusRequester else FocusRequester())
                 ) {
+                    homeViewModel.saveCurrentIndex(it)
                     navController.navigate(MainNavigationItem.MovieDetail.route)
                 }
             }
