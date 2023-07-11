@@ -107,12 +107,13 @@ fun MovieItem(
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 fun MovieTvItem(
+    modifier: Modifier = Modifier,
     onClickItem: () -> Unit,
 ) {
     val movieHeight = LocalConfiguration.current.screenHeightDp * 0.35
     val movieWidth = LocalConfiguration.current.screenWidthDp * 0.13
     Surface(
-        modifier = Modifier
+        modifier = modifier
             .width(movieWidth.dp)
             .height(movieHeight.dp),
         shape = ClickableSurfaceDefaults.shape(
