@@ -23,6 +23,7 @@ import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.design_system.component.HeadLineBold
 import com.danbam.design_system.component.RewardItem
+import com.danbam.design_system.component.RewardType
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.util.RemoveOverScrollLazyColumn
 import com.danbam.design_system.util.indiStrawClickable
@@ -50,6 +51,7 @@ fun AddRewardScreen(
         ) {
             itemsIndexed(state.rewardList) { index, item ->
                 RewardItem(
+                    rewardType = RewardType.Expand,
                     item = FundingDetailEntity.RewardEntity(
                         title = item.title,
                         description = item.description,
