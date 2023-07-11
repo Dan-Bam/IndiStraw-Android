@@ -69,11 +69,11 @@ fun MovieDetailScreen(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .fillMaxWidth(0.6F)
-                    .fillMaxHeight()
-                    .shadow(10.dp),
+                    .fillMaxHeight(),
                 model = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
                 contentDescription = "movieThumbnail",
                 contentScale = ContentScale.Crop,
+                alpha = 0.7F
             )
             Column(
                 modifier = Modifier
@@ -85,7 +85,7 @@ fun MovieDetailScreen(
             ) {
                 Column {
                     HeadLineBold(text = "범죄도시 2", fontSize = 50)
-                    Spacer(modifier = Modifier.height(50.dp))
+                    Spacer(modifier = Modifier.height(15.dp))
                     ExampleTextMedium(
                         text = "아, 이유가 어딨어, 사람 죽인 새끼 잡는데?! 나쁜 놈은 그냥 잡는거야! 도주 용의자 사건을 담당하러 필리핀으로 간 마석도와 전일만은 예상치 못한 사건에 휘말리게 된다.",
                         fontSize = 18,
