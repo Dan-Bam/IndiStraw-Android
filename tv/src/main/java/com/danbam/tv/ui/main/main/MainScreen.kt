@@ -98,7 +98,7 @@ fun HomeApp(
             HomeScreen(navController = navController, isOpenDrawer = isOpenDrawer)
         }
         composable(route = TvNavigationItem.Movie.route) {
-            MovieScreen(navController = navController)
+            MovieScreen(navController = navController, isOpenDrawer = isOpenDrawer)
         }
         composable(route = TvNavigationItem.Setting.route) {
             SettingScreen()
