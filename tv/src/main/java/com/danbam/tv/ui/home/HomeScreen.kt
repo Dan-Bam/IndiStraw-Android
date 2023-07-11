@@ -9,11 +9,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -26,14 +29,19 @@ import com.danbam.design_system.component.Shape
 import com.danbam.design_system.R
 import com.danbam.design_system.component.MovieTab
 import com.danbam.design_system.component.MovieTvItem
-import com.danbam.design_system.util.RemoveOverScrollLazyRow
 import com.danbam.tv.ui.main.navigation.MainNavigationItem
 
 @Composable
 fun HomeScreen(
     navController: NavController
 ) {
+    val itemFocusRequester = remember { FocusRequester() }
     var homeTab: MovieTab by remember { mutableStateOf(MovieTab.RecentMovie) }
+
+    LaunchedEffect(Unit) {
+        itemFocusRequester.requestFocus()
+    }
+
     IndiStrawTvBackground {
         IndiStrawTvBanner(itemCount = 5) {
             ImageButton(
@@ -75,7 +83,9 @@ fun HomeScreen(
             contentPadding = PaddingValues(horizontal = 8.dp, vertical = 20.dp)
         ) {
             items(10) {
-                MovieTvItem {
+                MovieTvItem(
+                    modifier = Modifier.focusRequester(if (it == 0) itemFocusRequester else FocusRequester())
+                ) {
                     navController.navigate(MainNavigationItem.MovieDetail.route)
                 }
             }
