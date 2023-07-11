@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.tv.foundation.lazy.grid.TvGridCells
 import androidx.tv.foundation.lazy.grid.TvLazyVerticalGrid
 import androidx.tv.foundation.lazy.list.TvLazyColumn
@@ -25,11 +26,12 @@ import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.component.IndiStrawTvBackground
 import com.danbam.design_system.component.MovieTvItem
 import com.danbam.design_system.component.TitleRegular
+import com.danbam.tv.ui.main.navigation.MainNavigationItem
 
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 fun MovieScreen(
-
+    navController: NavController
 ) {
     val tabWidth = LocalConfiguration.current.screenWidthDp * 0.13
     IndiStrawTvBackground {
@@ -80,7 +82,7 @@ fun MovieScreen(
         ) {
             items(100) {
                 MovieTvItem {
-
+                    navController.navigate(MainNavigationItem.MovieDetail.route)
                 }
             }
         }

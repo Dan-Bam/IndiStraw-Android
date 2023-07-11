@@ -16,6 +16,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.tv.foundation.lazy.list.TvLazyRow
 import com.danbam.design_system.component.ImageButton
 import com.danbam.design_system.component.IndiStrawTvBackground
@@ -26,10 +27,11 @@ import com.danbam.design_system.R
 import com.danbam.design_system.component.MovieTab
 import com.danbam.design_system.component.MovieTvItem
 import com.danbam.design_system.util.RemoveOverScrollLazyRow
+import com.danbam.tv.ui.main.navigation.MainNavigationItem
 
 @Composable
 fun HomeScreen(
-
+    navController: NavController
 ) {
     var homeTab: MovieTab by remember { mutableStateOf(MovieTab.RecentMovie) }
     IndiStrawTvBackground {
@@ -74,7 +76,7 @@ fun HomeScreen(
         ) {
             items(10) {
                 MovieTvItem {
-
+                    navController.navigate(MainNavigationItem.MovieDetail.route)
                 }
             }
         }

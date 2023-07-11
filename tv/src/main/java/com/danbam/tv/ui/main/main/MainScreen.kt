@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalContext
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.danbam.design_system.component.IndiStrawTvBackground
 import com.danbam.design_system.component.IndiStrawTvNavigationDrawer
@@ -30,9 +31,11 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    navController: NavController
+) {
     val context = LocalContext.current
-    val navController = rememberAnimatedNavController()
+    val mainNavController = rememberAnimatedNavController()
     var currentMenu: TvNavigationItem by remember { mutableStateOf(TvNavigationItem.Home) }
     var isOpenDrawer by remember { mutableStateOf(false) }
     val drawerFocusRequest = FocusRequester()
@@ -48,21 +51,21 @@ fun MainScreen() {
         IndiStrawTvNavigationDrawer(
             modifier = Modifier.focusRequester(focusRequester = drawerFocusRequest),
             content = {
-                HomeApp(navController = navController)
+                HomeApp(mainNavController = mainNavController, navController = navController)
             }, saveDrawerState = {
                 isOpenDrawer = it
             }, currentMenu = currentMenu, onMenuSelected = {
                 currentMenu = it
-                navController.navigate(it.route)
+                mainNavController.navigate(it.route)
             })
     }
 }
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun HomeApp(navController: NavHostController) {
+fun HomeApp(mainNavController: NavHostController, navController: NavController) {
     AnimatedNavHost(
-        navController = navController,
+        navController = mainNavController,
         startDestination = TvNavigationItem.Home.route,
         enterTransition = {
             slideInHorizontally(
@@ -81,13 +84,13 @@ fun HomeApp(navController: NavHostController) {
         }
     ) {
         composable(route = TvNavigationItem.Search.route) {
-            SearchScreen()
+            SearchScreen(navController = navController)
         }
         composable(route = TvNavigationItem.Home.route) {
-            HomeScreen()
+            HomeScreen(navController = navController)
         }
         composable(route = TvNavigationItem.Movie.route) {
-            MovieScreen()
+            MovieScreen(navController = navController)
         }
         composable(route = TvNavigationItem.Setting.route) {
             SettingScreen()
