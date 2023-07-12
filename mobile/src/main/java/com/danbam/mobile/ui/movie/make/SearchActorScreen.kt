@@ -36,7 +36,8 @@ import com.danbam.mobile.util.view.popBackStack
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SearchActorScreen(
-    navController: NavController
+    navController: NavController,
+    makeMovieViewModel: MakeMovieViewModel
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current

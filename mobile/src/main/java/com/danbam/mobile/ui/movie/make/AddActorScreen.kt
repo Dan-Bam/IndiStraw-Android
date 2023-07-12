@@ -35,7 +35,8 @@ sealed class AddPeopleType {
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun AddActorScreen(
-    navController: NavController
+    navController: NavController,
+    makeMovieViewModel: MakeMovieViewModel
 ) {
     var addPeopleType: AddPeopleType by remember { mutableStateOf(AddPeopleType.Director) }
     IndiStrawBottomSheetLayout(sheetContent = {

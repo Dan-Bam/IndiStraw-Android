@@ -25,7 +25,8 @@ import com.danbam.design_system.component.IndiStrawTextField
 
 @Composable
 fun WriteActorScreen(
-    navController: NavController
+    navController: NavController,
+    makeMovieViewModel: MakeMovieViewModel
 ) {
     var name: String by remember { mutableStateOf("") }
     IndiStrawColumnBackground {
