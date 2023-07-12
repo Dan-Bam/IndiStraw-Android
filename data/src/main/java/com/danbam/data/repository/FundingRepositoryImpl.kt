@@ -7,4 +7,5 @@ import javax.inject.Inject
 class FundingRepositoryImpl @Inject constructor(
     private val fundingRemoteDataSource: FundingRemoteDataSource
 ) : FundingRepository {
+    override suspend fun getReceipt(): String = fundingRemoteDataSource.getReceipt().receiptId
 }
