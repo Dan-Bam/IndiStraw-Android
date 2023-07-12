@@ -15,6 +15,7 @@ data class FundingDetailState(
         status = "",
         thumbnailUrl = "",
         imageList = listOf(),
-        fileList = listOf()
+        fileList = listOf(),
+        isFunding = false
     )
 )
