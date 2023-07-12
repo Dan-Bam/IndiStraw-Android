@@ -10,11 +10,24 @@
     <string name="woori_bank">우리</string>
     <string name="kakao_bank">카카오뱅크</string>
 
-    <!--    결제 방식-->
+    <!--    결제 방식 리스트-->
     <string name="payment_naver">네이버페이 (결제형)</string>
     <string name="payment_card">ISP / 앱카드 결제</string>
     <string name="payment_account">계좌이체</string>
     <string name="payment_kakao">키카오페이</string>
+
+    <!--    장르 리스트-->
+    <string name="genre_all">전체</string>
+    <string name="genre_action">액션</string>
+    <string name="genre_romance">로맨스</string>
+    <string name="genre_comedy">코미디</string>
+    <string name="genre_thriller">스릴러</string>
+    <string name="genre_drama">드라마</string>
+    <string name="genre_sf">SF</string>
+    <string name="genre_animation">애니메이션</string>
+    <string name="genre_horror">액션</string>
+    <string name="genre_adventure">모험</string>
+    <string name="genre_fantasy">판타지</string>
 
     <!--    기타-->
     <string name="wrong_length_id">6~15자 사이로 입력해 주세요.</string>
