@@ -49,6 +49,7 @@ fun NavGraphBuilder.fundingGraph(navController: NavHostController) {
     composable(
         route = FundingNavigationItem.FundingReward.route
             + FundingDeepLinkKey.FUNDING_INDEX + "{${FundingDeepLinkKey.FUNDING_INDEX}}"
+            + FundingDeepLinkKey.REWARD_INDEX + "{${FundingDeepLinkKey.REWARD_INDEX}}"
             + FundingDeepLinkKey.REWARD_TITLE + "{${FundingDeepLinkKey.REWARD_TITLE}}"
             + FundingDeepLinkKey.REWARD_DESCRIPTION + "{${FundingDeepLinkKey.REWARD_DESCRIPTION}}"
             + FundingDeepLinkKey.REWARD_PRICE + "{${FundingDeepLinkKey.REWARD_PRICE}}",
