@@ -21,8 +21,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.paging.LoadState
+import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.tv.foundation.lazy.grid.TvGridCells
 import androidx.tv.foundation.lazy.grid.TvLazyVerticalGrid
+import androidx.tv.foundation.lazy.grid.items
+import androidx.tv.foundation.lazy.list.TvLazyColumn
 import androidx.tv.foundation.lazy.list.TvLazyRow
 import androidx.tv.foundation.lazy.list.items
 import androidx.tv.material3.Border
@@ -35,6 +39,7 @@ import com.danbam.design_system.component.MovieGenre
 import com.danbam.design_system.component.MovieTvItem
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.component.TitleSemiBold
+import com.danbam.design_system.util.RemoveOverScrollLazyColumn
 import com.danbam.tv.ui.main.navigation.MainNavigationItem
 
 @OptIn(ExperimentalTvMaterial3Api::class)
@@ -51,11 +56,16 @@ fun MovieScreen(
     val tabWidth = LocalConfiguration.current.screenWidthDp * 0.13
     val itemFocusRequester = remember { FocusRequester() }
     var currentMovieGenre: MovieGenre by remember { mutableStateOf(MovieGenre.All) }
+    val movieAllPager = state.movieAllPager?.collectAsLazyPagingItems()
 
     LaunchedEffect(Unit) {
         if (!isOpenDrawer) {
             itemFocusRequester.requestFocus()
         }
+    }
+
+    LaunchedEffect(currentMovieGenre) {
+        movieViewModel.movieList(movieGenre = currentMovieGenre)
     }
 
     IndiStrawTvBackground {
@@ -113,19 +123,28 @@ fun MovieScreen(
                 }
             }
         }
-        TvLazyVerticalGrid(
-            modifier = Modifier.padding(top = 20.dp, end = 40.dp),
-            columns = TvGridCells.Fixed(6),
-            contentPadding = PaddingValues(horizontal = 8.dp, vertical = 20.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
-            verticalArrangement = Arrangement.spacedBy(30.dp)
-        ) {
-            items(100) {
-                MovieTvItem(
-                    modifier = Modifier.focusRequester(if (it == state.currentMovieIndex) itemFocusRequester else FocusRequester())
-                ) {
-                    movieViewModel.saveCurrentIndex(it)
-                    navController.navigate(MainNavigationItem.MovieDetail.route)
+        movieAllPager?.let { pager ->
+            when (pager.loadState.refresh) {
+                is LoadState.Loading -> {}
+                is LoadState.Error -> {}
+                else -> {
+                    TvLazyVerticalGrid(
+                        modifier = Modifier.padding(top = 20.dp, end = 40.dp),
+                        columns = TvGridCells.Fixed(6),
+                        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 20.dp),
+                        horizontalArrangement = Arrangement.spacedBy(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(30.dp)
+                    ) {
+                        items(pager.itemSnapshotList.items) {
+                            MovieTvItem(
+                                modifier = Modifier.focusRequester(if (it.idx == state.currentMovieIndex) itemFocusRequester else FocusRequester()),
+                                item = it
+                            ) {
+                                movieViewModel.saveCurrentIndex(it.idx)
+                                navController.navigate(MainNavigationItem.MovieDetail.route)
+                            }
+                        }
+                    }
                 }
             }
         }
