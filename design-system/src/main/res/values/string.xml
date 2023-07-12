@@ -57,6 +57,7 @@
     <string name="next">계속하기</string>
     <string name="setting_account">계정설정</string>
     <string name="already_sign_up">계정이 없으신가요?</string>
+    <string name="account_info">계정정보</string>
     <string name="account_number">계좌번호</string>
     <string name="money">금액</string>
     <string name="require_money">금액을 설정해주세요.</string>
