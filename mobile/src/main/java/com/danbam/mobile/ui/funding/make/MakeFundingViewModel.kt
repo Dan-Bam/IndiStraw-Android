@@ -77,7 +77,7 @@ class MakeFundingViewModel @Inject constructor(
     }
 
     fun addReward(
-        thumbnailUrl: String?,
+        imageList: List<String>,
         title: String,
         description: String,
         isReal: Boolean,
@@ -85,7 +85,7 @@ class MakeFundingViewModel @Inject constructor(
         amount: Long?,
         onAdded: () -> Unit
     ) = intent {
-        if (thumbnailUrl.isNullOrBlank()) return@intent
+        if (imageList.isEmpty()) return@intent
         else if (title.isEmpty()) return@intent
         else if (description.isEmpty()) return@intent
         else if (price == 0L) return@intent
@@ -98,7 +98,7 @@ class MakeFundingViewModel @Inject constructor(
                             title = title,
                             description = description,
                             price = price,
-                            imageUrl = thumbnailUrl,
+                            imageList = imageList,
                             isReal = isReal,
                             totalCount = amount
                         )
