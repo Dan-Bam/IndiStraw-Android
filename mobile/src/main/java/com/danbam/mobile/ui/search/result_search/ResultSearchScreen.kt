@@ -74,9 +74,9 @@ fun ResultSearchScreen(
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     items(20) {
-                        MovieItem {
-                            navController.navigate(MovieNavigationItem.Detail.route)
-                        }
+//                        MovieItem {
+//                            navController.navigate(MovieNavigationItem.Detail.route)
+//                        }
                     }
                 }
             }

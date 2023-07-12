@@ -247,9 +247,9 @@ fun IndiStrawRowTab(
             Spacer(modifier = Modifier.width(15.dp))
         }
         items(10) {
-            MovieItem {
-                onClickItem(0L)
-            }
+//            MovieItem {
+//                onClickItem(0L)
+//            }
             Spacer(modifier = Modifier.width(9.dp))
         }
     }
