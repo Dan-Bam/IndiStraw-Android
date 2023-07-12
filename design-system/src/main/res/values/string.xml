@@ -29,6 +29,13 @@
     <string name="genre_adventure">모험</string>
     <string name="genre_fantasy">판타지</string>
 
+<!--    세팅 리스트-->
+    <string name="tv_setting_language">언어</string>
+    <string name="tv_setting_term">약관</string>
+    <string name="tv_setting_account">계정</string>
+    <string name="tv_setting_logout">로그아웃</string>
+    <string name="tv_setting_withdrawal">회원탈퇴</string>
+
     <!--    기타-->
     <string name="wrong_length_id">6~15자 사이로 입력해 주세요.</string>
     <string name="wrong_length_password">8~20자 사이로 입력해 주세요.</string>
