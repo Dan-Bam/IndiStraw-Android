@@ -81,6 +81,11 @@ fun SettingScreen(
                 settingDialogVisible = false
                 navController.popBackStack()
             }
+
+            is SettingSideEffect.SuccessWithdraw -> {
+                settingDialogVisible = false
+                navController.popBackStack()
+            }
         }
     }
 
@@ -96,7 +101,7 @@ fun SettingScreen(
                 id = R.string.want_you_withdrawal
             ),
             onDismissRequest = { settingDialogVisible = false },
-            onOkay = { if (isLogout) settingViewModel.logout() }
+            onOkay = { if (isLogout) settingViewModel.logout() else settingViewModel.withdraw() }
         )
         Row {
             Column(
