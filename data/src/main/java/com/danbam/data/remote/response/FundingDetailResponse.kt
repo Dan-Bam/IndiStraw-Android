@@ -37,11 +37,11 @@ data class FundingDetailResponse(
 
     data class AmountResponse(
         @SerializedName("targetAmount")
-        val targetAmount: Float,
+        val targetAmount: Long,
         @SerializedName("totalAmount")
-        val totalAmount: Float,
+        val totalAmount: Long,
         @SerializedName("percentage")
-        val percentage: Long,
+        val percentage: Double,
     )
 
     data class RewardResponse(
@@ -51,8 +51,8 @@ data class FundingDetailResponse(
         val description: String,
         @SerializedName("price")
         val price: Long,
-        @SerializedName("imageUrl")
-        val imageUrl: String,
+        @SerializedName("imageList")
+        val imageList: List<String>,
     )
 }
 
@@ -85,5 +85,5 @@ fun FundingDetailResponse.RewardResponse.toEntity() = FundingDetailEntity.Reward
     title = title,
     description = description,
     price = price,
-    imageUrl = imageUrl
+    imageList = imageList
 )

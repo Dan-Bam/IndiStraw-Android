@@ -21,15 +21,15 @@ data class FundingDetailEntity(
     )
 
     data class AmountEntity(
-        val targetAmount: Float,
-        val totalAmount: Float,
-        val percentage: Long,
+        val targetAmount: Long,
+        val totalAmount: Long,
+        val percentage: Double,
     )
 
     data class RewardEntity(
         val title: String,
         val description: String,
         val price: Long,
-        val imageUrl: String,
+        val imageList: List<String>,
     )
 }

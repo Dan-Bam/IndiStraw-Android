@@ -11,7 +11,7 @@ data class FundingResponse(
     @SerializedName("description")
     val description: String,
     @SerializedName("percentage")
-    val percentage: Long,
+    val percentage: Double,
     @SerializedName("thumbnailUrl")
     val thumbnail: String,
     @SerializedName("status")
