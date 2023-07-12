@@ -32,10 +32,10 @@ sealed class MakeFundingProgress(val progress: Int) {
 @Composable
 fun IndiStrawProgress(
     modifier: Modifier = Modifier,
-    currentProgress: Long,
+    currentProgress: Double,
     enableText: Boolean = true
 ) {
-    val progressAnimation by animateFloatAsState(targetValue = currentProgress / 100F)
+    val progressAnimation by animateFloatAsState(targetValue = currentProgress.toFloat() / 100F)
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.Bottom
@@ -51,7 +51,7 @@ fun IndiStrawProgress(
         )
         if (enableText) {
             Spacer(modifier = Modifier.width(4.dp))
-            ExampleTextMedium(text = "${currentProgress.toInt()}%", fontSize = 14)
+            ExampleTextMedium(text = "${"%.1f".format(currentProgress)}%", fontSize = 14)
         }
     }
 }
