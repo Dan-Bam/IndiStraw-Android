@@ -2,20 +2,27 @@ package com.danbam.mobile.ui.funding.pay
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.danbam.domain.param.FundingParam
 import com.danbam.domain.usecase.account.GetProfileUseCase
+import com.danbam.domain.usecase.funding.FundingUseCase
+import com.danbam.domain.usecase.funding.GetReceiptUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent
+import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 import org.orbitmvi.orbit.viewmodel.container
 import javax.inject.Inject
 
 @HiltViewModel
 class FundingRewardViewModel @Inject constructor(
-    private val getProfileUseCase: GetProfileUseCase
-) : ContainerHost<FundingRewardState, Unit>, ViewModel() {
-    override val container = container<FundingRewardState, Unit>(FundingRewardState())
+    private val getProfileUseCase: GetProfileUseCase,
+    private val getReceiptUseCase: GetReceiptUseCase,
+    private val fundingUseCase: FundingUseCase
+) : ContainerHost<FundingRewardState, FundingRewardSideEffect>, ViewModel() {
+    override val container =
+        container<FundingRewardState, FundingRewardSideEffect>(FundingRewardState())
 
     fun getProfile() = intent {
         viewModelScope.launch {
@@ -29,6 +36,29 @@ class FundingRewardViewModel @Inject constructor(
                     )
                 }
             }
+        }
+    }
+
+    fun getReceipt() = intent {
+        getReceiptUseCase().onSuccess {
+            println("안녕 $it")
+            reduce {
+                state.copy(receiptId = it)
+            }
+        }
+    }
+
+    fun funding(crowdfundingIdx: Long, rewardIdx: Long, price: Long, extraPrice: Long) = intent {
+        fundingUseCase(
+            crowdfundingIdx = crowdfundingIdx,
+            rewardIdx = rewardIdx,
+            fundingParam = FundingParam(
+                receiptId = state.receiptId,
+                price = price,
+                extraPrice = extraPrice
+            )
+        ).onSuccess {
+            postSideEffect(FundingRewardSideEffect.SuccessFunding)
         }
     }
 }
