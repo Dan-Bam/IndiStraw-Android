@@ -181,20 +181,22 @@ fun RewardItem(
                     maxLines = 1,
                     fontSize = 14
                 )
-                Spacer(modifier = Modifier.height(25.dp))
-                Row {
-                    TitleSemiBold(text = "${item.price.toCommaString()}원")
-                    Spacer(modifier = Modifier.width(8.dp))
-                    PriceRegular(
-                        modifier = Modifier
-                            .background(
-                                IndiStrawTheme.colors.main,
-                                IndiStrawTheme.shapes.smallRounded
-                            )
-                            .padding(horizontal = 5.dp, vertical = 1.dp),
-                        text = "1개 남음",
-                        fontSize = 12,
-                    )
+                item.totalCount?.let {
+                    Spacer(modifier = Modifier.height(25.dp))
+                    Row {
+                        TitleSemiBold(text = "${item.price.toCommaString()}원")
+                        Spacer(modifier = Modifier.width(8.dp))
+                        PriceRegular(
+                            modifier = Modifier
+                                .background(
+                                    IndiStrawTheme.colors.main,
+                                    IndiStrawTheme.shapes.smallRounded
+                                )
+                                .padding(horizontal = 5.dp, vertical = 1.dp),
+                            text = "${it}${stringResource(id = R.string.reward_remain)}",
+                            fontSize = 12,
+                        )
+                    }
                 }
             }
         }
@@ -256,18 +258,23 @@ fun RewardItem(
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                     Row {
-                        ExampleTextMedium(text = "${item.price.toCommaString()}원", fontSize = 16)
-                        Spacer(modifier = Modifier.width(8.dp))
-                        PriceRegular(
-                            modifier = Modifier
-                                .background(
-                                    IndiStrawTheme.colors.main,
-                                    IndiStrawTheme.shapes.smallRounded
-                                )
-                                .padding(horizontal = 5.dp, vertical = 1.dp),
-                            text = "1개 남음",
-                            fontSize = 12,
+                        ExampleTextMedium(
+                            text = "${item.price.toCommaString()}${stringResource(id = R.string.money_unit)}",
+                            fontSize = 16
                         )
+                        item.totalCount?.let {
+                            Spacer(modifier = Modifier.width(8.dp))
+                            PriceRegular(
+                                modifier = Modifier
+                                    .background(
+                                        IndiStrawTheme.colors.main,
+                                        IndiStrawTheme.shapes.smallRounded
+                                    )
+                                    .padding(horizontal = 5.dp, vertical = 1.dp),
+                                text = "${it}${stringResource(id = R.string.reward_remain)}",
+                                fontSize = 12,
+                            )
+                        }
                     }
                     if (onDelete == null) {
                         Spacer(modifier = Modifier.height(41.dp))
