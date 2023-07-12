@@ -1,12 +1,12 @@
 package com.danbam.mobile.ui.movie.all
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -25,7 +25,6 @@ import com.danbam.design_system.component.IndiStrawGenreList
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.MovieGenre
 import com.danbam.design_system.component.MovieItem
-import com.danbam.design_system.util.RemoveOverScrollLazyColumn
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 
 @Composable
@@ -62,22 +61,15 @@ fun MovieAllScreen(
                 is LoadState.Error -> {}
 
                 else -> {
-                    RemoveOverScrollLazyColumn(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 15.dp),
+                    LazyVerticalGrid(
+                        modifier = Modifier.padding(horizontal = 15.dp),
+                        columns = GridCells.Fixed(3),
                         verticalArrangement = Arrangement.spacedBy(16.dp),
+                        horizontalArrangement = Arrangement.spacedBy(9.dp)
                     ) {
-                        items(pager.itemCount / 3) { rowCount ->
-                            Row {
-                                repeat(3) {
-                                    pager[rowCount + it]?.let {
-                                        MovieItem(item = it) {
-                                            navController.navigate(MovieNavigationItem.Detail.route)
-                                        }
-                                    }
-                                    if (it != 2) Spacer(modifier = Modifier.width(9.dp))
-                                }
+                        items(pager.itemSnapshotList.items) {
+                            MovieItem(item = it) {
+                                navController.navigate(MovieNavigationItem.Detail.route)
                             }
                         }
                     }
