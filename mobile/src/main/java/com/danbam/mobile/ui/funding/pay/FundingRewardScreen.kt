@@ -45,13 +45,13 @@ import java.util.UUID
 
 sealed class Payment(val stringId: Int, val method: String) {
     companion object {
-        fun toList() = listOf(Naver, App, Account, Kakao)
+        fun toList() = listOf(Naver, Card, Account, Kakao)
     }
 
-    object Naver : Payment(R.string.id, "naverpay")
-    object App : Payment(R.string.id, "card")
-    object Account : Payment(R.string.id, "bank")
-    object Kakao : Payment(R.string.id, "kakaopay")
+    object Naver : Payment(R.string.payment_naver, "naverpay")
+    object Card : Payment(R.string.payment_card, "card")
+    object Account : Payment(R.string.payment_account, "bank")
+    object Kakao : Payment(R.string.payment_kakao, "kakaopay")
 
 }
 
@@ -88,7 +88,11 @@ fun FundingRewardScreen(
                 .height(1.dp)
                 .background(IndiStrawTheme.colors.lightBlack)
         )
-        TitleSemiBold(modifier = Modifier.padding(horizontal = 15.dp), text = "배송정보", fontSize = 18)
+        TitleSemiBold(
+            modifier = Modifier.padding(horizontal = 15.dp),
+            text = stringResource(id = R.string.delivery_info),
+            fontSize = 18
+        )
         Spacer(modifier = Modifier.height(12.dp))
         Row {
             TitleRegular(
@@ -103,16 +107,18 @@ fun FundingRewardScreen(
         TitleRegular(
             modifier = Modifier
                 .padding(horizontal = 15.dp),
-            text = state.address ?: "주소가 존재하지 않습니다.",
+            text = state.address ?: stringResource(id = R.string.no_address),
             color = IndiStrawTheme.colors.lightGray,
             fontSize = 14
         )
-        TitleRegular(
-            modifier = Modifier.padding(horizontal = 15.dp),
-            text = "(${state.zipCode})",
-            color = IndiStrawTheme.colors.lightGray,
-            fontSize = 14
-        )
+        state.zipCode?.let {
+            TitleRegular(
+                modifier = Modifier.padding(horizontal = 15.dp),
+                text = "(${state.zipCode})",
+                color = IndiStrawTheme.colors.lightGray,
+                fontSize = 14
+            )
+        }
         Divider(
             modifier = Modifier
                 .padding(vertical = 20.dp)
@@ -120,7 +126,11 @@ fun FundingRewardScreen(
                 .height(1.dp)
                 .background(IndiStrawTheme.colors.lightBlack)
         )
-        TitleSemiBold(modifier = Modifier.padding(start = 15.dp), text = "상품정보", fontSize = 18)
+        TitleSemiBold(
+            modifier = Modifier.padding(start = 15.dp),
+            text = stringResource(id = R.string.reward_info),
+            fontSize = 18
+        )
         Spacer(modifier = Modifier.height(12.dp))
         TitleRegular(
             modifier = Modifier.padding(horizontal = 15.dp),
@@ -137,7 +147,7 @@ fun FundingRewardScreen(
         Spacer(modifier = Modifier.height(17.dp))
         TitleSemiBold(
             modifier = Modifier.padding(horizontal = 15.dp),
-            text = "${rewardPrice.toCommaString()}원"
+            text = "${rewardPrice.toCommaString()}${stringResource(id = R.string.money_unit)}"
         )
         Divider(
             modifier = Modifier
@@ -146,11 +156,15 @@ fun FundingRewardScreen(
                 .height(1.dp)
                 .background(IndiStrawTheme.colors.lightBlack)
         )
-        TitleSemiBold(modifier = Modifier.padding(start = 15.dp), text = "추가후원", fontSize = 18)
+        TitleSemiBold(
+            modifier = Modifier.padding(start = 15.dp),
+            text = stringResource(id = R.string.add_funding),
+            fontSize = 18
+        )
         Spacer(modifier = Modifier.height(4.dp))
         TitleRegular(
             modifier = Modifier.padding(start = 15.dp),
-            text = "추가금액을 입력하시면 추가로 후원이 됩니다.",
+            text = stringResource(id = R.string.add_funding_description),
             fontSize = 14,
             color = IndiStrawTheme.colors.gray
         )
@@ -177,7 +191,11 @@ fun FundingRewardScreen(
                 .height(1.dp)
                 .background(IndiStrawTheme.colors.lightBlack)
         )
-        TitleSemiBold(modifier = Modifier.padding(start = 15.dp), text = "결제방법", fontSize = 18)
+        TitleSemiBold(
+            modifier = Modifier.padding(start = 15.dp),
+            text = stringResource(id = R.string.payment_method),
+            fontSize = 18
+        )
         Spacer(modifier = Modifier.height(12.dp))
         PaymentList(selectedPayment = selectedPayment) {
             selectedPayment = it
@@ -189,7 +207,11 @@ fun FundingRewardScreen(
                 .height(1.dp)
                 .background(IndiStrawTheme.colors.lightBlack)
         )
-        TitleSemiBold(modifier = Modifier.padding(start = 15.dp), text = "결제상세", fontSize = 18)
+        TitleSemiBold(
+            modifier = Modifier.padding(start = 15.dp),
+            text = stringResource(id = R.string.payment_detail),
+            fontSize = 18
+        )
         Spacer(modifier = Modifier.height(12.dp))
         Row(
             modifier = Modifier
@@ -197,13 +219,13 @@ fun FundingRewardScreen(
                 .padding(horizontal = 15.dp),
         ) {
             TitleRegular(
-                text = "상품가격",
+                text = stringResource(id = R.string.reward_price),
                 fontSize = 14,
                 color = IndiStrawTheme.colors.gray
             )
             Spacer(modifier = Modifier.weight(1F))
             TitleRegular(
-                text = "${rewardPrice.toCommaString()}원",
+                text = "${rewardPrice.toCommaString()}${stringResource(id = R.string.money_unit)}",
                 fontSize = 14,
                 color = IndiStrawTheme.colors.gray
             )
@@ -215,13 +237,13 @@ fun FundingRewardScreen(
                 .padding(horizontal = 15.dp),
         ) {
             TitleRegular(
-                text = "추가후원",
+                text = stringResource(id = R.string.add_funding_description),
                 fontSize = 14,
                 color = IndiStrawTheme.colors.gray
             )
             Spacer(modifier = Modifier.weight(1F))
             TitleRegular(
-                text = "${addFundingMoney.toCommaString()}원",
+                text = "${addFundingMoney.toCommaString()}${stringResource(id = R.string.money_unit)}",
                 fontSize = 14,
                 color = IndiStrawTheme.colors.gray
             )
@@ -239,12 +261,12 @@ fun FundingRewardScreen(
                 .padding(horizontal = 15.dp),
         ) {
             TitleSemiBold(
-                text = "총액",
+                text = stringResource(id = R.string.total_money),
                 fontSize = 18,
             )
             Spacer(modifier = Modifier.weight(1F))
             TitleSemiBold(
-                text = "${(rewardPrice + addFundingMoney).toCommaString()}원",
+                text = "${(rewardPrice + addFundingMoney).toCommaString()}${stringResource(id = R.string.money_unit)}",
                 fontSize = 18,
             )
         }
@@ -255,7 +277,7 @@ fun FundingRewardScreen(
                 .height(1.dp)
                 .background(IndiStrawTheme.colors.lightBlack)
         )
-        IndiStrawButton(text = "결제하기") {
+        IndiStrawButton(text = stringResource(id = R.string.pay)) {
             context.findActivity()?.let {
                 bootPayCreate(
                     activity = it,
