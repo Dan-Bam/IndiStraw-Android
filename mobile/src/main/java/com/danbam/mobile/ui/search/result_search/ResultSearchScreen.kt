@@ -90,7 +90,7 @@ fun ResultSearchScreen(
                                 0,
                                 "존윅",
                                 "진짜 재밌음",
-                                50,
+                                50.0,
                                 "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
                                 ""
                             )
