@@ -45,6 +45,7 @@ import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.util.toCommaString
 import com.danbam.domain.entity.FundingDetailEntity
 import com.danbam.domain.entity.FundingEntity
+import com.danbam.domain.entity.MovieEntity
 
 sealed class RewardType {
     object Default : RewardType()
@@ -103,15 +104,16 @@ fun FundingItem(
 
 @Composable
 fun MovieItem(
-    onClickItem: () -> Unit,
+    item: MovieEntity,
+    onClickItem: (Int) -> Unit,
 ) {
     ImageButton(
         modifier = Modifier
             .width(110.dp)
             .height(150.dp),
-        imgSrc = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
+        imgSrc = item.thumbnailUrl,
         shape = Shape.Rectangle,
-        onClick = onClickItem
+        onClick = { onClickItem(item.idx) }
     )
 }
 
