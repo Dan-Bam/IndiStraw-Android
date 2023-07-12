@@ -38,7 +38,7 @@ data class FundingCreateRequest(
         @SerializedName("price")
         val price: Long,
         @SerializedName("imageUrl")
-        val imageUrl: String,
+        val imageList: List<String>,
         @SerializedName("isReal")
         val isReal: Boolean,
         @SerializedName("totalCount")
@@ -68,7 +68,7 @@ fun FundingCreateParam.RewardParam.toRequest() = FundingCreateRequest.RewardRequ
     title = title,
     description = description,
     price = price,
-    imageUrl = imageUrl,
+    imageList = imageList,
     isReal = isReal,
     totalCount = totalCount
 )

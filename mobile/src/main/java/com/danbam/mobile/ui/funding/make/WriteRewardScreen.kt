@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -21,10 +22,10 @@ import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.component.IndiStrawButton
 import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.R
+import com.danbam.design_system.component.AddImageList
 import com.danbam.design_system.component.ExampleTextMedium
 import com.danbam.design_system.component.IndiStrawTextField
 import com.danbam.design_system.component.IndiStrawToggle
-import com.danbam.design_system.component.SelectImageButton
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.mobile.util.parser.toFile
 import okhttp3.internal.toLongOrDefault
@@ -39,24 +40,14 @@ fun WriteRewardScreen(
     var description by remember { mutableStateOf("") }
     var price by remember { mutableStateOf("") }
     var isReal by remember { mutableStateOf(false) }
+    val imageList = remember { mutableStateListOf<String>() }
     var amount by remember { mutableStateOf("") }
-    var thumbnailUrl: String? by remember { mutableStateOf(null) }
+    Spacer(modifier = Modifier.height(34.dp))
     IndiStrawColumnBackground(
         scrollEnabled = true
     ) {
         TitleRegular(
-            modifier = Modifier.padding(start = 15.dp, top = 36.dp, bottom = 16.dp),
-            text = stringResource(id = R.string.thumbnail)
-        )
-        SelectImageButton(imageUrl = thumbnailUrl, selectGallery = {
-            it?.let {
-                makeFundingViewModel.uploadImage(it.toFile(context)) {
-                    thumbnailUrl = it
-                }
-            }
-        })
-        TitleRegular(
-            modifier = Modifier.padding(start = 15.dp, top = 28.dp, bottom = 16.dp),
+            modifier = Modifier.padding(start = 15.dp, bottom = 16.dp),
             text = stringResource(id = R.string.title)
         )
         IndiStrawTextField(
@@ -105,10 +96,25 @@ fun WriteRewardScreen(
                 value = amount,
                 onValueChange = { amount = it })
         }
+        TitleRegular(
+            modifier = Modifier.padding(start = 15.dp, top = 28.dp),
+            text = stringResource(id = R.string.highlight)
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        AddImageList(
+            modifier = Modifier.padding(start = 15.dp),
+            imageList = imageList,
+            onRemove = { imageList.removeAt(it) }) {
+            it?.let {
+                makeFundingViewModel.uploadImage(it.toFile(context)) {
+                    imageList.add(it)
+                }
+            }
+        }
         Spacer(modifier = Modifier.height(37.dp))
         IndiStrawButton(text = stringResource(id = R.string.add)) {
             makeFundingViewModel.addReward(
-                thumbnailUrl = thumbnailUrl,
+                imageList = imageList,
                 title = title,
                 description = description,
                 price = price.toLongOrDefault(0L),

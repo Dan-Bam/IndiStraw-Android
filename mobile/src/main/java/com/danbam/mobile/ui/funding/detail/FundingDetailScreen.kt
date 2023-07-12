@@ -48,6 +48,8 @@ import com.danbam.design_system.component.RewardItem
 import com.danbam.design_system.component.RewardType
 import com.danbam.design_system.util.toCommaString
 import com.danbam.domain.entity.FundingDetailEntity
+import com.danbam.mobile.ui.funding.navigation.FundingDeepLinkKey
+import com.danbam.mobile.ui.funding.navigation.FundingNavigationItem
 import com.danbam.mobile.util.parser.toCommaString
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -70,7 +72,9 @@ fun FundingDetailScreen(
 
     IndiStrawBottomSheetLayout(sheetContent = {
         selectRewardItem?.let {
-            RewardItem(rewardType = RewardType.Expand, item = it)
+            RewardItem(rewardType = RewardType.Expand, item = it, onClickItem = {
+                navController.navigate(FundingNavigationItem.FundingReward.route + FundingDeepLinkKey.REWARD_TITLE + it.title + FundingDeepLinkKey.REWARD_DESCRIPTION + it.description + FundingDeepLinkKey.REWARD_PRICE + it.price)
+            })
         }
     }) { _, openSheet ->
         IndiStrawColumnBackground(
@@ -220,7 +224,6 @@ fun FundingDetailScreen(
                 RewardItem(item = state.fundingDetailEntity.reward[it], onClickItem = {
                     selectRewardItem = it
                     openSheet()
-
                 })
                 Spacer(modifier = Modifier.height(16.dp))
             }

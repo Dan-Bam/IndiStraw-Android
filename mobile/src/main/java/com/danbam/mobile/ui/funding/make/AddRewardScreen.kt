@@ -56,7 +56,7 @@ fun AddRewardScreen(
                         title = item.title,
                         description = item.description,
                         price = item.price,
-                        imageUrl = item.imageUrl
+                        imageList = item.imageList
                     ),
                     onDelete = {
                         makeFundingViewModel.removeReward(index)

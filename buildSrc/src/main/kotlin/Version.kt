@@ -57,5 +57,7 @@ object Version {
 
     const val TV = "1.0.0-alpha06"
 
+    const val BOOT_PAY = "4.0.8"
+
     const val INJECT = "1"
 }

@@ -222,13 +222,14 @@ fun RewardItem(
                 ) {
                     Spacer(modifier = Modifier.height(16.dp))
                     Box {
-                        HorizontalPager(pageCount = 4, state = state) {
+                        HorizontalPager(pageCount = item.imageList.size, state = state) {
                             AsyncImage(
                                 modifier = Modifier
                                     .clip(IndiStrawTheme.shapes.defaultRounded)
                                     .height(rewardImageSize.dp)
                                     .fillMaxWidth(),
-                                model = item.imageUrl, contentDescription = "rewardThumbnail",
+                                model = item.imageList[state.currentPage],
+                                contentDescription = "rewardThumbnail",
                                 contentScale = ContentScale.Crop
                             )
                         }
@@ -242,7 +243,7 @@ fun RewardItem(
                                     IndiStrawTheme.shapes.smallRounded
                                 )
                                 .padding(horizontal = 10.dp, vertical = 1.dp),
-                            text = "${state.currentPage + 1} / 4"
+                            text = "${state.currentPage + 1} / ${item.imageList.size}"
                         )
                     }
                     Spacer(modifier = Modifier.height(16.dp))
@@ -271,7 +272,7 @@ fun RewardItem(
                     if (onDelete == null) {
                         Spacer(modifier = Modifier.height(41.dp))
                         IndiStrawButton(text = stringResource(id = R.string.choose_reward)) {
-
+                            onClickItem(item)
                         }
                         Spacer(modifier = Modifier.height(35.dp))
                     }
