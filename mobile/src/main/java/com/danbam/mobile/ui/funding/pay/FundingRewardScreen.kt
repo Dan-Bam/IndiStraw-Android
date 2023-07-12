@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -23,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.component.IndiStrawButton
@@ -52,10 +55,20 @@ fun FundingRewardScreen(
     navController: NavController,
     rewardTitle: String,
     rewardDescription: String,
-    rewardPrice: Long
+    rewardPrice: Long,
+    fundingRewardViewModel: FundingRewardViewModel = hiltViewModel()
 ) {
+    val container = fundingRewardViewModel.container
+    val state = container.stateFlow.collectAsState().value
+    val sideEffect = container.sideEffectFlow
+
     var selectedPayment: Payment by remember { mutableStateOf(Payment.Naver) }
     var addFundingMoney by remember { mutableStateOf(0L) }
+
+    LaunchedEffect(Unit) {
+        fundingRewardViewModel.getProfile()
+    }
+
     IndiStrawColumnBackground(
         scrollEnabled = true
     ) {
@@ -72,21 +85,21 @@ fun FundingRewardScreen(
         TitleSemiBold(modifier = Modifier.padding(horizontal = 15.dp), text = "배송정보", fontSize = 18)
         Spacer(modifier = Modifier.height(12.dp))
         Row {
-            TitleRegular(modifier = Modifier.padding(start = 15.dp), text = "이름", fontSize = 14)
+            TitleRegular(modifier = Modifier.padding(start = 15.dp), text = state.name, fontSize = 14)
             Spacer(modifier = Modifier.width(8.dp))
-            TitleRegular(text = "이름", fontSize = 14)
+            TitleRegular(text = "(${state.phoneNumber})", fontSize = 14)
         }
         Spacer(modifier = Modifier.height(8.dp))
         TitleRegular(
             modifier = Modifier
                 .padding(horizontal = 15.dp),
-            text = "광주광역시 광산구 상무대로 312 광주소프트웨어마이스터고등학교",
+            text = state.address ?: "주소가 존재하지 않습니다.",
             color = IndiStrawTheme.colors.lightGray,
             fontSize = 14
         )
         TitleRegular(
             modifier = Modifier.padding(horizontal = 15.dp),
-            text = "(58418)",
+            text = "(${state.zipCode})",
             color = IndiStrawTheme.colors.lightGray,
             fontSize = 14
         )
