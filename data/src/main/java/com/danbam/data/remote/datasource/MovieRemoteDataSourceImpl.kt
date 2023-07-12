@@ -13,7 +13,7 @@ class MovieRemoteDataSourceImpl @Inject constructor(
     private val movieAPI: MovieAPI
 ) : MovieRemoteDataSource {
     override suspend fun movieList(genre: String?): Flow<PagingData<MovieResponse>> =
-        Pager(config = PagingConfig(pageSize = 10),
+        Pager(config = PagingConfig(pageSize = 20),
             pagingSourceFactory = {
                 MoviePagingSource(
                     movieAPI = movieAPI,
