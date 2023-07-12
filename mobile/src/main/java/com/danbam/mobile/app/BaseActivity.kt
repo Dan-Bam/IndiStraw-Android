@@ -20,6 +20,7 @@ import com.danbam.mobile.ui.profile.navigation.profileGraph
 import com.danbam.mobile.ui.auth.navigation.signUpGraph
 import com.danbam.mobile.ui.auth.signup.SignUpViewModel
 import com.danbam.mobile.ui.funding.navigation.fundingGraph
+import com.danbam.mobile.ui.movie.make.MakeMovieViewModel
 import com.danbam.mobile.ui.search.navigation.searchGraph
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -43,6 +44,7 @@ class BaseActivity : ComponentActivity() {
 @Composable
 fun BaseApp(navController: NavHostController) {
     val signUpViewModel: SignUpViewModel = hiltViewModel()
+    val makeMovieViewModel: MakeMovieViewModel = hiltViewModel()
     AnimatedNavHost(
         navController = navController,
         startDestination = MainNavigationItem.Intro.route,
@@ -65,7 +67,7 @@ fun BaseApp(navController: NavHostController) {
         mainGraph(navController = navController)
         authGraph(navController = navController)
         signUpGraph(navController = navController, signUpViewModel = signUpViewModel)
-        movieGraph(navController = navController)
+        movieGraph(navController = navController, makeMovieViewModel = makeMovieViewModel)
         profileGraph(navController = navController)
         searchGraph(navController = navController)
         fundingGraph(navController = navController)
