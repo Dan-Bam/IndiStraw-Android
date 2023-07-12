@@ -3,35 +3,38 @@ package com.danbam.tv.ui.movie.movie
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.tv.foundation.lazy.grid.TvGridCells
 import androidx.tv.foundation.lazy.grid.TvLazyVerticalGrid
-import androidx.tv.foundation.lazy.list.TvLazyColumn
 import androidx.tv.foundation.lazy.list.TvLazyRow
+import androidx.tv.foundation.lazy.list.items
 import androidx.tv.material3.Border
 import androidx.tv.material3.ClickableSurfaceDefaults
 import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.Surface
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.component.IndiStrawTvBackground
+import com.danbam.design_system.component.MovieGenre
 import com.danbam.design_system.component.MovieTvItem
 import com.danbam.design_system.component.TitleRegular
+import com.danbam.design_system.component.TitleSemiBold
 import com.danbam.tv.ui.main.navigation.MainNavigationItem
 
 @OptIn(ExperimentalTvMaterial3Api::class)
@@ -47,6 +50,7 @@ fun MovieScreen(
 
     val tabWidth = LocalConfiguration.current.screenWidthDp * 0.13
     val itemFocusRequester = remember { FocusRequester() }
+    var currentMovieGenre: MovieGenre by remember { mutableStateOf(MovieGenre.All) }
 
     LaunchedEffect(Unit) {
         if (!isOpenDrawer) {
@@ -59,7 +63,7 @@ fun MovieScreen(
             modifier = Modifier.padding(top = 90.dp, end = 40.dp),
             horizontalArrangement = Arrangement.spacedBy(20.dp)
         ) {
-            items(10) {
+            items(MovieGenre.toList()) {
                 Surface(
                     scale = ClickableSurfaceDefaults.scale(
                         focusedScale = 1F
@@ -69,27 +73,43 @@ fun MovieScreen(
                     ),
                     border = ClickableSurfaceDefaults.border(
                         border = Border(
-                            border = BorderStroke(1.dp, IndiStrawTheme.colors.gray),
+                            border = BorderStroke(
+                                if (currentMovieGenre == it) 0.dp else 1.dp,
+                                IndiStrawTheme.colors.gray
+                            ),
                             shape = IndiStrawTheme.shapes.smallRounded
                         ),
                         focusedBorder = Border.None
                     ),
                     color = ClickableSurfaceDefaults.color(
-                        color = IndiStrawTheme.colors.navy,
+                        color = if (currentMovieGenre == it) IndiStrawTheme.colors.main else IndiStrawTheme.colors.navy,
                         focusedColor = IndiStrawTheme.colors.main,
                         pressedColor = IndiStrawTheme.colors.main,
                         disabledColor = IndiStrawTheme.colors.navy
                     ),
-                    onClick = { }
+                    onClick = {
+                        currentMovieGenre = it
+                    }
                 ) {
-                    TitleRegular(
-                        modifier = Modifier
-                            .width(tabWidth.dp)
-                            .padding(vertical = 10.dp),
-                        text = "전체",
-                        fontSize = 24,
-                        textAlign = TextAlign.Center
-                    )
+                    if (currentMovieGenre == it) {
+                        TitleSemiBold(
+                            modifier = Modifier
+                                .width(tabWidth.dp)
+                                .padding(vertical = 10.dp),
+                            text = "${if (it == MovieGenre.All) "" else "#"}${stringResource(id = it.stringId)}",
+                            fontSize = 24,
+                            textAlign = TextAlign.Center
+                        )
+                    } else {
+                        TitleRegular(
+                            modifier = Modifier
+                                .width(tabWidth.dp)
+                                .padding(vertical = 10.dp),
+                            text = "${if (it == MovieGenre.All) "" else "#"}${stringResource(id = it.stringId)}",
+                            fontSize = 24,
+                            textAlign = TextAlign.Center
+                        )
+                    }
                 }
             }
         }

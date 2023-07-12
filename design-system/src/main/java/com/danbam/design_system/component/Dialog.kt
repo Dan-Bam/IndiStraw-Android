@@ -11,12 +11,18 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.tv.material3.ClickableSurfaceDefaults
+import androidx.tv.material3.ExperimentalTvMaterial3Api
+import androidx.tv.material3.Surface
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.R
 import com.danbam.design_system.util.indiStrawClickable
@@ -107,6 +113,94 @@ fun IndiStrawTvDialog(
                     text = stringResource(id = R.string.approve),
                     fontSize = 35
                 )
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalTvMaterial3Api::class)
+@Composable
+fun IndiStrawTvTitleDialog(
+    visible: Boolean,
+    title: String,
+    content: String,
+    onDismissRequest: () -> Unit,
+    onOkay: () -> Unit,
+) {
+    if (visible) {
+        Dialog(
+            properties = DialogProperties(usePlatformDefaultWidth = false),
+            onDismissRequest = onDismissRequest
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth(0.6F)
+                    .fillMaxHeight(0.5F)
+                    .background(
+                        color = IndiStrawTheme.colors.lightBlack.copy(alpha = 0.9F),
+                        shape = IndiStrawTheme.shapes.defaultRounded
+                    )
+                    .padding(vertical = 40.dp, horizontal = 50.dp),
+                verticalArrangement = Arrangement.SpaceBetween
+            ) {
+                Column {
+                    DialogMedium(text = title, fontSize = 48)
+                    Spacer(modifier = Modifier.height(10.dp))
+                    ExampleTextRegular(
+                        text = content,
+                        fontSize = 24,
+                        color = IndiStrawTheme.colors.gray
+                    )
+                }
+                Row(
+                    modifier = Modifier
+                        .align(End)
+                ) {
+                    Surface(
+                        shape = ClickableSurfaceDefaults.shape(
+                            shape = IndiStrawTheme.shapes.defaultRounded
+                        ),
+                        scale = ClickableSurfaceDefaults.scale(
+                            focusedScale = 1F
+                        ),
+                        color = ClickableSurfaceDefaults.color(
+                            color = IndiStrawTheme.colors.darkGray,
+                            focusedColor = IndiStrawTheme.colors.main,
+                            pressedColor = IndiStrawTheme.colors.main,
+                            disabledColor = IndiStrawTheme.colors.darkGray
+                        ),
+                        onClick = onDismissRequest
+                    ) {
+                        ExampleTextRegular(
+                            modifier = Modifier
+                                .padding(horizontal = 25.dp, vertical = 7.dp),
+                            text = stringResource(id = R.string.cancel),
+                            fontSize = 35
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(30.dp))
+                    Surface(
+                        shape = ClickableSurfaceDefaults.shape(
+                            shape = IndiStrawTheme.shapes.defaultRounded
+                        ),
+                        scale = ClickableSurfaceDefaults.scale(
+                            focusedScale = 1F
+                        ),
+                        color = ClickableSurfaceDefaults.color(
+                            color = IndiStrawTheme.colors.darkGray,
+                            focusedColor = IndiStrawTheme.colors.main,
+                            pressedColor = IndiStrawTheme.colors.main,
+                            disabledColor = IndiStrawTheme.colors.darkGray
+                        ),
+                        onClick = onOkay
+                    ) {
+                        ExampleTextRegular(
+                            modifier = Modifier.padding(horizontal = 25.dp, vertical = 7.dp),
+                            text = stringResource(id = R.string.approve),
+                            fontSize = 35
+                        )
+                    }
+                }
             }
         }
     }
