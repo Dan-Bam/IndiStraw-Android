@@ -22,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -37,16 +38,20 @@ import com.danbam.design_system.util.toCommaString
 import com.danbam.design_system.R
 import com.danbam.design_system.component.IndiStrawTextField
 import com.danbam.design_system.util.indiStrawClickable
+import com.danbam.mobile.util.android.findActivity
+import com.danbam.mobile.util.pay.bootPayCreate
+import com.danbam.mobile.util.pay.bootPayPayload
+import java.util.UUID
 
-sealed class Payment(val stringId: Int) {
+sealed class Payment(val stringId: Int, val method: String) {
     companion object {
         fun toList() = listOf(Naver, App, Account, Kakao)
     }
 
-    object Naver : Payment(R.string.id)
-    object App : Payment(R.string.id)
-    object Account : Payment(R.string.id)
-    object Kakao : Payment(R.string.id)
+    object Naver : Payment(R.string.id, "naverpay")
+    object App : Payment(R.string.id, "card")
+    object Account : Payment(R.string.id, "bank")
+    object Kakao : Payment(R.string.id, "kakaopay")
 
 }
 
@@ -64,6 +69,7 @@ fun FundingRewardScreen(
 
     var selectedPayment: Payment by remember { mutableStateOf(Payment.Naver) }
     var addFundingMoney by remember { mutableStateOf(0L) }
+    val context = LocalContext.current
 
     LaunchedEffect(Unit) {
         fundingRewardViewModel.getProfile()
@@ -85,7 +91,11 @@ fun FundingRewardScreen(
         TitleSemiBold(modifier = Modifier.padding(horizontal = 15.dp), text = "배송정보", fontSize = 18)
         Spacer(modifier = Modifier.height(12.dp))
         Row {
-            TitleRegular(modifier = Modifier.padding(start = 15.dp), text = state.name, fontSize = 14)
+            TitleRegular(
+                modifier = Modifier.padding(start = 15.dp),
+                text = state.name,
+                fontSize = 14
+            )
             Spacer(modifier = Modifier.width(8.dp))
             TitleRegular(text = "(${state.phoneNumber})", fontSize = 14)
         }
@@ -246,7 +256,20 @@ fun FundingRewardScreen(
                 .background(IndiStrawTheme.colors.lightBlack)
         )
         IndiStrawButton(text = "결제하기") {
+            context.findActivity()?.let {
+                bootPayCreate(
+                    activity = it,
+                    applicationContext = it.applicationContext,
+                    payload = bootPayPayload(
+                        title = rewardTitle,
+                        price = (rewardPrice + addFundingMoney).toDouble(),
+                        orderId = UUID.randomUUID().toString(),
+                        method = selectedPayment.method
+                    )
+                ) {
 
+                }
+            }
         }
         Spacer(modifier = Modifier.height(77.dp))
     }
