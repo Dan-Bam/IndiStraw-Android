@@ -121,6 +121,7 @@ fun MovieItem(
 @Composable
 fun MovieTvItem(
     modifier: Modifier = Modifier,
+    item: MovieEntity,
     onClickItem: () -> Unit,
 ) {
     val movieHeight = LocalConfiguration.current.screenHeightDp * 0.35
@@ -141,7 +142,7 @@ fun MovieTvItem(
         onClick = onClickItem
     ) {
         AsyncImage(
-            model = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
+            model = item.thumbnailUrl,
             contentDescription = "moviePoster",
             contentScale = ContentScale.Crop
         )
