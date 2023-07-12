@@ -11,8 +11,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
@@ -142,6 +145,7 @@ fun IndiStrawTvTitleDialog(
             ) {
                 Column {
                     DialogMedium(text = title, fontSize = 48)
+                    Spacer(modifier = Modifier.height(10.dp))
                     ExampleTextRegular(
                         text = content,
                         fontSize = 24,
@@ -165,14 +169,16 @@ fun IndiStrawTvTitleDialog(
                             pressedColor = IndiStrawTheme.colors.main,
                             disabledColor = IndiStrawTheme.colors.darkGray
                         ),
-                        onClick = onDismissRequest,
-                        modifier = Modifier.padding(horizontal = 30.dp, vertical = 15.dp)
+                        onClick = onDismissRequest
                     ) {
                         ExampleTextRegular(
+                            modifier = Modifier
+                                .padding(horizontal = 25.dp, vertical = 7.dp),
                             text = stringResource(id = R.string.cancel),
                             fontSize = 35
                         )
                     }
+                    Spacer(modifier = Modifier.width(30.dp))
                     Surface(
                         shape = ClickableSurfaceDefaults.shape(
                             shape = IndiStrawTheme.shapes.defaultRounded
@@ -186,10 +192,10 @@ fun IndiStrawTvTitleDialog(
                             pressedColor = IndiStrawTheme.colors.main,
                             disabledColor = IndiStrawTheme.colors.darkGray
                         ),
-                        onClick = onOkay,
-                        modifier = Modifier.padding(horizontal = 30.dp, vertical = 15.dp)
+                        onClick = onOkay
                     ) {
                         ExampleTextRegular(
+                            modifier = Modifier.padding(horizontal = 25.dp, vertical = 7.dp),
                             text = stringResource(id = R.string.approve),
                             fontSize = 35
                         )
