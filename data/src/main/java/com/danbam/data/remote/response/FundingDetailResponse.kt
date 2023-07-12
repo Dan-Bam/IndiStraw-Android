@@ -27,6 +27,8 @@ data class FundingDetailResponse(
     val imageList: List<String>,
     @SerializedName("fileList")
     val fileList: List<String>,
+    @SerializedName("isFunding")
+    val isFunding: Boolean,
 ) {
     data class WriterResponse(
         @SerializedName("idx")
@@ -45,12 +47,16 @@ data class FundingDetailResponse(
     )
 
     data class RewardResponse(
+        @SerializedName("idx")
+        val idx: Long,
         @SerializedName("title")
         val title: String,
         @SerializedName("description")
         val description: String,
         @SerializedName("price")
         val price: Long,
+        @SerializedName("totalCount")
+        val totalCount: Long?,
         @SerializedName("imageList")
         val imageList: List<String>,
     )
@@ -67,7 +73,8 @@ fun FundingDetailResponse.toEntity() = FundingDetailEntity(
     status = status,
     thumbnailUrl = thumbnailUrl,
     imageList = imageList,
-    fileList = fileList
+    fileList = fileList,
+    isFunding = isFunding
 )
 
 fun FundingDetailResponse.WriterResponse.toEntity() = FundingDetailEntity.WriterEntity(
@@ -82,8 +89,10 @@ fun FundingDetailResponse.AmountResponse.toEntity() = FundingDetailEntity.Amount
 )
 
 fun FundingDetailResponse.RewardResponse.toEntity() = FundingDetailEntity.RewardEntity(
+    idx = idx,
     title = title,
     description = description,
     price = price,
+    totalCount = totalCount,
     imageList = imageList
 )
