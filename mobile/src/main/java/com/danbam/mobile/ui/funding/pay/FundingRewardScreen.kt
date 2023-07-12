@@ -39,8 +39,10 @@ import com.danbam.design_system.R
 import com.danbam.design_system.component.IndiStrawTextField
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.mobile.util.android.findActivity
+import com.danbam.mobile.util.android.observeWithLifecycle
 import com.danbam.mobile.util.pay.bootPayCreate
 import com.danbam.mobile.util.pay.bootPayPayload
+import kotlinx.coroutines.InternalCoroutinesApi
 import java.util.UUID
 
 sealed class Payment(val stringId: Int, val method: String) {
@@ -55,9 +57,12 @@ sealed class Payment(val stringId: Int, val method: String) {
 
 }
 
+@OptIn(InternalCoroutinesApi::class)
 @Composable
 fun FundingRewardScreen(
     navController: NavController,
+    fundingIndex: Long,
+    rewardIndex: Long,
     rewardTitle: String,
     rewardDescription: String,
     rewardPrice: Long,
@@ -71,8 +76,17 @@ fun FundingRewardScreen(
     var addFundingMoney by remember { mutableStateOf(0L) }
     val context = LocalContext.current
 
+    sideEffect.observeWithLifecycle {
+        when (it) {
+            is FundingRewardSideEffect.SuccessFunding -> {
+                navController.popBackStack()
+            }
+        }
+    }
+
     LaunchedEffect(Unit) {
         fundingRewardViewModel.getProfile()
+        fundingRewardViewModel.getReceipt()
     }
 
     IndiStrawColumnBackground(
@@ -289,7 +303,12 @@ fun FundingRewardScreen(
                         method = selectedPayment.method
                     )
                 ) {
-
+                    fundingRewardViewModel.funding(
+                        crowdfundingIdx = fundingIndex,
+                        rewardIdx = rewardIndex,
+                        price = rewardPrice,
+                        extraPrice = addFundingMoney
+                    )
                 }
             }
         }

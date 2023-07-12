@@ -7,6 +7,7 @@ import com.danbam.data.remote.api.AuthAPI
 import com.danbam.data.remote.api.FileAPI
 import com.danbam.data.remote.api.SearchAPI
 import com.danbam.data.remote.api.CrowdFundingAPI
+import com.danbam.data.remote.api.FundingAPI
 import com.danbam.data.remote.api.QRCodeAPI
 import com.danbam.data.remote.interceptor.IndiStrawInterceptor
 import dagger.Module
@@ -57,11 +58,15 @@ object NetworkModule {
     fun provideAddressAPI(retrofit: Retrofit): AddressAPI = retrofit.create(AddressAPI::class.java)
 
     @Provides
-    fun provideCrowdFundingAPI(retrofit: Retrofit): CrowdFundingAPI = retrofit.create(CrowdFundingAPI::class.java)
+    fun provideCrowdFundingAPI(retrofit: Retrofit): CrowdFundingAPI =
+        retrofit.create(CrowdFundingAPI::class.java)
 
     @Provides
     fun provideSearchAPI(retrofit: Retrofit): SearchAPI = retrofit.create(SearchAPI::class.java)
 
     @Provides
     fun provideQRCodeAPI(retrofit: Retrofit): QRCodeAPI = retrofit.create(QRCodeAPI::class.java)
+
+    @Provides
+    fun provideFundingAPI(retrofit: Retrofit): FundingAPI = retrofit.create(FundingAPI::class.java)
 }

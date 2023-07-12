@@ -14,6 +14,7 @@ data class FundingDetailEntity(
     val thumbnailUrl: String,
     val imageList: List<String>,
     val fileList: List<String>,
+    val isFunding: Boolean,
 ) {
     data class WriterEntity(
         val idx: UUID,
@@ -27,9 +28,11 @@ data class FundingDetailEntity(
     )
 
     data class RewardEntity(
+        val idx: Long,
         val title: String,
         val description: String,
         val price: Long,
+        val totalCount: Long?,
         val imageList: List<String>,
     )
 }
