@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,6 +28,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.tv.foundation.lazy.list.TvLazyColumn
 import androidx.tv.foundation.lazy.list.items
 import androidx.tv.material3.Border
@@ -39,9 +42,11 @@ import com.danbam.design_system.component.DialogMedium
 import com.danbam.design_system.component.IndiStrawTvBackground
 import com.danbam.design_system.R
 import com.danbam.design_system.component.ExampleTextMedium
-import com.danbam.design_system.component.IndiStrawTvDialog
 import com.danbam.design_system.component.IndiStrawTvTitleDialog
 import com.danbam.design_system.component.TitleRegular
+import com.danbam.tv.ui.main.navigation.MainNavigationItem
+import com.danbam.tv.util.android.observeWithLifecycle
+import kotlinx.coroutines.InternalCoroutinesApi
 
 sealed class SettingNavigation(val stringId: Int) {
     companion object {
@@ -55,15 +60,29 @@ sealed class SettingNavigation(val stringId: Int) {
     object Withdrawal : SettingNavigation(R.string.tv_setting_withdrawal)
 }
 
-@OptIn(ExperimentalTvMaterial3Api::class)
+@OptIn(ExperimentalTvMaterial3Api::class, InternalCoroutinesApi::class)
 @Composable
 fun SettingScreen(
-
+    navController: NavController,
+    settingViewModel: SettingViewModel = hiltViewModel()
 ) {
+    val container = settingViewModel.container
+    val state = container.stateFlow.collectAsState().value
+    val sideEffect = container.sideEffectFlow
+
     var selectedSettingMenu: SettingNavigation? by remember { mutableStateOf(null) }
     var settingDialogVisible by remember { mutableStateOf(false) }
     var isLogout by remember { mutableStateOf(true) }
     val languageFocusRequester = remember { FocusRequester() }
+
+    sideEffect.observeWithLifecycle {
+        when (it) {
+            is SettingSideEffect.SuccessLogout -> {
+                settingDialogVisible = false
+                navController.popBackStack()
+            }
+        }
+    }
 
     BackHandler(selectedSettingMenu != null) {
         selectedSettingMenu = null
@@ -77,7 +96,7 @@ fun SettingScreen(
                 id = R.string.want_you_withdrawal
             ),
             onDismissRequest = { settingDialogVisible = false },
-            onOkay = {}
+            onOkay = { if (isLogout) settingViewModel.logout() }
         )
         Row {
             Column(
