@@ -113,6 +113,10 @@ object Dependency {
         const val FOUNDATION = "androidx.tv:tv-foundation:${Version.TV}"
     }
 
+    object BootPay {
+        const val BOOT_PAY = "io.github.bootpay:android:${Version.BOOT_PAY}"
+    }
+
     object JavaX {
         const val INJECT = "javax.inject:javax.inject:${Version.INJECT}"
     }

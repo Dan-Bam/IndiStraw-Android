@@ -23,6 +23,11 @@ android {
             "QR_URL",
             gradleLocalProperties(rootDir).getProperty("QR_URL")
         )
+        buildConfigField(
+            "String",
+            "PAY_KEY",
+            gradleLocalProperties(rootDir).getProperty("PAY_KEY")
+        )
     }
 
     buildTypes {
@@ -73,6 +78,9 @@ dependencies {
     implementation(Dependency.AndroidX.LIFECYCLE)
     implementation(Dependency.AndroidX.PAGING_COMPOSE)
 
+    implementation(Dependency.Retrofit.RETROFIT)
+    implementation(Dependency.Retrofit.RETROFIT_CONVERTER_GSON)
+
     implementation(Dependency.Compose.ACTIVITY)
     implementation(Dependency.Compose.UI)
     implementation(Dependency.Compose.VIEW_BINDING)
@@ -96,6 +104,8 @@ dependencies {
 
     implementation(Dependency.ExoPlayer.EXO_PLAYER_CORE)
     implementation(Dependency.ExoPlayer.EXO_PLAYER_UI)
+
+    implementation(Dependency.BootPay.BOOT_PAY)
 
     debugImplementation(Dependency.AndroidTest.COMPOSE_TOOL)
     debugImplementation(Dependency.AndroidTest.COMPOSE_MANIFEST)
