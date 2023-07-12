@@ -62,6 +62,7 @@ fun SettingScreen(
 ) {
     var selectedSettingMenu: SettingNavigation? by remember { mutableStateOf(null) }
     var settingDialogVisible by remember { mutableStateOf(false) }
+    var isLogout by remember { mutableStateOf(true) }
     val languageFocusRequester = remember { FocusRequester() }
 
     BackHandler(selectedSettingMenu != null) {
@@ -71,8 +72,10 @@ fun SettingScreen(
     IndiStrawTvBackground {
         IndiStrawTvTitleDialog(
             visible = settingDialogVisible,
-            title = "",
-            content = stringResource(id = R.string.want_you_logout),
+            title = if (isLogout) stringResource(id = R.string.logout) else stringResource(id = R.string.withdrawal),
+            content = if (isLogout) stringResource(id = R.string.want_you_logout) else stringResource(
+                id = R.string.want_you_withdrawal
+            ),
             onDismissRequest = { settingDialogVisible = false },
             onOkay = {}
         )
@@ -147,11 +150,13 @@ fun SettingScreen(
                 }
 
                 is SettingNavigation.Logout -> {
+                    isLogout = true
                     settingDialogVisible = true
                     selectedSettingMenu = null
                 }
 
                 is SettingNavigation.Withdrawal -> {
+                    isLogout = false
                     settingDialogVisible = true
                     selectedSettingMenu = null
                 }
