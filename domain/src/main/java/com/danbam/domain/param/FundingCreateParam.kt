@@ -20,7 +20,7 @@ data class FundingCreateParam(
         val title: String,
         val description: String,
         val price: Long,
-        val imageUrl: String,
+        val imageList: List<String>,
         val isReal: Boolean,
         val totalCount: Long?,
     )
