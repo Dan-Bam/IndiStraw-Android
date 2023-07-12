@@ -73,7 +73,7 @@ fun FundingDetailScreen(
     IndiStrawBottomSheetLayout(sheetContent = {
         selectRewardItem?.let {
             RewardItem(rewardType = RewardType.Expand, item = it, onClickItem = {
-                navController.navigate(FundingNavigationItem.FundingReward.route + FundingDeepLinkKey.REWARD_TITLE + it.title + FundingDeepLinkKey.REWARD_DESCRIPTION + it.description + FundingDeepLinkKey.REWARD_PRICE + it.price)
+                navController.navigate(FundingNavigationItem.FundingReward.route + FundingDeepLinkKey.FUNDING_INDEX + fundingIndex + FundingDeepLinkKey.REWARD_INDEX + it.idx + FundingDeepLinkKey.REWARD_TITLE + it.title + FundingDeepLinkKey.REWARD_DESCRIPTION + it.description + FundingDeepLinkKey.REWARD_PRICE + it.price)
             })
         }
     }) { _, openSheet ->

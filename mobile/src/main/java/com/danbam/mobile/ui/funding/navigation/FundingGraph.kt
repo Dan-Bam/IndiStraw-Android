@@ -20,6 +20,7 @@ sealed class FundingNavigationItem(val route: String) {
 
 object FundingDeepLinkKey {
     const val FUNDING_INDEX = "fundingIndex"
+    const val REWARD_INDEX = "rewardIndex"
     const val REWARD_TITLE = "rewardTitle"
     const val REWARD_DESCRIPTION = "rewardDescription"
     const val REWARD_PRICE = "rewardPrice"
@@ -47,10 +48,17 @@ fun NavGraphBuilder.fundingGraph(navController: NavHostController) {
     }
     composable(
         route = FundingNavigationItem.FundingReward.route
+            + FundingDeepLinkKey.FUNDING_INDEX + "{${FundingDeepLinkKey.FUNDING_INDEX}}"
             + FundingDeepLinkKey.REWARD_TITLE + "{${FundingDeepLinkKey.REWARD_TITLE}}"
             + FundingDeepLinkKey.REWARD_DESCRIPTION + "{${FundingDeepLinkKey.REWARD_DESCRIPTION}}"
             + FundingDeepLinkKey.REWARD_PRICE + "{${FundingDeepLinkKey.REWARD_PRICE}}",
         arguments = listOf(
+            navArgument(FundingDeepLinkKey.FUNDING_INDEX) {
+                type = NavType.LongType
+            },
+            navArgument(FundingDeepLinkKey.REWARD_INDEX) {
+                type = NavType.LongType
+            },
             navArgument(FundingDeepLinkKey.REWARD_TITLE) {
                 type = NavType.StringType
             },
@@ -62,11 +70,15 @@ fun NavGraphBuilder.fundingGraph(navController: NavHostController) {
             }
         )
     ) {
+        val fundingIndex = it.arguments?.getLong(FundingDeepLinkKey.FUNDING_INDEX) ?: 0L
+        val rewardIndex = it.arguments?.getLong(FundingDeepLinkKey.REWARD_INDEX) ?: 0L
         val rewardTitle = it.arguments?.getString(FundingDeepLinkKey.REWARD_TITLE) ?: ""
         val rewardDescription = it.arguments?.getString(FundingDeepLinkKey.REWARD_DESCRIPTION) ?: ""
         val rewardPrice = it.arguments?.getLong(FundingDeepLinkKey.REWARD_PRICE) ?: 0L
         FundingRewardScreen(
             navController = navController,
+            fundingIndex = fundingIndex,
+            rewardIndex = rewardIndex,
             rewardTitle = rewardTitle,
             rewardDescription = rewardDescription,
             rewardPrice = rewardPrice
