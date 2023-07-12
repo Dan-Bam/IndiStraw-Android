@@ -272,7 +272,7 @@ fun RewardItem(
                     if (onDelete == null) {
                         Spacer(modifier = Modifier.height(41.dp))
                         IndiStrawButton(text = stringResource(id = R.string.choose_reward)) {
-
+                            onClickItem(item)
                         }
                         Spacer(modifier = Modifier.height(35.dp))
                     }
