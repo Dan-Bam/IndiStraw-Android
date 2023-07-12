@@ -53,9 +53,11 @@ fun AddRewardScreen(
                 RewardItem(
                     rewardType = RewardType.Expand,
                     item = FundingDetailEntity.RewardEntity(
+                        idx = 0L,
                         title = item.title,
                         description = item.description,
                         price = item.price,
+                        totalCount = item.totalCount,
                         imageList = item.imageList
                     ),
                     onDelete = {
