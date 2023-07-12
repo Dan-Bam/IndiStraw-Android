@@ -1,5 +1,6 @@
 package com.danbam.tv.ui.setting
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,6 +20,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -36,6 +39,8 @@ import com.danbam.design_system.component.DialogMedium
 import com.danbam.design_system.component.IndiStrawTvBackground
 import com.danbam.design_system.R
 import com.danbam.design_system.component.ExampleTextMedium
+import com.danbam.design_system.component.IndiStrawTvDialog
+import com.danbam.design_system.component.IndiStrawTvTitleDialog
 import com.danbam.design_system.component.TitleRegular
 
 sealed class SettingNavigation(val stringId: Int) {
@@ -56,8 +61,21 @@ fun SettingScreen(
 
 ) {
     var selectedSettingMenu: SettingNavigation? by remember { mutableStateOf(null) }
+    var settingDialogVisible by remember { mutableStateOf(false) }
+    val languageFocusRequester = remember { FocusRequester() }
+
+    BackHandler(selectedSettingMenu != null) {
+        selectedSettingMenu = null
+    }
 
     IndiStrawTvBackground {
+        IndiStrawTvTitleDialog(
+            visible = settingDialogVisible,
+            title = "",
+            content = stringResource(id = R.string.want_you_logout),
+            onDismissRequest = { settingDialogVisible = false },
+            onOkay = {}
+        )
         Row {
             Column(
                 modifier = Modifier
@@ -76,6 +94,7 @@ fun SettingScreen(
                     items(SettingNavigation.toList()) {
                         Surface(
                             modifier = Modifier
+                                .focusRequester(if (it == SettingNavigation.Language) languageFocusRequester else FocusRequester())
                                 .padding(top = if (it == SettingNavigation.Logout) 50.dp else 20.dp)
                                 .fillMaxWidth(),
                             scale = ClickableSurfaceDefaults.scale(
@@ -110,16 +129,33 @@ fun SettingScreen(
                     }
                 }
             }
-            Spacer(modifier = Modifier.width(40.dp))
+            Spacer(modifier = Modifier.width(25.dp))
             when (selectedSettingMenu) {
                 is SettingNavigation.Language -> {
-                    SettingLanguageScreen()
+                    SettingLanguageScreen(
+                        selectLanguage = LanguageType.Korean,
+                        parentFocusRequester = languageFocusRequester
+                    )
                 }
 
-                is SettingNavigation.Term -> {}
-                is SettingNavigation.Account -> {}
-                is SettingNavigation.Logout -> {}
-                is SettingNavigation.Withdrawal -> {}
+                is SettingNavigation.Term -> {
+                    SettingTermScreen()
+                }
+
+                is SettingNavigation.Account -> {
+                    SettingAccountScreen()
+                }
+
+                is SettingNavigation.Logout -> {
+                    settingDialogVisible = true
+                    selectedSettingMenu = null
+                }
+
+                is SettingNavigation.Withdrawal -> {
+                    settingDialogVisible = true
+                    selectedSettingMenu = null
+                }
+
                 else -> {}
             }
             Spacer(modifier = Modifier.weight(1F))
