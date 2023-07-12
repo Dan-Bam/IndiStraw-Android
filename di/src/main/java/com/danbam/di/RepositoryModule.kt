@@ -5,6 +5,7 @@ import com.danbam.data.repository.AddressRepositoryImpl
 import com.danbam.data.repository.AuthRepositoryImpl
 import com.danbam.data.repository.FileRepositoryImpl
 import com.danbam.data.repository.CrowdFundingRepositoryImpl
+import com.danbam.data.repository.FundingRepositoryImpl
 import com.danbam.data.repository.QRCodeRepositoryImpl
 import com.danbam.data.repository.SearchRepositoryImpl
 import com.danbam.domain.repository.AccountRepository
@@ -12,6 +13,7 @@ import com.danbam.domain.repository.AddressRepository
 import com.danbam.domain.repository.AuthRepository
 import com.danbam.domain.repository.FileRepository
 import com.danbam.domain.repository.CrowdFundingRepository
+import com.danbam.domain.repository.FundingRepository
 import com.danbam.domain.repository.QRCodeRepository
 import com.danbam.domain.repository.SearchRepository
 import dagger.Binds
@@ -56,4 +58,9 @@ abstract class RepositoryModule {
     abstract fun bindQRCodeRepository(
         qrCodeRepositoryImpl: QRCodeRepositoryImpl,
     ): QRCodeRepository
+
+    @Binds
+    abstract fun bindFundingRepository(
+        fundingRepositoryImpl: FundingRepositoryImpl
+    ): FundingRepository
 }
