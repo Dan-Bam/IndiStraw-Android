@@ -8,7 +8,7 @@ data class FundingDetailState(
         title = "",
         description = "",
         writer = FundingDetailEntity.WriterEntity(UUID.randomUUID(), ""),
-        amount = FundingDetailEntity.AmountEntity(0F, 0F, 0),
+        amount = FundingDetailEntity.AmountEntity(0, 0, 0.0),
         remainingDay = 0,
         fundingCount = 0,
         reward = listOf(),
