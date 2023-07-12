@@ -39,7 +39,8 @@ import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 
 @Composable
 fun WriteIntroduceScreen(
-    navController: NavController
+    navController: NavController,
+    makeMovieViewModel: MakeMovieViewModel
 ) {
     val launcher = rememberLauncher(selectFile = {})
     var title by remember { mutableStateOf("") }
