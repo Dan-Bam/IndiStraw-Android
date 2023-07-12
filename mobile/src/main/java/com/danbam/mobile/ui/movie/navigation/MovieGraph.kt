@@ -1,11 +1,14 @@
 package com.danbam.mobile.ui.movie.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import com.danbam.mobile.ui.movie.all.MovieAllScreen
 import com.danbam.mobile.ui.movie.detail.MovieDetailScreen
 import com.danbam.mobile.ui.movie.make.AddActorScreen
+import com.danbam.mobile.ui.movie.make.MakeMovieViewModel
 import com.danbam.mobile.ui.movie.make.SearchActorScreen
 import com.danbam.mobile.ui.movie.make.WriteActorScreen
 import com.danbam.mobile.ui.movie.make.WriteIntroduceScreen
@@ -25,6 +28,7 @@ sealed class MovieNavigationItem(val route: String) {
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.movieGraph(
     navController: NavHostController,
+    makeMovieViewModel: MakeMovieViewModel
 ) {
     composable(route = MovieNavigationItem.Detail.route) {
         MovieDetailScreen(navController = navController)
@@ -36,15 +40,15 @@ fun NavGraphBuilder.movieGraph(
         MovieAllScreen(navController = navController)
     }
     composable(route = MovieNavigationItem.WriteIntroduce.route) {
-        WriteIntroduceScreen(navController = navController)
+        WriteIntroduceScreen(navController = navController, makeMovieViewModel = makeMovieViewModel)
     }
     composable(route = MovieNavigationItem.AddActor.route) {
-        AddActorScreen(navController = navController)
+        AddActorScreen(navController = navController, makeMovieViewModel = makeMovieViewModel)
     }
     composable(route = MovieNavigationItem.WriteActor.route) {
-        WriteActorScreen(navController = navController)
+        WriteActorScreen(navController = navController, makeMovieViewModel = makeMovieViewModel)
     }
     composable(route = MovieNavigationItem.SearchActor.route) {
-        SearchActorScreen(navController = navController)
+        SearchActorScreen(navController = navController, makeMovieViewModel = makeMovieViewModel)
     }
 }
