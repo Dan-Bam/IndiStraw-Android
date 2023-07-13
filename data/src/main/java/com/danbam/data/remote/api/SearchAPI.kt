@@ -1,5 +1,6 @@
 package com.danbam.data.remote.api
 
+import com.danbam.data.remote.response.FundingPageResponse
 import com.danbam.data.remote.response.MoviePageResponse
 import com.danbam.data.remote.response.RelatedSearchResponse
 import com.danbam.data.remote.util.EndPoint
@@ -17,4 +18,11 @@ interface SearchAPI {
         @Query("page") page: Int = 1,
         @Query("keyword") keyword: String,
     ): MoviePageResponse
+
+    @GET("${EndPoint.SEARCH}/crowdfunding")
+    suspend fun searchFunding(
+        @Query("page") page: Int = 0,
+        @Query("size") size: Int = 10,
+        @Query("keyword") keyword: String,
+    ): FundingPageResponse
 }

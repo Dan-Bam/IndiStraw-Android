@@ -4,7 +4,9 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.danbam.data.remote.api.SearchAPI
+import com.danbam.data.remote.pagingsource.SearchFundingPagingSource
 import com.danbam.data.remote.pagingsource.SearchMoviePagingSource
+import com.danbam.data.remote.response.FundingResponse
 import com.danbam.data.remote.response.MoviePageResponse
 import com.danbam.data.remote.response.MovieResponse
 import com.danbam.data.remote.response.RelatedSearchResponse
@@ -25,6 +27,15 @@ class SearchRemoteDataSourceImpl @Inject constructor(
         Pager(config = PagingConfig(pageSize = 20),
             pagingSourceFactory = {
                 SearchMoviePagingSource(
+                    searchAPI = searchAPI,
+                    keyword = keyword
+                )
+            }).flow
+
+    override suspend fun searchFunding(keyword: String): Flow<PagingData<FundingResponse>> =
+        Pager(config = PagingConfig(pageSize = 10),
+            pagingSourceFactory = {
+                SearchFundingPagingSource(
                     searchAPI = searchAPI,
                     keyword = keyword
                 )
