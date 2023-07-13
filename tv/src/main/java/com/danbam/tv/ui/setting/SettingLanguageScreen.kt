@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -27,26 +28,18 @@ import androidx.tv.material3.ClickableSurfaceDefaults
 import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.Surface
 import com.danbam.design_system.IndiStrawTheme
-import com.danbam.design_system.R
 import com.danbam.design_system.component.ExampleTextMedium
-
-sealed class LanguageType(val stringId: Int) {
-    companion object {
-        fun toList() = listOf(Korean, Japanese, Chinese, English)
-    }
-
-    object Korean : LanguageType(R.string.id)
-    object Japanese : LanguageType(R.string.id)
-    object Chinese : LanguageType(R.string.id)
-    object English : LanguageType(R.string.id)
-}
+import com.danbam.design_system.util.Language
+import com.danbam.design_system.util.changeLanguage
 
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 fun SettingLanguageScreen(
-    selectLanguage: LanguageType,
-    parentFocusRequester: FocusRequester
+    selectLanguage: Language,
+    parentFocusRequester: FocusRequester,
+    settingViewModel: SettingViewModel
 ) {
+    val context = LocalContext.current
     val focusRequester = remember { FocusRequester() }
 
     LaunchedEffect(Unit) {
@@ -67,7 +60,7 @@ fun SettingLanguageScreen(
             TvLazyColumn(
                 verticalArrangement = Arrangement.spacedBy(20.dp)
             ) {
-                items(LanguageType.toList()) {
+                items(Language.toList()) {
                     Surface(
                         modifier = Modifier.focusRequester(if (selectLanguage == it) focusRequester else FocusRequester()),
                         scale = ClickableSurfaceDefaults.scale(
@@ -83,7 +76,8 @@ fun SettingLanguageScreen(
                             disabledColor = Color.Transparent
                         ),
                         onClick = {
-                            parentFocusRequester.requestFocus()
+                            settingViewModel.saveLanguage(it)
+                            it.changeLanguage(context)
                         }
                     ) {
                         ExampleTextMedium(

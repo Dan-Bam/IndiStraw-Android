@@ -13,6 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -23,6 +24,8 @@ import com.danbam.design_system.component.IndiStrawTvBackground
 import com.danbam.design_system.component.IndiStrawTvButton
 import com.danbam.design_system.component.IndiStrawTvDialog
 import com.danbam.design_system.component.IndiStrawTvTextField
+import com.danbam.design_system.util.Language
+import com.danbam.design_system.util.changeLanguage
 import com.danbam.tv.ui.main.navigation.MainNavigationItem
 import com.danbam.tv.util.android.observeWithLifecycle
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -37,6 +40,7 @@ fun LoginScreen(
     val state = container.stateFlow.collectAsState().value
     val sideEffect = container.sideEffectFlow
 
+    val context = LocalContext.current
     var id by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var errorText by remember { mutableStateOf("") }
@@ -67,10 +71,6 @@ fun LoginScreen(
 
             is LoginSideEffect.UnKnownException -> {}
         }
-    }
-
-    LaunchedEffect(Unit) {
-        loginViewModel.isLogin()
     }
 
     IndiStrawTvBackground {

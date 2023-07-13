@@ -13,6 +13,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -25,6 +26,8 @@ import com.danbam.design_system.component.JoinBold
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.R
+import com.danbam.design_system.util.Language
+import com.danbam.design_system.util.changeLanguage
 import com.danbam.mobile.ui.auth.navigation.AuthNavigationItem
 import com.danbam.mobile.ui.main.navigation.MainNavigationItem
 import com.danbam.mobile.util.android.observeWithLifecycle
@@ -41,6 +44,8 @@ fun IntroScreen(
     val state = container.stateFlow.collectAsState().value
     val sideEffect = container.sideEffectFlow
 
+    val context = LocalContext.current
+
     sideEffect.observeWithLifecycle {
         when (it) {
             is IntroSideEffect.SuccessLogin -> {
@@ -52,6 +57,15 @@ fun IntroScreen(
 
     LaunchedEffect(true) {
         introViewModel.isLogin()
+        introViewModel.fetchLanguage()
+    }
+
+    LaunchedEffect(state.systemLanguage) {
+        state.systemLanguage?.let { language ->
+            Language.toList().forEach {
+                if (it.type == language) it.changeLanguage(context)
+            }
+        }
     }
 
     IndiStrawBoxBackground {

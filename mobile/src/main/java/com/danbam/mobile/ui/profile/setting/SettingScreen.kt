@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -17,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -29,8 +32,12 @@ import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.R
 import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
+import com.danbam.design_system.component.ButtonMedium
 import com.danbam.design_system.component.IndiStrawBottomSheetLayout
 import com.danbam.design_system.component.IndiStrawDialog
+import com.danbam.design_system.util.Language
+import com.danbam.design_system.util.RemoveOverScrollLazyColumn
+import com.danbam.design_system.util.changeLanguage
 import com.danbam.mobile.ui.auth.navigation.AuthDeepLinkKey
 import com.danbam.mobile.ui.auth.navigation.AuthNavigationItem
 import com.danbam.mobile.ui.auth.navigation.CertificateType
@@ -49,6 +56,7 @@ fun SettingScreen(
     val state = container.stateFlow.collectAsState().value
     val sideEffect = container.sideEffectFlow
 
+    val context = LocalContext.current
     var logoutDialogVisible by remember { mutableStateOf(false) }
     var withdrawDialogVisible by remember { mutableStateOf(false) }
 
@@ -81,7 +89,9 @@ fun SettingScreen(
         stringResource(id = R.string.change_password) to {
             navController.navigate(AuthNavigationItem.Certificate.route + AuthDeepLinkKey.CERTIFICATE_TYPE + CertificateType.CHANGE_PASSWORD)
         },
-        stringResource(id = R.string.change_language) to { changeLanguage() },
+        stringResource(id = R.string.change_language) to {
+            changeLanguage()
+        },
         stringResource(id = R.string.qr_login) to {
             navController.navigate(ProfileNavigationItem.QRLogin.route)
         }
@@ -96,7 +106,31 @@ fun SettingScreen(
     )
 
     IndiStrawBottomSheetLayout(sheetContent = {
-
+        RemoveOverScrollLazyColumn(
+            modifier = Modifier
+                .padding(vertical = 40.dp)
+                .fillMaxWidth()
+                .padding(horizontal = 32.dp)
+        ) {
+            items(Language.toList()) {
+                ButtonMedium(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 16.dp)
+                        .indiStrawClickable {
+                            settingViewModel.saveLanguage(it.type)
+                            it.changeLanguage(context)
+                        },
+                    text = stringResource(id = it.stringId)
+                )
+                Divider(
+                    modifier = Modifier
+                        .height(1.dp)
+                        .fillMaxWidth()
+                        .background(IndiStrawTheme.colors.gray3)
+                )
+            }
+        }
     }) { _, openBottomSheet ->
         changeLanguage = openBottomSheet
         IndiStrawColumnBackground {
@@ -113,7 +147,11 @@ fun SettingScreen(
             Spacer(modifier = Modifier.height(10.dp))
             SettingItem(
                 itemMap = secondLine,
-                frontIcon = listOf(IndiStrawIconList.Shield, IndiStrawIconList.Earth, IndiStrawIconList.QR)
+                frontIcon = listOf(
+                    IndiStrawIconList.Shield,
+                    IndiStrawIconList.Earth,
+                    IndiStrawIconList.QR
+                )
             )
             Spacer(modifier = Modifier.height(36.dp))
             SettingItem(itemMap = thirdLine)

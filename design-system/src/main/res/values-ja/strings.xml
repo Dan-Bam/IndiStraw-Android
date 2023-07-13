@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    銀行リスト-->
+    <string name="gwangju_bank">クァンジュ</string>
+    <string name="hana_bank">ハナ</string>
+    <string name="nh_bank">NH農協</string>
+    <string name="post_bank">郵便局</string>
+    <string name="shinhyeop_bank">シンヒョプ</string>
+    <string name="shinhan_bank">新韓</string>
+    <string name="toss_bank">トス銀行</string>
+    <string name="woori_bank">ウリ</string>
+    <string name="kakao_bank">カカオバンク</string>
+
+    <!--    支払い方法リスト-->
+    <string name="payment_naver">ネイバーペイ（決済型）</string>
+    <string name="payment_card">ISP / アプリカード決済</string>
+    <string name="payment_account">口座振込</string>
+    <string name="payment_kakao">カカオペイ</string>
+
+    <!--    ジャンルリスト-->
+    <string name="genre_all">すべて</string>
+    <string name="genre_action">アクション</string>
+    <string name="genre_romance">ロマンス</string>
+    <string name="genre_comedy">コメディ</string>
+    <string name="genre_thriller">スリラー</string>
+    <string name="genre_drama">ドラマ</string>
+    <string name="genre_sf">SF</string>
+    <string name="genre_animation">アニメーション</string>
+    <string name="genre_horror">ホラー</string>
+    <string name="genre_adventure">冒険</string>
+    <string name="genre_fantasy">ファンタジー</string>
+
+    <!--    設定リスト-->
+    <string name="tv_setting_language">言語</string>
+    <string name="tv_setting_term">利用規約</string>
+    <string name="tv_setting_account">アカウント</string>
+    <string name="tv_setting_logout">ログアウト</string>
+    <string name="tv_setting_withdrawal">退会</string>
+
+    <!--    その他-->
+    <string name="wrong_length_id">6〜15文字で入力してください。</string>
+    <string name="wrong_length_password">8〜20文字で入力してください。</string>
+    <string name="require_terms_of_use">[必須] 利用規約に同意</string>
+    <string name="require_personal_information">[必須] 個人情報の収集と利用に同意</string>
+    <string name="app_name">Indi Straw</string>
+    <string name="qr_login">QRログイン</string>
+    <string name="require_qr">QRコードを認証してください。</string>
+    <string name="remain_qr_time">QR有効時間</string>
+
+    <!--    ㄱ으로 시작する文字列-->
+    <string name="movie_director">監督</string>
+    <string name="add_director">監督を追加</string>
+    <string name="reward_remain">残り個数</string>
+    <string name="approve_personal_information">個人情報の同意</string>
+    <string name="choose_gallery">ギャラリーから選択</string>
+    <string name="search">検索</string>
+    <string name="payment_method">支払方法</string>
+    <string name="payment_detail">支払詳細</string>
+    <string name="pay">支払う</string>
+    <string name="next">続ける</string>
+    <string name="setting_account">アカウント設定</string>
+    <string name="already_sign_up">アカウントをお持ちでないですか？</string>
+    <string name="account_info">アカウント情報</string>
+    <string name="account_number">口座番号</string>
+    <string name="money">金額</string>
+    <string name="require_money">金額を設定してください。</string>
+    <string name="add_search_director">既存の監督を追加する</string>
+    <string name="add_search_actor">既存の俳優を追加する</string>
+
+    <!--    ㄴ으로 시작する文字列-->
+    <string name="rest_date">残り期間</string>
+
+    <!--    ㄷ으로 시작する文字列-->
+    <string name="re_send">再送信</string>
+    <string name="complete">達成</string>
+    <string name="indi_movie">インディペンデント映画</string>
+    <string name="make_indi_movie">インディペンデント映画を作る</string>
+    <string name="back">戻る</string>
+    <string name="enroll">登録する</string>
+    <string name="wrong_not_enroll_phone_number">登録されていない電話番号です。</string>
+
+    <!--    ㄹ으로 시작する文字列-->
+    <string name="logout">ログアウト</string>
+    <string name="want_you_logout">ログアウトしますか？</string>
+    <string name="login">ログイン</string>
+    <string name="do_login">ログインする</string>
+    <string name="choose_reward">リワードの種類</string>
+    <string name="add_reward">リワードを追加</string>
+    <string name="do_add_reward">リワードを追加する</string>
+    <string name="want_you_add_reward">リワードを追加しますか？</string>
+
+    <!--    ㅁ으로 시작する文字列-->
+    <string name="end_date">締め切り日</string>
+    <string name="my_funding">マイファンディング</string>
+    <string name="view_all_movie">すべての映画を表示</string>
+    <string name="collect_money">集まった金額</string>
+    <string name="target_money">目標金額</string>
+    <string name="require_target_money">目標金額を設定してください。</string>
+    <string name="looking_for">何をお探しですか？</string>
+
+    <!--    ㅂ으로 시작する文字列-->
+    <string name="movie_actor">俳優</string>
+    <string name="add_actor">俳優を追加</string>
+    <string name="delivery_info">配送情報</string>
+    <string name="certificate_phone_number">番号認証</string>
+    <string name="change">変更する</string>
+    <string name="require_change_password">変更するパスワードを入力してください。</string>
+    <string name="password">パスワード</string>
+    <string name="change_password">パスワードの変更</string>
+    <string name="find_password">パスワードをお忘れですか？</string>
+    <string name="check_password">パスワードの確認</string>
+    <string name="require_check_password">パスワードの確認を入力してください。</string>
+    <string name="wrong_different_password">パスワードが一致しません。</string>
+    <string name="require_password">パスワードを入力してください。</string>
+    <string name="wrong_password">正しくないパスワードです。</string>
+
+    <!--    ㅅ으로 시작する文字列-->
+    <string name="require_account_number">使用する口座番号を入力してください。</string>
+    <string name="edit_picture">写真を編集する</string>
+    <string name="choose_camera">写真を撮る</string>
+    <string name="detail_address">詳細住所</string>
+    <string name="require_detail_address">詳細住所を入力してください。</string>
+    <string name="reward_price">商品価格</string>
+    <string name="reward_info">商品情報</string>
+    <string name="add_new_director">新しい監督を追加する</string>
+    <string name="add_new_actor">新しい俳優を追加する</string>
+    <string name="require_new_phone_number">新しい電話番号を入力してください。</string>
+    <string name="setting">設定</string>
+    <string name="introduce">紹介</string>
+    <string name="require_introduce">紹介文を入力してください。</string>
+    <string name="amount">数量</string>
+    <string name="require_amount">数量を入力してください。</string>
+    <string name="wrong_match_password">数字、大文字と小文字のアルファベット、特殊文字を含めてください。</string>
+    <string name="is_real">実物の有無</string>
+    <string name="is_real_reward">実物のリワードですか？</string>
+    <string name="thumbnail">サムネイル</string>
+
+    <!--    ㅇ으로 시작する文字列-->
+    <string name="id">ID</string>
+    <string name="find_id">IDを検索</string>
+    <string name="require_id">IDを入力してください。</string>
+    <string name="change_language">言語を変更する</string>
+    <string name="movie">映画</string>
+    <string name="require_movie">映画を登録してください。</string>
+    <string name="money_unit">ウォン</string>
+    <string name="require_bank">銀行を選択してください。</string>
+    <string name="name">名前</string>
+    <string name="require_name">名前を入力してください。</string>
+    <string name="wrong_enroll_id">すでに登録されたIDです。</string>
+    <string name="wrong_enroll_phone_number">すでに登録された電話番号です。</string>
+    <string name="upload_image">画像をアップロード</string>
+    <string name="require_thumbnail">画像を登録してください。</string>
+    <string name="watch_going">続きから見る</string>
+    <string name="popular">人気</string>
+    <string name="popular_search_movie">人気の検索映画</string>
+    <string name="popular_search">人気のタグ</string>
+    <string name="certificate_number">認証番号</string>
+    <string name="check_certificate_number">認証番号を確認</string>
+    <string name="wrong_expired_certificate_number">認証番号が期限切れです。</string>
+    <string name="already_certificate_number">認証番号が届いていませんか？</string>
+    <string name="wrong_certificate_number">認証番号が間違っています。</string>
+    <string name="require_certificate_number">認証番号を入力してください。</string>
+    <string name="finish_certificate">認証完了</string>
+    <string name="certificate">認証する</string>
+
+    <!--    ㅈ으로 시작する文字列-->
+    <string name="view_detail">詳細を表示</string>
+    <string name="list_project">作品リスト</string>
+    <string name="wait">しばらくしてからもう一度お試しください。</string>
+    <string name="save">保存する</string>
+    <string name="view_all">すべて表示 ></string>
+    <string name="movie_all">すべての映画</string>
+    <string name="approve_all">すべて同意する</string>
+    <string name="phone_number">電話番号</string>
+    <string name="wrong_match_phone_number">電話番号の形式が正しくありません。</string>
+    <string name="require_phone_number">電話番号を入力してください。</string>
+    <string name="title">タイトル</string>
+    <string name="require_title">タイトルを入力してください。</string>
+    <string name="wrong_id">存在しないIDです。</string>
+    <string name="finish">終了</string>
+    <string name="address">住所</string>
+    <string name="no_address">住所が存在しません。</string>
+    <string name="require_address">住所を入力してください。</string>
+    <string name="find_address">住所を検索</string>
+    <string name="mc">進行者</string>
+
+    <!--    ㅊ으로 시작する文字列-->
+    <string name="participate_people">参加人数</string>
+    <string name="watch_first">最初から見る</string>
+    <string name="attached_file">添付ファイル</string>
+    <string name="total_money">総額</string>
+    <string name="add_image">追加画像</string>
+    <string name="add_funding_description">追加金額を入力すると、追加でサポートされます。</string>
+    <string name="add">追加する</string>
+    <string name="add_funding">追加サポート</string>
+    <string name="participate_movie">出演作品</string>
+    <string name="cancel">キャンセル</string>
+    <string name="recent">最新</string>
+    <string name="recent_search">最近の検索語</string>
+    <string name="recent_watch_movie">最近の視聴</string>
+    <string name="wrong_over_request_phone_number">最大要求回数を超えました。1時間後に再試行してください。</string>
+    <string name="wrong_over_request_certificate_number">最大認証確認要求回数を超えました。1時間後に再試行してください。</string>
+    <string name="recommend">おすすめ</string>
+    <string name="actor">出演者</string>
+
+    <!--    ㅋ으로 시작する文字列-->
+    <string name="crowd_funding">クラウドファンディング</string>
+    <string name="make_crowd_fund">クラウドファンディングを作成する</string>
+    <string name="participate_funding">クラウドファンディングに参加する</string>
+    <string name="enroll_crowd_funding_thumbnail">クラウドファンディングのサムネイルを登録する</string>
+    <string name="is_use_crowd_funding">クラウドファンディングを使用しましたか？</string>
+
+    <!--    ㅍ으로 시작する文字列-->
+    <string name="file">ファイル</string>
+    <string name="require_file">ファイルを添付してください。</string>
+    <string name="add_file">ファイルを追加</string>
+    <string name="is_funding">サポートの有無</string>
+    <string name="do_funding">サポートする</string>
+    <string name="change_profile">プロフィールを変更する</string>
+    <string name="require_picture">プロフィールを選択してください。</string>
+
+    <!--    ㅎ으로 시작する文字列-->
+    <string name="highlight">ハイライト</string>
+    <string name="go">行く</string>
+    <string name="approve">確認</string>
+    <string name="check">確認する</string>
+    <string name="current_id">現在のID</string>
+    <string name="current_address">現在の住所</string>
+    <string name="sign_up">会員登録</string>
+    <string name="fail_sign_up">会員登録に失敗しました。</string>
+    <string name="withdrawal">退会</string>
+    <string name="want_you_withdrawal">退会しますか？</string>
+    <string name="home">ホーム</string>
+    <string name="donate">サポートする</string>
+</resources>

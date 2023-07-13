@@ -1,10 +1,9 @@
-package com.danbam.mobile.ui.main.intro
+package com.danbam.tv.ui.main.intro
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.danbam.domain.usecase.auth.IsLoginUseCase
 import com.danbam.domain.usecase.system.FetchLanguageUseCase
-import com.danbam.mobile.util.android.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
@@ -21,23 +20,23 @@ class IntroViewModel @Inject constructor(
 ) : ContainerHost<IntroState, IntroSideEffect>, ViewModel() {
     override val container = container<IntroState, IntroSideEffect>(IntroState())
 
-    fun isLogin() = intent {
+    private fun isLogin() = intent {
         viewModelScope.launch {
             isLoginUseCase().onSuccess {
-                postSideEffect(IntroSideEffect.SuccessLogin)
+                postSideEffect(IntroSideEffect.LoginSuccess)
             }.onFailure {
-                it.errorHandling(
-                    unknownAction = { reduce { state.copy(isNeedLogin = true) } },
-                    expiredTokenException = { reduce { state.copy(isNeedLogin = true) } }
-                )
+                postSideEffect(IntroSideEffect.LoginFail)
             }
         }
     }
 
     fun fetchLanguage() = intent {
         viewModelScope.launch {
-            fetchLanguageUseCase().onSuccess {
-                reduce { state.copy(systemLanguage = it.ifEmpty { null }) }
+            fetchLanguageUseCase().onSuccess { language ->
+                reduce { state.copy(currentLanguage = language) }
+                isLogin()
+            }.onFailure {
+                isLogin()
             }
         }
     }

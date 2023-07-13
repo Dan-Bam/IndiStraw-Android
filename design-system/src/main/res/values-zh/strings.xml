@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    银行列表-->
+    <string name="gwangju_bank">光州银行</string>
+    <string name="hana_bank">哈纳银行</string>
+    <string name="nh_bank">NH农协银行</string>
+    <string name="post_bank">邮政银行</string>
+    <string name="shinhyeop_bank">信合</string>
+    <string name="shinhan_bank">新韩银行</string>
+    <string name="toss_bank">Toss银行</string>
+    <string name="woori_bank">宇利</string>
+    <string name="kakao_bank">卡卡欧银行</string>
+
+    <!--    支付方式列表-->
+    <string name="payment_naver">Naver Pay（付款方式）</string>
+    <string name="payment_card">ISP / 应用程序卡付款</string>
+    <string name="payment_account">银行转账</string>
+    <string name="payment_kakao">Kakao Pay</string>
+
+    <!--    类型列表-->
+    <string name="genre_all">全部</string>
+    <string name="genre_action">动作</string>
+    <string name="genre_romance">爱情</string>
+    <string name="genre_comedy">喜剧</string>
+    <string name="genre_thriller">惊悚</string>
+    <string name="genre_drama">戏剧</string>
+    <string name="genre_sf">科幻</string>
+    <string name="genre_animation">动画</string>
+    <string name="genre_horror">恐怖</string>
+    <string name="genre_adventure">冒险</string>
+    <string name="genre_fantasy">奇幻</string>
+
+    <!--    设置列表-->
+    <string name="tv_setting_language">语言</string>
+    <string name="tv_setting_term">条款</string>
+    <string name="tv_setting_account">帐户</string>
+    <string name="tv_setting_logout">退出登录</string>
+    <string name="tv_setting_withdrawal">注销会员</string>
+
+    <!--    其他-->
+    <string name="wrong_length_id">请输入6至15个字符。</string>
+    <string name="wrong_length_password">请输入8至20个字符。</string>
+    <string name="require_terms_of_use">[必须] 同意条款</string>
+    <string name="require_personal_information">[必须] 同意个人信息收集和使用</string>
+    <string name="app_name">Indi Straw</string>
+    <string name="qr_login">QR登录</string>
+    <string name="require_qr">请扫描并验证QR码。</string>
+    <string name="remain_qr_time">QR码有效时间</string>
+
+    <!--    以“ㄱ”开头的字符串-->
+    <string name="movie_director">导演</string>
+    <string name="add_director">添加导演</string>
+    <string name="reward_remain">剩余个</string>
+    <string name="approve_personal_information">个人信息同意</string>
+    <string name="choose_gallery">从图库选择</string>
+    <string name="search">搜索</string>
+    <string name="payment_method">付款方式</string>
+    <string name="payment_detail">付款明细</string>
+    <string name="pay">付款</string>
+    <string name="next">继续</string>
+    <string name="setting_account">帐户设置</string>
+    <string name="already_sign_up">没有帐户吗？</string>
+    <string name="account_info">帐户信息</string>
+    <string name="account_number">帐号</string>
+    <string name="money">金额</string>
+    <string name="require_money">请输入金额。</string>
+    <string name="add_search_director">添加现有导演</string>
+    <string name="add_search_actor">添加现有演员</string>
+
+    <!--    以“ㄴ”开头的字符串-->
+    <string name="rest_date">剩余时间</string>
+
+    <!--    以“ㄷ”开头的字符串-->
+    <string name="re_send">重新发送</string>
+    <string name="complete">完成</string>
+    <string name="indi_movie">独立电影</string>
+    <string name="make_indi_movie">制作独立电影</string>
+    <string name="back">返回</string>
+    <string name="enroll">注册</string>
+    <string name="wrong_not_enroll_phone_number">电话号码未注册。</string>
+
+    <!--    以“ㄹ”开头的字符串-->
+    <string name="logout">退出登录</string>
+    <string name="want_you_logout">确定要退出登录吗？</string>
+    <string name="login">登录</string>
+    <string name="do_login">登录</string>
+    <string name="choose_reward">奖励类型</string>
+    <string name="add_reward">添加奖励</string>
+    <string name="do_add_reward">添加奖励</string>
+    <string name="want_you_add_reward">确定要添加奖励吗？</string>
+
+    <!--    以“ㅁ”开头的字符串-->
+    <string name="end_date">截止日期</string>
+    <string name="my_funding">我的资助</string>
+    <string name="view_all_movie">查看所有电影</string>
+    <string name="collect_money">筹款金额</string>
+    <string name="target_money">目标金额</string>
+    <string name="require_target_money">请输入目标金额。</string>
+    <string name="looking_for">您在寻找什么？</string>
+
+    <!--    以“ㅂ”开头的字符串-->
+    <string name="movie_actor">演员</string>
+    <string name="add_actor">添加演员</string>
+    <string name="delivery_info">交付信息</string>
+    <string name="certificate_phone_number">号码验证</string>
+    <string name="change">更改</string>
+    <string name="require_change_password">请输入要更改的密码。</string>
+    <string name="password">密码</string>
+    <string name="change_password">更改密码</string>
+    <string name="find_password">找回密码</string>
+    <string name="check_password">确认密码</string>
+    <string name="require_check_password">请输入确认密码。</string>
+    <string name="wrong_different_password">密码不匹配。</string>
+    <string name="require_password">请输入密码。</string>
+    <string name="wrong_password">密码不正确。</string>
+
+    <!--    以“ㅅ”开头的字符串-->
+    <string name="require_account_number">请输入要使用的帐号。</string>
+    <string name="edit_picture">编辑图片</string>
+    <string name="choose_camera">拍照</string>
+    <string name="detail_address">详细地址</string>
+    <string name="require_detail_address">请输入详细地址。</string>
+    <string name="reward_price">商品价格</string>
+    <string name="reward_info">商品信息</string>
+    <string name="add_new_director">添加新导演</string>
+    <string name="add_new_actor">添加新演员</string>
+    <string name="require_new_phone_number">请输入新的电话号码。</string>
+    <string name="setting">设置</string>
+    <string name="introduce">介绍</string>
+    <string name="require_introduce">请输入介绍。</string>
+    <string name="amount">数量</string>
+    <string name="require_amount">请输入数量。</string>
+    <string name="wrong_match_password">请输入数字、大写字母、小写字母和特殊字符。</string>
+    <string name="is_real">是否实物</string>
+    <string name="is_real_reward">是否为实物奖励？</string>
+    <string name="thumbnail">缩略图</string>
+
+    <!--    以“ㅇ”开头的字符串-->
+    <string name="id">ID</string>
+    <string name="find_id">查找ID</string>
+    <string name="require_id">请输入ID。</string>
+    <string name="change_language">更改语言</string>
+    <string name="movie">电影</string>
+    <string name="require_movie">请注册电影。</string>
+    <string name="money_unit">元</string>
+    <string name="require_bank">请选择银行。</string>
+    <string name="name">姓名</string>
+    <string name="require_name">请输入姓名。</string>
+    <string name="wrong_enroll_id">ID已注册。</string>
+    <string name="wrong_enroll_phone_number">电话号码已注册。</string>
+    <string name="upload_image">上传图片</string>
+    <string name="require_thumbnail">请上传图片。</string>
+    <string name="watch_going">继续观看</string>
+    <string name="popular">流行的</string>
+    <string name="popular_search_movie">热门搜索电影</string>
+    <string name="popular_search">热门标签</string>
+    <string name="certificate_number">认证号码</string>
+    <string name="check_certificate_number">检查认证号码</string>
+    <string name="wrong_expired_certificate_number">认证号码已过期。</string>
+    <string name="already_certificate_number">认证号码未收到？</string>
+    <string name="wrong_certificate_number">认证号码错误。</string>
+    <string name="require_certificate_number">请输入认证号码。</string>
+    <string name="finish_certificate">完成认证</string>
+    <string name="certificate">认证</string>
+
+    <!--    以“ㅈ”开头的字符串-->
+    <string name="view_detail">查看详情</string>
+    <string name="list_project">作品列表</string>
+    <string name="wait">请稍后再试。</string>
+    <string name="save">保存</string>
+    <string name="view_all">查看全部 ></string>
+    <string name="movie_all">全部电影</string>
+    <string name="approve_all">全部同意</string>
+    <string name="phone_number">电话号码</string>
+    <string name="wrong_match_phone_number">电话号码格式不正确。</string>
+    <string name="require_phone_number">请输入电话号码。</string>
+    <string name="title">标题</string>
+    <string name="require_title">请输入标题。</string>
+    <string name="wrong_id">ID不存在。</string>
+    <string name="finish">结束</string>
+    <string name="address">地址</string>
+    <string name="no_address">没有地址。</string>
+    <string name="require_address">请输入地址。</string>
+    <string name="find_address">查找地址</string>
+    <string name="mc">主持人</string>
+
+    <!--    以“ㅊ”开头的字符串-->
+    <string name="participate_people">参与人数</string>
+    <string name="watch_first">从头开始观看</string>
+    <string name="attached_file">附件</string>
+    <string name="total_money">总金额</string>
+    <string name="add_image">添加图像</string>
+    <string name="add_funding_description">输入额外金额将增加额外赞助。</string>
+    <string name="add">添加</string>
+    <string name="add_funding">添加赞助</string>
+    <string name="participate_movie">出演电影</string>
+    <string name="cancel">取消</string>
+    <string name="recent">最新</string>
+    <string name="recent_search">最近搜索</string>
+    <string name="recent_watch_movie">最近观看</string>
+    <string name="wrong_over_request_phone_number">超过最大请求次数。请1小时后重试。</string>
+    <string name="wrong_over_request_certificate_number">超过最大认证确认请求次数。请1小时后重试。</string>
+    <string name="recommend">推荐</string>
+    <string name="actor">演员</string>
+
+    <!--    以“ㅋ”开头的字符串-->
+    <string name="crowd_funding">众筹</string>
+    <string name="make_crowd_fund">创建众筹</string>
+    <string name="participate_funding">参与众筹</string>
+    <string name="enroll_crowd_funding_thumbnail">注册众筹缩略图</string>
+    <string name="is_use_crowd_funding">是否使用众筹？</string>
+
+    <!--    以“ㅍ”开头的字符串-->
+    <string name="file">文件</string>
+    <string name="require_file">请附加文件。</string>
+    <string name="add_file">添加文件</string>
+    <string name="is_funding">是否资助</string>
+    <string name="do_funding">资助</string>
+    <string name="change_profile">更改个人资料</string>
+    <string name="require_picture">请选择个人资料照片。</string>
+
+    <!--    以“ㅎ”开头的字符串-->
+    <string name="highlight">亮点</string>
+    <string name="go">去</string>
+    <string name="approve">确认</string>
+    <string name="check">确认</string>
+    <string name="current_id">当前ID</string>
+    <string name="current_address">当前地址</string>
+    <string name="sign_up">注册</string>
+    <string name="fail_sign_up">注册失败。</string>
+    <string name="withdrawal">注销会员</string>
+    <string name="want_you_withdrawal">确定要注销会员吗？</string>
+    <string name="home">首页</string>
+    <string name="donate">捐赠</string>
+</resources>

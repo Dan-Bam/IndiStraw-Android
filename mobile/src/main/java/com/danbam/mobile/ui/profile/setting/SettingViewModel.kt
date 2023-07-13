@@ -5,12 +5,15 @@ import androidx.lifecycle.viewModelScope
 import com.danbam.domain.usecase.account.WithdrawUseCase
 import com.danbam.domain.usecase.auth.ClearTokenUseCase
 import com.danbam.domain.usecase.auth.LogoutUseCase
+import com.danbam.domain.usecase.system.FetchLanguageUseCase
+import com.danbam.domain.usecase.system.SaveLanguageUseCase
 import com.danbam.mobile.util.android.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
+import org.orbitmvi.orbit.syntax.simple.reduce
 import org.orbitmvi.orbit.viewmodel.container
 import javax.inject.Inject
 
@@ -19,6 +22,7 @@ class SettingViewModel @Inject constructor(
     private val logoutUseCase: LogoutUseCase,
     private val withdrawUseCase: WithdrawUseCase,
     private val clearTokenUseCase: ClearTokenUseCase,
+    private val saveLanguageUseCase: SaveLanguageUseCase,
 ) : ContainerHost<Unit, SettingSideEffect>, ViewModel() {
     override val container = container<Unit, SettingSideEffect>(Unit)
 
@@ -42,6 +46,12 @@ class SettingViewModel @Inject constructor(
             }.onFailure {
                 it.errorHandling(unknownAction = {})
             }
+        }
+    }
+
+    fun saveLanguage(language: String) = intent {
+        viewModelScope.launch {
+            saveLanguageUseCase(language = language)
         }
     }
 }
