@@ -2,6 +2,8 @@
     <!--    언어 리스트 -->
     <string name="korean" translatable="false">한국어</string>
     <string name="english" translatable="false">English</string>
+    <string name="japanese" translatable="false">日本語</string>
+    <string name="spanish" translatable="false">Español</string>
 
     <!--    은행 리스트-->
     <string name="gwangju_bank">광주</string>
