@@ -32,6 +32,7 @@ fun StartSearchScreen(
 
     LaunchedEffect(Unit) {
         startSearchViewModel.getRecentSearch()
+        startSearchViewModel.getPopularTag()
     }
 
     IndiStrawColumnBackground(
@@ -43,7 +44,7 @@ fun StartSearchScreen(
             color = IndiStrawTheme.colors.gray
         )
         Spacer(modifier = Modifier.height(16.dp))
-        IndiStrawChipList(itemList = listOf("최신영화", "신규영화"), onItemSelect = {
+        IndiStrawChipList(itemList = state.popularTagList, onItemSelect = {
             onClickAction()
             onSearch(it)
         })
