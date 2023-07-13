@@ -48,6 +48,7 @@ fun HomeScreen(
     var homeTab: MovieTab by remember { mutableStateOf(MovieTab.RecentMovie) }
 
     LaunchedEffect(Unit) {
+        homeViewModel.getBanner()
         if (!isOpenDrawer) {
 //            itemFocusRequester.requestFocus()
         }
@@ -58,11 +59,11 @@ fun HomeScreen(
     }
 
     IndiStrawTvBackground {
-        IndiStrawTvBanner(itemCount = 5) {
+        IndiStrawTvBanner(itemCount = state.bannerList.size) {
             ImageButton(
                 modifier = Modifier
                     .fillMaxWidth(),
-                imgSrc = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
+                imgSrc = state.bannerList[it].thumbnailUrl,
                 shape = Shape.Rectangle
             ) {
             }
