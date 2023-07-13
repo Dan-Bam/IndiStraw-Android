@@ -4,6 +4,7 @@ import android.util.Log
 import com.danbam.data.remote.api.AccountAPI
 import com.danbam.data.remote.api.AddressAPI
 import com.danbam.data.remote.api.AuthAPI
+import com.danbam.data.remote.api.BannerAPI
 import com.danbam.data.remote.api.FileAPI
 import com.danbam.data.remote.api.SearchAPI
 import com.danbam.data.remote.api.CrowdFundingAPI
@@ -66,4 +67,7 @@ object NetworkModule {
 
     @Provides
     fun provideFundingAPI(retrofit: Retrofit): FundingAPI = retrofit.create(FundingAPI::class.java)
+
+    @Provides
+    fun provideBannerAPI(retrofit: Retrofit): BannerAPI = retrofit.create(BannerAPI::class.java)
 }

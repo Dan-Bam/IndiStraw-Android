@@ -3,6 +3,7 @@ package com.danbam.tv.ui.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.danbam.design_system.component.MovieTab
+import com.danbam.domain.usecase.banner.GetBannerUseCase
 import com.danbam.domain.usecase.movie.MoviePopularListUseCase
 import com.danbam.domain.usecase.movie.MovieRecentListUseCase
 import com.danbam.domain.usecase.movie.MovieRecommendListUseCase
@@ -18,9 +19,18 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val moviePopularListUseCase: MoviePopularListUseCase,
     private val movieRecommendListUseCase: MovieRecommendListUseCase,
-    private val movieRecentListUseCase: MovieRecentListUseCase
+    private val movieRecentListUseCase: MovieRecentListUseCase,
+    private val getBannerUseCase: GetBannerUseCase,
 ) : ContainerHost<HomeState, Unit>, ViewModel() {
     override val container = container<HomeState, Unit>(HomeState())
+
+    fun getBanner() = intent {
+        viewModelScope.launch {
+            getBannerUseCase().onSuccess {
+                reduce { state.copy(bannerList = it) }
+            }
+        }
+    }
 
     fun saveCurrentIndex(index: Int) = intent {
         reduce { state.copy(currentMovieIndex = index) }

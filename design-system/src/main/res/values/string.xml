@@ -21,7 +21,7 @@
     <string name="payment_naver">네이버페이 (결제형)</string>
     <string name="payment_card">ISP / 앱카드 결제</string>
     <string name="payment_account">계좌이체</string>
-    <string name="payment_kakao">키카오페이</string>
+    <string name="payment_kakao">카카오페이</string>
 
     <!--    장르 리스트-->
     <string name="genre_all">전체</string>

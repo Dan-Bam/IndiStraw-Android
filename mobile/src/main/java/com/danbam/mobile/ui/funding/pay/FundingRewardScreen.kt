@@ -251,7 +251,7 @@ fun FundingRewardScreen(
                 .padding(horizontal = 15.dp),
         ) {
             TitleRegular(
-                text = stringResource(id = R.string.add_funding_description),
+                text = stringResource(id = R.string.add_funding),
                 fontSize = 14,
                 color = IndiStrawTheme.colors.gray
             )
@@ -299,11 +299,12 @@ fun FundingRewardScreen(
                     payload = bootPayPayload(
                         title = rewardTitle,
                         price = (rewardPrice + addFundingMoney).toDouble(),
-                        orderId = UUID.randomUUID().toString(),
+                        orderId = state.receiptId,
                         method = selectedPayment.method
                     )
                 ) {
                     fundingRewardViewModel.funding(
+                        receiptId = it,
                         crowdfundingIdx = fundingIndex,
                         rewardIdx = rewardIndex,
                         price = rewardPrice,

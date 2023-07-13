@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.danbam.design_system.component.MovieTab
 import com.danbam.domain.usecase.account.GetProfileUseCase
+import com.danbam.domain.usecase.banner.GetBannerUseCase
 import com.danbam.domain.usecase.crowd_funding.FundingPopularListUseCase
 import com.danbam.domain.usecase.movie.MoviePopularListUseCase
 import com.danbam.domain.usecase.movie.MovieRecentListUseCase
@@ -22,7 +23,8 @@ class MainViewModel @Inject constructor(
     private val fundingPopularListUseCase: FundingPopularListUseCase,
     private val moviePopularListUseCase: MoviePopularListUseCase,
     private val movieRecommendListUseCase: MovieRecommendListUseCase,
-    private val movieRecentListUseCase: MovieRecentListUseCase
+    private val movieRecentListUseCase: MovieRecentListUseCase,
+    private val getBannerUseCase: GetBannerUseCase,
 ) : ContainerHost<MainState, Unit>, ViewModel() {
     override val container = container<MainState, Unit>(MainState())
 
@@ -30,6 +32,14 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             getProfileUseCase().onSuccess {
                 reduce { state.copy(profileUrl = it.profileUrl) }
+            }
+        }
+    }
+
+    fun getBanner() = intent {
+        viewModelScope.launch {
+            getBannerUseCase().onSuccess {
+                reduce { state.copy(bannerList = it) }
             }
         }
     }

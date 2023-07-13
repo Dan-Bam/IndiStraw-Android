@@ -6,6 +6,8 @@ import com.danbam.data.remote.datasource.AddressRemoteDataSource
 import com.danbam.data.remote.datasource.AddressRemoteDataSourceImpl
 import com.danbam.data.remote.datasource.AuthRemoteDataSource
 import com.danbam.data.remote.datasource.AuthRemoteDataSourceImpl
+import com.danbam.data.remote.datasource.BannerRemoteDataSource
+import com.danbam.data.remote.datasource.BannerRemoteDataSourceImpl
 import com.danbam.data.remote.datasource.FileRemoteDataSource
 import com.danbam.data.remote.datasource.FileRemoteDataSourceImpl
 import com.danbam.data.remote.datasource.SearchRemoteDataSource
@@ -70,4 +72,9 @@ abstract class RemoteDataSourceModule {
     abstract fun bindFundingRemoteDataSource(
         fundingRemoteDataSourceImpl: FundingRemoteDataSourceImpl
     ): FundingRemoteDataSource
+
+    @Binds
+    abstract fun bindBannerRemoteDataSource(
+        bannerRemoteDataSourceImpl: BannerRemoteDataSourceImpl
+    ): BannerRemoteDataSource
 }

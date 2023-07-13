@@ -69,6 +69,7 @@ fun MainScreen(
     LaunchedEffect(Unit) {
         mainViewModel.getProfile()
         mainViewModel.fundingPopularLst()
+        mainViewModel.getBanner()
     }
 
     LaunchedEffect(currentMovieTab) {
@@ -120,12 +121,12 @@ fun MainScreen(
                 }
             }
         }
-        IndiStrawBanner(itemCount = 4) {
+        IndiStrawBanner(itemCount = state.bannerList.size) {
             ImageButton(
                 modifier = Modifier
                     .padding(horizontal = 15.dp)
                     .fillMaxWidth(),
-                imgSrc = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
+                imgSrc = state.bannerList[it].thumbnailUrl,
                 shape = Shape.Rectangle
             ) {
             }
