@@ -54,6 +54,8 @@ fun ProfileScreen(
 
     LaunchedEffect(Unit) {
         profileViewModel.getProfile()
+        profileViewModel.getParticipateFunding()
+        profileViewModel.getMyFunding()
     }
 
     IndiStrawColumnBackground(
@@ -129,7 +131,7 @@ fun ProfileScreen(
         IndiStrawColumnTab(
             modifier = Modifier
                 .padding(start = 15.dp, top = 43.dp),
-            itemList = state.fundingList,
+            itemList = if (currentFundingTab == FundingTab.ParticipantFunding) state.fundingList else state.myFundingList,
             tabHeader = {
                 IndiStrawTab(
                     text = stringResource(id = R.string.participate_funding),
@@ -137,13 +139,14 @@ fun ProfileScreen(
                 ) {
                     currentFundingTab = FundingTab.ParticipantFunding
                 }
-                Spacer(modifier = Modifier.width(16.dp))
-                IndiStrawTab(
-                    text = stringResource(id = R.string.my_funding),
-                    isSelect = currentFundingTab == FundingTab.MyFunding
-                ) {
-                    profileViewModel.getMyFunding()
-                    currentFundingTab = FundingTab.MyFunding
+                if (state.myFundingList.isNotEmpty()) {
+                    Spacer(modifier = Modifier.width(16.dp))
+                    IndiStrawTab(
+                        text = stringResource(id = R.string.my_funding),
+                        isSelect = currentFundingTab == FundingTab.MyFunding
+                    ) {
+                        currentFundingTab = FundingTab.MyFunding
+                    }
                 }
             }) {
         }

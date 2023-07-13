@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.danbam.domain.usecase.account.GetProfileUseCase
 import com.danbam.domain.usecase.crowd_funding.FundingMyUseCase
+import com.danbam.domain.usecase.funding.FundingListUseCase
+import com.danbam.domain.usecase.funding.FundingUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
@@ -15,7 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val getProfileUseCase: GetProfileUseCase,
-    private val fundingMyUseCase: FundingMyUseCase
+    private val fundingMyUseCase: FundingMyUseCase,
+    private val fundingListUseCase: FundingListUseCase
 ) : ContainerHost<ProfileState, Unit>, ViewModel() {
     override val container = container<ProfileState, Unit>(ProfileState())
     fun getProfile() = intent {
@@ -29,6 +32,14 @@ class ProfileViewModel @Inject constructor(
     fun getMyFunding() = intent {
         viewModelScope.launch {
             fundingMyUseCase().onSuccess {
+                reduce { state.copy(myFundingList = it) }
+            }
+        }
+    }
+
+    fun getParticipateFunding() = intent {
+        viewModelScope.launch {
+            fundingListUseCase().onSuccess {
                 reduce { state.copy(fundingList = it) }
             }
         }
