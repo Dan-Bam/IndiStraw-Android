@@ -1,10 +1,12 @@
 package com.danbam.data.remote.api
 
 import com.danbam.data.remote.request.FundingRequest
+import com.danbam.data.remote.response.FundingResponse
 import com.danbam.data.remote.response.ReceiptResponse
 import com.danbam.data.remote.util.EndPoint
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 
@@ -18,4 +20,7 @@ interface FundingAPI {
         @Path("rewordIdx") rewardIdx: Long,
         @Body fundingRequest: FundingRequest
     ): Response<Void?>
+
+    @GET("${EndPoint.FUNDING}/my")
+    suspend fun fundingList(): List<FundingResponse>
 }

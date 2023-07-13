@@ -2,6 +2,7 @@ package com.danbam.data.remote.datasource
 
 import com.danbam.data.remote.api.FundingAPI
 import com.danbam.data.remote.request.FundingRequest
+import com.danbam.data.remote.response.FundingResponse
 import com.danbam.data.remote.response.ReceiptResponse
 import com.danbam.data.remote.util.errorHandling
 import com.danbam.data.remote.util.indiStrawApiCall
@@ -24,5 +25,9 @@ class FundingRemoteDataSourceImpl @Inject constructor(
             rewardIdx = rewardIdx,
             fundingRequest = fundingRequest
         ).errorHandling()
+    }
+
+    override suspend fun fundingList(): List<FundingResponse> = indiStrawApiCall {
+        fundingAPI.fundingList()
     }
 }
