@@ -3,6 +3,7 @@ package com.danbam.tv.ui.setting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.danbam.design_system.util.Language
+import com.danbam.domain.usecase.account.GetProfileUseCase
 import com.danbam.domain.usecase.account.WithdrawUseCase
 import com.danbam.domain.usecase.auth.ClearTokenUseCase
 import com.danbam.domain.usecase.auth.LogoutUseCase
@@ -22,6 +23,7 @@ import javax.inject.Inject
 class SettingViewModel @Inject constructor(
     private val logoutUseCase: LogoutUseCase,
     private val withdrawUseCase: WithdrawUseCase,
+    private val getProfileUseCase: GetProfileUseCase,
     private val clearTokenUseCase: ClearTokenUseCase,
     private val saveLanguageUseCase: SaveLanguageUseCase,
     private val fetchLanguageUseCase: FetchLanguageUseCase
@@ -47,6 +49,14 @@ class SettingViewModel @Inject constructor(
                 postSideEffect(SettingSideEffect.SuccessWithdraw)
             }.onFailure {
                 it.errorHandling(unknownAction = {})
+            }
+        }
+    }
+
+    fun profile() = intent {
+        viewModelScope.launch {
+            getProfileUseCase().onSuccess {
+                reduce { state.copy(profileEntity = it) }
             }
         }
     }
