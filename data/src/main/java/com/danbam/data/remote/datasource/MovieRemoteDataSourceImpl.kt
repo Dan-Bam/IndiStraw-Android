@@ -9,6 +9,7 @@ import com.danbam.data.remote.request.MovieCreateRequest
 import com.danbam.data.remote.request.MoviePeopleRequest
 import com.danbam.data.remote.response.MoviePeopleDetailResponse
 import com.danbam.data.remote.response.MovieDetailResponse
+import com.danbam.data.remote.response.MovieHistoryResponse
 import com.danbam.data.remote.response.MoviePeopleResponse
 import com.danbam.data.remote.response.MovieResponse
 import com.danbam.data.remote.util.errorHandling
@@ -63,5 +64,9 @@ class MovieRemoteDataSourceImpl @Inject constructor(
 
     override suspend fun movieRecommendList(): List<MovieResponse> = indiStrawApiCall {
         movieAPI.movieRecommendList()
+    }
+
+    override suspend fun movieHistoryList(): List<MovieHistoryResponse> = indiStrawApiCall {
+        movieAPI.movieHistoryList()
     }
 }

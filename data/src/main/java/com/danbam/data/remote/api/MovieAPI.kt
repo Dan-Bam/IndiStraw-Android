@@ -4,6 +4,7 @@ import com.danbam.data.remote.request.MovieCreateRequest
 import com.danbam.data.remote.request.MoviePeopleRequest
 import com.danbam.data.remote.response.AddMoviePeopleResponse
 import com.danbam.data.remote.response.MovieDetailResponse
+import com.danbam.data.remote.response.MovieHistoryResponse
 import com.danbam.data.remote.response.MoviePageResponse
 import com.danbam.data.remote.response.MoviePeopleDetailResponse
 import com.danbam.data.remote.response.MoviePeopleResponse
@@ -56,4 +57,7 @@ interface MovieAPI {
 
     @GET("${EndPoint.Movie}/recommend/")
     suspend fun movieRecommendList(): List<MovieResponse>
+
+    @GET("${EndPoint.Movie}/history/")
+    suspend fun movieHistoryList(): List<MovieHistoryResponse>
 }
