@@ -36,20 +36,20 @@ class BaseActivity : ComponentActivity() {
 fun BaseApp(navController: NavHostController) {
     AnimatedNavHost(
         navController = navController,
-        startDestination = MainNavigationItem.Login.route,
+        startDestination = MainNavigationItem.Intro.route,
         enterTransition = {
             slideInHorizontally(
                 initialOffsetX = { it * 2 }, animationSpec = tween(
-                durationMillis = 500
-            )
+                    durationMillis = 500
+                )
             )
         },
         popEnterTransition = { fadeIn(animationSpec = tween(durationMillis = 500)) },
         popExitTransition = {
             slideOutHorizontally(
                 targetOffsetX = { it * 2 }, animationSpec = tween(
-                durationMillis = 500
-            )
+                    durationMillis = 500
+                )
             )
         }
     ) {
