@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.danbam.domain.entity.RecentSearchEntity
 import com.danbam.domain.usecase.search.GetRecentSearchUseCase
 import com.danbam.domain.usecase.search.GetRelatedSearchUseCase
-import com.danbam.domain.usecase.search.SearchUseCase
+import com.danbam.domain.usecase.search.SearchMovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
@@ -18,7 +18,7 @@ import javax.inject.Inject
 class SearchViewModel @Inject constructor(
     private val getRecentSearchUseCase: GetRecentSearchUseCase,
     private val getRelatedSearchUseCase: GetRelatedSearchUseCase,
-    private val searchUseCase: SearchUseCase
+    private val searchMovieUseCase: SearchMovieUseCase
 ) : ContainerHost<SearchState, Unit>, ViewModel() {
     override val container = container<SearchState, Unit>(SearchState())
 
@@ -40,7 +40,7 @@ class SearchViewModel @Inject constructor(
 
     fun search(keyword: String) = intent {
         viewModelScope.launch {
-            searchUseCase(recentSearchEntity = RecentSearchEntity(search = keyword))
+            searchMovieUseCase(recentSearchEntity = RecentSearchEntity(search = keyword))
         }
     }
 }
