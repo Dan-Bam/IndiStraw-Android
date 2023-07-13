@@ -4,10 +4,10 @@ import com.danbam.domain.entity.RecentSearchEntity
 import com.danbam.domain.repository.SearchRepository
 import javax.inject.Inject
 
-class SearchUseCase @Inject constructor(
+class SearchMovieUseCase @Inject constructor(
     private val searchRepository: SearchRepository,
 ) {
     suspend operator fun invoke(recentSearchEntity: RecentSearchEntity) = runCatching {
-        searchRepository.search(recentSearchEntity = recentSearchEntity)
+        searchRepository.searchMovie(recentSearchEntity = recentSearchEntity)
     }
 }

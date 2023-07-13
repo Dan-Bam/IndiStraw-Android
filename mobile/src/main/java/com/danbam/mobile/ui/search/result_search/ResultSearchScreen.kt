@@ -8,8 +8,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -19,6 +21,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.paging.LoadState
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.items
 import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawTab
 import com.danbam.design_system.R
@@ -29,6 +34,7 @@ import com.danbam.design_system.util.RemoveOverScrollLazyColumn
 import com.danbam.domain.entity.FundingEntity
 import com.danbam.mobile.ui.funding.navigation.FundingDeepLinkKey
 import com.danbam.mobile.ui.funding.navigation.FundingNavigationItem
+import com.danbam.mobile.ui.movie.navigation.MovieDeepLinkKey
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 
 @Composable
@@ -38,10 +44,20 @@ fun ResultSearchScreen(
     onClickAction: (() -> Unit),
     keyword: String,
 ) {
-    var currentTab: SearchTab by remember { mutableStateOf(SearchTab.Movie) }
+    val container = resultSearchViewModel.container
+    val state = container.stateFlow.collectAsState().value
+    val sideEffect = container.sideEffectFlow
 
-    LaunchedEffect(Unit) {
-        resultSearchViewModel.search(keyword = keyword)
+    var currentTab: SearchTab by remember { mutableStateOf(SearchTab.Movie) }
+    val moviePager = state.moviePager?.collectAsLazyPagingItems()
+    val fundingPager = state.fundingPager?.collectAsLazyPagingItems()
+
+    LaunchedEffect(currentTab) {
+        if (currentTab == SearchTab.Movie) {
+            resultSearchViewModel.searchMovie(keyword = keyword)
+        } else {
+            resultSearchViewModel.searchFunding(keyword = keyword)
+        }
     }
 
     IndiStrawColumnBackground(
@@ -66,38 +82,47 @@ fun ResultSearchScreen(
         }
         when (currentTab) {
             is SearchTab.Movie -> {
-                Spacer(modifier = Modifier.height(11.dp))
-                LazyVerticalGrid(
-                    modifier = Modifier.padding(horizontal = 15.dp),
-                    columns = GridCells.Fixed(3),
-                    verticalArrangement = Arrangement.spacedBy(10.dp),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    items(20) {
-//                        MovieItem {
-//                            navController.navigate(MovieNavigationItem.Detail.route)
-//                        }
+                moviePager?.let {
+                    when (it.loadState.refresh) {
+                        is LoadState.Loading -> {}
+                        is LoadState.Error -> {}
+                        else -> {
+                            Spacer(modifier = Modifier.height(11.dp))
+                            LazyVerticalGrid(
+                                modifier = Modifier.padding(horizontal = 15.dp),
+                                columns = GridCells.Fixed(3),
+                                verticalArrangement = Arrangement.spacedBy(10.dp),
+                                horizontalArrangement = Arrangement.spacedBy(16.dp)
+                            ) {
+                                items(it.itemSnapshotList.items) {
+                                    MovieItem(item = it) {
+                                        navController.navigate(MovieNavigationItem.Detail.route + MovieDeepLinkKey.MOVIE_INDEX + it)
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
 
             is SearchTab.Funding -> {
-                Spacer(modifier = Modifier.height(11.dp))
-                RemoveOverScrollLazyColumn {
-                    items(20) {
-                        FundingItem(
-                            item = FundingEntity(
-                                0,
-                                "존윅",
-                                "진짜 재밌음",
-                                50.0,
-                                "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
-                                ""
-                            )
-                        ) {
-                            navController.navigate(FundingNavigationItem.Detail.route + FundingDeepLinkKey.FUNDING_INDEX + it)
+                fundingPager?.let {
+                    when (it.loadState.refresh) {
+                        is LoadState.Loading -> {}
+                        is LoadState.Error -> {}
+                        else -> {
+                            Spacer(modifier = Modifier.height(11.dp))
+                            RemoveOverScrollLazyColumn {
+                                items(it) {
+                                    it?.let {
+                                        FundingItem(item = it) {
+                                            navController.navigate(FundingNavigationItem.Detail.route + FundingDeepLinkKey.FUNDING_INDEX + it)
+                                        }
+                                        Spacer(modifier = Modifier.height(24.dp))
+                                    }
+                                }
+                            }
                         }
-                        Spacer(modifier = Modifier.height(24.dp))
                     }
                 }
             }

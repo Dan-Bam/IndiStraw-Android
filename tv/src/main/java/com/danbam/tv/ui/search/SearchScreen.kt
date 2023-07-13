@@ -25,8 +25,11 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.paging.LoadState
+import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.tv.foundation.lazy.grid.TvGridCells
 import androidx.tv.foundation.lazy.grid.TvLazyVerticalGrid
+import androidx.tv.foundation.lazy.grid.items
 import androidx.tv.foundation.lazy.list.TvLazyColumn
 import androidx.tv.foundation.lazy.list.items
 import androidx.tv.material3.Border
@@ -41,6 +44,7 @@ import com.danbam.design_system.component.ExampleTextMedium
 import com.danbam.design_system.component.HeadLineBold
 import com.danbam.design_system.component.MovieTvItem
 import com.danbam.design_system.component.TitleRegular
+import com.danbam.tv.ui.main.navigation.MainDeepLinkKey
 import com.danbam.tv.ui.main.navigation.MainNavigationItem
 
 @OptIn(ExperimentalTvMaterial3Api::class)
@@ -54,6 +58,7 @@ fun SearchScreen(
     val sideEffect = container.sideEffectFlow
 
     var search by remember { mutableStateOf("") }
+    val moviePager = state.resultPager?.collectAsLazyPagingItems()
 
     LaunchedEffect(search) {
         if (search.isEmpty()) {
@@ -61,6 +66,10 @@ fun SearchScreen(
         } else {
             searchViewModel.getRelatedSearch(keyword = search)
         }
+    }
+
+    LaunchedEffect(Unit) {
+        searchViewModel.moviePopularList()
     }
 
     IndiStrawTvBackground {
@@ -86,7 +95,7 @@ fun SearchScreen(
                         .fillMaxWidth()
                         .padding(horizontal = 20.dp)
                 ) {
-                    HeadLineBold(text = stringResource(id = R.string.recent_search))
+                    if (search.isEmpty()) HeadLineBold(text = stringResource(id = R.string.recent_search))
                     Spacer(modifier = Modifier.height(10.dp))
                     TvLazyColumn(
                         verticalArrangement = Arrangement.spacedBy(5.dp)
@@ -146,10 +155,24 @@ fun SearchScreen(
                     verticalArrangement = Arrangement.spacedBy(30.dp),
                     contentPadding = PaddingValues(horizontal = 8.dp, vertical = 20.dp)
                 ) {
-                    items(10) {
-//                        MovieTvItem {
-//                            navController.navigate(MainNavigationItem.MovieDetail.route)
-//                        }
+                    if (moviePager != null) {
+                        when (moviePager.loadState.refresh) {
+                            is LoadState.Loading -> {}
+                            is LoadState.Error -> {}
+                            else -> {
+                                items(moviePager.itemSnapshotList.items) {
+                                    MovieTvItem(item = it) {
+                                        navController.navigate(MainNavigationItem.MovieDetail.route + MainDeepLinkKey.MOVIE_INDEX + it.idx)
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        items(state.moviePopularList) {
+                            MovieTvItem(item = it) {
+                                navController.navigate(MainNavigationItem.MovieDetail.route + MainDeepLinkKey.MOVIE_INDEX + it.idx)
+                            }
+                        }
                     }
                 }
             }
