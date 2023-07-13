@@ -8,6 +8,7 @@ import androidx.navigation.navArgument
 import com.danbam.mobile.ui.funding.all.FundingAllScreen
 import com.danbam.mobile.ui.funding.detail.FundingDetailScreen
 import com.danbam.mobile.ui.funding.make.MakeFundingScreen
+import com.danbam.mobile.ui.funding.my.MyFundingScreen
 import com.danbam.mobile.ui.funding.pay.FundingRewardScreen
 import com.google.accompanist.navigation.animation.composable
 
@@ -16,6 +17,7 @@ sealed class FundingNavigationItem(val route: String) {
     object Detail : FundingNavigationItem("fundingDetail")
     object All : FundingNavigationItem("fundingAll")
     object FundingReward : FundingNavigationItem("fundingReward")
+    object MyDetail : FundingNavigationItem("fundingMyDetail")
 }
 
 object FundingDeepLinkKey {
@@ -84,5 +86,16 @@ fun NavGraphBuilder.fundingGraph(navController: NavHostController) {
             rewardDescription = rewardDescription,
             rewardPrice = rewardPrice
         )
+    }
+    composable(route = FundingNavigationItem.MyDetail.route
+        + FundingDeepLinkKey.FUNDING_INDEX + "{${FundingDeepLinkKey.FUNDING_INDEX}}",
+        arguments = listOf(
+            navArgument(FundingDeepLinkKey.FUNDING_INDEX) {
+                type = NavType.LongType
+            }
+        )
+    ) {
+        val fundingIndex = it.arguments?.getLong(FundingDeepLinkKey.FUNDING_INDEX) ?: 0L
+        MyFundingScreen(navController = navController, fundingIdx = fundingIndex)
     }
 }
