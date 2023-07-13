@@ -1,0 +1,234 @@
+<resources>
+    <!-- Bank List -->
+    <string name="gwangju_bank">Gwangju Bank</string>
+    <string name="hana_bank">Hana Bank</string>
+    <string name="nh_bank">NH Nonghyup Bank</string>
+    <string name="post_bank">Post Office Bank</string>
+    <string name="shinhyeop_bank">Shinhyeop Bank</string>
+    <string name="shinhan_bank">Shinhan Bank</string>
+    <string name="toss_bank">Toss Bank</string>
+    <string name="woori_bank">Woori Bank</string>
+    <string name="kakao_bank">Kakao Bank</string>
+
+    <!-- Payment Methods List -->
+    <string name="payment_naver">Naver Pay (Payment)</string>
+    <string name="payment_card">ISP / App Card Payment</string>
+    <string name="payment_account">Bank Transfer</string>
+    <string name="payment_kakao">Kakao Pay</string>
+
+    <!-- Genre List -->
+    <string name="genre_all">All</string>
+    <string name="genre_action">Action</string>
+    <string name="genre_romance">Romance</string>
+    <string name="genre_comedy">Comedy</string>
+    <string name="genre_thriller">Thriller</string>
+    <string name="genre_drama">Drama</string>
+    <string name="genre_sf">Science Fiction</string>
+    <string name="genre_animation">Animation</string>
+    <string name="genre_horror">Horror</string>
+    <string name="genre_adventure">Adventure</string>
+    <string name="genre_fantasy">Fantasy</string>
+
+    <!-- Setting List -->
+    <string name="tv_setting_language">Language</string>
+    <string name="tv_setting_term">Terms</string>
+    <string name="tv_setting_account">Account</string>
+    <string name="tv_setting_logout">Logout</string>
+    <string name="tv_setting_withdrawal">Withdrawal</string>
+
+    <!-- Miscellaneous -->
+    <string name="wrong_length_id">Please enter 6 to 15 characters.</string>
+    <string name="wrong_length_password">Please enter 8 to 20 characters.</string>
+    <string name="require_terms_of_use">[Required] Agree to Terms of Use</string>
+    <string name="require_personal_information">[Required] Agree to Collection and Use of Personal Information</string>
+    <string name="app_name">Indi Straw</string>
+    <string name="qr_login">QR Login</string>
+    <string name="require_qr">Please authenticate with QR code.</string>
+    <string name="remain_qr_time">QR Valid Time</string>
+
+    <!-- Strings starting with 'ㄱ' -->
+    <string name="movie_director">Director</string>
+    <string name="add_director">Add Director</string>
+    <string name="reward_remain">Remaining</string>
+    <string name="approve_personal_information">Agree to Personal Information</string>
+    <string name="choose_gallery">Choose from Gallery</string>
+    <string name="search">Search</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="payment_detail">Payment Details</string>
+    <string name="pay">Pay</string>
+    <string name="next">Continue</string>
+    <string name="setting_account">Account Settings</string>
+    <string name="already_sign_up">Don\'t have an account?</string>
+    <string name="account_info">Account Information</string>
+    <string name="account_number">Account Number</string>
+    <string name="money">Amount</string>
+    <string name="require_money">Please set the amount.</string>
+    <string name="add_search_director">Add Existing Director</string>
+    <string name="add_search_actor">Add Existing Actor</string>
+
+    <!-- Strings starting with 'ㄴ' -->
+    <string name="rest_date">Remaining Period</string>
+
+    <!-- Strings starting with 'ㄷ' -->
+    <string name="re_send">Resend</string>
+    <string name="complete">Complete</string>
+    <string name="indi_movie">Indie Film</string>
+    <string name="make_indi_movie">Make an Indie Film</string>
+    <string name="back">Go Back</string>
+    <string name="enroll">Register</string>
+    <string name="wrong_not_enroll_phone_number">Unregistered phone number.</string>
+
+    <!-- Strings starting with 'ㄹ' -->
+    <string name="logout">Logout</string>
+    <string name="want_you_logout">Are you sure you want to logout?</string>
+    <string name="login">Login</string>
+    <string name="do_login">Login</string>
+    <string name="choose_reward">Reward Type</string>
+    <string name="add_reward">Add Reward</string>
+    <string name="do_add_reward">Add Reward</string>
+    <string name="want_you_add_reward">Do you want to add a reward?</string>
+
+    <!-- Strings starting with 'ㅁ' -->
+    <string name="end_date">Deadline</string>
+    <string name="my_funding">My Funding</string>
+    <string name="view_all_movie">View All Movies</string>
+    <string name="collect_money">Collected Amount</string>
+    <string name="target_money">Target Amount</string>
+    <string name="require_target_money">Please set the target amount.</string>
+    <string name="looking_for">What are you looking for?</string>
+
+    <!-- Strings starting with 'ㅂ' -->
+    <string name="movie_actor">Actor</string>
+    <string name="add_actor">Add Actor</string>
+    <string name="delivery_info">Delivery Information</string>
+    <string name="certificate_phone_number">Phone Number Verification</string>
+    <string name="change">Change</string>
+    <string name="require_change_password">Please enter the new password.</string>
+    <string name="password">Password</string>
+    <string name="change_password">Change Password</string>
+    <string name="find_password">Find Password</string>
+    <string name="check_password">Confirm Password</string>
+    <string name="require_check_password">Please enter the confirmation password.</string>
+    <string name="wrong_different_password">The passwords do not match.</string>
+    <string name="require_password">Please enter the password.</string>
+    <string name="wrong_password">Incorrect password.</string>
+
+    <!-- Strings starting with 'ㅅ' -->
+    <string name="require_account_number">Please enter the account number.</string>
+    <string name="edit_picture">Edit Picture</string>
+    <string name="choose_camera">Take Picture</string>
+    <string name="detail_address">Detailed Address</string>
+    <string name="require_detail_address">Please enter the detailed address.</string>
+    <string name="reward_price">Price</string>
+    <string name="reward_info">Reward Information</string>
+    <string name="add_new_director">Add New Director</string>
+    <string name="add_new_actor">Add New Actor</string>
+    <string name="require_new_phone_number">Please enter the new phone number.</string>
+    <string name="setting">Settings</string>
+    <string name="introduce">Introduction</string>
+    <string name="require_introduce">Please enter the introduction.</string>
+    <string name="amount">Quantity</string>
+    <string name="require_amount">Please enter the quantity.</string>
+    <string name="wrong_match_password">Please include numbers, uppercase and lowercase letters, and special characters.</string>
+    <string name="is_real">Is it a physical item?</string>
+    <string name="is_real_reward">Is it a physical reward?</string>
+    <string name="thumbnail">Thumbnail</string>
+
+    <!-- Strings starting with 'ㅇ' -->
+    <string name="id">ID</string>
+    <string name="find_id">Find ID</string>
+    <string name="require_id">Please enter the ID.</string>
+    <string name="change_language">Change Language</string>
+    <string name="movie">Movie</string>
+    <string name="require_movie">Please register a movie.</string>
+    <string name="money_unit">KRW</string>
+    <string name="require_bank">Please select a bank.</string>
+    <string name="name">Name</string>
+    <string name="require_name">Please enter the name.</string>
+    <string name="wrong_enroll_id">The ID is already registered.</string>
+    <string name="wrong_enroll_phone_number">The phone number is already registered.</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="require_thumbnail">Please upload an image.</string>
+    <string name="watch_going">Continue Watching</string>
+    <string name="popular">Popular</string>
+    <string name="popular_search_movie">Popular Search Movies</string>
+    <string name="popular_search">Popular Tags</string>
+    <string name="certificate_number">Verification Number</string>
+    <string name="check_certificate_number">Check Verification Number</string>
+    <string name="wrong_expired_certificate_number">The verification number has expired.</string>
+    <string name="already_certificate_number">Didn\'t receive the verification number?</string>
+    <string name="wrong_certificate_number">The verification number is incorrect.</string>
+    <string name="require_certificate_number">Please enter the verification number.</string>
+    <string name="finish_certificate">Verification Completed</string>
+    <string name="certificate">Verify</string>
+
+    <!-- Strings starting with 'ㅈ' -->
+    <string name="view_detail">View Details</string>
+    <string name="list_project">Project List</string>
+    <string name="wait">Please try again later.</string>
+    <string name="save">Save</string>
+    <string name="view_all">View All ></string>
+    <string name="movie_all">All Movies</string>
+    <string name="approve_all">All Agree</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="wrong_match_phone_number">Invalid phone number format.</string>
+    <string name="require_phone_number">Please enter the phone number.</string>
+    <string name="title">Title</string>
+    <string name="require_title">Please enter the title.</string>
+    <string name="wrong_id">The ID does not exist.</string>
+    <string name="finish">Finish</string>
+    <string name="address">Address</string>
+    <string name="no_address">No address available.</string>
+    <string name="require_address">Please enter the address.</string>
+    <string name="find_address">Find Address</string>
+    <string name="mc">MC</string>
+
+    <!-- Strings starting with 'ㅊ' -->
+    <string name="participate_people">Participants</string>
+    <string name="watch_first">Watch from the beginning</string>
+    <string name="attached_file">Attached File</string>
+    <string name="total_money">Total Amount</string>
+    <string name="add_image">Add Image</string>
+    <string name="add_funding_description">Additional amount will be added if you enter additional funding.</string>
+    <string name="add">Add</string>
+    <string name="add_funding">Add Funding</string>
+    <string name="participate_movie">Participating Movies</string>
+    <string name="cancel">Cancel</string>
+    <string name="recent">Recent</string>
+    <string name="recent_search">Recent Searches</string>
+    <string name="recent_watch_movie">Recently Watched</string>
+    <string name="wrong_over_request_phone_number">Exceeded the maximum request limit. Please try again after 1 hour.</string>
+    <string name="wrong_over_request_certificate_number">Exceeded the maximum verification request limit. Please try again after 1 hour.</string>
+    <string name="recommend">Recommend</string>
+    <string name="actor">Cast</string>
+
+    <!-- Strings starting with 'ㅋ' -->
+    <string name="crowd_funding">Crowd Funding</string>
+    <string name="make_crowd_fund">Create Crowd Funding</string>
+    <string name="participate_funding">Participate in Crowd Funding</string>
+    <string name="enroll_crowd_funding_thumbnail">Register Crowd Funding Thumbnail</string>
+    <string name="is_use_crowd_funding">Have you used crowd funding?</string>
+
+    <!-- Strings starting with 'ㅍ' -->
+    <string name="file">File</string>
+    <string name="require_file">Please attach a file.</string>
+    <string name="add_file">Add File</string>
+    <string name="is_funding">Is it a funding project?</string>
+    <string name="do_funding">Fund</string>
+    <string name="change_profile">Change Profile</string>
+    <string name="require_picture">Please select a profile picture.</string>
+
+    <!-- Strings starting with 'ㅎ' -->
+    <string name="highlight">Highlight</string>
+    <string name="go">Go</string>
+    <string name="approve">Approve</string>
+    <string name="check">Check</string>
+    <string name="current_id">Current ID</string>
+    <string name="current_address">Current Address</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="fail_sign_up">Failed to sign up.</string>
+    <string name="withdrawal">Withdrawal</string>
+    <string name="want_you_withdrawal">Are you sure you want to withdraw?</string>
+    <string name="home">Home</string>
+    <string name="donate">Donate</string>
+</resources>
