@@ -1,10 +1,10 @@
 package com.danbam.mobile.ui.movie.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import com.danbam.mobile.ui.movie.all.MovieAllScreen
 import com.danbam.mobile.ui.movie.detail.MovieDetailScreen
 import com.danbam.mobile.ui.movie.make.AddActorScreen
@@ -23,6 +23,15 @@ sealed class MovieNavigationItem(val route: String) {
     object AddActor : MovieNavigationItem("movieAddActor")
     object SearchActor : MovieNavigationItem("movieSearchActor")
     object WriteActor : MovieNavigationItem("movieWriteActor")
+}
+
+object MovieDeepLinkKey {
+    const val ADD_ACTOR_TYPE = "addActorType"
+}
+
+object ActorType {
+    const val ACTOR = "actor"
+    const val DIRECTOR = "director"
 }
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -45,10 +54,38 @@ fun NavGraphBuilder.movieGraph(
     composable(route = MovieNavigationItem.AddActor.route) {
         AddActorScreen(navController = navController, makeMovieViewModel = makeMovieViewModel)
     }
-    composable(route = MovieNavigationItem.WriteActor.route) {
-        WriteActorScreen(navController = navController, makeMovieViewModel = makeMovieViewModel)
+    composable(
+        route = MovieNavigationItem.WriteActor.route
+            + MovieDeepLinkKey.ADD_ACTOR_TYPE + "{${MovieDeepLinkKey.ADD_ACTOR_TYPE}}",
+        arguments = listOf(
+            navArgument(MovieDeepLinkKey.ADD_ACTOR_TYPE) {
+                type = NavType.StringType
+            }
+        )
+    ) {
+        val addActorType =
+            it.arguments?.getString(MovieDeepLinkKey.ADD_ACTOR_TYPE) ?: ActorType.ACTOR
+        WriteActorScreen(
+            navController = navController,
+            addActorType = addActorType,
+            makeMovieViewModel = makeMovieViewModel
+        )
     }
-    composable(route = MovieNavigationItem.SearchActor.route) {
-        SearchActorScreen(navController = navController, makeMovieViewModel = makeMovieViewModel)
+    composable(
+        route = MovieNavigationItem.SearchActor.route
+            + MovieDeepLinkKey.ADD_ACTOR_TYPE + "{${MovieDeepLinkKey.ADD_ACTOR_TYPE}}",
+        arguments = listOf(
+            navArgument(MovieDeepLinkKey.ADD_ACTOR_TYPE) {
+                type = NavType.StringType
+            }
+        )
+    ) {
+        val addActorType =
+            it.arguments?.getString(MovieDeepLinkKey.ADD_ACTOR_TYPE) ?: ActorType.ACTOR
+        SearchActorScreen(
+            navController = navController,
+            addActorType = addActorType,
+            makeMovieViewModel = makeMovieViewModel
+        )
     }
 }

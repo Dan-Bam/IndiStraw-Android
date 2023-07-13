@@ -39,8 +39,13 @@ import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.util.rememberLauncher
 import com.danbam.design_system.util.typedLaunch
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
+import com.danbam.mobile.util.android.observeWithLifecycle
 import com.danbam.mobile.util.parser.toFile
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.withContext
 
+@OptIn(InternalCoroutinesApi::class)
 @Composable
 fun WriteIntroduceScreen(
     navController: NavController,
@@ -64,6 +69,12 @@ fun WriteIntroduceScreen(
             }
         }
     })
+
+    sideEffect.observeWithLifecycle {
+        if (it is MakeMovieSideEffect.Next) {
+            navController.navigate(MovieNavigationItem.AddActor.route)
+        }
+    }
 
     IndiStrawColumnBackground(
         scrollEnabled = true
@@ -144,8 +155,8 @@ fun WriteIntroduceScreen(
         Spacer(modifier = Modifier.height(12.dp))
         AddImageList(
             modifier = Modifier.padding(start = 15.dp),
-            imageList = listOf(),
-            onRemove = { }) {
+            imageList = imageList,
+            onRemove = { imageList.removeAt(it) }) {
             it?.let {
                 makeMovieViewModel.uploadFile(it.toFile(context)) {
                     imageList.add(it)
@@ -159,10 +170,9 @@ fun WriteIntroduceScreen(
                 movieUrl = movieUrl,
                 title = title,
                 description = description,
-                isFunding = isCrowdFunding
-            ) {
-                navController.navigate(MovieNavigationItem.AddActor.route)
-            }
+                isFunding = isCrowdFunding,
+                imageList = imageList
+            )
         }
         Spacer(modifier = Modifier.height(79.dp))
     }
