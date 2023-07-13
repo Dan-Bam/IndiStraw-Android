@@ -7,6 +7,7 @@ import com.danbam.data.remote.api.MovieAPI
 import com.danbam.data.remote.pagingsource.MoviePagingSource
 import com.danbam.data.remote.request.MovieCreateRequest
 import com.danbam.data.remote.request.MoviePeopleRequest
+import com.danbam.data.remote.response.MovieDetailResponse
 import com.danbam.data.remote.response.MoviePeopleResponse
 import com.danbam.data.remote.response.MovieResponse
 import com.danbam.data.remote.util.errorHandling
@@ -29,6 +30,10 @@ class MovieRemoteDataSourceImpl @Inject constructor(
                     genre = genre
                 )
             }).flow
+
+    override suspend fun movieDetail(movieIdx: Int): MovieDetailResponse = indiStrawApiCall {
+        movieAPI.movieDetail(movieIdx = movieIdx)
+    }
 
     override suspend fun searchMoviePeople(
         actorType: String,
