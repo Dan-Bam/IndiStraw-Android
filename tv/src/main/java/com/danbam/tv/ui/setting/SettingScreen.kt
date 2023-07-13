@@ -2,7 +2,9 @@ package com.danbam.tv.ui.setting
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -42,9 +44,12 @@ import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.component.DialogMedium
 import com.danbam.design_system.component.IndiStrawTvBackground
 import com.danbam.design_system.R
+import com.danbam.design_system.attribute.IndiStrawIcon
+import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.design_system.component.ExampleTextMedium
 import com.danbam.design_system.component.IndiStrawTvTitleDialog
 import com.danbam.design_system.component.TitleRegular
+import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.tv.ui.main.navigation.MainNavigationItem
 import com.danbam.tv.util.android.observeWithLifecycle
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -92,6 +97,7 @@ fun SettingScreen(
 
     LaunchedEffect(Unit) {
         settingViewModel.fetchLanguage()
+        settingViewModel.profile()
     }
 
     BackHandler(selectedSettingMenu != null) {
@@ -201,16 +207,34 @@ fun SettingScreen(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                AsyncImage(
-                    modifier = Modifier
-                        .size(180.dp)
-                        .clip(IndiStrawTheme.shapes.circle),
-                    model = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
-                    contentDescription = "profileThumbnail",
-                    contentScale = ContentScale.Crop
-                )
+                if (state.profileEntity.profileUrl != null) {
+                    AsyncImage(
+                        modifier = Modifier
+                            .size(180.dp)
+                            .clip(IndiStrawTheme.shapes.circle),
+                        model = state.profileEntity.profileUrl,
+                        contentDescription = "profileThumbnail",
+                        contentScale = ContentScale.Crop
+                    )
+                } else {
+                    Box(
+                        modifier = Modifier
+                            .size(180.dp)
+                            .background(
+                                color = IndiStrawTheme.colors.gray,
+                                shape = IndiStrawTheme.shapes.circle
+                            )
+                    ) {
+                        IndiStrawIcon(
+                            modifier = Modifier
+                                .size(100.dp)
+                                .align(Alignment.Center),
+                            icon = IndiStrawIconList.Profile,
+                        )
+                    }
+                }
                 Spacer(modifier = Modifier.height(14.dp))
-                ExampleTextMedium(text = "홍길동", fontSize = 35)
+                ExampleTextMedium(text = state.profileEntity.name, fontSize = 35)
             }
             Spacer(modifier = Modifier.width(50.dp))
         }
