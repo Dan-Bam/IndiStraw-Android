@@ -3,6 +3,8 @@ package com.danbam.mobile.ui.movie.make
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.danbam.domain.usecase.file.SendFileUseCase
+import com.danbam.domain.usecase.movie.SearchMoviePeopleUseCase
+import com.danbam.mobile.ui.movie.navigation.ActorType
 import com.danbam.mobile.util.android.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -17,6 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MakeMovieViewModel @Inject constructor(
     private val sendFileUseCase: SendFileUseCase,
+    private val searchMoviePeopleUseCase: SearchMoviePeopleUseCase,
 ) : ContainerHost<MakeMovieState, MakeMovieSideEffect>, ViewModel() {
     override val container = container<MakeMovieState, MakeMovieSideEffect>(MakeMovieState())
 
@@ -55,6 +58,17 @@ class MakeMovieViewModel @Inject constructor(
                 )
             }
             postSideEffect(MakeMovieSideEffect.Next)
+        }
+    }
+
+    fun searchMoviePeople(actorType: String, name: String) = intent {
+        viewModelScope.launch {
+            searchMoviePeopleUseCase(
+                actorType = if (actorType == ActorType.ACTOR) "actor" else "director",
+                name = name
+            ).onSuccess {
+                reduce { state.copy(searchMoviePeopleList = it) }
+            }
         }
     }
 }
