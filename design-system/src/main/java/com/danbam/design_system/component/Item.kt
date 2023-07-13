@@ -177,7 +177,7 @@ fun RewardItem(
                     fontSize = 16,
                     maxLines = 1
                 )
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(8.dp))
                 TitleRegular(
                     text = item.description,
                     color = IndiStrawTheme.colors.gray,
@@ -294,6 +294,132 @@ fun RewardItem(
                             .indiStrawClickable(onClick = onDelete),
                         icon = IndiStrawIconList.Delete
                     )
+                }
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun MyRewardItem(
+    rewardType: RewardType = RewardType.Default,
+    item: FundingDetailEntity.RewardEntity,
+    onClickItem: (FundingDetailEntity.RewardEntity) -> Unit,
+) {
+    val rewardImageSize = LocalConfiguration.current.screenWidthDp * 0.45
+    when (rewardType) {
+        is RewardType.Default -> {
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = 15.dp)
+                    .fillMaxWidth()
+                    .background(
+                        color = IndiStrawTheme.colors.darkGray,
+                        shape = IndiStrawTheme.shapes.defaultRounded
+                    )
+                    .padding(horizontal = 12.dp)
+                    .padding(top = 8.dp, bottom = 20.dp)
+                    .indiStrawClickable { onClickItem(item) }
+            ) {
+                TitleSemiBold(
+                    text = item.title,
+                    fontSize = 16,
+                    maxLines = 1
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                TitleRegular(
+                    text = item.description,
+                    color = IndiStrawTheme.colors.gray,
+                    maxLines = 1,
+                    fontSize = 14
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Row {
+                    TitleSemiBold(text = "${item.price.toCommaString()}원")
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Row(
+                        modifier = Modifier
+                            .background(
+                                IndiStrawTheme.colors.gray3,
+                                IndiStrawTheme.shapes.smallRounded
+                            )
+                            .padding(horizontal = 5.dp, vertical = 1.dp)
+                    ) {
+                        IndiStrawIcon(icon = IndiStrawIconList.People)
+                        PriceRegular(
+                            text = "120",
+                            fontSize = 12,
+                        )
+                    }
+                }
+            }
+        }
+
+        is RewardType.Expand -> {
+            val state = rememberPagerState()
+            Box(
+                modifier = Modifier
+                    .padding(horizontal = 15.dp)
+                    .fillMaxWidth()
+            ) {
+                Column {
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Box {
+                        HorizontalPager(pageCount = item.imageList.size, state = state) {
+                            AsyncImage(
+                                modifier = Modifier
+                                    .clip(IndiStrawTheme.shapes.defaultRounded)
+                                    .height(rewardImageSize.dp)
+                                    .fillMaxWidth(),
+                                model = item.imageList[state.currentPage],
+                                contentDescription = "rewardThumbnail",
+                                contentScale = ContentScale.Crop
+                            )
+                        }
+                        TitleRegular(
+                            modifier = Modifier
+                                .alpha(0.7F)
+                                .align(Alignment.BottomEnd)
+                                .padding(end = 8.dp, bottom = 8.dp)
+                                .background(
+                                    IndiStrawTheme.colors.gray3,
+                                    IndiStrawTheme.shapes.smallRounded
+                                )
+                                .padding(horizontal = 10.dp, vertical = 1.dp),
+                            text = "${state.currentPage + 1} / ${item.imageList.size}"
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(16.dp))
+                    TitleSemiBold(text = item.title, fontSize = 16)
+                    Spacer(modifier = Modifier.height(8.dp))
+                    TitleRegular(
+                        text = item.title,
+                        fontSize = 14,
+                        color = IndiStrawTheme.colors.gray
+                    )
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Row {
+                        ExampleTextMedium(
+                            text = "${item.price.toCommaString()}${stringResource(id = R.string.money_unit)}",
+                            fontSize = 16
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Row(
+                            modifier = Modifier
+                                .background(
+                                    IndiStrawTheme.colors.gray3,
+                                    IndiStrawTheme.shapes.smallRounded
+                                )
+                                .padding(horizontal = 5.dp, vertical = 1.dp)
+                        ) {
+                            IndiStrawIcon(icon = IndiStrawIconList.People)
+                            PriceRegular(
+                                text = "120",
+                                fontSize = 12,
+                            )
+                        }
+                    }
                 }
             }
         }
