@@ -10,10 +10,11 @@ import com.danbam.mobile.util.view.LockScreenOrientation
 fun MoviePlayScreen(
     movieIdx: Int,
     movieUrl: String,
+    position: Float,
     moviePlayViewModel: MoviePlayViewModel = hiltViewModel()
 ) {
     LockScreenOrientation(orientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
-    IndiStrawPlayer(videoUrl = movieUrl) {
+    IndiStrawPlayer(videoUrl = movieUrl, position = position) {
         moviePlayViewModel.addMovieHistory(movieIdx = movieIdx, it / 1000F)
     }
 }
