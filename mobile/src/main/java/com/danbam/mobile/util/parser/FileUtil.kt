@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Environment
 import android.provider.OpenableColumns
+import androidx.core.net.toFile
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
@@ -15,36 +16,17 @@ import java.time.LocalDateTime
 
 @SuppressLint("Range")
 fun Uri.toFile(context: Context): File {
-    val fileName = getFileName(context)
-    val file = createTempFile(context, fileName)
-    copyToFile(context, this, file)
-    return File(file.absolutePath)
+    return File(getFileName(context))
 }
 
+@SuppressLint("Range")
 private fun Uri.getFileName(context: Context): String {
     val name = context.contentResolver.query(this, null, null, null)?.use {
-        val nameIndex = it.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+        val nameIndex = it.getColumnIndex("_data")
         it.moveToFirst()
-        it.getString(nameIndex).split(".")
+        it.getString(nameIndex)
     }
-    return name?.let { "${it.first()}.${it.last()}" } ?: throw NotFoundFileException()
-}
-
-private fun createTempFile(context: Context, fileName: String): File {
-    val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-    return File(storageDir, fileName)
-}
-
-private fun copyToFile(context: Context, uri: Uri, file: File) {
-    val inputStream = context.contentResolver.openInputStream(uri)
-    val outputStream = FileOutputStream(file)
-    val buffer = ByteArray(4 * 1024)
-    while (true) {
-        val byteCount = inputStream!!.read(buffer)
-        if (byteCount < 0) break
-        outputStream.write(buffer, 0, byteCount)
-    }
-    outputStream.flush()
+    return name ?: throw NotFoundFileException()
 }
 
 fun Bitmap.toFile(context: Context): File {
@@ -63,7 +45,6 @@ fun Bitmap.toFile(context: Context): File {
             out = FileOutputStream(tempFile)
             compress(Bitmap.CompressFormat.JPEG, 100, out)
         }
-
     } finally {
         out?.close()
     }

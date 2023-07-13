@@ -24,16 +24,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
     @Provides
-    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor =
-        HttpLoggingInterceptor { message -> Log.v("HTTP", message) }
-            .setLevel(HttpLoggingInterceptor.Level.BODY)
-
-    @Provides
     fun provideOkHttpclient(
-        httpLoggingInterceptor: HttpLoggingInterceptor,
         indiStrawInterceptor: IndiStrawInterceptor,
     ): OkHttpClient = OkHttpClient.Builder()
-        .addInterceptor(httpLoggingInterceptor)
         .addInterceptor(indiStrawInterceptor)
         .build()
 
