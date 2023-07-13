@@ -4,6 +4,7 @@ import com.danbam.data.remote.request.MovieCreateRequest
 import com.danbam.data.remote.request.MoviePeopleRequest
 import com.danbam.data.remote.response.AddMoviePeopleResponse
 import com.danbam.data.remote.response.MoviePageResponse
+import com.danbam.data.remote.response.MoviePeopleDetailResponse
 import com.danbam.data.remote.response.MoviePeopleResponse
 import com.danbam.data.remote.util.EndPoint
 import retrofit2.Response
@@ -36,4 +37,10 @@ interface MovieAPI {
         @Path("actorType") actorType: String,
         @Body moviePeopleRequest: MoviePeopleRequest
     ): AddMoviePeopleResponse
+
+    @GET("${EndPoint.Movie}/{actorType}/{idx}/")
+    suspend fun moviePeopleDetail(
+        @Path("actorType") actorType: String,
+        @Path("idx") idx: Int,
+    ): MoviePeopleDetailResponse
 }
