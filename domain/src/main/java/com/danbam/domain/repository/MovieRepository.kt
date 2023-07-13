@@ -7,6 +7,7 @@ import com.danbam.domain.entity.MovieHistoryEntity
 import com.danbam.domain.entity.MoviePeopleDetailEntity
 import com.danbam.domain.entity.MoviePeopleEntity
 import com.danbam.domain.param.MovieCreateParam
+import com.danbam.domain.param.MovieHistoryParam
 import com.danbam.domain.param.MoviePeopleParam
 import kotlinx.coroutines.flow.Flow
 
@@ -21,4 +22,5 @@ interface MovieRepository {
     suspend fun moviePopularList(): List<MovieEntity>
     suspend fun movieRecommendList(): List<MovieEntity>
     suspend fun movieHistoryList(): List<MovieHistoryEntity>
+    suspend fun addMovieHistory(movieHistoryParam: MovieHistoryParam): MovieHistoryEntity
 }

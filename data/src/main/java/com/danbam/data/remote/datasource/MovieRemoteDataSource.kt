@@ -2,6 +2,7 @@ package com.danbam.data.remote.datasource
 
 import androidx.paging.PagingData
 import com.danbam.data.remote.request.MovieCreateRequest
+import com.danbam.data.remote.request.MovieHistoryRequest
 import com.danbam.data.remote.request.MoviePeopleRequest
 import com.danbam.data.remote.response.AddMoviePeopleResponse
 import com.danbam.data.remote.response.MovieDetailResponse
@@ -27,4 +28,5 @@ interface MovieRemoteDataSource {
     suspend fun movieRecommendList(): List<MovieResponse>
 
     suspend fun movieHistoryList(): List<MovieHistoryResponse>
+    suspend fun addMovieHistory(movieHistoryRequest: MovieHistoryRequest): MovieHistoryResponse
 }
