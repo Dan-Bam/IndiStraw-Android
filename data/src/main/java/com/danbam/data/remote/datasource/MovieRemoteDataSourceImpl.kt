@@ -50,4 +50,8 @@ class MovieRemoteDataSourceImpl @Inject constructor(
     override suspend fun moviePopularList(): List<MovieResponse> = indiStrawApiCall {
         movieAPI.moviePopularList()
     }
+
+    override suspend fun movieRecommendList(): List<MovieResponse> = indiStrawApiCall {
+        movieAPI.movieRecommendList()
+    }
 }

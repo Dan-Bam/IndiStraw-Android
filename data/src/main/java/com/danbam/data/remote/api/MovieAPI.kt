@@ -46,4 +46,7 @@ interface MovieAPI {
 
     @GET("${EndPoint.Movie}/popular/")
     suspend fun moviePopularList(): List<MovieResponse>
+
+    @GET("${EndPoint.Movie}/recommend/")
+    suspend fun movieRecommendList(): List<MovieResponse>
 }

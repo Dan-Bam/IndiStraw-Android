@@ -42,4 +42,7 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun moviePopularList(): List<MovieEntity> =
         movieRemoteDataSource.moviePopularList().map { it.toEntity() }
+
+    override suspend fun movieRecommendList(): List<MovieEntity> =
+        movieRemoteDataSource.movieRecommendList().map { it.toEntity() }
 }
