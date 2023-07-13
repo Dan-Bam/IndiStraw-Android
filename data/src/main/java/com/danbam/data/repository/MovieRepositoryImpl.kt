@@ -34,5 +34,5 @@ class MovieRepositoryImpl @Inject constructor(
         movieRemoteDataSource.addMoviePeople(
             actorType = actorType,
             moviePeopleRequest = moviePeopleParam.toRequest()
-        )
+        ).actorIdx
 }

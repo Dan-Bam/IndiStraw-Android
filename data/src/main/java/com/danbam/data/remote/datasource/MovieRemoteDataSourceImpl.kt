@@ -40,6 +40,5 @@ class MovieRemoteDataSourceImpl @Inject constructor(
     override suspend fun addMoviePeople(actorType: String, moviePeopleRequest: MoviePeopleRequest) =
         indiStrawApiCall {
             movieAPI.addMoviePeople(actorType = actorType, moviePeopleRequest = moviePeopleRequest)
-                .errorHandling()
         }
 }

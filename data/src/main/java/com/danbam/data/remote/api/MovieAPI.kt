@@ -2,6 +2,7 @@ package com.danbam.data.remote.api
 
 import com.danbam.data.remote.request.MovieCreateRequest
 import com.danbam.data.remote.request.MoviePeopleRequest
+import com.danbam.data.remote.response.AddMoviePeopleResponse
 import com.danbam.data.remote.response.MoviePageResponse
 import com.danbam.data.remote.response.MoviePeopleResponse
 import com.danbam.data.remote.util.EndPoint
@@ -34,5 +35,5 @@ interface MovieAPI {
     suspend fun addMoviePeople(
         @Path("actorType") actorType: String,
         @Body moviePeopleRequest: MoviePeopleRequest
-    ): Response<Void?>
+    ): AddMoviePeopleResponse
 }
