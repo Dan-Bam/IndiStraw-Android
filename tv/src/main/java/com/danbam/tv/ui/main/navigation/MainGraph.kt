@@ -22,6 +22,7 @@ sealed class MainNavigationItem(val route: String) {
 
 object MainDeepLinkKey {
     const val MOVIE_INDEX = "movieIndex"
+    const val MOVIE_URL = "movieUrl"
 }
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -45,7 +46,14 @@ fun NavGraphBuilder.mainGraph(navController: NavHostController) {
         val movieIndex = it.arguments?.getInt(MainDeepLinkKey.MOVIE_INDEX) ?: 0
         MovieDetailScreen(navController = navController, movieIndex = movieIndex)
     }
-    composable(route = MainNavigationItem.MoviePlay.route) {
+    composable(route = MainNavigationItem.MoviePlay.route
+        + MainDeepLinkKey.MOVIE_URL + "{${MainDeepLinkKey.MOVIE_URL}}",
+        arguments = listOf(
+            navArgument(MainDeepLinkKey.MOVIE_URL) {
+                type = NavType.StringType
+            }
+        )) {
+        val movieUrl = it.arguments?.getString(MainDeepLinkKey.MOVIE_URL) ?: ""
         MoviePlayScreen()
     }
 }
