@@ -54,6 +54,6 @@ fun NavGraphBuilder.mainGraph(navController: NavHostController) {
             }
         )) {
         val movieUrl = it.arguments?.getString(MainDeepLinkKey.MOVIE_URL) ?: ""
-        MoviePlayScreen()
+        MoviePlayScreen(movieUrl = movieUrl)
     }
 }
