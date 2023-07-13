@@ -37,6 +37,7 @@ import com.danbam.design_system.component.IndiStrawColumnTab
 import com.danbam.design_system.component.IndiStrawRowTab
 import com.danbam.design_system.component.MovieTab
 import com.danbam.design_system.util.indiStrawClickable
+import com.danbam.mobile.ui.movie.navigation.MovieDeepLinkKey
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 import com.danbam.mobile.ui.profile.navigation.ProfileNavigationItem
 
@@ -56,6 +57,7 @@ fun ProfileScreen(
         profileViewModel.getProfile()
         profileViewModel.getParticipateFunding()
         profileViewModel.getMyFunding()
+        profileViewModel.movieHistory()
     }
 
     IndiStrawColumnBackground(
@@ -109,7 +111,7 @@ fun ProfileScreen(
         IndiStrawRowTab(
             modifier = Modifier
                 .padding(start = 15.dp, top = 32.dp),
-            itemList = listOf(),
+            itemList = if (currentMovieTab == MovieTab.RecentMovie) state.movieHistoryList else listOf(),
             tabHeader = {
                 IndiStrawTab(
                     text = stringResource(id = R.string.recent_watch_movie),
@@ -126,7 +128,7 @@ fun ProfileScreen(
                 }
             }
         ) {
-            navController.navigate(MovieNavigationItem.Detail.route)
+            navController.navigate(MovieNavigationItem.Detail.route + MovieDeepLinkKey.MOVIE_INDEX + it)
         }
         IndiStrawColumnTab(
             modifier = Modifier

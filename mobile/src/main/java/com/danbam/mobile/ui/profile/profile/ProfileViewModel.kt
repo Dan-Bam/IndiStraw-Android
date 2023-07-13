@@ -2,10 +2,12 @@ package com.danbam.mobile.ui.profile.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.danbam.domain.entity.MovieEntity
 import com.danbam.domain.usecase.account.GetProfileUseCase
 import com.danbam.domain.usecase.crowd_funding.FundingMyUseCase
 import com.danbam.domain.usecase.funding.FundingListUseCase
 import com.danbam.domain.usecase.funding.FundingUseCase
+import com.danbam.domain.usecase.movie.MovieHistoryListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
@@ -18,7 +20,8 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
     private val getProfileUseCase: GetProfileUseCase,
     private val fundingMyUseCase: FundingMyUseCase,
-    private val fundingListUseCase: FundingListUseCase
+    private val fundingListUseCase: FundingListUseCase,
+    private val movieHistoryListUseCase: MovieHistoryListUseCase,
 ) : ContainerHost<ProfileState, Unit>, ViewModel() {
     override val container = container<ProfileState, Unit>(ProfileState())
     fun getProfile() = intent {
@@ -41,6 +44,21 @@ class ProfileViewModel @Inject constructor(
         viewModelScope.launch {
             fundingListUseCase().onSuccess {
                 reduce { state.copy(fundingList = it) }
+            }
+        }
+    }
+
+    fun movieHistory() = intent {
+        viewModelScope.launch {
+            movieHistoryListUseCase().onSuccess {
+                reduce {
+                    state.copy(movieHistoryList = it.map {
+                        MovieEntity(
+                            idx = it.movieIdx,
+                            thumbnailUrl = it.thumbnailUrl
+                        )
+                    })
+                }
             }
         }
     }
