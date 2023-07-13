@@ -4,6 +4,7 @@ import androidx.paging.PagingData
 import com.danbam.data.remote.request.MovieCreateRequest
 import com.danbam.data.remote.request.MoviePeopleRequest
 import com.danbam.data.remote.response.AddMoviePeopleResponse
+import com.danbam.data.remote.response.MovieDetailResponse
 import com.danbam.data.remote.response.MoviePeopleDetailResponse
 import com.danbam.data.remote.response.MoviePeopleResponse
 import com.danbam.data.remote.response.MovieResponse
