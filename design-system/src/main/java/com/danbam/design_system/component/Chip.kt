@@ -14,22 +14,22 @@ import com.danbam.design_system.R
 import com.danbam.design_system.util.RemoveOverScrollLazyRow
 import com.danbam.design_system.util.indiStrawClickable
 
-sealed class MovieGenre(val stringId: Int) {
+sealed class MovieGenre(val stringId: Int, val genre: String?) {
     companion object {
         fun toList() =
             listOf(All, Action, Romance, Comedy, Thriller, Drama, SF, Animation, Adventure, Fantasy)
     }
 
-    object All : MovieGenre(R.string.genre_all)
-    object Action : MovieGenre(R.string.genre_action)
-    object Romance : MovieGenre(R.string.genre_romance)
-    object Comedy : MovieGenre(R.string.genre_comedy)
-    object Thriller : MovieGenre(R.string.genre_thriller)
-    object Drama : MovieGenre(R.string.genre_drama)
-    object SF : MovieGenre(R.string.genre_sf)
-    object Animation : MovieGenre(R.string.genre_animation)
-    object Adventure : MovieGenre(R.string.genre_adventure)
-    object Fantasy : MovieGenre(R.string.genre_fantasy)
+    object All : MovieGenre(R.string.genre_all, null)
+    object Action : MovieGenre(R.string.genre_action, "액션")
+    object Romance : MovieGenre(R.string.genre_romance, "로맨스")
+    object Comedy : MovieGenre(R.string.genre_comedy, "코미디")
+    object Thriller : MovieGenre(R.string.genre_thriller, "스릴러")
+    object Drama : MovieGenre(R.string.genre_drama, "드라마")
+    object SF : MovieGenre(R.string.genre_sf, "SF")
+    object Animation : MovieGenre(R.string.genre_animation, "애니메이션")
+    object Adventure : MovieGenre(R.string.genre_adventure, "모험")
+    object Fantasy : MovieGenre(R.string.genre_fantasy, "판타지")
 }
 
 @Composable

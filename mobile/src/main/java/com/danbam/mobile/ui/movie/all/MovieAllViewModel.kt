@@ -1,4 +1,4 @@
-package com.danbam.tv.ui.movie.movie
+package com.danbam.mobile.ui.movie.all
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,14 +13,10 @@ import org.orbitmvi.orbit.viewmodel.container
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieViewModel @Inject constructor(
-    private val movieListUseCase: MovieListUseCase,
-) : ContainerHost<MovieState, Unit>, ViewModel() {
-    override val container = container<MovieState, Unit>(MovieState())
-
-    fun saveCurrentIndex(index: Int) = intent {
-        reduce { state.copy(currentMovieIndex = index) }
-    }
+class MovieAllViewModel @Inject constructor(
+    private val movieListUseCase: MovieListUseCase
+) : ContainerHost<MovieAllState, Unit>, ViewModel() {
+    override val container = container<MovieAllState, Unit>(MovieAllState())
 
     fun movieList(movieGenre: MovieGenre) = intent {
         viewModelScope.launch {
