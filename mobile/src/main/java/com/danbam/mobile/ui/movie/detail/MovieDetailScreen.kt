@@ -45,6 +45,7 @@ import com.danbam.design_system.util.RemoveOverScrollLazyRow
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.R
 import com.danbam.domain.entity.MoviePeopleEntity
+import com.danbam.mobile.ui.movie.navigation.MovieDeepLinkKey
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -131,7 +132,7 @@ fun MovieDetailScreen(
                     imgSrc = state.movieDetailInfo.thumbnailUrl,
                     shape = Shape.None
                 ) {
-                    navController.navigate(MovieNavigationItem.Play.route)
+                    navController.navigate(MovieNavigationItem.Play.route + MovieDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl)
                 }
                 IndiStrawIcon(
                     modifier = Modifier.align(Alignment.Center),

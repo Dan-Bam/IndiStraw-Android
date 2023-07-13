@@ -7,8 +7,8 @@ import com.danbam.mobile.util.view.LockScreenOrientation
 
 @Composable
 fun MoviePlayScreen(
-
+    movieUrl: String
 ) {
     LockScreenOrientation(orientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
-    IndiStrawPlayer(videoUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
+    IndiStrawPlayer(videoUrl = movieUrl)
 }
