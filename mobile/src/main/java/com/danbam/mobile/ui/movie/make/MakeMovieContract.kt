@@ -8,3 +8,7 @@ data class MakeMovieState(
     val isFunding: Boolean = false,
     val imageList: List<String> = listOf()
 )
+
+sealed class MakeMovieSideEffect {
+    object Next : MakeMovieSideEffect()
+}
