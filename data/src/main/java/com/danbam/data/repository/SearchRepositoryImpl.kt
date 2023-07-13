@@ -38,6 +38,8 @@ class SearchRepositoryImpl @Inject constructor(
     override suspend fun getRecentSearch(): List<RecentSearchEntity> =
         searchLocalDataSource.getRecentSearch().map { it.toDomain() }
 
+    override suspend fun popularTag(): List<String> = searchRemoteDataSource.popularTag().tagList
+
     private suspend fun saveRecentSearch(recentSearchEntity: RecentSearchEntity) {
         searchLocalDataSource.search(recentSearchEntity = recentSearchEntity.toDB())
         val searchRecentList = searchLocalDataSource.getRecentSearch()
