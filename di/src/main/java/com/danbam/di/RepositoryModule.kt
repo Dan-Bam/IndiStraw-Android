@@ -9,6 +9,7 @@ import com.danbam.data.repository.MovieRepositoryImpl
 import com.danbam.data.repository.FundingRepositoryImpl
 import com.danbam.data.repository.QRCodeRepositoryImpl
 import com.danbam.data.repository.SearchRepositoryImpl
+import com.danbam.data.repository.SystemRepositoryImpl
 import com.danbam.domain.repository.AccountRepository
 import com.danbam.domain.repository.AddressRepository
 import com.danbam.domain.repository.AuthRepository
@@ -18,6 +19,7 @@ import com.danbam.domain.repository.MovieRepository
 import com.danbam.domain.repository.FundingRepository
 import com.danbam.domain.repository.QRCodeRepository
 import com.danbam.domain.repository.SearchRepository
+import com.danbam.domain.repository.SystemRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -70,4 +72,9 @@ abstract class RepositoryModule {
     abstract fun bindFundingRepository(
         fundingRepositoryImpl: FundingRepositoryImpl
     ): FundingRepository
+
+    @Binds
+    abstract fun bindSystemRepository(
+        systemRepositoryImpl: SystemRepositoryImpl
+    ): SystemRepository
 }
