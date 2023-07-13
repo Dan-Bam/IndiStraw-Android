@@ -7,6 +7,7 @@ import com.danbam.data.remote.request.toRequest
 import com.danbam.data.remote.response.toEntity
 import com.danbam.domain.entity.FundingDetailEntity
 import com.danbam.domain.entity.FundingEntity
+import com.danbam.domain.entity.MyFundingEntity
 import com.danbam.domain.param.FundingCreateParam
 import com.danbam.domain.repository.CrowdFundingRepository
 import kotlinx.coroutines.flow.Flow
@@ -30,4 +31,7 @@ class CrowdFundingRepositoryImpl @Inject constructor(
 
     override suspend fun fundingMy(): List<FundingEntity> =
         crowdFundingRemoteDataSource.fundingMy().map { it.toEntity() }
+
+    override suspend fun fundingMyDetail(crowdfundingIdx: Long): MyFundingEntity =
+        crowdFundingRemoteDataSource.fundingMyDetail(crowdfundingIdx = crowdfundingIdx).toEntity()
 }
