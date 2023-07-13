@@ -47,6 +47,10 @@ class MovieRemoteDataSourceImpl @Inject constructor(
             movieAPI.addMoviePeople(actorType = actorType, moviePeopleRequest = moviePeopleRequest)
         }
 
+    override suspend fun movieRecentList(): List<MovieResponse> = indiStrawApiCall {
+        movieAPI.movieList().list.slice(0..10)
+    }
+
     override suspend fun moviePopularList(): List<MovieResponse> = indiStrawApiCall {
         movieAPI.moviePopularList()
     }

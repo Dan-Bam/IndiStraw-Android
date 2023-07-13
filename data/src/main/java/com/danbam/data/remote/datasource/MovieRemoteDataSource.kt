@@ -19,6 +19,7 @@ interface MovieRemoteDataSource {
         moviePeopleRequest: MoviePeopleRequest
     ): AddMoviePeopleResponse
 
+    suspend fun movieRecentList(): List<MovieResponse>
     suspend fun moviePopularList(): List<MovieResponse>
     suspend fun movieRecommendList(): List<MovieResponse>
 }
