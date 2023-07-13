@@ -26,6 +26,7 @@ import com.danbam.design_system.component.IndiStrawTextField
 @Composable
 fun WriteActorScreen(
     navController: NavController,
+    addActorType: String,
     makeMovieViewModel: MakeMovieViewModel
 ) {
     var name: String by remember { mutableStateOf("") }

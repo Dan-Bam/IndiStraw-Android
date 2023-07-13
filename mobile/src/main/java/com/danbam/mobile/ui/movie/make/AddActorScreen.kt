@@ -25,6 +25,8 @@ import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.R
 import com.danbam.design_system.component.IndiStrawButton
 import com.danbam.design_system.util.indiStrawClickable
+import com.danbam.mobile.ui.movie.navigation.ActorType
+import com.danbam.mobile.ui.movie.navigation.MovieDeepLinkKey
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 
 sealed class AddPeopleType {
@@ -51,7 +53,7 @@ fun AddActorScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 25.dp, vertical = 20.dp)
-                .indiStrawClickable { navController.navigate(MovieNavigationItem.SearchActor.route) },
+                .indiStrawClickable { navController.navigate(MovieNavigationItem.SearchActor.route + MovieDeepLinkKey.ADD_ACTOR_TYPE + if (addPeopleType == AddPeopleType.Director) ActorType.DIRECTOR else ActorType.ACTOR) },
             text = stringResource(id = if (addPeopleType == AddPeopleType.Director) R.string.add_search_director else R.string.add_search_actor)
         )
         Divider(
@@ -64,7 +66,7 @@ fun AddActorScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 25.dp, vertical = 20.dp)
-                .indiStrawClickable { navController.navigate(MovieNavigationItem.WriteActor.route) },
+                .indiStrawClickable { navController.navigate(MovieNavigationItem.WriteActor.route + MovieDeepLinkKey.ADD_ACTOR_TYPE + if (addPeopleType == AddPeopleType.Director) ActorType.DIRECTOR else ActorType.ACTOR) },
             text = stringResource(id = if (addPeopleType == AddPeopleType.Director) R.string.add_new_director else R.string.add_new_actor)
         )
         Divider(
