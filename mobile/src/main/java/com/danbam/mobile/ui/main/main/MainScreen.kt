@@ -60,7 +60,7 @@ fun MainScreen(
     val sideEffect = container.sideEffectFlow
 
     val context = LocalContext.current
-    var currentMovieTab: MovieTab by remember { mutableStateOf(MovieTab.RecentMovie) }
+    var currentMovieTab: MovieTab by remember { mutableStateOf(MovieTab.PopularMovie) }
 
     BackHandler {
         context.findActivity()?.finish()
@@ -69,6 +69,10 @@ fun MainScreen(
     LaunchedEffect(Unit) {
         mainViewModel.getProfile()
         mainViewModel.fundingPopularLst()
+    }
+
+    LaunchedEffect(currentMovieTab) {
+        mainViewModel.movieList(currentMovieTab)
     }
 
     IndiStrawColumnBackground(
@@ -129,13 +133,13 @@ fun MainScreen(
         IndiStrawRowTab(
             modifier = Modifier
                 .padding(start = 15.dp, top = 20.dp),
-            itemList = listOf(""),
+            itemList = state.movieList,
             tabHeader = {
                 IndiStrawTab(
-                    text = stringResource(id = R.string.recent),
-                    isSelect = currentMovieTab == MovieTab.RecentMovie
+                    text = stringResource(id = R.string.popular),
+                    isSelect = currentMovieTab == MovieTab.PopularMovie
                 ) {
-                    currentMovieTab = MovieTab.RecentMovie
+                    currentMovieTab = MovieTab.PopularMovie
                 }
                 Spacer(modifier = Modifier.width(16.dp))
                 IndiStrawTab(
@@ -146,10 +150,10 @@ fun MainScreen(
                 }
                 Spacer(modifier = Modifier.width(16.dp))
                 IndiStrawTab(
-                    text = stringResource(id = R.string.popular),
-                    isSelect = currentMovieTab == MovieTab.PopularMovie
+                    text = stringResource(id = R.string.recent),
+                    isSelect = currentMovieTab == MovieTab.RecentMovie
                 ) {
-                    currentMovieTab = MovieTab.PopularMovie
+                    currentMovieTab = MovieTab.RecentMovie
                 }
             }, moreData = {
                 navController.navigate(MovieNavigationItem.All.route)

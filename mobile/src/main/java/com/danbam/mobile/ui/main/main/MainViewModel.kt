@@ -2,8 +2,12 @@ package com.danbam.mobile.ui.main.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.danbam.design_system.component.MovieTab
 import com.danbam.domain.usecase.account.GetProfileUseCase
 import com.danbam.domain.usecase.crowd_funding.FundingPopularListUseCase
+import com.danbam.domain.usecase.movie.MoviePopularListUseCase
+import com.danbam.domain.usecase.movie.MovieRecentListUseCase
+import com.danbam.domain.usecase.movie.MovieRecommendListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
@@ -15,7 +19,10 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val getProfileUseCase: GetProfileUseCase,
-    private val fundingPopularListUseCase: FundingPopularListUseCase
+    private val fundingPopularListUseCase: FundingPopularListUseCase,
+    private val moviePopularListUseCase: MoviePopularListUseCase,
+    private val movieRecommendListUseCase: MovieRecommendListUseCase,
+    private val movieRecentListUseCase: MovieRecentListUseCase
 ) : ContainerHost<MainState, Unit>, ViewModel() {
     override val container = container<MainState, Unit>(MainState())
 
@@ -31,6 +38,30 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             fundingPopularListUseCase().onSuccess {
                 reduce { state.copy(fundingPopularList = it) }
+            }
+        }
+    }
+
+    fun movieList(movieType: MovieTab) = intent {
+        viewModelScope.launch {
+            when (movieType) {
+                is MovieTab.PopularMovie -> {
+                    moviePopularListUseCase().onSuccess {
+                        reduce { state.copy(movieList = it) }
+                    }
+                }
+
+                is MovieTab.RecommendMovie -> {
+                    movieRecommendListUseCase().onSuccess {
+                        reduce { state.copy(movieList = it) }
+                    }
+                }
+
+                else -> {
+                    movieRecentListUseCase().onSuccess {
+                        reduce { state.copy(movieList = it) }
+                    }
+                }
             }
         }
     }
