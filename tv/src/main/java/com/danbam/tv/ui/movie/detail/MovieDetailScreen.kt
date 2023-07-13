@@ -49,6 +49,7 @@ import com.danbam.design_system.component.IndiStrawTvBackground
 import com.danbam.design_system.R
 import com.danbam.design_system.component.JoinBold
 import com.danbam.design_system.component.TitleRegular
+import com.danbam.tv.ui.main.navigation.MainDeepLinkKey
 import com.danbam.tv.ui.main.navigation.MainNavigationItem
 
 sealed class MovieTabItem(val stringId: Int) {
@@ -106,14 +107,14 @@ fun MovieDetailScreen(
                         icon = IndiStrawIconList.FastPlay,
                         title = stringResource(id = R.string.watch_going)
                     ) {
-                        navController.navigate(MainNavigationItem.MoviePlay.route)
+                        navController.navigate(MainNavigationItem.MoviePlay.route + MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl)
                     }
                     Spacer(modifier = Modifier.width(10.dp))
                     MoviePlayButton(
                         icon = IndiStrawIconList.PlayFirst,
                         title = stringResource(id = R.string.watch_first)
                     ) {
-                        navController.navigate(MainNavigationItem.MoviePlay.route)
+                        navController.navigate(MainNavigationItem.MoviePlay.route + MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl)
                     }
                 }
             }

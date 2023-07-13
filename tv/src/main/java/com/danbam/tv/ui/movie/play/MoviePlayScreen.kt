@@ -6,9 +6,9 @@ import com.danbam.design_system.component.IndiStrawTvBackground
 
 @Composable
 fun MoviePlayScreen(
-
+    movieUrl: String,
 ) {
     IndiStrawTvBackground {
-        IndiStrawPlayer(videoUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
+        IndiStrawPlayer(videoUrl = movieUrl)
     }
 }
