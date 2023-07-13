@@ -9,6 +9,8 @@ data class MakeMovieState(
     val description: String = "",
     val isFunding: Boolean = false,
     val imageList: List<String> = listOf(),
+    val directorList: List<MoviePeopleEntity> = listOf(),
+    val actorList: List<MoviePeopleEntity> = listOf(),
     val searchMoviePeopleList: List<MoviePeopleEntity> = listOf()
 )
 

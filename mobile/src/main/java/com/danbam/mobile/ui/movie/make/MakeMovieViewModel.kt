@@ -2,7 +2,10 @@ package com.danbam.mobile.ui.movie.make
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.danbam.domain.entity.MoviePeopleEntity
+import com.danbam.domain.param.MoviePeopleParam
 import com.danbam.domain.usecase.file.SendFileUseCase
+import com.danbam.domain.usecase.movie.AddMoviePeopleUseCase
 import com.danbam.domain.usecase.movie.SearchMoviePeopleUseCase
 import com.danbam.mobile.ui.movie.navigation.ActorType
 import com.danbam.mobile.util.android.errorHandling
@@ -20,6 +23,7 @@ import javax.inject.Inject
 class MakeMovieViewModel @Inject constructor(
     private val sendFileUseCase: SendFileUseCase,
     private val searchMoviePeopleUseCase: SearchMoviePeopleUseCase,
+    private val addMoviePeopleUseCase: AddMoviePeopleUseCase,
 ) : ContainerHost<MakeMovieState, MakeMovieSideEffect>, ViewModel() {
     override val container = container<MakeMovieState, MakeMovieSideEffect>(MakeMovieState())
 
@@ -69,6 +73,65 @@ class MakeMovieViewModel @Inject constructor(
             ).onSuccess {
                 reduce { state.copy(searchMoviePeopleList = it) }
             }
+        }
+    }
+
+    fun selectMoviePeople(actorType: String, moviePeople: MoviePeopleEntity) = intent {
+        if (actorType == ActorType.ACTOR) {
+            reduce {
+                state.copy(actorList = state.actorList.plus(moviePeople))
+            }
+        } else reduce {
+            state.copy(directorList = state.directorList.plus(moviePeople))
+        }
+        postSideEffect(MakeMovieSideEffect.Next)
+    }
+
+    fun addMoviePeople(actorType: String, name: String, profileUrl: String?) = intent {
+        if (name.isEmpty()) return@intent
+        else if (profileUrl.isNullOrBlank()) return@intent
+        else {
+            viewModelScope.launch {
+                addMoviePeopleUseCase(
+                    actorType = if (actorType == ActorType.ACTOR) "actor" else "director",
+                    moviePeopleParam = MoviePeopleParam(name = name, profileUrl = profileUrl)
+                ).onSuccess {
+                    if (actorType == ActorType.ACTOR) {
+                        reduce {
+                            state.copy(
+                                actorList = state.actorList.plus(
+                                    MoviePeopleEntity(
+                                        idx = it,
+                                        name = name,
+                                        profileUrl = profileUrl
+                                    )
+                                )
+                            )
+                        }
+                    } else reduce {
+                        state.copy(
+                            directorList = state.directorList.plus(
+                                MoviePeopleEntity(
+                                    idx = it,
+                                    name = name,
+                                    profileUrl = profileUrl
+                                )
+                            )
+                        )
+                    }
+                    postSideEffect(MakeMovieSideEffect.Next)
+                }
+            }
+        }
+    }
+
+    fun removeMoviePeople(actorType: String, index: Int) = intent {
+        if (actorType == ActorType.ACTOR) {
+            reduce {
+                state.copy(actorList = state.actorList.filterIndexed { i, _ -> i != index })
+            }
+        } else reduce {
+            state.copy(directorList = state.directorList.filterIndexed { i, _ -> i != index })
         }
     }
 }

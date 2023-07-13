@@ -34,9 +34,12 @@ import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.IndiStrawSearchTextField
 import com.danbam.design_system.util.RemoveOverScrollLazyColumn
+import com.danbam.design_system.util.indiStrawClickable
+import com.danbam.mobile.util.android.observeWithLifecycle
 import com.danbam.mobile.util.view.popBackStack
+import kotlinx.coroutines.InternalCoroutinesApi
 
-@OptIn(ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalComposeUiApi::class, InternalCoroutinesApi::class)
 @Composable
 fun SearchActorScreen(
     navController: NavController,
@@ -50,6 +53,12 @@ fun SearchActorScreen(
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
     var search by remember { mutableStateOf("") }
+
+    sideEffect.observeWithLifecycle {
+        if (it is MakeMovieSideEffect.Next) {
+            navController.popBackStack(keyboardController = keyboardController)
+        }
+    }
 
     LaunchedEffect(search) {
         makeMovieViewModel.searchMoviePeople(actorType = addActorType, name = search)
@@ -76,7 +85,14 @@ fun SearchActorScreen(
         RemoveOverScrollLazyColumn {
             items(state.searchMoviePeopleList) {
                 Row(
-                    modifier = Modifier.padding(15.dp),
+                    modifier = Modifier
+                        .padding(15.dp)
+                        .indiStrawClickable {
+                            makeMovieViewModel.selectMoviePeople(
+                                addActorType,
+                                it
+                            )
+                        },
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     AsyncImage(
