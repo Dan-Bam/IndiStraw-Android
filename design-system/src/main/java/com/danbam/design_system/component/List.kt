@@ -30,6 +30,7 @@ import com.danbam.design_system.util.RemoveOverScrollLazyRow
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.util.rememberLauncher
 import com.danbam.design_system.util.typedLaunch
+import com.danbam.domain.entity.MoviePeopleEntity
 
 @Composable
 fun AddImageList(
@@ -136,7 +137,7 @@ fun AddFileList(
 fun AddPeopleList(
     modifier: Modifier = Modifier,
     onAddPeople: () -> Unit,
-    peopleList: List<String>,
+    peopleList: List<MoviePeopleEntity>,
     onRemove: (Int) -> Unit
 ) {
     Row(
@@ -181,12 +182,12 @@ fun AddPeopleList(
                             modifier = modifier
                                 .size(60.dp)
                                 .clip(IndiStrawTheme.shapes.circle),
-                            model = item,
+                            model = item.profileUrl,
                             contentDescription = "Image",
                             contentScale = ContentScale.Crop
                         )
                         Spacer(modifier = Modifier.height(20.dp))
-                        TitleSemiBold(text = "이름")
+                        TitleSemiBold(text = item.name)
                     }
                     IndiStrawIcon(
                         modifier = Modifier
