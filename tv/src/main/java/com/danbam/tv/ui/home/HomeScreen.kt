@@ -42,13 +42,13 @@ fun HomeScreen(
     val container = homeViewModel.container
     val state = container.stateFlow.collectAsState().value
     val sideEffect = container.sideEffectFlow
-    
+
     val itemFocusRequester = remember { FocusRequester() }
     var homeTab: MovieTab by remember { mutableStateOf(MovieTab.RecentMovie) }
 
     LaunchedEffect(Unit) {
         if (!isOpenDrawer) {
-            itemFocusRequester.requestFocus()
+//            itemFocusRequester.requestFocus()
         }
     }
 
@@ -93,12 +93,12 @@ fun HomeScreen(
             contentPadding = PaddingValues(horizontal = 8.dp, vertical = 20.dp)
         ) {
             items(10) {
-                MovieTvItem(
-                    modifier = Modifier.focusRequester(if (it == state.currentMovieIndex) itemFocusRequester else FocusRequester())
-                ) {
-                    homeViewModel.saveCurrentIndex(it)
-                    navController.navigate(MainNavigationItem.MovieDetail.route)
-                }
+//                MovieTvItem(
+//                    modifier = Modifier.focusRequester(if (it == state.currentMovieIndex) itemFocusRequester else FocusRequester())
+//                ) {
+//                    homeViewModel.saveCurrentIndex(it)
+//                    navController.navigate(MainNavigationItem.MovieDetail.route)
+//                }
             }
         }
     }

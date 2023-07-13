@@ -147,9 +147,9 @@ fun SearchScreen(
                     contentPadding = PaddingValues(horizontal = 8.dp, vertical = 20.dp)
                 ) {
                     items(10) {
-                        MovieTvItem {
-                            navController.navigate(MainNavigationItem.MovieDetail.route)
-                        }
+//                        MovieTvItem {
+//                            navController.navigate(MainNavigationItem.MovieDetail.route)
+//                        }
                     }
                 }
             }
