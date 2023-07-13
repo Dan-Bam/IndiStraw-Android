@@ -5,6 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
+import com.danbam.tv.ui.main.intro.IntroScreen
 import com.danbam.tv.ui.main.login.LoginScreen
 import com.danbam.tv.ui.main.main.MainScreen
 import com.danbam.tv.ui.main.qr_login.QRLoginScreen
@@ -13,6 +14,7 @@ import com.danbam.tv.ui.movie.play.MoviePlayScreen
 import com.google.accompanist.navigation.animation.composable
 
 sealed class MainNavigationItem(val route: String) {
+    object Intro : MainNavigationItem("intro")
     object Login : MainNavigationItem("login")
     object QRLogin : MainNavigationItem("QRLogin")
     object Main : MainNavigationItem("main")
@@ -27,6 +29,9 @@ object MainDeepLinkKey {
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.mainGraph(navController: NavHostController) {
+    composable(route = MainNavigationItem.Intro.route) {
+        IntroScreen(navController = navController)
+    }
     composable(route = MainNavigationItem.Login.route) {
         LoginScreen(navController = navController)
     }
