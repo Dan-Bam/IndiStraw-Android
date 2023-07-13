@@ -66,6 +66,7 @@ fun MovieDetailScreen(
     }
 
     var selectedPeople: MoviePeopleEntity? by remember { mutableStateOf(null) }
+    var isActor by remember { mutableStateOf(false) }
 
     IndiStrawBottomSheetLayout(sheetContent = {
         selectedPeople?.let {
@@ -99,15 +100,15 @@ fun MovieDetailScreen(
                 item {
                     Spacer(modifier = Modifier.width(20.dp))
                 }
-                items(10) {
+                items(state.appearanceMovieList) {
                     ImageButton(
                         modifier = Modifier
                             .width(100.dp)
                             .height(90.dp),
-                        imgSrc = "",
+                        imgSrc = it.thumbnailUrl,
                         shape = Shape.Rectangle
                     ) {
-
+                        navController.navigate(MovieNavigationItem.Detail.route + MovieDeepLinkKey.MOVIE_INDEX + it.idx)
                     }
                     Spacer(modifier = Modifier.width(16.dp))
                 }
@@ -190,6 +191,10 @@ fun MovieDetailScreen(
                     Column(
                         modifier = Modifier.indiStrawClickable(onClick = {
                             selectedPeople = item
+                            movieDetailViewModel.moviePeopleDetail(
+                                index >= state.movieDetailInfo.directorList.size,
+                                item.idx
+                            )
                             moreInfo()
                         }),
                         horizontalAlignment = CenterHorizontally
