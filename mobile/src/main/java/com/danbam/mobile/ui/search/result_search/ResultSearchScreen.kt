@@ -23,6 +23,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.items
 import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawTab
 import com.danbam.design_system.R
@@ -49,9 +50,14 @@ fun ResultSearchScreen(
 
     var currentTab: SearchTab by remember { mutableStateOf(SearchTab.Movie) }
     val moviePager = state.moviePager?.collectAsLazyPagingItems()
+    val fundingPager = state.fundingPager?.collectAsLazyPagingItems()
 
-    LaunchedEffect(Unit) {
-        resultSearchViewModel.searchMovie(keyword = keyword)
+    LaunchedEffect(currentTab) {
+        if (currentTab == SearchTab.Movie) {
+            resultSearchViewModel.searchMovie(keyword = keyword)
+        } else {
+            resultSearchViewModel.searchFunding(keyword = keyword)
+        }
     }
 
     IndiStrawColumnBackground(
@@ -100,22 +106,23 @@ fun ResultSearchScreen(
             }
 
             is SearchTab.Funding -> {
-                Spacer(modifier = Modifier.height(11.dp))
-                RemoveOverScrollLazyColumn {
-                    items(20) {
-                        FundingItem(
-                            item = FundingEntity(
-                                0,
-                                "존윅",
-                                "진짜 재밌음",
-                                50.0,
-                                "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
-                                ""
-                            )
-                        ) {
-                            navController.navigate(FundingNavigationItem.Detail.route + FundingDeepLinkKey.FUNDING_INDEX + it)
+                fundingPager?.let {
+                    when (it.loadState.refresh) {
+                        is LoadState.Loading -> {}
+                        is LoadState.Error -> {}
+                        else -> {
+                            Spacer(modifier = Modifier.height(11.dp))
+                            RemoveOverScrollLazyColumn {
+                                items(it) {
+                                    it?.let {
+                                        FundingItem(item = it) {
+                                            navController.navigate(FundingNavigationItem.Detail.route + FundingDeepLinkKey.FUNDING_INDEX + it)
+                                        }
+                                        Spacer(modifier = Modifier.height(24.dp))
+                                    }
+                                }
+                            }
                         }
-                        Spacer(modifier = Modifier.height(24.dp))
                     }
                 }
             }
