@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Divider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -69,6 +70,12 @@ fun MovieDetailScreen(
     val sideEffect = container.sideEffectFlow
 
     var currentTab: MovieTabItem by remember { mutableStateOf(MovieTabItem.Highlight) }
+
+    LaunchedEffect(Unit) {
+        movieDetailViewModel.movieDetail(movieIndex = movieIndex)
+        movieDetailViewModel.movieHistory(movieIndex = movieIndex)
+    }
+
     IndiStrawTvBackground {
         Box(
             modifier = Modifier
@@ -107,14 +114,22 @@ fun MovieDetailScreen(
                         icon = IndiStrawIconList.FastPlay,
                         title = stringResource(id = R.string.watch_going)
                     ) {
-                        navController.navigate(MainNavigationItem.MoviePlay.route + MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl)
+                        navController.navigate(
+                            MainNavigationItem.MoviePlay.route + MainDeepLinkKey.MOVIE_INDEX + movieIndex + MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl.split(
+                                "/"
+                            ).last() + MainDeepLinkKey.MOVIE_POSITION + state.moviePosition
+                        )
                     }
                     Spacer(modifier = Modifier.width(10.dp))
                     MoviePlayButton(
                         icon = IndiStrawIconList.PlayFirst,
                         title = stringResource(id = R.string.watch_first)
                     ) {
-                        navController.navigate(MainNavigationItem.MoviePlay.route + MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl)
+                        navController.navigate(
+                            MainNavigationItem.MoviePlay.route + MainDeepLinkKey.MOVIE_INDEX + movieIndex + MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl.split(
+                                "/"
+                            ).last() + MainDeepLinkKey.MOVIE_POSITION + 0F
+                        )
                     }
                 }
             }

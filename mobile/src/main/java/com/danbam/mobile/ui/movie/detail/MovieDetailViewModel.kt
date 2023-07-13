@@ -3,6 +3,7 @@ package com.danbam.mobile.ui.movie.detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.danbam.domain.usecase.movie.MovieDetailUseCase
+import com.danbam.domain.usecase.movie.MovieHistoryUseCase
 import com.danbam.domain.usecase.movie.MoviePeopleDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,7 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(
     private val movieDetailUseCase: MovieDetailUseCase,
-    private val moviePeopleDetailUseCase: MoviePeopleDetailUseCase
+    private val moviePeopleDetailUseCase: MoviePeopleDetailUseCase,
+    private val movieHistoryUseCase: MovieHistoryUseCase,
 ) : ContainerHost<MovieDetailState, Unit>, ViewModel() {
     override val container = container<MovieDetailState, Unit>(MovieDetailState())
 
@@ -24,6 +26,12 @@ class MovieDetailViewModel @Inject constructor(
             movieDetailUseCase(movieIndex = movieIndex).onSuccess {
                 reduce { state.copy(movieDetailInfo = it) }
             }
+        }
+    }
+
+    fun movieHistory(movieIndex: Int) = intent {
+        movieHistoryUseCase(movieIdx = movieIndex).onSuccess {
+            reduce { state.copy(moviePosition = it.historyTime) }
         }
     }
 

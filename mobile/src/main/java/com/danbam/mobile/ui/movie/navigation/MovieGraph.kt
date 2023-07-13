@@ -29,6 +29,7 @@ object MovieDeepLinkKey {
     const val ADD_ACTOR_TYPE = "addActorType"
     const val MOVIE_INDEX = "movieIndex"
     const val MOVIE_URL = "movieUrl"
+    const val MOVIE_POSITION = "moviePosition"
 }
 
 object ActorType {
@@ -55,15 +56,25 @@ fun NavGraphBuilder.movieGraph(
     }
     composable(
         route = MovieNavigationItem.Play.route
-            + MovieDeepLinkKey.MOVIE_URL + "{${MovieDeepLinkKey.MOVIE_INDEX}}",
+            + MovieDeepLinkKey.MOVIE_INDEX + "{${MovieDeepLinkKey.MOVIE_INDEX}}"
+            + MovieDeepLinkKey.MOVIE_URL + "{${MovieDeepLinkKey.MOVIE_URL}}"
+            + MovieDeepLinkKey.MOVIE_POSITION + "{${MovieDeepLinkKey.MOVIE_POSITION}}",
         arguments = listOf(
             navArgument(MovieDeepLinkKey.MOVIE_URL) {
                 type = NavType.StringType
+            },
+            navArgument(MovieDeepLinkKey.MOVIE_INDEX) {
+                type = NavType.IntType
+            },
+            navArgument(MovieDeepLinkKey.MOVIE_POSITION) {
+                type = NavType.FloatType
             }
         )
     ) {
         val movieUrl = it.arguments?.getString(MovieDeepLinkKey.MOVIE_URL) ?: ""
-        MoviePlayScreen(movieUrl = movieUrl)
+        val movieIdx = it.arguments?.getInt(MovieDeepLinkKey.MOVIE_URL) ?: 0
+        val moviePosition = it.arguments?.getFloat(MovieDeepLinkKey.MOVIE_POSITION) ?: 0F
+        MoviePlayScreen(movieUrl = movieUrl, movieIdx = movieIdx, position = moviePosition)
     }
     composable(route = MovieNavigationItem.All.route) {
         MovieAllScreen(navController = navController)

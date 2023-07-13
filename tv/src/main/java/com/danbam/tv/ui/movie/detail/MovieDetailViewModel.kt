@@ -3,6 +3,7 @@ package com.danbam.tv.ui.movie.detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.danbam.domain.usecase.movie.MovieDetailUseCase
+import com.danbam.domain.usecase.movie.MovieHistoryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
@@ -13,9 +14,18 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(
-    private val movieDetailUseCase: MovieDetailUseCase
+    private val movieDetailUseCase: MovieDetailUseCase,
+    private val movieHistoryUseCase: MovieHistoryUseCase,
 ) : ContainerHost<MovieDetailState, Unit>, ViewModel() {
     override val container = container<MovieDetailState, Unit>(MovieDetailState())
+
+    fun movieHistory(movieIndex: Int) = intent {
+        viewModelScope.launch {
+            movieHistoryUseCase(movieIdx = movieIndex).onSuccess {
+                reduce { state.copy(moviePosition = it.historyTime) }
+            }
+        }
+    }
 
     fun movieDetail(movieIndex: Int) = intent {
         viewModelScope.launch {

@@ -5,11 +5,14 @@ import androidx.paging.map
 import com.danbam.data.remote.datasource.MovieRemoteDataSource
 import com.danbam.data.remote.request.toRequest
 import com.danbam.data.remote.response.toEntity
+import com.danbam.domain.entity.DetailMovieHistoryEntity
 import com.danbam.domain.entity.MovieDetailEntity
 import com.danbam.domain.entity.MovieEntity
+import com.danbam.domain.entity.MovieHistoryEntity
 import com.danbam.domain.entity.MoviePeopleDetailEntity
 import com.danbam.domain.entity.MoviePeopleEntity
 import com.danbam.domain.param.MovieCreateParam
+import com.danbam.domain.param.MovieHistoryParam
 import com.danbam.domain.param.MoviePeopleParam
 import com.danbam.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
@@ -52,4 +55,14 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun movieRecommendList(): List<MovieEntity> =
         movieRemoteDataSource.movieRecommendList().map { it.toEntity() }
+
+    override suspend fun movieHistoryList(): List<MovieHistoryEntity> =
+        movieRemoteDataSource.movieHistoryList().map { it.toEntity() }
+
+    override suspend fun addMovieHistory(movieHistoryParam: MovieHistoryParam): MovieHistoryEntity =
+        movieRemoteDataSource.addMovieHistory(movieHistoryRequest = movieHistoryParam.toRequest())
+            .toEntity()
+
+    override suspend fun movieHistory(movieIdx: Int): DetailMovieHistoryEntity =
+        movieRemoteDataSource.movieHistory(movieIdx = movieIdx).toEntity()
 }

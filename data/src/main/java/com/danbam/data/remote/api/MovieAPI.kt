@@ -1,9 +1,12 @@
 package com.danbam.data.remote.api
 
+import com.danbam.data.remote.request.MovieHistoryRequest
 import com.danbam.data.remote.request.MovieCreateRequest
 import com.danbam.data.remote.request.MoviePeopleRequest
 import com.danbam.data.remote.response.AddMoviePeopleResponse
+import com.danbam.data.remote.response.DetailMovieHistoryResponse
 import com.danbam.data.remote.response.MovieDetailResponse
+import com.danbam.data.remote.response.MovieHistoryResponse
 import com.danbam.data.remote.response.MoviePageResponse
 import com.danbam.data.remote.response.MoviePeopleDetailResponse
 import com.danbam.data.remote.response.MoviePeopleResponse
@@ -56,4 +59,17 @@ interface MovieAPI {
 
     @GET("${EndPoint.Movie}/recommend/")
     suspend fun movieRecommendList(): List<MovieResponse>
+
+    @GET("${EndPoint.Movie}/history/")
+    suspend fun movieHistoryList(): List<MovieHistoryResponse>
+
+    @POST("${EndPoint.Movie}/history/")
+    suspend fun addMovieHistory(
+        @Body movieHistoryRequest: MovieHistoryRequest
+    ): MovieHistoryResponse
+
+    @GET("${EndPoint.Movie}/history/{movieIdx}")
+    suspend fun movieHistory(
+        @Path("movieIdx") movieIdx: Int,
+    ): DetailMovieHistoryResponse
 }
