@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Divider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -30,8 +31,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.tv.foundation.lazy.list.TvLazyRow
+import androidx.tv.foundation.lazy.list.items
 import androidx.tv.material3.ClickableSurfaceDefaults
 import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.Surface
@@ -56,8 +59,14 @@ sealed class MovieTabItem(val stringId: Int) {
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 fun MovieDetailScreen(
-    navController: NavController
+    navController: NavController,
+    movieIndex: Int,
+    movieDetailViewModel: MovieDetailViewModel = hiltViewModel()
 ) {
+    val container = movieDetailViewModel.container
+    val state = container.stateFlow.collectAsState().value
+    val sideEffect = container.sideEffectFlow
+
     var currentTab: MovieTabItem by remember { mutableStateOf(MovieTabItem.Highlight) }
     IndiStrawTvBackground {
         Box(
@@ -70,7 +79,7 @@ fun MovieDetailScreen(
                     .align(Alignment.TopEnd)
                     .fillMaxWidth(0.6F)
                     .fillMaxHeight(),
-                model = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
+                model = state.movieDetailInfo.thumbnailUrl,
                 contentDescription = "movieThumbnail",
                 contentScale = ContentScale.Crop,
                 alpha = 0.7F
@@ -84,20 +93,26 @@ fun MovieDetailScreen(
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 Column {
-                    HeadLineBold(text = "범죄도시 2", fontSize = 50)
+                    HeadLineBold(text = state.movieDetailInfo.title, fontSize = 50)
                     Spacer(modifier = Modifier.height(15.dp))
                     ExampleTextMedium(
-                        text = "아, 이유가 어딨어, 사람 죽인 새끼 잡는데?! 나쁜 놈은 그냥 잡는거야! 도주 용의자 사건을 담당하러 필리핀으로 간 마석도와 전일만은 예상치 못한 사건에 휘말리게 된다.",
+                        text = state.movieDetailInfo.description,
                         fontSize = 18,
                         maxLines = 3
                     )
                 }
                 Row {
-                    MoviePlayButton(icon = IndiStrawIconList.FastPlay, title = "이어서 보기") {
+                    MoviePlayButton(
+                        icon = IndiStrawIconList.FastPlay,
+                        title = stringResource(id = R.string.watch_going)
+                    ) {
                         navController.navigate(MainNavigationItem.MoviePlay.route)
                     }
                     Spacer(modifier = Modifier.width(10.dp))
-                    MoviePlayButton(icon = IndiStrawIconList.PlayFirst, title = "처음부터 보기") {
+                    MoviePlayButton(
+                        icon = IndiStrawIconList.PlayFirst,
+                        title = stringResource(id = R.string.watch_first)
+                    ) {
                         navController.navigate(MainNavigationItem.MoviePlay.route)
                     }
                 }
@@ -128,14 +143,14 @@ fun MovieDetailScreen(
                     horizontalArrangement = Arrangement.spacedBy(30.dp),
                     contentPadding = PaddingValues(horizontal = 8.dp, vertical = 20.dp)
                 ) {
-                    items(10) {
+                    items(state.movieDetailInfo.highlight) {
                         Surface(onClick = { }) {
                             AsyncImage(
                                 modifier = Modifier
                                     .width(210.dp)
                                     .height(150.dp)
                                     .clip(IndiStrawTheme.shapes.smallRounded),
-                                model = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
+                                model = it,
                                 contentDescription = "highlightImage",
                                 contentScale = ContentScale.Crop
                             )
@@ -150,7 +165,7 @@ fun MovieDetailScreen(
                     horizontalArrangement = Arrangement.spacedBy(35.dp),
                     contentPadding = PaddingValues(horizontal = 8.dp, vertical = 20.dp)
                 ) {
-                    items(10) {
+                    items(state.movieDetailInfo.directorList + state.movieDetailInfo.actorList) {
                         Surface(
                             shape = ClickableSurfaceDefaults.shape(
                                 shape = RoundedCornerShape(0.dp)
@@ -174,11 +189,11 @@ fun MovieDetailScreen(
                                     modifier = Modifier
                                         .size(80.dp)
                                         .clip(IndiStrawTheme.shapes.circle),
-                                    model = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
+                                    model = it.profileUrl,
                                     contentDescription = "actorProfile",
                                     contentScale = ContentScale.Crop
                                 )
-                                HeadLineBold(text = "마동석")
+                                HeadLineBold(text = it.name)
                             }
                         }
                     }
