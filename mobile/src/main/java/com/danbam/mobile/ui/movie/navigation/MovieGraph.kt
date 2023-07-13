@@ -27,6 +27,7 @@ sealed class MovieNavigationItem(val route: String) {
 
 object MovieDeepLinkKey {
     const val ADD_ACTOR_TYPE = "addActorType"
+    const val MOVIE_INDEX = "movieIndex"
 }
 
 object ActorType {
@@ -39,8 +40,17 @@ fun NavGraphBuilder.movieGraph(
     navController: NavHostController,
     makeMovieViewModel: MakeMovieViewModel
 ) {
-    composable(route = MovieNavigationItem.Detail.route) {
-        MovieDetailScreen(navController = navController)
+    composable(
+        route = MovieNavigationItem.Detail.route
+            + MovieDeepLinkKey.MOVIE_INDEX + "{${MovieDeepLinkKey.MOVIE_INDEX}}",
+        arguments = listOf(
+            navArgument(MovieDeepLinkKey.MOVIE_INDEX) {
+                type = NavType.IntType
+            }
+        )
+    ) {
+        val movieIndex = it.arguments?.getInt(MovieDeepLinkKey.MOVIE_INDEX) ?: 0
+        MovieDetailScreen(navController = navController, movieIndex = movieIndex)
     }
     composable(route = MovieNavigationItem.Play.route) {
         MoviePlayScreen()
