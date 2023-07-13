@@ -12,4 +12,5 @@ interface SearchRepository {
     suspend fun searchMovie(recentSearchEntity: RecentSearchEntity): Flow<PagingData<MovieEntity>>
     suspend fun searchFunding(recentSearchEntity: RecentSearchEntity): Flow<PagingData<FundingEntity>>
     suspend fun getRecentSearch(): List<RecentSearchEntity>
+    suspend fun popularTag(): List<String>
 }
