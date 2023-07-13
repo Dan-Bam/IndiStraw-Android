@@ -5,6 +5,7 @@ import com.danbam.data.remote.request.MovieCreateRequest
 import com.danbam.data.remote.request.MoviePeopleRequest
 import com.danbam.data.remote.response.AddMoviePeopleResponse
 import com.danbam.data.remote.response.MovieDetailResponse
+import com.danbam.data.remote.response.MovieHistoryResponse
 import com.danbam.data.remote.response.MoviePeopleDetailResponse
 import com.danbam.data.remote.response.MoviePeopleResponse
 import com.danbam.data.remote.response.MovieResponse
@@ -20,7 +21,10 @@ interface MovieRemoteDataSource {
         actorType: String,
         moviePeopleRequest: MoviePeopleRequest
     ): AddMoviePeopleResponse
+
     suspend fun movieRecentList(): List<MovieResponse>
     suspend fun moviePopularList(): List<MovieResponse>
     suspend fun movieRecommendList(): List<MovieResponse>
+
+    suspend fun movieHistoryList(): List<MovieHistoryResponse>
 }
