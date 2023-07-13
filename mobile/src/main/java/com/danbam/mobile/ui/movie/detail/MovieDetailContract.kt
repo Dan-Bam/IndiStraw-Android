@@ -1,6 +1,7 @@
 package com.danbam.mobile.ui.movie.detail
 
 import com.danbam.domain.entity.MovieDetailEntity
+import com.danbam.domain.entity.MovieEntity
 
 data class MovieDetailState(
     val movieDetailInfo: MovieDetailEntity = MovieDetailEntity(
@@ -13,5 +14,6 @@ data class MovieDetailState(
         highlight = listOf(),
         isFunding = false,
         genre = listOf()
-    )
+    ),
+    val appearanceMovieList: List<MovieEntity> = listOf()
 )
