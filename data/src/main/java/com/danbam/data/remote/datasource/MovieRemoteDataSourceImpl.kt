@@ -9,7 +9,6 @@ import com.danbam.data.remote.request.MovieCreateRequest
 import com.danbam.data.remote.request.MoviePeopleRequest
 import com.danbam.data.remote.response.MoviePeopleDetailResponse
 import com.danbam.data.remote.response.MovieDetailResponse
-import com.danbam.data.remote.response.MoviePeopleDetailResponse
 import com.danbam.data.remote.response.MoviePeopleResponse
 import com.danbam.data.remote.response.MovieResponse
 import com.danbam.data.remote.util.errorHandling
