@@ -41,19 +41,24 @@ class FundingRewardViewModel @Inject constructor(
 
     fun getReceipt() = intent {
         getReceiptUseCase().onSuccess {
-            println("안녕 $it")
             reduce {
                 state.copy(receiptId = it)
             }
         }
     }
 
-    fun funding(crowdfundingIdx: Long, rewardIdx: Long, price: Long, extraPrice: Long) = intent {
+    fun funding(
+        receiptId: String,
+        crowdfundingIdx: Long,
+        rewardIdx: Long,
+        price: Long,
+        extraPrice: Long
+    ) = intent {
         fundingUseCase(
             crowdfundingIdx = crowdfundingIdx,
             rewardIdx = rewardIdx,
             fundingParam = FundingParam(
-                receiptId = state.receiptId,
+                receiptId = receiptId,
                 price = price,
                 extraPrice = extraPrice
             )
