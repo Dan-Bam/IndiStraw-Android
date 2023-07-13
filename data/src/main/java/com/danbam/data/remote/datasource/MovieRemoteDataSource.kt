@@ -18,4 +18,6 @@ interface MovieRemoteDataSource {
         actorType: String,
         moviePeopleRequest: MoviePeopleRequest
     ): AddMoviePeopleResponse
+
+    suspend fun moviePopularList(): List<MovieResponse>
 }

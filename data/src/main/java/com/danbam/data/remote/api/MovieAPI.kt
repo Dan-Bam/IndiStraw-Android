@@ -6,6 +6,7 @@ import com.danbam.data.remote.response.AddMoviePeopleResponse
 import com.danbam.data.remote.response.MovieDetailResponse
 import com.danbam.data.remote.response.MoviePageResponse
 import com.danbam.data.remote.response.MoviePeopleResponse
+import com.danbam.data.remote.response.MovieResponse
 import com.danbam.data.remote.util.EndPoint
 import retrofit2.Response
 import retrofit2.http.Body
@@ -42,4 +43,7 @@ interface MovieAPI {
         @Path("actorType") actorType: String,
         @Body moviePeopleRequest: MoviePeopleRequest
     ): AddMoviePeopleResponse
+
+    @GET("${EndPoint.Movie}/popular/")
+    suspend fun moviePopularList(): List<MovieResponse>
 }

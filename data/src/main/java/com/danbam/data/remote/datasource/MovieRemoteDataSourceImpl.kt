@@ -46,4 +46,8 @@ class MovieRemoteDataSourceImpl @Inject constructor(
         indiStrawApiCall {
             movieAPI.addMoviePeople(actorType = actorType, moviePeopleRequest = moviePeopleRequest)
         }
+
+    override suspend fun moviePopularList(): List<MovieResponse> = indiStrawApiCall {
+        movieAPI.moviePopularList()
+    }
 }

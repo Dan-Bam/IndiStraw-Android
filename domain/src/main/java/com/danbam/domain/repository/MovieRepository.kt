@@ -14,4 +14,5 @@ interface MovieRepository {
     suspend fun movieDetail(movieIdx: Int): MovieDetailEntity
     suspend fun searchMoviePeople(actorType: String, name: String): List<MoviePeopleEntity>
     suspend fun addMoviePeople(actorType: String, moviePeopleParam: MoviePeopleParam): Int
+    suspend fun moviePopularList(): List<MovieEntity>
 }
