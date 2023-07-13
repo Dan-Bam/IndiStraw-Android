@@ -133,7 +133,11 @@ fun MovieDetailScreen(
                     imgSrc = state.movieDetailInfo.thumbnailUrl,
                     shape = Shape.None
                 ) {
-                    navController.navigate(MovieNavigationItem.Play.route + MovieDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl)
+                    navController.navigate(
+                        MovieNavigationItem.Play.route + MovieDeepLinkKey.MOVIE_INDEX + movieIndex + MovieDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl.split(
+                            "/"
+                        ).last()
+                    )
                 }
                 IndiStrawIcon(
                     modifier = Modifier.align(Alignment.Center),
