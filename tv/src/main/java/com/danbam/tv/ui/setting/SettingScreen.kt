@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -89,6 +90,10 @@ fun SettingScreen(
         }
     }
 
+    LaunchedEffect(Unit) {
+        settingViewModel.fetchLanguage()
+    }
+
     BackHandler(selectedSettingMenu != null) {
         selectedSettingMenu = null
     }
@@ -160,8 +165,9 @@ fun SettingScreen(
             when (selectedSettingMenu) {
                 is SettingNavigation.Language -> {
                     SettingLanguageScreen(
-                        selectLanguage = LanguageType.Korean,
-                        parentFocusRequester = languageFocusRequester
+                        selectLanguage = state.currentLanguage,
+                        parentFocusRequester = languageFocusRequester,
+                        settingViewModel = settingViewModel
                     )
                 }
 
