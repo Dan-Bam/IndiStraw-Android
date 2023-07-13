@@ -26,16 +26,19 @@ import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.R
 import com.danbam.design_system.component.IndiStrawButton
 import com.danbam.design_system.util.indiStrawClickable
+import com.danbam.mobile.ui.main.navigation.MainNavigationItem
 import com.danbam.mobile.ui.movie.navigation.ActorType
 import com.danbam.mobile.ui.movie.navigation.MovieDeepLinkKey
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
+import com.danbam.mobile.util.android.observeWithLifecycle
+import kotlinx.coroutines.InternalCoroutinesApi
 
 sealed class AddPeopleType {
     object Director : AddPeopleType()
     object Actor : AddPeopleType()
 }
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterialApi::class, InternalCoroutinesApi::class)
 @Composable
 fun AddActorScreen(
     navController: NavController,
@@ -46,6 +49,14 @@ fun AddActorScreen(
     val sideEffect = container.sideEffectFlow
 
     var addPeopleType: AddPeopleType by remember { mutableStateOf(AddPeopleType.Director) }
+
+    sideEffect.observeWithLifecycle {
+        if (it is MakeMovieSideEffect.SuccessCreateMovie) {
+            navController.navigate(MainNavigationItem.Main.route) {
+                popUpTo(MainNavigationItem.Intro.route)
+            }
+        }
+    }
 
     IndiStrawBottomSheetLayout(sheetContent = {
         Divider(
@@ -111,7 +122,7 @@ fun AddActorScreen(
                 onRemove = { makeMovieViewModel.removeMoviePeople(ActorType.ACTOR, it) })
             Spacer(modifier = Modifier.weight(1F))
             IndiStrawButton(text = stringResource(id = R.string.check)) {
-
+                makeMovieViewModel.movieCreate()
             }
             Spacer(modifier = Modifier.height(80.dp))
         }

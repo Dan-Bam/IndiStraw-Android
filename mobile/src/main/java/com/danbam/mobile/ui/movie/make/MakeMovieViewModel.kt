@@ -3,9 +3,11 @@ package com.danbam.mobile.ui.movie.make
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.danbam.domain.entity.MoviePeopleEntity
+import com.danbam.domain.param.MovieCreateParam
 import com.danbam.domain.param.MoviePeopleParam
 import com.danbam.domain.usecase.file.SendFileUseCase
 import com.danbam.domain.usecase.movie.AddMoviePeopleUseCase
+import com.danbam.domain.usecase.movie.MovieCreateUseCase
 import com.danbam.domain.usecase.movie.SearchMoviePeopleUseCase
 import com.danbam.mobile.ui.movie.navigation.ActorType
 import com.danbam.mobile.util.android.errorHandling
@@ -24,6 +26,7 @@ class MakeMovieViewModel @Inject constructor(
     private val sendFileUseCase: SendFileUseCase,
     private val searchMoviePeopleUseCase: SearchMoviePeopleUseCase,
     private val addMoviePeopleUseCase: AddMoviePeopleUseCase,
+    private val movieCreateUseCase: MovieCreateUseCase
 ) : ContainerHost<MakeMovieState, MakeMovieSideEffect>, ViewModel() {
     override val container = container<MakeMovieState, MakeMovieSideEffect>(MakeMovieState())
 
@@ -132,6 +135,29 @@ class MakeMovieViewModel @Inject constructor(
             }
         } else reduce {
             state.copy(directorList = state.directorList.filterIndexed { i, _ -> i != index })
+        }
+    }
+
+    fun movieCreate() = intent {
+        if (state.directorList.isEmpty()) return@intent
+        else if (state.actorList.isEmpty()) return@intent
+        else {
+            viewModelScope.launch {
+                movieCreateUseCase(
+                    movieCreateParam = MovieCreateParam(
+                        title = state.title,
+                        description = state.description,
+                        movieUrl = state.movieUrl!!,
+                        thumbnailUrl = state.thumbnailUrl!!,
+                        highlight = state.imageList,
+                        director = state.directorList.map { it.idx },
+                        actor = state.actorList.map { it.idx },
+                        isMakeFunding = state.isFunding
+                    )
+                ).onSuccess {
+                    postSideEffect(MakeMovieSideEffect.SuccessCreateMovie)
+                }
+            }
         }
     }
 }
