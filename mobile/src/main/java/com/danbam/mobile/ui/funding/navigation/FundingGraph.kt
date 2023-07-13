@@ -96,6 +96,6 @@ fun NavGraphBuilder.fundingGraph(navController: NavHostController) {
         )
     ) {
         val fundingIndex = it.arguments?.getLong(FundingDeepLinkKey.FUNDING_INDEX) ?: 0L
-        MyFundingScreen(navController = navController, fundingIdx = fundingIndex)
+        MyFundingScreen(navController = navController, crowdFundingIndex = fundingIndex)
     }
 }

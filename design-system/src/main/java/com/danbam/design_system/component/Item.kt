@@ -46,6 +46,7 @@ import com.danbam.design_system.util.toCommaString
 import com.danbam.domain.entity.FundingDetailEntity
 import com.danbam.domain.entity.FundingEntity
 import com.danbam.domain.entity.MovieEntity
+import com.danbam.domain.entity.MyFundingEntity
 
 sealed class RewardType {
     object Default : RewardType()
@@ -304,8 +305,8 @@ fun RewardItem(
 @Composable
 fun MyRewardItem(
     rewardType: RewardType = RewardType.Default,
-    item: FundingDetailEntity.RewardEntity,
-    onClickItem: (FundingDetailEntity.RewardEntity) -> Unit,
+    item: MyFundingEntity.RewardEntity,
+    onClickItem: (MyFundingEntity.RewardEntity) -> Unit,
 ) {
     val rewardImageSize = LocalConfiguration.current.screenWidthDp * 0.45
     when (rewardType) {
@@ -348,7 +349,7 @@ fun MyRewardItem(
                     ) {
                         IndiStrawIcon(icon = IndiStrawIconList.People)
                         PriceRegular(
-                            text = "120",
+                            text = "${item.totalCount?.toCommaString()}",
                             fontSize = 12,
                         )
                     }
@@ -415,7 +416,7 @@ fun MyRewardItem(
                         ) {
                             IndiStrawIcon(icon = IndiStrawIconList.People)
                             PriceRegular(
-                                text = "120",
+                                text = "${item.totalCount?.toCommaString()}",
                                 fontSize = 12,
                             )
                         }
