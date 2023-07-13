@@ -4,6 +4,7 @@ import com.danbam.data.remote.request.MovieHistoryRequest
 import com.danbam.data.remote.request.MovieCreateRequest
 import com.danbam.data.remote.request.MoviePeopleRequest
 import com.danbam.data.remote.response.AddMoviePeopleResponse
+import com.danbam.data.remote.response.DetailMovieHistoryResponse
 import com.danbam.data.remote.response.MovieDetailResponse
 import com.danbam.data.remote.response.MovieHistoryResponse
 import com.danbam.data.remote.response.MoviePageResponse
@@ -66,4 +67,9 @@ interface MovieAPI {
     suspend fun addMovieHistory(
         @Body movieHistoryRequest: MovieHistoryRequest
     ): MovieHistoryResponse
+
+    @GET("${EndPoint.Movie}/history/{movieIdx}")
+    suspend fun movieHistory(
+        @Path("movieIdx") movieIdx: Int,
+    ): DetailMovieHistoryResponse
 }
