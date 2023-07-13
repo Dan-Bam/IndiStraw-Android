@@ -5,6 +5,7 @@ import androidx.paging.map
 import com.danbam.data.remote.datasource.MovieRemoteDataSource
 import com.danbam.data.remote.request.toRequest
 import com.danbam.data.remote.response.toEntity
+import com.danbam.domain.entity.DetailMovieHistoryEntity
 import com.danbam.domain.entity.MovieDetailEntity
 import com.danbam.domain.entity.MovieEntity
 import com.danbam.domain.entity.MovieHistoryEntity
@@ -61,4 +62,7 @@ class MovieRepositoryImpl @Inject constructor(
     override suspend fun addMovieHistory(movieHistoryParam: MovieHistoryParam): MovieHistoryEntity =
         movieRemoteDataSource.addMovieHistory(movieHistoryRequest = movieHistoryParam.toRequest())
             .toEntity()
+
+    override suspend fun movieHistory(movieIdx: Int): DetailMovieHistoryEntity =
+        movieRemoteDataSource.movieHistory(movieIdx = movieIdx).toEntity()
 }

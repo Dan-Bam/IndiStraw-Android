@@ -1,6 +1,7 @@
 package com.danbam.domain.repository
 
 import androidx.paging.PagingData
+import com.danbam.domain.entity.DetailMovieHistoryEntity
 import com.danbam.domain.entity.MovieDetailEntity
 import com.danbam.domain.entity.MovieEntity
 import com.danbam.domain.entity.MovieHistoryEntity
@@ -23,4 +24,5 @@ interface MovieRepository {
     suspend fun movieRecommendList(): List<MovieEntity>
     suspend fun movieHistoryList(): List<MovieHistoryEntity>
     suspend fun addMovieHistory(movieHistoryParam: MovieHistoryParam): MovieHistoryEntity
+    suspend fun movieHistory(movieIdx: Int): DetailMovieHistoryEntity
 }
