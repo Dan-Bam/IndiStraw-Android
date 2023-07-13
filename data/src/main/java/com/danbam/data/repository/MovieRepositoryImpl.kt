@@ -7,6 +7,7 @@ import com.danbam.data.remote.request.toRequest
 import com.danbam.data.remote.response.toEntity
 import com.danbam.domain.entity.MovieDetailEntity
 import com.danbam.domain.entity.MovieEntity
+import com.danbam.domain.entity.MoviePeopleDetailEntity
 import com.danbam.domain.entity.MoviePeopleEntity
 import com.danbam.domain.param.MovieCreateParam
 import com.danbam.domain.param.MoviePeopleParam
@@ -39,6 +40,9 @@ class MovieRepositoryImpl @Inject constructor(
             actorType = actorType,
             moviePeopleRequest = moviePeopleParam.toRequest()
         ).actorIdx
+
+    override suspend fun moviePeopleDetail(actorType: String, idx: Int): MoviePeopleDetailEntity =
+        movieRemoteDataSource.moviePeopleDetail(actorType = actorType, idx = idx).toEntity()
 
     override suspend fun movieRecentList(): List<MovieEntity> =
         movieRemoteDataSource.movieRecentList().map { it.toEntity() }
