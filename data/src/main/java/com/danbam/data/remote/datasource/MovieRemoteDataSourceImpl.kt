@@ -7,6 +7,7 @@ import com.danbam.data.remote.api.MovieAPI
 import com.danbam.data.remote.pagingsource.MoviePagingSource
 import com.danbam.data.remote.request.MovieCreateRequest
 import com.danbam.data.remote.request.MoviePeopleRequest
+import com.danbam.data.remote.response.MovieDetailResponse
 import com.danbam.data.remote.response.MoviePeopleResponse
 import com.danbam.data.remote.response.MovieResponse
 import com.danbam.data.remote.util.errorHandling
@@ -30,6 +31,10 @@ class MovieRemoteDataSourceImpl @Inject constructor(
                 )
             }).flow
 
+    override suspend fun movieDetail(movieIdx: Int): MovieDetailResponse = indiStrawApiCall {
+        movieAPI.movieDetail(movieIdx = movieIdx)
+    }
+
     override suspend fun searchMoviePeople(
         actorType: String,
         name: String
@@ -41,4 +46,16 @@ class MovieRemoteDataSourceImpl @Inject constructor(
         indiStrawApiCall {
             movieAPI.addMoviePeople(actorType = actorType, moviePeopleRequest = moviePeopleRequest)
         }
+
+    override suspend fun movieRecentList(): List<MovieResponse> = indiStrawApiCall {
+        movieAPI.movieList().list.slice(0..10)
+    }
+
+    override suspend fun moviePopularList(): List<MovieResponse> = indiStrawApiCall {
+        movieAPI.moviePopularList()
+    }
+
+    override suspend fun movieRecommendList(): List<MovieResponse> = indiStrawApiCall {
+        movieAPI.movieRecommendList()
+    }
 }

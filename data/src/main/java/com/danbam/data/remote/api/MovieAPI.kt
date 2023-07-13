@@ -3,8 +3,10 @@ package com.danbam.data.remote.api
 import com.danbam.data.remote.request.MovieCreateRequest
 import com.danbam.data.remote.request.MoviePeopleRequest
 import com.danbam.data.remote.response.AddMoviePeopleResponse
+import com.danbam.data.remote.response.MovieDetailResponse
 import com.danbam.data.remote.response.MoviePageResponse
 import com.danbam.data.remote.response.MoviePeopleResponse
+import com.danbam.data.remote.response.MovieResponse
 import com.danbam.data.remote.util.EndPoint
 import retrofit2.Response
 import retrofit2.http.Body
@@ -25,6 +27,11 @@ interface MovieAPI {
         @Query("keyword") genre: String? = null
     ): MoviePageResponse
 
+    @GET("${EndPoint.Movie}/{movieId}")
+    suspend fun movieDetail(
+        @Path("movieId") movieIdx: Int,
+    ): MovieDetailResponse
+
     @GET("${EndPoint.Movie}/{actorType}")
     suspend fun searchMoviePeople(
         @Path("actorType") actorType: String,
@@ -36,4 +43,10 @@ interface MovieAPI {
         @Path("actorType") actorType: String,
         @Body moviePeopleRequest: MoviePeopleRequest
     ): AddMoviePeopleResponse
+
+    @GET("${EndPoint.Movie}/popular/")
+    suspend fun moviePopularList(): List<MovieResponse>
+
+    @GET("${EndPoint.Movie}/recommend/")
+    suspend fun movieRecommendList(): List<MovieResponse>
 }

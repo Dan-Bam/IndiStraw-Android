@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -36,6 +37,7 @@ import com.danbam.design_system.util.RemoveOverScrollLazyRow
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.util.toDp
 import com.danbam.domain.entity.FundingEntity
+import com.danbam.domain.entity.MovieEntity
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
 
@@ -201,10 +203,10 @@ fun IndiStrawColumnTab(
 @Composable
 fun IndiStrawRowTab(
     modifier: Modifier = Modifier,
-    itemList: List<String>,
+    itemList: List<MovieEntity>,
     tabHeader: @Composable () -> Unit,
     moreData: (() -> Unit)? = null,
-    onClickItem: (Long) -> Unit,
+    onClickItem: (Int) -> Unit,
 ) {
     val state = rememberLazyListState()
 
@@ -246,10 +248,10 @@ fun IndiStrawRowTab(
         item {
             Spacer(modifier = Modifier.width(15.dp))
         }
-        items(10) {
-//            MovieItem {
-//                onClickItem(0L)
-//            }
+        items(itemList) {
+            MovieItem(item = it) {
+                onClickItem(it)
+            }
             Spacer(modifier = Modifier.width(9.dp))
         }
     }

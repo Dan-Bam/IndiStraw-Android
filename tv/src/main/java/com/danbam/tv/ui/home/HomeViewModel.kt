@@ -1,7 +1,13 @@
 package com.danbam.tv.ui.home
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.danbam.design_system.component.MovieTab
+import com.danbam.domain.usecase.movie.MoviePopularListUseCase
+import com.danbam.domain.usecase.movie.MovieRecentListUseCase
+import com.danbam.domain.usecase.movie.MovieRecommendListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
@@ -10,11 +16,37 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-
+    private val moviePopularListUseCase: MoviePopularListUseCase,
+    private val movieRecommendListUseCase: MovieRecommendListUseCase,
+    private val movieRecentListUseCase: MovieRecentListUseCase
 ) : ContainerHost<HomeState, Unit>, ViewModel() {
     override val container = container<HomeState, Unit>(HomeState())
 
     fun saveCurrentIndex(index: Int) = intent {
         reduce { state.copy(currentMovieIndex = index) }
+    }
+
+    fun movieList(movieType: MovieTab) = intent {
+        viewModelScope.launch {
+            when (movieType) {
+                is MovieTab.PopularMovie -> {
+                    moviePopularListUseCase().onSuccess {
+                        reduce { state.copy(movieList = it) }
+                    }
+                }
+
+                is MovieTab.RecommendMovie -> {
+                    movieRecommendListUseCase().onSuccess {
+                        reduce { state.copy(movieList = it) }
+                    }
+                }
+
+                else -> {
+                    movieRecentListUseCase().onSuccess {
+                        reduce { state.copy(movieList = it) }
+                    }
+                }
+            }
+        }
     }
 }

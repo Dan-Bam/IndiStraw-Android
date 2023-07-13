@@ -5,6 +5,7 @@ import androidx.paging.map
 import com.danbam.data.remote.datasource.MovieRemoteDataSource
 import com.danbam.data.remote.request.toRequest
 import com.danbam.data.remote.response.toEntity
+import com.danbam.domain.entity.MovieDetailEntity
 import com.danbam.domain.entity.MovieEntity
 import com.danbam.domain.entity.MoviePeopleEntity
 import com.danbam.domain.param.MovieCreateParam
@@ -23,6 +24,9 @@ class MovieRepositoryImpl @Inject constructor(
     override suspend fun movieList(genre: String?): Flow<PagingData<MovieEntity>> =
         movieRemoteDataSource.movieList(genre = genre).map { it.map { it.toEntity() } }
 
+    override suspend fun movieDetail(movieIdx: Int): MovieDetailEntity =
+        movieRemoteDataSource.movieDetail(movieIdx = movieIdx).toEntity()
+
     override suspend fun searchMoviePeople(
         actorType: String,
         name: String
@@ -35,4 +39,13 @@ class MovieRepositoryImpl @Inject constructor(
             actorType = actorType,
             moviePeopleRequest = moviePeopleParam.toRequest()
         ).actorIdx
+
+    override suspend fun movieRecentList(): List<MovieEntity> =
+        movieRemoteDataSource.movieRecentList().map { it.toEntity() }
+
+    override suspend fun moviePopularList(): List<MovieEntity> =
+        movieRemoteDataSource.moviePopularList().map { it.toEntity() }
+
+    override suspend fun movieRecommendList(): List<MovieEntity> =
+        movieRemoteDataSource.movieRecommendList().map { it.toEntity() }
 }

@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.tv.foundation.lazy.list.TvLazyRow
+import androidx.tv.foundation.lazy.list.items
 import com.danbam.design_system.component.ImageButton
 import com.danbam.design_system.component.IndiStrawTvBackground
 import com.danbam.design_system.component.IndiStrawTvBanner
@@ -52,6 +53,10 @@ fun HomeScreen(
         }
     }
 
+    LaunchedEffect(homeTab) {
+        homeViewModel.movieList(homeTab)
+    }
+
     IndiStrawTvBackground {
         IndiStrawTvBanner(itemCount = 5) {
             ImageButton(
@@ -66,10 +71,10 @@ fun HomeScreen(
             modifier = Modifier.padding(top = 20.dp)
         ) {
             IndiStrawTvTab(
-                text = stringResource(id = R.string.recent),
-                isSelect = homeTab == MovieTab.RecentMovie
+                text = stringResource(id = R.string.popular),
+                isSelect = homeTab == MovieTab.PopularMovie
             ) {
-                homeTab = MovieTab.RecentMovie
+                homeTab = MovieTab.PopularMovie
             }
             Spacer(modifier = Modifier.width(14.dp))
             IndiStrawTvTab(
@@ -80,10 +85,10 @@ fun HomeScreen(
             }
             Spacer(modifier = Modifier.width(14.dp))
             IndiStrawTvTab(
-                text = stringResource(id = R.string.popular),
-                isSelect = homeTab == MovieTab.PopularMovie
+                text = stringResource(id = R.string.recent),
+                isSelect = homeTab == MovieTab.RecentMovie
             ) {
-                homeTab = MovieTab.PopularMovie
+                homeTab = MovieTab.RecentMovie
             }
         }
         Spacer(modifier = Modifier.height(20.dp))
@@ -92,13 +97,14 @@ fun HomeScreen(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             contentPadding = PaddingValues(horizontal = 8.dp, vertical = 20.dp)
         ) {
-            items(10) {
-//                MovieTvItem(
-//                    modifier = Modifier.focusRequester(if (it == state.currentMovieIndex) itemFocusRequester else FocusRequester())
-//                ) {
-//                    homeViewModel.saveCurrentIndex(it)
-//                    navController.navigate(MainNavigationItem.MovieDetail.route)
-//                }
+            items(state.movieList) {
+                MovieTvItem(
+                    modifier = Modifier.focusRequester(if (it.idx == state.currentMovieIndex) itemFocusRequester else FocusRequester()),
+                    item = it
+                ) {
+                    homeViewModel.saveCurrentIndex(it.idx)
+                    navController.navigate(MainNavigationItem.MovieDetail.route)
+                }
             }
         }
     }

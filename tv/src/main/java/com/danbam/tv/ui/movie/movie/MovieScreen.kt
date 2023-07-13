@@ -40,6 +40,7 @@ import com.danbam.design_system.component.MovieTvItem
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.component.TitleSemiBold
 import com.danbam.design_system.util.RemoveOverScrollLazyColumn
+import com.danbam.tv.ui.main.navigation.MainDeepLinkKey
 import com.danbam.tv.ui.main.navigation.MainNavigationItem
 
 @OptIn(ExperimentalTvMaterial3Api::class)
@@ -141,7 +142,7 @@ fun MovieScreen(
                                 item = it
                             ) {
                                 movieViewModel.saveCurrentIndex(it.idx)
-                                navController.navigate(MainNavigationItem.MovieDetail.route)
+                                navController.navigate(MainNavigationItem.MovieDetail.route + MainDeepLinkKey.MOVIE_INDEX + it.idx)
                             }
                         }
                     }
