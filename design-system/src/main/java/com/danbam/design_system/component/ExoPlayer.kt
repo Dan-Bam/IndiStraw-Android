@@ -16,6 +16,7 @@ import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 fun IndiStrawPlayer(
     modifier: Modifier = Modifier,
     videoUrl: String,
+    position: Float,
     onDispose: (Long) -> Unit
 ) {
     val exoPlayer = ExoPlayer.Builder(LocalContext.current)
@@ -26,6 +27,7 @@ fun IndiStrawPlayer(
                 .build()
             exoPlayer.videoScalingMode = C.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING
             exoPlayer.setMediaItem(mediaItem)
+            exoPlayer.seekTo((position * 1000).toLong())
             exoPlayer.prepare()
             exoPlayer.play()
         }
