@@ -8,7 +8,7 @@ import retrofit2.http.Query
 interface MovieAPI {
     @GET(EndPoint.Movie)
     suspend fun movieList(
-        @Query("page") page: Int = 0,
+        @Query("page") page: Int = 1,
         @Query("keyword") genre: String? = null
     ): MoviePageResponse
 }
