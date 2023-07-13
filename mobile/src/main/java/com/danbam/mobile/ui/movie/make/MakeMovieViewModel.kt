@@ -8,6 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent
+import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 import org.orbitmvi.orbit.viewmodel.container
 import java.io.File
@@ -16,8 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MakeMovieViewModel @Inject constructor(
     private val sendFileUseCase: SendFileUseCase,
-) : ContainerHost<MakeMovieState, Unit>, ViewModel() {
-    override val container = container<MakeMovieState, Unit>(MakeMovieState())
+) : ContainerHost<MakeMovieState, MakeMovieSideEffect>, ViewModel() {
+    override val container = container<MakeMovieState, MakeMovieSideEffect>(MakeMovieState())
 
     fun uploadFile(file: File, onUploaded: (String) -> Unit) = intent {
         viewModelScope.launch {
@@ -35,12 +36,13 @@ class MakeMovieViewModel @Inject constructor(
         title: String,
         description: String,
         isFunding: Boolean,
-        onNext: () -> Unit
+        imageList: List<String>,
     ) = intent {
         if (thumbnailUrl.isNullOrBlank()) return@intent
         else if (movieUrl.isNullOrBlank()) return@intent
         else if (title.isEmpty()) return@intent
         else if (description.isEmpty()) return@intent
+        else if (imageList.isEmpty()) return@intent
         else {
             reduce {
                 state.copy(
@@ -48,10 +50,11 @@ class MakeMovieViewModel @Inject constructor(
                     movieUrl = movieUrl,
                     title = title,
                     description = description,
-                    isFunding = isFunding
+                    isFunding = isFunding,
+                    imageList = imageList
                 )
             }
-            onNext()
+            postSideEffect(MakeMovieSideEffect.Next)
         }
     }
 }
