@@ -136,7 +136,7 @@ fun MovieDetailScreen(
                     navController.navigate(
                         MovieNavigationItem.Play.route + MovieDeepLinkKey.MOVIE_INDEX + movieIndex + MovieDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl.split(
                             "/"
-                        ).last()
+                        ).last() + MovieDeepLinkKey.MOVIE_POSITION + 0F
                     )
                 }
                 IndiStrawIcon(
