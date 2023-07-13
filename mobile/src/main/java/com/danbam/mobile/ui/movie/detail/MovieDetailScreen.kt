@@ -63,6 +63,7 @@ fun MovieDetailScreen(
 
     LaunchedEffect(Unit) {
         movieDetailViewModel.movieDetail(movieIndex = movieIndex)
+        movieDetailViewModel.movieHistory(movieIndex = movieIndex)
     }
 
     var selectedPeople: MoviePeopleEntity? by remember { mutableStateOf(null) }
@@ -136,7 +137,7 @@ fun MovieDetailScreen(
                     navController.navigate(
                         MovieNavigationItem.Play.route + MovieDeepLinkKey.MOVIE_INDEX + movieIndex + MovieDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl.split(
                             "/"
-                        ).last() + MovieDeepLinkKey.MOVIE_POSITION + 0F
+                        ).last() + MovieDeepLinkKey.MOVIE_POSITION + state.moviePosition
                     )
                 }
                 IndiStrawIcon(
