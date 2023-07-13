@@ -194,7 +194,7 @@
     <string name="add_funding">추가후원</string>
     <string name="participate_movie">출연작품</string>
     <string name="cancel">취소</string>
-    <string name="recent">최근</string>
+    <string name="recent">최신</string>
     <string name="recent_search">최근 검색어</string>
     <string name="recent_watch_movie">최근 시청</string>
     <string name="wrong_over_request_phone_number">최대 요청횟수를 초과했습니다. 1시간 이후에 다시 시도해주세요.</string>
