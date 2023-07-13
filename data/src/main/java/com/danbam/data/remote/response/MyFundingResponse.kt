@@ -17,7 +17,7 @@ data class MyFundingResponse(
     val fundingCount: Long,
     @SerializedName("reward")
     val reward: List<RewardResponse>,
-    @SerializedName("orderer")
+    @SerializedName("ordererList")
     val orderList: List<OrderResponse>
 ) {
     data class OrderResponse(
