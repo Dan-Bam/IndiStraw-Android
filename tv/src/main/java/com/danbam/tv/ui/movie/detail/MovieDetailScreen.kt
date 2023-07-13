@@ -107,14 +107,22 @@ fun MovieDetailScreen(
                         icon = IndiStrawIconList.FastPlay,
                         title = stringResource(id = R.string.watch_going)
                     ) {
-                        navController.navigate(MainNavigationItem.MoviePlay.route + MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl)
+                        navController.navigate(
+                            MainNavigationItem.MoviePlay.route + MainDeepLinkKey.MOVIE_INDEX + movieIndex + MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl.split(
+                                "/"
+                            ).last() + MainDeepLinkKey.MOVIE_POSITION + 0F
+                        )
                     }
                     Spacer(modifier = Modifier.width(10.dp))
                     MoviePlayButton(
                         icon = IndiStrawIconList.PlayFirst,
                         title = stringResource(id = R.string.watch_first)
                     ) {
-                        navController.navigate(MainNavigationItem.MoviePlay.route + MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl)
+                        navController.navigate(
+                            MainNavigationItem.MoviePlay.route + MainDeepLinkKey.MOVIE_INDEX + movieIndex + MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl.split(
+                                "/"
+                            ).last() + MainDeepLinkKey.MOVIE_POSITION + 0F
+                        )
                     }
                 }
             }
