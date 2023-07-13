@@ -10,5 +10,6 @@ class EndPoint {
         const val QRCODE = "qr-code"
         const val Movie = "movie"
         const val FUNDING = "funding"
+        const val BANNER = "banner"
     }
 }

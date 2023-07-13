@@ -3,6 +3,7 @@ package com.danbam.di
 import com.danbam.data.repository.AccountRepositoryImpl
 import com.danbam.data.repository.AddressRepositoryImpl
 import com.danbam.data.repository.AuthRepositoryImpl
+import com.danbam.data.repository.BannerRepositoryImpl
 import com.danbam.data.repository.FileRepositoryImpl
 import com.danbam.data.repository.CrowdFundingRepositoryImpl
 import com.danbam.data.repository.MovieRepositoryImpl
@@ -13,6 +14,7 @@ import com.danbam.data.repository.SystemRepositoryImpl
 import com.danbam.domain.repository.AccountRepository
 import com.danbam.domain.repository.AddressRepository
 import com.danbam.domain.repository.AuthRepository
+import com.danbam.domain.repository.BannerRepository
 import com.danbam.domain.repository.FileRepository
 import com.danbam.domain.repository.CrowdFundingRepository
 import com.danbam.domain.repository.MovieRepository
@@ -77,4 +79,9 @@ abstract class RepositoryModule {
     abstract fun bindSystemRepository(
         systemRepositoryImpl: SystemRepositoryImpl
     ): SystemRepository
+
+    @Binds
+    abstract fun bindBannerRepository(
+        bannerRepositoryImpl: BannerRepositoryImpl
+    ): BannerRepository
 }
