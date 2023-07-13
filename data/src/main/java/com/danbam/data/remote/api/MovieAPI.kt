@@ -1,6 +1,7 @@
 package com.danbam.data.remote.api
 
 import com.danbam.data.remote.request.MovieCreateRequest
+import com.danbam.data.remote.request.MoviePeopleRequest
 import com.danbam.data.remote.response.MoviePageResponse
 import com.danbam.data.remote.response.MoviePeopleResponse
 import com.danbam.data.remote.util.EndPoint
@@ -28,4 +29,10 @@ interface MovieAPI {
         @Path("actorType") actorType: String,
         @Query("name") name: String,
     ): List<MoviePeopleResponse>
+
+    @POST("${EndPoint.Movie}/{actorType}")
+    suspend fun addMoviePeople(
+        @Path("actorType") actorType: String,
+        @Body moviePeopleRequest: MoviePeopleRequest
+    ): Response<Void?>
 }

@@ -8,6 +8,7 @@ import com.danbam.data.remote.response.toEntity
 import com.danbam.domain.entity.MovieEntity
 import com.danbam.domain.entity.MoviePeopleEntity
 import com.danbam.domain.param.MovieCreateParam
+import com.danbam.domain.param.MoviePeopleParam
 import com.danbam.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -28,4 +29,10 @@ class MovieRepositoryImpl @Inject constructor(
     ): List<MoviePeopleEntity> =
         movieRemoteDataSource.searchMoviePeople(actorType = actorType, name = name)
             .map { it.toEntity() }
+
+    override suspend fun addMoviePeople(actorType: String, moviePeopleParam: MoviePeopleParam) =
+        movieRemoteDataSource.addMoviePeople(
+            actorType = actorType,
+            moviePeopleRequest = moviePeopleParam.toRequest()
+        )
 }
