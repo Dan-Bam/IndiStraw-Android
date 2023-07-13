@@ -37,6 +37,7 @@ import com.danbam.mobile.util.view.popBackStack
 @Composable
 fun SearchActorScreen(
     navController: NavController,
+    addActorType: String,
     makeMovieViewModel: MakeMovieViewModel
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
