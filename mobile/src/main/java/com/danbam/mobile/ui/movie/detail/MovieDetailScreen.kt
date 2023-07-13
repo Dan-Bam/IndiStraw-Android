@@ -8,8 +8,16 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
@@ -18,6 +26,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.danbam.design_system.IndiStrawTheme
@@ -35,55 +44,75 @@ import com.danbam.design_system.component.TitleSemiBold
 import com.danbam.design_system.util.RemoveOverScrollLazyRow
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.R
+import com.danbam.domain.entity.MoviePeopleEntity
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MovieDetailScreen(
     navController: NavController,
+    movieIndex: Int,
+    movieDetailViewModel: MovieDetailViewModel = hiltViewModel()
 ) {
-    val movieHeight = LocalConfiguration.current.screenHeightDp * 0.3
-    IndiStrawBottomSheetLayout(sheetContent = {
-        Column(
-            modifier = Modifier.align(CenterHorizontally),
-            horizontalAlignment = CenterHorizontally
-        ) {
-            AsyncImage(
-                modifier = Modifier
-                    .padding(top = 31.dp)
-                    .size(70.dp)
-                    .clip(IndiStrawTheme.shapes.circle),
-                model = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
-                contentDescription = "Image",
-                contentScale = ContentScale.Crop
-            )
-            FindPasswordMedium(modifier = Modifier.padding(top = 4.dp), text = "이동욱", fontSize = 14)
-        }
-        ButtonMedium(
-            modifier = Modifier.padding(start = 20.dp, top = 29.dp), text = stringResource(
-                id = R.string.participate_movie
-            )
-        )
-        RemoveOverScrollLazyRow(
-            modifier = Modifier.padding(top = 12.dp, bottom = 24.dp)
-        ) {
-            item {
-                Spacer(modifier = Modifier.width(20.dp))
-            }
-            items(10) {
-                ImageButton(
-                    modifier = Modifier
-                        .width(100.dp)
-                        .height(90.dp),
-                    imgSrc = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
-                    shape = Shape.Rectangle
-                ) {
+    val container = movieDetailViewModel.container
+    val state = container.stateFlow.collectAsState().value
+    val sideEffect = container.sideEffectFlow
 
-                }
-                Spacer(modifier = Modifier.width(16.dp))
+    val movieHeight = LocalConfiguration.current.screenHeightDp * 0.3
+
+    LaunchedEffect(Unit) {
+        movieDetailViewModel.movieDetail(movieIndex = movieIndex)
+    }
+
+    var selectedPeople: MoviePeopleEntity? by remember { mutableStateOf(null) }
+
+    IndiStrawBottomSheetLayout(sheetContent = {
+        selectedPeople?.let {
+            Column(
+                modifier = Modifier.align(CenterHorizontally),
+                horizontalAlignment = CenterHorizontally
+            ) {
+                AsyncImage(
+                    modifier = Modifier
+                        .padding(top = 31.dp)
+                        .size(70.dp)
+                        .clip(IndiStrawTheme.shapes.circle),
+                    model = it.profileUrl,
+                    contentDescription = "Image",
+                    contentScale = ContentScale.Crop
+                )
+                FindPasswordMedium(
+                    modifier = Modifier.padding(top = 4.dp),
+                    text = it.name,
+                    fontSize = 14
+                )
             }
-            item {
-                Spacer(modifier = Modifier.width(20.dp))
+            ButtonMedium(
+                modifier = Modifier.padding(start = 20.dp, top = 29.dp), text = stringResource(
+                    id = R.string.participate_movie
+                )
+            )
+            RemoveOverScrollLazyRow(
+                modifier = Modifier.padding(top = 12.dp, bottom = 24.dp)
+            ) {
+                item {
+                    Spacer(modifier = Modifier.width(20.dp))
+                }
+                items(10) {
+                    ImageButton(
+                        modifier = Modifier
+                            .width(100.dp)
+                            .height(90.dp),
+                        imgSrc = "",
+                        shape = Shape.Rectangle
+                    ) {
+
+                    }
+                    Spacer(modifier = Modifier.width(16.dp))
+                }
+                item {
+                    Spacer(modifier = Modifier.width(20.dp))
+                }
             }
         }
     }) { _, moreInfo ->
@@ -99,7 +128,7 @@ fun MovieDetailScreen(
                         .padding(top = 17.dp)
                         .height(movieHeight.dp)
                         .fillMaxWidth(),
-                    imgSrc = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
+                    imgSrc = state.movieDetailInfo.thumbnailUrl,
                     shape = Shape.None
                 ) {
                     navController.navigate(MovieNavigationItem.Play.route)
@@ -111,14 +140,14 @@ fun MovieDetailScreen(
             }
             TitleSemiBold(
                 modifier = Modifier.padding(start = 15.dp, top = 15.dp, bottom = 8.dp),
-                text = "스파이더맨",
+                text = state.movieDetailInfo.title,
                 fontSize = 18
             )
             FindPasswordMedium(
                 modifier = Modifier
                     .padding(horizontal = 15.dp)
                     .fillMaxWidth(),
-                text = "스파이더맨은 스티브 딧코가 창작한 마블 코믹스의 슈퍼 히어로이다. 그는 1962년 8월의 어메이징 판타지15호에 처음 등장했다.그는 마블 코믹스에서 출판한 만화책뿐만 아니라 마블 유니버스를 배경으로 한 여러영화, tv프로이다.",
+                text = state.movieDetailInfo.description,
                 color = IndiStrawTheme.colors.gray
             )
             TitleRegular(
@@ -132,13 +161,13 @@ fun MovieDetailScreen(
                 item {
                     Spacer(modifier = Modifier.width(15.dp))
                 }
-                items(10) {
+                items(state.movieDetailInfo.highlight) {
                     AsyncImage(
                         modifier = Modifier
                             .height(100.dp)
                             .width(160.dp)
                             .clip(IndiStrawTheme.shapes.smallRounded),
-                        model = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
+                        model = it,
                         contentDescription = "Image",
                         contentScale = ContentScale.Crop
                     )
@@ -156,23 +185,31 @@ fun MovieDetailScreen(
                 item {
                     Spacer(modifier = Modifier.width(15.dp))
                 }
-                items(10) {
+                itemsIndexed(state.movieDetailInfo.directorList + state.movieDetailInfo.actorList) { index, item ->
                     Column(
-                        modifier = Modifier.indiStrawClickable(onClick = moreInfo),
+                        modifier = Modifier.indiStrawClickable(onClick = {
+                            selectedPeople = item
+                            moreInfo()
+                        }),
                         horizontalAlignment = CenterHorizontally
                     ) {
                         AsyncImage(
                             modifier = Modifier
                                 .size(65.dp)
                                 .clip(IndiStrawTheme.shapes.circle),
-                            model = "https://media.discordapp.net/attachments/823502916257972235/1111432831089000448/IMG_1218.png?width=1252&height=1670",
+                            model = item.profileUrl,
                             contentDescription = "Image",
                             contentScale = ContentScale.Crop
                         )
-                        FindPasswordMedium(modifier = Modifier.padding(top = 6.dp), text = "이동욱")
+                        FindPasswordMedium(
+                            modifier = Modifier.padding(top = 6.dp),
+                            text = item.name
+                        )
                         TitleRegular(
                             modifier = Modifier.padding(top = 4.dp),
-                            text = "감독",
+                            text = stringResource(
+                                id = if (index < state.movieDetailInfo.directorList.size) R.string.movie_director else R.string.movie_actor
+                            ),
                             color = IndiStrawTheme.colors.gray,
                             fontSize = 12
                         )

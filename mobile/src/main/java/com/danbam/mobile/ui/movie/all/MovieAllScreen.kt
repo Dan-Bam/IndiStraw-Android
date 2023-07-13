@@ -25,6 +25,7 @@ import com.danbam.design_system.component.IndiStrawGenreList
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.MovieGenre
 import com.danbam.design_system.component.MovieItem
+import com.danbam.mobile.ui.movie.navigation.MovieDeepLinkKey
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 
 @Composable
@@ -69,7 +70,7 @@ fun MovieAllScreen(
                     ) {
                         items(pager.itemSnapshotList.items) {
                             MovieItem(item = it) {
-                                navController.navigate(MovieNavigationItem.Detail.route)
+                                navController.navigate(MovieNavigationItem.Detail.route + MovieDeepLinkKey.MOVIE_INDEX + it)
                             }
                         }
                     }
