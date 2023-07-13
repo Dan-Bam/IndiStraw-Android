@@ -31,7 +31,7 @@ interface MovieAPI {
         @Query("name") name: String,
     ): List<MoviePeopleResponse>
 
-    @POST("${EndPoint.Movie}/{actorType}")
+    @POST("${EndPoint.Movie}/{actorType}/")
     suspend fun addMoviePeople(
         @Path("actorType") actorType: String,
         @Body moviePeopleRequest: MoviePeopleRequest
