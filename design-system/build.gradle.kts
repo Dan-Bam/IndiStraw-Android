@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
@@ -11,6 +13,11 @@ android {
         minSdk = Version.MIN_SDK_VERSION
         targetSdk = Version.TARGET_SDK_VERSION
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField(
+            "String",
+            "VIDEO_PRE_PATH",
+            gradleLocalProperties(rootDir).getProperty("VIDEO_PRE_PATH")
+        )
     }
 
     buildTypes {
