@@ -15,5 +15,6 @@ data class MovieDetailState(
         isFunding = false,
         genre = listOf()
     ),
-    val appearanceMovieList: List<MovieEntity> = listOf()
+    val appearanceMovieList: List<MovieEntity> = listOf(),
+    val moviePosition: Float = 0F
 )
