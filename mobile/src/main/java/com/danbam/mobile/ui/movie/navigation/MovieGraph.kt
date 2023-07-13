@@ -55,15 +55,20 @@ fun NavGraphBuilder.movieGraph(
     }
     composable(
         route = MovieNavigationItem.Play.route
-            + MovieDeepLinkKey.MOVIE_URL + "{${MovieDeepLinkKey.MOVIE_INDEX}}",
+            + MovieDeepLinkKey.MOVIE_INDEX + "{${MovieDeepLinkKey.MOVIE_INDEX}}"
+            + MovieDeepLinkKey.MOVIE_URL + "{${MovieDeepLinkKey.MOVIE_URL}}",
         arguments = listOf(
             navArgument(MovieDeepLinkKey.MOVIE_URL) {
                 type = NavType.StringType
+            },
+            navArgument(MovieDeepLinkKey.MOVIE_INDEX) {
+                type = NavType.IntType
             }
         )
     ) {
         val movieUrl = it.arguments?.getString(MovieDeepLinkKey.MOVIE_URL) ?: ""
-        MoviePlayScreen(movieUrl = movieUrl)
+        val movieIdx = it.arguments?.getInt(MovieDeepLinkKey.MOVIE_URL) ?: 0
+        MoviePlayScreen(movieUrl = movieUrl, movieIdx = movieIdx)
     }
     composable(route = MovieNavigationItem.All.route) {
         MovieAllScreen(navController = navController)
