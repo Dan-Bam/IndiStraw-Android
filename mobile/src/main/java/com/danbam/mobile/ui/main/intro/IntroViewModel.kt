@@ -3,6 +3,7 @@ package com.danbam.mobile.ui.main.intro
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.danbam.domain.usecase.auth.IsLoginUseCase
+import com.danbam.domain.usecase.system.FetchLanguageUseCase
 import com.danbam.mobile.util.android.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,6 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class IntroViewModel @Inject constructor(
     private val isLoginUseCase: IsLoginUseCase,
+    private val fetchLanguageUseCase: FetchLanguageUseCase
 ) : ContainerHost<IntroState, IntroSideEffect>, ViewModel() {
     override val container = container<IntroState, IntroSideEffect>(IntroState())
 
@@ -28,6 +30,14 @@ class IntroViewModel @Inject constructor(
                     unknownAction = { reduce { state.copy(isNeedLogin = true) } },
                     expiredTokenException = { reduce { state.copy(isNeedLogin = true) } }
                 )
+            }
+        }
+    }
+
+    fun fetchLanguage() = intent {
+        viewModelScope.launch {
+            fetchLanguageUseCase().onSuccess {
+                reduce { state.copy(systemLanguage = it.ifEmpty { null }) }
             }
         }
     }
