@@ -6,6 +6,7 @@ import androidx.paging.PagingData
 import com.danbam.data.remote.api.MovieAPI
 import com.danbam.data.remote.pagingsource.MoviePagingSource
 import com.danbam.data.remote.request.MovieCreateRequest
+import com.danbam.data.remote.request.MovieHistoryRequest
 import com.danbam.data.remote.request.MoviePeopleRequest
 import com.danbam.data.remote.response.MoviePeopleDetailResponse
 import com.danbam.data.remote.response.MovieDetailResponse
@@ -69,4 +70,9 @@ class MovieRemoteDataSourceImpl @Inject constructor(
     override suspend fun movieHistoryList(): List<MovieHistoryResponse> = indiStrawApiCall {
         movieAPI.movieHistoryList()
     }
+
+    override suspend fun addMovieHistory(movieHistoryRequest: MovieHistoryRequest): MovieHistoryResponse =
+        indiStrawApiCall {
+            movieAPI.addMovieHistory(movieHistoryRequest = movieHistoryRequest)
+        }
 }

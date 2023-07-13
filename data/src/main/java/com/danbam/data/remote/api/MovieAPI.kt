@@ -1,5 +1,6 @@
 package com.danbam.data.remote.api
 
+import com.danbam.data.remote.request.MovieHistoryRequest
 import com.danbam.data.remote.request.MovieCreateRequest
 import com.danbam.data.remote.request.MoviePeopleRequest
 import com.danbam.data.remote.response.AddMoviePeopleResponse
@@ -60,4 +61,9 @@ interface MovieAPI {
 
     @GET("${EndPoint.Movie}/history/")
     suspend fun movieHistoryList(): List<MovieHistoryResponse>
+
+    @POST("${EndPoint.Movie}/history/")
+    suspend fun addMovieHistory(
+        @Body movieHistoryRequest: MovieHistoryRequest
+    ): MovieHistoryResponse
 }
