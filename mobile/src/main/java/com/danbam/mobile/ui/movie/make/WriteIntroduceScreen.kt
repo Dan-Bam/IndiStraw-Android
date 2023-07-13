@@ -9,12 +9,15 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -36,17 +39,32 @@ import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.util.rememberLauncher
 import com.danbam.design_system.util.typedLaunch
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
+import com.danbam.mobile.util.parser.toFile
 
 @Composable
 fun WriteIntroduceScreen(
     navController: NavController,
     makeMovieViewModel: MakeMovieViewModel
 ) {
-    val launcher = rememberLauncher(selectFile = {})
-    var title by remember { mutableStateOf("") }
-    var description by remember { mutableStateOf("") }
-    var thumbnailUrl: String? by remember { mutableStateOf(null) }
-    var isCrowdFunding by remember { mutableStateOf(false) }
+    val container = makeMovieViewModel.container
+    val state = container.stateFlow.collectAsState().value
+    val sideEffect = container.sideEffectFlow
+
+    val context = LocalContext.current
+    var title by remember { mutableStateOf(state.title) }
+    var description by remember { mutableStateOf(state.description) }
+    var thumbnailUrl: String? by remember { mutableStateOf(state.thumbnailUrl) }
+    var movieUrl: String? by remember { mutableStateOf(state.movieUrl) }
+    var isCrowdFunding by remember { mutableStateOf(state.isFunding) }
+    val imageList = remember { mutableStateListOf(*state.imageList.toTypedArray()) }
+    val launcher = rememberLauncher(selectFile = {
+        it?.let {
+            makeMovieViewModel.uploadFile(it.toFile(context)) {
+                movieUrl = it.split("/").last()
+            }
+        }
+    })
+
     IndiStrawColumnBackground(
         scrollEnabled = true
     ) {
@@ -61,7 +79,9 @@ fun WriteIntroduceScreen(
             imageUrl = thumbnailUrl,
             selectGallery = {
                 it?.let {
-
+                    makeMovieViewModel.uploadFile(it.toFile(context)) {
+                        thumbnailUrl = it
+                    }
                 }
             })
         TitleRegular(
@@ -80,8 +100,9 @@ fun WriteIntroduceScreen(
             IndiStrawIcon(icon = IndiStrawIconList.Movie)
             Spacer(modifier = Modifier.width(8.dp))
             ExampleTextMedium(
-                text = stringResource(id = R.string.require_movie),
-                color = IndiStrawTheme.colors.gray
+                text = movieUrl ?: stringResource(id = R.string.require_movie),
+                color = IndiStrawTheme.colors.gray,
+                maxLines = 1
             )
         }
         TitleRegular(
@@ -126,12 +147,22 @@ fun WriteIntroduceScreen(
             imageList = listOf(),
             onRemove = { }) {
             it?.let {
-
+                makeMovieViewModel.uploadFile(it.toFile(context)) {
+                    imageList.add(it)
+                }
             }
         }
         Spacer(modifier = Modifier.height(36.dp))
         IndiStrawButton(text = stringResource(id = R.string.next)) {
-            navController.navigate(MovieNavigationItem.AddActor.route)
+            makeMovieViewModel.saveIntroduce(
+                thumbnailUrl = thumbnailUrl,
+                movieUrl = movieUrl,
+                title = title,
+                description = description,
+                isFunding = isCrowdFunding
+            ) {
+                navController.navigate(MovieNavigationItem.AddActor.route)
+            }
         }
         Spacer(modifier = Modifier.height(79.dp))
     }
