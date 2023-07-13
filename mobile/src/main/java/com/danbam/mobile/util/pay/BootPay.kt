@@ -13,7 +13,14 @@ import kr.co.bootpay.android.models.Payload
 data class BootPayEvent(
     @SerializedName("event")
     val event: String,
-)
+    @SerializedName("data")
+    val data: BootPayData,
+) {
+    data class BootPayData(
+        @SerializedName("receipt_id")
+        val receipt_id: String,
+    )
+}
 
 fun bootPayPayload(title: String, price: Double, orderId: String, method: String): Payload {
     return Payload().setApplicationId(BuildConfig.PAY_KEY)
@@ -28,7 +35,7 @@ fun bootPayCreate(
     activity: Activity,
     applicationContext: Context,
     payload: Payload,
-    onPayedEvent: () -> Unit,
+    onPayedEvent: (String) -> Unit,
 ) {
     Bootpay.init(activity, applicationContext)
         .setPayload(payload)
@@ -48,7 +55,7 @@ fun bootPayCreate(
                     )
                 }.onSuccess {
                     if (it.event == "done") {
-                        onPayedEvent()
+                        onPayedEvent(it.data.receipt_id)
                     }
                 }
             }
