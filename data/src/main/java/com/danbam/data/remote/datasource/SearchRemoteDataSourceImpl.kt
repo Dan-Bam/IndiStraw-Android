@@ -9,6 +9,7 @@ import com.danbam.data.remote.pagingsource.SearchMoviePagingSource
 import com.danbam.data.remote.response.FundingResponse
 import com.danbam.data.remote.response.MoviePageResponse
 import com.danbam.data.remote.response.MovieResponse
+import com.danbam.data.remote.response.PopularTagResponse
 import com.danbam.data.remote.response.RelatedSearchResponse
 import com.danbam.data.remote.util.indiStrawApiCall
 import com.danbam.domain.entity.MovieEntity
@@ -40,4 +41,8 @@ class SearchRemoteDataSourceImpl @Inject constructor(
                     keyword = keyword
                 )
             }).flow
+
+    override suspend fun popularTag(): PopularTagResponse = indiStrawApiCall {
+        searchAPI.popularTag()
+    }
 }
