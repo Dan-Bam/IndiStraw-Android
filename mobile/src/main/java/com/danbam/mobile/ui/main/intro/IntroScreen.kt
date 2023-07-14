@@ -26,6 +26,8 @@ import com.danbam.design_system.component.JoinBold
 import com.danbam.design_system.component.TitleRegular
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.R
+import com.danbam.design_system.attribute.IndiStrawIcon
+import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.design_system.util.Language
 import com.danbam.design_system.util.changeLanguage
 import com.danbam.mobile.ui.auth.navigation.AuthNavigationItem
@@ -69,10 +71,9 @@ fun IntroScreen(
     }
 
     IndiStrawBoxBackground {
-        HeadLineBold(
+        IndiStrawIcon(
             modifier = Modifier.align(Alignment.Center),
-            text = stringResource(id = R.string.app_name),
-            fontSize = 30
+            icon = IndiStrawIconList.Logo
         )
         AnimatedVisibility(
             visible = state.isNeedLogin,
