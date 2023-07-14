@@ -20,23 +20,23 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MovieAPI {
-    @POST(EndPoint.Movie)
+    @POST("${EndPoint.Movie}/")
     suspend fun movieCreate(
         @Body movieCreateRequest: MovieCreateRequest
     ): Response<Void?>
 
-    @GET(EndPoint.Movie)
+    @GET("${EndPoint.Movie}/")
     suspend fun movieList(
         @Query("page") page: Int = 1,
         @Query("keyword") genre: String? = null
     ): MoviePageResponse
 
-    @GET("${EndPoint.Movie}/{movieId}")
+    @GET("${EndPoint.Movie}/{movieId}/")
     suspend fun movieDetail(
         @Path("movieId") movieIdx: Int,
     ): MovieDetailResponse
 
-    @GET("${EndPoint.Movie}/{actorType}")
+    @GET("${EndPoint.Movie}/{actorType}/")
     suspend fun searchMoviePeople(
         @Path("actorType") actorType: String,
         @Query("name") name: String,
@@ -68,7 +68,7 @@ interface MovieAPI {
         @Body movieHistoryRequest: MovieHistoryRequest
     ): MovieHistoryResponse
 
-    @GET("${EndPoint.Movie}/history/{movieIdx}")
+    @GET("${EndPoint.Movie}/history/{movieIdx}/")
     suspend fun movieHistory(
         @Path("movieIdx") movieIdx: Int,
     ): DetailMovieHistoryResponse
