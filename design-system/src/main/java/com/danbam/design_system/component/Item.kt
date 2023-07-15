@@ -171,7 +171,11 @@ fun RewardItem(
                     )
                     .padding(horizontal = 12.dp)
                     .padding(top = 8.dp, bottom = 20.dp)
-                    .indiStrawClickable { onClickItem(item) }
+                    .indiStrawClickable {
+                        if (item.totalCount != 0L) {
+                            onClickItem(item)
+                        }
+                    }
             ) {
                 TitleSemiBold(
                     text = item.title,
@@ -185,10 +189,10 @@ fun RewardItem(
                     maxLines = 1,
                     fontSize = 14
                 )
-                item.totalCount?.let {
-                    Spacer(modifier = Modifier.height(25.dp))
-                    Row {
-                        TitleSemiBold(text = "${item.price.toCommaString()}원")
+                Spacer(modifier = Modifier.height(25.dp))
+                Row {
+                    TitleSemiBold(text = "${item.price.toCommaString()}원")
+                    item.totalCount?.let {
                         Spacer(modifier = Modifier.width(8.dp))
                         PriceRegular(
                             modifier = Modifier
