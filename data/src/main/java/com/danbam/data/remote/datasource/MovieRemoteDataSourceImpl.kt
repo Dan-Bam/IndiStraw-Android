@@ -57,7 +57,9 @@ class MovieRemoteDataSourceImpl @Inject constructor(
         }
 
     override suspend fun movieRecentList(): List<MovieResponse> = indiStrawApiCall {
-        movieAPI.movieList().list.slice(0..10)
+        movieAPI.movieList().list.let {
+            it.slice(0 until if (it.size <= 10) it.size else 10)
+        }
     }
 
     override suspend fun moviePopularList(): List<MovieResponse> = indiStrawApiCall {
