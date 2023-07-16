@@ -191,7 +191,7 @@ fun IndiStrawColumnTab(
     }
     Spacer(modifier = Modifier.height(10.dp))
     repeat(itemList.size) {
-        (itemList[it] as FundingEntity).let { item ->
+        (itemList[it]).let { item ->
             FundingItem(item) {
                 onClickItem(item.idx)
             }

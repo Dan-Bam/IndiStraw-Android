@@ -21,7 +21,7 @@ data class MovieDetailResponse(
     @SerializedName("clowd_true")
     val isFunding: Boolean,
     @SerializedName("genre")
-    val genre: List<String>,
+    val genre: List<String>?,
 )
 
 fun MovieDetailResponse.toEntity() = MovieDetailEntity(
@@ -33,5 +33,5 @@ fun MovieDetailResponse.toEntity() = MovieDetailEntity(
     actorList = actorList.map { it.toEntity() },
     highlight = highlight,
     isFunding = isFunding,
-    genre = genre
+    genre = genre ?: listOf()
 )

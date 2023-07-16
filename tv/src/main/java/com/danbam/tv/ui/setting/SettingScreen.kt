@@ -85,12 +85,12 @@ fun SettingScreen(
         when (it) {
             is SettingSideEffect.SuccessLogout -> {
                 settingDialogVisible = false
-                navController.popBackStack()
+                navController.navigate(MainNavigationItem.Login.route)
             }
 
             is SettingSideEffect.SuccessWithdraw -> {
                 settingDialogVisible = false
-                navController.popBackStack()
+                navController.navigate(MainNavigationItem.Login.route)
             }
         }
     }

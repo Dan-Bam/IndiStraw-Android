@@ -37,6 +37,8 @@ import com.danbam.design_system.component.IndiStrawColumnTab
 import com.danbam.design_system.component.IndiStrawRowTab
 import com.danbam.design_system.component.MovieTab
 import com.danbam.design_system.util.indiStrawClickable
+import com.danbam.mobile.ui.funding.navigation.FundingDeepLinkKey
+import com.danbam.mobile.ui.funding.navigation.FundingNavigationItem
 import com.danbam.mobile.ui.movie.navigation.MovieDeepLinkKey
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 import com.danbam.mobile.ui.profile.navigation.ProfileNavigationItem
@@ -151,6 +153,11 @@ fun ProfileScreen(
                     }
                 }
             }) {
+            if (currentFundingTab == FundingTab.ParticipantFunding) {
+                navController.navigate(FundingNavigationItem.Detail.route + FundingDeepLinkKey.FUNDING_INDEX + it)
+            } else {
+                navController.navigate(FundingNavigationItem.MyDetail.route + FundingDeepLinkKey.FUNDING_INDEX + it)
+            }
         }
     }
 }

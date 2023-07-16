@@ -59,7 +59,10 @@ fun IndiStrawHeader(
                 }
             }
         } else {
-            HeadLineBold(text = "로고")
+            IndiStrawIcon(
+                modifier = Modifier.size(50.dp),
+                icon = IndiStrawIconList.Logo
+            )
         }
         if (headerContent != null) {
             headerContent()

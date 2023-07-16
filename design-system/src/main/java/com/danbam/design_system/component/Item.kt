@@ -46,6 +46,7 @@ import com.danbam.design_system.util.toCommaString
 import com.danbam.domain.entity.FundingDetailEntity
 import com.danbam.domain.entity.FundingEntity
 import com.danbam.domain.entity.MovieEntity
+import com.danbam.domain.entity.MyFundingEntity
 
 sealed class RewardType {
     object Default : RewardType()
@@ -170,7 +171,11 @@ fun RewardItem(
                     )
                     .padding(horizontal = 12.dp)
                     .padding(top = 8.dp, bottom = 20.dp)
-                    .indiStrawClickable { onClickItem(item) }
+                    .indiStrawClickable {
+                        if (item.totalCount != 0L) {
+                            onClickItem(item)
+                        }
+                    }
             ) {
                 TitleSemiBold(
                     text = item.title,
@@ -184,10 +189,10 @@ fun RewardItem(
                     maxLines = 1,
                     fontSize = 14
                 )
-                item.totalCount?.let {
-                    Spacer(modifier = Modifier.height(25.dp))
-                    Row {
-                        TitleSemiBold(text = "${item.price.toCommaString()}원")
+                Spacer(modifier = Modifier.height(25.dp))
+                Row {
+                    TitleSemiBold(text = "${item.price.toCommaString()}원")
+                    item.totalCount?.let {
                         Spacer(modifier = Modifier.width(8.dp))
                         PriceRegular(
                             modifier = Modifier
@@ -304,8 +309,8 @@ fun RewardItem(
 @Composable
 fun MyRewardItem(
     rewardType: RewardType = RewardType.Default,
-    item: FundingDetailEntity.RewardEntity,
-    onClickItem: (FundingDetailEntity.RewardEntity) -> Unit,
+    item: MyFundingEntity.RewardEntity,
+    onClickItem: (MyFundingEntity.RewardEntity) -> Unit,
 ) {
     val rewardImageSize = LocalConfiguration.current.screenWidthDp * 0.45
     when (rewardType) {
@@ -348,7 +353,7 @@ fun MyRewardItem(
                     ) {
                         IndiStrawIcon(icon = IndiStrawIconList.People)
                         PriceRegular(
-                            text = "120",
+                            text = "${item.totalCount?.toCommaString()}",
                             fontSize = 12,
                         )
                     }
@@ -415,7 +420,7 @@ fun MyRewardItem(
                         ) {
                             IndiStrawIcon(icon = IndiStrawIconList.People)
                             PriceRegular(
-                                text = "120",
+                                text = "${item.totalCount?.toCommaString()}",
                                 fontSize = 12,
                             )
                         }

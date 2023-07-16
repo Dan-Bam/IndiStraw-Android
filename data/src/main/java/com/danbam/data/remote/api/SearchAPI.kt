@@ -14,7 +14,7 @@ interface SearchAPI {
         @Query("keyword") keyword: String
     ): List<RelatedSearchResponse>
 
-    @GET("${EndPoint.SEARCH}/movie")
+    @GET("${EndPoint.SEARCH}/movie/")
     suspend fun searchMovie(
         @Query("page") page: Int = 1,
         @Query("keyword") keyword: String,
@@ -27,6 +27,6 @@ interface SearchAPI {
         @Query("keyword") keyword: String,
     ): FundingPageResponse
 
-    @GET("${EndPoint.SEARCH}/tag")
+    @GET("${EndPoint.SEARCH}/tag/")
     suspend fun popularTag(): PopularTagResponse
 }

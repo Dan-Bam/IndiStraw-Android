@@ -8,6 +8,7 @@ import com.danbam.data.remote.pagingsource.FundingPagingSource
 import com.danbam.data.remote.request.FundingCreateRequest
 import com.danbam.data.remote.response.FundingDetailResponse
 import com.danbam.data.remote.response.FundingResponse
+import com.danbam.data.remote.response.MyFundingResponse
 import com.danbam.data.remote.util.errorHandling
 import com.danbam.data.remote.util.indiStrawApiCall
 import kotlinx.coroutines.flow.Flow
@@ -18,7 +19,8 @@ class CrowdFundingRemoteDataSourceImpl @Inject constructor(
 ) : CrowdFundingRemoteDataSource {
     override suspend fun fundingCreate(fundingCreateRequest: FundingCreateRequest) =
         indiStrawApiCall {
-            crowdFundingAPI.fundingCreate(fundingCreateRequest = fundingCreateRequest).errorHandling()
+            crowdFundingAPI.fundingCreate(fundingCreateRequest = fundingCreateRequest)
+                .errorHandling()
         }
 
     override suspend fun fundingPopularList(): List<FundingResponse> = indiStrawApiCall {
@@ -41,4 +43,9 @@ class CrowdFundingRemoteDataSourceImpl @Inject constructor(
     override suspend fun fundingMy(): List<FundingResponse> = indiStrawApiCall {
         crowdFundingAPI.fundingMy()
     }
+
+    override suspend fun fundingMyDetail(crowdfundingIdx: Long): MyFundingResponse =
+        indiStrawApiCall {
+            crowdFundingAPI.fundingMyDetail(crowdfundingIdx = crowdfundingIdx)
+        }
 }

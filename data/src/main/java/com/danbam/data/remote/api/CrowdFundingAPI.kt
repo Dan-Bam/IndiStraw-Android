@@ -4,6 +4,7 @@ import com.danbam.data.remote.request.FundingCreateRequest
 import com.danbam.data.remote.response.FundingPageResponse
 import com.danbam.data.remote.response.FundingDetailResponse
 import com.danbam.data.remote.response.FundingResponse
+import com.danbam.data.remote.response.MyFundingResponse
 import com.danbam.data.remote.util.EndPoint
 import retrofit2.Response
 import retrofit2.http.Body
@@ -34,4 +35,9 @@ interface CrowdFundingAPI {
 
     @GET("${EndPoint.CROWD_FUNDING}/my")
     suspend fun fundingMy(): List<FundingResponse>
+
+    @GET("${EndPoint.CROWD_FUNDING}/my/{crowdfundingIdx}")
+    suspend fun fundingMyDetail(
+        @Path("crowdfundingIdx") crowdfundingIdx: Long
+    ): MyFundingResponse
 }

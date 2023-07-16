@@ -45,6 +45,7 @@ import com.danbam.design_system.component.TitleSemiBold
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.mobile.ui.funding.navigation.FundingDeepLinkKey
 import com.danbam.mobile.ui.funding.navigation.FundingNavigationItem
+import com.danbam.mobile.ui.movie.navigation.MovieDeepLinkKey
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 import com.danbam.mobile.ui.profile.navigation.ProfileNavigationItem
 import com.danbam.mobile.ui.search.navigation.SearchNavigationItem
@@ -160,7 +161,7 @@ fun MainScreen(
                 navController.navigate(MovieNavigationItem.All.route)
             }
         ) {
-            navController.navigate(MovieNavigationItem.Detail.route)
+            navController.navigate(MovieNavigationItem.Detail.route + MovieDeepLinkKey.MOVIE_INDEX + it)
         }
         IndiStrawColumnTab(
             itemList = state.fundingPopularList,

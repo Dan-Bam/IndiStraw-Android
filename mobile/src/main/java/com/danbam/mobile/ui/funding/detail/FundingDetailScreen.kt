@@ -222,8 +222,10 @@ fun FundingDetailScreen(
             )
             repeat(state.fundingDetailEntity.reward.size) {
                 RewardItem(item = state.fundingDetailEntity.reward[it], onClickItem = {
-                    selectRewardItem = it
-                    openSheet()
+                    if (!state.fundingDetailEntity.isFunding) {
+                        selectRewardItem = it
+                        openSheet()
+                    }
                 })
                 Spacer(modifier = Modifier.height(16.dp))
             }

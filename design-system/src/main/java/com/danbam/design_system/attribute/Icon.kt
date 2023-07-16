@@ -40,6 +40,11 @@ class IndiStrawIconList private constructor(
 ) {
     companion object {
         @Stable
+        val Logo = IndiStrawIconList(
+            drawableId = R.drawable.ic_logo,
+            contentDescription = "logo"
+        )
+        @Stable
         val OpenEyes = IndiStrawIconList(
             drawableId = R.drawable.ic_open_eyes,
             contentDescription = "open eyes"
