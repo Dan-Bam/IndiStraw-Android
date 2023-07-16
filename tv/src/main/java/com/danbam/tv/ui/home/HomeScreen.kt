@@ -32,6 +32,7 @@ import com.danbam.design_system.component.Shape
 import com.danbam.design_system.R
 import com.danbam.design_system.component.MovieTab
 import com.danbam.design_system.component.MovieTvItem
+import com.danbam.tv.ui.main.navigation.MainDeepLinkKey
 import com.danbam.tv.ui.main.navigation.MainNavigationItem
 
 @Composable
@@ -45,7 +46,7 @@ fun HomeScreen(
     val sideEffect = container.sideEffectFlow
 
     val itemFocusRequester = remember { FocusRequester() }
-    var homeTab: MovieTab by remember { mutableStateOf(MovieTab.RecentMovie) }
+    var homeTab: MovieTab by remember { mutableStateOf(MovieTab.PopularMovie) }
 
     LaunchedEffect(Unit) {
         homeViewModel.getBanner()
@@ -104,7 +105,7 @@ fun HomeScreen(
                     item = it
                 ) {
                     homeViewModel.saveCurrentIndex(it.idx)
-                    navController.navigate(MainNavigationItem.MovieDetail.route)
+                    navController.navigate(MainNavigationItem.MovieDetail.route + MainDeepLinkKey.MOVIE_INDEX + it.idx)
                 }
             }
         }
