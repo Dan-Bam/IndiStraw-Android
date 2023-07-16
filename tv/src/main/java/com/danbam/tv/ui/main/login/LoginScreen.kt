@@ -1,5 +1,6 @@
 package com.danbam.tv.ui.main.login
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -27,6 +28,7 @@ import com.danbam.design_system.component.IndiStrawTvTextField
 import com.danbam.design_system.util.Language
 import com.danbam.design_system.util.changeLanguage
 import com.danbam.tv.ui.main.navigation.MainNavigationItem
+import com.danbam.tv.util.android.findActivity
 import com.danbam.tv.util.android.observeWithLifecycle
 import kotlinx.coroutines.InternalCoroutinesApi
 
@@ -52,6 +54,10 @@ fun LoginScreen(
         LoginSideEffect.MatchIdException to stringResource(id = R.string.wrong_id),
         LoginSideEffect.MatchPasswordException to stringResource(id = R.string.wrong_password)
     )
+
+    BackHandler {
+        context.findActivity()?.finish()
+    }
 
     sideEffect.observeWithLifecycle {
         when (it) {
