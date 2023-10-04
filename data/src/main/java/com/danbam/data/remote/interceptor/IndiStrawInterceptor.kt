@@ -22,6 +22,7 @@ class IndiStrawInterceptor @Inject constructor(
         val request = chain.request()
         val method = request.method.lowercase()
         val path = request.url.encodedPath
+        println("안녕 $path $method")
         val allIgnorePath = BuildConfig.ALL_IGNORE_PATH.split(", ")
         val postIgnorePath = BuildConfig.POST_IGNORE_PATH.split(", ")
         val getIgnorePath = BuildConfig.GET_IGNORE_PATH.split(", ")
@@ -30,7 +31,7 @@ class IndiStrawInterceptor @Inject constructor(
             if (path.startsWith(it)) return chain.proceed(request)
         }
         postIgnorePath.forEach {
-            if (path == it && method == "post") return chain.proceed(request)
+            if (path.startsWith(it) && method == "post") return chain.proceed(request)
         }
         getIgnorePath.forEach {
             if (path.startsWith(it) && method == "get") return chain.proceed(request)
