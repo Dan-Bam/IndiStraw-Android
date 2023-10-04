@@ -18,12 +18,12 @@ class SearchMoviePagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieResponse> {
         return try {
-            val page = params.key ?: 1
+            val page = params.key ?: 0
             val response = searchAPI.searchMovie(page = page, keyword = keyword)
 
             LoadResult.Page(
                 data = response.list,
-                prevKey = if (page == 1) null else page - 1,
+                prevKey = if (page == 0) null else page - 1,
                 nextKey = if (response.isLast) null else page + 1
             )
         } catch (e: Exception) {
