@@ -8,7 +8,7 @@ import com.danbam.mobile.util.view.LockScreenOrientation
 
 @Composable
 fun MoviePlayScreen(
-    movieIdx: Int,
+    movieIdx: Long,
     movieUrl: String,
     position: Float,
     moviePlayViewModel: MoviePlayViewModel = hiltViewModel()

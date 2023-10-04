@@ -47,11 +47,11 @@ fun NavGraphBuilder.movieGraph(
             + MovieDeepLinkKey.MOVIE_INDEX + "{${MovieDeepLinkKey.MOVIE_INDEX}}",
         arguments = listOf(
             navArgument(MovieDeepLinkKey.MOVIE_INDEX) {
-                type = NavType.IntType
+                type = NavType.LongType
             }
         )
     ) {
-        val movieIndex = it.arguments?.getInt(MovieDeepLinkKey.MOVIE_INDEX) ?: 0
+        val movieIndex = it.arguments?.getLong(MovieDeepLinkKey.MOVIE_INDEX) ?: 0
         MovieDetailScreen(navController = navController, movieIndex = movieIndex)
     }
     composable(
@@ -64,7 +64,7 @@ fun NavGraphBuilder.movieGraph(
                 type = NavType.StringType
             },
             navArgument(MovieDeepLinkKey.MOVIE_INDEX) {
-                type = NavType.IntType
+                type = NavType.LongType
             },
             navArgument(MovieDeepLinkKey.MOVIE_POSITION) {
                 type = NavType.FloatType
@@ -72,7 +72,7 @@ fun NavGraphBuilder.movieGraph(
         )
     ) {
         val movieUrl = it.arguments?.getString(MovieDeepLinkKey.MOVIE_URL) ?: ""
-        val movieIdx = it.arguments?.getInt(MovieDeepLinkKey.MOVIE_URL) ?: 0
+        val movieIdx = it.arguments?.getLong(MovieDeepLinkKey.MOVIE_INDEX) ?: 0
         val moviePosition = it.arguments?.getFloat(MovieDeepLinkKey.MOVIE_POSITION) ?: 0F
         MoviePlayScreen(movieUrl = movieUrl, movieIdx = movieIdx, position = moviePosition)
     }

@@ -16,9 +16,9 @@ import kotlinx.coroutines.flow.Flow
 interface MovieRemoteDataSource {
     suspend fun movieCreate(movieCreateRequest: MovieCreateRequest)
     suspend fun movieList(genre: String? = null): Flow<PagingData<MovieResponse>>
-    suspend fun movieDetail(movieIdx: Int): MovieDetailResponse
+    suspend fun movieDetail(movieIdx: Long): MovieDetailResponse
     suspend fun searchMoviePeople(actorType: String, name: String): List<MoviePeopleResponse>
-    suspend fun moviePeopleDetail(actorType: String, idx: Int): MoviePeopleDetailResponse
+    suspend fun moviePeopleDetail(actorType: String, idx: Long): MoviePeopleDetailResponse
     suspend fun addMoviePeople(
         actorType: String,
         moviePeopleRequest: MoviePeopleRequest
@@ -30,5 +30,5 @@ interface MovieRemoteDataSource {
 
     suspend fun movieHistoryList(): List<MovieHistoryResponse>
     suspend fun addMovieHistory(movieHistoryRequest: MovieHistoryRequest): MovieHistoryResponse
-    suspend fun movieHistory(movieIdx: Int): DetailMovieHistoryResponse
+    suspend fun movieHistory(movieIdx: Long): DetailMovieHistoryResponse
 }

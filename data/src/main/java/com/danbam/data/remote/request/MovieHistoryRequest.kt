@@ -4,9 +4,9 @@ import com.danbam.domain.param.MovieHistoryParam
 import com.google.gson.annotations.SerializedName
 
 data class MovieHistoryRequest(
-    @SerializedName("movie_idx")
-    val movieIdx: Int,
-    @SerializedName("history_time")
+    @SerializedName("idx")
+    val movieIdx: Long,
+    @SerializedName("historyTime")
     val historyTime: Float,
 )
 

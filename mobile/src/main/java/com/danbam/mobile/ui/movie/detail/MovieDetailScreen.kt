@@ -52,7 +52,7 @@ import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 @Composable
 fun MovieDetailScreen(
     navController: NavController,
-    movieIndex: Int,
+    movieIndex: Long,
     movieDetailViewModel: MovieDetailViewModel = hiltViewModel()
 ) {
     val container = movieDetailViewModel.container

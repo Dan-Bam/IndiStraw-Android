@@ -35,7 +35,7 @@ class MovieRemoteDataSourceImpl @Inject constructor(
                 )
             }).flow
 
-    override suspend fun movieDetail(movieIdx: Int): MovieDetailResponse = indiStrawApiCall {
+    override suspend fun movieDetail(movieIdx: Long): MovieDetailResponse = indiStrawApiCall {
         movieAPI.movieDetail(movieIdx = movieIdx)
     }
 
@@ -51,7 +51,10 @@ class MovieRemoteDataSourceImpl @Inject constructor(
             movieAPI.addMoviePeople(actorType = actorType, moviePeopleRequest = moviePeopleRequest)
         }
 
-    override suspend fun moviePeopleDetail(actorType: String, idx: Int): MoviePeopleDetailResponse =
+    override suspend fun moviePeopleDetail(
+        actorType: String,
+        idx: Long
+    ): MoviePeopleDetailResponse =
         indiStrawApiCall {
             movieAPI.moviePeopleDetail(actorType = actorType, idx = idx)
         }
@@ -79,7 +82,7 @@ class MovieRemoteDataSourceImpl @Inject constructor(
             movieAPI.addMovieHistory(movieHistoryRequest = movieHistoryRequest)
         }
 
-    override suspend fun movieHistory(movieIdx: Int): DetailMovieHistoryResponse =
+    override suspend fun movieHistory(movieIdx: Long): DetailMovieHistoryResponse =
         indiStrawApiCall {
             movieAPI.movieHistory(movieIdx = movieIdx)
         }

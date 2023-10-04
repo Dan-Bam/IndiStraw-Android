@@ -34,7 +34,7 @@ interface MovieAPI {
 
     @GET("${EndPoint.Movie}/{movieId}/")
     suspend fun movieDetail(
-        @Path("movieId") movieIdx: Int,
+        @Path("movieId") movieIdx: Long,
     ): MovieDetailResponse
 
     @GET("${EndPoint.Movie}/{actorType}/")
@@ -52,7 +52,7 @@ interface MovieAPI {
     @GET("${EndPoint.Movie}/{actorType}/{idx}/")
     suspend fun moviePeopleDetail(
         @Path("actorType") actorType: String,
-        @Path("idx") idx: Int,
+        @Path("idx") idx: Long,
     ): MoviePeopleDetailResponse
 
     @GET("${EndPoint.Movie}/popular/")
@@ -71,6 +71,6 @@ interface MovieAPI {
 
     @GET("${EndPoint.Movie}/history/{movieIdx}/")
     suspend fun movieHistory(
-        @Path("movieIdx") movieIdx: Int,
+        @Path("movieIdx") movieIdx: Long,
     ): DetailMovieHistoryResponse
 }

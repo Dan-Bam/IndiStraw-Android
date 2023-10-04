@@ -4,9 +4,9 @@ import com.danbam.domain.entity.MovieEntity
 import com.google.gson.annotations.SerializedName
 
 data class MovieResponse(
-    @SerializedName("movie_idx")
-    val idx: Int,
-    @SerializedName("thumbnail_url")
+    @SerializedName("idx")
+    val idx: Long,
+    @SerializedName("thumbnailUrl")
     val thumbnailUrl: String,
 )
 

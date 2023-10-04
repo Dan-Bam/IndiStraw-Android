@@ -106,7 +106,7 @@ fun FundingItem(
 @Composable
 fun MovieItem(
     item: MovieEntity,
-    onClickItem: (Int) -> Unit,
+    onClickItem: (Long) -> Unit,
 ) {
     ImageButton(
         modifier = Modifier

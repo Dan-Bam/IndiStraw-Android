@@ -15,14 +15,14 @@ import kotlinx.coroutines.flow.Flow
 interface MovieRepository {
     suspend fun movieCreate(movieCreateParam: MovieCreateParam)
     suspend fun movieList(genre: String? = null): Flow<PagingData<MovieEntity>>
-    suspend fun movieDetail(movieIdx: Int): MovieDetailEntity
+    suspend fun movieDetail(movieIdx: Long): MovieDetailEntity
     suspend fun searchMoviePeople(actorType: String, name: String): List<MoviePeopleEntity>
-    suspend fun addMoviePeople(actorType: String, moviePeopleParam: MoviePeopleParam): Int
-    suspend fun moviePeopleDetail(actorType: String, idx: Int): MoviePeopleDetailEntity
+    suspend fun addMoviePeople(actorType: String, moviePeopleParam: MoviePeopleParam): Long
+    suspend fun moviePeopleDetail(actorType: String, idx: Long): MoviePeopleDetailEntity
     suspend fun movieRecentList(): List<MovieEntity>
     suspend fun moviePopularList(): List<MovieEntity>
     suspend fun movieRecommendList(): List<MovieEntity>
     suspend fun movieHistoryList(): List<MovieHistoryEntity>
     suspend fun addMovieHistory(movieHistoryParam: MovieHistoryParam): MovieHistoryEntity
-    suspend fun movieHistory(movieIdx: Int): DetailMovieHistoryEntity
+    suspend fun movieHistory(movieIdx: Long): DetailMovieHistoryEntity
 }

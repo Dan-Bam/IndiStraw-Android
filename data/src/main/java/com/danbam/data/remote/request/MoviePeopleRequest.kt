@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 data class MoviePeopleRequest(
     @SerializedName("name")
     val name: String,
-    @SerializedName("profile_url")
+    @SerializedName("profileUrl")
     val profileUrl: String,
 )
 

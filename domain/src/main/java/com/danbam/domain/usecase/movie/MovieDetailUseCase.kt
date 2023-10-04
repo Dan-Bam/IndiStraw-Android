@@ -6,7 +6,7 @@ import javax.inject.Inject
 class MovieDetailUseCase @Inject constructor(
     private val movieRepository: MovieRepository
 ) {
-    suspend operator fun invoke(movieIndex: Int) = runCatching {
+    suspend operator fun invoke(movieIndex: Long) = runCatching {
         movieRepository.movieDetail(movieIdx = movieIndex)
     }
 }

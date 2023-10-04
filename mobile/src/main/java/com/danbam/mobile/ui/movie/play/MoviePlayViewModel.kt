@@ -17,7 +17,7 @@ class MoviePlayViewModel @Inject constructor(
 ) : ContainerHost<Unit, Unit>, ViewModel() {
     override val container = container<Unit, Unit>(Unit)
 
-    fun addMovieHistory(movieIdx: Int, position: Float) = intent {
+    fun addMovieHistory(movieIdx: Long, position: Float) = intent {
         viewModelScope.launch {
             addMovieHistoryUseCase(
                 movieHistoryParam = MovieHistoryParam(

@@ -28,7 +28,7 @@ class MovieRepositoryImpl @Inject constructor(
     override suspend fun movieList(genre: String?): Flow<PagingData<MovieEntity>> =
         movieRemoteDataSource.movieList(genre = genre).map { it.map { it.toEntity() } }
 
-    override suspend fun movieDetail(movieIdx: Int): MovieDetailEntity =
+    override suspend fun movieDetail(movieIdx: Long): MovieDetailEntity =
         movieRemoteDataSource.movieDetail(movieIdx = movieIdx).toEntity()
 
     override suspend fun searchMoviePeople(
@@ -44,7 +44,7 @@ class MovieRepositoryImpl @Inject constructor(
             moviePeopleRequest = moviePeopleParam.toRequest()
         ).actorIdx
 
-    override suspend fun moviePeopleDetail(actorType: String, idx: Int): MoviePeopleDetailEntity =
+    override suspend fun moviePeopleDetail(actorType: String, idx: Long): MoviePeopleDetailEntity =
         movieRemoteDataSource.moviePeopleDetail(actorType = actorType, idx = idx).toEntity()
 
     override suspend fun movieRecentList(): List<MovieEntity> =
@@ -63,6 +63,6 @@ class MovieRepositoryImpl @Inject constructor(
         movieRemoteDataSource.addMovieHistory(movieHistoryRequest = movieHistoryParam.toRequest())
             .toEntity()
 
-    override suspend fun movieHistory(movieIdx: Int): DetailMovieHistoryEntity =
+    override suspend fun movieHistory(movieIdx: Long): DetailMovieHistoryEntity =
         movieRemoteDataSource.movieHistory(movieIdx = movieIdx).toEntity()
 }
