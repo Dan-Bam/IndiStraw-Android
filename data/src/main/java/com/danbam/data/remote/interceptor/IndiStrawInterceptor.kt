@@ -22,7 +22,6 @@ class IndiStrawInterceptor @Inject constructor(
         val request = chain.request()
         val method = request.method.lowercase()
         val path = request.url.encodedPath
-        println("안녕 $path $method")
         val allIgnorePath = BuildConfig.ALL_IGNORE_PATH.split(", ")
         val postIgnorePath = BuildConfig.POST_IGNORE_PATH.split(", ")
         val getIgnorePath = BuildConfig.GET_IGNORE_PATH.split(", ")
