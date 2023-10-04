@@ -12,7 +12,7 @@ data class MovieDetailState(
         actorList = listOf(),
         highlight = listOf(),
         isFunding = false,
-        genre = listOf()
+        genre = ""
     ),
     val moviePosition: Float = 0F
 )

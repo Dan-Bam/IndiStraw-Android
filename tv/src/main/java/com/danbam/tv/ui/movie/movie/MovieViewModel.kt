@@ -18,7 +18,7 @@ class MovieViewModel @Inject constructor(
 ) : ContainerHost<MovieState, Unit>, ViewModel() {
     override val container = container<MovieState, Unit>(MovieState())
 
-    fun saveCurrentIndex(index: Int) = intent {
+    fun saveCurrentIndex(index: Long) = intent {
         reduce { state.copy(currentMovieIndex = index) }
     }
 

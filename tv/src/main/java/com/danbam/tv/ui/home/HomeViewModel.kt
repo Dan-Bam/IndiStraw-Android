@@ -32,7 +32,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun saveCurrentIndex(index: Int) = intent {
+    fun saveCurrentIndex(index: Long) = intent {
         reduce { state.copy(currentMovieIndex = index) }
     }
 

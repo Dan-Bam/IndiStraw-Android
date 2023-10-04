@@ -62,7 +62,7 @@ sealed class MovieTabItem(val stringId: Int) {
 @Composable
 fun MovieDetailScreen(
     navController: NavController,
-    movieIndex: Int,
+    movieIndex: Long,
     movieDetailViewModel: MovieDetailViewModel = hiltViewModel()
 ) {
     val container = movieDetailViewModel.container

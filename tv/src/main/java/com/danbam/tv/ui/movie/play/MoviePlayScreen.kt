@@ -7,7 +7,7 @@ import com.danbam.design_system.component.IndiStrawTvBackground
 
 @Composable
 fun MoviePlayScreen(
-    movieIdx: Int,
+    movieIdx: Long,
     movieUrl: String,
     position: Float,
     moviePlayViewModel: MoviePlayViewModel = hiltViewModel()
