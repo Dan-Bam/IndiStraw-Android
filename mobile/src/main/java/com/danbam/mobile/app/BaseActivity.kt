@@ -38,6 +38,11 @@ class BaseActivity : ComponentActivity() {
             }
         }
     }
+
+    override fun onUserLeaveHint() {
+        super.onUserLeaveHint()
+        enterPictureInPictureMode()
+    }
 }
 
 @OptIn(ExperimentalAnimationApi::class)
