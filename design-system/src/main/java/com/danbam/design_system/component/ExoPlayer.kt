@@ -1,5 +1,6 @@
 package com.danbam.design_system.component
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
@@ -25,25 +26,28 @@ fun IndiStrawPlayer(
             val mediaItem = MediaItem.Builder()
                 .setUri("${BuildConfig.VIDEO_PRE_PATH}$videoUrl")
                 .build()
-            exoPlayer.videoScalingMode = C.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING
+            exoPlayer.videoScalingMode = C.VIDEO_SCALING_MODE_SCALE_TO_FIT
             exoPlayer.setMediaItem(mediaItem)
             exoPlayer.seekTo((position * 1000).toLong())
             exoPlayer.prepare()
             exoPlayer.play()
         }
 
+    BackHandler {
+        onDispose(exoPlayer.currentPosition)
+    }
+
     DisposableEffect(
         AndroidViewBinding(modifier = modifier, factory = IndistrawPlayerBinding::inflate) {
             this.exoPlayer.apply {
                 hideController()
                 useController = true
-                resizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
+                resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT
                 player = exoPlayer
             }
         }
     ) {
         onDispose {
-            onDispose(exoPlayer.currentPosition)
             exoPlayer.release()
         }
     }
