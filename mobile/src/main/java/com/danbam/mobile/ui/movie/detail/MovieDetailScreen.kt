@@ -1,5 +1,6 @@
 package com.danbam.mobile.ui.movie.detail
 
+import android.media.MediaMetadataRetriever
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -29,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import com.danbam.design_system.BuildConfig
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
@@ -47,6 +49,7 @@ import com.danbam.design_system.R
 import com.danbam.domain.entity.MoviePeopleEntity
 import com.danbam.mobile.ui.movie.navigation.MovieDeepLinkKey
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
+import okhttp3.internal.toNonNegativeInt
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -67,7 +70,6 @@ fun MovieDetailScreen(
     }
 
     var selectedPeople: MoviePeopleEntity? by remember { mutableStateOf(null) }
-    var isActor by remember { mutableStateOf(false) }
 
     IndiStrawBottomSheetLayout(sheetContent = {
         selectedPeople?.let {
@@ -134,11 +136,20 @@ fun MovieDetailScreen(
                     imgSrc = state.movieDetailInfo.thumbnailUrl,
                     shape = Shape.None
                 ) {
-                    navController.navigate(
-                        MovieNavigationItem.Play.route + MovieDeepLinkKey.MOVIE_INDEX + movieIndex + MovieDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl.split(
-                            "/"
-                        ).last() + MovieDeepLinkKey.MOVIE_POSITION + state.moviePosition
-                    )
+                    kotlin.runCatching {
+                        MediaMetadataRetriever().apply {
+                            setDataSource("${BuildConfig.VIDEO_PRE_PATH}${state.movieDetailInfo.movieUrl}")
+                        }
+                    }.onSuccess {
+                        val isVertical =
+                            (it.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)
+                                ?.toInt() ?: 0 < it.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT)
+                                ?.toInt() ?: 0)
+                        it.release()
+                        navController.navigate(
+                            MovieNavigationItem.Play.route + MovieDeepLinkKey.MOVIE_INDEX + movieIndex + MovieDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl + MovieDeepLinkKey.MOVIE_POSITION + state.moviePosition + MovieDeepLinkKey.IS_VERTICAL + isVertical
+                        )
+                    }
                 }
                 IndiStrawIcon(
                     modifier = Modifier.align(Alignment.Center),
