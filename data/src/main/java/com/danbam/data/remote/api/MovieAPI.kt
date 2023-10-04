@@ -67,7 +67,7 @@ interface MovieAPI {
     @POST("${EndPoint.Movie}/history/")
     suspend fun addMovieHistory(
         @Body movieHistoryRequest: MovieHistoryRequest
-    ): MovieHistoryResponse
+    ): Response<Void?>
 
     @GET("${EndPoint.Movie}/history/{movieIdx}/")
     suspend fun movieHistory(

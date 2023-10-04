@@ -59,9 +59,8 @@ class MovieRepositoryImpl @Inject constructor(
     override suspend fun movieHistoryList(): List<MovieHistoryEntity> =
         movieRemoteDataSource.movieHistoryList().map { it.toEntity() }
 
-    override suspend fun addMovieHistory(movieHistoryParam: MovieHistoryParam): MovieHistoryEntity =
+    override suspend fun addMovieHistory(movieHistoryParam: MovieHistoryParam) =
         movieRemoteDataSource.addMovieHistory(movieHistoryRequest = movieHistoryParam.toRequest())
-            .toEntity()
 
     override suspend fun movieHistory(movieIdx: Long): DetailMovieHistoryEntity =
         movieRemoteDataSource.movieHistory(movieIdx = movieIdx).toEntity()

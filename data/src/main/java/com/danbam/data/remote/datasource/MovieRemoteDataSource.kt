@@ -29,6 +29,6 @@ interface MovieRemoteDataSource {
     suspend fun movieRecommendList(): List<MovieResponse>
 
     suspend fun movieHistoryList(): List<MovieHistoryResponse>
-    suspend fun addMovieHistory(movieHistoryRequest: MovieHistoryRequest): MovieHistoryResponse
+    suspend fun addMovieHistory(movieHistoryRequest: MovieHistoryRequest)
     suspend fun movieHistory(movieIdx: Long): DetailMovieHistoryResponse
 }

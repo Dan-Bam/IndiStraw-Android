@@ -23,6 +23,6 @@ interface MovieRepository {
     suspend fun moviePopularList(): List<MovieEntity>
     suspend fun movieRecommendList(): List<MovieEntity>
     suspend fun movieHistoryList(): List<MovieHistoryEntity>
-    suspend fun addMovieHistory(movieHistoryParam: MovieHistoryParam): MovieHistoryEntity
+    suspend fun addMovieHistory(movieHistoryParam: MovieHistoryParam)
     suspend fun movieHistory(movieIdx: Long): DetailMovieHistoryEntity
 }
