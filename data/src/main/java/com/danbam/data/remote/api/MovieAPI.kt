@@ -27,7 +27,8 @@ interface MovieAPI {
 
     @GET("${EndPoint.Movie}/")
     suspend fun movieList(
-        @Query("page") page: Int = 1,
+        @Query("page") page: Int = 0,
+        @Query("size") size: Int = 20,
         @Query("keyword") genre: String? = null
     ): MoviePageResponse
 

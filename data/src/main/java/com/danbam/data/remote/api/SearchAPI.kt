@@ -16,7 +16,8 @@ interface SearchAPI {
 
     @GET("${EndPoint.SEARCH}/movie/")
     suspend fun searchMovie(
-        @Query("page") page: Int = 1,
+        @Query("page") page: Int = 0,
+        @Query("size") size: Int = 20,
         @Query("keyword") keyword: String,
     ): MoviePageResponse
 
