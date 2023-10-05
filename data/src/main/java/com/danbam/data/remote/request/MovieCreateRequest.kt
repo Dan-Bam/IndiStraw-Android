@@ -8,17 +8,17 @@ data class MovieCreateRequest(
     val title: String,
     @SerializedName("description")
     val description: String,
-    @SerializedName("movie_url")
+    @SerializedName("movieUrl")
     val movieUrl: String,
-    @SerializedName("thumbnail_url")
+    @SerializedName("thumbnailUrl")
     val thumbnailUrl: String,
-    @SerializedName("movie_highlight")
+    @SerializedName("movieHighlight")
     val highlight: List<String>,
     @SerializedName("director")
-    val director: List<Int>,
+    val director: List<Long>,
     @SerializedName("actor")
-    val actor: List<Int>,
-    @SerializedName("crowd_true")
+    val actor: List<Long>,
+    @SerializedName("crowdTrue")
     val isMakeFunding: Boolean,
 )
 

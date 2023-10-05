@@ -1,6 +1,6 @@
 package com.danbam.domain.param
 
 data class MovieHistoryParam(
-    val movieIdx: Int,
+    val movieIdx: Long,
     val historyTime: Float,
 )

@@ -206,7 +206,7 @@ fun IndiStrawRowTab(
     itemList: List<MovieEntity>,
     tabHeader: @Composable () -> Unit,
     moreData: (() -> Unit)? = null,
-    onClickItem: (Int) -> Unit,
+    onClickItem: (Long) -> Unit,
 ) {
     val state = rememberLazyListState()
 

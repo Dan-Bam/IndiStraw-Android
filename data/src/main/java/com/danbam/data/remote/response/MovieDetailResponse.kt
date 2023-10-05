@@ -8,20 +8,20 @@ data class MovieDetailResponse(
     val title: String,
     @SerializedName("description")
     val description: String,
-    @SerializedName("movie_url")
+    @SerializedName("movieUrl")
     val movieUrl: String,
-    @SerializedName("thumbnail_url")
+    @SerializedName("thumbnailUrl")
     val thumbnailUrl: String,
     @SerializedName("director")
     val directorList: List<MoviePeopleResponse>,
     @SerializedName("actor")
     val actorList: List<MoviePeopleResponse>,
-    @SerializedName("movie_highlight")
+    @SerializedName("movieHighlight")
     val highlight: List<String>,
-    @SerializedName("clowd_true")
+    @SerializedName("crowdTrue")
     val isFunding: Boolean,
     @SerializedName("genre")
-    val genre: List<String>?,
+    val genre: String,
 )
 
 fun MovieDetailResponse.toEntity() = MovieDetailEntity(
@@ -33,5 +33,5 @@ fun MovieDetailResponse.toEntity() = MovieDetailEntity(
     actorList = actorList.map { it.toEntity() },
     highlight = highlight,
     isFunding = isFunding,
-    genre = genre ?: listOf()
+    genre = genre
 )

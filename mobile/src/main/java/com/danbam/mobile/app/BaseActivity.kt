@@ -21,6 +21,7 @@ import com.danbam.mobile.ui.auth.navigation.signUpGraph
 import com.danbam.mobile.ui.auth.signup.SignUpViewModel
 import com.danbam.mobile.ui.funding.navigation.fundingGraph
 import com.danbam.mobile.ui.movie.make.MakeMovieViewModel
+import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 import com.danbam.mobile.ui.search.navigation.searchGraph
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -28,14 +29,22 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class BaseActivity : ComponentActivity() {
+    private lateinit var navController: NavHostController
     @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val navController = rememberAnimatedNavController()
+            navController = rememberAnimatedNavController()
             IndiStrawTheme {
                 BaseApp(navController = navController)
             }
+        }
+    }
+
+    override fun onUserLeaveHint() {
+        super.onUserLeaveHint()
+        navController.currentDestination?.route?.let {
+            if (it.contains(MovieNavigationItem.Play.route)) enterPictureInPictureMode()
         }
     }
 }

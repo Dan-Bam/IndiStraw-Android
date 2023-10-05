@@ -5,12 +5,12 @@ import com.google.gson.annotations.SerializedName
 
 data class MoviePeopleDetailResponse(
     @SerializedName("idx")
-    val idx: Int,
+    val idx: Long,
     @SerializedName("name")
     val name: String,
-    @SerializedName("profile_url")
+    @SerializedName("profileUrl")
     val profileUrl: String,
-    @SerializedName("movie_list")
+    @SerializedName("movieList")
     val movieList: List<MovieResponse>
 )
 

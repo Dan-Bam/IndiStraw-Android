@@ -9,5 +9,5 @@ data class MovieDetailEntity(
     val actorList: List<MoviePeopleEntity>,
     val highlight: List<String>,
     val isFunding: Boolean,
-    val genre: List<String>,
+    val genre: String,
 )

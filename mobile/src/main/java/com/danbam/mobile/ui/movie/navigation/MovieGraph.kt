@@ -30,6 +30,7 @@ object MovieDeepLinkKey {
     const val MOVIE_INDEX = "movieIndex"
     const val MOVIE_URL = "movieUrl"
     const val MOVIE_POSITION = "moviePosition"
+    const val IS_VERTICAL = "isVertical"
 }
 
 object ActorType {
@@ -47,34 +48,45 @@ fun NavGraphBuilder.movieGraph(
             + MovieDeepLinkKey.MOVIE_INDEX + "{${MovieDeepLinkKey.MOVIE_INDEX}}",
         arguments = listOf(
             navArgument(MovieDeepLinkKey.MOVIE_INDEX) {
-                type = NavType.IntType
+                type = NavType.LongType
             }
         )
     ) {
-        val movieIndex = it.arguments?.getInt(MovieDeepLinkKey.MOVIE_INDEX) ?: 0
+        val movieIndex = it.arguments?.getLong(MovieDeepLinkKey.MOVIE_INDEX) ?: 0
         MovieDetailScreen(navController = navController, movieIndex = movieIndex)
     }
     composable(
         route = MovieNavigationItem.Play.route
             + MovieDeepLinkKey.MOVIE_INDEX + "{${MovieDeepLinkKey.MOVIE_INDEX}}"
             + MovieDeepLinkKey.MOVIE_URL + "{${MovieDeepLinkKey.MOVIE_URL}}"
-            + MovieDeepLinkKey.MOVIE_POSITION + "{${MovieDeepLinkKey.MOVIE_POSITION}}",
+            + MovieDeepLinkKey.MOVIE_POSITION + "{${MovieDeepLinkKey.MOVIE_POSITION}}"
+            + MovieDeepLinkKey.IS_VERTICAL + "{${MovieDeepLinkKey.IS_VERTICAL}}",
         arguments = listOf(
+            navArgument(MovieDeepLinkKey.MOVIE_INDEX) {
+                type = NavType.LongType
+            },
             navArgument(MovieDeepLinkKey.MOVIE_URL) {
                 type = NavType.StringType
             },
-            navArgument(MovieDeepLinkKey.MOVIE_INDEX) {
-                type = NavType.IntType
-            },
             navArgument(MovieDeepLinkKey.MOVIE_POSITION) {
                 type = NavType.FloatType
+            },
+            navArgument(MovieDeepLinkKey.IS_VERTICAL) {
+                type = NavType.BoolType
             }
         )
     ) {
         val movieUrl = it.arguments?.getString(MovieDeepLinkKey.MOVIE_URL) ?: ""
-        val movieIdx = it.arguments?.getInt(MovieDeepLinkKey.MOVIE_URL) ?: 0
+        val movieIdx = it.arguments?.getLong(MovieDeepLinkKey.MOVIE_INDEX) ?: 0
         val moviePosition = it.arguments?.getFloat(MovieDeepLinkKey.MOVIE_POSITION) ?: 0F
-        MoviePlayScreen(movieUrl = movieUrl, movieIdx = movieIdx, position = moviePosition)
+        val isVertical = it.arguments?.getBoolean(MovieDeepLinkKey.IS_VERTICAL) ?: false
+        MoviePlayScreen(
+            movieUrl = movieUrl,
+            movieIdx = movieIdx,
+            position = moviePosition,
+            isVertical = isVertical,
+            navController = navController
+        )
     }
     composable(route = MovieNavigationItem.All.route) {
         MovieAllScreen(navController = navController)

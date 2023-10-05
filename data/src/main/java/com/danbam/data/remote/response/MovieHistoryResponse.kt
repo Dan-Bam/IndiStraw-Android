@@ -4,11 +4,11 @@ import com.danbam.domain.entity.MovieHistoryEntity
 import com.google.gson.annotations.SerializedName
 
 data class MovieHistoryResponse(
-    @SerializedName("movie_idx")
-    val movieIdx: Int,
-    @SerializedName("thumbnail_url")
+    @SerializedName("idx")
+    val movieIdx: Long,
+    @SerializedName("thumbnailUrl")
     val thumbnailUrl: String,
-    @SerializedName("history_time")
+    @SerializedName("historyTime")
     val historyTime: Float,
     @SerializedName("title")
     val title: String,

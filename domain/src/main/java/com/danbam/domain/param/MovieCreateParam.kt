@@ -6,7 +6,7 @@ data class MovieCreateParam(
     val movieUrl: String,
     val thumbnailUrl: String,
     val highlight: List<String>,
-    val director: List<Int>,
-    val actor: List<Int>,
+    val director: List<Long>,
+    val actor: List<Long>,
     val isMakeFunding: Boolean,
 )
