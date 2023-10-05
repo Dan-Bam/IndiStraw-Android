@@ -98,12 +98,11 @@ fun NavGraphBuilder.authGraph(navController: NavHostController) {
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.signUpGraph(
     navController: NavHostController,
-    signUpViewModel: SignUpViewModel,
 ) {
     composable(
         route = AuthNavigationItem.SetName.route
     ) {
-        SetNameScreen(navController = navController, signUpViewModel = signUpViewModel)
+        SetNameScreen(navController = navController)
     }
     composable(
         route = AuthNavigationItem.SetProfile.route
@@ -116,14 +115,13 @@ fun NavGraphBuilder.signUpGraph(
         val phoneNumber = it.arguments?.getString(AuthDeepLinkKey.PHONE_NUMBER) ?: ""
         SetProfileScreen(
             navController = navController,
-            signUpViewModel = signUpViewModel,
             phoneNumber = phoneNumber
         )
     }
     composable(route = AuthNavigationItem.SetId.route) {
-        SetIdScreen(navController = navController, signUpViewModel = signUpViewModel)
+        SetIdScreen(navController = navController)
     }
     composable(route = AuthNavigationItem.SetPassword.route) {
-        SetPasswordScreen(navController = navController, signUpViewModel = signUpViewModel)
+        SetPasswordScreen(navController = navController)
     }
 }

@@ -52,7 +52,6 @@ class BaseActivity : ComponentActivity() {
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun BaseApp(navController: NavHostController) {
-    val signUpViewModel: SignUpViewModel = hiltViewModel()
     val makeMovieViewModel: MakeMovieViewModel = hiltViewModel()
     AnimatedNavHost(
         navController = navController,
@@ -75,7 +74,7 @@ fun BaseApp(navController: NavHostController) {
     ) {
         mainGraph(navController = navController)
         authGraph(navController = navController)
-        signUpGraph(navController = navController, signUpViewModel = signUpViewModel)
+        signUpGraph(navController = navController)
         movieGraph(navController = navController, makeMovieViewModel = makeMovieViewModel)
         profileGraph(navController = navController)
         searchGraph(navController = navController)

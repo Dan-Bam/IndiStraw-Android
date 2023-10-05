@@ -15,6 +15,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.component.HeadLineBold
@@ -27,6 +28,7 @@ import com.danbam.design_system.R
 import com.danbam.mobile.ui.auth.navigation.AuthDeepLinkKey
 import com.danbam.mobile.ui.auth.navigation.AuthNavigationItem
 import com.danbam.mobile.ui.auth.navigation.CertificateType
+import com.danbam.mobile.util.android.getActivity
 import com.danbam.mobile.util.android.observeWithLifecycle
 import com.danbam.mobile.util.view.popBackStack
 import com.danbam.mobile.util.view.requestFocus
@@ -36,7 +38,7 @@ import kotlinx.coroutines.InternalCoroutinesApi
 @Composable
 fun SetNameScreen(
     navController: NavController,
-    signUpViewModel: SignUpViewModel,
+    signUpViewModel: SignUpViewModel = hiltViewModel(getActivity()),
 ) {
     val container = signUpViewModel.container
     val state = container.stateFlow.collectAsState().value
