@@ -41,7 +41,6 @@ object ActorType {
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.movieGraph(
     navController: NavHostController,
-    makeMovieViewModel: MakeMovieViewModel
 ) {
     composable(
         route = MovieNavigationItem.Detail.route
@@ -92,10 +91,10 @@ fun NavGraphBuilder.movieGraph(
         MovieAllScreen(navController = navController)
     }
     composable(route = MovieNavigationItem.WriteIntroduce.route) {
-        WriteIntroduceScreen(navController = navController, makeMovieViewModel = makeMovieViewModel)
+        WriteIntroduceScreen(navController = navController)
     }
     composable(route = MovieNavigationItem.AddActor.route) {
-        AddActorScreen(navController = navController, makeMovieViewModel = makeMovieViewModel)
+        AddActorScreen(navController = navController)
     }
     composable(
         route = MovieNavigationItem.WriteActor.route
@@ -111,7 +110,6 @@ fun NavGraphBuilder.movieGraph(
         WriteActorScreen(
             navController = navController,
             addActorType = addActorType,
-            makeMovieViewModel = makeMovieViewModel
         )
     }
     composable(
@@ -128,7 +126,6 @@ fun NavGraphBuilder.movieGraph(
         SearchActorScreen(
             navController = navController,
             addActorType = addActorType,
-            makeMovieViewModel = makeMovieViewModel
         )
     }
 }
