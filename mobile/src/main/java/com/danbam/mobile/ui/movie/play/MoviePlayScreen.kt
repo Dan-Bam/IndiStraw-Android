@@ -1,11 +1,13 @@
 package com.danbam.mobile.ui.movie.play
 
 import android.content.pm.ActivityInfo
+import android.view.WindowManager
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.danbam.design_system.component.IndiStrawPlayer
+import com.danbam.mobile.util.android.getActivity
 import com.danbam.mobile.util.android.observeWithLifecycle
 import com.danbam.mobile.util.view.LockScreenOrientation
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -20,6 +22,8 @@ fun MoviePlayScreen(
     navController: NavController,
     moviePlayViewModel: MoviePlayViewModel = hiltViewModel()
 ) {
+    getActivity().window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
+
     val container = moviePlayViewModel.container
     val state = container.stateFlow.collectAsState().value
     val sideEffect = container.sideEffectFlow
