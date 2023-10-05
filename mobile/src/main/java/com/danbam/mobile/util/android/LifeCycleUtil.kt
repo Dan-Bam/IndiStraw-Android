@@ -1,7 +1,9 @@
 package com.danbam.mobile.util.android
 
+import androidx.activity.ComponentActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -29,3 +31,6 @@ inline fun <reified T> Flow<T>.observeWithLifecycle(
         }
     }
 }
+
+@Composable
+fun getActivity() = LocalContext.current as ComponentActivity
