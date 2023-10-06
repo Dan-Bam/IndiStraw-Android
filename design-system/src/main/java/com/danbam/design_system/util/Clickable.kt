@@ -40,7 +40,7 @@ fun Modifier.indiStrawClickable(
 }
 
 
-private const val ClickEventDelayTime: Long = 500L
+private const val ClickEventDelayTime: Long = 300L
 
 internal interface MultipleEventsCutter {
     fun processEvent(event: () -> Unit)

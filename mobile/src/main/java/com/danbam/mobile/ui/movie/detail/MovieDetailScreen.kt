@@ -1,6 +1,7 @@
 package com.danbam.mobile.ui.movie.detail
 
 import android.media.MediaMetadataRetriever
+import android.view.WindowManager
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -49,6 +50,7 @@ import com.danbam.design_system.R
 import com.danbam.domain.entity.MoviePeopleEntity
 import com.danbam.mobile.ui.movie.navigation.MovieDeepLinkKey
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
+import com.danbam.mobile.util.android.getActivity
 import okhttp3.internal.toNonNegativeInt
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -58,6 +60,8 @@ fun MovieDetailScreen(
     movieIndex: Long,
     movieDetailViewModel: MovieDetailViewModel = hiltViewModel()
 ) {
+    getActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
+
     val container = movieDetailViewModel.container
     val state = container.stateFlow.collectAsState().value
     val sideEffect = container.sideEffectFlow
@@ -147,7 +151,7 @@ fun MovieDetailScreen(
                                 ?.toInt() ?: 0)
                         it.release()
                         navController.navigate(
-                            MovieNavigationItem.Play.route + MovieDeepLinkKey.MOVIE_INDEX + movieIndex + MovieDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl + MovieDeepLinkKey.MOVIE_POSITION + state.moviePosition + MovieDeepLinkKey.IS_VERTICAL + isVertical
+                            MovieNavigationItem.Play.route + MovieDeepLinkKey.MOVIE_NAME + state.movieDetailInfo.title + MovieDeepLinkKey.MOVIE_INDEX + movieIndex + MovieDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl + MovieDeepLinkKey.MOVIE_POSITION + state.moviePosition + MovieDeepLinkKey.IS_VERTICAL + isVertical
                         )
                     }
                 }

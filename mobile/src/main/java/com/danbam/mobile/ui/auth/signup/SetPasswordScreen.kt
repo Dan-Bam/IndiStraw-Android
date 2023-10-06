@@ -32,6 +32,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.component.FindPasswordMedium
@@ -50,6 +51,7 @@ import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
 import com.danbam.mobile.ui.auth.navigation.AuthNavigationItem
 import com.danbam.mobile.ui.main.navigation.MainNavigationItem
+import com.danbam.mobile.util.android.getActivity
 import com.danbam.mobile.util.android.observeWithLifecycle
 import com.danbam.mobile.util.view.popBackStack
 import com.danbam.mobile.util.view.requestFocus
@@ -63,7 +65,7 @@ import kotlinx.coroutines.InternalCoroutinesApi
 @Composable
 fun SetPasswordScreen(
     navController: NavController,
-    signUpViewModel: SignUpViewModel,
+    signUpViewModel: SignUpViewModel = hiltViewModel(getActivity()),
 ) {
     val container = signUpViewModel.container
     val state = container.stateFlow.collectAsState().value

@@ -38,7 +38,6 @@ android {
     }
     buildFeatures {
         compose = true
-        viewBinding = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = Version.COMPOSE
@@ -50,7 +49,6 @@ dependencies {
 
     implementation(Dependency.Compose.ACTIVITY)
     implementation(Dependency.Compose.UI)
-    implementation(Dependency.Compose.VIEW_BINDING)
     implementation(Dependency.Compose.PREVIEW)
     implementation(Dependency.Compose.MATERIAL)
     implementation(Dependency.Compose.MATERIAL3)

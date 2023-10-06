@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.R
@@ -39,6 +40,7 @@ import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.util.rememberLauncher
 import com.danbam.design_system.util.typedLaunch
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
+import com.danbam.mobile.util.android.getActivity
 import com.danbam.mobile.util.android.observeWithLifecycle
 import com.danbam.mobile.util.parser.toFile
 import kotlinx.coroutines.Dispatchers
@@ -49,7 +51,7 @@ import kotlinx.coroutines.withContext
 @Composable
 fun WriteIntroduceScreen(
     navController: NavController,
-    makeMovieViewModel: MakeMovieViewModel
+    makeMovieViewModel: MakeMovieViewModel = hiltViewModel(getActivity())
 ) {
     val container = makeMovieViewModel.container
     val state = container.stateFlow.collectAsState().value

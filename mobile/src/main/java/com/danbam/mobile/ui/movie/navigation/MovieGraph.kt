@@ -27,6 +27,7 @@ sealed class MovieNavigationItem(val route: String) {
 
 object MovieDeepLinkKey {
     const val ADD_ACTOR_TYPE = "addActorType"
+    const val MOVIE_NAME = "movieName"
     const val MOVIE_INDEX = "movieIndex"
     const val MOVIE_URL = "movieUrl"
     const val MOVIE_POSITION = "moviePosition"
@@ -41,7 +42,6 @@ object ActorType {
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.movieGraph(
     navController: NavHostController,
-    makeMovieViewModel: MakeMovieViewModel
 ) {
     composable(
         route = MovieNavigationItem.Detail.route
@@ -57,11 +57,15 @@ fun NavGraphBuilder.movieGraph(
     }
     composable(
         route = MovieNavigationItem.Play.route
+            + MovieDeepLinkKey.MOVIE_NAME + "{${MovieDeepLinkKey.MOVIE_NAME}}"
             + MovieDeepLinkKey.MOVIE_INDEX + "{${MovieDeepLinkKey.MOVIE_INDEX}}"
             + MovieDeepLinkKey.MOVIE_URL + "{${MovieDeepLinkKey.MOVIE_URL}}"
             + MovieDeepLinkKey.MOVIE_POSITION + "{${MovieDeepLinkKey.MOVIE_POSITION}}"
             + MovieDeepLinkKey.IS_VERTICAL + "{${MovieDeepLinkKey.IS_VERTICAL}}",
         arguments = listOf(
+            navArgument(MovieDeepLinkKey.MOVIE_NAME) {
+                type = NavType.StringType
+            },
             navArgument(MovieDeepLinkKey.MOVIE_INDEX) {
                 type = NavType.LongType
             },
@@ -76,11 +80,13 @@ fun NavGraphBuilder.movieGraph(
             }
         )
     ) {
+        val movieName = it.arguments?.getString(MovieDeepLinkKey.MOVIE_NAME) ?: ""
         val movieUrl = it.arguments?.getString(MovieDeepLinkKey.MOVIE_URL) ?: ""
         val movieIdx = it.arguments?.getLong(MovieDeepLinkKey.MOVIE_INDEX) ?: 0
         val moviePosition = it.arguments?.getFloat(MovieDeepLinkKey.MOVIE_POSITION) ?: 0F
         val isVertical = it.arguments?.getBoolean(MovieDeepLinkKey.IS_VERTICAL) ?: false
         MoviePlayScreen(
+            movieName = movieName,
             movieUrl = movieUrl,
             movieIdx = movieIdx,
             position = moviePosition,
@@ -92,10 +98,10 @@ fun NavGraphBuilder.movieGraph(
         MovieAllScreen(navController = navController)
     }
     composable(route = MovieNavigationItem.WriteIntroduce.route) {
-        WriteIntroduceScreen(navController = navController, makeMovieViewModel = makeMovieViewModel)
+        WriteIntroduceScreen(navController = navController)
     }
     composable(route = MovieNavigationItem.AddActor.route) {
-        AddActorScreen(navController = navController, makeMovieViewModel = makeMovieViewModel)
+        AddActorScreen(navController = navController)
     }
     composable(
         route = MovieNavigationItem.WriteActor.route
@@ -111,7 +117,6 @@ fun NavGraphBuilder.movieGraph(
         WriteActorScreen(
             navController = navController,
             addActorType = addActorType,
-            makeMovieViewModel = makeMovieViewModel
         )
     }
     composable(
@@ -128,7 +133,6 @@ fun NavGraphBuilder.movieGraph(
         SearchActorScreen(
             navController = navController,
             addActorType = addActorType,
-            makeMovieViewModel = makeMovieViewModel
         )
     }
 }

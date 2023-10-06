@@ -16,6 +16,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.component.AddPeopleList
@@ -30,6 +31,7 @@ import com.danbam.mobile.ui.main.navigation.MainNavigationItem
 import com.danbam.mobile.ui.movie.navigation.ActorType
 import com.danbam.mobile.ui.movie.navigation.MovieDeepLinkKey
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
+import com.danbam.mobile.util.android.getActivity
 import com.danbam.mobile.util.android.observeWithLifecycle
 import kotlinx.coroutines.InternalCoroutinesApi
 
@@ -42,7 +44,7 @@ sealed class AddPeopleType {
 @Composable
 fun AddActorScreen(
     navController: NavController,
-    makeMovieViewModel: MakeMovieViewModel
+    makeMovieViewModel: MakeMovieViewModel = hiltViewModel(getActivity())
 ) {
     val container = makeMovieViewModel.container
     val state = container.stateFlow.collectAsState().value

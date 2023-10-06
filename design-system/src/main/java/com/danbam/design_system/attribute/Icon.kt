@@ -283,5 +283,53 @@ class IndiStrawIconList private constructor(
             drawableId = R.drawable.ic_bank_woori,
             contentDescription = "wooriBank"
         )
+
+        @Stable
+        val PlayerPlay = IndiStrawIconList(
+            drawableId = R.drawable.ic_player_play,
+            contentDescription = "playerPlay"
+        )
+
+        @Stable
+        val PlayerStop = IndiStrawIconList(
+            drawableId = R.drawable.ic_player_stop,
+            contentDescription = "playerStop"
+        )
+
+        @Stable
+        val PlayerBack = IndiStrawIconList(
+            drawableId = R.drawable.ic_player_back,
+            contentDescription = "playerBack"
+        )
+
+        @Stable
+        val PlayerForward = IndiStrawIconList(
+            drawableId = R.drawable.ic_player_forward,
+            contentDescription = "playerForward"
+        )
+
+        @Stable
+        val PlayerPIP = IndiStrawIconList(
+            drawableId = R.drawable.ic_player_pip,
+            contentDescription = "playerPIP"
+        )
+
+        @Stable
+        val PlayerFinish = IndiStrawIconList(
+            drawableId = R.drawable.ic_player_finish,
+            contentDescription = "playerFinish"
+        )
+
+        @Stable
+        val PlayerLockOpen = IndiStrawIconList(
+            drawableId = R.drawable.ic_player_lock_open,
+            contentDescription = "playerLockOpen"
+        )
+
+        @Stable
+        val PlayerLockClose = IndiStrawIconList(
+            drawableId = R.drawable.ic_player_lock_close,
+            contentDescription = "playerLockClose"
+        )
     }
 }

@@ -23,6 +23,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.danbam.design_system.IndiStrawTheme
@@ -35,6 +36,7 @@ import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.IndiStrawSearchTextField
 import com.danbam.design_system.util.RemoveOverScrollLazyColumn
 import com.danbam.design_system.util.indiStrawClickable
+import com.danbam.mobile.util.android.getActivity
 import com.danbam.mobile.util.android.observeWithLifecycle
 import com.danbam.mobile.util.view.popBackStack
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -44,7 +46,7 @@ import kotlinx.coroutines.InternalCoroutinesApi
 fun SearchActorScreen(
     navController: NavController,
     addActorType: String,
-    makeMovieViewModel: MakeMovieViewModel
+    makeMovieViewModel: MakeMovieViewModel = hiltViewModel(getActivity())
 ) {
     val container = makeMovieViewModel.container
     val state = container.stateFlow.collectAsState().value

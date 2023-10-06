@@ -1,5 +1,8 @@
 package com.danbam.data.remote.interceptor
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import com.danbam.data.BuildConfig
 import com.danbam.data.local.datasource.AuthLocalDataSource
 import com.danbam.data.remote.response.LoginResponse
@@ -16,8 +19,11 @@ import java.time.LocalDateTime
 import javax.inject.Inject
 
 class IndiStrawInterceptor @Inject constructor(
-    private val authLocalDataSource: AuthLocalDataSource,
+    private val authLocalDataSource: AuthLocalDataSource
 ) : Interceptor {
+    companion object {
+        lateinit var context: Context
+    }
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
         val method = request.method.lowercase()
@@ -26,6 +32,11 @@ class IndiStrawInterceptor @Inject constructor(
         val postIgnorePath = BuildConfig.POST_IGNORE_PATH.split(", ")
         val getIgnorePath = BuildConfig.GET_IGNORE_PATH.split(", ")
         val patchIgnorePath = BuildConfig.PATCH_IGNORE_PATH.split(", ")
+        val cacheInfo = if (hasNetwork(context)) {
+            "public, max-age=15"
+        } else {
+            "public, only-if-cached, max-stale=${60 * 60 * 24 * 7}"
+        }
         allIgnorePath.forEach {
             if (path.startsWith(it)) return chain.proceed(request)
         }
@@ -71,10 +82,19 @@ class IndiStrawInterceptor @Inject constructor(
             } else throw ExpiredTokenException()
         }
         return chain.proceed(
-            request = request.newBuilder().addHeader(
-                "Authorization",
-                "Bearer ${authLocalDataSource.fetchAccessToken()}"
-            ).build()
+            request = request.newBuilder()
+                .addHeader("Cache-Control", cacheInfo)
+                .addHeader(
+                    "Authorization",
+                    "Bearer ${authLocalDataSource.fetchAccessToken()}"
+                ).build()
         )
     }
+}
+
+private fun hasNetwork(context: Context): Boolean {
+    val connectivityManager =
+        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
+    return activeNetwork != null && activeNetwork.isConnected
 }

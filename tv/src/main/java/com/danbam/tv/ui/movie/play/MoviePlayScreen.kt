@@ -12,6 +12,7 @@ import kotlinx.coroutines.InternalCoroutinesApi
 @OptIn(InternalCoroutinesApi::class)
 @Composable
 fun MoviePlayScreen(
+    movieName: String,
     movieIdx: Long,
     movieUrl: String,
     position: Float,
@@ -31,8 +32,13 @@ fun MoviePlayScreen(
     }
 
     IndiStrawTvBackground {
-        IndiStrawPlayer(videoUrl = movieUrl, position = position) {
-            moviePlayViewModel.addMovieHistory(movieIdx = movieIdx, it / 1000F)
-        }
+        IndiStrawPlayer(
+            movieUrl = movieUrl,
+            movieName = movieName,
+            position = position,
+            onPIP = {},
+            onDispose = {
+                moviePlayViewModel.addMovieHistory(movieIdx = movieIdx, it / 1000F)
+            })
     }
 }

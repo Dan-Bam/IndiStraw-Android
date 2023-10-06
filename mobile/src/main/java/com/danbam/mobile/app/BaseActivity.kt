@@ -1,6 +1,8 @@
 package com.danbam.mobile.app
 
+import android.app.PictureInPictureParams
 import android.os.Bundle
+import android.util.Rational
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -21,6 +23,7 @@ import com.danbam.mobile.ui.auth.navigation.signUpGraph
 import com.danbam.mobile.ui.auth.signup.SignUpViewModel
 import com.danbam.mobile.ui.funding.navigation.fundingGraph
 import com.danbam.mobile.ui.movie.make.MakeMovieViewModel
+import com.danbam.mobile.ui.movie.navigation.MovieDeepLinkKey
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 import com.danbam.mobile.ui.search.navigation.searchGraph
 import com.google.accompanist.navigation.animation.AnimatedNavHost
@@ -30,6 +33,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class BaseActivity : ComponentActivity() {
     private lateinit var navController: NavHostController
+
     @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +48,16 @@ class BaseActivity : ComponentActivity() {
     override fun onUserLeaveHint() {
         super.onUserLeaveHint()
         navController.currentDestination?.route?.let {
-            if (it.contains(MovieNavigationItem.Play.route)) enterPictureInPictureMode()
+            if (it.contains(MovieNavigationItem.Play.route)) {
+                val isVertical =
+                    navController.currentBackStackEntry?.arguments?.getBoolean(MovieDeepLinkKey.IS_VERTICAL)
+                        ?: false
+                enterPictureInPictureMode(
+                    PictureInPictureParams.Builder()
+                        .setAspectRatio(if (isVertical) Rational(9, 16) else Rational(16, 9))
+                        .build()
+                )
+            }
         }
     }
 }
@@ -52,8 +65,6 @@ class BaseActivity : ComponentActivity() {
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun BaseApp(navController: NavHostController) {
-    val signUpViewModel: SignUpViewModel = hiltViewModel()
-    val makeMovieViewModel: MakeMovieViewModel = hiltViewModel()
     AnimatedNavHost(
         navController = navController,
         startDestination = MainNavigationItem.Intro.route,
@@ -75,8 +86,8 @@ fun BaseApp(navController: NavHostController) {
     ) {
         mainGraph(navController = navController)
         authGraph(navController = navController)
-        signUpGraph(navController = navController, signUpViewModel = signUpViewModel)
-        movieGraph(navController = navController, makeMovieViewModel = makeMovieViewModel)
+        signUpGraph(navController = navController)
+        movieGraph(navController = navController)
         profileGraph(navController = navController)
         searchGraph(navController = navController)
         fundingGraph(navController = navController)
