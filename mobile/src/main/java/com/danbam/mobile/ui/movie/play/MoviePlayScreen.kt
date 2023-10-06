@@ -1,6 +1,8 @@
 package com.danbam.mobile.ui.movie.play
 
+import android.app.PictureInPictureParams
 import android.content.pm.ActivityInfo
+import android.util.Rational
 import android.view.WindowManager
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -22,11 +24,12 @@ fun MoviePlayScreen(
     navController: NavController,
     moviePlayViewModel: MoviePlayViewModel = hiltViewModel()
 ) {
-    getActivity().window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
-
     val container = moviePlayViewModel.container
     val state = container.stateFlow.collectAsState().value
     val sideEffect = container.sideEffectFlow
+    val activity = getActivity()
+
+    activity.window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
 
     sideEffect.observeWithLifecycle {
         when (it) {
@@ -39,7 +42,18 @@ fun MoviePlayScreen(
     if (!isVertical) {
         LockScreenOrientation(orientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
     }
-    IndiStrawPlayer(videoUrl = movieUrl, position = position) {
-        moviePlayViewModel.addMovieHistory(movieIdx = movieIdx, it / 1000F)
-    }
+    IndiStrawPlayer(
+        videoUrl = movieUrl,
+        position = position,
+        onFinish = { navController.popBackStack() },
+        onPIP = {
+            activity.enterPictureInPictureMode(
+                PictureInPictureParams.Builder()
+                    .setAspectRatio(if (isVertical) Rational(9, 16) else Rational(16, 9))
+                    .build()
+            )
+        },
+        onDispose = {
+            moviePlayViewModel.addMovieHistory(movieIdx = movieIdx, it / 1000F)
+        })
 }
