@@ -115,7 +115,7 @@ fun MovieDetailScreen(
                         title = stringResource(id = R.string.watch_going)
                     ) {
                         navController.navigate(
-                            MainNavigationItem.MoviePlay.route + MainDeepLinkKey.MOVIE_INDEX + movieIndex + MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl.split(
+                            MainNavigationItem.MoviePlay.route + MainDeepLinkKey.MOVIE_NAME + state.movieDetailInfo.title + MainDeepLinkKey.MOVIE_INDEX + movieIndex + MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl.split(
                                 "/"
                             ).last() + MainDeepLinkKey.MOVIE_POSITION + state.moviePosition
                         )

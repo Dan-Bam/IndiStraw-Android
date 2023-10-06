@@ -151,7 +151,7 @@ fun MovieDetailScreen(
                                 ?.toInt() ?: 0)
                         it.release()
                         navController.navigate(
-                            MovieNavigationItem.Play.route + MovieDeepLinkKey.MOVIE_INDEX + movieIndex + MovieDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl + MovieDeepLinkKey.MOVIE_POSITION + state.moviePosition + MovieDeepLinkKey.IS_VERTICAL + isVertical
+                            MovieNavigationItem.Play.route + MovieDeepLinkKey.MOVIE_NAME + state.movieDetailInfo.title + MovieDeepLinkKey.MOVIE_INDEX + movieIndex + MovieDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl + MovieDeepLinkKey.MOVIE_POSITION + state.moviePosition + MovieDeepLinkKey.IS_VERTICAL + isVertical
                         )
                     }
                 }

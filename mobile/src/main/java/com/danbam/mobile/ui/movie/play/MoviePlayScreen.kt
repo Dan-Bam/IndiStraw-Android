@@ -17,6 +17,7 @@ import kotlinx.coroutines.InternalCoroutinesApi
 @OptIn(InternalCoroutinesApi::class)
 @Composable
 fun MoviePlayScreen(
+    movieName: String,
     movieIdx: Long,
     movieUrl: String,
     position: Float,
@@ -43,9 +44,9 @@ fun MoviePlayScreen(
         LockScreenOrientation(orientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
     }
     IndiStrawPlayer(
-        videoUrl = movieUrl,
+        movieUrl = movieUrl,
+        movieName = movieName,
         position = position,
-        onFinish = { navController.popBackStack() },
         onPIP = {
             activity.enterPictureInPictureMode(
                 PictureInPictureParams.Builder()
