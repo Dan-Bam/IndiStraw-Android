@@ -32,7 +32,6 @@ object Dependency {
     object Compose {
         const val ACTIVITY = "androidx.activity:activity-compose:${Version.COMPOSE_ACTIVITY}"
         const val UI = "androidx.compose.ui:ui:${Version.COMPOSE}"
-        const val VIEW_BINDING = "androidx.compose.ui:ui-viewbinding:${Version.COMPOSE}"
         const val PREVIEW = "androidx.compose.ui:ui-tooling-preview:${Version.COMPOSE}"
         const val MATERIAL = "androidx.compose.material:material:${Version.COMPOSE_MATERIAL}"
         const val MATERIAL3 = "androidx.compose.material3:material3:${Version.COMPOSE_MATERIAL3}"
