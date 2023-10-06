@@ -1,0 +1,52 @@
+name: Android CI
+on:
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: "zulu"
+          java-version: 11
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+
+      - name: Cache Gradle Packages
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{runner.os}}-gradle-${{hashFiles('**/*.gradle*', '**/gradle-wrapper.properties', '**/buildSrc/**/*.kt')}}
+          restore-keys: |
+            ${{runner.os}}-gradle-
+
+      - name: Create LOCAL_PROPERTIES
+        run: echo '${{ secrets.LOCAL_PROPERTIES }}' > ./local.properties
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew clean assembleRelease
+
+      - name: Upload a Mobile Build APK Artifact
+        uses: actions/upload-artifact@v3.0.0
+        with:
+          name: mobile-release.apk
+          path: ./mobile/build/outputs/apk/release/mobile-release.apk
+
+      - name: Upload a TV Build APK Artifact
+        uses: actions/upload-artifact@v3.0.0
+        with:
+          name: tv-release.apk
+          path: ./tv/build/outputs/apk/release/tv-release.apk
