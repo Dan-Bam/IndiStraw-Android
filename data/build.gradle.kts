@@ -20,6 +20,31 @@ android {
             "BASE_URL",
             gradleLocalProperties(rootDir).getProperty("BASE_URL")
         )
+        buildConfigField(
+            "String",
+            "ALL_IGNORE_PATH",
+            gradleLocalProperties(rootDir).getProperty("ALL_IGNORE_PATH")
+        )
+        buildConfigField(
+            "String",
+            "POST_IGNORE_PATH",
+            gradleLocalProperties(rootDir).getProperty("POST_IGNORE_PATH")
+        )
+        buildConfigField(
+            "String",
+            "GET_IGNORE_PATH",
+            gradleLocalProperties(rootDir).getProperty("GET_IGNORE_PATH")
+        )
+        buildConfigField(
+            "String",
+            "PATCH_IGNORE_PATH",
+            gradleLocalProperties(rootDir).getProperty("PATCH_IGNORE_PATH")
+        )
+        buildConfigField(
+            "String",
+            "JUSO_KEY",
+            gradleLocalProperties(rootDir).getProperty("JUSO_KEY")
+        )
     }
 
     buildTypes {
@@ -52,6 +77,10 @@ dependencies {
     implementation(Dependency.Retrofit.RETROFIT_CONVERTER_GSON)
     implementation(Dependency.Retrofit.OKHTTP)
     implementation(Dependency.Retrofit.OKHTTP_LOGGING_INTERCEPTOR)
+    implementation(Dependency.Retrofit.SSE)
+    testImplementation(Dependency.Retrofit.SSE)
+
+    implementation(Dependency.AndroidX.PAGING)
 
     testImplementation(Dependency.UnitTest.JUNIT)
     testImplementation(Dependency.UnitTest.MOCKITO_KOTLIN)

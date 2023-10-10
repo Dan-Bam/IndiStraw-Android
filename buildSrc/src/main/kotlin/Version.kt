@@ -2,7 +2,8 @@ import org.gradle.api.JavaVersion
 
 object Version {
     const val GRADLE_ANDROID = "7.4.2"
-    const val GRADLE_KOTLIN = "1.7.20"
+    const val GRADLE_KOTLIN = "1.8.10"
+    const val GRADLE_KTLINT = "11.1.0"
 
     val JAVA_VERSION = JavaVersion.VERSION_1_8
     const val KOTLINX_COROUTINES = "1.6.4"
@@ -17,11 +18,18 @@ object Version {
     const val LIFECYCLE_KTX = "2.5.1"
     const val APP_COMPAT = "1.6.0"
     const val PREFERENCE_KTX = "1.2.0"
+    const val CONTRAINT_LAYOUT = "2.1.3"
+    const val PAGING = "3.1.1"
+    const val PAGING_COMPOSE = "1.0.0-alpha16"
+    const val LEANBACK = "1.0.0"
 
     const val COMPOSE_ACTIVITY = "1.6.1"
-    const val COMPOSE = "1.3.2"
+    const val COMPOSE = "1.4.3"
     const val COMPOSE_MATERIAL = "1.3.1"
+    const val COMPOSE_MATERIAL3 = "1.0.1"
     const val HILT_NAV = "1.0.0"
+
+    const val ACCOMPANIST = "0.31.0-alpha"
 
     const val HILT = "2.44"
 
@@ -41,6 +49,15 @@ object Version {
     const val COIL = "2.2.2"
 
     const val EXO_PLAYER = "2.18.1"
+
+    const val CAMERA = "1.2.2"
+
+    const val BARCODE_SCANNING = "17.1.0"
+    const val BARCODE_DRAWING = "1.1.1"
+
+    const val TV = "1.0.0-alpha06"
+
+    const val BOOT_PAY = "4.0.8"
 
     const val INJECT = "1"
 }

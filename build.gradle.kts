@@ -11,6 +11,10 @@ buildscript {
     }
 }
 
+plugins {
+    id(Dependency.GradlePlugin.GRADLE_KTLINT) version Version.GRADLE_KTLINT
+}
+
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }

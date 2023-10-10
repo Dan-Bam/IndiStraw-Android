@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.domain"
+    namespace = "com.danbam.domain"
     compileSdk = Version.COMPILE_SDK_VERSION
 
     defaultConfig {
@@ -37,6 +37,8 @@ dependencies {
     implementation(Dependency.JavaX.INJECT)
 
     implementation(Dependency.Kotlin.COROUTINES_CORE)
+
+    implementation(Dependency.AndroidX.PAGING)
 
     testImplementation(Dependency.UnitTest.JUNIT)
     testImplementation(Dependency.UnitTest.MOCKITO_KOTLIN)

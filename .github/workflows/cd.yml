@@ -1,0 +1,108 @@
+name: Android CD
+on:
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: "zulu"
+          java-version: 11
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+
+      - name: Cache Gradle Packages
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{runner.os}}-gradle-${{hashFiles('**/*.gradle*', '**/gradle-wrapper.properties', '**/buildSrc/**/*.kt')}}
+          restore-keys: |
+            ${{runner.os}}-gradle-
+
+      - name: Create LOCAL_PROPERTIES
+        run: echo '${{ secrets.LOCAL_PROPERTIES }}' > ./local.properties
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew clean assembleRelease
+
+      - name: Sign Mobile APK
+        id: sign_mobile
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: mobile/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+
+      - name: Sign Tv APK
+        id: sign_tv
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: tv/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+
+      - name: Upload Mobile APK
+        uses: actions/upload-artifact@v3.0.0
+        with:
+          name: mobile-release.apk
+          path: mobile/build/outputs/apk/release/mobile-release-unsigned-signed.apk
+
+      - name: Upload TV APK
+        uses: actions/upload-artifact@v3.0.0
+        with:
+          name: tv-release.apk
+          path: tv/build/outputs/apk/release/tv-release-unsigned-signed.apk
+
+      - name: Get Version & Tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+
+      - name: Create Release
+        id: create_release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
+
+      - name: Upload Mobile APK to Release
+        id: upload-mobile-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: mobile/build/outputs/apk/release/mobile-release-unsigned-signed.apk
+          asset_name: mobile-release.apk
+          asset_content_type: application/zip
+
+      - name: Upload Tv APK to Release
+        id: upload-tv-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: tv/build/outputs/apk/release/tv-release-unsigned-signed.apk
+          asset_name: tv-release.apk
+          asset_content_type: application/zip

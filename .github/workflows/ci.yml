@@ -40,4 +40,4 @@ jobs:
         run: ./gradlew ktlintCheck
 
       - name: Build with Gradle
-        run: ./gradlew clean assembleRelease
+        run: ./gradlew clean assembleDebug
