@@ -2,7 +2,7 @@ package com.danbam.mobile.ui.search.result_search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.domain.entity.RecentSearchEntity
+import com.danbam.domain.entity.search.RecentSearchEntity
 import com.danbam.domain.usecase.search.SearchFundingUseCase
 import com.danbam.domain.usecase.search.SearchMovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

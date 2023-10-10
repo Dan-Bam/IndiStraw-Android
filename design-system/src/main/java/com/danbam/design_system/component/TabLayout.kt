@@ -36,8 +36,8 @@ import com.danbam.design_system.R
 import com.danbam.design_system.util.RemoveOverScrollLazyRow
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.util.toDp
-import com.danbam.domain.entity.FundingEntity
-import com.danbam.domain.entity.MovieEntity
+import com.danbam.domain.entity.funding.FundingEntity
+import com.danbam.domain.entity.movie.MovieEntity
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
 

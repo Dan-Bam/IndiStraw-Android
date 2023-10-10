@@ -1,16 +1,16 @@
 package com.danbam.data.remote.api
 
-import com.danbam.data.remote.request.MovieHistoryRequest
-import com.danbam.data.remote.request.MovieCreateRequest
-import com.danbam.data.remote.request.MoviePeopleRequest
-import com.danbam.data.remote.response.AddMoviePeopleResponse
-import com.danbam.data.remote.response.DetailMovieHistoryResponse
-import com.danbam.data.remote.response.MovieDetailResponse
-import com.danbam.data.remote.response.MovieHistoryResponse
-import com.danbam.data.remote.response.MoviePageResponse
-import com.danbam.data.remote.response.MoviePeopleDetailResponse
-import com.danbam.data.remote.response.MoviePeopleResponse
-import com.danbam.data.remote.response.MovieResponse
+import com.danbam.data.remote.request.movie.MovieHistoryRequest
+import com.danbam.data.remote.request.movie.MovieCreateRequest
+import com.danbam.data.remote.request.movie.MoviePeopleRequest
+import com.danbam.data.remote.response.movie.AddMoviePeopleResponse
+import com.danbam.data.remote.response.movie.DetailMovieHistoryResponse
+import com.danbam.data.remote.response.movie.MovieDetailResponse
+import com.danbam.data.remote.response.movie.MovieHistoryResponse
+import com.danbam.data.remote.response.movie.MoviePageResponse
+import com.danbam.data.remote.response.movie.MoviePeopleDetailResponse
+import com.danbam.data.remote.response.movie.MoviePeopleResponse
+import com.danbam.data.remote.response.movie.MovieResponse
 import com.danbam.data.remote.util.EndPoint
 import retrofit2.Response
 import retrofit2.http.Body
@@ -32,9 +32,9 @@ interface MovieAPI {
         @Query("keyword") genre: String? = null
     ): MoviePageResponse
 
-    @GET("${EndPoint.Movie}/{movieId}/")
+    @GET("${EndPoint.Movie}/{idx}/")
     suspend fun movieDetail(
-        @Path("movieId") movieIdx: Long,
+        @Path("idx") movieIdx: Long,
     ): MovieDetailResponse
 
     @GET("${EndPoint.Movie}/{actorType}/")
@@ -52,7 +52,7 @@ interface MovieAPI {
     @GET("${EndPoint.Movie}/{actorType}/{idx}/")
     suspend fun moviePeopleDetail(
         @Path("actorType") actorType: String,
-        @Path("idx") idx: Long,
+        @Path("idx") actorIdx: Long,
     ): MoviePeopleDetailResponse
 
     @GET("${EndPoint.Movie}/popular/")
@@ -69,8 +69,8 @@ interface MovieAPI {
         @Body movieHistoryRequest: MovieHistoryRequest
     ): Response<Void?>
 
-    @GET("${EndPoint.Movie}/history/{movieIdx}/")
+    @GET("${EndPoint.Movie}/history/{idx}/")
     suspend fun movieHistory(
-        @Path("movieIdx") movieIdx: Long,
+        @Path("idx") movieIdx: Long,
     ): DetailMovieHistoryResponse
 }

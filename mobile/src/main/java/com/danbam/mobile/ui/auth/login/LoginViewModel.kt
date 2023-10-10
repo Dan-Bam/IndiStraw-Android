@@ -2,7 +2,7 @@ package com.danbam.mobile.ui.auth.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.domain.param.LoginParam
+import com.danbam.domain.param.auth.LoginParam
 import com.danbam.domain.usecase.auth.LoginUseCase
 import com.danbam.mobile.util.android.errorHandling
 import com.danbam.mobile.util.parser.isId

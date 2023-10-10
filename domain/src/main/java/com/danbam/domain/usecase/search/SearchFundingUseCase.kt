@@ -1,6 +1,6 @@
 package com.danbam.domain.usecase.search
 
-import com.danbam.domain.entity.RecentSearchEntity
+import com.danbam.domain.entity.search.RecentSearchEntity
 import com.danbam.domain.repository.SearchRepository
 import javax.inject.Inject
 

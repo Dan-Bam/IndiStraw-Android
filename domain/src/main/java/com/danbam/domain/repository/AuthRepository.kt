@@ -1,7 +1,7 @@
 package com.danbam.domain.repository
 
-import com.danbam.domain.param.LoginParam
-import com.danbam.domain.param.SignUpParam
+import com.danbam.domain.param.auth.LoginParam
+import com.danbam.domain.param.auth.SignUpParam
 
 interface AuthRepository {
     suspend fun signup(signUpParam: SignUpParam)

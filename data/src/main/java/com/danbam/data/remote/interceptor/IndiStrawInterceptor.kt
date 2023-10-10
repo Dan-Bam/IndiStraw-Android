@@ -5,7 +5,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import com.danbam.data.BuildConfig
 import com.danbam.data.local.datasource.AuthLocalDataSource
-import com.danbam.data.remote.response.LoginResponse
+import com.danbam.data.remote.response.auth.LoginResponse
 import com.danbam.data.util.default
 import com.danbam.domain.exception.ExpiredTokenException
 import com.google.gson.Gson

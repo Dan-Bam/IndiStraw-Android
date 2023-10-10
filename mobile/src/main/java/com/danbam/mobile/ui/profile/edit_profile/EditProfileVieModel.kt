@@ -2,7 +2,7 @@ package com.danbam.mobile.ui.profile.edit_profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.domain.param.EditProfileParam
+import com.danbam.domain.param.auth.EditProfileParam
 import com.danbam.domain.usecase.account.EditProfileUseCase
 import com.danbam.domain.usecase.account.GetProfileUseCase
 import com.danbam.domain.usecase.file.SendFileUseCase

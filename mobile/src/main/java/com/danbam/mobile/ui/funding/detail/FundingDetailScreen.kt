@@ -33,7 +33,6 @@ import com.danbam.design_system.component.ExampleTextMedium
 import com.danbam.design_system.component.ExampleTextRegular
 import com.danbam.design_system.component.FindPasswordMedium
 import com.danbam.design_system.component.HeadLineBold
-import com.danbam.design_system.component.IndiStrawButton
 import com.danbam.design_system.component.IndiStrawColumnBackground
 import com.danbam.design_system.component.IndiStrawHeader
 import com.danbam.design_system.component.IndiStrawProgress
@@ -47,16 +46,15 @@ import com.danbam.design_system.component.IndiStrawSlider
 import com.danbam.design_system.component.RewardItem
 import com.danbam.design_system.component.RewardType
 import com.danbam.design_system.util.toCommaString
-import com.danbam.domain.entity.FundingDetailEntity
+import com.danbam.domain.entity.funding.FundingDetailEntity
 import com.danbam.mobile.ui.funding.navigation.FundingDeepLinkKey
 import com.danbam.mobile.ui.funding.navigation.FundingNavigationItem
-import com.danbam.mobile.util.parser.toCommaString
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun FundingDetailScreen(
     navController: NavController,
-    fundingIndex: Long,
+    fundingIdx: Long,
     fundingDetailViewModel: FundingDetailViewModel = hiltViewModel()
 ) {
     val container = fundingDetailViewModel.container
@@ -67,13 +65,13 @@ fun FundingDetailScreen(
     var selectRewardItem: FundingDetailEntity.RewardEntity? by remember { mutableStateOf(null) }
 
     LaunchedEffect(Unit) {
-        fundingDetailViewModel.getDetail(fundingIndex = fundingIndex)
+        fundingDetailViewModel.getDetail(fundingIdx = fundingIdx)
     }
 
     IndiStrawBottomSheetLayout(sheetContent = {
         selectRewardItem?.let {
             RewardItem(rewardType = RewardType.Expand, item = it, onClickItem = {
-                navController.navigate(FundingNavigationItem.FundingReward.route + FundingDeepLinkKey.FUNDING_INDEX + fundingIndex + FundingDeepLinkKey.REWARD_INDEX + it.idx + FundingDeepLinkKey.REWARD_TITLE + it.title + FundingDeepLinkKey.REWARD_DESCRIPTION + it.description + FundingDeepLinkKey.REWARD_PRICE + it.price)
+                navController.navigate(FundingNavigationItem.FundingReward.route + FundingDeepLinkKey.FUNDING_INDEX + fundingIdx + FundingDeepLinkKey.REWARD_INDEX + it.idx + FundingDeepLinkKey.REWARD_TITLE + it.title + FundingDeepLinkKey.REWARD_DESCRIPTION + it.description + FundingDeepLinkKey.REWARD_PRICE + it.price)
             })
         }
     }) { _, openSheet ->

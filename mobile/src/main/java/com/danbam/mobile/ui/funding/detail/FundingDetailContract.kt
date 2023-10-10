@@ -1,6 +1,6 @@
 package com.danbam.mobile.ui.funding.detail
 
-import com.danbam.domain.entity.FundingDetailEntity
+import com.danbam.domain.entity.funding.FundingDetailEntity
 import java.util.UUID
 
 data class FundingDetailState(

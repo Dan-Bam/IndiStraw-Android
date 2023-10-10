@@ -6,7 +6,7 @@ import javax.inject.Inject
 class FundingDetailUseCase @Inject constructor(
     private val crowdFundingRepository: CrowdFundingRepository
 ) {
-    suspend operator fun invoke(fundingIndex: Long) = runCatching {
-        crowdFundingRepository.fundingDetail(fundingIndex = fundingIndex)
+    suspend operator fun invoke(fundingIdx: Long) = runCatching {
+        crowdFundingRepository.fundingDetail(fundingIdx = fundingIdx)
     }
 }

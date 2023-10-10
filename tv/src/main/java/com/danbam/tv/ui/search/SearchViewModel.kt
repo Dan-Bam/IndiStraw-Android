@@ -2,7 +2,7 @@ package com.danbam.tv.ui.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.domain.entity.RecentSearchEntity
+import com.danbam.domain.entity.search.RecentSearchEntity
 import com.danbam.domain.usecase.movie.MoviePopularListUseCase
 import com.danbam.domain.usecase.search.GetRecentSearchUseCase
 import com.danbam.domain.usecase.search.GetRelatedSearchUseCase

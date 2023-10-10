@@ -62,7 +62,7 @@ sealed class MovieTabItem(val stringId: Int) {
 @Composable
 fun MovieDetailScreen(
     navController: NavController,
-    movieIndex: Long,
+    movieIdx: Long,
     movieDetailViewModel: MovieDetailViewModel = hiltViewModel()
 ) {
     val container = movieDetailViewModel.container
@@ -72,8 +72,8 @@ fun MovieDetailScreen(
     var currentTab: MovieTabItem by remember { mutableStateOf(MovieTabItem.Highlight) }
 
     LaunchedEffect(Unit) {
-        movieDetailViewModel.movieDetail(movieIndex = movieIndex)
-        movieDetailViewModel.movieHistory(movieIndex = movieIndex)
+        movieDetailViewModel.movieDetail(movieIdx = movieIdx)
+        movieDetailViewModel.movieHistory(movieIdx = movieIdx)
     }
 
     IndiStrawTvBackground {
@@ -115,7 +115,7 @@ fun MovieDetailScreen(
                         title = stringResource(id = R.string.watch_going)
                     ) {
                         navController.navigate(
-                            MainNavigationItem.MoviePlay.route + MainDeepLinkKey.MOVIE_NAME + state.movieDetailInfo.title + MainDeepLinkKey.MOVIE_INDEX + movieIndex + MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl.split(
+                            MainNavigationItem.MoviePlay.route + MainDeepLinkKey.MOVIE_NAME + state.movieDetailInfo.title + MainDeepLinkKey.MOVIE_INDEX + movieIdx + MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl.split(
                                 "/"
                             ).last() + MainDeepLinkKey.MOVIE_POSITION + state.moviePosition
                         )
@@ -126,7 +126,7 @@ fun MovieDetailScreen(
                         title = stringResource(id = R.string.watch_first)
                     ) {
                         navController.navigate(
-                            MainNavigationItem.MoviePlay.route + MainDeepLinkKey.MOVIE_INDEX + movieIndex + MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl.split(
+                            MainNavigationItem.MoviePlay.route + MainDeepLinkKey.MOVIE_INDEX + movieIdx + MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl.split(
                                 "/"
                             ).last() + MainDeepLinkKey.MOVIE_POSITION + 0F
                         )

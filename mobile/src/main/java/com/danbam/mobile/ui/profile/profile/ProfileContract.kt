@@ -1,7 +1,7 @@
 package com.danbam.mobile.ui.profile.profile
 
-import com.danbam.domain.entity.FundingEntity
-import com.danbam.domain.entity.MovieEntity
+import com.danbam.domain.entity.funding.FundingEntity
+import com.danbam.domain.entity.movie.MovieEntity
 
 data class ProfileState(
     val id: String = "",

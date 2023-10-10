@@ -47,17 +47,16 @@ import com.danbam.design_system.component.TitleSemiBold
 import com.danbam.design_system.util.RemoveOverScrollLazyRow
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.R
-import com.danbam.domain.entity.MoviePeopleEntity
+import com.danbam.domain.entity.movie.MoviePeopleEntity
 import com.danbam.mobile.ui.movie.navigation.MovieDeepLinkKey
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 import com.danbam.mobile.util.android.getActivity
-import okhttp3.internal.toNonNegativeInt
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MovieDetailScreen(
     navController: NavController,
-    movieIndex: Long,
+    movieIdx: Long,
     movieDetailViewModel: MovieDetailViewModel = hiltViewModel()
 ) {
     getActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
@@ -69,8 +68,8 @@ fun MovieDetailScreen(
     val movieHeight = LocalConfiguration.current.screenHeightDp * 0.3
 
     LaunchedEffect(Unit) {
-        movieDetailViewModel.movieDetail(movieIndex = movieIndex)
-        movieDetailViewModel.movieHistory(movieIndex = movieIndex)
+        movieDetailViewModel.movieDetail(movieIdx = movieIdx)
+        movieDetailViewModel.movieHistory(movieIdx = movieIdx)
     }
 
     var selectedPeople: MoviePeopleEntity? by remember { mutableStateOf(null) }
@@ -115,7 +114,7 @@ fun MovieDetailScreen(
                         imgSrc = it.thumbnailUrl,
                         shape = Shape.Rectangle
                     ) {
-                        navController.navigate(MovieNavigationItem.Detail.route + MovieDeepLinkKey.MOVIE_INDEX + it.idx)
+                        navController.navigate(MovieNavigationItem.Detail.route + MovieDeepLinkKey.MOVIE_INDEX + it.movieIdx)
                     }
                     Spacer(modifier = Modifier.width(16.dp))
                 }
@@ -151,7 +150,7 @@ fun MovieDetailScreen(
                                 ?.toInt() ?: 0)
                         it.release()
                         navController.navigate(
-                            MovieNavigationItem.Play.route + MovieDeepLinkKey.MOVIE_NAME + state.movieDetailInfo.title + MovieDeepLinkKey.MOVIE_INDEX + movieIndex + MovieDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl + MovieDeepLinkKey.MOVIE_POSITION + state.moviePosition + MovieDeepLinkKey.IS_VERTICAL + isVertical
+                            MovieNavigationItem.Play.route + MovieDeepLinkKey.MOVIE_NAME + state.movieDetailInfo.title + MovieDeepLinkKey.MOVIE_INDEX + movieIdx + MovieDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl + MovieDeepLinkKey.MOVIE_POSITION + state.moviePosition + MovieDeepLinkKey.IS_VERTICAL + isVertical
                         )
                     }
                 }
@@ -212,8 +211,8 @@ fun MovieDetailScreen(
                         modifier = Modifier.indiStrawClickable(onClick = {
                             selectedPeople = item
                             movieDetailViewModel.moviePeopleDetail(
-                                index >= state.movieDetailInfo.directorList.size,
-                                item.idx
+                                isActor = index >= state.movieDetailInfo.directorList.size,
+                                actorIdx = item.actorIdx
                             )
                             moreInfo()
                         }),

@@ -5,15 +5,15 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.danbam.data.remote.api.MovieAPI
 import com.danbam.data.remote.pagingsource.MoviePagingSource
-import com.danbam.data.remote.request.MovieCreateRequest
-import com.danbam.data.remote.request.MovieHistoryRequest
-import com.danbam.data.remote.request.MoviePeopleRequest
-import com.danbam.data.remote.response.DetailMovieHistoryResponse
-import com.danbam.data.remote.response.MoviePeopleDetailResponse
-import com.danbam.data.remote.response.MovieDetailResponse
-import com.danbam.data.remote.response.MovieHistoryResponse
-import com.danbam.data.remote.response.MoviePeopleResponse
-import com.danbam.data.remote.response.MovieResponse
+import com.danbam.data.remote.request.movie.MovieCreateRequest
+import com.danbam.data.remote.request.movie.MovieHistoryRequest
+import com.danbam.data.remote.request.movie.MoviePeopleRequest
+import com.danbam.data.remote.response.movie.DetailMovieHistoryResponse
+import com.danbam.data.remote.response.movie.MoviePeopleDetailResponse
+import com.danbam.data.remote.response.movie.MovieDetailResponse
+import com.danbam.data.remote.response.movie.MovieHistoryResponse
+import com.danbam.data.remote.response.movie.MoviePeopleResponse
+import com.danbam.data.remote.response.movie.MovieResponse
 import com.danbam.data.remote.util.errorHandling
 import com.danbam.data.remote.util.indiStrawApiCall
 import kotlinx.coroutines.flow.Flow
@@ -53,10 +53,10 @@ class MovieRemoteDataSourceImpl @Inject constructor(
 
     override suspend fun moviePeopleDetail(
         actorType: String,
-        idx: Long
+        actorIdx: Long
     ): MoviePeopleDetailResponse =
         indiStrawApiCall {
-            movieAPI.moviePeopleDetail(actorType = actorType, idx = idx)
+            movieAPI.moviePeopleDetail(actorType = actorType, actorIdx = actorIdx)
         }
 
     override suspend fun movieRecentList(): List<MovieResponse> = indiStrawApiCall {

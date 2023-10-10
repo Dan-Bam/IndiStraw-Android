@@ -1,6 +1,6 @@
 package com.danbam.tv.ui.movie.detail
 
-import com.danbam.domain.entity.MovieDetailEntity
+import com.danbam.domain.entity.movie.MovieDetailEntity
 
 data class MovieDetailState(
     val movieDetailInfo: MovieDetailEntity = MovieDetailEntity(

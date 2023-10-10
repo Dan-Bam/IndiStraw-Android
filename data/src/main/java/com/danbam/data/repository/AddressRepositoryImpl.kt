@@ -3,8 +3,8 @@ package com.danbam.data.repository
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.danbam.data.remote.datasource.AddressRemoteDataSource
-import com.danbam.data.remote.response.toEntity
-import com.danbam.domain.entity.AddressEntity
+import com.danbam.data.remote.response.auth.toEntity
+import com.danbam.domain.entity.auth.AddressEntity
 import com.danbam.domain.repository.AddressRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

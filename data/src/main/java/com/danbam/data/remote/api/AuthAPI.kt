@@ -1,8 +1,8 @@
 package com.danbam.data.remote.api
 
-import com.danbam.data.remote.request.LoginRequest
-import com.danbam.data.remote.request.SignUpRequest
-import com.danbam.data.remote.response.LoginResponse
+import com.danbam.data.remote.request.auth.LoginRequest
+import com.danbam.data.remote.request.auth.SignUpRequest
+import com.danbam.data.remote.response.auth.LoginResponse
 import com.danbam.data.remote.util.EndPoint
 import retrofit2.Response
 import retrofit2.http.Body

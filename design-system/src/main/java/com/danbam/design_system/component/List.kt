@@ -30,7 +30,7 @@ import com.danbam.design_system.util.RemoveOverScrollLazyRow
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.util.rememberLauncher
 import com.danbam.design_system.util.typedLaunch
-import com.danbam.domain.entity.MoviePeopleEntity
+import com.danbam.domain.entity.movie.MoviePeopleEntity
 
 @Composable
 fun AddImageList(

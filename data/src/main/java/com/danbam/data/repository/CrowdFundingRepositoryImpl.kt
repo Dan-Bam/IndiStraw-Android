@@ -3,12 +3,12 @@ package com.danbam.data.repository
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.danbam.data.remote.datasource.CrowdFundingRemoteDataSource
-import com.danbam.data.remote.request.toRequest
-import com.danbam.data.remote.response.toEntity
-import com.danbam.domain.entity.FundingDetailEntity
-import com.danbam.domain.entity.FundingEntity
-import com.danbam.domain.entity.MyFundingEntity
-import com.danbam.domain.param.FundingCreateParam
+import com.danbam.data.remote.request.funding.toRequest
+import com.danbam.data.remote.response.funding.toEntity
+import com.danbam.domain.entity.funding.FundingDetailEntity
+import com.danbam.domain.entity.funding.FundingEntity
+import com.danbam.domain.entity.funding.MyFundingEntity
+import com.danbam.domain.param.funding.FundingCreateParam
 import com.danbam.domain.repository.CrowdFundingRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -23,8 +23,8 @@ class CrowdFundingRepositoryImpl @Inject constructor(
     override suspend fun fundingPopularList(): List<FundingEntity> =
         crowdFundingRemoteDataSource.fundingPopularList().map { it.toEntity() }
 
-    override suspend fun fundingDetail(fundingIndex: Long): FundingDetailEntity =
-        crowdFundingRemoteDataSource.fundingDetail(fundingIndex = fundingIndex).toEntity()
+    override suspend fun fundingDetail(fundingIdx: Long): FundingDetailEntity =
+        crowdFundingRemoteDataSource.fundingDetail(fundingIdx = fundingIdx).toEntity()
 
     override suspend fun fundingAll(): Flow<PagingData<FundingEntity>> =
         crowdFundingRemoteDataSource.fundingAll().map { it.map { it.toEntity() } }
@@ -32,6 +32,6 @@ class CrowdFundingRepositoryImpl @Inject constructor(
     override suspend fun fundingMy(): List<FundingEntity> =
         crowdFundingRemoteDataSource.fundingMy().map { it.toEntity() }
 
-    override suspend fun fundingMyDetail(crowdfundingIdx: Long): MyFundingEntity =
-        crowdFundingRemoteDataSource.fundingMyDetail(crowdfundingIdx = crowdfundingIdx).toEntity()
+    override suspend fun fundingMyDetail(fundingIdx: Long): MyFundingEntity =
+        crowdFundingRemoteDataSource.fundingMyDetail(fundingIdx = fundingIdx).toEntity()
 }

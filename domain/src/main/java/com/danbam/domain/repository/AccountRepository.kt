@@ -1,10 +1,10 @@
 package com.danbam.domain.repository
 
-import com.danbam.domain.entity.FindIdEntity
-import com.danbam.domain.entity.ProfileEntity
-import com.danbam.domain.param.ChangeAddressParam
-import com.danbam.domain.param.ChangePasswordParam
-import com.danbam.domain.param.EditProfileParam
+import com.danbam.domain.entity.auth.FindIdEntity
+import com.danbam.domain.entity.auth.ProfileEntity
+import com.danbam.domain.param.auth.ChangeAddressParam
+import com.danbam.domain.param.auth.ChangePasswordParam
+import com.danbam.domain.param.auth.EditProfileParam
 
 interface AccountRepository {
     suspend fun findId(phoneNumber: String): FindIdEntity

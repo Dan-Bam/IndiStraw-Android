@@ -1,9 +1,9 @@
 package com.danbam.data.remote.api
 
-import com.danbam.data.remote.response.FundingPageResponse
-import com.danbam.data.remote.response.MoviePageResponse
-import com.danbam.data.remote.response.PopularTagResponse
-import com.danbam.data.remote.response.RelatedSearchResponse
+import com.danbam.data.remote.response.funding.FundingPageResponse
+import com.danbam.data.remote.response.movie.MoviePageResponse
+import com.danbam.data.remote.response.search.PopularTagResponse
+import com.danbam.data.remote.response.search.RelatedSearchResponse
 import com.danbam.data.remote.util.EndPoint
 import retrofit2.http.GET
 import retrofit2.http.Query

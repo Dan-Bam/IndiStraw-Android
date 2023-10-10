@@ -162,7 +162,7 @@ fun SearchScreen(
                             else -> {
                                 items(moviePager.itemSnapshotList.items) {
                                     MovieTvItem(item = it) {
-                                        navController.navigate(MainNavigationItem.MovieDetail.route + MainDeepLinkKey.MOVIE_INDEX + it.idx)
+                                        navController.navigate(MainNavigationItem.MovieDetail.route + MainDeepLinkKey.MOVIE_INDEX + it.movieIdx)
                                     }
                                 }
                             }
@@ -170,7 +170,7 @@ fun SearchScreen(
                     } else {
                         items(state.moviePopularList) {
                             MovieTvItem(item = it) {
-                                navController.navigate(MainNavigationItem.MovieDetail.route + MainDeepLinkKey.MOVIE_INDEX + it.idx)
+                                navController.navigate(MainNavigationItem.MovieDetail.route + MainDeepLinkKey.MOVIE_INDEX + it.movieIdx)
                             }
                         }
                     }
