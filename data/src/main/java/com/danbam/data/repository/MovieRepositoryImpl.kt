@@ -3,17 +3,17 @@ package com.danbam.data.repository
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.danbam.data.remote.datasource.MovieRemoteDataSource
-import com.danbam.data.remote.request.toRequest
-import com.danbam.data.remote.response.toEntity
-import com.danbam.domain.entity.DetailMovieHistoryEntity
-import com.danbam.domain.entity.MovieDetailEntity
-import com.danbam.domain.entity.MovieEntity
-import com.danbam.domain.entity.MovieHistoryEntity
-import com.danbam.domain.entity.MoviePeopleDetailEntity
-import com.danbam.domain.entity.MoviePeopleEntity
-import com.danbam.domain.param.MovieCreateParam
-import com.danbam.domain.param.MovieHistoryParam
-import com.danbam.domain.param.MoviePeopleParam
+import com.danbam.data.remote.request.movie.toRequest
+import com.danbam.data.remote.response.movie.toEntity
+import com.danbam.domain.entity.movie.DetailMovieHistoryEntity
+import com.danbam.domain.entity.movie.MovieDetailEntity
+import com.danbam.domain.entity.movie.MovieEntity
+import com.danbam.domain.entity.movie.MovieHistoryEntity
+import com.danbam.domain.entity.movie.MoviePeopleDetailEntity
+import com.danbam.domain.entity.movie.MoviePeopleEntity
+import com.danbam.domain.param.movie.MovieCreateParam
+import com.danbam.domain.param.movie.MovieHistoryParam
+import com.danbam.domain.param.movie.MoviePeopleParam
 import com.danbam.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -44,8 +44,8 @@ class MovieRepositoryImpl @Inject constructor(
             moviePeopleRequest = moviePeopleParam.toRequest()
         ).actorIdx
 
-    override suspend fun moviePeopleDetail(actorType: String, idx: Long): MoviePeopleDetailEntity =
-        movieRemoteDataSource.moviePeopleDetail(actorType = actorType, idx = idx).toEntity()
+    override suspend fun moviePeopleDetail(actorType: String, actorIdx: Long): MoviePeopleDetailEntity =
+        movieRemoteDataSource.moviePeopleDetail(actorType = actorType, actorIdx = actorIdx).toEntity()
 
     override suspend fun movieRecentList(): List<MovieEntity> =
         movieRemoteDataSource.movieRecentList().map { it.toEntity() }

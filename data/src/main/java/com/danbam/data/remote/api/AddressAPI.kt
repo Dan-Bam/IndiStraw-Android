@@ -1,7 +1,7 @@
 package com.danbam.data.remote.api
 
 import com.danbam.data.BuildConfig
-import com.danbam.data.remote.response.AddressResponse
+import com.danbam.data.remote.response.auth.AddressResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.Url

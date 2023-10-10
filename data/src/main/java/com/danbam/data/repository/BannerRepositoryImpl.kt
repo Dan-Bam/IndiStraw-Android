@@ -1,8 +1,8 @@
 package com.danbam.data.repository
 
 import com.danbam.data.remote.datasource.BannerRemoteDataSource
-import com.danbam.data.remote.response.toEntity
-import com.danbam.domain.entity.BannerEntity
+import com.danbam.data.remote.response.banner.toEntity
+import com.danbam.domain.entity.banner.BannerEntity
 import com.danbam.domain.repository.BannerRepository
 import javax.inject.Inject
 

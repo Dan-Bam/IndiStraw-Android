@@ -2,7 +2,7 @@ package com.danbam.mobile.ui.auth.find.find_password
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.domain.param.ChangePasswordParam
+import com.danbam.domain.param.auth.ChangePasswordParam
 import com.danbam.domain.usecase.account.ChangePasswordUseCase
 import com.danbam.mobile.util.android.errorHandling
 import com.danbam.mobile.util.parser.isPassword

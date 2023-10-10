@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
@@ -50,12 +49,12 @@ import com.danbam.design_system.component.TitleSemiBold
 import com.danbam.design_system.util.RemoveOverScrollLazyRow
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.design_system.util.toCommaString
-import com.danbam.domain.entity.MyFundingEntity
+import com.danbam.domain.entity.funding.MyFundingEntity
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MyFundingScreen(
-    crowdFundingIndex: Long,
+    fundingIdx: Long,
     navController: NavController,
     myFundingViewModel: MyFundingViewModel = hiltViewModel()
 ) {
@@ -69,7 +68,7 @@ fun MyFundingScreen(
     var selectedReward: MyFundingEntity.RewardEntity? by remember { mutableStateOf(null) }
 
     LaunchedEffect(Unit) {
-        myFundingViewModel.myDetail(crowdFundingIdx = crowdFundingIndex)
+        myFundingViewModel.myDetail(fundingIdx = fundingIdx)
     }
 
     IndiStrawBottomSheetLayout(sheetContent = {

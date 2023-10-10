@@ -1,9 +1,9 @@
 package com.danbam.data.remote.datasource
 
 import com.danbam.data.remote.api.AuthAPI
-import com.danbam.data.remote.request.LoginRequest
-import com.danbam.data.remote.request.SignUpRequest
-import com.danbam.data.remote.response.LoginResponse
+import com.danbam.data.remote.request.auth.LoginRequest
+import com.danbam.data.remote.request.auth.SignUpRequest
+import com.danbam.data.remote.response.auth.LoginResponse
 import com.danbam.data.remote.util.errorHandling
 import com.danbam.data.remote.util.indiStrawApiCall
 import javax.inject.Inject

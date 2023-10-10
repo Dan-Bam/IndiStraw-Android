@@ -1,7 +1,7 @@
 package com.danbam.data.local.datasource
 
 import com.danbam.data.local.dao.RecentSearchDao
-import com.danbam.data.local.entity.RecentSearchEntity
+import com.danbam.data.local.entity.search.RecentSearchEntity
 import javax.inject.Inject
 
 class SearchLocalDataSourceImpl @Inject constructor(

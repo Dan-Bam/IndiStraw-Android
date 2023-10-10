@@ -1,6 +1,6 @@
 package com.danbam.domain.usecase.auth
 
-import com.danbam.domain.param.LoginParam
+import com.danbam.domain.param.auth.LoginParam
 import com.danbam.domain.repository.AuthRepository
 import javax.inject.Inject
 

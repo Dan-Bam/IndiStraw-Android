@@ -1,10 +1,10 @@
 package com.danbam.data.remote.api
 
-import com.danbam.data.remote.request.ChangeAddressRequest
-import com.danbam.data.remote.request.ChangePasswordRequest
-import com.danbam.data.remote.request.EditProfileRequest
-import com.danbam.data.remote.response.FindIdResponse
-import com.danbam.data.remote.response.ProfileResponse
+import com.danbam.data.remote.request.auth.ChangeAddressRequest
+import com.danbam.data.remote.request.auth.ChangePasswordRequest
+import com.danbam.data.remote.request.auth.EditProfileRequest
+import com.danbam.data.remote.response.funding.FindIdResponse
+import com.danbam.data.remote.response.auth.ProfileResponse
 import com.danbam.data.remote.util.EndPoint
 import retrofit2.Response
 import retrofit2.http.Body

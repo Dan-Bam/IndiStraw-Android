@@ -1,7 +1,7 @@
 package com.danbam.data.remote.datasource
 
 import com.danbam.data.remote.api.FileAPI
-import com.danbam.data.remote.response.FileResponse
+import com.danbam.data.remote.response.file.FileResponse
 import com.danbam.data.remote.util.indiStrawApiCall
 import okhttp3.MultipartBody
 import javax.inject.Inject

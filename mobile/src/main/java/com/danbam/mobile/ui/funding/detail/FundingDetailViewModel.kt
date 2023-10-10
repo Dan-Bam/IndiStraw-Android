@@ -18,9 +18,9 @@ class FundingDetailViewModel @Inject constructor(
 ) : ContainerHost<FundingDetailState, Unit>, ViewModel() {
     override val container = container<FundingDetailState, Unit>(FundingDetailState())
 
-    fun getDetail(fundingIndex: Long) = intent {
+    fun getDetail(fundingIdx: Long) = intent {
         viewModelScope.launch {
-            fundingDetailUseCase(fundingIndex = fundingIndex).onSuccess {
+            fundingDetailUseCase(fundingIdx = fundingIdx).onSuccess {
                 reduce { state.copy(fundingDetailEntity = it) }
             }.onFailure {
                 it.errorHandling(unknownAction = {})

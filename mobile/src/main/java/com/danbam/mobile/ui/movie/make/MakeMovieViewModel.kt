@@ -2,9 +2,9 @@ package com.danbam.mobile.ui.movie.make
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.domain.entity.MoviePeopleEntity
-import com.danbam.domain.param.MovieCreateParam
-import com.danbam.domain.param.MoviePeopleParam
+import com.danbam.domain.entity.movie.MoviePeopleEntity
+import com.danbam.domain.param.movie.MovieCreateParam
+import com.danbam.domain.param.movie.MoviePeopleParam
 import com.danbam.domain.usecase.file.SendFileUseCase
 import com.danbam.domain.usecase.movie.AddMoviePeopleUseCase
 import com.danbam.domain.usecase.movie.MovieCreateUseCase
@@ -104,7 +104,7 @@ class MakeMovieViewModel @Inject constructor(
                             state.copy(
                                 actorList = state.actorList.plus(
                                     MoviePeopleEntity(
-                                        idx = it,
+                                        actorIdx = it,
                                         name = name,
                                         profileUrl = profileUrl
                                     )
@@ -115,7 +115,7 @@ class MakeMovieViewModel @Inject constructor(
                         state.copy(
                             directorList = state.directorList.plus(
                                 MoviePeopleEntity(
-                                    idx = it,
+                                    actorIdx = it,
                                     name = name,
                                     profileUrl = profileUrl
                                 )
@@ -150,8 +150,8 @@ class MakeMovieViewModel @Inject constructor(
                         movieUrl = state.movieUrl!!,
                         thumbnailUrl = state.thumbnailUrl!!,
                         highlight = state.imageList,
-                        director = state.directorList.map { it.idx },
-                        actor = state.actorList.map { it.idx },
+                        director = state.directorList.map { it.actorIdx },
+                        actor = state.actorList.map { it.actorIdx },
                         isMakeFunding = state.isFunding
                     )
                 ).onSuccess {

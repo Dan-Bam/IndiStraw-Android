@@ -50,8 +50,8 @@ fun NavGraphBuilder.mainGraph(navController: NavHostController) {
                 type = NavType.LongType
             }
         )) {
-        val movieIndex = it.arguments?.getLong(MainDeepLinkKey.MOVIE_INDEX) ?: 0
-        MovieDetailScreen(navController = navController, movieIndex = movieIndex)
+        val movieIdx = it.arguments?.getLong(MainDeepLinkKey.MOVIE_INDEX) ?: 0
+        MovieDetailScreen(navController = navController, movieIdx = movieIdx)
     }
     composable(route = MainNavigationItem.MoviePlay.route
         + MainDeepLinkKey.MOVIE_NAME + "{${MainDeepLinkKey.MOVIE_NAME}}"

@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import androidx.room.Transaction
-import com.danbam.data.local.entity.RecentSearchEntity
+import com.danbam.data.local.entity.search.RecentSearchEntity
 
 @Dao
 interface RecentSearchDao {

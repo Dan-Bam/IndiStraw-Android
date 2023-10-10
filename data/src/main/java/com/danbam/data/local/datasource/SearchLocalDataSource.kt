@@ -1,6 +1,6 @@
 package com.danbam.data.local.datasource
 
-import com.danbam.data.local.entity.RecentSearchEntity
+import com.danbam.data.local.entity.search.RecentSearchEntity
 
 interface SearchLocalDataSource {
     suspend fun search(recentSearchEntity: RecentSearchEntity)

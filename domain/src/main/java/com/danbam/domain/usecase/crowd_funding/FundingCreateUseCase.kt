@@ -1,6 +1,6 @@
 package com.danbam.domain.usecase.crowd_funding
 
-import com.danbam.domain.param.FundingCreateParam
+import com.danbam.domain.param.funding.FundingCreateParam
 import com.danbam.domain.repository.CrowdFundingRepository
 import javax.inject.Inject
 

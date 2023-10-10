@@ -1,6 +1,6 @@
 package com.danbam.mobile.ui.funding.make
 
-import com.danbam.domain.param.FundingCreateParam
+import com.danbam.domain.param.funding.FundingCreateParam
 import java.time.LocalDate
 
 data class MakeFundingState(

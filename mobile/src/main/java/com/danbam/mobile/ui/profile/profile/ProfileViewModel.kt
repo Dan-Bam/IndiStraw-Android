@@ -2,11 +2,10 @@ package com.danbam.mobile.ui.profile.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.domain.entity.MovieEntity
+import com.danbam.domain.entity.movie.MovieEntity
 import com.danbam.domain.usecase.account.GetProfileUseCase
 import com.danbam.domain.usecase.crowd_funding.FundingMyUseCase
 import com.danbam.domain.usecase.funding.FundingListUseCase
-import com.danbam.domain.usecase.funding.FundingUseCase
 import com.danbam.domain.usecase.movie.MovieHistoryListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -54,7 +53,7 @@ class ProfileViewModel @Inject constructor(
                 reduce {
                     state.copy(movieHistoryList = it.map {
                         MovieEntity(
-                            idx = it.movieIdx,
+                            movieIdx = it.movieIdx,
                             thumbnailUrl = it.thumbnailUrl
                         )
                     })

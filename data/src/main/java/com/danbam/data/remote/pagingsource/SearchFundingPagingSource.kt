@@ -3,7 +3,7 @@ package com.danbam.data.remote.pagingsource
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.danbam.data.remote.api.SearchAPI
-import com.danbam.data.remote.response.FundingResponse
+import com.danbam.data.remote.response.funding.FundingResponse
 import javax.inject.Inject
 
 class SearchFundingPagingSource(

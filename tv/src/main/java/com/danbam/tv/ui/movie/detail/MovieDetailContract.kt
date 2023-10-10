@@ -1,6 +1,6 @@
 package com.danbam.tv.ui.movie.detail
 
-import com.danbam.domain.entity.MovieDetailEntity
+import com.danbam.domain.entity.movie.MovieDetailEntity
 
 data class MovieDetailState(
     val movieDetailInfo: MovieDetailEntity = MovieDetailEntity(
@@ -12,7 +12,7 @@ data class MovieDetailState(
         actorList = listOf(),
         highlight = listOf(),
         isFunding = false,
-        genre = ""
+        genre = listOf()
     ),
     val moviePosition: Float = 0F
 )

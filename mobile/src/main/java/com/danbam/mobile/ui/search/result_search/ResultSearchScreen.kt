@@ -31,7 +31,6 @@ import com.danbam.design_system.component.FundingItem
 import com.danbam.design_system.component.MovieItem
 import com.danbam.design_system.component.SearchTab
 import com.danbam.design_system.util.RemoveOverScrollLazyColumn
-import com.danbam.domain.entity.FundingEntity
 import com.danbam.mobile.ui.funding.navigation.FundingDeepLinkKey
 import com.danbam.mobile.ui.funding.navigation.FundingNavigationItem
 import com.danbam.mobile.ui.movie.navigation.MovieDeepLinkKey

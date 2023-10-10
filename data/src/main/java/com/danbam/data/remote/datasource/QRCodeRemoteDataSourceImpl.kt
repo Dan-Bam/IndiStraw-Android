@@ -2,9 +2,9 @@ package com.danbam.data.remote.datasource
 
 import com.danbam.data.BuildConfig
 import com.danbam.data.remote.api.QRCodeAPI
-import com.danbam.data.remote.request.CheckQRCodeRequest
-import com.danbam.data.remote.response.GetQRCodeResponse
-import com.danbam.data.remote.response.LoginResponse
+import com.danbam.data.remote.request.auth.CheckQRCodeRequest
+import com.danbam.data.remote.response.auth.GetQRCodeResponse
+import com.danbam.data.remote.response.auth.LoginResponse
 import com.danbam.data.remote.util.EndPoint
 import com.danbam.data.remote.util.errorHandling
 import com.danbam.data.remote.util.indiStrawApiCall
@@ -12,7 +12,6 @@ import com.google.gson.Gson
 import okhttp3.CacheControl
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.Response
 import okhttp3.sse.EventSource
 import okhttp3.sse.EventSourceListener
 import okhttp3.sse.EventSources

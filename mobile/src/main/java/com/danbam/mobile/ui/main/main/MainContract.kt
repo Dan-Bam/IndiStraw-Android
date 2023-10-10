@@ -1,8 +1,8 @@
 package com.danbam.mobile.ui.main.main
 
-import com.danbam.domain.entity.BannerEntity
-import com.danbam.domain.entity.FundingEntity
-import com.danbam.domain.entity.MovieEntity
+import com.danbam.domain.entity.banner.BannerEntity
+import com.danbam.domain.entity.funding.FundingEntity
+import com.danbam.domain.entity.movie.MovieEntity
 
 data class MainState(
     val profileUrl: String? = null,

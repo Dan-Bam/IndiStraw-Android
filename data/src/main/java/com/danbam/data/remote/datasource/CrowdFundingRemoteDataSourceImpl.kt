@@ -5,10 +5,10 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.danbam.data.remote.api.CrowdFundingAPI
 import com.danbam.data.remote.pagingsource.FundingPagingSource
-import com.danbam.data.remote.request.FundingCreateRequest
-import com.danbam.data.remote.response.FundingDetailResponse
-import com.danbam.data.remote.response.FundingResponse
-import com.danbam.data.remote.response.MyFundingResponse
+import com.danbam.data.remote.request.funding.FundingCreateRequest
+import com.danbam.data.remote.response.funding.FundingDetailResponse
+import com.danbam.data.remote.response.funding.FundingResponse
+import com.danbam.data.remote.response.funding.MyFundingResponse
 import com.danbam.data.remote.util.errorHandling
 import com.danbam.data.remote.util.indiStrawApiCall
 import kotlinx.coroutines.flow.Flow
@@ -27,9 +27,9 @@ class CrowdFundingRemoteDataSourceImpl @Inject constructor(
         crowdFundingAPI.fundingPopularList()
     }
 
-    override suspend fun fundingDetail(fundingIndex: Long): FundingDetailResponse =
+    override suspend fun fundingDetail(fundingIdx: Long): FundingDetailResponse =
         indiStrawApiCall {
-            crowdFundingAPI.fundingDetail(fundingIndex = fundingIndex)
+            crowdFundingAPI.fundingDetail(fundingIdx = fundingIdx)
         }
 
     override suspend fun fundingAll(): Flow<PagingData<FundingResponse>> =
@@ -44,8 +44,8 @@ class CrowdFundingRemoteDataSourceImpl @Inject constructor(
         crowdFundingAPI.fundingMy()
     }
 
-    override suspend fun fundingMyDetail(crowdfundingIdx: Long): MyFundingResponse =
+    override suspend fun fundingMyDetail(fundingIdx: Long): MyFundingResponse =
         indiStrawApiCall {
-            crowdFundingAPI.fundingMyDetail(crowdfundingIdx = crowdfundingIdx)
+            crowdFundingAPI.fundingMyDetail(fundingIdx = fundingIdx)
         }
 }

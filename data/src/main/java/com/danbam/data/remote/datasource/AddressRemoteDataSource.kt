@@ -1,7 +1,7 @@
 package com.danbam.data.remote.datasource
 
 import androidx.paging.PagingData
-import com.danbam.data.remote.response.AddressResponse
+import com.danbam.data.remote.response.auth.AddressResponse
 import kotlinx.coroutines.flow.Flow
 
 interface AddressRemoteDataSource {

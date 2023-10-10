@@ -2,7 +2,7 @@ package com.danbam.mobile.ui.funding.pay
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.domain.param.FundingParam
+import com.danbam.domain.param.funding.FundingParam
 import com.danbam.domain.usecase.account.GetProfileUseCase
 import com.danbam.domain.usecase.funding.FundingUseCase
 import com.danbam.domain.usecase.funding.GetReceiptUseCase
@@ -49,13 +49,13 @@ class FundingRewardViewModel @Inject constructor(
 
     fun funding(
         receiptId: String,
-        crowdfundingIdx: Long,
+        fundingIdx: Long,
         rewardIdx: Long,
         price: Long,
         extraPrice: Long
     ) = intent {
         fundingUseCase(
-            crowdfundingIdx = crowdfundingIdx,
+            fundingIdx = fundingIdx,
             rewardIdx = rewardIdx,
             fundingParam = FundingParam(
                 receiptId = receiptId,

@@ -2,12 +2,12 @@ package com.danbam.data.repository
 
 import com.danbam.data.local.datasource.AuthLocalDataSource
 import com.danbam.data.remote.datasource.AuthRemoteDataSource
-import com.danbam.data.remote.request.toRequest
-import com.danbam.data.remote.response.LoginResponse
+import com.danbam.data.remote.request.auth.toRequest
+import com.danbam.data.remote.response.auth.LoginResponse
 import com.danbam.data.util.default
 import com.danbam.domain.exception.ExpiredTokenException
-import com.danbam.domain.param.LoginParam
-import com.danbam.domain.param.SignUpParam
+import com.danbam.domain.param.auth.LoginParam
+import com.danbam.domain.param.auth.SignUpParam
 import com.danbam.domain.repository.AuthRepository
 import java.time.LocalDateTime
 import javax.inject.Inject

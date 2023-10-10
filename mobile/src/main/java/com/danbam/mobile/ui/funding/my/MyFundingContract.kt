@@ -1,6 +1,6 @@
 package com.danbam.mobile.ui.funding.my
 
-import com.danbam.domain.entity.MyFundingEntity
+import com.danbam.domain.entity.funding.MyFundingEntity
 
 data class MyFundingState(
     val myFundingEntity: MyFundingEntity = MyFundingEntity(
