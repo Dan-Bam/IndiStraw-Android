@@ -40,7 +40,7 @@ jobs:
         run: ./gradlew clean assembleRelease
 
       - name: Sign Mobile APK
-        id: sign
+        id: sign_mobile
         uses: r0adkll/sign-android-release@v1
         with:
           releaseDirectory: mobile/build/outputs/apk/release
@@ -50,7 +50,7 @@ jobs:
           keyPassword: ${{ secrets.KEY_PASSWORD }}
 
       - name: Sign Tv APK
-        id: sign
+        id: sign_tv
         uses: r0adkll/sign-android-release@v1
         with:
           releaseDirectory: tv/build/outputs/apk/release
