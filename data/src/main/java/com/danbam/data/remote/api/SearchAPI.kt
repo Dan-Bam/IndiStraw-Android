@@ -3,7 +3,6 @@ package com.danbam.data.remote.api
 import com.danbam.data.remote.response.funding.FundingPageResponse
 import com.danbam.data.remote.response.movie.MoviePageResponse
 import com.danbam.data.remote.response.search.PopularTagResponse
-import com.danbam.data.remote.response.search.RelatedSearchResponse
 import com.danbam.data.remote.util.EndPoint
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -12,7 +11,7 @@ interface SearchAPI {
     @GET("${EndPoint.SEARCH}/")
     suspend fun gerRelatedSearch(
         @Query("keyword") keyword: String
-    ): List<RelatedSearchResponse>
+    ): List<String>
 
     @GET("${EndPoint.SEARCH}/movie/")
     suspend fun searchMovie(

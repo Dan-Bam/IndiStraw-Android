@@ -35,7 +35,7 @@ class SearchViewModel @Inject constructor(
     fun getRelatedSearch(keyword: String) = intent {
         viewModelScope.launch {
             getRelatedSearchUseCase(keyword = keyword).onSuccess {
-                reduce { state.copy(relatedSearchList = it.map { it.title }) }
+                reduce { state.copy(relatedSearchList = it) }
             }
         }
     }

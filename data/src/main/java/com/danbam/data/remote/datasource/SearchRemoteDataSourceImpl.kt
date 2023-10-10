@@ -9,7 +9,6 @@ import com.danbam.data.remote.pagingsource.SearchMoviePagingSource
 import com.danbam.data.remote.response.funding.FundingResponse
 import com.danbam.data.remote.response.movie.MovieResponse
 import com.danbam.data.remote.response.search.PopularTagResponse
-import com.danbam.data.remote.response.search.RelatedSearchResponse
 import com.danbam.data.remote.util.indiStrawApiCall
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -17,7 +16,7 @@ import javax.inject.Inject
 class SearchRemoteDataSourceImpl @Inject constructor(
     private val searchAPI: SearchAPI
 ) : SearchRemoteDataSource {
-    override suspend fun getRelatedSearch(keyword: String): List<RelatedSearchResponse> =
+    override suspend fun getRelatedSearch(keyword: String): List<String> =
         indiStrawApiCall {
             searchAPI.gerRelatedSearch(keyword)
         }

@@ -46,12 +46,12 @@ fun SearchingScreen(
                             .padding(horizontal = 15.dp)
                             .indiStrawClickable {
                                 onClickAction()
-                                onSearch(item.title)
+                                onSearch(item)
                             }
                     ) {
                         IndiStrawIcon(icon = IndiStrawIconList.Search)
                         Spacer(modifier = Modifier.width(14.dp))
-                        ExampleTextMedium(text = item.title)
+                        ExampleTextMedium(text = item)
                         Spacer(modifier = Modifier.weight(1F))
                         IndiStrawIcon(icon = IndiStrawIconList.FastSearch)
                     }

@@ -8,11 +8,9 @@ import com.danbam.data.local.entity.search.toDomain
 import com.danbam.data.remote.datasource.SearchRemoteDataSource
 import com.danbam.data.remote.response.funding.toEntity
 import com.danbam.data.remote.response.movie.toEntity
-import com.danbam.data.remote.response.search.toEntity
 import com.danbam.domain.entity.funding.FundingEntity
 import com.danbam.domain.entity.movie.MovieEntity
 import com.danbam.domain.entity.search.RecentSearchEntity
-import com.danbam.domain.entity.search.RelatedSearchEntity
 import com.danbam.domain.repository.SearchRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -22,8 +20,8 @@ class SearchRepositoryImpl @Inject constructor(
     private val searchLocalDataSource: SearchLocalDataSource,
     private val searchRemoteDataSource: SearchRemoteDataSource
 ) : SearchRepository {
-    override suspend fun getRelatedSearch(keyword: String): List<RelatedSearchEntity> =
-        searchRemoteDataSource.getRelatedSearch(keyword = keyword).map { it.toEntity() }
+    override suspend fun getRelatedSearch(keyword: String): List<String> =
+        searchRemoteDataSource.getRelatedSearch(keyword = keyword)
 
     override suspend fun searchMovie(recentSearchEntity: RecentSearchEntity): Flow<PagingData<MovieEntity>> {
         saveRecentSearch(recentSearchEntity = recentSearchEntity)
