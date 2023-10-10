@@ -1,7 +1,7 @@
 package com.danbam.tv.ui.setting
 
 import com.danbam.design_system.util.Language
-import com.danbam.domain.entity.ProfileEntity
+import com.danbam.domain.entity.auth.ProfileEntity
 
 data class SettingState(
     val currentLanguage: Language = Language.Korean,

@@ -1,6 +1,6 @@
 package com.danbam.mobile.ui.movie.make
 
-import com.danbam.domain.entity.MoviePeopleEntity
+import com.danbam.domain.entity.movie.MoviePeopleEntity
 
 data class MakeMovieState(
     val thumbnailUrl: String? = null,

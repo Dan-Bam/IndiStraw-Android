@@ -1,13 +1,14 @@
 package com.danbam.data.repository
 
 import com.danbam.data.remote.datasource.AccountRemoteDataSource
-import com.danbam.data.remote.request.toRequest
-import com.danbam.data.remote.response.toEntity
-import com.danbam.domain.entity.FindIdEntity
-import com.danbam.domain.entity.ProfileEntity
-import com.danbam.domain.param.ChangeAddressParam
-import com.danbam.domain.param.ChangePasswordParam
-import com.danbam.domain.param.EditProfileParam
+import com.danbam.data.remote.request.auth.toRequest
+import com.danbam.data.remote.response.auth.toEntity
+import com.danbam.data.remote.response.funding.toEntity
+import com.danbam.domain.entity.auth.FindIdEntity
+import com.danbam.domain.entity.auth.ProfileEntity
+import com.danbam.domain.param.auth.ChangeAddressParam
+import com.danbam.domain.param.auth.ChangePasswordParam
+import com.danbam.domain.param.auth.EditProfileParam
 import com.danbam.domain.repository.AccountRepository
 import javax.inject.Inject
 

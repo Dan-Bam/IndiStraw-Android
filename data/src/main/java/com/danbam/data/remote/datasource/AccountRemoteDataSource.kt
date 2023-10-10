@@ -1,10 +1,10 @@
 package com.danbam.data.remote.datasource
 
-import com.danbam.data.remote.request.ChangeAddressRequest
-import com.danbam.data.remote.request.ChangePasswordRequest
-import com.danbam.data.remote.request.EditProfileRequest
-import com.danbam.data.remote.response.FindIdResponse
-import com.danbam.data.remote.response.ProfileResponse
+import com.danbam.data.remote.request.auth.ChangeAddressRequest
+import com.danbam.data.remote.request.auth.ChangePasswordRequest
+import com.danbam.data.remote.request.auth.EditProfileRequest
+import com.danbam.data.remote.response.funding.FindIdResponse
+import com.danbam.data.remote.response.auth.ProfileResponse
 
 interface AccountRemoteDataSource {
     suspend fun findId(phoneNumber: String): FindIdResponse

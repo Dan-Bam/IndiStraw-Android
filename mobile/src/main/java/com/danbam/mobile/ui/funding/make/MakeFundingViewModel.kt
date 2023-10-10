@@ -2,7 +2,7 @@ package com.danbam.mobile.ui.funding.make
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.domain.param.FundingCreateParam
+import com.danbam.domain.param.funding.FundingCreateParam
 import com.danbam.domain.usecase.file.SendFileUseCase
 import com.danbam.domain.usecase.crowd_funding.FundingCreateUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

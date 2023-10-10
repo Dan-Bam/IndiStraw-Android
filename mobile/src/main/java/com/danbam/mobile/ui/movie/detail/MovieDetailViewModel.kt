@@ -21,23 +21,26 @@ class MovieDetailViewModel @Inject constructor(
 ) : ContainerHost<MovieDetailState, Unit>, ViewModel() {
     override val container = container<MovieDetailState, Unit>(MovieDetailState())
 
-    fun movieDetail(movieIndex: Long) = intent {
+    fun movieDetail(movieIdx: Long) = intent {
         viewModelScope.launch {
-            movieDetailUseCase(movieIndex = movieIndex).onSuccess {
+            movieDetailUseCase(movieIdx = movieIdx).onSuccess {
                 reduce { state.copy(movieDetailInfo = it) }
             }
         }
     }
 
-    fun movieHistory(movieIndex: Long) = intent {
-        movieHistoryUseCase(movieIdx = movieIndex).onSuccess {
+    fun movieHistory(movieIdx: Long) = intent {
+        movieHistoryUseCase(movieIdx = movieIdx).onSuccess {
             reduce { state.copy(moviePosition = it.historyTime) }
         }
     }
 
-    fun moviePeopleDetail(isActor: Boolean, idx: Long) = intent {
+    fun moviePeopleDetail(isActor: Boolean, actorIdx: Long) = intent {
         viewModelScope.launch {
-            moviePeopleDetailUseCase(if (isActor) "actor" else "director", idx).onSuccess {
+            moviePeopleDetailUseCase(
+                actorType = if (isActor) "actor" else "director",
+                actorIdx = actorIdx
+            ).onSuccess {
                 reduce { state.copy(appearanceMovieList = it.movieList) }
             }
         }

@@ -1,10 +1,10 @@
 package com.danbam.domain.repository
 
 import androidx.paging.PagingData
-import com.danbam.domain.entity.FundingEntity
-import com.danbam.domain.entity.MovieEntity
-import com.danbam.domain.entity.RecentSearchEntity
-import com.danbam.domain.entity.RelatedSearchEntity
+import com.danbam.domain.entity.funding.FundingEntity
+import com.danbam.domain.entity.movie.MovieEntity
+import com.danbam.domain.entity.search.RecentSearchEntity
+import com.danbam.domain.entity.search.RelatedSearchEntity
 import kotlinx.coroutines.flow.Flow
 
 interface SearchRepository {

@@ -61,7 +61,7 @@ sealed class Payment(val stringId: Int, val method: String) {
 @Composable
 fun FundingRewardScreen(
     navController: NavController,
-    fundingIndex: Long,
+    fundingIdx: Long,
     rewardIndex: Long,
     rewardTitle: String,
     rewardDescription: String,
@@ -305,7 +305,7 @@ fun FundingRewardScreen(
                 ) {
                     fundingRewardViewModel.funding(
                         receiptId = it,
-                        crowdfundingIdx = fundingIndex,
+                        fundingIdx = fundingIdx,
                         rewardIdx = rewardIndex,
                         price = rewardPrice,
                         extraPrice = addFundingMoney

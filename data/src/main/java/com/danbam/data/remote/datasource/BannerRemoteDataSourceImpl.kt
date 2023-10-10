@@ -1,7 +1,7 @@
 package com.danbam.data.remote.datasource
 
 import com.danbam.data.remote.api.BannerAPI
-import com.danbam.data.remote.response.BannerResponse
+import com.danbam.data.remote.response.banner.BannerResponse
 import com.danbam.data.remote.util.indiStrawApiCall
 import javax.inject.Inject
 

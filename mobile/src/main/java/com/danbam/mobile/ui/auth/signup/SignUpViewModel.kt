@@ -2,7 +2,7 @@ package com.danbam.mobile.ui.auth.signup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.domain.param.SignUpParam
+import com.danbam.domain.param.auth.SignUpParam
 import com.danbam.domain.usecase.auth.CheckIdUseCase
 import com.danbam.domain.usecase.auth.SignUpUseCase
 import com.danbam.domain.usecase.file.SendFileUseCase

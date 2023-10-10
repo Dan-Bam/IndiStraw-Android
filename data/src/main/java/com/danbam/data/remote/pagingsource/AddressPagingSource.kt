@@ -3,7 +3,7 @@ package com.danbam.data.remote.pagingsource
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.danbam.data.remote.api.AddressAPI
-import com.danbam.data.remote.response.AddressResponse
+import com.danbam.data.remote.response.auth.AddressResponse
 import javax.inject.Inject
 
 class AddressPagingSource(

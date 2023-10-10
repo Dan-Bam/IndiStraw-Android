@@ -1,6 +1,6 @@
 package com.danbam.domain.usecase.account
 
-import com.danbam.domain.param.ChangeAddressParam
+import com.danbam.domain.param.auth.ChangeAddressParam
 import com.danbam.domain.repository.AccountRepository
 import javax.inject.Inject
 

@@ -1,9 +1,9 @@
 package com.danbam.data.remote.datasource
 
 import com.danbam.data.remote.api.FundingAPI
-import com.danbam.data.remote.request.FundingRequest
-import com.danbam.data.remote.response.FundingResponse
-import com.danbam.data.remote.response.ReceiptResponse
+import com.danbam.data.remote.request.funding.FundingRequest
+import com.danbam.data.remote.response.funding.FundingResponse
+import com.danbam.data.remote.response.funding.ReceiptResponse
 import com.danbam.data.remote.util.errorHandling
 import com.danbam.data.remote.util.indiStrawApiCall
 import javax.inject.Inject
@@ -16,12 +16,12 @@ class FundingRemoteDataSourceImpl @Inject constructor(
     }
 
     override suspend fun funding(
-        crowdfundingIdx: Long,
+        fundingIdx: Long,
         rewardIdx: Long,
         fundingRequest: FundingRequest
     ) = indiStrawApiCall {
         fundingAPI.funding(
-            crowdfundingIdx = crowdfundingIdx,
+            fundingIdx = fundingIdx,
             rewardIdx = rewardIdx,
             fundingRequest = fundingRequest
         ).errorHandling()

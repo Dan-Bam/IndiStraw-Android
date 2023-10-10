@@ -1,6 +1,6 @@
 package com.danbam.domain.repository
 
-import com.danbam.domain.entity.FileEntity
+import com.danbam.domain.entity.file.FileEntity
 import java.io.File
 
 interface FileRepository {

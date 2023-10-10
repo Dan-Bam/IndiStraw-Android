@@ -101,11 +101,11 @@ fun HomeScreen(
         ) {
             items(state.movieList) {
                 MovieTvItem(
-                    modifier = Modifier.focusRequester(if (it.idx == state.currentMovieIndex) itemFocusRequester else FocusRequester()),
+                    modifier = Modifier.focusRequester(if (it.movieIdx == state.currentMovieIndex) itemFocusRequester else FocusRequester()),
                     item = it
                 ) {
-                    homeViewModel.saveCurrentIndex(it.idx)
-                    navController.navigate(MainNavigationItem.MovieDetail.route + MainDeepLinkKey.MOVIE_INDEX + it.idx)
+                    homeViewModel.saveCurrentIndex(it.movieIdx)
+                    navController.navigate(MainNavigationItem.MovieDetail.route + MainDeepLinkKey.MOVIE_INDEX + it.movieIdx)
                 }
             }
         }

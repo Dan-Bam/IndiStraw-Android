@@ -42,8 +42,8 @@ fun NavGraphBuilder.fundingGraph(navController: NavHostController) {
             }
         )
     ) {
-        val fundingIndex = it.arguments?.getLong(FundingDeepLinkKey.FUNDING_INDEX) ?: 0L
-        FundingDetailScreen(navController = navController, fundingIndex = fundingIndex)
+        val fundingIdx = it.arguments?.getLong(FundingDeepLinkKey.FUNDING_INDEX) ?: 0L
+        FundingDetailScreen(navController = navController, fundingIdx = fundingIdx)
     }
     composable(route = FundingNavigationItem.All.route) {
         FundingAllScreen(navController = navController)
@@ -73,14 +73,14 @@ fun NavGraphBuilder.fundingGraph(navController: NavHostController) {
             }
         )
     ) {
-        val fundingIndex = it.arguments?.getLong(FundingDeepLinkKey.FUNDING_INDEX) ?: 0L
+        val fundingIdx = it.arguments?.getLong(FundingDeepLinkKey.FUNDING_INDEX) ?: 0L
         val rewardIndex = it.arguments?.getLong(FundingDeepLinkKey.REWARD_INDEX) ?: 0L
         val rewardTitle = it.arguments?.getString(FundingDeepLinkKey.REWARD_TITLE) ?: ""
         val rewardDescription = it.arguments?.getString(FundingDeepLinkKey.REWARD_DESCRIPTION) ?: ""
         val rewardPrice = it.arguments?.getLong(FundingDeepLinkKey.REWARD_PRICE) ?: 0L
         FundingRewardScreen(
             navController = navController,
-            fundingIndex = fundingIndex,
+            fundingIdx = fundingIdx,
             rewardIndex = rewardIndex,
             rewardTitle = rewardTitle,
             rewardDescription = rewardDescription,
@@ -95,7 +95,7 @@ fun NavGraphBuilder.fundingGraph(navController: NavHostController) {
             }
         )
     ) {
-        val fundingIndex = it.arguments?.getLong(FundingDeepLinkKey.FUNDING_INDEX) ?: 0L
-        MyFundingScreen(navController = navController, crowdFundingIndex = fundingIndex)
+        val fundingIdx = it.arguments?.getLong(FundingDeepLinkKey.FUNDING_INDEX) ?: 0L
+        MyFundingScreen(navController = navController, fundingIdx = fundingIdx)
     }
 }

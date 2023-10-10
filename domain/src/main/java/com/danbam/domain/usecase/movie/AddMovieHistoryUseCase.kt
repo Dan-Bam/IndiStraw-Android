@@ -1,6 +1,6 @@
 package com.danbam.domain.usecase.movie
 
-import com.danbam.domain.param.MovieHistoryParam
+import com.danbam.domain.param.movie.MovieHistoryParam
 import com.danbam.domain.repository.MovieRepository
 import javax.inject.Inject
 

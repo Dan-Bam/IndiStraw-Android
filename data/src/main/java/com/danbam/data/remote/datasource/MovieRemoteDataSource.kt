@@ -1,16 +1,16 @@
 package com.danbam.data.remote.datasource
 
 import androidx.paging.PagingData
-import com.danbam.data.remote.request.MovieCreateRequest
-import com.danbam.data.remote.request.MovieHistoryRequest
-import com.danbam.data.remote.request.MoviePeopleRequest
-import com.danbam.data.remote.response.AddMoviePeopleResponse
-import com.danbam.data.remote.response.DetailMovieHistoryResponse
-import com.danbam.data.remote.response.MovieDetailResponse
-import com.danbam.data.remote.response.MovieHistoryResponse
-import com.danbam.data.remote.response.MoviePeopleDetailResponse
-import com.danbam.data.remote.response.MoviePeopleResponse
-import com.danbam.data.remote.response.MovieResponse
+import com.danbam.data.remote.request.movie.MovieCreateRequest
+import com.danbam.data.remote.request.movie.MovieHistoryRequest
+import com.danbam.data.remote.request.movie.MoviePeopleRequest
+import com.danbam.data.remote.response.movie.AddMoviePeopleResponse
+import com.danbam.data.remote.response.movie.DetailMovieHistoryResponse
+import com.danbam.data.remote.response.movie.MovieDetailResponse
+import com.danbam.data.remote.response.movie.MovieHistoryResponse
+import com.danbam.data.remote.response.movie.MoviePeopleDetailResponse
+import com.danbam.data.remote.response.movie.MoviePeopleResponse
+import com.danbam.data.remote.response.movie.MovieResponse
 import kotlinx.coroutines.flow.Flow
 
 interface MovieRemoteDataSource {
@@ -18,7 +18,7 @@ interface MovieRemoteDataSource {
     suspend fun movieList(genre: String? = null): Flow<PagingData<MovieResponse>>
     suspend fun movieDetail(movieIdx: Long): MovieDetailResponse
     suspend fun searchMoviePeople(actorType: String, name: String): List<MoviePeopleResponse>
-    suspend fun moviePeopleDetail(actorType: String, idx: Long): MoviePeopleDetailResponse
+    suspend fun moviePeopleDetail(actorType: String, actorIdx: Long): MoviePeopleDetailResponse
     suspend fun addMoviePeople(
         actorType: String,
         moviePeopleRequest: MoviePeopleRequest

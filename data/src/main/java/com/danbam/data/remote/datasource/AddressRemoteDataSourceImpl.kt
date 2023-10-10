@@ -5,7 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.danbam.data.remote.api.AddressAPI
 import com.danbam.data.remote.pagingsource.AddressPagingSource
-import com.danbam.data.remote.response.AddressResponse
+import com.danbam.data.remote.response.auth.AddressResponse
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

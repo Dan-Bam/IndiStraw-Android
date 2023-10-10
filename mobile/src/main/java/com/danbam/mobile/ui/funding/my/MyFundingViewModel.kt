@@ -17,9 +17,9 @@ class MyFundingViewModel @Inject constructor(
 ) : ContainerHost<MyFundingState, Unit>, ViewModel() {
     override val container = container<MyFundingState, Unit>(MyFundingState())
 
-    fun myDetail(crowdFundingIdx: Long) = intent {
+    fun myDetail(fundingIdx: Long) = intent {
         viewModelScope.launch {
-            fundingMyDetailUseCase(crowdFundingIdx = crowdFundingIdx).onSuccess {
+            fundingMyDetailUseCase(fundingIdx = fundingIdx).onSuccess {
                 reduce { state.copy(myFundingEntity = it) }
             }
         }
