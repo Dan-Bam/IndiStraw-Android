@@ -70,3 +70,38 @@ jobs:
         with:
           name: tv-release.apk
           path: tv/build/outputs/apk/release/tv-release-unsigned-signed.apk
+
+      - name: Get Version & Tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
+
+      - name: Upload Mobile APK to Release
+        id: upload-mobile-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: mobile/build/outputs/apk/release/mobile-release-unsigned-signed.apk
+          asset_name: mobile-release.apk
+          asset_content_type: application/zip
+
+      - name: Upload Tv APK to Release
+        id: upload-tv-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: tv/build/outputs/apk/release/tv-release-unsigned-signed.apk
+          asset_name: tv-release.apk
+          asset_content_type: application/zip
