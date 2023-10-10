@@ -78,6 +78,7 @@ jobs:
           github_token: ${{ secrets.GH_TOKEN }}
 
       - name: Create Release
+        id: create_release
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ steps.tag_version.outputs.new_tag }}
