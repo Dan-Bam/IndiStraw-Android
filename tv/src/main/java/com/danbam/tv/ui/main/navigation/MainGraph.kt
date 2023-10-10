@@ -74,7 +74,7 @@ fun NavGraphBuilder.mainGraph(navController: NavHostController) {
         )) {
         val movieName = it.arguments?.getString(MainDeepLinkKey.MOVIE_NAME) ?: ""
         val movieUrl = it.arguments?.getString(MainDeepLinkKey.MOVIE_URL) ?: ""
-        val movieIdx = it.arguments?.getLong(MainDeepLinkKey.MOVIE_URL) ?: 0
+        val movieIdx = it.arguments?.getLong(MainDeepLinkKey.MOVIE_INDEX) ?: 0
         val moviePosition = it.arguments?.getFloat(MainDeepLinkKey.MOVIE_POSITION) ?: 0F
         MoviePlayScreen(
             movieName = movieName,

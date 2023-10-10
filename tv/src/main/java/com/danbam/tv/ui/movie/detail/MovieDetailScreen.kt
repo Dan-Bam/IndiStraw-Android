@@ -115,9 +115,7 @@ fun MovieDetailScreen(
                         title = stringResource(id = R.string.watch_going)
                     ) {
                         navController.navigate(
-                            MainNavigationItem.MoviePlay.route + MainDeepLinkKey.MOVIE_NAME + state.movieDetailInfo.title + MainDeepLinkKey.MOVIE_INDEX + movieIdx + MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl.split(
-                                "/"
-                            ).last() + MainDeepLinkKey.MOVIE_POSITION + state.moviePosition
+                            MainNavigationItem.MoviePlay.route + MainDeepLinkKey.MOVIE_NAME + state.movieDetailInfo.title + MainDeepLinkKey.MOVIE_INDEX + movieIdx + MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl + MainDeepLinkKey.MOVIE_POSITION + state.moviePosition
                         )
                     }
                     Spacer(modifier = Modifier.width(10.dp))
@@ -126,9 +124,7 @@ fun MovieDetailScreen(
                         title = stringResource(id = R.string.watch_first)
                     ) {
                         navController.navigate(
-                            MainNavigationItem.MoviePlay.route + MainDeepLinkKey.MOVIE_INDEX + movieIdx + MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl.split(
-                                "/"
-                            ).last() + MainDeepLinkKey.MOVIE_POSITION + 0F
+                            MainNavigationItem.MoviePlay.route + MainDeepLinkKey.MOVIE_NAME + state.movieDetailInfo.title + MainDeepLinkKey.MOVIE_INDEX + movieIdx + MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl + MainDeepLinkKey.MOVIE_POSITION + 0F
                         )
                     }
                 }
