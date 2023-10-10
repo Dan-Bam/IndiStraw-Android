@@ -63,10 +63,10 @@ jobs:
         uses: actions/upload-artifact@v3.0.0
         with:
           name: mobile-release.apk
-          path: mobile/build/outputs/apk/release/mobile-release.apk
+          path: mobile/build/outputs/apk/release/mobile-release-unsigned-signed.apk
 
       - name: Upload TV APK
         uses: actions/upload-artifact@v3.0.0
         with:
           name: tv-release.apk
-          path: tv/build/outputs/apk/release/tv-release.apk
+          path: tv/build/outputs/apk/release/tv-release-unsigned-signed.apk
