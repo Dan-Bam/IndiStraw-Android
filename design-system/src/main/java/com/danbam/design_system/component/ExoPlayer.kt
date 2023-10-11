@@ -41,6 +41,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -49,7 +50,9 @@ import com.danbam.design_system.BuildConfig
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
+import com.danbam.design_system.util.HideSystemUI
 import com.danbam.design_system.util.LockScreenOrientation
+import com.danbam.design_system.util.detectKeyEvent
 import com.danbam.design_system.util.formatMinSec
 import com.danbam.design_system.util.indiStrawClickable
 import com.google.android.exoplayer2.C
@@ -77,6 +80,7 @@ fun IndiStrawPlayer(
     onPIP: () -> Unit,
     onDispose: (Long) -> Unit
 ) {
+    HideSystemUI()
     val context = LocalContext.current
     val exoPlayer = remember {
         ExoPlayer.Builder(context)
@@ -124,6 +128,9 @@ fun IndiStrawPlayer(
         Box(
             modifier = modifier
                 .fillMaxSize()
+                .onKeyEvent {
+                    exoPlayer.detectKeyEvent(it.nativeKeyEvent)
+                }
                 .indiStrawClickable {
                     isVisible = !isVisible
                 }
@@ -154,39 +161,49 @@ fun IndiStrawPlayer(
         }
     }
 
-    IndiStrawController(
-        exoPlayer = exoPlayer,
-        movieName = movieName,
-        isVisible = isVisible,
-        isLock = isLock,
-        isPlaying = isPlaying,
-        onBack = { exoPlayer.seekBack() },
-        onForward = { exoPlayer.seekForward() },
-        onPause = {
-            when {
-                isPlaying -> {
-                    exoPlayer.pause()
-                }
+    if (isMobile) {
+        IndiStrawMobileController(
+            exoPlayer = exoPlayer,
+            movieName = movieName,
+            isVisible = isVisible,
+            isLock = isLock,
+            isPlaying = isPlaying,
+            onBack = { exoPlayer.seekBack() },
+            onForward = { exoPlayer.seekForward() },
+            onPause = {
+                when {
+                    isPlaying -> {
+                        exoPlayer.pause()
+                    }
 
-                !isPlaying -> {
-                    exoPlayer.play()
+                    !isPlaying -> {
+                        exoPlayer.play()
+                    }
                 }
-            }
-        },
-        onFinish = { onDispose(exoPlayer.currentPosition) },
-        onLock = { isLock = !isLock },
-        onPIP = {
-            isVisible = false
-            onPIP()
-        },
-        onTouchPlayer = { isVisible = !isVisible },
-        onSeekChanged = { exoPlayer.seekTo(it.toLong()) }
-    )
+            },
+            onFinish = { onDispose(exoPlayer.currentPosition) },
+            onLock = { isLock = !isLock },
+            onPIP = {
+                isVisible = false
+                onPIP()
+            },
+            onTouchPlayer = { isVisible = !isVisible },
+            onSeekChanged = { exoPlayer.seekTo(it.toLong()) }
+        )
+    } else {
+
+    }
+}
+
+fun IndiStrawTvController(
+
+) {
+
 }
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun IndiStrawController(
+fun IndiStrawMobileController(
     exoPlayer: ExoPlayer,
     movieName: String,
     isVisible: Boolean,
