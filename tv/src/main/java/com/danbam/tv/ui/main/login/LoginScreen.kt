@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,10 +24,8 @@ import com.danbam.design_system.component.IndiStrawTvBackground
 import com.danbam.design_system.component.IndiStrawTvButton
 import com.danbam.design_system.component.IndiStrawTvDialog
 import com.danbam.design_system.component.IndiStrawTvTextField
-import com.danbam.design_system.util.Language
-import com.danbam.design_system.util.changeLanguage
+import com.danbam.design_system.util.findActivity
 import com.danbam.tv.ui.main.navigation.MainNavigationItem
-import com.danbam.tv.util.android.findActivity
 import com.danbam.tv.util.android.observeWithLifecycle
 import kotlinx.coroutines.InternalCoroutinesApi
 

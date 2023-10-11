@@ -42,6 +42,7 @@ import com.danbam.design_system.component.IndiStrawTab
 import com.danbam.design_system.component.MovieTab
 import com.danbam.design_system.component.Shape
 import com.danbam.design_system.component.TitleSemiBold
+import com.danbam.design_system.util.findActivity
 import com.danbam.design_system.util.indiStrawClickable
 import com.danbam.mobile.ui.funding.navigation.FundingDeepLinkKey
 import com.danbam.mobile.ui.funding.navigation.FundingNavigationItem
@@ -49,7 +50,6 @@ import com.danbam.mobile.ui.movie.navigation.MovieDeepLinkKey
 import com.danbam.mobile.ui.movie.navigation.MovieNavigationItem
 import com.danbam.mobile.ui.profile.navigation.ProfileNavigationItem
 import com.danbam.mobile.ui.search.navigation.SearchNavigationItem
-import com.danbam.mobile.util.android.findActivity
 
 @Composable
 fun MainScreen(
