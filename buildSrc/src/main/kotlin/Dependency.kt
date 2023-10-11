@@ -93,6 +93,7 @@ object Dependency {
     object ExoPlayer {
         const val EXO_PLAYER_CORE =
             "com.google.android.exoplayer:exoplayer-core:${Version.EXO_PLAYER}"
+        const val EXO_PLAYER_HLS = "com.google.android.exoplayer:exoplayer-hls:${Version.EXO_PLAYER}"
         const val EXO_PLAYER_UI = "com.google.android.exoplayer:exoplayer-ui:${Version.EXO_PLAYER}"
     }
 

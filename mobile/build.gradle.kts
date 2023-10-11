@@ -101,9 +101,6 @@ dependencies {
 
     implementation(Dependency.Coil.COIL)
 
-    implementation(Dependency.ExoPlayer.EXO_PLAYER_CORE)
-    implementation(Dependency.ExoPlayer.EXO_PLAYER_UI)
-
     implementation(Dependency.BootPay.BOOT_PAY)
 
     debugImplementation(Dependency.AndroidTest.COMPOSE_TOOL)

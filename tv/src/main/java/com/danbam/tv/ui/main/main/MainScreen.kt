@@ -20,11 +20,11 @@ import androidx.navigation.NavHostController
 import com.danbam.design_system.component.IndiStrawTvBackground
 import com.danbam.design_system.component.IndiStrawTvNavigationDrawer
 import com.danbam.design_system.component.TvNavigationItem
+import com.danbam.design_system.util.findActivity
 import com.danbam.tv.ui.home.HomeScreen
 import com.danbam.tv.ui.movie.movie.MovieScreen
 import com.danbam.tv.ui.search.SearchScreen
 import com.danbam.tv.ui.setting.SettingScreen
-import com.danbam.tv.util.android.findActivity
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController

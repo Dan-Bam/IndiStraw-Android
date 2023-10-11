@@ -69,7 +69,6 @@ dependencies {
     implementation(project(":di"))
     implementation(project(":design-system"))
 
-
     implementation(Dependency.AndroidX.CORE_KTX)
     implementation(Dependency.AndroidX.LIFECYCLE)
     implementation(Dependency.AndroidX.PAGING_COMPOSE)
@@ -95,9 +94,6 @@ dependencies {
     implementation(Dependency.Mvi.ORBIT_TEST)
 
     implementation(Dependency.Coil.COIL)
-
-    implementation(Dependency.ExoPlayer.EXO_PLAYER_CORE)
-    implementation(Dependency.ExoPlayer.EXO_PLAYER_UI)
 
     implementation(Dependency.Tv.MATERIAL)
     implementation(Dependency.Tv.FOUNDATION)

@@ -6,12 +6,13 @@ import android.util.Rational
 import android.view.WindowManager
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.danbam.design_system.component.IndiStrawPlayer
+import com.danbam.design_system.util.findActivity
 import com.danbam.mobile.util.android.getActivity
 import com.danbam.mobile.util.android.observeWithLifecycle
-import com.danbam.mobile.util.view.LockScreenOrientation
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @OptIn(InternalCoroutinesApi::class)
@@ -29,6 +30,7 @@ fun MoviePlayScreen(
     val state = container.stateFlow.collectAsState().value
     val sideEffect = container.sideEffectFlow
     val activity = getActivity()
+    val context = LocalContext.current
 
     activity.window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
 
@@ -40,13 +42,12 @@ fun MoviePlayScreen(
         }
     }
 
-    if (!isVertical) {
-        LockScreenOrientation(orientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
-    }
     IndiStrawPlayer(
         movieUrl = movieUrl,
         movieName = movieName,
         position = position,
+        isMobile = true,
+        isVertical = isVertical,
         onPIP = {
             activity.enterPictureInPictureMode(
                 PictureInPictureParams.Builder()
@@ -55,6 +56,7 @@ fun MoviePlayScreen(
             )
         },
         onDispose = {
+            context.findActivity()?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
             moviePlayViewModel.addMovieHistory(movieIdx = movieIdx, it / 1000F)
         })
 }

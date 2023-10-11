@@ -37,8 +37,9 @@ import com.danbam.design_system.component.TitleSemiBold
 import com.danbam.design_system.util.toCommaString
 import com.danbam.design_system.R
 import com.danbam.design_system.component.IndiStrawTextField
+import com.danbam.design_system.util.findActivity
 import com.danbam.design_system.util.indiStrawClickable
-import com.danbam.mobile.util.android.findActivity
+import com.danbam.mobile.util.android.getActivity
 import com.danbam.mobile.util.android.observeWithLifecycle
 import com.danbam.mobile.util.pay.bootPayCreate
 import com.danbam.mobile.util.pay.bootPayPayload

@@ -36,6 +36,8 @@ fun MoviePlayScreen(
             movieUrl = movieUrl,
             movieName = movieName,
             position = position,
+            isMobile = false,
+            isVertical = false,
             onPIP = {},
             onDispose = {
                 moviePlayViewModel.addMovieHistory(movieIdx = movieIdx, it / 1000F)

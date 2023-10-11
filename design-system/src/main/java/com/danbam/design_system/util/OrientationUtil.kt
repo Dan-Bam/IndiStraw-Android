@@ -1,9 +1,8 @@
-package com.danbam.mobile.util.view
+package com.danbam.design_system.util
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.platform.LocalContext
-import com.danbam.mobile.util.android.findActivity
 
 @Composable
 fun LockScreenOrientation(orientation: Int) {

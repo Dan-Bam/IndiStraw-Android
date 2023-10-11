@@ -1,4 +1,4 @@
-package com.danbam.tv.util.android
+package com.danbam.design_system.util
 
 import android.app.Activity
 import android.content.Context
