@@ -55,7 +55,11 @@ import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.Player.STATE_ENDED
+import com.google.android.exoplayer2.source.ProgressiveMediaSource
+import com.google.android.exoplayer2.source.hls.HlsMediaSource
 import com.google.android.exoplayer2.ui.StyledPlayerView
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
+import com.google.android.exoplayer2.util.Util
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -79,8 +83,14 @@ fun IndiStrawPlayer(
                 val mediaItem = MediaItem.Builder()
                     .setUri("${BuildConfig.VIDEO_PRE_PATH}$movieUrl")
                     .build()
+                val userAgent = Util.getUserAgent(context, context.applicationInfo.name)
+                val factory = DefaultHttpDataSource.Factory().apply {
+                    setUserAgent(userAgent)
+                }
+                val hlsMediaSource = HlsMediaSource.Factory(factory).createMediaSource(mediaItem)
+                val progressiveMediaSource = ProgressiveMediaSource.Factory(factory).createMediaSource(mediaItem)
+                setMediaSource(progressiveMediaSource)
                 videoScalingMode = C.VIDEO_SCALING_MODE_SCALE_TO_FIT
-                setMediaItem(mediaItem)
                 prepare()
                 playWhenReady = true
                 seekTo((position * 1000).toLong())
@@ -96,7 +106,7 @@ fun IndiStrawPlayer(
 
     LaunchedEffect(isVisible) {
         if (isVisible && exoPlayer.playbackState != STATE_ENDED) {
-            delay(2000L)
+            delay(1500L)
             isVisible = false
         }
     }

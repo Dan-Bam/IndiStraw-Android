@@ -58,6 +58,7 @@ dependencies {
     implementation(Dependency.Coil.COIL)
 
     implementation(Dependency.ExoPlayer.EXO_PLAYER_CORE)
+    implementation(Dependency.ExoPlayer.EXO_PLAYER_HLS)
     implementation(Dependency.ExoPlayer.EXO_PLAYER_UI)
 
     implementation(Dependency.Camera.CAMERA)
