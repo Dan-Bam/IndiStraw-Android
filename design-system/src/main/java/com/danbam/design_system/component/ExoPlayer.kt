@@ -1,5 +1,6 @@
 package com.danbam.design_system.component
 
+import android.content.pm.ActivityInfo
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.activity.compose.BackHandler
@@ -48,6 +49,7 @@ import com.danbam.design_system.BuildConfig
 import com.danbam.design_system.IndiStrawTheme
 import com.danbam.design_system.attribute.IndiStrawIcon
 import com.danbam.design_system.attribute.IndiStrawIconList
+import com.danbam.design_system.util.LockScreenOrientation
 import com.danbam.design_system.util.formatMinSec
 import com.danbam.design_system.util.indiStrawClickable
 import com.google.android.exoplayer2.C
@@ -70,6 +72,8 @@ fun IndiStrawPlayer(
     movieUrl: String,
     movieName: String,
     position: Float,
+    isMobile: Boolean,
+    isVertical: Boolean,
     onPIP: () -> Unit,
     onDispose: (Long) -> Unit
 ) {
@@ -88,7 +92,8 @@ fun IndiStrawPlayer(
                     setUserAgent(userAgent)
                 }
                 val hlsMediaSource = HlsMediaSource.Factory(factory).createMediaSource(mediaItem)
-                val progressiveMediaSource = ProgressiveMediaSource.Factory(factory).createMediaSource(mediaItem)
+                val progressiveMediaSource =
+                    ProgressiveMediaSource.Factory(factory).createMediaSource(mediaItem)
                 setMediaSource(progressiveMediaSource)
                 videoScalingMode = C.VIDEO_SCALING_MODE_SCALE_TO_FIT
                 prepare()
@@ -99,6 +104,10 @@ fun IndiStrawPlayer(
     var isVisible by remember { mutableStateOf(false) }
     var isPlaying by remember { mutableStateOf(exoPlayer.isPlaying) }
     var isLock by remember { mutableStateOf(false) }
+
+    if (!isVertical && isMobile) {
+        LockScreenOrientation(orientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+    }
 
     BackHandler {
         onDispose(exoPlayer.currentPosition)
