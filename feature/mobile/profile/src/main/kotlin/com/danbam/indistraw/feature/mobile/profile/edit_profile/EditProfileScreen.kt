@@ -34,12 +34,12 @@ import com.danbam.indistraw.core.design_system.component.SelectProfileButton
 import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.core.design_system.util.android.toFile
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
-import com.danbam.indistraw.feature.mobile.auth.navigation.AuthDeepLinkKey
-import com.danbam.indistraw.feature.mobile.auth.navigation.AuthNavigationItem
-import com.danbam.indistraw.feature.mobile.auth.navigation.CertificateType
-import com.danbam.indistraw.feature.mobile.profile.navigation.ProfileNavigationItem
 import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
 import com.danbam.indistraw.core.design_system.util.androidx.popBackStack
+import com.danbam.indistraw.feature.mobile.navigation.auth.AuthDeepLinkKey
+import com.danbam.indistraw.feature.mobile.navigation.auth.AuthNavigationItem
+import com.danbam.indistraw.feature.mobile.navigation.auth.CertificateType
+import com.danbam.indistraw.feature.mobile.navigation.profile.ProfileNavigationItem
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @OptIn(ExperimentalComposeUiApi::class, InternalCoroutinesApi::class)
@@ -119,9 +119,7 @@ fun EditProfileScreen(
                 tailingIcon = {
                     FindPasswordMedium(
                         modifier = Modifier.indiStrawClickable {
-                            navController.navigate(
-                                com.danbam.indistraw.feature.mobile.auth.navigation.AuthNavigationItem.Certificate.route + com.danbam.indistraw.feature.mobile.auth.navigation.AuthDeepLinkKey.CERTIFICATE_TYPE + com.danbam.indistraw.feature.mobile.auth.navigation.CertificateType.CHANGE_PHONE_NUMBER
-                            )
+                            navController.navigate(AuthNavigationItem.Certificate.route + AuthDeepLinkKey.CERTIFICATE_TYPE + CertificateType.CHANGE_PHONE_NUMBER)
                         },
                         text = stringResource(id = R.string.change),
                         color = IndiStrawTheme.colors.skyBlue

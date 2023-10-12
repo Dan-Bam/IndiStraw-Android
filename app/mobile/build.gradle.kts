@@ -1,5 +1,3 @@
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
-
 plugins {
     id("indistraw-app")
 }
@@ -10,10 +8,15 @@ android {
         applicationId = "com.danbam.indi_straw.mobile"
         versionCode = libs.versions.versionCode.get().toInt()
         versionName = libs.versions.versionName.get()
-        buildConfigField(
-            "String",
-            "QR_URL",
-            gradleLocalProperties(rootDir).getProperty("QR_URL")
-        )
     }
+}
+
+dependencies {
+    implementation(project(":feature:mobile:auth"))
+    implementation(project(":feature:mobile:funding"))
+    implementation(project(":feature:mobile:main"))
+    implementation(project(":feature:mobile:movie"))
+    implementation(project(":feature:mobile:navigation"))
+    implementation(project(":feature:mobile:profile"))
+    implementation(project(":feature:mobile:search"))
 }

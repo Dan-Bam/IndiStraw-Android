@@ -25,7 +25,7 @@ import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.util.android.toFile
 import com.danbam.indistraw.core.design_system.util.androidx.getActivity
 import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
-import com.danbam.indistraw.feature.mobile.auth.navigation.AuthNavigationItem
+import com.danbam.indistraw.feature.mobile.navigation.auth.AuthNavigationItem
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @OptIn(InternalCoroutinesApi::class)

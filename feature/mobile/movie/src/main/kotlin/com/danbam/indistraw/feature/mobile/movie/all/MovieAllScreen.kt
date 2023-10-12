@@ -25,8 +25,8 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawGenreList
 import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
 import com.danbam.indistraw.core.design_system.component.MovieGenre
 import com.danbam.indistraw.core.design_system.component.MovieItem
-import com.danbam.indistraw.feature.mobile.movie.navigation.MovieDeepLinkKey
-import com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem
+import com.danbam.indistraw.feature.mobile.navigation.movie.MovieDeepLinkKey
+import com.danbam.indistraw.feature.mobile.navigation.movie.MovieNavigationItem
 
 @Composable
 fun MovieAllScreen(

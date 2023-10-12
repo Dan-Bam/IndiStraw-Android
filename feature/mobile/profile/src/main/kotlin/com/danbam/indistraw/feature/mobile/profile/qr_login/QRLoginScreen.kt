@@ -27,7 +27,7 @@ import com.danbam.indistraw.core.design_system.component.QRScanner
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.component.IndiStrawButton
 import com.danbam.indistraw.core.design_system.component.TitleRegular
-import com.danbam.indistraw.app.mobile.BuildConfig
+import com.danbam.indistraw.feature.mobile.profile.BuildConfig
 import java.util.UUID
 
 @Composable

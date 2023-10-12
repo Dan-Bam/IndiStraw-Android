@@ -24,8 +24,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import com.danbam.indistraw.app.mobile.ui.funding.navigation.FundingDeepLinkKey
-import com.danbam.indistraw.app.mobile.ui.funding.navigation.FundingNavigationItem
 import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
@@ -39,9 +37,11 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawColumnTab
 import com.danbam.indistraw.core.design_system.component.IndiStrawRowTab
 import com.danbam.indistraw.core.design_system.component.MovieTab
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
-import com.danbam.indistraw.feature.mobile.movie.navigation.MovieDeepLinkKey
-import com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem
-import com.danbam.indistraw.feature.mobile.profile.navigation.ProfileNavigationItem
+import com.danbam.indistraw.feature.mobile.navigation.funding.FundingDeepLinkKey
+import com.danbam.indistraw.feature.mobile.navigation.funding.FundingNavigationItem
+import com.danbam.indistraw.feature.mobile.navigation.movie.MovieDeepLinkKey
+import com.danbam.indistraw.feature.mobile.navigation.movie.MovieNavigationItem
+import com.danbam.indistraw.feature.mobile.navigation.profile.ProfileNavigationItem
 
 @Composable
 fun ProfileScreen(
@@ -130,7 +130,7 @@ fun ProfileScreen(
                 }
             }
         ) {
-            navController.navigate(com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem.Detail.route + com.danbam.indistraw.feature.mobile.movie.navigation.MovieDeepLinkKey.MOVIE_INDEX + it)
+            navController.navigate(MovieNavigationItem.Detail.route + MovieDeepLinkKey.MOVIE_INDEX + it)
         }
         IndiStrawColumnTab(
             modifier = Modifier

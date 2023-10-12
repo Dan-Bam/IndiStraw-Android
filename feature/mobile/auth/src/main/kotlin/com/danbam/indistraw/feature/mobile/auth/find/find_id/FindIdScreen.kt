@@ -15,8 +15,8 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawButton
 import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
 import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
 import com.danbam.indistraw.core.design_system.component.IndiStrawTextField
-import com.danbam.indistraw.feature.mobile.auth.navigation.AuthNavigationItem
-import com.danbam.indistraw.app.mobile.ui.main.navigation.MainNavigationItem
+import com.danbam.indistraw.feature.mobile.navigation.auth.AuthNavigationItem
+import com.danbam.indistraw.feature.mobile.navigation.main.MainNavigationItem
 
 @Composable
 fun FindIdScreen(

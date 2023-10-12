@@ -15,12 +15,12 @@ import androidx.navigation.NavHostController
 import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.feature.mobile.auth.navigation.authGraph
 import com.danbam.indistraw.feature.mobile.auth.navigation.signUpGraph
-import com.danbam.indistraw.app.mobile.ui.funding.navigation.fundingGraph
-import com.danbam.indistraw.feature.mobile.main.navigation.MainNavigationItem
+import com.danbam.indistraw.feature.mobile.funding.navigation.fundingGraph
 import com.danbam.indistraw.feature.mobile.main.navigation.mainGraph
-import com.danbam.indistraw.feature.mobile.movie.navigation.MovieDeepLinkKey
-import com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem
 import com.danbam.indistraw.feature.mobile.movie.navigation.movieGraph
+import com.danbam.indistraw.feature.mobile.navigation.main.MainNavigationItem
+import com.danbam.indistraw.feature.mobile.navigation.movie.MovieDeepLinkKey
+import com.danbam.indistraw.feature.mobile.navigation.movie.MovieNavigationItem
 import com.danbam.indistraw.feature.mobile.profile.navigation.profileGraph
 import com.danbam.indistraw.feature.mobile.search.navigation.searchGraph
 import com.google.accompanist.navigation.animation.AnimatedNavHost
@@ -45,9 +45,9 @@ class BaseActivity : ComponentActivity() {
     override fun onUserLeaveHint() {
         super.onUserLeaveHint()
         navController.currentDestination?.route?.let {
-            if (it.contains(com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem.Play.route)) {
+            if (it.contains(MovieNavigationItem.Play.route)) {
                 val isVertical =
-                    navController.currentBackStackEntry?.arguments?.getBoolean(com.danbam.indistraw.feature.mobile.movie.navigation.MovieDeepLinkKey.IS_VERTICAL)
+                    navController.currentBackStackEntry?.arguments?.getBoolean(MovieDeepLinkKey.IS_VERTICAL)
                         ?: false
                 enterPictureInPictureMode(
                     PictureInPictureParams.Builder()
@@ -64,7 +64,7 @@ class BaseActivity : ComponentActivity() {
 fun BaseApp(navController: NavHostController) {
     AnimatedNavHost(
         navController = navController,
-        startDestination = com.danbam.indistraw.feature.mobile.main.navigation.MainNavigationItem.Intro.route,
+        startDestination = MainNavigationItem.Intro.route,
         enterTransition = {
             slideInHorizontally(
                 initialOffsetX = { it * 2 }, animationSpec = tween(

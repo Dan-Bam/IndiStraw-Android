@@ -37,9 +37,9 @@ import com.danbam.indistraw.core.design_system.component.DialogMedium
 import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyColumn
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
-import com.danbam.indistraw.feature.mobile.profile.navigation.ProfileDeepLinkKey
-import com.danbam.indistraw.feature.mobile.profile.navigation.ProfileNavigationItem
 import com.danbam.indistraw.core.design_system.util.androidx.popBackStack
+import com.danbam.indistraw.feature.mobile.navigation.profile.ProfileDeepLinkKey
+import com.danbam.indistraw.feature.mobile.navigation.profile.ProfileNavigationItem
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable

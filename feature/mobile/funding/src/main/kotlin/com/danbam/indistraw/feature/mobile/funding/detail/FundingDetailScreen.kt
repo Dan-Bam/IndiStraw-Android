@@ -26,8 +26,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import com.danbam.indistraw.app.mobile.ui.funding.navigation.FundingDeepLinkKey
-import com.danbam.indistraw.app.mobile.ui.funding.navigation.FundingNavigationItem
 import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.component.ButtonMedium
 import com.danbam.indistraw.core.design_system.component.DialogMedium
@@ -49,6 +47,8 @@ import com.danbam.indistraw.core.design_system.component.RewardItem
 import com.danbam.indistraw.core.design_system.component.RewardType
 import com.danbam.indistraw.core.design_system.util.internal.toCommaString
 import com.danbam.indistraw.core.entity.funding.FundingDetailEntity
+import com.danbam.indistraw.feature.mobile.navigation.funding.FundingDeepLinkKey
+import com.danbam.indistraw.feature.mobile.navigation.funding.FundingNavigationItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

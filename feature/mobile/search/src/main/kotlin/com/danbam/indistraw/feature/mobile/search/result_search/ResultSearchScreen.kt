@@ -24,8 +24,6 @@ import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import com.danbam.indistraw.app.mobile.ui.funding.navigation.FundingDeepLinkKey
-import com.danbam.indistraw.app.mobile.ui.funding.navigation.FundingNavigationItem
 import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
 import com.danbam.indistraw.core.design_system.component.IndiStrawTab
 import com.danbam.indistraw.core.design_system.R
@@ -33,8 +31,10 @@ import com.danbam.indistraw.core.design_system.component.FundingItem
 import com.danbam.indistraw.core.design_system.component.MovieItem
 import com.danbam.indistraw.core.design_system.component.SearchTab
 import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyColumn
-import com.danbam.indistraw.app.mobile.ui.movie.navigation.MovieDeepLinkKey
-import com.danbam.indistraw.app.mobile.ui.movie.navigation.MovieNavigationItem
+import com.danbam.indistraw.feature.mobile.navigation.funding.FundingDeepLinkKey
+import com.danbam.indistraw.feature.mobile.navigation.funding.FundingNavigationItem
+import com.danbam.indistraw.feature.mobile.navigation.movie.MovieDeepLinkKey
+import com.danbam.indistraw.feature.mobile.navigation.movie.MovieNavigationItem
 
 @Composable
 fun ResultSearchScreen(

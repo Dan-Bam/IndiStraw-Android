@@ -27,8 +27,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.danbam.indistraw.app.mobile.ui.funding.navigation.FundingDeepLinkKey
-import com.danbam.indistraw.app.mobile.ui.funding.navigation.FundingNavigationItem
 import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
@@ -46,10 +44,12 @@ import com.danbam.indistraw.core.design_system.component.Shape
 import com.danbam.indistraw.core.design_system.component.TitleSemiBold
 import com.danbam.indistraw.core.design_system.util.android.findActivity
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
-import com.danbam.indistraw.feature.mobile.movie.navigation.MovieDeepLinkKey
-import com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem
-import com.danbam.indistraw.feature.mobile.profile.navigation.ProfileNavigationItem
-import com.danbam.indistraw.feature.mobile.search.navigation.SearchNavigationItem
+import com.danbam.indistraw.feature.mobile.navigation.funding.FundingDeepLinkKey
+import com.danbam.indistraw.feature.mobile.navigation.funding.FundingNavigationItem
+import com.danbam.indistraw.feature.mobile.navigation.movie.MovieDeepLinkKey
+import com.danbam.indistraw.feature.mobile.navigation.movie.MovieNavigationItem
+import com.danbam.indistraw.feature.mobile.navigation.profile.ProfileNavigationItem
+import com.danbam.indistraw.feature.mobile.navigation.search.SearchNavigationItem
 
 @Composable
 fun MainScreen(
@@ -87,9 +87,7 @@ fun MainScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 IndiStrawIcon(modifier = Modifier.indiStrawClickable {
-                    navController.navigate(
-                        com.danbam.indistraw.feature.mobile.search.navigation.SearchNavigationItem.Search.route
-                    )
+                    navController.navigate(SearchNavigationItem.Search.route)
                 }, icon = IndiStrawIconList.Search)
                 if (state.profileUrl != null) {
                     ImageButton(
@@ -99,12 +97,12 @@ fun MainScreen(
                         imgSrc = state.profileUrl,
                         shape = Shape.Circle
                     ) {
-                        navController.navigate(com.danbam.indistraw.feature.mobile.profile.navigation.ProfileNavigationItem.Profile.route)
+                        navController.navigate(ProfileNavigationItem.Profile.route)
                     }
                 } else {
                     Box(
                         modifier = Modifier
-                            .indiStrawClickable { navController.navigate(com.danbam.indistraw.feature.mobile.profile.navigation.ProfileNavigationItem.Profile.route) }
+                            .indiStrawClickable { navController.navigate(ProfileNavigationItem.Profile.route) }
                             .padding(start = 26.dp)
                             .size(30.dp)
                             .background(
@@ -158,10 +156,10 @@ fun MainScreen(
                     currentMovieTab = MovieTab.RecentMovie
                 }
             }, moreData = {
-                navController.navigate(com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem.All.route)
+                navController.navigate(MovieNavigationItem.All.route)
             }
         ) {
-            navController.navigate(com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem.Detail.route + com.danbam.indistraw.feature.mobile.movie.navigation.MovieDeepLinkKey.MOVIE_INDEX + it)
+            navController.navigate(MovieNavigationItem.Detail.route + MovieDeepLinkKey.MOVIE_INDEX + it)
         }
         IndiStrawColumnTab(
             itemList = state.fundingPopularList,
@@ -188,7 +186,7 @@ fun MainScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 13.dp)
-                    .indiStrawClickable { navController.navigate(com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem.WriteIntroduce.route) },
+                    .indiStrawClickable { navController.navigate(MovieNavigationItem.WriteIntroduce.route) },
                 text = stringResource(id = R.string.make_indi_movie)
             )
             Divider(

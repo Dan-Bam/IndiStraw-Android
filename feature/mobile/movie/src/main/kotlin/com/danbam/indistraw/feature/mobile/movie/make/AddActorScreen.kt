@@ -18,7 +18,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.danbam.indistraw.app.mobile.ui.main.navigation.MainNavigationItem
 import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.component.AddPeopleList
 import com.danbam.indistraw.core.design_system.component.IndiStrawBottomSheetLayout
@@ -29,10 +28,11 @@ import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.component.IndiStrawButton
 import com.danbam.indistraw.core.design_system.util.androidx.getActivity
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
-import com.danbam.indistraw.feature.mobile.movie.navigation.ActorType
-import com.danbam.indistraw.feature.mobile.movie.navigation.MovieDeepLinkKey
-import com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem
 import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
+import com.danbam.indistraw.feature.mobile.navigation.main.MainNavigationItem
+import com.danbam.indistraw.feature.mobile.navigation.movie.ActorType
+import com.danbam.indistraw.feature.mobile.navigation.movie.MovieDeepLinkKey
+import com.danbam.indistraw.feature.mobile.navigation.movie.MovieNavigationItem
 import kotlinx.coroutines.InternalCoroutinesApi
 
 sealed class AddPeopleType {

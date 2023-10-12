@@ -12,6 +12,9 @@ import com.danbam.indistraw.feature.mobile.movie.make.SearchActorScreen
 import com.danbam.indistraw.feature.mobile.movie.make.WriteActorScreen
 import com.danbam.indistraw.feature.mobile.movie.make.WriteIntroduceScreen
 import com.danbam.indistraw.feature.mobile.movie.play.MoviePlayScreen
+import com.danbam.indistraw.feature.mobile.navigation.movie.ActorType
+import com.danbam.indistraw.feature.mobile.navigation.movie.MovieDeepLinkKey
+import com.danbam.indistraw.feature.mobile.navigation.movie.MovieNavigationItem
 import com.google.accompanist.navigation.animation.composable
 
 @OptIn(ExperimentalAnimationApi::class)

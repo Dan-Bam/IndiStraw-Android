@@ -33,9 +33,9 @@ import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
 import com.danbam.indistraw.core.design_system.util.androidx.popBackStack
 import com.danbam.indistraw.core.design_system.util.androidx.requestFocus
-import com.danbam.indistraw.feature.mobile.auth.navigation.AuthNavigationItem
-import com.danbam.indistraw.app.mobile.ui.main.navigation.MainNavigationItem
-import com.danbam.indistraw.app.mobile.ui.profile.navigation.ProfileNavigationItem
+import com.danbam.indistraw.feature.mobile.navigation.auth.AuthNavigationItem
+import com.danbam.indistraw.feature.mobile.navigation.main.MainNavigationItem
+import com.danbam.indistraw.feature.mobile.navigation.profile.ProfileNavigationItem
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @OptIn(InternalCoroutinesApi::class, ExperimentalComposeUiApi::class)

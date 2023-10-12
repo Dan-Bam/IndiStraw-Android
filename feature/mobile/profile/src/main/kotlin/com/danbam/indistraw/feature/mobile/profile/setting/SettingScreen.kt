@@ -38,12 +38,12 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawDialog
 import com.danbam.indistraw.core.design_system.util.android.Language
 import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyColumn
 import com.danbam.indistraw.core.design_system.util.android.changeLanguage
-import com.danbam.indistraw.feature.mobile.auth.navigation.AuthDeepLinkKey
-import com.danbam.indistraw.feature.mobile.auth.navigation.AuthNavigationItem
-import com.danbam.indistraw.feature.mobile.auth.navigation.CertificateType
-import com.danbam.indistraw.app.mobile.ui.main.navigation.MainNavigationItem
-import com.danbam.indistraw.feature.mobile.profile.navigation.ProfileNavigationItem
 import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
+import com.danbam.indistraw.feature.mobile.navigation.auth.AuthDeepLinkKey
+import com.danbam.indistraw.feature.mobile.navigation.auth.AuthNavigationItem
+import com.danbam.indistraw.feature.mobile.navigation.auth.CertificateType
+import com.danbam.indistraw.feature.mobile.navigation.main.MainNavigationItem
+import com.danbam.indistraw.feature.mobile.navigation.profile.ProfileNavigationItem
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @OptIn(ExperimentalMaterialApi::class, InternalCoroutinesApi::class)
@@ -63,14 +63,14 @@ fun SettingScreen(
     sideEffect.observeWithLifecycle {
         when (it) {
             is SettingSideEffect.SuccessLogout -> {
-                navController.navigate(com.danbam.indistraw.feature.mobile.auth.navigation.AuthNavigationItem.Login.route) {
+                navController.navigate(AuthNavigationItem.Login.route) {
                     logoutDialogVisible = false
                     popUpTo(MainNavigationItem.Intro.route)
                 }
             }
 
             is SettingSideEffect.SuccessWithdraw -> {
-                navController.navigate(com.danbam.indistraw.feature.mobile.auth.navigation.AuthNavigationItem.Login.route) {
+                navController.navigate(AuthNavigationItem.Login.route) {
                     withdrawDialogVisible = false
                     popUpTo(MainNavigationItem.Intro.route)
                 }
@@ -87,7 +87,7 @@ fun SettingScreen(
     )
     val secondLine = mapOf(
         stringResource(id = R.string.change_password) to {
-            navController.navigate(com.danbam.indistraw.feature.mobile.auth.navigation.AuthNavigationItem.Certificate.route + com.danbam.indistraw.feature.mobile.auth.navigation.AuthDeepLinkKey.CERTIFICATE_TYPE + com.danbam.indistraw.feature.mobile.auth.navigation.CertificateType.CHANGE_PASSWORD)
+            navController.navigate(AuthNavigationItem.Certificate.route + AuthDeepLinkKey.CERTIFICATE_TYPE + CertificateType.CHANGE_PASSWORD)
         },
         stringResource(id = R.string.change_language) to {
             changeLanguage()
