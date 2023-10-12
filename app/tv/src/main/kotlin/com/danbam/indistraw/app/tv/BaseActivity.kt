@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.tv.app
+package com.danbam.indistraw.app.tv
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

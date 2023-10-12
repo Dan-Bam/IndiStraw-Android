@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.ui.search
+package com.danbam.indistraw.feature.tv.search
 
 import androidx.paging.PagingData
 import com.danbam.indistraw.core.entity.movie.MovieEntity

@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.ui.search
+package com.danbam.indistraw.feature.tv.search
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
