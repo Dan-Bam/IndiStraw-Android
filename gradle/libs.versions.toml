@@ -98,7 +98,6 @@ test-espresso-core = { module = "androidx.test.espresso:espresso-core", version.
 coroutine = ["coroutines-core", "coroutines-android"]
 compose = ["compose-activity", "compose-ui", "compose-preview", "compose-material", "compose-material3", "compose-nav", "compose-paging"]
 compose-debug = ["compose-tool", "compose-manifest"]
-room = ["room", "room-compiler"]
 orbit = ["orbit-core", "orbit-viewmodel", "orbit-test"]
 retrofit = ["retrofit", "retrofit-converter-gson"]
 okhttp = ["okhttp", "okhttp-logging-interceptor", "okhttp-sse"]
