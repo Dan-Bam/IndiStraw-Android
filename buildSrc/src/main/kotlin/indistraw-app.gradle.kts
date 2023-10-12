@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.project
+
 val versionCatalog = project.extensions.getByType<VersionCatalogsExtension>()
 val libs = versionCatalog.named("libs")
 
@@ -32,9 +34,32 @@ android {
     hilt {
         enableAggregatingTask = true
     }
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+    packagingOptions.resources.excludes += setOf(
+        "META-INF/DEPENDENCIES",
+        "META-INF/LICENSE",
+        "META-INF/LICENSE.txt",
+        "META-INF/license.txt",
+        "META-INF/NOTICE",
+        "META-INF/NOTICE.txt",
+        "META-INF/INDEX.LIST",
+        "META-INF/notice.txt",
+        "META-INF/ASL2.0",
+        "META-INF/gradle/incremental.annotation.processors"
+    )
 }
 
 dependencies {
+    implementation(project(":core:di"))
     implementation(project(":core:domain"))
     implementation(project(":core:design-system"))
     implementation(libs.findLibrary("androidx.core").get())
