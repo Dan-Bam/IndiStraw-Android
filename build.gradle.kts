@@ -5,14 +5,10 @@ buildscript {
     }
 
     dependencies {
-        classpath(Dependency.GradlePlugin.GRADLE_ANDROID)
-        classpath(Dependency.GradlePlugin.GRADLE_KOTLIN)
-        classpath(Dependency.GradlePlugin.GRADLE_HILT)
+        classpath(libs.plugin.android)
+        classpath(libs.plugin.kotlin)
+        classpath(libs.plugin.hilt)
     }
-}
-
-plugins {
-    id(Dependency.GradlePlugin.GRADLE_KTLINT) version Version.GRADLE_KTLINT
 }
 
 tasks.register("clean", Delete::class) {
