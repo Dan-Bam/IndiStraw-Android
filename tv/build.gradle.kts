@@ -8,8 +8,8 @@ android {
     namespace = "com.danbam.tv"
     defaultConfig {
         applicationId = "com.danbam.indi_straw.tv"
-        versionCode = Version.VERSION_CODE
-        versionName = Version.VERSION_NAME
+        versionCode = libs.versions.versionCode.get().toInt()
+        versionName = libs.versions.versionName.get()
         buildConfigField(
             "String",
             "QR_URL",
@@ -43,5 +43,5 @@ android {
 
 dependencies {
     implementation(project(":di"))
-    implementation(Dependency.AndroidX.LEANBACK)
+    implementation(libs.androix.leanback)
 }

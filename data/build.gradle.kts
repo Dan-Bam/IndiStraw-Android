@@ -42,22 +42,14 @@ android {
 
 dependencies {
     implementation(project(":domain"))
-
-    implementation(Dependency.JavaX.INJECT)
-
-    implementation(Dependency.Room.ROOM)
-    kapt(Dependency.Room.ROOM_COMPILER)
-
-    implementation(Dependency.Retrofit.RETROFIT)
-    implementation(Dependency.Retrofit.RETROFIT_CONVERTER_GSON)
-    implementation(Dependency.Retrofit.OKHTTP)
-    implementation(Dependency.Retrofit.OKHTTP_LOGGING_INTERCEPTOR)
-    implementation(Dependency.Retrofit.SSE)
-    testImplementation(Dependency.Retrofit.SSE)
-
-    implementation(Dependency.AndroidX.PAGING)
-
-    testImplementation(Dependency.UnitTest.JUNIT)
-    testImplementation(Dependency.UnitTest.MOCKITO_KOTLIN)
-    testImplementation(Dependency.UnitTest.MOCKITO_INLINE)
+    implementation(libs.inject)
+    implementation(libs.room)
+    kapt(libs.room.compiler)
+    implementation(libs.bundles.retrofit)
+    implementation(libs.bundles.okhttp)
+    testImplementation(libs.okhttp.sse)
+    implementation(libs.paging)
+    testImplementation(libs.test.junit)
+    testImplementation(libs.test.mockito.kotlin)
+    testImplementation(libs.test.mockito.inline)
 }

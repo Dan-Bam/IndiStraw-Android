@@ -19,19 +19,13 @@ android {
 dependencies {
     implementation(project(":data"))
     implementation(project(":domain"))
-
-    implementation(Dependency.AndroidX.CORE_KTX)
-    implementation(Dependency.AndroidX.APP_COMPAT)
-    implementation(Dependency.AndroidX.PREFERENCE_KTX)
-
-    implementation(Dependency.Hilt.HILT_ANDROID)
-    kapt(Dependency.Hilt.HILT_ANDROID_COMPILER)
-
-    implementation(Dependency.Room.ROOM)
-    kapt(Dependency.Room.ROOM_COMPILER)
-
-    implementation(Dependency.Retrofit.RETROFIT)
-    implementation(Dependency.Retrofit.RETROFIT_CONVERTER_GSON)
-    implementation(Dependency.Retrofit.OKHTTP)
-    implementation(Dependency.Retrofit.OKHTTP_LOGGING_INTERCEPTOR)
+    implementation(libs.androidx.core)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.preference)
+    implementation(libs.hilt)
+    kapt(libs.hilt.compiler)
+    implementation(libs.room)
+    kapt(libs.room.compiler)
+    implementation(libs.bundles.retrofit)
+    implementation(libs.bundles.okhttp)
 }

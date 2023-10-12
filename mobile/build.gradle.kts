@@ -8,8 +8,8 @@ android {
     namespace = "com.danbam.mobile"
     defaultConfig {
         applicationId = "com.danbam.indi_straw.mobile"
-        versionCode = Version.VERSION_CODE
-        versionName = Version.VERSION_NAME
+        versionCode = libs.versions.versionCode.get().toInt()
+        versionName = libs.versions.versionName.get()
         buildConfigField(
             "String",
             "QR_URL",
@@ -47,8 +47,6 @@ android {
 }
 dependencies {
     implementation(project(":di"))
-    implementation(Dependency.Retrofit.RETROFIT)
-    implementation(Dependency.Retrofit.RETROFIT_CONVERTER_GSON)
-
-    implementation(Dependency.BootPay.BOOT_PAY)
+    implementation(libs.bundles.retrofit)
+    implementation(libs.bootpay)
 }

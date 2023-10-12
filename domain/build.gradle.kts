@@ -7,13 +7,10 @@ android {
 }
 
 dependencies {
-    implementation(Dependency.JavaX.INJECT)
-
-    implementation(Dependency.Kotlin.COROUTINES_CORE)
-
-    implementation(Dependency.AndroidX.PAGING)
-
-    testImplementation(Dependency.UnitTest.JUNIT)
-    testImplementation(Dependency.UnitTest.MOCKITO_KOTLIN)
-    testImplementation(Dependency.UnitTest.MOCKITO_INLINE)
+    implementation(libs.inject)
+    implementation(libs.coroutines.core)
+    implementation(libs.paging)
+    testImplementation(libs.test.junit)
+    testImplementation(libs.test.mockito.kotlin)
+    testImplementation(libs.test.mockito.inline)
 }

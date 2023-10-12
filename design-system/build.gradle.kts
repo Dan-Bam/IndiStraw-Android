@@ -17,36 +17,17 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Version.COMPOSE
+        kotlinCompilerExtensionVersion = libs.versions.compose.get()
     }
 }
 
 dependencies {
     implementation(project(":domain"))
+    implementation(libs.bundles.compose)
+    implementation(libs.coil)
+    implementation(libs.bundles.exoplayer)
+    implementation(libs.bundles.camera)
+    implementation(libs.bundles.barcode)
+    implementation(libs.bundles.tv)
 
-    implementation(Dependency.Compose.ACTIVITY)
-    implementation(Dependency.Compose.UI)
-    implementation(Dependency.Compose.PREVIEW)
-    implementation(Dependency.Compose.MATERIAL)
-    implementation(Dependency.Compose.MATERIAL3)
-    implementation(Dependency.Compose.COMPOSE_HILT_NAV)
-    implementation(Dependency.Compose.FOUNDATION)
-
-    implementation(Dependency.Coil.COIL)
-
-    implementation(Dependency.ExoPlayer.EXO_PLAYER_CORE)
-    implementation(Dependency.ExoPlayer.EXO_PLAYER_HLS)
-    implementation(Dependency.ExoPlayer.EXO_PLAYER_UI)
-
-    implementation(Dependency.Camera.CAMERA)
-    implementation(Dependency.Camera.LIFECYCLE)
-    implementation(Dependency.Camera.VIEW)
-
-    implementation(Dependency.Barcode.SCANNING)
-    implementation(Dependency.Barcode.DRAWING)
-
-    implementation(Dependency.Tv.MATERIAL)
-    implementation(Dependency.Tv.FOUNDATION)
-
-    implementation(Dependency.AndroidX.CONSTRAINT_LAYOUT)
 }
