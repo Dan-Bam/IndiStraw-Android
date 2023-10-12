@@ -13,7 +13,7 @@
         android:required="false" />
 
     <application
-        android:name="com.danbam.mobile.app.IndiStrawApp"
+        android:name="com.danbam.indistraw.mobile.app.IndiStrawApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -24,7 +24,7 @@
         android:theme="@style/Theme.Indi_straw"
         android:usesCleartextTraffic="true">
         <activity
-            android:name="com.danbam.mobile.app.BaseActivity"
+            android:name="com.danbam.indistraw.mobile.app.BaseActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"

@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.danbam.tv"
+    namespace = "com.danbam.indistraw.tv"
     defaultConfig {
         applicationId = "com.danbam.indi_straw.tv"
         versionCode = libs.versions.versionCode.get().toInt()

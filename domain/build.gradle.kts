@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.danbam.domain"
+    namespace = "com.danbam.indistraw.domain"
 }
 
 dependencies {

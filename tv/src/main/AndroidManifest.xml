@@ -11,7 +11,7 @@
         android:required="true" />
 
     <application
-        android:name=".app.IndiStrawApp"
+        android:name="com.danbam.indistraw.tv.app.IndiStrawApp"
         android:allowBackup="true"
         android:banner="@drawable/ic_app"
         android:icon="@mipmap/ic_launcher"
@@ -20,7 +20,7 @@
         android:theme="@style/Theme.Indi_straw">
 
         <activity
-            android:name=".app.BaseActivity"
+            android:name="com.danbam.indistraw.tv.app.BaseActivity"
             android:exported="true"
             android:icon="@drawable/ic_app"
             android:logo="@drawable/ic_app"

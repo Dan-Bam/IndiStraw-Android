@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.danbam.mobile"
+    namespace = "com.danbam.indistraw.mobile"
     defaultConfig {
         applicationId = "com.danbam.indi_straw.mobile"
         versionCode = libs.versions.versionCode.get().toInt()

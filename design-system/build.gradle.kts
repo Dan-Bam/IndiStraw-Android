@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.danbam.design_system"
+    namespace = "com.danbam.indistraw.design_system"
     defaultConfig {
         buildConfigField(
             "String",
