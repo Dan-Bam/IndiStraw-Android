@@ -23,6 +23,7 @@
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/mobile" />
             <option value="$PROJECT_DIR$/feature/mobile/auth" />
+            <option value="$PROJECT_DIR$/feature/mobile/funding" />
             <option value="$PROJECT_DIR$/feature/mobile/search" />
           </set>
         </option>

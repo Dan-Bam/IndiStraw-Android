@@ -17,6 +17,3 @@ android {
         )
     }
 }
-dependencies {
-    implementation(libs.bootpay)
-}
