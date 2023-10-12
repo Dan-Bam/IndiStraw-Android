@@ -1,5 +1,5 @@
 plugins {
-    id("indistraw-library")
+    id("indistraw-core")
 }
 
 android {

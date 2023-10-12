@@ -1,7 +1,7 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 plugins {
-    id("indistraw-library")
+    id("indistraw-core")
     id("kotlin-android")
 }
 
