@@ -32,6 +32,7 @@
             <option value="$PROJECT_DIR$/feature/tv" />
             <option value="$PROJECT_DIR$/feature/tv/home" />
             <option value="$PROJECT_DIR$/feature/tv/main" />
+            <option value="$PROJECT_DIR$/feature/tv/movie" />
             <option value="$PROJECT_DIR$/feature/tv/setting" />
           </set>
         </option>

@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.tv.ui.movie.detail
+package com.danbam.indistraw.feature.tv.movie.detail
 
 import com.danbam.indistraw.core.entity.movie.MovieDetailEntity
 

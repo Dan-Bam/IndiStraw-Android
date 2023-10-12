@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.tv.ui.movie.play
+package com.danbam.indistraw.feature.tv.movie.play
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
