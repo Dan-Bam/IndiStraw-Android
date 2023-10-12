@@ -1,40 +1,17 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    id("indistraw-library")
 }
 
 android {
     namespace = "com.danbam.design_system"
-    compileSdk = Version.COMPILE_SDK_VERSION
-
     defaultConfig {
-        minSdk = Version.MIN_SDK_VERSION
-        targetSdk = Version.TARGET_SDK_VERSION
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField(
             "String",
             "VIDEO_PRE_PATH",
             gradleLocalProperties(rootDir).getProperty("VIDEO_PRE_PATH")
         )
-    }
-
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-    compileOptions {
-        sourceCompatibility = Version.JAVA_VERSION
-        targetCompatibility = Version.JAVA_VERSION
-    }
-    kotlinOptions {
-        jvmTarget = Version.JAVA_VERSION.toString()
     }
     buildFeatures {
         compose = true

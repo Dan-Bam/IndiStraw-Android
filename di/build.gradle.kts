@@ -1,43 +1,18 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    id("indistraw-library")
     id("kotlin-android")
-    id("kotlin-kapt")
 }
 
 android {
     namespace = "com.danbam.di"
-    compileSdk = Version.COMPILE_SDK_VERSION
-
     defaultConfig {
-        minSdk = Version.MIN_SDK_VERSION
-        targetSdk = Version.TARGET_SDK_VERSION
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField(
             "String",
             "BASE_URL",
             gradleLocalProperties(rootDir).getProperty("BASE_URL")
         )
-    }
-
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-    compileOptions {
-        sourceCompatibility = Version.JAVA_VERSION
-        targetCompatibility = Version.JAVA_VERSION
-    }
-    kotlinOptions {
-        jvmTarget = Version.JAVA_VERSION.toString()
     }
 }
 
