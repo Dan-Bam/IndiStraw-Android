@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.mobile.ui.main.main
+package com.danbam.indistraw.feature.mobile.main.main
 
 import com.danbam.indistraw.core.entity.banner.BannerEntity
 import com.danbam.indistraw.core.entity.funding.FundingEntity

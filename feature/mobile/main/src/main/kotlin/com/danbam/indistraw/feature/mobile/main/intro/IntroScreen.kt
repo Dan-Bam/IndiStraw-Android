@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.mobile.ui.main.intro
+package com.danbam.indistraw.feature.mobile.main.intro
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
@@ -31,7 +31,7 @@ import com.danbam.indistraw.core.design_system.util.android.Language
 import com.danbam.indistraw.core.design_system.util.android.changeLanguage
 import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
 import com.danbam.indistraw.feature.mobile.auth.navigation.AuthNavigationItem
-import com.danbam.indistraw.app.mobile.ui.main.navigation.MainNavigationItem
+import com.danbam.indistraw.feature.mobile.main.navigation.MainNavigationItem
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.delay
 

@@ -16,8 +16,8 @@ import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.feature.mobile.auth.navigation.authGraph
 import com.danbam.indistraw.feature.mobile.auth.navigation.signUpGraph
 import com.danbam.indistraw.app.mobile.ui.funding.navigation.fundingGraph
-import com.danbam.indistraw.app.mobile.ui.main.navigation.MainNavigationItem
-import com.danbam.indistraw.app.mobile.ui.main.navigation.mainGraph
+import com.danbam.indistraw.feature.mobile.main.navigation.MainNavigationItem
+import com.danbam.indistraw.feature.mobile.main.navigation.mainGraph
 import com.danbam.indistraw.feature.mobile.movie.navigation.MovieDeepLinkKey
 import com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem
 import com.danbam.indistraw.feature.mobile.movie.navigation.movieGraph
@@ -64,7 +64,7 @@ class BaseActivity : ComponentActivity() {
 fun BaseApp(navController: NavHostController) {
     AnimatedNavHost(
         navController = navController,
-        startDestination = MainNavigationItem.Intro.route,
+        startDestination = com.danbam.indistraw.feature.mobile.main.navigation.MainNavigationItem.Intro.route,
         enterTransition = {
             slideInHorizontally(
                 initialOffsetX = { it * 2 }, animationSpec = tween(
