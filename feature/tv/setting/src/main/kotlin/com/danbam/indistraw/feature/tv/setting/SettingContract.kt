@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.tv.ui.setting
+package com.danbam.indistraw.feature.tv.setting
 
 import com.danbam.indistraw.core.design_system.util.android.Language
 import com.danbam.indistraw.core.domain.entity.auth.ProfileEntity
