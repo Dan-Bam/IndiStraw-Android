@@ -30,7 +30,7 @@ import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
 import com.danbam.indistraw.core.design_system.util.android.Language
 import com.danbam.indistraw.core.design_system.util.android.changeLanguage
 import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
-import com.danbam.indistraw.app.mobile.ui.auth.navigation.AuthNavigationItem
+import com.danbam.indistraw.feature.mobile.auth.navigation.AuthNavigationItem
 import com.danbam.indistraw.app.mobile.ui.main.navigation.MainNavigationItem
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.delay
@@ -87,13 +87,13 @@ fun IntroScreen(
                 IndiStrawButton(
                     text = stringResource(id = R.string.login)
                 ) {
-                    navController.navigate(AuthNavigationItem.Login.route)
+                    navController.navigate(com.danbam.indistraw.feature.mobile.auth.navigation.AuthNavigationItem.Login.route)
                 }
                 Spacer(modifier = Modifier.height(33.dp))
                 Row(
                     modifier = Modifier
                         .indiStrawClickable(onClick = {
-                            navController.navigate(AuthNavigationItem.SetName.route)
+                            navController.navigate(com.danbam.indistraw.feature.mobile.auth.navigation.AuthNavigationItem.SetName.route)
                         })
                 ) {
                     TitleRegular(

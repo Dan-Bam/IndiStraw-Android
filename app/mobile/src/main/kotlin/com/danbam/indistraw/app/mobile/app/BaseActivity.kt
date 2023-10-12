@@ -13,8 +13,8 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import com.danbam.indistraw.core.design_system.IndiStrawTheme
-import com.danbam.indistraw.app.mobile.ui.auth.navigation.authGraph
-import com.danbam.indistraw.app.mobile.ui.auth.navigation.signUpGraph
+import com.danbam.indistraw.feature.mobile.auth.navigation.authGraph
+import com.danbam.indistraw.feature.mobile.auth.navigation.signUpGraph
 import com.danbam.indistraw.app.mobile.ui.funding.navigation.fundingGraph
 import com.danbam.indistraw.app.mobile.ui.main.navigation.MainNavigationItem
 import com.danbam.indistraw.app.mobile.ui.main.navigation.mainGraph

@@ -34,9 +34,9 @@ import com.danbam.indistraw.core.design_system.component.SelectProfileButton
 import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.core.design_system.util.android.toFile
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
-import com.danbam.indistraw.app.mobile.ui.auth.navigation.AuthDeepLinkKey
-import com.danbam.indistraw.app.mobile.ui.auth.navigation.AuthNavigationItem
-import com.danbam.indistraw.app.mobile.ui.auth.navigation.CertificateType
+import com.danbam.indistraw.feature.mobile.auth.navigation.AuthDeepLinkKey
+import com.danbam.indistraw.feature.mobile.auth.navigation.AuthNavigationItem
+import com.danbam.indistraw.feature.mobile.auth.navigation.CertificateType
 import com.danbam.indistraw.app.mobile.ui.profile.navigation.ProfileNavigationItem
 import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
 import com.danbam.indistraw.core.design_system.util.androidx.popBackStack
@@ -120,7 +120,7 @@ fun EditProfileScreen(
                     FindPasswordMedium(
                         modifier = Modifier.indiStrawClickable {
                             navController.navigate(
-                                AuthNavigationItem.Certificate.route + AuthDeepLinkKey.CERTIFICATE_TYPE + CertificateType.CHANGE_PHONE_NUMBER
+                                com.danbam.indistraw.feature.mobile.auth.navigation.AuthNavigationItem.Certificate.route + com.danbam.indistraw.feature.mobile.auth.navigation.AuthDeepLinkKey.CERTIFICATE_TYPE + com.danbam.indistraw.feature.mobile.auth.navigation.CertificateType.CHANGE_PHONE_NUMBER
                             )
                         },
                         text = stringResource(id = R.string.change),

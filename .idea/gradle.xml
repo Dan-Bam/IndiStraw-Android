@@ -20,6 +20,9 @@
             <option value="$PROJECT_DIR$/core/design-system" />
             <option value="$PROJECT_DIR$/core/di" />
             <option value="$PROJECT_DIR$/core/domain" />
+            <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/mobile" />
+            <option value="$PROJECT_DIR$/feature/mobile/auth" />
           </set>
         </option>
       </GradleProjectSettings>
