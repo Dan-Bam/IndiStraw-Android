@@ -43,7 +43,7 @@ jobs:
         id: sign_mobile
         uses: r0adkll/sign-android-release@v1
         with:
-          releaseDirectory: mobile/build/outputs/apk/release
+          releaseDirectory: app/mobile/build/outputs/apk/release
           signingKeyBase64: ${{ secrets.SIGNING_KEY }}
           alias: ${{ secrets.ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
@@ -53,7 +53,7 @@ jobs:
         id: sign_tv
         uses: r0adkll/sign-android-release@v1
         with:
-          releaseDirectory: tv/build/outputs/apk/release
+          releaseDirectory: app/tv/build/outputs/apk/release
           signingKeyBase64: ${{ secrets.SIGNING_KEY }}
           alias: ${{ secrets.ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
@@ -63,13 +63,13 @@ jobs:
         uses: actions/upload-artifact@v3.0.0
         with:
           name: mobile-release.apk
-          path: mobile/build/outputs/apk/release/mobile-release-unsigned-signed.apk
+          path: app/mobile/build/outputs/apk/release/mobile-release-unsigned-signed.apk
 
       - name: Upload TV APK
         uses: actions/upload-artifact@v3.0.0
         with:
           name: tv-release.apk
-          path: tv/build/outputs/apk/release/tv-release-unsigned-signed.apk
+          path: app/tv/build/outputs/apk/release/tv-release-unsigned-signed.apk
 
       - name: Get Version & Tag
         id: tag_version
@@ -92,7 +92,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: mobile/build/outputs/apk/release/mobile-release-unsigned-signed.apk
+          asset_path: app/mobile/build/outputs/apk/release/mobile-release-unsigned-signed.apk
           asset_name: mobile-release.apk
           asset_content_type: application/zip
 
@@ -103,6 +103,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: tv/build/outputs/apk/release/tv-release-unsigned-signed.apk
+          asset_path: app/tv/build/outputs/apk/release/tv-release-unsigned-signed.apk
           asset_name: tv-release.apk
           asset_content_type: application/zip

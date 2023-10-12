@@ -11,13 +11,31 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/app/mobile" />
+            <option value="$PROJECT_DIR$/app/tv" />
             <option value="$PROJECT_DIR$/buildSrc" />
-            <option value="$PROJECT_DIR$/data" />
-            <option value="$PROJECT_DIR$/design-system" />
-            <option value="$PROJECT_DIR$/di" />
-            <option value="$PROJECT_DIR$/domain" />
-            <option value="$PROJECT_DIR$/mobile" />
-            <option value="$PROJECT_DIR$/tv" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core/data" />
+            <option value="$PROJECT_DIR$/core/design-system" />
+            <option value="$PROJECT_DIR$/core/di" />
+            <option value="$PROJECT_DIR$/core/domain" />
+            <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/mobile" />
+            <option value="$PROJECT_DIR$/feature/mobile/auth" />
+            <option value="$PROJECT_DIR$/feature/mobile/funding" />
+            <option value="$PROJECT_DIR$/feature/mobile/main" />
+            <option value="$PROJECT_DIR$/feature/mobile/movie" />
+            <option value="$PROJECT_DIR$/feature/mobile/navigation" />
+            <option value="$PROJECT_DIR$/feature/mobile/profile" />
+            <option value="$PROJECT_DIR$/feature/mobile/search" />
+            <option value="$PROJECT_DIR$/feature/tv" />
+            <option value="$PROJECT_DIR$/feature/tv/home" />
+            <option value="$PROJECT_DIR$/feature/tv/main" />
+            <option value="$PROJECT_DIR$/feature/tv/movie" />
+            <option value="$PROJECT_DIR$/feature/tv/navigation" />
+            <option value="$PROJECT_DIR$/feature/tv/search" />
+            <option value="$PROJECT_DIR$/feature/tv/setting" />
           </set>
         </option>
       </GradleProjectSettings>
