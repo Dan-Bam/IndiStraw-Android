@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.mobile.ui.movie.all
+package com.danbam.indistraw.feature.mobile.movie.all
 
 import androidx.paging.PagingData
 import com.danbam.indistraw.core.entity.movie.MovieEntity

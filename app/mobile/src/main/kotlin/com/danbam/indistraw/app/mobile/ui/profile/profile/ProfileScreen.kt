@@ -39,8 +39,8 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawColumnTab
 import com.danbam.indistraw.core.design_system.component.IndiStrawRowTab
 import com.danbam.indistraw.core.design_system.component.MovieTab
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
-import com.danbam.indistraw.app.mobile.ui.movie.navigation.MovieDeepLinkKey
-import com.danbam.indistraw.app.mobile.ui.movie.navigation.MovieNavigationItem
+import com.danbam.indistraw.feature.mobile.movie.navigation.MovieDeepLinkKey
+import com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem
 import com.danbam.indistraw.app.mobile.ui.profile.navigation.ProfileNavigationItem
 
 @Composable
@@ -130,7 +130,7 @@ fun ProfileScreen(
                 }
             }
         ) {
-            navController.navigate(MovieNavigationItem.Detail.route + MovieDeepLinkKey.MOVIE_INDEX + it)
+            navController.navigate(com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem.Detail.route + com.danbam.indistraw.feature.mobile.movie.navigation.MovieDeepLinkKey.MOVIE_INDEX + it)
         }
         IndiStrawColumnTab(
             modifier = Modifier

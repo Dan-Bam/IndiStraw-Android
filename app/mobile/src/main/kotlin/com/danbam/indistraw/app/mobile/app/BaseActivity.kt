@@ -18,9 +18,9 @@ import com.danbam.indistraw.feature.mobile.auth.navigation.signUpGraph
 import com.danbam.indistraw.app.mobile.ui.funding.navigation.fundingGraph
 import com.danbam.indistraw.app.mobile.ui.main.navigation.MainNavigationItem
 import com.danbam.indistraw.app.mobile.ui.main.navigation.mainGraph
-import com.danbam.indistraw.app.mobile.ui.movie.navigation.MovieDeepLinkKey
-import com.danbam.indistraw.app.mobile.ui.movie.navigation.MovieNavigationItem
-import com.danbam.indistraw.app.mobile.ui.movie.navigation.movieGraph
+import com.danbam.indistraw.feature.mobile.movie.navigation.MovieDeepLinkKey
+import com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem
+import com.danbam.indistraw.feature.mobile.movie.navigation.movieGraph
 import com.danbam.indistraw.app.mobile.ui.profile.navigation.profileGraph
 import com.danbam.indistraw.feature.mobile.search.navigation.searchGraph
 import com.google.accompanist.navigation.animation.AnimatedNavHost
@@ -45,9 +45,9 @@ class BaseActivity : ComponentActivity() {
     override fun onUserLeaveHint() {
         super.onUserLeaveHint()
         navController.currentDestination?.route?.let {
-            if (it.contains(MovieNavigationItem.Play.route)) {
+            if (it.contains(com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem.Play.route)) {
                 val isVertical =
-                    navController.currentBackStackEntry?.arguments?.getBoolean(MovieDeepLinkKey.IS_VERTICAL)
+                    navController.currentBackStackEntry?.arguments?.getBoolean(com.danbam.indistraw.feature.mobile.movie.navigation.MovieDeepLinkKey.IS_VERTICAL)
                         ?: false
                 enterPictureInPictureMode(
                     PictureInPictureParams.Builder()

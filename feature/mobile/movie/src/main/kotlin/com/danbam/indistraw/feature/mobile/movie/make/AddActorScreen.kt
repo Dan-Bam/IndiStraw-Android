@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.mobile.ui.movie.make
+package com.danbam.indistraw.feature.mobile.movie.make
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Spacer
@@ -29,9 +29,9 @@ import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.component.IndiStrawButton
 import com.danbam.indistraw.core.design_system.util.androidx.getActivity
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
-import com.danbam.indistraw.app.mobile.ui.movie.navigation.ActorType
-import com.danbam.indistraw.app.mobile.ui.movie.navigation.MovieDeepLinkKey
-import com.danbam.indistraw.app.mobile.ui.movie.navigation.MovieNavigationItem
+import com.danbam.indistraw.feature.mobile.movie.navigation.ActorType
+import com.danbam.indistraw.feature.mobile.movie.navigation.MovieDeepLinkKey
+import com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem
 import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
 import kotlinx.coroutines.InternalCoroutinesApi
 

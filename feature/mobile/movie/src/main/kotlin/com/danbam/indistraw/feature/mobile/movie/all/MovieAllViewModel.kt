@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.mobile.ui.movie.all
+package com.danbam.indistraw.feature.mobile.movie.all
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

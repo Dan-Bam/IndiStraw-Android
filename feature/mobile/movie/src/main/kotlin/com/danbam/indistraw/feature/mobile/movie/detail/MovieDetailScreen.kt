@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.mobile.ui.movie.detail
+package com.danbam.indistraw.feature.mobile.movie.detail
 
 import android.media.MediaMetadataRetriever
 import android.view.WindowManager
@@ -49,8 +49,8 @@ import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.util.androidx.getActivity
 import com.danbam.indistraw.core.entity.movie.MoviePeopleEntity
-import com.danbam.indistraw.app.mobile.ui.movie.navigation.MovieDeepLinkKey
-import com.danbam.indistraw.app.mobile.ui.movie.navigation.MovieNavigationItem
+import com.danbam.indistraw.feature.mobile.movie.navigation.MovieDeepLinkKey
+import com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

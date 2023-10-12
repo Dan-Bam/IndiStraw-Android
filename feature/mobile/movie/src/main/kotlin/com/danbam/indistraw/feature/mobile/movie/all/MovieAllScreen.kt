@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.mobile.ui.movie.all
+package com.danbam.indistraw.feature.mobile.movie.all
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
@@ -25,8 +25,8 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawGenreList
 import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
 import com.danbam.indistraw.core.design_system.component.MovieGenre
 import com.danbam.indistraw.core.design_system.component.MovieItem
-import com.danbam.indistraw.app.mobile.ui.movie.navigation.MovieDeepLinkKey
-import com.danbam.indistraw.app.mobile.ui.movie.navigation.MovieNavigationItem
+import com.danbam.indistraw.feature.mobile.movie.navigation.MovieDeepLinkKey
+import com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem
 
 @Composable
 fun MovieAllScreen(

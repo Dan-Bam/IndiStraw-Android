@@ -1,17 +1,17 @@
-package com.danbam.indistraw.app.mobile.ui.movie.navigation
+package com.danbam.indistraw.feature.mobile.movie.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
-import com.danbam.indistraw.app.mobile.ui.movie.all.MovieAllScreen
-import com.danbam.indistraw.app.mobile.ui.movie.detail.MovieDetailScreen
-import com.danbam.indistraw.app.mobile.ui.movie.make.AddActorScreen
-import com.danbam.indistraw.app.mobile.ui.movie.make.SearchActorScreen
-import com.danbam.indistraw.app.mobile.ui.movie.make.WriteActorScreen
-import com.danbam.indistraw.app.mobile.ui.movie.make.WriteIntroduceScreen
-import com.danbam.indistraw.app.mobile.ui.movie.play.MoviePlayScreen
+import com.danbam.indistraw.feature.mobile.movie.all.MovieAllScreen
+import com.danbam.indistraw.feature.mobile.movie.detail.MovieDetailScreen
+import com.danbam.indistraw.feature.mobile.movie.make.AddActorScreen
+import com.danbam.indistraw.feature.mobile.movie.make.SearchActorScreen
+import com.danbam.indistraw.feature.mobile.movie.make.WriteActorScreen
+import com.danbam.indistraw.feature.mobile.movie.make.WriteIntroduceScreen
+import com.danbam.indistraw.feature.mobile.movie.play.MoviePlayScreen
 import com.google.accompanist.navigation.animation.composable
 
 sealed class MovieNavigationItem(val route: String) {

@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.mobile.ui.movie.play
+package com.danbam.indistraw.feature.mobile.movie.play
 
 import android.app.PictureInPictureParams
 import android.content.pm.ActivityInfo

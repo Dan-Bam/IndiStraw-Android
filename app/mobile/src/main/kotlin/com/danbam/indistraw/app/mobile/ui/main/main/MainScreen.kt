@@ -46,8 +46,8 @@ import com.danbam.indistraw.core.design_system.component.Shape
 import com.danbam.indistraw.core.design_system.component.TitleSemiBold
 import com.danbam.indistraw.core.design_system.util.android.findActivity
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
-import com.danbam.indistraw.app.mobile.ui.movie.navigation.MovieDeepLinkKey
-import com.danbam.indistraw.app.mobile.ui.movie.navigation.MovieNavigationItem
+import com.danbam.indistraw.feature.mobile.movie.navigation.MovieDeepLinkKey
+import com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem
 import com.danbam.indistraw.app.mobile.ui.profile.navigation.ProfileNavigationItem
 import com.danbam.indistraw.feature.mobile.search.navigation.SearchNavigationItem
 
@@ -158,10 +158,10 @@ fun MainScreen(
                     currentMovieTab = MovieTab.RecentMovie
                 }
             }, moreData = {
-                navController.navigate(MovieNavigationItem.All.route)
+                navController.navigate(com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem.All.route)
             }
         ) {
-            navController.navigate(MovieNavigationItem.Detail.route + MovieDeepLinkKey.MOVIE_INDEX + it)
+            navController.navigate(com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem.Detail.route + com.danbam.indistraw.feature.mobile.movie.navigation.MovieDeepLinkKey.MOVIE_INDEX + it)
         }
         IndiStrawColumnTab(
             itemList = state.fundingPopularList,
@@ -188,7 +188,7 @@ fun MainScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 13.dp)
-                    .indiStrawClickable { navController.navigate(MovieNavigationItem.WriteIntroduce.route) },
+                    .indiStrawClickable { navController.navigate(com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem.WriteIntroduce.route) },
                 text = stringResource(id = R.string.make_indi_movie)
             )
             Divider(
