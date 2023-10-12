@@ -9,25 +9,7 @@ import com.danbam.indistraw.feature.tv.main.intro.IntroScreen
 import com.danbam.indistraw.feature.tv.main.login.LoginScreen
 import com.danbam.indistraw.feature.tv.main.main.MainScreen
 import com.danbam.indistraw.feature.tv.main.qr_login.QRLoginScreen
-import com.danbam.indistraw.app.tv.ui.movie.detail.MovieDetailScreen
-import com.danbam.indistraw.app.tv.ui.movie.play.MoviePlayScreen
 import com.google.accompanist.navigation.animation.composable
-
-sealed class MainNavigationItem(val route: String) {
-    object Intro : MainNavigationItem("intro")
-    object Login : MainNavigationItem("login")
-    object QRLogin : MainNavigationItem("QRLogin")
-    object Main : MainNavigationItem("main")
-    object MovieDetail : MainNavigationItem("movieDetail")
-    object MoviePlay : MainNavigationItem("moviePlay")
-}
-
-object MainDeepLinkKey {
-    const val MOVIE_NAME = "movieName"
-    const val MOVIE_INDEX = "movieIndex"
-    const val MOVIE_URL = "movieUrl"
-    const val MOVIE_POSITION = "moviePosition"
-}
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.mainGraph(navController: NavHostController) {
