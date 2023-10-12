@@ -48,7 +48,7 @@ import com.danbam.indistraw.core.design_system.util.android.findActivity
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.danbam.indistraw.feature.mobile.movie.navigation.MovieDeepLinkKey
 import com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem
-import com.danbam.indistraw.app.mobile.ui.profile.navigation.ProfileNavigationItem
+import com.danbam.indistraw.feature.mobile.profile.navigation.ProfileNavigationItem
 import com.danbam.indistraw.feature.mobile.search.navigation.SearchNavigationItem
 
 @Composable
@@ -99,12 +99,12 @@ fun MainScreen(
                         imgSrc = state.profileUrl,
                         shape = Shape.Circle
                     ) {
-                        navController.navigate(ProfileNavigationItem.Profile.route)
+                        navController.navigate(com.danbam.indistraw.feature.mobile.profile.navigation.ProfileNavigationItem.Profile.route)
                     }
                 } else {
                     Box(
                         modifier = Modifier
-                            .indiStrawClickable { navController.navigate(ProfileNavigationItem.Profile.route) }
+                            .indiStrawClickable { navController.navigate(com.danbam.indistraw.feature.mobile.profile.navigation.ProfileNavigationItem.Profile.route) }
                             .padding(start = 26.dp)
                             .size(30.dp)
                             .background(

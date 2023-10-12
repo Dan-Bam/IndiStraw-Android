@@ -21,7 +21,7 @@ import com.danbam.indistraw.app.mobile.ui.main.navigation.mainGraph
 import com.danbam.indistraw.feature.mobile.movie.navigation.MovieDeepLinkKey
 import com.danbam.indistraw.feature.mobile.movie.navigation.MovieNavigationItem
 import com.danbam.indistraw.feature.mobile.movie.navigation.movieGraph
-import com.danbam.indistraw.app.mobile.ui.profile.navigation.profileGraph
+import com.danbam.indistraw.feature.mobile.profile.navigation.profileGraph
 import com.danbam.indistraw.feature.mobile.search.navigation.searchGraph
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
