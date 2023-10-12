@@ -24,8 +24,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.tv.foundation.lazy.list.TvLazyRow
 import androidx.tv.foundation.lazy.list.items
-import com.danbam.indistraw.app.tv.ui.main.navigation.MainDeepLinkKey
-import com.danbam.indistraw.app.tv.ui.main.navigation.MainNavigationItem
 import com.danbam.indistraw.core.design_system.component.ImageButton
 import com.danbam.indistraw.core.design_system.component.IndiStrawTvBackground
 import com.danbam.indistraw.core.design_system.component.IndiStrawTvBanner
@@ -34,6 +32,8 @@ import com.danbam.indistraw.core.design_system.component.Shape
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.component.MovieTab
 import com.danbam.indistraw.core.design_system.component.MovieTvItem
+import com.danbam.indistraw.feature.tv.navigation.main.MainDeepLinkKey
+import com.danbam.indistraw.feature.tv.navigation.main.MainNavigationItem
 
 @Composable
 fun HomeScreen(

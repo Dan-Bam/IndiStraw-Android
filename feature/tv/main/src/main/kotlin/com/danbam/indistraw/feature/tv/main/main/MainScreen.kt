@@ -21,10 +21,9 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawTvBackground
 import com.danbam.indistraw.core.design_system.component.IndiStrawTvNavigationDrawer
 import com.danbam.indistraw.core.design_system.component.TvNavigationItem
 import com.danbam.indistraw.core.design_system.util.android.findActivity
-import com.danbam.indistraw.feature.tv.home.HomeScreen
-import com.danbam.indistraw.app.tv.ui.movie.movie.MovieScreen
-import com.danbam.indistraw.app.ui.search.SearchScreen
-import com.danbam.indistraw.app.tv.ui.setting.SettingScreen
+import com.danbam.indistraw.feature.tv.movie.movie.MovieScreen
+import com.danbam.indistraw.feature.tv.search.SearchScreen
+import com.danbam.indistraw.feature.tv.setting.SettingScreen
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController

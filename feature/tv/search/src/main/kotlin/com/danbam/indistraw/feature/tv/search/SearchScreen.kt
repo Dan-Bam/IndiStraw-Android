@@ -44,8 +44,8 @@ import com.danbam.indistraw.core.design_system.component.ExampleTextMedium
 import com.danbam.indistraw.core.design_system.component.HeadLineBold
 import com.danbam.indistraw.core.design_system.component.MovieTvItem
 import com.danbam.indistraw.core.design_system.component.TitleRegular
-import com.danbam.indistraw.feature.tv.main.navigation.MainDeepLinkKey
-import com.danbam.indistraw.feature.tv.main.navigation.MainNavigationItem
+import com.danbam.indistraw.feature.tv.navigation.main.MainDeepLinkKey
+import com.danbam.indistraw.feature.tv.navigation.main.MainNavigationItem
 
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
@@ -162,7 +162,7 @@ fun SearchScreen(
                             else -> {
                                 items(moviePager.itemSnapshotList.items) {
                                     MovieTvItem(item = it) {
-                                        navController.navigate(com.danbam.indistraw.feature.tv.main.navigation.MainNavigationItem.MovieDetail.route + com.danbam.indistraw.feature.tv.main.navigation.MainDeepLinkKey.MOVIE_INDEX + it.movieIdx)
+                                        navController.navigate(MainNavigationItem.MovieDetail.route + MainDeepLinkKey.MOVIE_INDEX + it.movieIdx)
                                     }
                                 }
                             }
@@ -170,7 +170,7 @@ fun SearchScreen(
                     } else {
                         items(state.moviePopularList) {
                             MovieTvItem(item = it) {
-                                navController.navigate(com.danbam.indistraw.feature.tv.main.navigation.MainNavigationItem.MovieDetail.route + com.danbam.indistraw.feature.tv.main.navigation.MainDeepLinkKey.MOVIE_INDEX + it.movieIdx)
+                                navController.navigate(MainNavigationItem.MovieDetail.route + MainDeepLinkKey.MOVIE_INDEX + it.movieIdx)
                             }
                         }
                     }

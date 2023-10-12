@@ -24,9 +24,9 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawTvBackground
 import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.component.QRPainter
-import com.danbam.indistraw.app.tv.BuildConfig
-import com.danbam.indistraw.feature.tv.main.navigation.MainNavigationItem
+import com.danbam.indistraw.feature.tv.main.BuildConfig
 import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
+import com.danbam.indistraw.feature.tv.navigation.main.MainNavigationItem
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.delay
 

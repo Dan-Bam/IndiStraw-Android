@@ -7,5 +7,6 @@ android {
 }
 
 dependencies {
+    implementation(project(":feature:tv:navigation"))
     implementation(libs.bundles.tv)
 }

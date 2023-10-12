@@ -1,5 +1,3 @@
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
-
 plugins {
     id("indistraw-app")
 }
@@ -10,15 +8,12 @@ android {
         applicationId = "com.danbam.indi_straw.tv"
         versionCode = libs.versions.versionCode.get().toInt()
         versionName = libs.versions.versionName.get()
-        buildConfigField(
-            "String",
-            "QR_URL",
-            gradleLocalProperties(rootDir).getProperty("QR_URL")
-        )
     }
 }
 
 dependencies {
+    implementation(project(":feature:tv:main"))
+    implementation(project(":feature:tv:navigation"))
     implementation(libs.bundles.tv)
     implementation(libs.androix.leanback)
 }

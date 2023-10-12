@@ -9,8 +9,8 @@ import androidx.navigation.NavController
 import com.danbam.indistraw.core.design_system.component.IndiStrawTvBackground
 import com.danbam.indistraw.core.design_system.util.android.Language
 import com.danbam.indistraw.core.design_system.util.android.changeLanguage
-import com.danbam.indistraw.feature.tv.main.navigation.MainNavigationItem
 import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
+import com.danbam.indistraw.feature.tv.navigation.main.MainNavigationItem
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @OptIn(InternalCoroutinesApi::class)

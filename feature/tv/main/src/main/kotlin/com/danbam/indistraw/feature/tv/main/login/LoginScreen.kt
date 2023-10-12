@@ -25,8 +25,8 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawTvButton
 import com.danbam.indistraw.core.design_system.component.IndiStrawTvDialog
 import com.danbam.indistraw.core.design_system.component.IndiStrawTvTextField
 import com.danbam.indistraw.core.design_system.util.android.findActivity
-import com.danbam.indistraw.feature.tv.main.navigation.MainNavigationItem
 import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
+import com.danbam.indistraw.feature.tv.navigation.main.MainNavigationItem
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @OptIn(InternalCoroutinesApi::class)

@@ -9,6 +9,10 @@ import com.danbam.indistraw.feature.tv.main.intro.IntroScreen
 import com.danbam.indistraw.feature.tv.main.login.LoginScreen
 import com.danbam.indistraw.feature.tv.main.main.MainScreen
 import com.danbam.indistraw.feature.tv.main.qr_login.QRLoginScreen
+import com.danbam.indistraw.feature.tv.movie.detail.MovieDetailScreen
+import com.danbam.indistraw.feature.tv.movie.play.MoviePlayScreen
+import com.danbam.indistraw.feature.tv.navigation.main.MainDeepLinkKey
+import com.danbam.indistraw.feature.tv.navigation.main.MainNavigationItem
 import com.google.accompanist.navigation.animation.composable
 
 @OptIn(ExperimentalAnimationApi::class)

@@ -47,8 +47,8 @@ import com.danbam.indistraw.core.design_system.component.HeadLineBold
 import com.danbam.indistraw.core.design_system.component.IndiStrawTvBackground
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.component.TitleRegular
-import com.danbam.indistraw.feature.tv.main.navigation.MainDeepLinkKey
-import com.danbam.indistraw.feature.tv.main.navigation.MainNavigationItem
+import com.danbam.indistraw.feature.tv.navigation.main.MainDeepLinkKey
+import com.danbam.indistraw.feature.tv.navigation.main.MainNavigationItem
 
 sealed class MovieTabItem(val stringId: Int) {
     object Highlight : MovieTabItem(R.string.highlight)
@@ -111,18 +111,14 @@ fun MovieDetailScreen(
                         icon = IndiStrawIconList.FastPlay,
                         title = stringResource(id = R.string.watch_going)
                     ) {
-                        navController.navigate(
-                            com.danbam.indistraw.feature.tv.main.navigation.MainNavigationItem.MoviePlay.route + com.danbam.indistraw.feature.tv.main.navigation.MainDeepLinkKey.MOVIE_NAME + state.movieDetailInfo.title + com.danbam.indistraw.feature.tv.main.navigation.MainDeepLinkKey.MOVIE_INDEX + movieIdx + com.danbam.indistraw.feature.tv.main.navigation.MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl + com.danbam.indistraw.feature.tv.main.navigation.MainDeepLinkKey.MOVIE_POSITION + state.moviePosition
-                        )
+                        navController.navigate(MainNavigationItem.MoviePlay.route + MainDeepLinkKey.MOVIE_NAME + state.movieDetailInfo.title + MainDeepLinkKey.MOVIE_INDEX + movieIdx + MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl + MainDeepLinkKey.MOVIE_POSITION + state.moviePosition)
                     }
                     Spacer(modifier = Modifier.width(10.dp))
                     MoviePlayButton(
                         icon = IndiStrawIconList.PlayFirst,
                         title = stringResource(id = R.string.watch_first)
                     ) {
-                        navController.navigate(
-                            com.danbam.indistraw.feature.tv.main.navigation.MainNavigationItem.MoviePlay.route + com.danbam.indistraw.feature.tv.main.navigation.MainDeepLinkKey.MOVIE_NAME + state.movieDetailInfo.title + com.danbam.indistraw.feature.tv.main.navigation.MainDeepLinkKey.MOVIE_INDEX + movieIdx + com.danbam.indistraw.feature.tv.main.navigation.MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl + com.danbam.indistraw.feature.tv.main.navigation.MainDeepLinkKey.MOVIE_POSITION + 0F
-                        )
+                        navController.navigate(MainNavigationItem.MoviePlay.route + MainDeepLinkKey.MOVIE_NAME + state.movieDetailInfo.title + MainDeepLinkKey.MOVIE_INDEX + movieIdx + MainDeepLinkKey.MOVIE_URL + state.movieDetailInfo.movieUrl + MainDeepLinkKey.MOVIE_POSITION + 0F)
                     }
                 }
             }
