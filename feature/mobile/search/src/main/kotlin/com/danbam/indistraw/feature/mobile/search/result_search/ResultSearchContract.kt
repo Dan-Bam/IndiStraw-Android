@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.mobile.ui.search.result_search
+package com.danbam.indistraw.feature.mobile.search.result_search
 
 import androidx.paging.PagingData
 import com.danbam.indistraw.core.entity.funding.FundingEntity

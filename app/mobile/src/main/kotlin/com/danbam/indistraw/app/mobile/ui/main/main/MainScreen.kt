@@ -49,7 +49,7 @@ import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.danbam.indistraw.app.mobile.ui.movie.navigation.MovieDeepLinkKey
 import com.danbam.indistraw.app.mobile.ui.movie.navigation.MovieNavigationItem
 import com.danbam.indistraw.app.mobile.ui.profile.navigation.ProfileNavigationItem
-import com.danbam.indistraw.app.mobile.ui.search.navigation.SearchNavigationItem
+import com.danbam.indistraw.feature.mobile.search.navigation.SearchNavigationItem
 
 @Composable
 fun MainScreen(
@@ -88,7 +88,7 @@ fun MainScreen(
             ) {
                 IndiStrawIcon(modifier = Modifier.indiStrawClickable {
                     navController.navigate(
-                        SearchNavigationItem.Search.route
+                        com.danbam.indistraw.feature.mobile.search.navigation.SearchNavigationItem.Search.route
                     )
                 }, icon = IndiStrawIconList.Search)
                 if (state.profileUrl != null) {

@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.mobile.ui.search.searching
+package com.danbam.indistraw.feature.mobile.search.searching
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer

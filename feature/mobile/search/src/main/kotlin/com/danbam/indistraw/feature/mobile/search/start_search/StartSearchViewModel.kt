@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.mobile.ui.search.start_search
+package com.danbam.indistraw.feature.mobile.search.start_search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

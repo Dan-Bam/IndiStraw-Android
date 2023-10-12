@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.mobile.ui.search.search
+package com.danbam.indistraw.feature.mobile.search.search
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

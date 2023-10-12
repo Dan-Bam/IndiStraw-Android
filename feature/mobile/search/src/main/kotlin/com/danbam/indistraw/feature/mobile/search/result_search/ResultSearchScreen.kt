@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.mobile.ui.search.result_search
+package com.danbam.indistraw.feature.mobile.search.result_search
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

@@ -22,7 +22,7 @@ import com.danbam.indistraw.app.mobile.ui.movie.navigation.MovieDeepLinkKey
 import com.danbam.indistraw.app.mobile.ui.movie.navigation.MovieNavigationItem
 import com.danbam.indistraw.app.mobile.ui.movie.navigation.movieGraph
 import com.danbam.indistraw.app.mobile.ui.profile.navigation.profileGraph
-import com.danbam.indistraw.app.mobile.ui.search.navigation.searchGraph
+import com.danbam.indistraw.feature.mobile.search.navigation.searchGraph
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import dagger.hilt.android.AndroidEntryPoint

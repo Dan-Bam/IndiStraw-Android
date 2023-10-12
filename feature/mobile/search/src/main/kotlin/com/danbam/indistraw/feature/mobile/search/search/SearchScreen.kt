@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.mobile.ui.search.search
+package com.danbam.indistraw.feature.mobile.search.search
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -16,9 +16,9 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackgrou
 import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
 import com.danbam.indistraw.core.design_system.component.IndiStrawSearchTextField
 import com.danbam.indistraw.core.design_system.R
-import com.danbam.indistraw.app.mobile.ui.search.result_search.ResultSearchScreen
-import com.danbam.indistraw.app.mobile.ui.search.searching.SearchingScreen
-import com.danbam.indistraw.app.mobile.ui.search.start_search.StartSearchScreen
+import com.danbam.indistraw.feature.mobile.search.result_search.ResultSearchScreen
+import com.danbam.indistraw.feature.mobile.search.searching.SearchingScreen
+import com.danbam.indistraw.feature.mobile.search.start_search.StartSearchScreen
 import com.danbam.indistraw.core.design_system.util.androidx.popBackStack
 
 @OptIn(ExperimentalComposeUiApi::class)
