@@ -6,10 +6,6 @@ import androidx.navigation.NavHostController
 import com.danbam.indistraw.feature.mobile.search.search.SearchScreen
 import com.google.accompanist.navigation.animation.composable
 
-sealed class SearchNavigationItem(val route: String) {
-    object Search : SearchNavigationItem("search")
-}
-
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.searchGraph(navController: NavHostController) {
     composable(route = com.danbam.indistraw.feature.mobile.search.navigation.SearchNavigationItem.Search.route) {

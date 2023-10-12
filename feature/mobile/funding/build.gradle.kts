@@ -7,5 +7,6 @@ android {
 }
 
 dependencies {
+    implementation(project(":feature:mobile:navigation"))
     implementation(libs.bootpay)
 }

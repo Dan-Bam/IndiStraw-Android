@@ -15,31 +15,6 @@ import com.danbam.indistraw.feature.mobile.auth.signup.SetPasswordScreen
 import com.danbam.indistraw.feature.mobile.auth.signup.SetProfileScreen
 import com.google.accompanist.navigation.animation.composable
 
-sealed class AuthNavigationItem(val route: String) {
-    object Login : AuthNavigationItem("login")
-    object Certificate : AuthNavigationItem("certificate")
-    object FindId : AuthNavigationItem("findId")
-    object FindPassword : AuthNavigationItem("findPassword")
-    object SetName : AuthNavigationItem("setName")
-    object SetProfile : AuthNavigationItem("setProfile")
-    object SetId : AuthNavigationItem("setId")
-    object SetPassword : AuthNavigationItem("setPassword")
-}
-
-object AuthDeepLinkKey {
-    const val CERTIFICATE_TYPE = "certificateType"
-    const val IS_FIND_PASSWORD = "isFindPassword"
-    const val PHONE_NUMBER = "phoneNumber"
-}
-
-object CertificateType {
-    const val SIGN_UP = "signUp"
-    const val FIND_ID = "findId"
-    const val FIND_PASSWORD = "findPassword"
-    const val CHANGE_PASSWORD = "changePassword"
-    const val CHANGE_PHONE_NUMBER = "changePhoneNumber"
-}
-
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.authGraph(navController: NavHostController) {
     composable(route = AuthNavigationItem.Login.route) {

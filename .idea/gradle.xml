@@ -26,6 +26,7 @@
             <option value="$PROJECT_DIR$/feature/mobile/funding" />
             <option value="$PROJECT_DIR$/feature/mobile/main" />
             <option value="$PROJECT_DIR$/feature/mobile/movie" />
+            <option value="$PROJECT_DIR$/feature/mobile/navigation" />
             <option value="$PROJECT_DIR$/feature/mobile/profile" />
             <option value="$PROJECT_DIR$/feature/mobile/search" />
           </set>

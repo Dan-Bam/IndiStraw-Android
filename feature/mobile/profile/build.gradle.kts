@@ -5,3 +5,7 @@ plugins {
 android {
     namespace = "com.danbam.indistraw.feature.mobile.profile"
 }
+
+dependencies {
+    implementation(project(":feature:mobile:navigation"))
+}

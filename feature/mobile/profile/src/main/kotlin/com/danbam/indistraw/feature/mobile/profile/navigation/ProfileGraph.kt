@@ -13,20 +13,6 @@ import com.danbam.indistraw.feature.mobile.profile.qr_login.QRLoginScreen
 import com.danbam.indistraw.feature.mobile.profile.setting.SettingScreen
 import com.google.accompanist.navigation.animation.composable
 
-sealed class ProfileNavigationItem(val route: String) {
-    object Profile : ProfileNavigationItem("profile")
-    object Setting : ProfileNavigationItem("setting")
-    object EditProfile : ProfileNavigationItem("editProfile")
-    object FindAddress : ProfileNavigationItem("findAddress")
-    object DetailAddress : ProfileNavigationItem("detailAddress")
-    object QRLogin : ProfileNavigationItem("qrLogin")
-}
-
-object ProfileDeepLinkKey {
-    const val ADDRESS = "address"
-    const val ZIP_CODE = "zipCode"
-}
-
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.profileGraph(
     navController: NavHostController,

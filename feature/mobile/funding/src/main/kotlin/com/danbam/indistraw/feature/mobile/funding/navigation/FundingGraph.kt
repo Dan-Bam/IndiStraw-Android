@@ -5,28 +5,12 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
-import com.danbam.indistraw.app.mobile.ui.funding.all.FundingAllScreen
-import com.danbam.indistraw.app.mobile.ui.funding.detail.FundingDetailScreen
-import com.danbam.indistraw.app.mobile.ui.funding.make.MakeFundingScreen
-import com.danbam.indistraw.app.mobile.ui.funding.my.MyFundingScreen
-import com.danbam.indistraw.app.mobile.ui.funding.pay.FundingRewardScreen
+import com.danbam.indistraw.feature.mobile.funding.all.FundingAllScreen
+import com.danbam.indistraw.feature.mobile.funding.detail.FundingDetailScreen
+import com.danbam.indistraw.feature.mobile.funding.make.MakeFundingScreen
+import com.danbam.indistraw.feature.mobile.funding.my.MyFundingScreen
+import com.danbam.indistraw.feature.mobile.funding.pay.FundingRewardScreen
 import com.google.accompanist.navigation.animation.composable
-
-sealed class FundingNavigationItem(val route: String) {
-    object Make : FundingNavigationItem("fundingMake")
-    object Detail : FundingNavigationItem("fundingDetail")
-    object All : FundingNavigationItem("fundingAll")
-    object FundingReward : FundingNavigationItem("fundingReward")
-    object MyDetail : FundingNavigationItem("fundingMyDetail")
-}
-
-object FundingDeepLinkKey {
-    const val FUNDING_INDEX = "fundingIndex"
-    const val REWARD_INDEX = "rewardIndex"
-    const val REWARD_TITLE = "rewardTitle"
-    const val REWARD_DESCRIPTION = "rewardDescription"
-    const val REWARD_PRICE = "rewardPrice"
-}
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.fundingGraph(navController: NavHostController) {

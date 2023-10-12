@@ -14,30 +14,6 @@ import com.danbam.indistraw.feature.mobile.movie.make.WriteIntroduceScreen
 import com.danbam.indistraw.feature.mobile.movie.play.MoviePlayScreen
 import com.google.accompanist.navigation.animation.composable
 
-sealed class MovieNavigationItem(val route: String) {
-    object Detail : MovieNavigationItem("movieDetail")
-    object Play : MovieNavigationItem("moviePlay")
-    object All : MovieNavigationItem("movieAll")
-    object WriteIntroduce : MovieNavigationItem("movieWriteIntroduce")
-    object AddActor : MovieNavigationItem("movieAddActor")
-    object SearchActor : MovieNavigationItem("movieSearchActor")
-    object WriteActor : MovieNavigationItem("movieWriteActor")
-}
-
-object MovieDeepLinkKey {
-    const val ADD_ACTOR_TYPE = "addActorType"
-    const val MOVIE_NAME = "movieName"
-    const val MOVIE_INDEX = "movieIndex"
-    const val MOVIE_URL = "movieUrl"
-    const val MOVIE_POSITION = "moviePosition"
-    const val IS_VERTICAL = "isVertical"
-}
-
-object ActorType {
-    const val ACTOR = "actor"
-    const val DIRECTOR = "director"
-}
-
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.movieGraph(
     navController: NavHostController,
