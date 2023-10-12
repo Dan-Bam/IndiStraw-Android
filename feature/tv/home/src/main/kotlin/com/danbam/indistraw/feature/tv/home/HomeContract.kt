@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.tv.ui.home
+package com.danbam.indistraw.feature.tv.home
 
 import com.danbam.indistraw.core.entity.banner.BannerEntity
 import com.danbam.indistraw.core.entity.movie.MovieEntity

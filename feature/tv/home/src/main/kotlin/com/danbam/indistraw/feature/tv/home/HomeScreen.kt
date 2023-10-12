@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.tv.ui.home
+package com.danbam.indistraw.feature.tv.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues

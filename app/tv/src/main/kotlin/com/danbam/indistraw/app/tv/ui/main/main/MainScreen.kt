@@ -21,7 +21,7 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawTvBackground
 import com.danbam.indistraw.core.design_system.component.IndiStrawTvNavigationDrawer
 import com.danbam.indistraw.core.design_system.component.TvNavigationItem
 import com.danbam.indistraw.core.design_system.util.android.findActivity
-import com.danbam.indistraw.app.tv.ui.home.HomeScreen
+import com.danbam.indistraw.feature.tv.home.HomeScreen
 import com.danbam.indistraw.app.tv.ui.movie.movie.MovieScreen
 import com.danbam.indistraw.app.ui.search.SearchScreen
 import com.danbam.indistraw.app.tv.ui.setting.SettingScreen
@@ -95,7 +95,10 @@ fun HomeApp(
             SearchScreen(navController = navController)
         }
         composable(route = TvNavigationItem.Home.route) {
-            HomeScreen(navController = navController, isOpenDrawer = isOpenDrawer)
+            com.danbam.indistraw.feature.tv.home.HomeScreen(
+                navController = navController,
+                isOpenDrawer = isOpenDrawer
+            )
         }
         composable(route = TvNavigationItem.Movie.route) {
             MovieScreen(navController = navController, isOpenDrawer = isOpenDrawer)
