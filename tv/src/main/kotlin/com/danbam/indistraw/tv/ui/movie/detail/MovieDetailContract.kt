@@ -1,6 +1,6 @@
 package com.danbam.indistraw.tv.ui.movie.detail
 
-import com.danbam.indistraw.domain.entity.movie.MovieDetailEntity
+import com.danbam.indistraw.core.entity.movie.MovieDetailEntity
 
 data class MovieDetailState(
     val movieDetailInfo: MovieDetailEntity = MovieDetailEntity(

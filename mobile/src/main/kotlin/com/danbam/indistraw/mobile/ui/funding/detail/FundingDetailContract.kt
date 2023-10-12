@@ -1,6 +1,6 @@
 package com.danbam.indistraw.mobile.ui.funding.detail
 
-import com.danbam.indistraw.domain.entity.funding.FundingDetailEntity
+import com.danbam.indistraw.core.entity.funding.FundingDetailEntity
 import java.util.UUID
 
 data class FundingDetailState(

@@ -12,10 +12,10 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.danbam.indistraw.design_system.component.IndiStrawColumnBackground
-import com.danbam.indistraw.design_system.component.IndiStrawHeader
-import com.danbam.indistraw.design_system.component.IndiStrawSearchTextField
-import com.danbam.indistraw.design_system.R
+import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
+import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
+import com.danbam.indistraw.core.design_system.component.IndiStrawSearchTextField
+import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.mobile.ui.search.result_search.ResultSearchScreen
 import com.danbam.indistraw.mobile.ui.search.searching.SearchingScreen
 import com.danbam.indistraw.mobile.ui.search.start_search.StartSearchScreen

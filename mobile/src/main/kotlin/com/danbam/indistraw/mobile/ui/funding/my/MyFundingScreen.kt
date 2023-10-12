@@ -30,26 +30,26 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import com.danbam.indistraw.design_system.IndiStrawTheme
-import com.danbam.indistraw.design_system.R
-import com.danbam.indistraw.design_system.attribute.IndiStrawIcon
-import com.danbam.indistraw.design_system.attribute.IndiStrawIconList
-import com.danbam.indistraw.design_system.component.ButtonMedium
-import com.danbam.indistraw.design_system.component.DialogMedium
-import com.danbam.indistraw.design_system.component.ExampleTextMedium
-import com.danbam.indistraw.design_system.component.FindPasswordMedium
-import com.danbam.indistraw.design_system.component.IndiStrawBottomSheetLayout
-import com.danbam.indistraw.design_system.component.IndiStrawColumnBackground
-import com.danbam.indistraw.design_system.component.IndiStrawHeader
-import com.danbam.indistraw.design_system.component.MyRewardItem
-import com.danbam.indistraw.design_system.component.PriceRegular
-import com.danbam.indistraw.design_system.component.RewardType
-import com.danbam.indistraw.design_system.component.TitleRegular
-import com.danbam.indistraw.design_system.component.TitleSemiBold
-import com.danbam.indistraw.design_system.util.RemoveOverScrollLazyRow
-import com.danbam.indistraw.design_system.util.indiStrawClickable
-import com.danbam.indistraw.design_system.util.toCommaString
-import com.danbam.indistraw.domain.entity.funding.MyFundingEntity
+import com.danbam.indistraw.core.design_system.IndiStrawTheme
+import com.danbam.indistraw.core.design_system.R
+import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
+import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
+import com.danbam.indistraw.core.design_system.component.ButtonMedium
+import com.danbam.indistraw.core.design_system.component.DialogMedium
+import com.danbam.indistraw.core.design_system.component.ExampleTextMedium
+import com.danbam.indistraw.core.design_system.component.FindPasswordMedium
+import com.danbam.indistraw.core.design_system.component.IndiStrawBottomSheetLayout
+import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
+import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
+import com.danbam.indistraw.core.design_system.component.MyRewardItem
+import com.danbam.indistraw.core.design_system.component.PriceRegular
+import com.danbam.indistraw.core.design_system.component.RewardType
+import com.danbam.indistraw.core.design_system.component.TitleRegular
+import com.danbam.indistraw.core.design_system.component.TitleSemiBold
+import com.danbam.indistraw.core.design_system.util.RemoveOverScrollLazyRow
+import com.danbam.indistraw.core.design_system.util.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.toCommaString
+import com.danbam.indistraw.core.entity.funding.MyFundingEntity
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

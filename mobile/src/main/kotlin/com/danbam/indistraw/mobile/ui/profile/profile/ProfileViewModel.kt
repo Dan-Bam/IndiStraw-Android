@@ -2,11 +2,11 @@ package com.danbam.indistraw.mobile.ui.profile.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.domain.entity.movie.MovieEntity
-import com.danbam.indistraw.domain.usecase.account.GetProfileUseCase
-import com.danbam.indistraw.domain.usecase.crowd_funding.FundingMyUseCase
-import com.danbam.indistraw.domain.usecase.funding.FundingListUseCase
-import com.danbam.indistraw.domain.usecase.movie.MovieHistoryListUseCase
+import com.danbam.indistraw.core.entity.movie.MovieEntity
+import com.danbam.indistraw.core.domain.usecase.account.GetProfileUseCase
+import com.danbam.indistraw.core.domain.usecase.crowd_funding.FundingMyUseCase
+import com.danbam.indistraw.core.domain.usecase.funding.FundingListUseCase
+import com.danbam.indistraw.core.domain.usecase.movie.MovieHistoryListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost

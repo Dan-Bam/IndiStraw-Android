@@ -2,10 +2,10 @@ package com.danbam.indistraw.mobile.ui.auth.signup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.domain.param.auth.SignUpParam
-import com.danbam.indistraw.domain.usecase.auth.CheckIdUseCase
-import com.danbam.indistraw.domain.usecase.auth.SignUpUseCase
-import com.danbam.indistraw.domain.usecase.file.SendFileUseCase
+import com.danbam.indistraw.core.param.auth.SignUpParam
+import com.danbam.indistraw.core.domain.usecase.auth.CheckIdUseCase
+import com.danbam.indistraw.core.domain.usecase.auth.SignUpUseCase
+import com.danbam.indistraw.core.domain.usecase.file.SendFileUseCase
 import com.danbam.indistraw.mobile.util.android.errorHandling
 import com.danbam.indistraw.mobile.util.parser.isId
 import com.danbam.indistraw.mobile.util.parser.isPassword

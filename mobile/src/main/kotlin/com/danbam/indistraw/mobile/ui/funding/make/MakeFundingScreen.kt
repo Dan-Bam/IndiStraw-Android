@@ -12,10 +12,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.danbam.indistraw.design_system.component.IndiStrawColumnBackground
-import com.danbam.indistraw.design_system.component.IndiStrawHeader
-import com.danbam.indistraw.design_system.component.IndiStrawMakeProgress
-import com.danbam.indistraw.design_system.component.MakeFundingProgress
+import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
+import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
+import com.danbam.indistraw.core.design_system.component.IndiStrawMakeProgress
+import com.danbam.indistraw.core.design_system.component.MakeFundingProgress
 
 @Composable
 fun MakeFundingScreen(

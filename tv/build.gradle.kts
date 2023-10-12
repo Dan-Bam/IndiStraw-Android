@@ -42,6 +42,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":di"))
+    implementation(project(":core:di"))
     implementation(libs.androix.leanback)
 }

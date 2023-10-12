@@ -2,9 +2,9 @@ package com.danbam.indistraw.mobile.ui.movie.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.domain.usecase.movie.MovieDetailUseCase
-import com.danbam.indistraw.domain.usecase.movie.MovieHistoryUseCase
-import com.danbam.indistraw.domain.usecase.movie.MoviePeopleDetailUseCase
+import com.danbam.indistraw.core.domain.usecase.movie.MovieDetailUseCase
+import com.danbam.indistraw.core.domain.usecase.movie.MovieHistoryUseCase
+import com.danbam.indistraw.core.domain.usecase.movie.MoviePeopleDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost

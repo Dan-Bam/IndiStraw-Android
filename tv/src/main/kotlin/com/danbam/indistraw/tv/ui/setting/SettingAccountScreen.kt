@@ -12,9 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.danbam.indistraw.design_system.IndiStrawTheme
-import com.danbam.indistraw.design_system.component.HeadLineBold
-import com.danbam.indistraw.design_system.R
+import com.danbam.indistraw.core.design_system.IndiStrawTheme
+import com.danbam.indistraw.core.design_system.component.HeadLineBold
+import com.danbam.indistraw.core.design_system.R
 
 @Composable
 fun SettingAccountScreen(

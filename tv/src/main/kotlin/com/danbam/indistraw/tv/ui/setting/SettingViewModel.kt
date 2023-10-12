@@ -2,13 +2,13 @@ package com.danbam.indistraw.tv.ui.setting
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.design_system.util.Language
-import com.danbam.indistraw.domain.usecase.account.GetProfileUseCase
-import com.danbam.indistraw.domain.usecase.account.WithdrawUseCase
-import com.danbam.indistraw.domain.usecase.auth.ClearTokenUseCase
-import com.danbam.indistraw.domain.usecase.auth.LogoutUseCase
-import com.danbam.indistraw.domain.usecase.system.FetchLanguageUseCase
-import com.danbam.indistraw.domain.usecase.system.SaveLanguageUseCase
+import com.danbam.indistraw.core.design_system.util.Language
+import com.danbam.indistraw.core.domain.usecase.account.GetProfileUseCase
+import com.danbam.indistraw.core.domain.usecase.account.WithdrawUseCase
+import com.danbam.indistraw.core.domain.usecase.auth.ClearTokenUseCase
+import com.danbam.indistraw.core.domain.usecase.auth.LogoutUseCase
+import com.danbam.indistraw.core.domain.usecase.system.FetchLanguageUseCase
+import com.danbam.indistraw.core.domain.usecase.system.SaveLanguageUseCase
 import com.danbam.indistraw.tv.util.android.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

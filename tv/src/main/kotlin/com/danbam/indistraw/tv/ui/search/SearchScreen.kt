@@ -36,14 +36,14 @@ import androidx.tv.material3.Border
 import androidx.tv.material3.ClickableSurfaceDefaults
 import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.Surface
-import com.danbam.indistraw.design_system.IndiStrawTheme
-import com.danbam.indistraw.design_system.component.IndiStrawTvBackground
-import com.danbam.indistraw.design_system.component.IndiStrawTvTextField
-import com.danbam.indistraw.design_system.R
-import com.danbam.indistraw.design_system.component.ExampleTextMedium
-import com.danbam.indistraw.design_system.component.HeadLineBold
-import com.danbam.indistraw.design_system.component.MovieTvItem
-import com.danbam.indistraw.design_system.component.TitleRegular
+import com.danbam.indistraw.core.design_system.IndiStrawTheme
+import com.danbam.indistraw.core.design_system.component.IndiStrawTvBackground
+import com.danbam.indistraw.core.design_system.component.IndiStrawTvTextField
+import com.danbam.indistraw.core.design_system.R
+import com.danbam.indistraw.core.design_system.component.ExampleTextMedium
+import com.danbam.indistraw.core.design_system.component.HeadLineBold
+import com.danbam.indistraw.core.design_system.component.MovieTvItem
+import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.tv.ui.main.navigation.MainDeepLinkKey
 import com.danbam.indistraw.tv.ui.main.navigation.MainNavigationItem
 

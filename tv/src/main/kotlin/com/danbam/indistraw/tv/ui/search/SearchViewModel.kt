@@ -2,11 +2,11 @@ package com.danbam.indistraw.tv.ui.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.domain.entity.search.RecentSearchEntity
-import com.danbam.indistraw.domain.usecase.movie.MoviePopularListUseCase
-import com.danbam.indistraw.domain.usecase.search.GetRecentSearchUseCase
-import com.danbam.indistraw.domain.usecase.search.GetRelatedSearchUseCase
-import com.danbam.indistraw.domain.usecase.search.SearchMovieUseCase
+import com.danbam.indistraw.core.entity.search.RecentSearchEntity
+import com.danbam.indistraw.core.domain.usecase.movie.MoviePopularListUseCase
+import com.danbam.indistraw.core.domain.usecase.search.GetRecentSearchUseCase
+import com.danbam.indistraw.core.domain.usecase.search.GetRelatedSearchUseCase
+import com.danbam.indistraw.core.domain.usecase.search.SearchMovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost

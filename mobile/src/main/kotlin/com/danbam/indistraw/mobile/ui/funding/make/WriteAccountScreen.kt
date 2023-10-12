@@ -22,19 +22,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.danbam.indistraw.design_system.IndiStrawTheme
-import com.danbam.indistraw.design_system.component.IndiStrawButton
-import com.danbam.indistraw.design_system.component.IndiStrawColumnBackground
-import com.danbam.indistraw.design_system.R
-import com.danbam.indistraw.design_system.attribute.IndiStrawIcon
-import com.danbam.indistraw.design_system.attribute.IndiStrawIconList
-import com.danbam.indistraw.design_system.component.ButtonMedium
-import com.danbam.indistraw.design_system.component.ExampleTextMedium
-import com.danbam.indistraw.design_system.component.FindPasswordMedium
-import com.danbam.indistraw.design_system.component.HeadLineBold
-import com.danbam.indistraw.design_system.component.IndiStrawBottomSheetLayout
-import com.danbam.indistraw.design_system.component.IndiStrawTextField
-import com.danbam.indistraw.design_system.util.indiStrawClickable
+import com.danbam.indistraw.core.design_system.IndiStrawTheme
+import com.danbam.indistraw.core.design_system.component.IndiStrawButton
+import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
+import com.danbam.indistraw.core.design_system.R
+import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
+import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
+import com.danbam.indistraw.core.design_system.component.ButtonMedium
+import com.danbam.indistraw.core.design_system.component.ExampleTextMedium
+import com.danbam.indistraw.core.design_system.component.FindPasswordMedium
+import com.danbam.indistraw.core.design_system.component.HeadLineBold
+import com.danbam.indistraw.core.design_system.component.IndiStrawBottomSheetLayout
+import com.danbam.indistraw.core.design_system.component.IndiStrawTextField
+import com.danbam.indistraw.core.design_system.util.indiStrawClickable
 
 sealed class Bank(val stringId: Int, val BankIcon: IndiStrawIconList, val name: String) {
     object NhBank : Bank(R.string.nh_bank, IndiStrawIconList.BankNh, "NH")

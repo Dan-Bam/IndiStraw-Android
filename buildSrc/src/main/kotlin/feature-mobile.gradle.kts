@@ -35,8 +35,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":domain"))
-    implementation(project(":design-system"))
+    implementation(project(":core:domain"))
+    implementation(project(":core:design-system"))
     implementation(libs.findLibrary("androidx.core").get())
     implementation(libs.findLibrary("androidx.lifecycle").get())
     implementation(libs.findBundle("coroutine").get())

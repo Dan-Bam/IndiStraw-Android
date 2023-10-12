@@ -46,7 +46,7 @@ android {
     )
 }
 dependencies {
-    implementation(project(":di"))
+    implementation(project(":core:di"))
     implementation(libs.bundles.retrofit)
     implementation(libs.bootpay)
 }

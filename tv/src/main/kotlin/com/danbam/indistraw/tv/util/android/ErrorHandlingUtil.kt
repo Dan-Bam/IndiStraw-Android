@@ -1,13 +1,13 @@
 package com.danbam.indistraw.tv.util.android
 
 import android.util.Log
-import com.danbam.indistraw.domain.exception.ConflictDataException
-import com.danbam.indistraw.domain.exception.ExpiredTokenException
-import com.danbam.indistraw.domain.exception.InvalidTokenException
-import com.danbam.indistraw.domain.exception.NotFoundException
-import com.danbam.indistraw.domain.exception.ServerErrorException
-import com.danbam.indistraw.domain.exception.TooManyRequestException
-import com.danbam.indistraw.domain.exception.WrongDataException
+import com.danbam.indistraw.core.exception.ConflictDataException
+import com.danbam.indistraw.core.exception.ExpiredTokenException
+import com.danbam.indistraw.core.exception.InvalidTokenException
+import com.danbam.indistraw.core.exception.NotFoundException
+import com.danbam.indistraw.core.exception.ServerErrorException
+import com.danbam.indistraw.core.exception.TooManyRequestException
+import com.danbam.indistraw.core.exception.WrongDataException
 
 suspend fun Throwable.errorHandling(
     unknownAction: suspend () -> Unit,

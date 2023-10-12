@@ -1,7 +1,7 @@
 package com.danbam.indistraw.mobile.ui.movie.all
 
 import androidx.paging.PagingData
-import com.danbam.indistraw.domain.entity.movie.MovieEntity
+import com.danbam.indistraw.core.entity.movie.MovieEntity
 import kotlinx.coroutines.flow.Flow
 
 data class MovieAllState(

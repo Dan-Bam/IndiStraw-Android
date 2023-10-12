@@ -2,7 +2,7 @@ package com.danbam.indistraw.mobile.ui.profile.qr_login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.domain.usecase.qr_code.CheckQRCodeUseCase
+import com.danbam.indistraw.core.domain.usecase.qr_code.CheckQRCodeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost

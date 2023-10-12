@@ -2,8 +2,8 @@ package com.danbam.indistraw.mobile.ui.search.start_search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.domain.usecase.search.GetRecentSearchUseCase
-import com.danbam.indistraw.domain.usecase.search.PopularTagUseCase
+import com.danbam.indistraw.core.domain.usecase.search.GetRecentSearchUseCase
+import com.danbam.indistraw.core.domain.usecase.search.PopularTagUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost

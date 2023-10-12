@@ -2,10 +2,10 @@ package com.danbam.indistraw.mobile.ui.auth.certificate
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.domain.usecase.account.ChangePhoneNumberUseCase
-import com.danbam.indistraw.domain.usecase.auth.CheckCertificateNumberUseCase
-import com.danbam.indistraw.domain.usecase.auth.CheckPhoneNumberUseCase
-import com.danbam.indistraw.domain.usecase.auth.SendCertificateNumberUseCase
+import com.danbam.indistraw.core.domain.usecase.account.ChangePhoneNumberUseCase
+import com.danbam.indistraw.core.domain.usecase.auth.CheckCertificateNumberUseCase
+import com.danbam.indistraw.core.domain.usecase.auth.CheckPhoneNumberUseCase
+import com.danbam.indistraw.core.domain.usecase.auth.SendCertificateNumberUseCase
 import com.danbam.indistraw.mobile.util.android.errorHandling
 import com.danbam.indistraw.mobile.util.parser.isPhoneNumber
 import dagger.hilt.android.lifecycle.HiltViewModel

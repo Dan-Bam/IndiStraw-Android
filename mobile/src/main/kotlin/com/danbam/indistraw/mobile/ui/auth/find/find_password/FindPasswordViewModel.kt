@@ -2,8 +2,8 @@ package com.danbam.indistraw.mobile.ui.auth.find.find_password
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.domain.param.auth.ChangePasswordParam
-import com.danbam.indistraw.domain.usecase.account.ChangePasswordUseCase
+import com.danbam.indistraw.core.param.auth.ChangePasswordParam
+import com.danbam.indistraw.core.domain.usecase.account.ChangePasswordUseCase
 import com.danbam.indistraw.mobile.util.android.errorHandling
 import com.danbam.indistraw.mobile.util.parser.isPassword
 import dagger.hilt.android.lifecycle.HiltViewModel

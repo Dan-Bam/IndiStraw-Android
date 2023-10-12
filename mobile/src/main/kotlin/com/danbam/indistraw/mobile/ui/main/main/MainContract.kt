@@ -1,8 +1,8 @@
 package com.danbam.indistraw.mobile.ui.main.main
 
-import com.danbam.indistraw.domain.entity.banner.BannerEntity
-import com.danbam.indistraw.domain.entity.funding.FundingEntity
-import com.danbam.indistraw.domain.entity.movie.MovieEntity
+import com.danbam.indistraw.core.entity.banner.BannerEntity
+import com.danbam.indistraw.core.entity.funding.FundingEntity
+import com.danbam.indistraw.core.entity.movie.MovieEntity
 
 
 data class MainState(

@@ -2,8 +2,8 @@ package com.danbam.indistraw.tv.ui.main.qr_login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.domain.usecase.qr_code.ConnectQRCodeUseCase
-import com.danbam.indistraw.domain.usecase.qr_code.GetQRCodeUseCase
+import com.danbam.indistraw.core.domain.usecase.qr_code.ConnectQRCodeUseCase
+import com.danbam.indistraw.core.domain.usecase.qr_code.GetQRCodeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost

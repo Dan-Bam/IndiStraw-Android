@@ -1,6 +1,6 @@
 package com.danbam.indistraw.mobile.ui.funding.my
 
-import com.danbam.indistraw.domain.entity.funding.MyFundingEntity
+import com.danbam.indistraw.core.entity.funding.MyFundingEntity
 
 
 data class MyFundingState(

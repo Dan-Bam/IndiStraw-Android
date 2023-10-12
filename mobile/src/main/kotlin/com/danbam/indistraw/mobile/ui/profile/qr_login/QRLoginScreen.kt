@@ -18,15 +18,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.danbam.indistraw.design_system.attribute.IndiStrawIcon
-import com.danbam.indistraw.design_system.attribute.IndiStrawIconList
-import com.danbam.indistraw.design_system.component.HeadLineBold
-import com.danbam.indistraw.design_system.component.IndiStrawColumnBackground
-import com.danbam.indistraw.design_system.component.IndiStrawHeader
-import com.danbam.indistraw.design_system.component.QRScanner
-import com.danbam.indistraw.design_system.R
-import com.danbam.indistraw.design_system.component.IndiStrawButton
-import com.danbam.indistraw.design_system.component.TitleRegular
+import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
+import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
+import com.danbam.indistraw.core.design_system.component.HeadLineBold
+import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
+import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
+import com.danbam.indistraw.core.design_system.component.QRScanner
+import com.danbam.indistraw.core.design_system.R
+import com.danbam.indistraw.core.design_system.component.IndiStrawButton
+import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.mobile.BuildConfig
 import java.util.UUID
 

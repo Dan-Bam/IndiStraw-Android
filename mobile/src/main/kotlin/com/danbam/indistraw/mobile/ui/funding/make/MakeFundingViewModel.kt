@@ -2,9 +2,9 @@ package com.danbam.indistraw.mobile.ui.funding.make
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.domain.param.funding.FundingCreateParam
-import com.danbam.indistraw.domain.usecase.crowd_funding.FundingCreateUseCase
-import com.danbam.indistraw.domain.usecase.file.SendFileUseCase
+import com.danbam.indistraw.core.param.funding.FundingCreateParam
+import com.danbam.indistraw.core.domain.usecase.crowd_funding.FundingCreateUseCase
+import com.danbam.indistraw.core.domain.usecase.file.SendFileUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost

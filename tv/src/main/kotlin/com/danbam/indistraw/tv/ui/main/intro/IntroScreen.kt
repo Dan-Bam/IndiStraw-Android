@@ -6,9 +6,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.danbam.indistraw.design_system.component.IndiStrawTvBackground
-import com.danbam.indistraw.design_system.util.Language
-import com.danbam.indistraw.design_system.util.changeLanguage
+import com.danbam.indistraw.core.design_system.component.IndiStrawTvBackground
+import com.danbam.indistraw.core.design_system.util.Language
+import com.danbam.indistraw.core.design_system.util.changeLanguage
 import com.danbam.indistraw.tv.ui.main.navigation.MainNavigationItem
 import com.danbam.indistraw.tv.util.android.observeWithLifecycle
 import kotlinx.coroutines.InternalCoroutinesApi

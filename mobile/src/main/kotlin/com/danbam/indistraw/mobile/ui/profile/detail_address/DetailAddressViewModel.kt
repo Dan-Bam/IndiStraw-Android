@@ -2,8 +2,8 @@ package com.danbam.indistraw.mobile.ui.profile.detail_address
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.domain.param.auth.ChangeAddressParam
-import com.danbam.indistraw.domain.usecase.account.ChangeAddressUseCase
+import com.danbam.indistraw.core.param.auth.ChangeAddressParam
+import com.danbam.indistraw.core.domain.usecase.account.ChangeAddressUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost

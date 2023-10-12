@@ -2,10 +2,10 @@ package com.danbam.indistraw.mobile.ui.funding.pay
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.domain.param.funding.FundingParam
-import com.danbam.indistraw.domain.usecase.account.GetProfileUseCase
-import com.danbam.indistraw.domain.usecase.funding.FundingUseCase
-import com.danbam.indistraw.domain.usecase.funding.GetReceiptUseCase
+import com.danbam.indistraw.core.param.funding.FundingParam
+import com.danbam.indistraw.core.domain.usecase.account.GetProfileUseCase
+import com.danbam.indistraw.core.domain.usecase.funding.FundingUseCase
+import com.danbam.indistraw.core.domain.usecase.funding.GetReceiptUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost

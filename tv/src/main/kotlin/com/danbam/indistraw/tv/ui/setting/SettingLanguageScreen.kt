@@ -27,10 +27,10 @@ import androidx.tv.foundation.lazy.list.items
 import androidx.tv.material3.ClickableSurfaceDefaults
 import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.Surface
-import com.danbam.indistraw.design_system.IndiStrawTheme
-import com.danbam.indistraw.design_system.component.ExampleTextMedium
-import com.danbam.indistraw.design_system.util.Language
-import com.danbam.indistraw.design_system.util.changeLanguage
+import com.danbam.indistraw.core.design_system.IndiStrawTheme
+import com.danbam.indistraw.core.design_system.component.ExampleTextMedium
+import com.danbam.indistraw.core.design_system.util.Language
+import com.danbam.indistraw.core.design_system.util.changeLanguage
 
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable

@@ -1,7 +1,7 @@
 package com.danbam.indistraw.tv.ui.home
 
-import com.danbam.indistraw.domain.entity.banner.BannerEntity
-import com.danbam.indistraw.domain.entity.movie.MovieEntity
+import com.danbam.indistraw.core.entity.banner.BannerEntity
+import com.danbam.indistraw.core.entity.movie.MovieEntity
 
 
 data class HomeState(

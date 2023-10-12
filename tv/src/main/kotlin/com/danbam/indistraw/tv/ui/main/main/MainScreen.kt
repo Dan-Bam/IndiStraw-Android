@@ -17,10 +17,10 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import com.danbam.indistraw.design_system.component.IndiStrawTvBackground
-import com.danbam.indistraw.design_system.component.IndiStrawTvNavigationDrawer
-import com.danbam.indistraw.design_system.component.TvNavigationItem
-import com.danbam.indistraw.design_system.util.findActivity
+import com.danbam.indistraw.core.design_system.component.IndiStrawTvBackground
+import com.danbam.indistraw.core.design_system.component.IndiStrawTvNavigationDrawer
+import com.danbam.indistraw.core.design_system.component.TvNavigationItem
+import com.danbam.indistraw.core.design_system.util.findActivity
 import com.danbam.indistraw.tv.ui.home.HomeScreen
 import com.danbam.indistraw.tv.ui.movie.movie.MovieScreen
 import com.danbam.indistraw.tv.ui.search.SearchScreen

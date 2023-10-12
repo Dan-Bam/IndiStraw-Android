@@ -2,7 +2,7 @@ package com.danbam.indistraw.mobile.ui.profile.find_address
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.domain.usecase.address.GetAddressUseCase
+import com.danbam.indistraw.core.domain.usecase.address.GetAddressUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost

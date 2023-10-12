@@ -15,19 +15,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.danbam.indistraw.design_system.IndiStrawTheme
-import com.danbam.indistraw.design_system.component.IndiStrawButton
-import com.danbam.indistraw.design_system.component.IndiStrawColumnBackground
-import com.danbam.indistraw.design_system.R
-import com.danbam.indistraw.design_system.attribute.IndiStrawIcon
-import com.danbam.indistraw.design_system.attribute.IndiStrawIconList
-import com.danbam.indistraw.design_system.component.HeadLineBold
-import com.danbam.indistraw.design_system.component.RewardItem
-import com.danbam.indistraw.design_system.component.RewardType
-import com.danbam.indistraw.design_system.component.TitleRegular
-import com.danbam.indistraw.design_system.util.RemoveOverScrollLazyColumn
-import com.danbam.indistraw.design_system.util.indiStrawClickable
-import com.danbam.indistraw.domain.entity.funding.FundingDetailEntity
+import com.danbam.indistraw.core.design_system.IndiStrawTheme
+import com.danbam.indistraw.core.design_system.component.IndiStrawButton
+import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
+import com.danbam.indistraw.core.design_system.R
+import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
+import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
+import com.danbam.indistraw.core.design_system.component.HeadLineBold
+import com.danbam.indistraw.core.design_system.component.RewardItem
+import com.danbam.indistraw.core.design_system.component.RewardType
+import com.danbam.indistraw.core.design_system.component.TitleRegular
+import com.danbam.indistraw.core.design_system.util.RemoveOverScrollLazyColumn
+import com.danbam.indistraw.core.design_system.util.indiStrawClickable
+import com.danbam.indistraw.core.entity.funding.FundingDetailEntity
 
 @Composable
 fun AddRewardScreen(

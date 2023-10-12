@@ -2,11 +2,11 @@ package com.danbam.indistraw.tv.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.design_system.component.MovieTab
-import com.danbam.indistraw.domain.usecase.banner.GetBannerUseCase
-import com.danbam.indistraw.domain.usecase.movie.MoviePopularListUseCase
-import com.danbam.indistraw.domain.usecase.movie.MovieRecentListUseCase
-import com.danbam.indistraw.domain.usecase.movie.MovieRecommendListUseCase
+import com.danbam.indistraw.core.design_system.component.MovieTab
+import com.danbam.indistraw.core.domain.usecase.banner.GetBannerUseCase
+import com.danbam.indistraw.core.domain.usecase.movie.MoviePopularListUseCase
+import com.danbam.indistraw.core.domain.usecase.movie.MovieRecentListUseCase
+import com.danbam.indistraw.core.domain.usecase.movie.MovieRecommendListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost

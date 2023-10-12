@@ -14,13 +14,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.danbam.indistraw.design_system.component.IndiStrawButton
-import com.danbam.indistraw.design_system.component.IndiStrawColumnBackground
-import com.danbam.indistraw.design_system.component.TitleRegular
-import com.danbam.indistraw.design_system.R
-import com.danbam.indistraw.design_system.component.AddImageList
-import com.danbam.indistraw.design_system.component.IndiStrawTextField
-import com.danbam.indistraw.design_system.component.SelectImageButton
+import com.danbam.indistraw.core.design_system.component.IndiStrawButton
+import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
+import com.danbam.indistraw.core.design_system.component.TitleRegular
+import com.danbam.indistraw.core.design_system.R
+import com.danbam.indistraw.core.design_system.component.AddImageList
+import com.danbam.indistraw.core.design_system.component.IndiStrawTextField
+import com.danbam.indistraw.core.design_system.component.SelectImageButton
 import com.danbam.indistraw.mobile.util.parser.toFile
 
 @Composable

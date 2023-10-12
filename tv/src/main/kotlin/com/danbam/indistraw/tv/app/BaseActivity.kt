@@ -10,7 +10,7 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
-import com.danbam.indistraw.design_system.IndiStrawTheme
+import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.tv.ui.main.navigation.MainNavigationItem
 import com.danbam.indistraw.tv.ui.main.navigation.mainGraph
 import com.google.accompanist.navigation.animation.AnimatedNavHost

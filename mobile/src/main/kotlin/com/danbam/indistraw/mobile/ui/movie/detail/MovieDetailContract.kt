@@ -1,7 +1,7 @@
 package com.danbam.indistraw.mobile.ui.movie.detail
 
-import com.danbam.indistraw.domain.entity.movie.MovieDetailEntity
-import com.danbam.indistraw.domain.entity.movie.MovieEntity
+import com.danbam.indistraw.core.entity.movie.MovieDetailEntity
+import com.danbam.indistraw.core.entity.movie.MovieEntity
 
 
 data class MovieDetailState(

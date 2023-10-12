@@ -11,14 +11,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.danbam.indistraw.design_system.IndiStrawTheme
-import com.danbam.indistraw.design_system.component.IndiStrawColumnBackground
-import com.danbam.indistraw.design_system.component.TitleSemiBold
-import com.danbam.indistraw.design_system.R
-import com.danbam.indistraw.design_system.component.ExampleTextMedium
-import com.danbam.indistraw.design_system.component.IndiStrawChipList
-import com.danbam.indistraw.design_system.util.RemoveOverScrollLazyColumn
-import com.danbam.indistraw.design_system.util.indiStrawClickable
+import com.danbam.indistraw.core.design_system.IndiStrawTheme
+import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
+import com.danbam.indistraw.core.design_system.component.TitleSemiBold
+import com.danbam.indistraw.core.design_system.R
+import com.danbam.indistraw.core.design_system.component.ExampleTextMedium
+import com.danbam.indistraw.core.design_system.component.IndiStrawChipList
+import com.danbam.indistraw.core.design_system.util.RemoveOverScrollLazyColumn
+import com.danbam.indistraw.core.design_system.util.indiStrawClickable
 
 @Composable
 fun StartSearchScreen(

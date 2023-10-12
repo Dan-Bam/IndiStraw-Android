@@ -2,8 +2,8 @@ package com.danbam.indistraw.tv.ui.main.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.domain.param.auth.LoginParam
-import com.danbam.indistraw.domain.usecase.auth.LoginUseCase
+import com.danbam.indistraw.core.param.auth.LoginParam
+import com.danbam.indistraw.core.domain.usecase.auth.LoginUseCase
 import com.danbam.indistraw.tv.util.android.errorHandling
 import com.danbam.indistraw.tv.util.parser.isId
 import com.danbam.indistraw.tv.util.parser.isPassword

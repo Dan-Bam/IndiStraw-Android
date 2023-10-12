@@ -2,10 +2,10 @@ package com.danbam.indistraw.mobile.ui.profile.setting
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.domain.usecase.account.WithdrawUseCase
-import com.danbam.indistraw.domain.usecase.auth.ClearTokenUseCase
-import com.danbam.indistraw.domain.usecase.auth.LogoutUseCase
-import com.danbam.indistraw.domain.usecase.system.SaveLanguageUseCase
+import com.danbam.indistraw.core.domain.usecase.account.WithdrawUseCase
+import com.danbam.indistraw.core.domain.usecase.auth.ClearTokenUseCase
+import com.danbam.indistraw.core.domain.usecase.auth.LogoutUseCase
+import com.danbam.indistraw.core.domain.usecase.system.SaveLanguageUseCase
 import com.danbam.indistraw.mobile.util.android.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

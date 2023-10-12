@@ -1,7 +1,7 @@
 package com.danbam.indistraw.mobile.ui.profile.profile
 
-import com.danbam.indistraw.domain.entity.funding.FundingEntity
-import com.danbam.indistraw.domain.entity.movie.MovieEntity
+import com.danbam.indistraw.core.entity.funding.FundingEntity
+import com.danbam.indistraw.core.entity.movie.MovieEntity
 
 data class ProfileState(
     val id: String = "",
