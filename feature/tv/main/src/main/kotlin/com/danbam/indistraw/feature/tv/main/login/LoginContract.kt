@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.tv.ui.main.login
+package com.danbam.indistraw.feature.tv.main.login
 
 sealed class LoginSideEffect {
     object LoginSuccess : LoginSideEffect()

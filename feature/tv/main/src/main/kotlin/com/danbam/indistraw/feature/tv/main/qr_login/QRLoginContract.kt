@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.tv.ui.main.qr_login
+package com.danbam.indistraw.feature.tv.main.qr_login
 
 import java.util.UUID
 

@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.tv.ui.main.intro
+package com.danbam.indistraw.feature.tv.main.intro
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -9,7 +9,7 @@ import androidx.navigation.NavController
 import com.danbam.indistraw.core.design_system.component.IndiStrawTvBackground
 import com.danbam.indistraw.core.design_system.util.android.Language
 import com.danbam.indistraw.core.design_system.util.android.changeLanguage
-import com.danbam.indistraw.app.tv.ui.main.navigation.MainNavigationItem
+import com.danbam.indistraw.feature.tv.main.navigation.MainNavigationItem
 import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
 import kotlinx.coroutines.InternalCoroutinesApi
 

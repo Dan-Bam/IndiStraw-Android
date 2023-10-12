@@ -50,7 +50,7 @@ import com.danbam.indistraw.core.design_system.component.ExampleTextMedium
 import com.danbam.indistraw.core.design_system.component.IndiStrawTvTitleDialog
 import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
-import com.danbam.indistraw.app.tv.ui.main.navigation.MainNavigationItem
+import com.danbam.indistraw.feature.tv.main.navigation.MainNavigationItem
 import kotlinx.coroutines.InternalCoroutinesApi
 
 sealed class SettingNavigation(val stringId: Int) {
@@ -84,12 +84,12 @@ fun SettingScreen(
         when (it) {
             is SettingSideEffect.SuccessLogout -> {
                 settingDialogVisible = false
-                navController.navigate(MainNavigationItem.Login.route)
+                navController.navigate(com.danbam.indistraw.feature.tv.main.navigation.MainNavigationItem.Login.route)
             }
 
             is SettingSideEffect.SuccessWithdraw -> {
                 settingDialogVisible = false
-                navController.navigate(MainNavigationItem.Login.route)
+                navController.navigate(com.danbam.indistraw.feature.tv.main.navigation.MainNavigationItem.Login.route)
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.tv.ui.main.qr_login
+package com.danbam.indistraw.feature.tv.main.qr_login
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -25,7 +25,7 @@ import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.component.QRPainter
 import com.danbam.indistraw.app.tv.BuildConfig
-import com.danbam.indistraw.app.tv.ui.main.navigation.MainNavigationItem
+import com.danbam.indistraw.feature.tv.main.navigation.MainNavigationItem
 import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.delay

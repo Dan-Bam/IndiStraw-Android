@@ -1,14 +1,14 @@
-package com.danbam.indistraw.app.tv.ui.main.navigation
+package com.danbam.indistraw.feature.tv.main.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
-import com.danbam.indistraw.app.tv.ui.main.intro.IntroScreen
-import com.danbam.indistraw.app.tv.ui.main.login.LoginScreen
-import com.danbam.indistraw.app.tv.ui.main.main.MainScreen
-import com.danbam.indistraw.app.tv.ui.main.qr_login.QRLoginScreen
+import com.danbam.indistraw.feature.tv.main.intro.IntroScreen
+import com.danbam.indistraw.feature.tv.main.login.LoginScreen
+import com.danbam.indistraw.feature.tv.main.main.MainScreen
+import com.danbam.indistraw.feature.tv.main.qr_login.QRLoginScreen
 import com.danbam.indistraw.app.tv.ui.movie.detail.MovieDetailScreen
 import com.danbam.indistraw.app.tv.ui.movie.play.MoviePlayScreen
 import com.google.accompanist.navigation.animation.composable

@@ -11,8 +11,8 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import com.danbam.indistraw.core.design_system.IndiStrawTheme
-import com.danbam.indistraw.app.tv.ui.main.navigation.MainNavigationItem
-import com.danbam.indistraw.app.tv.ui.main.navigation.mainGraph
+import com.danbam.indistraw.feature.tv.main.navigation.MainNavigationItem
+import com.danbam.indistraw.feature.tv.main.navigation.mainGraph
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,7 +36,7 @@ class BaseActivity : ComponentActivity() {
 fun BaseApp(navController: NavHostController) {
     AnimatedNavHost(
         navController = navController,
-        startDestination = MainNavigationItem.Intro.route,
+        startDestination = com.danbam.indistraw.feature.tv.main.navigation.MainNavigationItem.Intro.route,
         enterTransition = {
             slideInHorizontally(
                 initialOffsetX = { it * 2 }, animationSpec = tween(

@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.tv.ui.main.login
+package com.danbam.indistraw.feature.tv.main.login
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
@@ -25,7 +25,7 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawTvButton
 import com.danbam.indistraw.core.design_system.component.IndiStrawTvDialog
 import com.danbam.indistraw.core.design_system.component.IndiStrawTvTextField
 import com.danbam.indistraw.core.design_system.util.android.findActivity
-import com.danbam.indistraw.app.tv.ui.main.navigation.MainNavigationItem
+import com.danbam.indistraw.feature.tv.main.navigation.MainNavigationItem
 import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
 import kotlinx.coroutines.InternalCoroutinesApi
 

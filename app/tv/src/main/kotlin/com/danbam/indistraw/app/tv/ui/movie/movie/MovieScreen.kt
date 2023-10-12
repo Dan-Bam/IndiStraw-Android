@@ -38,8 +38,8 @@ import com.danbam.indistraw.core.design_system.component.MovieGenre
 import com.danbam.indistraw.core.design_system.component.MovieTvItem
 import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.core.design_system.component.TitleSemiBold
-import com.danbam.indistraw.app.tv.ui.main.navigation.MainDeepLinkKey
-import com.danbam.indistraw.app.tv.ui.main.navigation.MainNavigationItem
+import com.danbam.indistraw.feature.tv.main.navigation.MainDeepLinkKey
+import com.danbam.indistraw.feature.tv.main.navigation.MainNavigationItem
 
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
@@ -140,7 +140,7 @@ fun MovieScreen(
                                 item = it
                             ) {
                                 movieViewModel.saveCurrentIndex(it.movieIdx)
-                                navController.navigate(MainNavigationItem.MovieDetail.route + MainDeepLinkKey.MOVIE_INDEX + it.movieIdx)
+                                navController.navigate(com.danbam.indistraw.feature.tv.main.navigation.MainNavigationItem.MovieDetail.route + com.danbam.indistraw.feature.tv.main.navigation.MainDeepLinkKey.MOVIE_INDEX + it.movieIdx)
                             }
                         }
                     }

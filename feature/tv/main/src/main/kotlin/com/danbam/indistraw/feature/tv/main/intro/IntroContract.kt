@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.tv.ui.main.intro
+package com.danbam.indistraw.feature.tv.main.intro
 
 data class IntroState(
     val currentLanguage: String? = null

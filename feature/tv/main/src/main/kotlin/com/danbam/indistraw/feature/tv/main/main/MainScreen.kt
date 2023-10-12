@@ -1,4 +1,4 @@
-package com.danbam.indistraw.app.tv.ui.main.main
+package com.danbam.indistraw.feature.tv.main.main
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.ExperimentalAnimationApi
