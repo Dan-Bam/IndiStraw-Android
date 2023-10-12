@@ -6,9 +6,9 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "indi_straw"
-include(":mobile")
+include(":app:mobile")
+include(":app:tv")
 include(":core:data")
 include(":core:domain")
 include(":core:di")
 include(":core:design-system")
-include(":tv")
