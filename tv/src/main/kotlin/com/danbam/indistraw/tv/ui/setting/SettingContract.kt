@@ -1,6 +1,6 @@
 package com.danbam.indistraw.tv.ui.setting
 
-import com.danbam.indistraw.core.design_system.util.Language
+import com.danbam.indistraw.core.design_system.util.android.Language
 import com.danbam.indistraw.core.domain.entity.auth.ProfileEntity
 
 data class SettingState(

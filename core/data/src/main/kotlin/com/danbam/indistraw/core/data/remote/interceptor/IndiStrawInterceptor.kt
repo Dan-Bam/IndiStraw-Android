@@ -7,7 +7,7 @@ import com.danbam.indistraw.core.data.BuildConfig
 import com.danbam.indistraw.core.data.local.datasource.AuthLocalDataSource
 import com.danbam.indistraw.core.data.remote.response.auth.LoginResponse
 import com.danbam.indistraw.core.data.util.default
-import com.danbam.indistraw.core.exception.ExpiredTokenException
+import com.danbam.indistraw.core.domain.exception.ExpiredTokenException
 import com.google.gson.Gson
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaTypeOrNull

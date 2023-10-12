@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.design_system.util
+package com.danbam.indistraw.core.design_system.util.android
 
 import android.app.Activity
 import android.content.Context

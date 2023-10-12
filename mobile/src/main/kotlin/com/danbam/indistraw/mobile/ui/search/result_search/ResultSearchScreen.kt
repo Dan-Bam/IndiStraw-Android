@@ -30,7 +30,7 @@ import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.component.FundingItem
 import com.danbam.indistraw.core.design_system.component.MovieItem
 import com.danbam.indistraw.core.design_system.component.SearchTab
-import com.danbam.indistraw.core.design_system.util.RemoveOverScrollLazyColumn
+import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyColumn
 import com.danbam.indistraw.mobile.ui.funding.navigation.FundingDeepLinkKey
 import com.danbam.indistraw.mobile.ui.funding.navigation.FundingNavigationItem
 import com.danbam.indistraw.mobile.ui.movie.navigation.MovieDeepLinkKey

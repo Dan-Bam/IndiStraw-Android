@@ -34,14 +34,14 @@ import com.danbam.indistraw.core.design_system.component.ExampleTextMedium
 import com.danbam.indistraw.core.design_system.component.FindPasswordMedium
 import com.danbam.indistraw.core.design_system.component.IndiStrawButton
 import com.danbam.indistraw.core.design_system.component.TitleRegular
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.danbam.indistraw.mobile.ui.auth.navigation.AuthDeepLinkKey
 import com.danbam.indistraw.mobile.ui.auth.navigation.AuthNavigationItem
 import com.danbam.indistraw.mobile.ui.auth.navigation.CertificateType
-import com.danbam.indistraw.mobile.util.android.observeWithLifecycle
-import com.danbam.indistraw.mobile.util.view.popBackStack
-import com.danbam.indistraw.mobile.util.view.requestFocus
-import com.danbam.indistraw.mobile.util.parser.toPhoneNumber
+import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
+import com.danbam.indistraw.core.design_system.util.androidx.popBackStack
+import com.danbam.indistraw.core.design_system.util.androidx.requestFocus
+import com.danbam.indistraw.core.design_system.util.internal.toPhoneNumber
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.delay
 

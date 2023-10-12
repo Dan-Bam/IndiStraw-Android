@@ -1,17 +1,14 @@
-package com.danbam.indistraw.mobile.util.parser
+package com.danbam.indistraw.core.design_system.util.android
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Environment
-import android.provider.OpenableColumns
-import androidx.core.net.toFile
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
 import java.lang.RuntimeException
-import java.net.URLDecoder
 import java.time.LocalDateTime
 
 @SuppressLint("Range")

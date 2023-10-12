@@ -2,8 +2,8 @@ package com.danbam.indistraw.mobile.ui.funding.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.danbam.indistraw.core.design_system.util.danbam.errorHandling
 import com.danbam.indistraw.core.domain.usecase.crowd_funding.FundingDetailUseCase
-import com.danbam.indistraw.mobile.util.android.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost

@@ -12,6 +12,11 @@ android {
             "VIDEO_PRE_PATH",
             gradleLocalProperties(rootDir).getProperty("VIDEO_PRE_PATH")
         )
+        buildConfigField(
+            "String",
+            "PAY_KEY",
+            gradleLocalProperties(rootDir).getProperty("PAY_KEY")
+        )
     }
     buildFeatures {
         compose = true
@@ -29,5 +34,6 @@ dependencies {
     implementation(libs.bundles.camera)
     implementation(libs.bundles.barcode)
     implementation(libs.bundles.tv)
-
+    implementation(libs.bundles.retrofit)
+    implementation(libs.bootpay)
 }

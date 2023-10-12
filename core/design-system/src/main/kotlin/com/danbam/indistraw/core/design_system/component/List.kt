@@ -25,11 +25,11 @@ import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
-import com.danbam.indistraw.core.design_system.util.LaunchType
-import com.danbam.indistraw.core.design_system.util.RemoveOverScrollLazyRow
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
-import com.danbam.indistraw.core.design_system.util.rememberLauncher
-import com.danbam.indistraw.core.design_system.util.typedLaunch
+import com.danbam.indistraw.core.design_system.util.androidx.LaunchType
+import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyRow
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.androidx.rememberLauncher
+import com.danbam.indistraw.core.design_system.util.androidx.typedLaunch
 import com.danbam.indistraw.core.entity.movie.MoviePeopleEntity
 
 @Composable

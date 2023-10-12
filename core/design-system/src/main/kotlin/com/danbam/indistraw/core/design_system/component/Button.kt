@@ -46,11 +46,11 @@ import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
-import com.danbam.indistraw.core.design_system.util.LaunchType
-import com.danbam.indistraw.core.design_system.util.checkAndRequestPermissions
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
-import com.danbam.indistraw.core.design_system.util.rememberLauncher
-import com.danbam.indistraw.core.design_system.util.typedLaunch
+import com.danbam.indistraw.core.design_system.util.androidx.LaunchType
+import com.danbam.indistraw.core.design_system.util.android.checkAndRequestPermissions
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.androidx.rememberLauncher
+import com.danbam.indistraw.core.design_system.util.androidx.typedLaunch
 
 sealed class Shape {
     object None : Shape()

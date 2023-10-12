@@ -25,8 +25,8 @@ import com.danbam.indistraw.core.design_system.component.HeadLineBold
 import com.danbam.indistraw.core.design_system.component.RewardItem
 import com.danbam.indistraw.core.design_system.component.RewardType
 import com.danbam.indistraw.core.design_system.component.TitleRegular
-import com.danbam.indistraw.core.design_system.util.RemoveOverScrollLazyColumn
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyColumn
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.danbam.indistraw.core.entity.funding.FundingDetailEntity
 
 @Composable

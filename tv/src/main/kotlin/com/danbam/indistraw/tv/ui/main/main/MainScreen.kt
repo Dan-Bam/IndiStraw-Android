@@ -20,7 +20,7 @@ import androidx.navigation.NavHostController
 import com.danbam.indistraw.core.design_system.component.IndiStrawTvBackground
 import com.danbam.indistraw.core.design_system.component.IndiStrawTvNavigationDrawer
 import com.danbam.indistraw.core.design_system.component.TvNavigationItem
-import com.danbam.indistraw.core.design_system.util.findActivity
+import com.danbam.indistraw.core.design_system.util.android.findActivity
 import com.danbam.indistraw.tv.ui.home.HomeScreen
 import com.danbam.indistraw.tv.ui.movie.movie.MovieScreen
 import com.danbam.indistraw.tv.ui.search.SearchScreen

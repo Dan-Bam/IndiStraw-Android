@@ -10,7 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.danbam.indistraw.core.design_system.IndiStrawTheme
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 
 @Composable
 fun IndiStrawToggle(

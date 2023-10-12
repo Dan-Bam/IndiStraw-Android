@@ -21,7 +21,7 @@ import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.component.AddImageList
 import com.danbam.indistraw.core.design_system.component.IndiStrawTextField
 import com.danbam.indistraw.core.design_system.component.SelectImageButton
-import com.danbam.indistraw.mobile.util.parser.toFile
+import com.danbam.indistraw.core.design_system.util.android.toFile
 
 @Composable
 fun WriteIntroduceScreen(

@@ -23,15 +23,15 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawBoxBackground
 import com.danbam.indistraw.core.design_system.component.IndiStrawButton
 import com.danbam.indistraw.core.design_system.component.JoinBold
 import com.danbam.indistraw.core.design_system.component.TitleRegular
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
-import com.danbam.indistraw.core.design_system.util.Language
-import com.danbam.indistraw.core.design_system.util.changeLanguage
+import com.danbam.indistraw.core.design_system.util.android.Language
+import com.danbam.indistraw.core.design_system.util.android.changeLanguage
+import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
 import com.danbam.indistraw.mobile.ui.auth.navigation.AuthNavigationItem
 import com.danbam.indistraw.mobile.ui.main.navigation.MainNavigationItem
-import com.danbam.indistraw.mobile.util.android.observeWithLifecycle
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.delay
 

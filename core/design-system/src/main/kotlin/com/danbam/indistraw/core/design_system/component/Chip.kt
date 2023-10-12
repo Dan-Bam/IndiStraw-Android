@@ -11,8 +11,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.R
-import com.danbam.indistraw.core.design_system.util.RemoveOverScrollLazyRow
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyRow
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 
 sealed class MovieGenre(val stringId: Int, val genre: String?) {
     companion object {

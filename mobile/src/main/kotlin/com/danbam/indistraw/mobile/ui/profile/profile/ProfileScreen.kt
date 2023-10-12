@@ -36,7 +36,7 @@ import com.danbam.indistraw.core.design_system.component.FundingTab
 import com.danbam.indistraw.core.design_system.component.IndiStrawColumnTab
 import com.danbam.indistraw.core.design_system.component.IndiStrawRowTab
 import com.danbam.indistraw.core.design_system.component.MovieTab
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.danbam.indistraw.mobile.ui.funding.navigation.FundingDeepLinkKey
 import com.danbam.indistraw.mobile.ui.funding.navigation.FundingNavigationItem
 import com.danbam.indistraw.mobile.ui.movie.navigation.MovieDeepLinkKey

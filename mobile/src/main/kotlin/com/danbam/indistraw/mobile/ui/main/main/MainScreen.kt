@@ -42,8 +42,8 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawTab
 import com.danbam.indistraw.core.design_system.component.MovieTab
 import com.danbam.indistraw.core.design_system.component.Shape
 import com.danbam.indistraw.core.design_system.component.TitleSemiBold
-import com.danbam.indistraw.core.design_system.util.findActivity
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.android.findActivity
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.danbam.indistraw.mobile.ui.funding.navigation.FundingDeepLinkKey
 import com.danbam.indistraw.mobile.ui.funding.navigation.FundingNavigationItem
 import com.danbam.indistraw.mobile.ui.movie.navigation.MovieDeepLinkKey

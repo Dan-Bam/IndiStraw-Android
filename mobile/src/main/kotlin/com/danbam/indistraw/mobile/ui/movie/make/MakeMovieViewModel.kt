@@ -2,6 +2,7 @@ package com.danbam.indistraw.mobile.ui.movie.make
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.danbam.indistraw.core.design_system.util.danbam.errorHandling
 import com.danbam.indistraw.core.entity.movie.MoviePeopleEntity
 import com.danbam.indistraw.core.param.movie.MovieCreateParam
 import com.danbam.indistraw.core.param.movie.MoviePeopleParam
@@ -10,7 +11,6 @@ import com.danbam.indistraw.core.domain.usecase.movie.AddMoviePeopleUseCase
 import com.danbam.indistraw.core.domain.usecase.movie.MovieCreateUseCase
 import com.danbam.indistraw.core.domain.usecase.movie.SearchMoviePeopleUseCase
 import com.danbam.indistraw.mobile.ui.movie.navigation.ActorType
-import com.danbam.indistraw.mobile.util.android.errorHandling
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost

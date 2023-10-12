@@ -34,8 +34,8 @@ import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
-import com.danbam.indistraw.core.design_system.util.toCommaString
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.internal.toCommaString
 import com.danbam.indistraw.core.entity.funding.FundingDetailEntity
 import com.danbam.indistraw.core.entity.funding.FundingEntity
 import com.danbam.indistraw.core.entity.funding.MyFundingEntity

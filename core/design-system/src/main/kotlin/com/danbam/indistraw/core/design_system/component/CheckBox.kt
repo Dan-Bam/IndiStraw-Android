@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.dp
 import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 
 @Composable
 fun IndiStrawCheckBox(

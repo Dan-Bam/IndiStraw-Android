@@ -27,7 +27,7 @@ import com.danbam.indistraw.core.design_system.component.ExampleTextMedium
 import com.danbam.indistraw.core.design_system.component.IndiStrawTextField
 import com.danbam.indistraw.core.design_system.component.IndiStrawToggle
 import com.danbam.indistraw.core.design_system.component.TitleRegular
-import com.danbam.indistraw.mobile.util.parser.toFile
+import com.danbam.indistraw.core.design_system.util.android.toFile
 import okhttp3.internal.toLongOrDefault
 
 @Composable

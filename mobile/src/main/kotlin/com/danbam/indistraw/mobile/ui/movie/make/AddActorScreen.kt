@@ -26,13 +26,13 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
 import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.component.IndiStrawButton
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.androidx.getActivity
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.danbam.indistraw.mobile.ui.main.navigation.MainNavigationItem
 import com.danbam.indistraw.mobile.ui.movie.navigation.ActorType
 import com.danbam.indistraw.mobile.ui.movie.navigation.MovieDeepLinkKey
 import com.danbam.indistraw.mobile.ui.movie.navigation.MovieNavigationItem
-import com.danbam.indistraw.mobile.util.android.getActivity
-import com.danbam.indistraw.mobile.util.android.observeWithLifecycle
+import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
 import kotlinx.coroutines.InternalCoroutinesApi
 
 sealed class AddPeopleType {

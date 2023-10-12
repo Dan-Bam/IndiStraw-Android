@@ -19,7 +19,7 @@ import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.mobile.ui.search.result_search.ResultSearchScreen
 import com.danbam.indistraw.mobile.ui.search.searching.SearchingScreen
 import com.danbam.indistraw.mobile.ui.search.start_search.StartSearchScreen
-import com.danbam.indistraw.mobile.util.view.popBackStack
+import com.danbam.indistraw.core.design_system.util.androidx.popBackStack
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable

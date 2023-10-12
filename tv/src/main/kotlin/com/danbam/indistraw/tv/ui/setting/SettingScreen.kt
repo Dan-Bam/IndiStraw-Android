@@ -49,8 +49,8 @@ import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
 import com.danbam.indistraw.core.design_system.component.ExampleTextMedium
 import com.danbam.indistraw.core.design_system.component.IndiStrawTvTitleDialog
 import com.danbam.indistraw.core.design_system.component.TitleRegular
+import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
 import com.danbam.indistraw.tv.ui.main.navigation.MainNavigationItem
-import com.danbam.indistraw.tv.util.android.observeWithLifecycle
 import kotlinx.coroutines.InternalCoroutinesApi
 
 sealed class SettingNavigation(val stringId: Int) {

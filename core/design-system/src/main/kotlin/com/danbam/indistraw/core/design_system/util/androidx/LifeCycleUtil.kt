@@ -1,4 +1,4 @@
-package com.danbam.indistraw.mobile.util.android
+package com.danbam.indistraw.core.design_system.util.androidx
 
 import androidx.activity.ComponentActivity
 import androidx.compose.runtime.Composable

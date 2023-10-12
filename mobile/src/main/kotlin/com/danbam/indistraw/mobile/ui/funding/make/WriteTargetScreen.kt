@@ -31,8 +31,8 @@ import com.danbam.indistraw.core.design_system.component.ExampleTextMedium
 import com.danbam.indistraw.core.design_system.component.IndiStrawBottomSheetLayout
 import com.danbam.indistraw.core.design_system.component.IndiStrawTextField
 import com.danbam.indistraw.core.design_system.component.TitleRegular
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
-import com.danbam.indistraw.mobile.util.parser.toFile
+import com.danbam.indistraw.core.design_system.util.android.toFile
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import okhttp3.internal.toLongOrDefault
 import java.time.LocalDate
 

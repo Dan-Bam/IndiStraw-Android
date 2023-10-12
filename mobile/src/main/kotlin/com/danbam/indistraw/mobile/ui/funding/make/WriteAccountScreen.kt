@@ -34,7 +34,7 @@ import com.danbam.indistraw.core.design_system.component.FindPasswordMedium
 import com.danbam.indistraw.core.design_system.component.HeadLineBold
 import com.danbam.indistraw.core.design_system.component.IndiStrawBottomSheetLayout
 import com.danbam.indistraw.core.design_system.component.IndiStrawTextField
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 
 sealed class Bank(val stringId: Int, val BankIcon: IndiStrawIconList, val name: String) {
     object NhBank : Bank(R.string.nh_bank, IndiStrawIconList.BankNh, "NH")

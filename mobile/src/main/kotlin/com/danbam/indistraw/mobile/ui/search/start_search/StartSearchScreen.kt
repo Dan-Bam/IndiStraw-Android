@@ -17,8 +17,8 @@ import com.danbam.indistraw.core.design_system.component.TitleSemiBold
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.component.ExampleTextMedium
 import com.danbam.indistraw.core.design_system.component.IndiStrawChipList
-import com.danbam.indistraw.core.design_system.util.RemoveOverScrollLazyColumn
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyColumn
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 
 @Composable
 fun StartSearchScreen(

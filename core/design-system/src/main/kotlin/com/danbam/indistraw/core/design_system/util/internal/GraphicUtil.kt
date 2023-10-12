@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.design_system.util
+package com.danbam.indistraw.core.design_system.util.internal
 
 import android.content.Context
 import kotlin.math.roundToInt

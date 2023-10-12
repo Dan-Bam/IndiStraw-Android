@@ -35,14 +35,14 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawTextField
 import com.danbam.indistraw.core.design_system.component.IndiStrawToggle
 import com.danbam.indistraw.core.design_system.component.SelectImageButton
 import com.danbam.indistraw.core.design_system.component.TitleRegular
-import com.danbam.indistraw.core.design_system.util.LaunchType
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
-import com.danbam.indistraw.core.design_system.util.rememberLauncher
-import com.danbam.indistraw.core.design_system.util.typedLaunch
+import com.danbam.indistraw.core.design_system.util.android.toFile
+import com.danbam.indistraw.core.design_system.util.androidx.LaunchType
+import com.danbam.indistraw.core.design_system.util.androidx.getActivity
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.androidx.rememberLauncher
+import com.danbam.indistraw.core.design_system.util.androidx.typedLaunch
 import com.danbam.indistraw.mobile.ui.movie.navigation.MovieNavigationItem
-import com.danbam.indistraw.mobile.util.android.getActivity
-import com.danbam.indistraw.mobile.util.android.observeWithLifecycle
-import com.danbam.indistraw.mobile.util.parser.toFile
+import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @OptIn(InternalCoroutinesApi::class)

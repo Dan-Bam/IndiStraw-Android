@@ -20,7 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import com.danbam.indistraw.core.design_system.IndiStrawTheme
-import com.danbam.indistraw.core.design_system.util.RemoveOverScrollLazyRow
+import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyRow
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext

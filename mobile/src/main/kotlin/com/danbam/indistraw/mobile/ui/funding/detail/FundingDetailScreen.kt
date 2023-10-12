@@ -45,7 +45,7 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawBottomSheetLay
 import com.danbam.indistraw.core.design_system.component.IndiStrawSlider
 import com.danbam.indistraw.core.design_system.component.RewardItem
 import com.danbam.indistraw.core.design_system.component.RewardType
-import com.danbam.indistraw.core.design_system.util.toCommaString
+import com.danbam.indistraw.core.design_system.util.internal.toCommaString
 import com.danbam.indistraw.core.entity.funding.FundingDetailEntity
 import com.danbam.indistraw.mobile.ui.funding.navigation.FundingDeepLinkKey
 import com.danbam.indistraw.mobile.ui.funding.navigation.FundingNavigationItem

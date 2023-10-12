@@ -2,11 +2,11 @@ package com.danbam.indistraw.mobile.ui.auth.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.danbam.indistraw.core.design_system.util.danbam.errorHandling
+import com.danbam.indistraw.core.design_system.util.internal.isId
+import com.danbam.indistraw.core.design_system.util.internal.isPassword
 import com.danbam.indistraw.core.param.auth.LoginParam
 import com.danbam.indistraw.core.domain.usecase.auth.LoginUseCase
-import com.danbam.indistraw.mobile.util.android.errorHandling
-import com.danbam.indistraw.mobile.util.parser.isId
-import com.danbam.indistraw.mobile.util.parser.isPassword
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost

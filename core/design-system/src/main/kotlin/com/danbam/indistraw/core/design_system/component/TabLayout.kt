@@ -33,9 +33,9 @@ import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.Surface
 import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.R
-import com.danbam.indistraw.core.design_system.util.RemoveOverScrollLazyRow
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
-import com.danbam.indistraw.core.design_system.util.toDp
+import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyRow
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.internal.toDp
 import com.danbam.indistraw.core.entity.funding.FundingEntity
 import com.danbam.indistraw.core.entity.movie.MovieEntity
 import kotlinx.coroutines.NonCancellable

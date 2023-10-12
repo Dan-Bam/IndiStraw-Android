@@ -34,11 +34,11 @@ import com.danbam.indistraw.core.design_system.component.DialogMedium
 import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
 import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
 import com.danbam.indistraw.core.design_system.component.IndiStrawSearchTextField
-import com.danbam.indistraw.core.design_system.util.RemoveOverScrollLazyColumn
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
-import com.danbam.indistraw.mobile.util.android.getActivity
-import com.danbam.indistraw.mobile.util.android.observeWithLifecycle
-import com.danbam.indistraw.mobile.util.view.popBackStack
+import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyColumn
+import com.danbam.indistraw.core.design_system.util.androidx.getActivity
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
+import com.danbam.indistraw.core.design_system.util.androidx.popBackStack
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @OptIn(ExperimentalComposeUiApi::class, InternalCoroutinesApi::class)

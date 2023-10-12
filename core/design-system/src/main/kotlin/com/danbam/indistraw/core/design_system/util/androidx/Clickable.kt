@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.design_system.util
+package com.danbam.indistraw.core.design_system.util.androidx
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable

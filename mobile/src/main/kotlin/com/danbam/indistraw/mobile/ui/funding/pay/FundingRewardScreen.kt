@@ -34,14 +34,14 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackgrou
 import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
 import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.core.design_system.component.TitleSemiBold
-import com.danbam.indistraw.core.design_system.util.toCommaString
+import com.danbam.indistraw.core.design_system.util.internal.toCommaString
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.component.IndiStrawTextField
-import com.danbam.indistraw.core.design_system.util.findActivity
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
-import com.danbam.indistraw.mobile.util.android.observeWithLifecycle
-import com.danbam.indistraw.mobile.util.pay.bootPayCreate
-import com.danbam.indistraw.mobile.util.pay.bootPayPayload
+import com.danbam.indistraw.core.design_system.util.android.findActivity
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
+import com.danbam.indistraw.core.design_system.util.bootpay.bootPayCreate
+import com.danbam.indistraw.core.design_system.util.bootpay.bootPayPayload
 import kotlinx.coroutines.InternalCoroutinesApi
 
 sealed class Payment(val stringId: Int, val method: String) {

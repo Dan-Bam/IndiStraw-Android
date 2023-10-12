@@ -15,7 +15,7 @@ import androidx.paging.compose.items
 import com.danbam.indistraw.core.design_system.component.FundingItem
 import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
 import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
-import com.danbam.indistraw.core.design_system.util.RemoveOverScrollLazyColumn
+import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyColumn
 import com.danbam.indistraw.mobile.ui.funding.navigation.FundingDeepLinkKey
 import com.danbam.indistraw.mobile.ui.funding.navigation.FundingNavigationItem
 

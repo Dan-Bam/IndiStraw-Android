@@ -1,4 +1,4 @@
-package com.danbam.indistraw.mobile.util.view
+package com.danbam.indistraw.core.design_system.util.androidx
 
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.platform.SoftwareKeyboardController

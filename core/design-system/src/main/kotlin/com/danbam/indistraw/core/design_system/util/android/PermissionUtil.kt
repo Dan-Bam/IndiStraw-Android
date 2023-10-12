@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.design_system.util
+package com.danbam.indistraw.core.design_system.util.android
 
 import android.content.Context
 import android.content.pm.PackageManager

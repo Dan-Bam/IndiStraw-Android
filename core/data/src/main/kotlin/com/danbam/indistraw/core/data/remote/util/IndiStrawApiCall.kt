@@ -1,13 +1,13 @@
 package com.danbam.indistraw.core.data.remote.util
 
-import com.danbam.indistraw.core.exception.ConflictDataException
-import com.danbam.indistraw.core.exception.ExpiredTokenException
-import com.danbam.indistraw.core.exception.InvalidTokenException
-import com.danbam.indistraw.core.exception.NotFoundException
-import com.danbam.indistraw.core.exception.ServerErrorException
-import com.danbam.indistraw.core.exception.TooManyRequestException
-import com.danbam.indistraw.core.exception.UnKnownHttpException
-import com.danbam.indistraw.core.exception.WrongDataException
+import com.danbam.indistraw.core.domain.exception.ConflictDataException
+import com.danbam.indistraw.core.domain.exception.ExpiredTokenException
+import com.danbam.indistraw.core.domain.exception.InvalidTokenException
+import com.danbam.indistraw.core.domain.exception.NotFoundException
+import com.danbam.indistraw.core.domain.exception.ServerErrorException
+import com.danbam.indistraw.core.domain.exception.TooManyRequestException
+import com.danbam.indistraw.core.domain.exception.UnKnownHttpException
+import com.danbam.indistraw.core.domain.exception.WrongDataException
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import kotlinx.coroutines.Dispatchers

@@ -28,22 +28,22 @@ import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.component.ExampleTextMedium
 import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
 import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
 import com.danbam.indistraw.core.design_system.component.ButtonMedium
 import com.danbam.indistraw.core.design_system.component.IndiStrawBottomSheetLayout
 import com.danbam.indistraw.core.design_system.component.IndiStrawDialog
-import com.danbam.indistraw.core.design_system.util.Language
-import com.danbam.indistraw.core.design_system.util.RemoveOverScrollLazyColumn
-import com.danbam.indistraw.core.design_system.util.changeLanguage
+import com.danbam.indistraw.core.design_system.util.android.Language
+import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyColumn
+import com.danbam.indistraw.core.design_system.util.android.changeLanguage
 import com.danbam.indistraw.mobile.ui.auth.navigation.AuthDeepLinkKey
 import com.danbam.indistraw.mobile.ui.auth.navigation.AuthNavigationItem
 import com.danbam.indistraw.mobile.ui.auth.navigation.CertificateType
 import com.danbam.indistraw.mobile.ui.main.navigation.MainNavigationItem
 import com.danbam.indistraw.mobile.ui.profile.navigation.ProfileNavigationItem
-import com.danbam.indistraw.mobile.util.android.observeWithLifecycle
+import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @OptIn(ExperimentalMaterialApi::class, InternalCoroutinesApi::class)

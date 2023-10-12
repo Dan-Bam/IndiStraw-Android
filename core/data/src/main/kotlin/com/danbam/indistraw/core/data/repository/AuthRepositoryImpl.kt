@@ -5,7 +5,7 @@ import com.danbam.indistraw.core.data.remote.datasource.AuthRemoteDataSource
 import com.danbam.indistraw.core.data.remote.request.auth.toRequest
 import com.danbam.indistraw.core.data.remote.response.auth.LoginResponse
 import com.danbam.indistraw.core.data.util.default
-import com.danbam.indistraw.core.exception.ExpiredTokenException
+import com.danbam.indistraw.core.domain.exception.ExpiredTokenException
 import com.danbam.indistraw.core.param.auth.LoginParam
 import com.danbam.indistraw.core.param.auth.SignUpParam
 import com.danbam.indistraw.core.domain.repository.AuthRepository

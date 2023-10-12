@@ -1,9 +1,10 @@
-package com.danbam.indistraw.core.design_system.util
+package com.danbam.indistraw.core.design_system.util.androidx
 
 import android.view.View
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.platform.LocalContext
+import com.danbam.indistraw.core.design_system.util.android.findActivity
 
 @Composable
 fun HideSystemUI() {

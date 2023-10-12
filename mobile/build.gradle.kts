@@ -15,11 +15,6 @@ android {
             "QR_URL",
             gradleLocalProperties(rootDir).getProperty("QR_URL")
         )
-        buildConfigField(
-            "String",
-            "PAY_KEY",
-            gradleLocalProperties(rootDir).getProperty("PAY_KEY")
-        )
     }
 
     buildTypes {
@@ -47,6 +42,5 @@ android {
 }
 dependencies {
     implementation(project(":core:di"))
-    implementation(libs.bundles.retrofit)
     implementation(libs.bootpay)
 }

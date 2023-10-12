@@ -22,10 +22,10 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackgrou
 import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
 import com.danbam.indistraw.core.design_system.component.SelectProfileButton
 import com.danbam.indistraw.core.design_system.R
+import com.danbam.indistraw.core.design_system.util.android.toFile
+import com.danbam.indistraw.core.design_system.util.androidx.getActivity
+import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
 import com.danbam.indistraw.mobile.ui.auth.navigation.AuthNavigationItem
-import com.danbam.indistraw.mobile.util.android.getActivity
-import com.danbam.indistraw.mobile.util.android.observeWithLifecycle
-import com.danbam.indistraw.mobile.util.parser.toFile
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @OptIn(InternalCoroutinesApi::class)

@@ -46,9 +46,9 @@ import com.danbam.indistraw.core.design_system.component.PriceRegular
 import com.danbam.indistraw.core.design_system.component.RewardType
 import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.core.design_system.component.TitleSemiBold
-import com.danbam.indistraw.core.design_system.util.RemoveOverScrollLazyRow
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
-import com.danbam.indistraw.core.design_system.util.toCommaString
+import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyRow
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.internal.toCommaString
 import com.danbam.indistraw.core.entity.funding.MyFundingEntity
 
 @OptIn(ExperimentalMaterialApi::class)

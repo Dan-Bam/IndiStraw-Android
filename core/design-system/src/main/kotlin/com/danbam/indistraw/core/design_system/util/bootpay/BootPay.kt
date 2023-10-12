@@ -1,8 +1,8 @@
-package com.danbam.indistraw.mobile.util.pay
+package com.danbam.indistraw.core.design_system.util.bootpay
 
 import android.app.Activity
 import android.content.Context
-import com.danbam.indistraw.mobile.BuildConfig
+import com.danbam.indistraw.core.design_system.BuildConfig
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import kr.co.bootpay.android.Bootpay

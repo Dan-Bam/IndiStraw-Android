@@ -18,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import com.danbam.indistraw.core.design_system.IndiStrawTheme
-import com.danbam.indistraw.core.design_system.util.RemoveOverScrollLazyColumn
+import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyColumn
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.filter
 import java.time.LocalDate

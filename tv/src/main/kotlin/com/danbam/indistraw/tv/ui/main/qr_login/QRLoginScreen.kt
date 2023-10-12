@@ -26,7 +26,7 @@ import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.component.QRPainter
 import com.danbam.indistraw.tv.BuildConfig
 import com.danbam.indistraw.tv.ui.main.navigation.MainNavigationItem
-import com.danbam.indistraw.tv.util.android.observeWithLifecycle
+import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.delay
 

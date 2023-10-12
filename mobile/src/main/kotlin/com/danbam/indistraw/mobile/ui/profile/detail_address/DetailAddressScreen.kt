@@ -28,8 +28,8 @@ import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.core.design_system.component.TitleSemiBold
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.mobile.ui.profile.navigation.ProfileNavigationItem
-import com.danbam.indistraw.mobile.util.android.observeWithLifecycle
-import com.danbam.indistraw.mobile.util.view.popBackStack
+import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
+import com.danbam.indistraw.core.design_system.util.androidx.popBackStack
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @OptIn(InternalCoroutinesApi::class, ExperimentalComposeUiApi::class)

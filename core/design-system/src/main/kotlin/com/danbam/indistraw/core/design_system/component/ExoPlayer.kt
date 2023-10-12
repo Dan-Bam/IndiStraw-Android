@@ -50,11 +50,11 @@ import com.danbam.indistraw.core.design_system.BuildConfig
 import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
-import com.danbam.indistraw.core.design_system.util.HideSystemUI
-import com.danbam.indistraw.core.design_system.util.LockScreenOrientation
-import com.danbam.indistraw.core.design_system.util.detectKeyEvent
-import com.danbam.indistraw.core.design_system.util.formatMinSec
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.androidx.HideSystemUI
+import com.danbam.indistraw.core.design_system.util.androidx.LockScreenOrientation
+import com.danbam.indistraw.core.design_system.util.google.detectKeyEvent
+import com.danbam.indistraw.core.design_system.util.internal.formatMinSec
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem

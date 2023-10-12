@@ -34,7 +34,7 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackgrou
 import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
 import com.danbam.indistraw.core.design_system.component.IndiStrawTextField
 import com.danbam.indistraw.core.design_system.component.TitleRegular
-import com.danbam.indistraw.core.design_system.util.indiStrawClickable
+import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
@@ -42,9 +42,9 @@ import com.danbam.indistraw.mobile.ui.auth.navigation.AuthDeepLinkKey
 import com.danbam.indistraw.mobile.ui.auth.navigation.AuthNavigationItem
 import com.danbam.indistraw.mobile.ui.auth.navigation.CertificateType
 import com.danbam.indistraw.mobile.ui.main.navigation.MainNavigationItem
-import com.danbam.indistraw.mobile.util.android.observeWithLifecycle
-import com.danbam.indistraw.mobile.util.view.popBackStack
-import com.danbam.indistraw.mobile.util.view.requestFocus
+import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
+import com.danbam.indistraw.core.design_system.util.androidx.popBackStack
+import com.danbam.indistraw.core.design_system.util.androidx.requestFocus
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @OptIn(InternalCoroutinesApi::class, ExperimentalComposeUiApi::class)
