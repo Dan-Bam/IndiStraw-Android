@@ -32,7 +32,7 @@ mockitoInline = "5.1.1"
 androidJunit = "1.1.2"
 espressoCore = "3.3.0"
 coil = "2.2.2"
-exoplayer = "2.18.1"
+exoplayer = "1.1.1"
 camera = "1.2.2"
 barcodeScannig = "17.1.0"
 barcodeDrawing = "1.1.1"
@@ -78,9 +78,9 @@ okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 okhttp-sse = { module = "com.squareup.okhttp3:okhttp-sse", version.ref = "okhttp" }
 okhttp-logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
 coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
-exoplayer-core = { module = "com.google.android.exoplayer:exoplayer-core", version.ref = "exoplayer" }
-exoplayer-hls = { module = "com.google.android.exoplayer:exoplayer-hls", version.ref = "exoplayer" }
-exoplayer-ui = { module = "com.google.android.exoplayer:exoplayer-ui", version.ref = "exoplayer" }
+exoplayer-core = { module = "androidx.media3:media3-exoplayer", version.ref = "exoplayer" }
+exoplayer-hls = { module = "androidx.media3:media3-exoplayer-hls", version.ref = "exoplayer" }
+exoplayer-ui = { module = "androidx.media3:media3-ui", version.ref = "exoplayer" }
 camera = { module = "androidx.camera:camera-camera2", version.ref = "camera" }
 camera-view = { module = "androidx.camera:camera-view", version.ref = "camera" }
 camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "camera" }
