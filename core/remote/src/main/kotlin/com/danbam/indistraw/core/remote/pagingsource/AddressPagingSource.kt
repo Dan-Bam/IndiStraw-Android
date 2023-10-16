@@ -7,7 +7,7 @@ import com.danbam.indistraw.core.remote.response.auth.AddressResponse
 import javax.inject.Inject
 
 class AddressPagingSource(
-    @Inject private val addressAPI: AddressAPI,
+    private val addressAPI: AddressAPI,
     private val keyword: String,
 ) : PagingSource<Int, AddressResponse.Results.Juso>() {
     override fun getRefreshKey(state: PagingState<Int, AddressResponse.Results.Juso>): Int? =

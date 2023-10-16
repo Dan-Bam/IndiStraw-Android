@@ -8,7 +8,6 @@ dependencyResolutionManagement {
 rootProject.name = "indi_straw"
 include(":app:mobile")
 include(":app:tv")
-include(":core:di")
 include(":core:local")
 include(":core:remote")
 include(":core:data")

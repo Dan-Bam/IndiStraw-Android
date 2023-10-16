@@ -59,7 +59,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:di"))
+    implementation(project(":core:data"))
     implementation(project(":core:design-system"))
     implementation(libs.findLibrary("androidx.core").get())
     implementation(libs.findBundle("compose").get())

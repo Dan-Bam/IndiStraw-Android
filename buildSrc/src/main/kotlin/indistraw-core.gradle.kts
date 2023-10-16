@@ -5,6 +5,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -25,6 +26,8 @@ android {
 
 dependencies {
     implementation(libs.findLibrary("inject").get())
+    implementation(libs.findLibrary("hilt").get())
+    kapt(libs.findLibrary("hilt.compiler").get())
     testImplementation(libs.findLibrary("test.junit").get())
     testImplementation(libs.findLibrary("test.mockito.kotlin").get())
     testImplementation(libs.findLibrary("test.mockito.inline").get())

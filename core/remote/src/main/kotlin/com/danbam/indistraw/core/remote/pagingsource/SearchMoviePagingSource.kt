@@ -7,7 +7,7 @@ import com.danbam.indistraw.core.remote.response.movie.MovieResponse
 import javax.inject.Inject
 
 class SearchMoviePagingSource(
-    @Inject private val searchAPI: SearchAPI,
+    private val searchAPI: SearchAPI,
     private val keyword: String,
 ) : PagingSource<Int, MovieResponse>() {
     override fun getRefreshKey(state: PagingState<Int, MovieResponse>): Int? =

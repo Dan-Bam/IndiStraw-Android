@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.di
+package com.danbam.indistraw.core.local.di
 
 import com.danbam.indistraw.core.local.datasource.AuthLocalDataSource
 import com.danbam.indistraw.core.local.datasource.AuthLocalDataSourceImpl

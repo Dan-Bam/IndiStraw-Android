@@ -7,7 +7,7 @@ import com.danbam.indistraw.core.remote.response.movie.MovieResponse
 import javax.inject.Inject
 
 class MoviePagingSource(
-    @Inject private val movieAPI: MovieAPI,
+    private val movieAPI: MovieAPI,
     private val genre: String? = null,
 ) : PagingSource<Int, MovieResponse>() {
     override fun getRefreshKey(state: PagingState<Int, MovieResponse>): Int? =

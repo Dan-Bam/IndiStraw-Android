@@ -7,7 +7,7 @@ import com.danbam.indistraw.core.remote.response.funding.FundingResponse
 import javax.inject.Inject
 
 class SearchFundingPagingSource(
-    @Inject private val searchAPI: SearchAPI,
+    private val searchAPI: SearchAPI,
     private val keyword: String,
 ) : PagingSource<Int, FundingResponse>() {
     override fun getRefreshKey(state: PagingState<Int, FundingResponse>): Int? =

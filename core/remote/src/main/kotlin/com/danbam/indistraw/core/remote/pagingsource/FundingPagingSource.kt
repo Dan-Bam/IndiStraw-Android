@@ -7,7 +7,7 @@ import com.danbam.indistraw.core.remote.response.funding.FundingResponse
 import javax.inject.Inject
 
 class FundingPagingSource(
-    @Inject private val crowdFundingAPI: CrowdFundingAPI,
+    private val crowdFundingAPI: CrowdFundingAPI,
 ) : PagingSource<Int, FundingResponse>() {
     override fun getRefreshKey(state: PagingState<Int, FundingResponse>): Int? =
         state.anchorPosition?.let { anchorPosition ->

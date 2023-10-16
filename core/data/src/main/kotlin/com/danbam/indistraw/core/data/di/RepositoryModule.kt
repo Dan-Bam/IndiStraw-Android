@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.di
+package com.danbam.indistraw.core.data.di
 
 import com.danbam.indistraw.core.data.repository.AccountRepositoryImpl
 import com.danbam.indistraw.core.data.repository.AddressRepositoryImpl

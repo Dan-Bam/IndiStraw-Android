@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.di
+package com.danbam.indistraw.core.local.di
 
 import android.content.Context
 import android.content.SharedPreferences

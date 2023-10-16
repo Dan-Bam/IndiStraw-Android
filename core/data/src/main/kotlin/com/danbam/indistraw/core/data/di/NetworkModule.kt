@@ -1,6 +1,7 @@
-package com.danbam.indistraw.core.di
+package com.danbam.indistraw.core.data.di
 
 import android.content.Context
+import com.danbam.indistraw.core.data.BuildConfig
 import com.danbam.indistraw.core.remote.api.AccountAPI
 import com.danbam.indistraw.core.remote.api.AddressAPI
 import com.danbam.indistraw.core.remote.api.AuthAPI

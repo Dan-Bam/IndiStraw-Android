@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.di
+package com.danbam.indistraw.core.remote.di
 
 import com.danbam.indistraw.core.remote.datasource.AccountRemoteDataSource
 import com.danbam.indistraw.core.remote.datasource.AccountRemoteDataSourceImpl
