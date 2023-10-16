@@ -1,9 +1,5 @@
-package com.danbam.indistraw.core.design_system.component
+package com.danbam.indistraw.core.design_system.component.exoplayer
 
-import android.content.pm.ActivityInfo
-import android.view.ViewGroup
-import android.widget.FrameLayout
-import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.fadeIn
@@ -31,175 +27,24 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Slider
 import androidx.compose.material.SliderDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.viewinterop.AndroidView
-import com.danbam.indistraw.core.design_system.BuildConfig
+import androidx.media3.exoplayer.ExoPlayer
 import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
-import com.danbam.indistraw.core.design_system.util.androidx.HideSystemUI
-import com.danbam.indistraw.core.design_system.util.androidx.LockScreenOrientation
-import com.danbam.indistraw.core.design_system.util.google.detectKeyEvent
-import com.danbam.indistraw.core.design_system.util.internal.formatMinSec
+import com.danbam.indistraw.core.design_system.component.DialogMedium
+import com.danbam.indistraw.core.design_system.component.ExampleTextRegular
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
-import com.google.android.exoplayer2.C
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.Player.STATE_ENDED
-import com.google.android.exoplayer2.source.ProgressiveMediaSource
-import com.google.android.exoplayer2.source.hls.HlsMediaSource
-import com.google.android.exoplayer2.ui.StyledPlayerView
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
-import com.google.android.exoplayer2.util.Util
+import com.danbam.indistraw.core.design_system.util.internal.formatMinSec
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-
-@Composable
-fun IndiStrawPlayer(
-    modifier: Modifier = Modifier,
-    movieUrl: String,
-    movieName: String,
-    position: Float,
-    isMobile: Boolean,
-    isVertical: Boolean,
-    onPIP: () -> Unit,
-    onDispose: (Long) -> Unit
-) {
-    HideSystemUI()
-    val context = LocalContext.current
-    val exoPlayer = remember {
-        ExoPlayer.Builder(context)
-            .setSeekBackIncrementMs(5000)
-            .setSeekForwardIncrementMs(5000)
-            .build()
-            .apply {
-                val mediaItem = MediaItem.Builder()
-                    .setUri("${BuildConfig.VIDEO_PRE_PATH}$movieUrl")
-                    .build()
-                val userAgent = Util.getUserAgent(context, context.applicationInfo.name)
-                val factory = DefaultHttpDataSource.Factory().apply {
-                    setUserAgent(userAgent)
-                }
-                val hlsMediaSource = HlsMediaSource.Factory(factory).createMediaSource(mediaItem)
-                val progressiveMediaSource =
-                    ProgressiveMediaSource.Factory(factory).createMediaSource(mediaItem)
-                setMediaSource(progressiveMediaSource)
-                videoScalingMode = C.VIDEO_SCALING_MODE_SCALE_TO_FIT
-                prepare()
-                playWhenReady = true
-                seekTo((position * 1000).toLong())
-            }
-    }
-    var isVisible by remember { mutableStateOf(false) }
-    var isPlaying by remember { mutableStateOf(exoPlayer.isPlaying) }
-    var isLock by remember { mutableStateOf(false) }
-
-    if (!isVertical && isMobile) {
-        LockScreenOrientation(orientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
-    }
-
-    BackHandler {
-        onDispose(exoPlayer.currentPosition)
-    }
-
-    LaunchedEffect(isVisible) {
-        if (isVisible && exoPlayer.playbackState != STATE_ENDED) {
-            delay(1500L)
-            isVisible = false
-        }
-    }
-
-    DisposableEffect(
-        Box(
-            modifier = modifier
-                .fillMaxSize()
-                .onKeyEvent {
-                    exoPlayer.detectKeyEvent(it.nativeKeyEvent)
-                }
-                .indiStrawClickable {
-                    isVisible = !isVisible
-                }
-        ) {
-            AndroidView(
-                factory = {
-                    StyledPlayerView(context).apply {
-                        player = exoPlayer
-                        useController = false
-                        layoutParams = FrameLayout.LayoutParams(
-                            ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.MATCH_PARENT
-                        )
-                    }
-                })
-        }
-    ) {
-        val listener = object : Player.Listener {
-            override fun onEvents(player: Player, events: Player.Events) {
-                super.onEvents(player, events)
-                isPlaying = player.isPlaying
-            }
-        }
-        exoPlayer.addListener(listener)
-        onDispose {
-            exoPlayer.removeListener(listener)
-            exoPlayer.release()
-        }
-    }
-
-    if (isMobile) {
-        IndiStrawMobileController(
-            exoPlayer = exoPlayer,
-            movieName = movieName,
-            isVisible = isVisible,
-            isLock = isLock,
-            isPlaying = isPlaying,
-            onBack = { exoPlayer.seekBack() },
-            onForward = { exoPlayer.seekForward() },
-            onPause = {
-                when {
-                    isPlaying -> {
-                        exoPlayer.pause()
-                    }
-
-                    !isPlaying -> {
-                        exoPlayer.play()
-                    }
-                }
-            },
-            onFinish = { onDispose(exoPlayer.currentPosition) },
-            onLock = { isLock = !isLock },
-            onPIP = {
-                isVisible = false
-                onPIP()
-            },
-            onTouchPlayer = { isVisible = !isVisible },
-            onSeekChanged = { exoPlayer.seekTo(it.toLong()) }
-        )
-    } else {
-
-    }
-}
-
-fun IndiStrawTvController(
-
-) {
-
-}
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -422,7 +267,7 @@ private fun ControllerBottom(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Box(
-                modifier = Modifier.weight(0.9F)
+                modifier = Modifier.weight(1F)
             ) {
                 Slider(
                     value = exoPlayer.bufferedPercentage.toFloat(),
@@ -447,8 +292,6 @@ private fun ControllerBottom(
             }
             Spacer(modifier = Modifier.width(12.dp))
             ExampleTextRegular(
-                modifier = Modifier
-                    .weight(0.1F),
                 text = (exoPlayer.duration - exoPlayer.currentPosition).formatMinSec(),
                 fontSize = 14
             )
