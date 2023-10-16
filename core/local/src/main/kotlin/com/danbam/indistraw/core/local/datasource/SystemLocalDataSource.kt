@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.data.local.datasource
+package com.danbam.indistraw.core.local.datasource
 
 interface SystemLocalDataSource {
     suspend fun saveLanguage(language: String)

@@ -1,6 +1,6 @@
-package com.danbam.indistraw.core.data.local.datasource
+package com.danbam.indistraw.core.local.datasource
 
-import com.danbam.indistraw.core.data.local.preference.AuthPreference
+import com.danbam.indistraw.core.local.preference.AuthPreference
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject

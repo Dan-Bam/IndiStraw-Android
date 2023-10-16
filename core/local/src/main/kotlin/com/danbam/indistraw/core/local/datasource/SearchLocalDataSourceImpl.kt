@@ -1,7 +1,7 @@
-package com.danbam.indistraw.core.data.local.datasource
+package com.danbam.indistraw.core.local.datasource
 
-import com.danbam.indistraw.core.data.local.dao.RecentSearchDao
-import com.danbam.indistraw.core.data.local.entity.search.RecentSearchEntity
+import com.danbam.indistraw.core.local.dao.RecentSearchDao
+import com.danbam.indistraw.core.local.search.RecentSearchEntity
 import javax.inject.Inject
 
 class SearchLocalDataSourceImpl @Inject constructor(

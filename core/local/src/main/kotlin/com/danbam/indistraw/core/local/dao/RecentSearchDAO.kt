@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.data.local.dao
+package com.danbam.indistraw.core.local.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import androidx.room.Transaction
-import com.danbam.indistraw.core.data.local.entity.search.RecentSearchEntity
+import com.danbam.indistraw.core.local.search.RecentSearchEntity
 
 @Dao
 interface RecentSearchDao {

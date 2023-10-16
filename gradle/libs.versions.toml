@@ -39,6 +39,7 @@ barcodeDrawing = "1.1.1"
 tv = "1.0.0-alpha06"
 bootPay = "4.0.8"
 inject = "1"
+material = "1.10.0"
 
 [libraries]
 plugin-android = { module = "com.android.tools.build:gradle", version.ref = "gradleAndroid" }
@@ -95,6 +96,7 @@ test-mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.re
 test-mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockitoInline" }
 test-anroid-junit = { module = "androidx.test.ext:junit", version.ref = "androidJunit" }
 test-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [bundles]
 coroutine = ["coroutines-core", "coroutines-android"]

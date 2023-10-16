@@ -1,6 +1,6 @@
 package com.danbam.indistraw.core.data.repository
 
-import com.danbam.indistraw.core.data.local.datasource.AuthLocalDataSource
+import com.danbam.indistraw.core.local.datasource.AuthLocalDataSource
 import com.danbam.indistraw.core.data.remote.datasource.AuthRemoteDataSource
 import com.danbam.indistraw.core.data.remote.request.auth.toRequest
 import com.danbam.indistraw.core.data.remote.response.auth.LoginResponse
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
     private val authRemoteDataSource: AuthRemoteDataSource,
-    private val authLocalDataSource: AuthLocalDataSource,
+    private val authLocalDataSource: com.danbam.indistraw.core.local.datasource.AuthLocalDataSource,
 ) : AuthRepository {
     override suspend fun signup(signUpParam: SignUpParam) =
         authRemoteDataSource.signup(signUpRequest = signUpParam.toRequest())

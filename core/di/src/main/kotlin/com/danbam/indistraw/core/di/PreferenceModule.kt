@@ -1,9 +1,9 @@
 package com.danbam.indistraw.core.di
 
-import com.danbam.indistraw.core.data.local.preference.AuthPreference
-import com.danbam.indistraw.core.data.local.preference.AuthPreferenceImpl
-import com.danbam.indistraw.core.data.local.preference.SystemPreference
-import com.danbam.indistraw.core.data.local.preference.SystemPreferenceImpl
+import com.danbam.indistraw.core.local.preference.AuthPreference
+import com.danbam.indistraw.core.local.preference.AuthPreferenceImpl
+import com.danbam.indistraw.core.local.preference.SystemPreference
+import com.danbam.indistraw.core.local.preference.SystemPreferenceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,11 +14,11 @@ import dagger.hilt.components.SingletonComponent
 abstract class PreferenceModule {
     @Binds
     abstract fun bindAuthPreference(
-        authPreferenceImpl: AuthPreferenceImpl,
-    ): AuthPreference
+        authPreferenceImpl: com.danbam.indistraw.core.local.preference.AuthPreferenceImpl,
+    ): com.danbam.indistraw.core.local.preference.AuthPreference
 
     @Binds
     abstract fun bindSystemPreference(
-        systemPreferenceImpl: SystemPreferenceImpl
-    ): SystemPreference
+        systemPreferenceImpl: com.danbam.indistraw.core.local.preference.SystemPreferenceImpl
+    ): com.danbam.indistraw.core.local.preference.SystemPreference
 }

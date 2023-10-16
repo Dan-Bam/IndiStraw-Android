@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.data.local.datasource
+package com.danbam.indistraw.core.local.datasource
 
 import java.time.LocalDateTime
 

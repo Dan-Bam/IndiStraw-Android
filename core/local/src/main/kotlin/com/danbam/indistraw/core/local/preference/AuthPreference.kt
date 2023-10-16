@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.data.local.preference
+package com.danbam.indistraw.core.local.preference
 
 interface AuthPreference {
     fun saveAccessToken(accessToken: String)

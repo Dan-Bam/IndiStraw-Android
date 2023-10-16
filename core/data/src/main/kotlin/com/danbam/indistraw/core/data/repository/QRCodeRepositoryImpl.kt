@@ -1,13 +1,13 @@
 package com.danbam.indistraw.core.data.repository
 
-import com.danbam.indistraw.core.data.local.datasource.AuthLocalDataSource
+import com.danbam.indistraw.core.local.datasource.AuthLocalDataSource
 import com.danbam.indistraw.core.data.remote.datasource.QRCodeRemoteDataSource
 import com.danbam.indistraw.core.domain.repository.QRCodeRepository
 import java.util.UUID
 import javax.inject.Inject
 
 class QRCodeRepositoryImpl @Inject constructor(
-    private val authLocalDataSource: AuthLocalDataSource,
+    private val authLocalDataSource: com.danbam.indistraw.core.local.datasource.AuthLocalDataSource,
     private val qrCodeRemoteDataSource: QRCodeRemoteDataSource
 ) : QRCodeRepository {
     override suspend fun getQRCode(): UUID = qrCodeRemoteDataSource.getQRCode().uuid

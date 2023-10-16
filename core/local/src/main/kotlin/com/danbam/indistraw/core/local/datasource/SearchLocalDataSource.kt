@@ -1,6 +1,6 @@
-package com.danbam.indistraw.core.data.local.datasource
+package com.danbam.indistraw.core.local.datasource
 
-import com.danbam.indistraw.core.data.local.entity.search.RecentSearchEntity
+import com.danbam.indistraw.core.local.search.RecentSearchEntity
 
 
 interface SearchLocalDataSource {

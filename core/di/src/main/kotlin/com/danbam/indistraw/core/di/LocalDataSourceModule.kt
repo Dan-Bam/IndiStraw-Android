@@ -1,11 +1,11 @@
 package com.danbam.indistraw.core.di
 
-import com.danbam.indistraw.core.data.local.datasource.AuthLocalDataSource
-import com.danbam.indistraw.core.data.local.datasource.AuthLocalDataSourceImpl
-import com.danbam.indistraw.core.data.local.datasource.SearchLocalDataSource
-import com.danbam.indistraw.core.data.local.datasource.SearchLocalDataSourceImpl
-import com.danbam.indistraw.core.data.local.datasource.SystemLocalDataSource
-import com.danbam.indistraw.core.data.local.datasource.SystemLocalDataSourceImpl
+import com.danbam.indistraw.core.local.datasource.AuthLocalDataSource
+import com.danbam.indistraw.core.local.datasource.AuthLocalDataSourceImpl
+import com.danbam.indistraw.core.local.datasource.SearchLocalDataSource
+import com.danbam.indistraw.core.local.datasource.SearchLocalDataSourceImpl
+import com.danbam.indistraw.core.local.datasource.SystemLocalDataSource
+import com.danbam.indistraw.core.local.datasource.SystemLocalDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -16,16 +16,16 @@ import dagger.hilt.components.SingletonComponent
 abstract class LocalDataSourceModule {
     @Binds
     abstract fun bindAuthLocalDataSource(
-        authLocalDataSourceImpl: AuthLocalDataSourceImpl,
-    ): AuthLocalDataSource
+        authLocalDataSourceImpl: com.danbam.indistraw.core.local.datasource.AuthLocalDataSourceImpl,
+    ): com.danbam.indistraw.core.local.datasource.AuthLocalDataSource
 
     @Binds
     abstract fun bindSearchLocalDataSource(
-        searchLocalDataSourceImpl: SearchLocalDataSourceImpl,
-    ): SearchLocalDataSource
+        searchLocalDataSourceImpl: com.danbam.indistraw.core.local.datasource.SearchLocalDataSourceImpl,
+    ): com.danbam.indistraw.core.local.datasource.SearchLocalDataSource
 
     @Binds
     abstract fun bindSystemLocalDataSource(
-        systemLocalDataSourceImpl: SystemLocalDataSourceImpl
-    ): SystemLocalDataSource
+        systemLocalDataSourceImpl: com.danbam.indistraw.core.local.datasource.SystemLocalDataSourceImpl
+    ): com.danbam.indistraw.core.local.datasource.SystemLocalDataSource
 }

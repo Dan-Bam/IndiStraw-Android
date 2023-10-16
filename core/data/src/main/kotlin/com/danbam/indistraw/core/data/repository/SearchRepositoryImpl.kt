@@ -2,9 +2,9 @@ package com.danbam.indistraw.core.data.repository
 
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.danbam.indistraw.core.data.local.datasource.SearchLocalDataSource
-import com.danbam.indistraw.core.data.local.entity.search.toDB
-import com.danbam.indistraw.core.data.local.entity.search.toDomain
+import com.danbam.indistraw.core.local.datasource.SearchLocalDataSource
+import com.danbam.indistraw.core.local.search.toDB
+import com.danbam.indistraw.core.local.search.toDomain
 import com.danbam.indistraw.core.data.remote.datasource.SearchRemoteDataSource
 import com.danbam.indistraw.core.data.remote.response.funding.toEntity
 import com.danbam.indistraw.core.data.remote.response.movie.toEntity
@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class SearchRepositoryImpl @Inject constructor(
-    private val searchLocalDataSource: SearchLocalDataSource,
+    private val searchLocalDataSource: com.danbam.indistraw.core.local.datasource.SearchLocalDataSource,
     private val searchRemoteDataSource: SearchRemoteDataSource
 ) : SearchRepository {
     override suspend fun getRelatedSearch(keyword: String): List<String> =

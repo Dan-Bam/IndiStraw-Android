@@ -1,9 +1,9 @@
-package com.danbam.indistraw.core.data.local.database
+package com.danbam.indistraw.core.local.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.danbam.indistraw.core.data.local.dao.RecentSearchDao
-import com.danbam.indistraw.core.data.local.entity.search.RecentSearchEntity
+import com.danbam.indistraw.core.local.dao.RecentSearchDao
+import com.danbam.indistraw.core.local.search.RecentSearchEntity
 
 @Database(entities = [RecentSearchEntity::class], version = 1)
 abstract class IndiStrawDataBase : RoomDatabase() {

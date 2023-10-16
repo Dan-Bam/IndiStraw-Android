@@ -1,6 +1,6 @@
-package com.danbam.indistraw.core.data.local.datasource
+package com.danbam.indistraw.core.local.datasource
 
-import com.danbam.indistraw.core.data.local.preference.SystemPreference
+import com.danbam.indistraw.core.local.preference.SystemPreference
 import javax.inject.Inject
 
 class SystemLocalDataSourceImpl @Inject constructor(

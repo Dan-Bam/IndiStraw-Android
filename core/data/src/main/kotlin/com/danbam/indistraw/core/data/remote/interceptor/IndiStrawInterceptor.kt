@@ -4,7 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import com.danbam.indistraw.core.data.BuildConfig
-import com.danbam.indistraw.core.data.local.datasource.AuthLocalDataSource
+import com.danbam.indistraw.core.local.datasource.AuthLocalDataSource
 import com.danbam.indistraw.core.data.remote.response.auth.LoginResponse
 import com.danbam.indistraw.core.data.util.default
 import com.danbam.indistraw.core.domain.exception.ExpiredTokenException
@@ -19,7 +19,7 @@ import java.time.LocalDateTime
 import javax.inject.Inject
 
 class IndiStrawInterceptor @Inject constructor(
-    private val authLocalDataSource: AuthLocalDataSource
+    private val authLocalDataSource: com.danbam.indistraw.core.local.datasource.AuthLocalDataSource
 ) : Interceptor {
     companion object {
         lateinit var context: Context
