@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.param.movie
+package com.danbam.indistraw.core.domain.param.movie
 
 data class MovieCreateParam(
     val title: String,

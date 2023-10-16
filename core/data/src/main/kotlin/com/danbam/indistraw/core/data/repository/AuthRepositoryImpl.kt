@@ -1,20 +1,20 @@
 package com.danbam.indistraw.core.data.repository
 
 import com.danbam.indistraw.core.local.datasource.AuthLocalDataSource
-import com.danbam.indistraw.core.data.remote.datasource.AuthRemoteDataSource
-import com.danbam.indistraw.core.data.remote.request.auth.toRequest
-import com.danbam.indistraw.core.data.remote.response.auth.LoginResponse
+import com.danbam.indistraw.core.remote.datasource.AuthRemoteDataSource
+import com.danbam.indistraw.core.remote.request.auth.toRequest
 import com.danbam.indistraw.core.data.util.default
 import com.danbam.indistraw.core.domain.exception.ExpiredTokenException
-import com.danbam.indistraw.core.param.auth.LoginParam
-import com.danbam.indistraw.core.param.auth.SignUpParam
+import com.danbam.indistraw.core.domain.param.auth.LoginParam
+import com.danbam.indistraw.core.domain.param.auth.SignUpParam
 import com.danbam.indistraw.core.domain.repository.AuthRepository
+import com.danbam.indistraw.core.remote.response.auth.LoginResponse
 import java.time.LocalDateTime
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
     private val authRemoteDataSource: AuthRemoteDataSource,
-    private val authLocalDataSource: com.danbam.indistraw.core.local.datasource.AuthLocalDataSource,
+    private val authLocalDataSource: AuthLocalDataSource,
 ) : AuthRepository {
     override suspend fun signup(signUpParam: SignUpParam) =
         authRemoteDataSource.signup(signUpRequest = signUpParam.toRequest())

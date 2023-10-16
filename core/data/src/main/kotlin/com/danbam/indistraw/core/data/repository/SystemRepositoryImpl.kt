@@ -5,7 +5,7 @@ import com.danbam.indistraw.core.domain.repository.SystemRepository
 import javax.inject.Inject
 
 class SystemRepositoryImpl @Inject constructor(
-    private val systemLocalDataSource: com.danbam.indistraw.core.local.datasource.SystemLocalDataSource
+    private val systemLocalDataSource: SystemLocalDataSource
 ) : SystemRepository {
     override suspend fun saveLanguage(language: String) =
         systemLocalDataSource.saveLanguage(language)

@@ -5,19 +5,19 @@ import androidx.paging.map
 import com.danbam.indistraw.core.local.datasource.SearchLocalDataSource
 import com.danbam.indistraw.core.local.search.toDB
 import com.danbam.indistraw.core.local.search.toDomain
-import com.danbam.indistraw.core.data.remote.datasource.SearchRemoteDataSource
-import com.danbam.indistraw.core.data.remote.response.funding.toEntity
-import com.danbam.indistraw.core.data.remote.response.movie.toEntity
-import com.danbam.indistraw.core.entity.funding.FundingEntity
-import com.danbam.indistraw.core.entity.movie.MovieEntity
-import com.danbam.indistraw.core.entity.search.RecentSearchEntity
+import com.danbam.indistraw.core.domain.entity.funding.FundingEntity
+import com.danbam.indistraw.core.domain.entity.movie.MovieEntity
+import com.danbam.indistraw.core.domain.entity.search.RecentSearchEntity
 import com.danbam.indistraw.core.domain.repository.SearchRepository
+import com.danbam.indistraw.core.remote.datasource.SearchRemoteDataSource
+import com.danbam.indistraw.core.remote.response.funding.toEntity
+import com.danbam.indistraw.core.remote.response.movie.toEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class SearchRepositoryImpl @Inject constructor(
-    private val searchLocalDataSource: com.danbam.indistraw.core.local.datasource.SearchLocalDataSource,
+    private val searchLocalDataSource: SearchLocalDataSource,
     private val searchRemoteDataSource: SearchRemoteDataSource
 ) : SearchRepository {
     override suspend fun getRelatedSearch(keyword: String): List<String> =
