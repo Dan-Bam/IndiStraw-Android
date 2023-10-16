@@ -1,7 +1,7 @@
 package com.danbam.indistraw.core.domain.repository
 
-import com.danbam.indistraw.core.param.auth.LoginParam
-import com.danbam.indistraw.core.param.auth.SignUpParam
+import com.danbam.indistraw.core.domain.param.auth.LoginParam
+import com.danbam.indistraw.core.domain.param.auth.SignUpParam
 
 interface AuthRepository {
     suspend fun signup(signUpParam: SignUpParam)

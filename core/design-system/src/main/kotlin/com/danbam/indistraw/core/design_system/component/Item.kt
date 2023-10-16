@@ -36,10 +36,10 @@ import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.danbam.indistraw.core.design_system.util.internal.toCommaString
-import com.danbam.indistraw.core.entity.funding.FundingDetailEntity
-import com.danbam.indistraw.core.entity.funding.FundingEntity
-import com.danbam.indistraw.core.entity.funding.MyFundingEntity
-import com.danbam.indistraw.core.entity.movie.MovieEntity
+import com.danbam.indistraw.core.domain.entity.funding.FundingDetailEntity
+import com.danbam.indistraw.core.domain.entity.funding.FundingEntity
+import com.danbam.indistraw.core.domain.entity.funding.MyFundingEntity
+import com.danbam.indistraw.core.domain.entity.movie.MovieEntity
 
 sealed class RewardType {
     object Default : RewardType()

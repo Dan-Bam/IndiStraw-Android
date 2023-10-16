@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 data class AddressResponse(
     @SerializedName("results")
-    val results: com.danbam.indistraw.core.remote.response.auth.AddressResponse.Results,
+    val results: Results,
 ) {
     data class Results(
         @SerializedName("juso")
-        val juso: List<_root_ide_package_.com.danbam.indistraw.core.remote.response.auth.AddressResponse.Results.Juso>,
+        val juso: List<Juso>,
     ) {
         data class Juso(
             @SerializedName("zipNo")
@@ -22,7 +22,7 @@ data class AddressResponse(
     }
 }
 
-fun _root_ide_package_.com.danbam.indistraw.core.remote.response.auth.AddressResponse.Results.Juso.toEntity() = AddressEntity(
+fun AddressResponse.Results.Juso.toEntity() = AddressEntity(
     zipcode = zipNo,
     streetAddress = roadAddr,
     buildName = buildName

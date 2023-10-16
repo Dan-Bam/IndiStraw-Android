@@ -22,7 +22,6 @@ class SearchingViewModel @Inject constructor(
             getRelatedSearchUseCase(keyword = keyword).onSuccess {
                 reduce { state.copy(relatedSearchPager = it) }
             }.onFailure {
-                println("안녕 ${it}")
             }
         }
     }

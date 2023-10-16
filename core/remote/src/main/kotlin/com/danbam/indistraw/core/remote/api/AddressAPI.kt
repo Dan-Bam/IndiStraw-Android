@@ -1,6 +1,7 @@
 package com.danbam.indistraw.core.remote.api
 
 import com.danbam.indistraw.core.remote.response.auth.AddressResponse
+import com.danbam.indistraw.core.remote.BuildConfig
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.Url

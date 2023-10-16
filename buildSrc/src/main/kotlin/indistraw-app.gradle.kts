@@ -60,17 +60,12 @@ android {
 
 dependencies {
     implementation(project(":core:di"))
-    implementation(project(":core:domain"))
     implementation(project(":core:design-system"))
     implementation(libs.findLibrary("androidx.core").get())
-    implementation(libs.findLibrary("androidx.lifecycle").get())
-    implementation(libs.findBundle("coroutine").get())
     implementation(libs.findBundle("compose").get())
     implementation(libs.findLibrary("accompanist.nav").get())
     implementation(libs.findLibrary("hilt").get())
     kapt(libs.findLibrary("hilt.compiler").get())
-    implementation(libs.findBundle("orbit").get())
-    implementation(libs.findLibrary("coil").get())
     debugImplementation(libs.findBundle("compose.debug").get())
     androidTestImplementation(libs.findLibrary("compose.test").get())
 }

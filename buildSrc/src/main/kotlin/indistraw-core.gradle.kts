@@ -22,3 +22,10 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 }
+
+dependencies {
+    implementation(libs.findLibrary("inject").get())
+    testImplementation(libs.findLibrary("test.junit").get())
+    testImplementation(libs.findLibrary("test.mockito.kotlin").get())
+    testImplementation(libs.findLibrary("test.mockito.inline").get())
+}

@@ -39,11 +39,7 @@ dependencies {
     implementation(project(":core:remote"))
     implementation(project(":core:local"))
     implementation(project(":core:domain"))
-    implementation(libs.inject)
+    implementation(libs.paging)
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.okhttp)
-    implementation(libs.paging)
-    testImplementation(libs.test.junit)
-    testImplementation(libs.test.mockito.kotlin)
-    testImplementation(libs.test.mockito.inline)
 }

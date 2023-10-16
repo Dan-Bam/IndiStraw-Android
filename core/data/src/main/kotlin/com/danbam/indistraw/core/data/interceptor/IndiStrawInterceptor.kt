@@ -5,9 +5,9 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import com.danbam.indistraw.core.data.BuildConfig
 import com.danbam.indistraw.core.local.datasource.AuthLocalDataSource
-import com.danbam.indistraw.core.data.util.default
 import com.danbam.indistraw.core.domain.exception.ExpiredTokenException
 import com.danbam.indistraw.core.remote.response.auth.LoginResponse
+import com.danbam.indistraw.core.remote.util.default
 import com.google.gson.Gson
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaTypeOrNull

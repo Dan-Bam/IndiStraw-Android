@@ -2,7 +2,7 @@ package com.danbam.indistraw.feature.mobile.profile.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.core.entity.movie.MovieEntity
+import com.danbam.indistraw.core.domain.entity.movie.MovieEntity
 import com.danbam.indistraw.core.domain.usecase.account.GetProfileUseCase
 import com.danbam.indistraw.core.domain.usecase.crowd_funding.FundingMyUseCase
 import com.danbam.indistraw.core.domain.usecase.funding.FundingListUseCase

@@ -16,16 +16,16 @@ import dagger.hilt.components.SingletonComponent
 abstract class LocalDataSourceModule {
     @Binds
     abstract fun bindAuthLocalDataSource(
-        authLocalDataSourceImpl: com.danbam.indistraw.core.local.datasource.AuthLocalDataSourceImpl,
-    ): com.danbam.indistraw.core.local.datasource.AuthLocalDataSource
+        authLocalDataSourceImpl: AuthLocalDataSourceImpl,
+    ): AuthLocalDataSource
 
     @Binds
     abstract fun bindSearchLocalDataSource(
-        searchLocalDataSourceImpl: com.danbam.indistraw.core.local.datasource.SearchLocalDataSourceImpl,
-    ): com.danbam.indistraw.core.local.datasource.SearchLocalDataSource
+        searchLocalDataSourceImpl: SearchLocalDataSourceImpl,
+    ): SearchLocalDataSource
 
     @Binds
     abstract fun bindSystemLocalDataSource(
-        systemLocalDataSourceImpl: com.danbam.indistraw.core.local.datasource.SystemLocalDataSourceImpl
-    ): com.danbam.indistraw.core.local.datasource.SystemLocalDataSource
+        systemLocalDataSourceImpl: SystemLocalDataSourceImpl
+    ): SystemLocalDataSource
 }

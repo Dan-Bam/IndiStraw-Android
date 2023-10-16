@@ -14,11 +14,11 @@ import dagger.hilt.components.SingletonComponent
 abstract class PreferenceModule {
     @Binds
     abstract fun bindAuthPreference(
-        authPreferenceImpl: com.danbam.indistraw.core.local.preference.AuthPreferenceImpl,
-    ): com.danbam.indistraw.core.local.preference.AuthPreference
+        authPreferenceImpl: AuthPreferenceImpl,
+    ): AuthPreference
 
     @Binds
     abstract fun bindSystemPreference(
-        systemPreferenceImpl: com.danbam.indistraw.core.local.preference.SystemPreferenceImpl
-    ): com.danbam.indistraw.core.local.preference.SystemPreference
+        systemPreferenceImpl: SystemPreferenceImpl
+    ): SystemPreference
 }

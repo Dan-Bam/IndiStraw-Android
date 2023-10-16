@@ -27,7 +27,7 @@ import com.danbam.indistraw.core.design_system.component.RewardType
 import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyColumn
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
-import com.danbam.indistraw.core.entity.funding.FundingDetailEntity
+import com.danbam.indistraw.core.domain.entity.funding.FundingDetailEntity
 
 @Composable
 fun AddRewardScreen(

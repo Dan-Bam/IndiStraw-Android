@@ -2,7 +2,7 @@ package com.danbam.indistraw.feature.mobile.funding.pay
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.core.param.funding.FundingParam
+import com.danbam.indistraw.core.domain.param.funding.FundingParam
 import com.danbam.indistraw.core.domain.usecase.account.GetProfileUseCase
 import com.danbam.indistraw.core.domain.usecase.funding.FundingUseCase
 import com.danbam.indistraw.core.domain.usecase.funding.GetReceiptUseCase

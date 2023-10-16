@@ -3,9 +3,9 @@ package com.danbam.indistraw.feature.mobile.movie.make
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.danbam.indistraw.core.design_system.util.danbam.errorHandling
-import com.danbam.indistraw.core.entity.movie.MoviePeopleEntity
-import com.danbam.indistraw.core.param.movie.MovieCreateParam
-import com.danbam.indistraw.core.param.movie.MoviePeopleParam
+import com.danbam.indistraw.core.domain.entity.movie.MoviePeopleEntity
+import com.danbam.indistraw.core.domain.param.movie.MovieCreateParam
+import com.danbam.indistraw.core.domain.param.movie.MoviePeopleParam
 import com.danbam.indistraw.core.domain.usecase.file.SendFileUseCase
 import com.danbam.indistraw.core.domain.usecase.movie.AddMoviePeopleUseCase
 import com.danbam.indistraw.core.domain.usecase.movie.MovieCreateUseCase

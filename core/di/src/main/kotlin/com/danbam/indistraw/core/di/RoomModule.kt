@@ -16,12 +16,12 @@ object RoomModule {
     @Provides
     fun provideIndiStrawDataBase(
         @ApplicationContext context: Context,
-    ): com.danbam.indistraw.core.local.database.IndiStrawDataBase = Room
-        .databaseBuilder(context, com.danbam.indistraw.core.local.database.IndiStrawDataBase::class.java, "IndiStrawDataBase")
+    ): IndiStrawDataBase = Room
+        .databaseBuilder(context, IndiStrawDataBase::class.java, "IndiStrawDataBase")
         .build()
 
     @Provides
     fun provideRecentSearchDao(
-        indiStrawDataBase: com.danbam.indistraw.core.local.database.IndiStrawDataBase,
-    ): com.danbam.indistraw.core.local.dao.RecentSearchDao = indiStrawDataBase.resentSearchDao()
+        indiStrawDataBase: IndiStrawDataBase,
+    ): RecentSearchDao = indiStrawDataBase.resentSearchDao()
 }
