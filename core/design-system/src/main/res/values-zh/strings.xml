@@ -49,6 +49,7 @@
 
     <!--    以“ㄱ”开头的字符串-->
     <string name="movie_director">导演</string>
+    <string name="enroll_director_or_actor">"注册导演 / ​​演员 "</string>
     <string name="add_director">添加导演</string>
     <string name="reward_remain">剩余个</string>
     <string name="approve_personal_information">个人信息同意</string>
@@ -232,4 +233,8 @@
     <string name="want_you_withdrawal">确定要注销会员吗？</string>
     <string name="home">首页</string>
     <string name="donate">捐赠</string>
+    <string name="enroll_search_director">注册现有董事</string>
+    <string name="enroll_search_actor">"注册现有演员 "</string>
+    <string name="enroll_new_director">" 注册新董事"</string>
+    <string name="enroll_new_actor">注册新演员</string>
 </resources>

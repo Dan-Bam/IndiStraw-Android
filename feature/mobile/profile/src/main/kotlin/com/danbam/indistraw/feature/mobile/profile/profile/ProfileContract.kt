@@ -9,5 +9,6 @@ data class ProfileState(
     val profileUrl: String? = null,
     val myFundingList: List<FundingEntity> = listOf(),
     val fundingList: List<FundingEntity> = listOf(),
-    val movieHistoryList: List<MovieEntity> = listOf()
+    val movieHistoryList: List<MovieEntity> = listOf(),
+    val movieFilmographyList: List<MovieEntity> = listOf()
 )

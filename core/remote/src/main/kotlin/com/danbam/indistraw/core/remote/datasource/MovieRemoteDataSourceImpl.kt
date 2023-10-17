@@ -42,23 +42,23 @@ class MovieRemoteDataSourceImpl @Inject constructor(
         }
 
     override suspend fun searchMoviePeople(
-        actorType: String,
+        peopleType: String,
         name: String
     ): List<MoviePeopleResponse> = indiStrawApiCall {
-        movieAPI.searchMoviePeople(actorType = actorType, name = name)
+        movieAPI.searchMoviePeople(peopleType = peopleType, name = name)
     }
 
-    override suspend fun addMoviePeople(actorType: String, moviePeopleRequest: MoviePeopleRequest) =
+    override suspend fun addMoviePeople(peopleType: String, moviePeopleRequest: MoviePeopleRequest) =
         indiStrawApiCall {
-            movieAPI.addMoviePeople(actorType = actorType, moviePeopleRequest = moviePeopleRequest)
+            movieAPI.addMoviePeople(peopleType = peopleType, moviePeopleRequest = moviePeopleRequest)
         }
 
     override suspend fun moviePeopleDetail(
-        actorType: String,
+        peopleType: String,
         actorIdx: Long
     ): MoviePeopleDetailResponse =
         indiStrawApiCall {
-            movieAPI.moviePeopleDetail(actorType = actorType, actorIdx = actorIdx)
+            movieAPI.moviePeopleDetail(peopleType = peopleType, actorIdx = actorIdx)
         }
 
     override suspend fun movieRecentList(): List<MovieResponse> =
@@ -92,4 +92,8 @@ class MovieRemoteDataSourceImpl @Inject constructor(
         indiStrawApiCall {
             movieAPI.movieHistory(movieIdx = movieIdx)
         }
+
+    override suspend fun movieFilmography(): List<MovieResponse> = indiStrawApiCall {
+        movieAPI.movieFilmography()
+    }
 }

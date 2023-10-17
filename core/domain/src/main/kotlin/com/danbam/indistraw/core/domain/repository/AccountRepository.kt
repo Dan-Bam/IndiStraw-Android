@@ -13,5 +13,6 @@ interface AccountRepository {
     suspend fun changePhoneNumber(phoneNumber: String)
     suspend fun changeAddress(changeAddressParam: ChangeAddressParam)
     suspend fun editProfile(editProfileParam: EditProfileParam)
+    suspend fun enrollMoviePeople(peopleType: String, actorIdx: Long)
     suspend fun withdraw()
 }

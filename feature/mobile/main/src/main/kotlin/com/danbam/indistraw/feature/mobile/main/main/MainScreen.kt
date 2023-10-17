@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Divider
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -34,6 +35,7 @@ import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
 import com.danbam.indistraw.core.design_system.component.ExampleTextMedium
 import com.danbam.indistraw.core.design_system.component.ImageButton
 import com.danbam.indistraw.core.design_system.component.IndiStrawBanner
+import com.danbam.indistraw.core.design_system.component.IndiStrawBottomSheetLayout
 import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
 import com.danbam.indistraw.core.design_system.component.IndiStrawColumnTab
 import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
@@ -41,16 +43,19 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawRowTab
 import com.danbam.indistraw.core.design_system.component.IndiStrawTab
 import com.danbam.indistraw.core.design_system.component.MovieTab
 import com.danbam.indistraw.core.design_system.component.Shape
+import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.core.design_system.component.TitleSemiBold
 import com.danbam.indistraw.core.design_system.util.android.findActivity
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.danbam.indistraw.feature.mobile.navigation.funding.FundingDeepLinkKey
 import com.danbam.indistraw.feature.mobile.navigation.funding.FundingNavigationItem
+import com.danbam.indistraw.feature.mobile.navigation.movie.PeopleType
 import com.danbam.indistraw.feature.mobile.navigation.movie.MovieDeepLinkKey
 import com.danbam.indistraw.feature.mobile.navigation.movie.MovieNavigationItem
 import com.danbam.indistraw.feature.mobile.navigation.profile.ProfileNavigationItem
 import com.danbam.indistraw.feature.mobile.navigation.search.SearchNavigationItem
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MainScreen(
     navController: NavController,
@@ -77,133 +82,213 @@ fun MainScreen(
         mainViewModel.movieList(currentMovieTab)
     }
 
-    IndiStrawColumnBackground(
-        scrollEnabled = true
-    ) {
-        IndiStrawHeader(
-            isBackBtn = false
+    IndiStrawBottomSheetLayout(sheetContent = {
+        Divider(
+            modifier = Modifier
+                .padding(top = 53.dp)
+                .height(1.dp)
+                .fillMaxWidth()
+                .background(IndiStrawTheme.colors.gray2)
+        )
+        TitleRegular(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 25.dp, vertical = 20.dp)
+                .indiStrawClickable { navController.navigate(MovieNavigationItem.SearchPeople.route + MovieDeepLinkKey.PEOPLE_TYPE + PeopleType.DIRECTOR.route + MovieDeepLinkKey.IS_ENROLL + true) },
+            text = stringResource(id = R.string.enroll_search_director)
+        )
+        Divider(
+            modifier = Modifier
+                .height(1.dp)
+                .fillMaxWidth()
+                .background(IndiStrawTheme.colors.gray2)
+        )
+        TitleRegular(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 25.dp, vertical = 20.dp)
+                .indiStrawClickable { navController.navigate(MovieNavigationItem.WritePeople.route + MovieDeepLinkKey.PEOPLE_TYPE + PeopleType.DIRECTOR.route + MovieDeepLinkKey.IS_ENROLL + true) },
+            text = stringResource(id = R.string.enroll_new_director)
+        )
+        Divider(
+            modifier = Modifier
+                .height(1.dp)
+                .fillMaxWidth()
+                .background(IndiStrawTheme.colors.gray2)
+        )
+        TitleRegular(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 25.dp, vertical = 20.dp)
+                .indiStrawClickable { navController.navigate(MovieNavigationItem.SearchPeople.route + MovieDeepLinkKey.PEOPLE_TYPE + PeopleType.ACTOR.route + MovieDeepLinkKey.IS_ENROLL + true) },
+            text = stringResource(id = R.string.enroll_search_actor)
+        )
+        Divider(
+            modifier = Modifier
+                .height(1.dp)
+                .fillMaxWidth()
+                .background(IndiStrawTheme.colors.gray2)
+        )
+        TitleRegular(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 25.dp, vertical = 20.dp)
+                .indiStrawClickable { navController.navigate(MovieNavigationItem.WritePeople.route + MovieDeepLinkKey.PEOPLE_TYPE + PeopleType.ACTOR.route + MovieDeepLinkKey.IS_ENROLL + true) },
+            text = stringResource(id = R.string.enroll_new_actor)
+        )
+        Divider(
+            modifier = Modifier
+                .height(1.dp)
+                .fillMaxWidth()
+                .background(IndiStrawTheme.colors.gray2)
+        )
+        Spacer(modifier = Modifier.height(140.dp))
+    }) { _, openBottomSheet ->
+        IndiStrawColumnBackground(
+            scrollEnabled = true
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically
+            IndiStrawHeader(
+                isBackBtn = false
             ) {
-                IndiStrawIcon(modifier = Modifier.indiStrawClickable {
-                    navController.navigate(SearchNavigationItem.Search.route)
-                }, icon = IndiStrawIconList.Search)
-                if (state.profileUrl != null) {
-                    ImageButton(
-                        modifier = Modifier
-                            .padding(start = 26.dp)
-                            .size(30.dp),
-                        imgSrc = state.profileUrl,
-                        shape = Shape.Circle
-                    ) {
-                        navController.navigate(ProfileNavigationItem.Profile.route)
-                    }
-                } else {
-                    Box(
-                        modifier = Modifier
-                            .indiStrawClickable { navController.navigate(ProfileNavigationItem.Profile.route) }
-                            .padding(start = 26.dp)
-                            .size(30.dp)
-                            .background(
-                                color = IndiStrawTheme.colors.gray,
-                                shape = IndiStrawTheme.shapes.circle
-                            )
-                    ) {
-                        IndiStrawIcon(
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    IndiStrawIcon(modifier = Modifier.indiStrawClickable {
+                        navController.navigate(SearchNavigationItem.Search.route)
+                    }, icon = IndiStrawIconList.Search)
+                    if (state.profileUrl != null) {
+                        ImageButton(
                             modifier = Modifier
-                                .align(Alignment.Center),
-                            icon = IndiStrawIconList.Profile,
-                            contentScale = ContentScale.Crop
-                        )
+                                .padding(start = 26.dp)
+                                .size(30.dp),
+                            imgSrc = state.profileUrl,
+                            shape = Shape.Circle
+                        ) {
+                            navController.navigate(ProfileNavigationItem.Profile.route)
+                        }
+                    } else {
+                        Box(
+                            modifier = Modifier
+                                .indiStrawClickable { navController.navigate(ProfileNavigationItem.Profile.route) }
+                                .padding(start = 26.dp)
+                                .size(30.dp)
+                                .background(
+                                    color = IndiStrawTheme.colors.gray,
+                                    shape = IndiStrawTheme.shapes.circle
+                                )
+                        ) {
+                            IndiStrawIcon(
+                                modifier = Modifier
+                                    .align(Alignment.Center),
+                                icon = IndiStrawIconList.Profile,
+                                contentScale = ContentScale.Crop
+                            )
+                        }
                     }
                 }
             }
-        }
-        IndiStrawBanner(itemCount = state.bannerList.size) {
-            ImageButton(
+            IndiStrawBanner(itemCount = state.bannerList.size) {
+                ImageButton(
+                    modifier = Modifier
+                        .padding(horizontal = 15.dp)
+                        .fillMaxWidth(),
+                    imgSrc = state.bannerList[it].thumbnailUrl,
+                    shape = Shape.Rectangle
+                ) {
+                }
+            }
+            IndiStrawRowTab(
+                modifier = Modifier
+                    .padding(start = 15.dp, top = 20.dp),
+                itemList = state.movieList,
+                tabHeader = {
+                    IndiStrawTab(
+                        text = stringResource(id = R.string.popular),
+                        isSelect = currentMovieTab == MovieTab.PopularMovie
+                    ) {
+                        currentMovieTab = MovieTab.PopularMovie
+                    }
+                    Spacer(modifier = Modifier.width(16.dp))
+                    IndiStrawTab(
+                        text = stringResource(id = R.string.recommend),
+                        isSelect = currentMovieTab == MovieTab.RecommendMovie
+                    ) {
+                        currentMovieTab = MovieTab.RecommendMovie
+                    }
+                    Spacer(modifier = Modifier.width(16.dp))
+                    IndiStrawTab(
+                        text = stringResource(id = R.string.recent),
+                        isSelect = currentMovieTab == MovieTab.RecentMovie
+                    ) {
+                        currentMovieTab = MovieTab.RecentMovie
+                    }
+                }, moreData = {
+                    navController.navigate(MovieNavigationItem.All.route)
+                }
+            ) {
+                navController.navigate(MovieNavigationItem.Detail.route + MovieDeepLinkKey.MOVIE_INDEX + it)
+            }
+            IndiStrawColumnTab(
+                itemList = state.fundingPopularList,
+                tabHeader = {
+                    TitleSemiBold(
+                        modifier = Modifier.padding(start = 15.dp, top = 28.dp),
+                        text = stringResource(id = R.string.crowd_funding),
+                        fontSize = 16
+                    )
+                },
+                moreData = { navController.navigate(FundingNavigationItem.All.route) },
+            ) {
+                navController.navigate(FundingNavigationItem.Detail.route + FundingDeepLinkKey.FUNDING_INDEX + it)
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+            Column(
                 modifier = Modifier
                     .padding(horizontal = 15.dp)
-                    .fillMaxWidth(),
-                imgSrc = state.bannerList[it].thumbnailUrl,
-                shape = Shape.Rectangle
+                    .fillMaxWidth()
+                    .background(
+                        IndiStrawTheme.colors.lightBlack,
+                        IndiStrawTheme.shapes.defaultRounded
+                    )
+                    .padding(vertical = 18.dp),
             ) {
-            }
-        }
-        IndiStrawRowTab(
-            modifier = Modifier
-                .padding(start = 15.dp, top = 20.dp),
-            itemList = state.movieList,
-            tabHeader = {
-                IndiStrawTab(
-                    text = stringResource(id = R.string.popular),
-                    isSelect = currentMovieTab == MovieTab.PopularMovie
-                ) {
-                    currentMovieTab = MovieTab.PopularMovie
-                }
-                Spacer(modifier = Modifier.width(16.dp))
-                IndiStrawTab(
-                    text = stringResource(id = R.string.recommend),
-                    isSelect = currentMovieTab == MovieTab.RecommendMovie
-                ) {
-                    currentMovieTab = MovieTab.RecommendMovie
-                }
-                Spacer(modifier = Modifier.width(16.dp))
-                IndiStrawTab(
-                    text = stringResource(id = R.string.recent),
-                    isSelect = currentMovieTab == MovieTab.RecentMovie
-                ) {
-                    currentMovieTab = MovieTab.RecentMovie
-                }
-            }, moreData = {
-                navController.navigate(MovieNavigationItem.All.route)
-            }
-        ) {
-            navController.navigate(MovieNavigationItem.Detail.route + MovieDeepLinkKey.MOVIE_INDEX + it)
-        }
-        IndiStrawColumnTab(
-            itemList = state.fundingPopularList,
-            tabHeader = {
-                TitleSemiBold(
-                    modifier = Modifier.padding(start = 15.dp, top = 28.dp),
-                    text = stringResource(id = R.string.crowd_funding),
-                    fontSize = 16
+                ExampleTextMedium(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 13.dp)
+                        .indiStrawClickable { navController.navigate(MovieNavigationItem.WriteIntroduce.route) },
+                    text = stringResource(id = R.string.make_indi_movie)
                 )
-            },
-            moreData = { navController.navigate(FundingNavigationItem.All.route) },
-        ) {
-            navController.navigate(FundingNavigationItem.Detail.route + FundingDeepLinkKey.FUNDING_INDEX + it)
+                Divider(
+                    modifier = Modifier
+                        .padding(vertical = 18.dp)
+                        .height(1.dp)
+                        .fillMaxWidth()
+                        .background(IndiStrawTheme.colors.darkGray3)
+                )
+                ExampleTextMedium(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 13.dp)
+                        .indiStrawClickable { navController.navigate(FundingNavigationItem.Make.route) },
+                    text = stringResource(id = R.string.make_crowd_fund)
+                )
+                Divider(
+                    modifier = Modifier
+                        .padding(vertical = 18.dp)
+                        .height(1.dp)
+                        .fillMaxWidth()
+                        .background(IndiStrawTheme.colors.darkGray3)
+                )
+                ExampleTextMedium(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 13.dp)
+                        .indiStrawClickable { openBottomSheet() },
+                    text = stringResource(id = R.string.enroll_director_or_actor)
+                )
+            }
+            Spacer(modifier = Modifier.height(40.dp))
         }
-        Spacer(modifier = Modifier.height(16.dp))
-        Column(
-            modifier = Modifier
-                .padding(horizontal = 15.dp)
-                .fillMaxWidth()
-                .background(IndiStrawTheme.colors.lightBlack, IndiStrawTheme.shapes.defaultRounded)
-                .padding(vertical = 18.dp),
-        ) {
-            ExampleTextMedium(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 13.dp)
-                    .indiStrawClickable { navController.navigate(MovieNavigationItem.WriteIntroduce.route) },
-                text = stringResource(id = R.string.make_indi_movie)
-            )
-            Divider(
-                modifier = Modifier
-                    .padding(vertical = 18.dp)
-                    .height(1.dp)
-                    .fillMaxWidth()
-                    .background(IndiStrawTheme.colors.darkGray3)
-            )
-            ExampleTextMedium(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 13.dp)
-                    .indiStrawClickable { navController.navigate(FundingNavigationItem.Make.route) },
-                text = stringResource(id = R.string.make_crowd_fund)
-            )
-        }
-        Spacer(modifier = Modifier.height(40.dp))
     }
 }

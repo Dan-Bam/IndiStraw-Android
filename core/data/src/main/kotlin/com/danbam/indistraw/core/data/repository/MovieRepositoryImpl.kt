@@ -32,20 +32,20 @@ class MovieRepositoryImpl @Inject constructor(
         movieRemoteDataSource.movieDetail(movieIdx = movieIdx).toEntity()
 
     override suspend fun searchMoviePeople(
-        actorType: String,
+        peopleType: String,
         name: String
     ): List<MoviePeopleEntity> =
-        movieRemoteDataSource.searchMoviePeople(actorType = actorType, name = name)
+        movieRemoteDataSource.searchMoviePeople(peopleType = peopleType, name = name)
             .map { it.toEntity() }
 
-    override suspend fun addMoviePeople(actorType: String, moviePeopleParam: MoviePeopleParam) =
+    override suspend fun addMoviePeople(peopleType: String, moviePeopleParam: MoviePeopleParam) =
         movieRemoteDataSource.addMoviePeople(
-            actorType = actorType,
+            peopleType = peopleType,
             moviePeopleRequest = moviePeopleParam.toRequest()
         ).actorIdx
 
-    override suspend fun moviePeopleDetail(actorType: String, actorIdx: Long): MoviePeopleDetailEntity =
-        movieRemoteDataSource.moviePeopleDetail(actorType = actorType, actorIdx = actorIdx).toEntity()
+    override suspend fun moviePeopleDetail(peopleType: String, actorIdx: Long): MoviePeopleDetailEntity =
+        movieRemoteDataSource.moviePeopleDetail(peopleType = peopleType, actorIdx = actorIdx).toEntity()
 
     override suspend fun movieRecentList(): List<MovieEntity> =
         movieRemoteDataSource.movieRecentList().map { it.toEntity() }
@@ -64,4 +64,7 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun movieHistory(movieIdx: Long): DetailMovieHistoryEntity =
         movieRemoteDataSource.movieHistory(movieIdx = movieIdx).toEntity()
+
+    override suspend fun movieFilmography(): List<MovieEntity> =
+        movieRemoteDataSource.movieFilmography().map { it.toEntity() }
 }

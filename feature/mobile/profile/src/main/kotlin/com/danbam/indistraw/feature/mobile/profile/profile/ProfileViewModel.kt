@@ -6,6 +6,7 @@ import com.danbam.indistraw.core.domain.entity.movie.MovieEntity
 import com.danbam.indistraw.core.domain.usecase.account.GetProfileUseCase
 import com.danbam.indistraw.core.domain.usecase.crowd_funding.FundingMyUseCase
 import com.danbam.indistraw.core.domain.usecase.funding.FundingListUseCase
+import com.danbam.indistraw.core.domain.usecase.movie.MovieFilmographyUseCase
 import com.danbam.indistraw.core.domain.usecase.movie.MovieHistoryListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -21,6 +22,7 @@ class ProfileViewModel @Inject constructor(
     private val fundingMyUseCase: FundingMyUseCase,
     private val fundingListUseCase: FundingListUseCase,
     private val movieHistoryListUseCase: MovieHistoryListUseCase,
+    private val movieFilmographyUseCase: MovieFilmographyUseCase
 ) : ContainerHost<ProfileState, Unit>, ViewModel() {
     override val container = container<ProfileState, Unit>(ProfileState())
     fun getProfile() = intent {
@@ -57,6 +59,16 @@ class ProfileViewModel @Inject constructor(
                             thumbnailUrl = it.thumbnailUrl
                         )
                     })
+                }
+            }
+        }
+    }
+
+    fun movieFilmography() = intent {
+        viewModelScope.launch {
+            movieFilmographyUseCase().onSuccess {
+                reduce {
+                    state.copy(movieFilmographyList = it)
                 }
             }
         }

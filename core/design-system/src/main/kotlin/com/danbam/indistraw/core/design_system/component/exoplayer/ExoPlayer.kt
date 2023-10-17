@@ -185,7 +185,6 @@ fun IndiStrawPlayer(
                         isPlaying -> {
                             exoPlayer.pause()
                         }
-
                         !isPlaying -> {
                             exoPlayer.play()
                         }
@@ -213,7 +212,6 @@ fun IndiStrawPlayer(
                         isPlaying -> {
                             exoPlayer.pause()
                         }
-
                         !isPlaying -> {
                             exoPlayer.play()
                         }

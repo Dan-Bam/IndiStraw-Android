@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    Банковский список-->
+    <string name="gwangju_bank">Гванджу</string>
+    <string name="hana_bank">Хана</string>
+    <string name="nh_bank">NH Нонгхёп</string>
+    <string name="post_bank">Почта</string>
+    <string name="shinhyeop_bank">Синхёп</string>
+    <string name="shinhan_bank">Синхан</string>
+    <string name="toss_bank">Тоссбанк</string>
+    <string name="woori_bank">Вури</string>
+    <string name="kakao_bank">Какаобанк</string>
+
+    <!--    Список способов оплаты-->
+    <string name="payment_naver">Навер Пей (тип оплаты)</string>
+    <string name="payment_card">Оплата через ISP / мобильное приложение</string>
+    <string name="payment_account">Банковский перевод</string>
+    <string name="payment_kakao">Какаопей</string>
+
+    <!--    Список жанров-->
+    <string name="genre_all">Все</string>
+    <string name="genre_action">Экшн</string>
+    <string name="genre_romance">Романтика</string>
+    <string name="genre_comedy">Комедия</string>
+    <string name="genre_thriller">Триллер</string>
+    <string name="genre_drama">Драма</string>
+    <string name="genre_sf">Научная фантастика</string>
+    <string name="genre_animation">Анимация</string>
+    <string name="genre_horror">Ужасы</string>
+    <string name="genre_adventure">Приключения</string>
+    <string name="genre_fantasy">Фэнтези</string>
+
+    <!--    Список настроек-->
+    <string name="tv_setting_language">Язык</string>
+    <string name="tv_setting_term">Условия</string>
+    <string name="tv_setting_account">Учетная запись</string>
+    <string name="tv_setting_logout">Выйти</string>
+    <string name="tv_setting_withdrawal">Завершение членства</string>
+
+    <!--    Прочее-->
+    <string name="wrong_length_id">Введите от 6 до 15 символов.</string>
+    <string name="wrong_length_password">Введите от 8 до 20 символов.</string>
+    <string name="require_terms_of_use">[Обязательно] Согласие с условиями использования</string>
+    <string name="require_personal_information">[Обязательно] Согласие на сбор и использование личной информации</string>
+    <string name="app_name">Indi Straw</string>
+    <string name="qr_login">Вход с помощью QR-кода</string>
+    <string name="require_qr">Пожалуйста, подтвердите QR-код.</string>
+    <string name="remain_qr_time">Осталось время действия QR</string>
+
+    <!--    Строки, начинающиеся с "г"-->
+    <string name="movie_director">Режиссер</string>
+    <string name="enroll_director_or_actor">Добавить режиссера или актера</string>
+    <string name="add_director">Добавить режиссера</string>
+    <string name="reward_remain">осталось штук</string>
+    <string name="approve_personal_information">Согласие на обработку личных данных</string>
+    <string name="choose_gallery">Выбрать из галереи</string>
+    <string name="search">Поиск</string>
+    <string name="payment_method">Способ оплаты</string>
+    <string name="payment_detail">Подробности оплаты</string>
+    <string name="pay">Оплатить</string>
+    <string name="next">Продолжить</string>
+    <string name="setting_account">Настройки учетной записи</string>
+    <string name="already_sign_up">У вас еще нет аккаунта?</string>
+    <string name="account_info">Информация об аккаунте</string>
+    <string name="account_number">Номер счета</string>
+    <string name="money">Сумма</string>
+    <string name="require_money">Пожалуйста, укажите сумму.</string>
+    <string name="enroll_search_director">Зарегистрировать существующего режиссера</string>
+    <string name="add_search_director">Добавить существующего режиссера</string>
+    <string name="enroll_search_actor">Зарегистрировать существующего актера</string>
+    <string name="add_search_actor">Добавить существующего актера</string>
+
+    <!--    Строки, начинающиеся с "н"-->
+    <string name="rest_date">Осталось время</string>
+
+    <!--    Строки, начинающиеся с "д"-->
+    <string name="re_send">Отправить еще раз</string>
+    <string name="complete">Завершено</string>
+    <string name="indi_movie">Независимое кино</string>
+    <string name="make_indi_movie">Создать независимый фильм</string>
+    <string name="back">Назад</string>
+    <string name="enroll">Зарегистрировать</string>
+    <string name="wrong_not_enroll_phone_number">Номер не зарегистрирован.</string>
+
+    <!--    Строки, начинающиеся с "л"-->
+    <string name="logout">Выйти</string>
+    <string name="want_you_logout">Вы уверены, что хотите выйти?</string>
+    <string name="login">Войти</string>
+    <string name="do_login">Войти</string>
+    <string name="choose_reward">Выбрать вознаграждение</string>
+    <string name="add_reward">Добавить вознаграждение</string>
+    <string name="do_add_reward">Добавить вознаграждение</string>
+    <string name="want_you_add_reward">Вы хотите добавить вознаграждение?</string>
+
+    <!--    Строки, начинающиеся с "м"-->
+    <string name="end_date">Срок завершения</string>
+    <string name="my_funding">Мои средства</string>
+    <string name="view_all_movie">Просмотреть все фильмы</string>
+    <string name="collect_money">Собранная сумма</string>
+    <string name="target_money">Целевая сумма</string>
+    <string name="require_target_money">Пожалуйста, укажите целевую сумму.</string>
+    <string name="looking_for">Что вы ищете?</string>
+
+    <!--    Строки, начинающиеся с "б"-->
+    <string name="movie_actor">Актер</string>
+    <string name="add_actor">Добавить актера</string>
+    <string name="delivery_info">Информация о доставке</string>
+    <string name="certificate_phone_number">Подтвердить номер</string>
+    <string name="change">Изменить</string>
+    <string name="require_change_password">Пожалуйста, введите новый пароль.</string>
+    <string name="password">Пароль</string>
+    <string name="change_password">Изменить пароль</string>
+    <string name="find_password">Восстановление пароля</string>
+    <string name="check_password">Подтвердить пароль</string>
+    <string name="require_check_password">Пожалуйста, введите подтверждение пароля.</string>
+    <string name="wrong_different_password">Пароли не совпадают.</string>
+    <string name="require_password">Пожалуйста, введите пароль.</string>
+    <string name="wrong_password">Неверный пароль.</string>
+
+    <!--    Строки, начинающиеся с "с"-->
+    <string name="require_account_number">Пожалуйста, укажите номер счета, который вы хотите использовать.</string>
+    <string name="edit_picture">Изменить изображение</string>
+    <string name="choose_camera">Сделать фото</string>
+    <string name="detail_address">Подробный адрес</string>
+    <string name="require_detail_address">Пожалуйста, укажите подробный адрес.</string>
+    <string name="reward_price">Цена товара</string>
+    <string name="reward_info">Информация о товаре</string>
+    <string name="enroll_new_director">Зарегистрировать нового режиссера</string>
+    <string name="add_new_director">Добавить нового режиссера</string>
+    <string name="enroll_new_actor">Зарегистрировать нового актера</string>
+    <string name="add_new_actor">Добавить нового актера</string>
+    <string name="require_new_phone_number">Пожалуйста, укажите новый номер телефона.</string>
+    <string name="setting">Настройки</string>
+    <string name="introduce">Описание</string>
+    <string name="require_introduce">Пожалуйста, введите описание.</string>
+    <string name="amount">Количество</string>
+    <string name="require_amount">Пожалуйста, укажите количество.</string>
+    <string name="wrong_match_password">Пароль должен содержать цифры, заглавные и строчные буквы, а также специальные символы.</string>
+    <string name="is_real">Физический</string>
+    <string name="is_real_reward">Является ли вознаграждение физическим товаром?</string>
+    <string name="thumbnail">Обложка</string>
+
+    <!--    Строки, начинающиеся с "и"-->
+    <string name="id">Идентификатор</string>
+    <string name="find_id">Найти идентификатор</string>
+    <string name="require_id">Пожалуйста, введите идентификатор.</string>
+    <string name="change_language">Изменить язык</string>
+    <string name="movie">Фильм</string>
+    <string name="require_movie">Пожалуйста, укажите фильм.</string>
+    <string name="money_unit">вон</string>
+    <string name="require_bank">Пожалуйста, выберите банк.</string>
+    <string name="name">Имя</string>
+    <string name="require_name">Пожалуйста, введите имя.</string>
+    <string name="wrong_enroll_id">Идентификатор уже зарегистрирован.</string>
+    <string name="wrong_enroll_phone_number">Номер телефона уже зарегистрирован.</string>
+    <string name="upload_image">Загрузить изображение</string>
+    <string name="require_thumbnail">Пожалуйста, загрузите обложку.</string>
+    <string name="watch_going">Продолжить просмотр</string>
+    <string name="popular">Популярные</string>
+    <string name="popular_search_movie">Популярные фильмы для поиска</string>
+    <string name="popular_search">Популярные теги</string>
+    <string name="certificate_number">Код подтверждения</string>
+    <string name="check_certificate_number">Проверить код подтверждения</string>
+    <string name="wrong_expired_certificate_number">Срок действия кода подтверждения истек.</string>
+    <string name="already_certificate_number">Не получили код подтверждения?</string>
+    <string name="wrong_certificate_number">Неверный код подтверждения.</string>
+    <string name="require_certificate_number">Пожалуйста, введите код подтверждения.</string>
+    <string name="finish_certificate">Подтверждение завершено</string>
+    <string name="certificate">Подтверждение</string>
+
+    <!--    Строки, начинающиеся с "ж"-->
+    <string name="view_detail">Подробности</string>
+    <string name="list_project">Список проектов</string>
+    <string name="wait">Пожалуйста, подождите и попробуйте еще раз.</string>
+    <string name="save">Сохранить</string>
+    <string name="view_all">Просмотреть все ></string>
+    <string name="movie_all">Все фильмы</string>
+    <string name="approve_all">Согласие со всеми</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="wrong_match_phone_number">Неверный формат номера телефона.</string>
+    <string name="require_phone_number">Пожалуйста, введите номер телефона.</string>
+    <string name="title">Заголовок</string>
+    <string name="require_title">Пожалуйста, укажите заголовок.</string>
+    <string name="wrong_id">Идентификатор не существует.</string>
+    <string name="finish">Завершено</string>
+    <string name="address">Адрес</string>
+    <string name="no_address">Адрес не существует.</string>
+    <string name="require_address">Пожалуйста, укажите адрес.</string>
+    <string name="find_address">Найти адрес</string>
+    <string name="mc">Ведущий</string>
+
+    <!--    Строки, начинающиеся с "ч"-->
+    <string name="participate_people">Количество участников</string>
+    <string name="watch_first">Начать просмотр сначала</string>
+    <string name="attached_file">Прикрепленный файл</string>
+    <string name="total_money">Общая сумма</string>
+    <string name="add_image">Добавить изображение</string>
+    <string name="add_funding_description">При указании дополнительной суммы она будет добавлена к финансированию.</string>
+    <string name="add">Добавить</string>
+    <string name="add_funding">Дополнительное финансирование</string>
+    <string name="participate_movie">Участвующий фильм</string>
+    <string name="cancel">Отмена</string>
+    <string name="recent">Недавние</string>
+    <string name="recent_search">Недавние запросы</string>
+    <string name="recent_watch_movie">Недавно просмотренные фильмы</string>
+    <string name="wrong_over_request_phone_number">Превышено максимальное количество запросов. Повторите попытку через 1 час.</string>
+    <string name="wrong_over_request_certificate_number">Превышено максимальное количество запросов на подтверждение. Повторите попытку через 1 час.</string>
+    <string name="recommend">Рекомендации</string>
+    <string name="actor">Актеры</string>
+
+    <!--    Строки, начинающиеся с "к"-->
+    <string name="crowd_funding">Массовое финансирование</string>
+    <string name="make_crowd_fund">Создать массовое финансирование</string>
+    <string name="participate_funding">Участие в массовом финансировании</string>
+    <string name="enroll_crowd_funding_thumbnail">Загрузить обложку массового финансирования</string>
+    <string name="is_use_crowd_funding">Вы использовали массовое финансирование?</string>
+
+    <!--    Строки, начинающиеся с "п"-->
+    <string name="file">Файл</string>
+    <string name="require_file">Пожалуйста, прикрепите файл.</string>
+    <string name="add_file">Добавить файл</string>
+    <string name="is_funding">Финансирование</string>
+    <string name="do_funding">Поддержать</string>
+    <string name="change_profile">Изменить профиль</string>
+    <string name="require_picture">Пожалуйста, выберите изображение.</string>
+
+    <!--    Строки, начинающиеся с "х"-->
+    <string name="highlight">Выделить</string>
+    <string name="go">Перейти</string>
+    <string name="approve">Подтвердить</string>
+    <string name="check">Проверить</string>
+    <string name="current_id">Текущий идентификатор</string>
+    <string name="current_address">Текущий адрес</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="fail_sign_up">Регистрация не удалась.</string>
+    <string name="withdrawal">Завершение членства</string>
+    <string name="want_you_withdrawal">Вы уверены, что хотите завершить членство?</string>
+    <string name="home">Главная</string>
+    <string name="donate">Поддержать</string>
+</resources>

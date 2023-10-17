@@ -33,6 +33,9 @@ class AccountRepositoryImpl @Inject constructor(
     override suspend fun editProfile(editProfileParam: EditProfileParam) =
         accountRemoteDataSource.editProfile(editProfileRequest = editProfileParam.toRequest())
 
+    override suspend fun enrollMoviePeople(peopleType: String, actorIdx: Long) =
+        accountRemoteDataSource.enrollMoviePeople(peopleType = peopleType, actorIdx = actorIdx)
+
     override suspend fun withdraw() =
         accountRemoteDataSource.withdraw()
 }

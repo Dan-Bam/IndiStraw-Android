@@ -31,9 +31,10 @@ import kotlinx.coroutines.InternalCoroutinesApi
 
 @OptIn(InternalCoroutinesApi::class)
 @Composable
-fun WriteActorScreen(
+fun WritePeopleScreen(
     navController: NavController,
-    addActorType: String,
+    peopleType: String,
+    isEnroll: Boolean,
     makeMovieViewModel: MakeMovieViewModel = hiltViewModel(getActivity())
 ) {
     val container = makeMovieViewModel.container
@@ -45,7 +46,7 @@ fun WriteActorScreen(
     var profileUrl: String? by remember { mutableStateOf(null) }
 
     sideEffect.observeWithLifecycle {
-        if (it is MakeMovieSideEffect.Next) {
+        if (it is MakeMovieSideEffect.Next || it is MakeMovieSideEffect.SuccessEnroll) {
             navController.popBackStack()
         }
     }
@@ -85,9 +86,10 @@ fun WriteActorScreen(
             Spacer(modifier = Modifier.height(36.dp))
             IndiStrawButton(text = stringResource(id = R.string.check)) {
                 makeMovieViewModel.addMoviePeople(
-                    actorType = addActorType,
+                    peopleType = peopleType,
                     name = name,
-                    profileUrl = profileUrl
+                    profileUrl = profileUrl,
+                    isEnroll = isEnroll
                 )
             }
         }

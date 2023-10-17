@@ -30,19 +30,14 @@ import com.danbam.indistraw.core.design_system.util.androidx.getActivity
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
 import com.danbam.indistraw.feature.mobile.navigation.main.MainNavigationItem
-import com.danbam.indistraw.feature.mobile.navigation.movie.ActorType
+import com.danbam.indistraw.feature.mobile.navigation.movie.PeopleType
 import com.danbam.indistraw.feature.mobile.navigation.movie.MovieDeepLinkKey
 import com.danbam.indistraw.feature.mobile.navigation.movie.MovieNavigationItem
 import kotlinx.coroutines.InternalCoroutinesApi
 
-sealed class AddPeopleType {
-    object Director : AddPeopleType()
-    object Actor : AddPeopleType()
-}
-
 @OptIn(ExperimentalMaterialApi::class, InternalCoroutinesApi::class)
 @Composable
-fun AddActorScreen(
+fun AddPeopleScreen(
     navController: NavController,
     makeMovieViewModel: MakeMovieViewModel = hiltViewModel(getActivity())
 ) {
@@ -50,7 +45,7 @@ fun AddActorScreen(
     val state = container.stateFlow.collectAsState().value
     val sideEffect = container.sideEffectFlow
 
-    var addPeopleType: AddPeopleType by remember { mutableStateOf(AddPeopleType.Director) }
+    var addPeopleType: PeopleType by remember { mutableStateOf(PeopleType.DIRECTOR) }
 
     sideEffect.observeWithLifecycle {
         if (it is MakeMovieSideEffect.SuccessCreateMovie) {
@@ -72,8 +67,8 @@ fun AddActorScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 25.dp, vertical = 20.dp)
-                .indiStrawClickable { navController.navigate(MovieNavigationItem.SearchActor.route + MovieDeepLinkKey.ADD_ACTOR_TYPE + if (addPeopleType == AddPeopleType.Director) ActorType.DIRECTOR else ActorType.ACTOR) },
-            text = stringResource(id = if (addPeopleType == AddPeopleType.Director) R.string.add_search_director else R.string.add_search_actor)
+                .indiStrawClickable { navController.navigate(MovieNavigationItem.SearchPeople.route + MovieDeepLinkKey.PEOPLE_TYPE + addPeopleType.route + MovieDeepLinkKey.IS_ENROLL + false) },
+            text = stringResource(id = if (addPeopleType == PeopleType.DIRECTOR) R.string.add_search_director else R.string.add_search_actor)
         )
         Divider(
             modifier = Modifier
@@ -85,8 +80,8 @@ fun AddActorScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 25.dp, vertical = 20.dp)
-                .indiStrawClickable { navController.navigate(MovieNavigationItem.WriteActor.route + MovieDeepLinkKey.ADD_ACTOR_TYPE + if (addPeopleType == AddPeopleType.Director) ActorType.DIRECTOR else ActorType.ACTOR) },
-            text = stringResource(id = if (addPeopleType == AddPeopleType.Director) R.string.add_new_director else R.string.add_new_actor)
+                .indiStrawClickable { navController.navigate(MovieNavigationItem.WritePeople.route + MovieDeepLinkKey.PEOPLE_TYPE + addPeopleType.route + MovieDeepLinkKey.IS_ENROLL + false) },
+            text = stringResource(id = if (addPeopleType == PeopleType.DIRECTOR) R.string.add_new_director else R.string.add_new_actor)
         )
         Divider(
             modifier = Modifier
@@ -106,22 +101,22 @@ fun AddActorScreen(
             )
             AddPeopleList(
                 onAddPeople = {
-                    addPeopleType = AddPeopleType.Director
+                    addPeopleType = PeopleType.DIRECTOR
                     openBottomSheet()
                 },
                 peopleList = state.directorList,
-                onRemove = { makeMovieViewModel.removeMoviePeople(ActorType.DIRECTOR, it) })
+                onRemove = { makeMovieViewModel.removeMoviePeople(PeopleType.DIRECTOR, it) })
             TitleRegular(
                 modifier = Modifier.padding(start = 15.dp, top = 50.dp, bottom = 16.dp),
                 text = stringResource(id = R.string.add_actor)
             )
             AddPeopleList(
                 onAddPeople = {
-                    addPeopleType = AddPeopleType.Actor
+                    addPeopleType = PeopleType.ACTOR
                     openBottomSheet()
                 },
                 peopleList = state.actorList,
-                onRemove = { makeMovieViewModel.removeMoviePeople(ActorType.ACTOR, it) })
+                onRemove = { makeMovieViewModel.removeMoviePeople(PeopleType.ACTOR, it) })
             Spacer(modifier = Modifier.weight(1F))
             IndiStrawButton(text = stringResource(id = R.string.check)) {
                 makeMovieViewModel.movieCreate()
