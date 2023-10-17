@@ -48,6 +48,7 @@
 
     <!-- Strings starting with 'ㄱ' -->
     <string name="movie_director">Director</string>
+    <string name="enroll_director_or_actor">Register director / actor</string>
     <string name="add_director">Add Director</string>
     <string name="reward_remain">Remaining</string>
     <string name="approve_personal_information">Agree to Personal Information</string>
@@ -231,4 +232,8 @@
     <string name="want_you_withdrawal">Are you sure you want to withdraw?</string>
     <string name="home">Home</string>
     <string name="donate">Donate</string>
+    <string name="enroll_search_director">Register an existing director</string>
+    <string name="enroll_search_actor">Register an existing actor</string>
+    <string name="enroll_new_director">Register a new director</string>
+    <string name="enroll_new_actor">"Register a new actor "</string>
 </resources>

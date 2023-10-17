@@ -49,6 +49,7 @@
 
     <!--    ㄱ으로 시작する文字列-->
     <string name="movie_director">監督</string>
+    <string name="enroll_director_or_actor">監督 / 俳優を登録する</string>
     <string name="add_director">監督を追加</string>
     <string name="reward_remain">残り個数</string>
     <string name="approve_personal_information">個人情報の同意</string>
@@ -232,4 +233,8 @@
     <string name="want_you_withdrawal">退会しますか？</string>
     <string name="home">ホーム</string>
     <string name="donate">サポートする</string>
+    <string name="enroll_search_director">既存の監督を登録する</string>
+    <string name="enroll_search_actor">"既存の俳優を登録する "</string>
+    <string name="enroll_new_director">新しい監督を登録する</string>
+    <string name="enroll_new_actor">"新しい俳優を登録する "</string>
 </resources>
