@@ -7,7 +7,8 @@ import java.util.Locale
 
 sealed class Language(val type: String, val stringId: Int) {
     companion object {
-        fun toList() = listOf(English, Korean, Japanese, Spanish, Chinese)
+        fun toList() =
+            listOf(English, Korean, Japanese, Spanish, Russian, German, Chinese, Vietnamese)
     }
 
     object English : Language("en", R.string.english)
@@ -15,6 +16,9 @@ sealed class Language(val type: String, val stringId: Int) {
     object Japanese : Language("ja", R.string.japanese)
     object Spanish : Language("es", R.string.spanish)
     object Chinese : Language("zh", R.string.chinese)
+    object German : Language("de", R.string.german)
+    object Vietnamese : Language("vi", R.string.vietnamese)
+    object Russian : Language("ru", R.string.russian)
 }
 
 fun Language.changeLanguage(context: Context) {
