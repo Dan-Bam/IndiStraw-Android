@@ -58,7 +58,7 @@ fun SearchPeopleScreen(
     var search by remember { mutableStateOf("") }
 
     sideEffect.observeWithLifecycle {
-        if (it is MakeMovieSideEffect.Next) {
+        if (it is MakeMovieSideEffect.Next || it is MakeMovieSideEffect.SuccessEnroll) {
             navController.popBackStack(keyboardController = keyboardController)
         }
     }
@@ -92,8 +92,9 @@ fun SearchPeopleScreen(
                         .padding(15.dp)
                         .indiStrawClickable {
                             makeMovieViewModel.selectMoviePeople(
-                                peopleType,
-                                it
+                                peopleType = peopleType,
+                                moviePeople = it,
+                                isEnroll = isEnroll
                             )
                         },
                     verticalAlignment = Alignment.CenterVertically

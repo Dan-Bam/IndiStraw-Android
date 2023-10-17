@@ -16,5 +16,6 @@ data class MakeMovieState(
 
 sealed class MakeMovieSideEffect {
     object Next : MakeMovieSideEffect()
+    object SuccessEnroll : MakeMovieSideEffect()
     object SuccessCreateMovie : MakeMovieSideEffect()
 }

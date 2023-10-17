@@ -46,7 +46,7 @@ fun WritePeopleScreen(
     var profileUrl: String? by remember { mutableStateOf(null) }
 
     sideEffect.observeWithLifecycle {
-        if (it is MakeMovieSideEffect.Next) {
+        if (it is MakeMovieSideEffect.Next || it is MakeMovieSideEffect.SuccessEnroll) {
             navController.popBackStack()
         }
     }
@@ -88,7 +88,8 @@ fun WritePeopleScreen(
                 makeMovieViewModel.addMoviePeople(
                     peopleType = peopleType,
                     name = name,
-                    profileUrl = profileUrl
+                    profileUrl = profileUrl,
+                    isEnroll = isEnroll
                 )
             }
         }
