@@ -8,6 +8,7 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.PATCH
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface AccountAPI {
@@ -37,6 +38,12 @@ interface AccountAPI {
     @PATCH("${ACCOUNT}/info")
     suspend fun editProfile(
         @Body editProfileRequest: com.danbam.indistraw.core.remote.request.auth.EditProfileRequest,
+    ): Response<Void?>
+
+    @POST("${ACCOUNT}/{actorType}/{idx}")
+    suspend fun enrollMoviePeople(
+        @Path("actorType") actorType: String,
+        @Path("idx") actorIdx: Long
     ): Response<Void?>
 
     @DELETE(ACCOUNT)

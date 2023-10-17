@@ -43,6 +43,10 @@ class AccountRemoteDataSourceImpl @Inject constructor(
             accountAPI.editProfile(editProfileRequest = editProfileRequest).errorHandling()
         }
 
+    override suspend fun enrollMoviePeople(actorType: String, actorIdx: Long) = indiStrawApiCall {
+        accountAPI.enrollMoviePeople(actorType = actorType, actorIdx = actorIdx).errorHandling()
+    }
+
     override suspend fun withdraw() = indiStrawApiCall {
         accountAPI.withdraw().errorHandling()
     }
