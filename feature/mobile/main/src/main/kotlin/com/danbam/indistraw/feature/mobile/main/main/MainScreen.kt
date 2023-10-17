@@ -94,7 +94,7 @@ fun MainScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 25.dp, vertical = 20.dp)
-                .indiStrawClickable { navController.navigate(MovieNavigationItem.SearchPeople.route + MovieDeepLinkKey.PEOPLE_TYPE + PeopleType.DIRECTOR.route) },
+                .indiStrawClickable { navController.navigate(MovieNavigationItem.SearchPeople.route + MovieDeepLinkKey.PEOPLE_TYPE + PeopleType.DIRECTOR.route + MovieDeepLinkKey.IS_ENROLL + true) },
             text = stringResource(id = R.string.enroll_search_director)
         )
         Divider(
@@ -107,7 +107,7 @@ fun MainScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 25.dp, vertical = 20.dp)
-                .indiStrawClickable { navController.navigate(MovieNavigationItem.WritePeople.route + MovieDeepLinkKey.PEOPLE_TYPE + PeopleType.DIRECTOR.route) },
+                .indiStrawClickable { navController.navigate(MovieNavigationItem.WritePeople.route + MovieDeepLinkKey.PEOPLE_TYPE + PeopleType.DIRECTOR.route + MovieDeepLinkKey.IS_ENROLL + true) },
             text = stringResource(id = R.string.enroll_new_director)
         )
         Divider(
@@ -120,7 +120,7 @@ fun MainScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 25.dp, vertical = 20.dp)
-                .indiStrawClickable { navController.navigate(MovieNavigationItem.SearchPeople.route + MovieDeepLinkKey.PEOPLE_TYPE + PeopleType.ACTOR.route) },
+                .indiStrawClickable { navController.navigate(MovieNavigationItem.SearchPeople.route + MovieDeepLinkKey.PEOPLE_TYPE + PeopleType.ACTOR.route + MovieDeepLinkKey.IS_ENROLL + true) },
             text = stringResource(id = R.string.enroll_search_actor)
         )
         Divider(
@@ -133,7 +133,7 @@ fun MainScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 25.dp, vertical = 20.dp)
-                .indiStrawClickable { navController.navigate(MovieNavigationItem.WritePeople.route + MovieDeepLinkKey.PEOPLE_TYPE + PeopleType.ACTOR.route) },
+                .indiStrawClickable { navController.navigate(MovieNavigationItem.WritePeople.route + MovieDeepLinkKey.PEOPLE_TYPE + PeopleType.ACTOR.route + MovieDeepLinkKey.IS_ENROLL + true) },
             text = stringResource(id = R.string.enroll_new_actor)
         )
         Divider(

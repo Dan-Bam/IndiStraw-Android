@@ -5,7 +5,7 @@ sealed class MovieNavigationItem(val route: String) {
     object Play : MovieNavigationItem("moviePlay")
     object All : MovieNavigationItem("movieAll")
     object WriteIntroduce : MovieNavigationItem("movieWriteIntroduce")
-    object AddActor : MovieNavigationItem("movieAddActor")
-    object SearchActor : MovieNavigationItem("movieSearchActor")
-    object WriteActor : MovieNavigationItem("movieWriteActor")
+    object AddPeople : MovieNavigationItem("movieAddPeople")
+    object SearchPeople : MovieNavigationItem("movieSearchPeople")
+    object WritePeople : MovieNavigationItem("movieWritePeople")
 }

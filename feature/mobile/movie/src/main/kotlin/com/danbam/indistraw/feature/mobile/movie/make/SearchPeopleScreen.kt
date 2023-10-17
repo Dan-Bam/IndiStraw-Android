@@ -43,9 +43,10 @@ import kotlinx.coroutines.InternalCoroutinesApi
 
 @OptIn(ExperimentalComposeUiApi::class, InternalCoroutinesApi::class)
 @Composable
-fun SearchActorScreen(
+fun SearchPeopleScreen(
     navController: NavController,
-    addActorType: String,
+    peopleType: String,
+    isEnroll: Boolean,
     makeMovieViewModel: MakeMovieViewModel = hiltViewModel(getActivity())
 ) {
     val container = makeMovieViewModel.container
@@ -63,7 +64,7 @@ fun SearchActorScreen(
     }
 
     LaunchedEffect(search) {
-        makeMovieViewModel.searchMoviePeople(actorType = addActorType, name = search)
+        makeMovieViewModel.searchMoviePeople(peopleType = peopleType, name = search)
     }
 
     IndiStrawColumnBackground {
@@ -91,7 +92,7 @@ fun SearchActorScreen(
                         .padding(15.dp)
                         .indiStrawClickable {
                             makeMovieViewModel.selectMoviePeople(
-                                addActorType,
+                                peopleType,
                                 it
                             )
                         },

@@ -72,7 +72,7 @@ fun WriteIntroduceScreen(
 
     sideEffect.observeWithLifecycle {
         if (it is MakeMovieSideEffect.Next) {
-            navController.navigate(MovieNavigationItem.AddActor.route)
+            navController.navigate(MovieNavigationItem.AddPeople.route)
         }
     }
 

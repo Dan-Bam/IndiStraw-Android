@@ -31,9 +31,10 @@ import kotlinx.coroutines.InternalCoroutinesApi
 
 @OptIn(InternalCoroutinesApi::class)
 @Composable
-fun WriteActorScreen(
+fun WritePeopleScreen(
     navController: NavController,
-    addActorType: String,
+    peopleType: String,
+    isEnroll: Boolean,
     makeMovieViewModel: MakeMovieViewModel = hiltViewModel(getActivity())
 ) {
     val container = makeMovieViewModel.container
@@ -85,7 +86,7 @@ fun WriteActorScreen(
             Spacer(modifier = Modifier.height(36.dp))
             IndiStrawButton(text = stringResource(id = R.string.check)) {
                 makeMovieViewModel.addMoviePeople(
-                    actorType = addActorType,
+                    peopleType = peopleType,
                     name = name,
                     profileUrl = profileUrl
                 )

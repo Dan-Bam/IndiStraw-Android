@@ -10,7 +10,7 @@ import com.danbam.indistraw.core.domain.usecase.file.SendFileUseCase
 import com.danbam.indistraw.core.domain.usecase.movie.AddMoviePeopleUseCase
 import com.danbam.indistraw.core.domain.usecase.movie.MovieCreateUseCase
 import com.danbam.indistraw.core.domain.usecase.movie.SearchMoviePeopleUseCase
-import com.danbam.indistraw.feature.mobile.navigation.movie.ActorType
+import com.danbam.indistraw.feature.mobile.navigation.movie.PeopleType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
@@ -68,10 +68,10 @@ class MakeMovieViewModel @Inject constructor(
         }
     }
 
-    fun searchMoviePeople(actorType: String, name: String) = intent {
+    fun searchMoviePeople(peopleType: String, name: String) = intent {
         viewModelScope.launch {
             searchMoviePeopleUseCase(
-                actorType = if (actorType == ActorType.ACTOR) "actor" else "director",
+                actorType = peopleType,
                 name = name
             ).onSuccess {
                 reduce { state.copy(searchMoviePeopleList = it) }
@@ -79,8 +79,8 @@ class MakeMovieViewModel @Inject constructor(
         }
     }
 
-    fun selectMoviePeople(actorType: String, moviePeople: MoviePeopleEntity) = intent {
-        if (actorType == ActorType.ACTOR) {
+    fun selectMoviePeople(peopleType: String, moviePeople: MoviePeopleEntity) = intent {
+        if (peopleType == PeopleType.ACTOR.route) {
             reduce {
                 state.copy(actorList = state.actorList.plus(moviePeople))
             }
@@ -90,16 +90,16 @@ class MakeMovieViewModel @Inject constructor(
         postSideEffect(MakeMovieSideEffect.Next)
     }
 
-    fun addMoviePeople(actorType: String, name: String, profileUrl: String?) = intent {
+    fun addMoviePeople(peopleType: String, name: String, profileUrl: String?) = intent {
         if (name.isEmpty()) return@intent
         else if (profileUrl.isNullOrBlank()) return@intent
         else {
             viewModelScope.launch {
                 addMoviePeopleUseCase(
-                    actorType = if (actorType == ActorType.ACTOR) "actor" else "director",
+                    actorType = peopleType,
                     moviePeopleParam = MoviePeopleParam(name = name, profileUrl = profileUrl)
                 ).onSuccess {
-                    if (actorType == ActorType.ACTOR) {
+                    if (peopleType == PeopleType.ACTOR.route) {
                         reduce {
                             state.copy(
                                 actorList = state.actorList.plus(
@@ -128,8 +128,8 @@ class MakeMovieViewModel @Inject constructor(
         }
     }
 
-    fun removeMoviePeople(actorType: String, index: Int) = intent {
-        if (actorType == ActorType.ACTOR) {
+    fun removeMoviePeople(peopleType: PeopleType, index: Int) = intent {
+        if (peopleType == PeopleType.ACTOR) {
             reduce {
                 state.copy(actorList = state.actorList.filterIndexed { i, _ -> i != index })
             }
