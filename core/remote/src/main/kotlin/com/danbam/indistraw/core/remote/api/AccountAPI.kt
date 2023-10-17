@@ -42,7 +42,7 @@ interface AccountAPI {
 
     @POST("${ACCOUNT}/{actorType}/{idx}")
     suspend fun enrollMoviePeople(
-        @Path("actorType") actorType: String,
+        @Path("actorType") peopleType: String,
         @Path("idx") actorIdx: Long
     ): Response<Void?>
 

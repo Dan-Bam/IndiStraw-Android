@@ -13,6 +13,6 @@ interface AccountRemoteDataSource {
     suspend fun changePhoneNumber(phoneNumber: String)
     suspend fun changeAddress(changeAddressRequest: ChangeAddressRequest)
     suspend fun editProfile(editProfileRequest: EditProfileRequest)
-    suspend fun enrollMoviePeople(actorType: String, actorIdx: Long)
+    suspend fun enrollMoviePeople(peopleType: String, actorIdx: Long)
     suspend fun withdraw()
 }

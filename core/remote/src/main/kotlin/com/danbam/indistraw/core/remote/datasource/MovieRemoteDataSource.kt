@@ -17,10 +17,10 @@ interface MovieRemoteDataSource {
     suspend fun movieCreate(movieCreateRequest: MovieCreateRequest)
     suspend fun movieList(genre: String? = null): Flow<PagingData<MovieResponse>>
     suspend fun movieDetail(movieIdx: Long): MovieDetailResponse
-    suspend fun searchMoviePeople(actorType: String, name: String): List<MoviePeopleResponse>
-    suspend fun moviePeopleDetail(actorType: String, actorIdx: Long): MoviePeopleDetailResponse
+    suspend fun searchMoviePeople(peopleType: String, name: String): List<MoviePeopleResponse>
+    suspend fun moviePeopleDetail(peopleType: String, actorIdx: Long): MoviePeopleDetailResponse
     suspend fun addMoviePeople(
-        actorType: String,
+        peopleType: String,
         moviePeopleRequest: MoviePeopleRequest
     ): AddMoviePeopleResponse
 

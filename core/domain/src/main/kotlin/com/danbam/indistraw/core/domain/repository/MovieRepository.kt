@@ -16,9 +16,9 @@ interface MovieRepository {
     suspend fun movieCreate(movieCreateParam: MovieCreateParam)
     suspend fun movieList(genre: String? = null): Flow<PagingData<MovieEntity>>
     suspend fun movieDetail(movieIdx: Long): MovieDetailEntity
-    suspend fun searchMoviePeople(actorType: String, name: String): List<MoviePeopleEntity>
-    suspend fun addMoviePeople(actorType: String, moviePeopleParam: MoviePeopleParam): Long
-    suspend fun moviePeopleDetail(actorType: String, actorIdx: Long): MoviePeopleDetailEntity
+    suspend fun searchMoviePeople(peopleType: String, name: String): List<MoviePeopleEntity>
+    suspend fun addMoviePeople(peopleType: String, moviePeopleParam: MoviePeopleParam): Long
+    suspend fun moviePeopleDetail(peopleType: String, actorIdx: Long): MoviePeopleDetailEntity
     suspend fun movieRecentList(): List<MovieEntity>
     suspend fun moviePopularList(): List<MovieEntity>
     suspend fun movieRecommendList(): List<MovieEntity>

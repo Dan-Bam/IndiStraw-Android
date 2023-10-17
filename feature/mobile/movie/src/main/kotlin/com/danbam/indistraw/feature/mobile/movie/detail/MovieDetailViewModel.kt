@@ -38,7 +38,7 @@ class MovieDetailViewModel @Inject constructor(
     fun moviePeopleDetail(isActor: Boolean, actorIdx: Long) = intent {
         viewModelScope.launch {
             moviePeopleDetailUseCase(
-                actorType = if (isActor) "actor" else "director",
+                peopleType = if (isActor) "actor" else "director",
                 actorIdx = actorIdx
             ).onSuccess {
                 reduce { state.copy(appearanceMovieList = it.movieList) }

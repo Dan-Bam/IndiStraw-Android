@@ -39,19 +39,19 @@ interface MovieAPI {
 
     @GET("${EndPoint.Movie}/{actorType}/")
     suspend fun searchMoviePeople(
-        @Path("actorType") actorType: String,
+        @Path("actorType") peopleType: String,
         @Query("name") name: String,
     ): List<MoviePeopleResponse>
 
     @POST("${EndPoint.Movie}/{actorType}/")
     suspend fun addMoviePeople(
-        @Path("actorType") actorType: String,
+        @Path("actorType") peopleType: String,
         @Body moviePeopleRequest: MoviePeopleRequest
     ): AddMoviePeopleResponse
 
     @GET("${EndPoint.Movie}/{actorType}/{idx}/")
     suspend fun moviePeopleDetail(
-        @Path("actorType") actorType: String,
+        @Path("actorType") peopleType: String,
         @Path("idx") actorIdx: Long,
     ): MoviePeopleDetailResponse
 
