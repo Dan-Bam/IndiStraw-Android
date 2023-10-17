@@ -60,6 +60,7 @@ fun ProfileScreen(
         profileViewModel.getParticipateFunding()
         profileViewModel.getMyFunding()
         profileViewModel.movieHistory()
+        profileViewModel.movieFilmography()
     }
 
     IndiStrawColumnBackground(
@@ -113,7 +114,7 @@ fun ProfileScreen(
         IndiStrawRowTab(
             modifier = Modifier
                 .padding(start = 15.dp, top = 32.dp),
-            itemList = if (currentMovieTab == MovieTab.RecentMovie) state.movieHistoryList else listOf(),
+            itemList = if (currentMovieTab == MovieTab.RecentMovie) state.movieHistoryList else state.movieFilmographyList,
             tabHeader = {
                 IndiStrawTab(
                     text = stringResource(id = R.string.recent_watch_movie),
