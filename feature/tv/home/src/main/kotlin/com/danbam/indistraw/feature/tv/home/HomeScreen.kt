@@ -50,8 +50,11 @@ fun HomeScreen(
 
     LaunchedEffect(Unit) {
         homeViewModel.getBanner()
-        if (!isOpenDrawer) {
-//            itemFocusRequester.requestFocus()
+    }
+
+    LaunchedEffect(state.currentMovieIndex) {
+        if (!isOpenDrawer && state.currentMovieIndex != null) {
+            itemFocusRequester.requestFocus()
         }
     }
 

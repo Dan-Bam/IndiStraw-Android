@@ -14,10 +14,8 @@ import javax.inject.Inject
 @HiltViewModel
 class FundingAllViewModel @Inject constructor(
     private val fundingAllUseCase: FundingAllUseCase
-) : ContainerHost<com.danbam.indistraw.feature.mobile.funding.all.FundingAllState, Unit>, ViewModel() {
-    override val container = container<com.danbam.indistraw.feature.mobile.funding.all.FundingAllState, Unit>(
-        com.danbam.indistraw.feature.mobile.funding.all.FundingAllState()
-    )
+) : ContainerHost<FundingAllState, Unit>, ViewModel() {
+    override val container = container<FundingAllState, Unit>(FundingAllState())
 
     fun fundingList() = intent {
         viewModelScope.launch {

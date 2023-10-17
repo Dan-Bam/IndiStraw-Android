@@ -40,6 +40,7 @@ import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.core.design_system.component.TitleSemiBold
 import com.danbam.indistraw.feature.tv.navigation.main.MainDeepLinkKey
 import com.danbam.indistraw.feature.tv.navigation.main.MainNavigationItem
+import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
@@ -56,12 +57,6 @@ fun MovieScreen(
     val itemFocusRequester = remember { FocusRequester() }
     var currentMovieGenre: MovieGenre by remember { mutableStateOf(MovieGenre.All) }
     val movieAllPager = state.movieAllPager?.collectAsLazyPagingItems()
-
-    LaunchedEffect(Unit) {
-        if (!isOpenDrawer) {
-            itemFocusRequester.requestFocus()
-        }
-    }
 
     LaunchedEffect(currentMovieGenre) {
         movieViewModel.movieList(movieGenre = currentMovieGenre)
@@ -127,6 +122,11 @@ fun MovieScreen(
                 is LoadState.Loading -> {}
                 is LoadState.Error -> {}
                 else -> {
+                    LaunchedEffect(state.currentMovieIndex) {
+                        if (!isOpenDrawer) {
+                            itemFocusRequester.requestFocus()
+                        }
+                    }
                     TvLazyVerticalGrid(
                         modifier = Modifier.padding(top = 20.dp, end = 40.dp),
                         columns = TvGridCells.Fixed(6),

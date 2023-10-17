@@ -2,7 +2,7 @@ package com.danbam.indistraw.feature.mobile.search.result_search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.core.entity.search.RecentSearchEntity
+import com.danbam.indistraw.core.domain.entity.search.RecentSearchEntity
 import com.danbam.indistraw.core.domain.usecase.search.SearchFundingUseCase
 import com.danbam.indistraw.core.domain.usecase.search.SearchMovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

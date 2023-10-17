@@ -1,7 +1,6 @@
 package com.danbam.indistraw.feature.mobile.funding.my
 
-import com.danbam.indistraw.core.entity.funding.MyFundingEntity
-
+import com.danbam.indistraw.core.domain.entity.funding.MyFundingEntity
 
 data class MyFundingState(
     val myFundingEntity: MyFundingEntity = MyFundingEntity(

@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.entity.funding
+package com.danbam.indistraw.core.domain.entity.funding
 
 data class FundingEntity(
     val idx: Long,

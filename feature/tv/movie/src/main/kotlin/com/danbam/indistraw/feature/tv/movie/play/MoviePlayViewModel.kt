@@ -2,7 +2,7 @@ package com.danbam.indistraw.feature.tv.movie.play
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.core.param.movie.MovieHistoryParam
+import com.danbam.indistraw.core.domain.param.movie.MovieHistoryParam
 import com.danbam.indistraw.core.domain.usecase.movie.AddMovieHistoryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

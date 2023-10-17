@@ -1,15 +1,15 @@
 package com.danbam.indistraw.core.domain.repository
 
 import androidx.paging.PagingData
-import com.danbam.indistraw.core.entity.movie.DetailMovieHistoryEntity
-import com.danbam.indistraw.core.entity.movie.MovieDetailEntity
-import com.danbam.indistraw.core.entity.movie.MovieEntity
-import com.danbam.indistraw.core.entity.movie.MovieHistoryEntity
-import com.danbam.indistraw.core.entity.movie.MoviePeopleDetailEntity
-import com.danbam.indistraw.core.entity.movie.MoviePeopleEntity
-import com.danbam.indistraw.core.param.movie.MovieCreateParam
-import com.danbam.indistraw.core.param.movie.MovieHistoryParam
-import com.danbam.indistraw.core.param.movie.MoviePeopleParam
+import com.danbam.indistraw.core.domain.entity.movie.DetailMovieHistoryEntity
+import com.danbam.indistraw.core.domain.entity.movie.MovieDetailEntity
+import com.danbam.indistraw.core.domain.entity.movie.MovieEntity
+import com.danbam.indistraw.core.domain.entity.movie.MovieHistoryEntity
+import com.danbam.indistraw.core.domain.entity.movie.MoviePeopleDetailEntity
+import com.danbam.indistraw.core.domain.entity.movie.MoviePeopleEntity
+import com.danbam.indistraw.core.domain.param.movie.MovieCreateParam
+import com.danbam.indistraw.core.domain.param.movie.MovieHistoryParam
+import com.danbam.indistraw.core.domain.param.movie.MoviePeopleParam
 import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {

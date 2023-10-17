@@ -1,6 +1,6 @@
 package com.danbam.indistraw.core.domain.repository
 
-import com.danbam.indistraw.core.entity.file.FileEntity
+import com.danbam.indistraw.core.domain.entity.file.FileEntity
 import java.io.File
 
 interface FileRepository {

@@ -1,6 +1,6 @@
 package com.danbam.indistraw.core.domain.usecase.movie
 
-import com.danbam.indistraw.core.param.movie.MovieCreateParam
+import com.danbam.indistraw.core.domain.param.movie.MovieCreateParam
 import com.danbam.indistraw.core.domain.repository.MovieRepository
 import javax.inject.Inject
 

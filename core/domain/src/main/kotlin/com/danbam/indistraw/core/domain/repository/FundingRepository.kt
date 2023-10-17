@@ -1,7 +1,7 @@
 package com.danbam.indistraw.core.domain.repository
 
-import com.danbam.indistraw.core.entity.funding.FundingEntity
-import com.danbam.indistraw.core.param.funding.FundingParam
+import com.danbam.indistraw.core.domain.entity.funding.FundingEntity
+import com.danbam.indistraw.core.domain.param.funding.FundingParam
 
 interface FundingRepository {
     suspend fun getReceipt(): String

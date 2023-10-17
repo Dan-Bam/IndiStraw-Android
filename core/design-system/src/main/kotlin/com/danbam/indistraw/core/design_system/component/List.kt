@@ -30,7 +30,7 @@ import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLaz
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.danbam.indistraw.core.design_system.util.androidx.rememberLauncher
 import com.danbam.indistraw.core.design_system.util.androidx.typedLaunch
-import com.danbam.indistraw.core.entity.movie.MoviePeopleEntity
+import com.danbam.indistraw.core.domain.entity.movie.MoviePeopleEntity
 
 @Composable
 fun AddImageList(

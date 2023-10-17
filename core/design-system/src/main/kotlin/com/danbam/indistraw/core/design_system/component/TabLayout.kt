@@ -36,8 +36,8 @@ import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyRow
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.danbam.indistraw.core.design_system.util.internal.toDp
-import com.danbam.indistraw.core.entity.funding.FundingEntity
-import com.danbam.indistraw.core.entity.movie.MovieEntity
+import com.danbam.indistraw.core.domain.entity.funding.FundingEntity
+import com.danbam.indistraw.core.domain.entity.movie.MovieEntity
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
 

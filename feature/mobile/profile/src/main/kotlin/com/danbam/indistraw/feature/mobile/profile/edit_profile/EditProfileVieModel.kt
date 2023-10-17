@@ -3,7 +3,7 @@ package com.danbam.indistraw.feature.mobile.profile.edit_profile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.danbam.indistraw.core.design_system.util.danbam.errorHandling
-import com.danbam.indistraw.core.param.auth.EditProfileParam
+import com.danbam.indistraw.core.domain.param.auth.EditProfileParam
 import com.danbam.indistraw.core.domain.usecase.account.EditProfileUseCase
 import com.danbam.indistraw.core.domain.usecase.account.GetProfileUseCase
 import com.danbam.indistraw.core.domain.usecase.file.SendFileUseCase

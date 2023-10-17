@@ -1,6 +1,6 @@
 package com.danbam.indistraw.feature.mobile.search.start_search
 
-import com.danbam.indistraw.core.entity.search.RecentSearchEntity
+import com.danbam.indistraw.core.domain.entity.search.RecentSearchEntity
 
 data class StartSearchState(
     val recentSearchList: List<RecentSearchEntity> = listOf(),

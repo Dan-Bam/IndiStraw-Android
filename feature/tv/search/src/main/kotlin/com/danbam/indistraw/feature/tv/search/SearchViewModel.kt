@@ -2,7 +2,7 @@ package com.danbam.indistraw.feature.tv.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.core.entity.search.RecentSearchEntity
+import com.danbam.indistraw.core.domain.entity.search.RecentSearchEntity
 import com.danbam.indistraw.core.domain.usecase.movie.MoviePopularListUseCase
 import com.danbam.indistraw.core.domain.usecase.search.GetRecentSearchUseCase
 import com.danbam.indistraw.core.domain.usecase.search.GetRelatedSearchUseCase

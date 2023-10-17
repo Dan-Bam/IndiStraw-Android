@@ -1,11 +1,11 @@
 package com.danbam.indistraw.core.data.repository
 
-import com.danbam.indistraw.core.data.remote.datasource.FundingRemoteDataSource
-import com.danbam.indistraw.core.data.remote.request.funding.toRequest
-import com.danbam.indistraw.core.data.remote.response.funding.toEntity
-import com.danbam.indistraw.core.entity.funding.FundingEntity
-import com.danbam.indistraw.core.param.funding.FundingParam
+import com.danbam.indistraw.core.remote.datasource.FundingRemoteDataSource
+import com.danbam.indistraw.core.remote.request.funding.toRequest
+import com.danbam.indistraw.core.domain.entity.funding.FundingEntity
+import com.danbam.indistraw.core.domain.param.funding.FundingParam
 import com.danbam.indistraw.core.domain.repository.FundingRepository
+import com.danbam.indistraw.core.remote.response.funding.toEntity
 import javax.inject.Inject
 
 class FundingRepositoryImpl @Inject constructor(

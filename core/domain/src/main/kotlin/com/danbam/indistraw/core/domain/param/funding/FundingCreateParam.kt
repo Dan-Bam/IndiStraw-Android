@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.param.funding
+package com.danbam.indistraw.core.domain.param.funding
 
 data class FundingCreateParam(
     val title: String,
