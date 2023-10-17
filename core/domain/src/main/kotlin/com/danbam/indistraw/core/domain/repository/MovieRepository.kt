@@ -25,4 +25,5 @@ interface MovieRepository {
     suspend fun movieHistoryList(): List<MovieHistoryEntity>
     suspend fun addMovieHistory(movieHistoryParam: MovieHistoryParam)
     suspend fun movieHistory(movieIdx: Long): DetailMovieHistoryEntity
+    suspend fun movieFilmography(): List<MovieEntity>
 }

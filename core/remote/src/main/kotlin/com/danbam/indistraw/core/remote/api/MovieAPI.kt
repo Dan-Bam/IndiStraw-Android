@@ -73,4 +73,8 @@ interface MovieAPI {
     suspend fun movieHistory(
         @Path("idx") movieIdx: Long,
     ): DetailMovieHistoryResponse
+
+
+    @GET("${EndPoint.Movie}/filmography")
+    suspend fun movieFilmography(): List<MovieResponse>
 }

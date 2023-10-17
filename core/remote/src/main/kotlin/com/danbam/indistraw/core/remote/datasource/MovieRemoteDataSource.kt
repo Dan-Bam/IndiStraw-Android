@@ -31,4 +31,6 @@ interface MovieRemoteDataSource {
     suspend fun movieHistoryList(): List<MovieHistoryResponse>
     suspend fun addMovieHistory(movieHistoryRequest: MovieHistoryRequest)
     suspend fun movieHistory(movieIdx: Long): DetailMovieHistoryResponse
+
+    suspend fun movieFilmography(): List<MovieResponse>
 }

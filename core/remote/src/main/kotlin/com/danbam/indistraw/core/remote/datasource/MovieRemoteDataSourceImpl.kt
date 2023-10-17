@@ -92,4 +92,8 @@ class MovieRemoteDataSourceImpl @Inject constructor(
         indiStrawApiCall {
             movieAPI.movieHistory(movieIdx = movieIdx)
         }
+
+    override suspend fun movieFilmography(): List<MovieResponse> = indiStrawApiCall {
+        movieAPI.movieFilmography()
+    }
 }
