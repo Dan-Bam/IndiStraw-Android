@@ -37,7 +37,7 @@ data class FundingCreateRequest(
         val description: String,
         @SerializedName("price")
         val price: Long,
-        @SerializedName("imageUrl")
+        @SerializedName("imageList")
         val imageList: List<String>,
         @SerializedName("isReal")
         val isReal: Boolean,

@@ -60,6 +60,7 @@ android {
 
 dependencies {
     implementation(project(":core:data"))
+    implementation(project(":core:remote"))
     implementation(project(":core:design-system"))
     implementation(libs.findLibrary("androidx.core").get())
     implementation(libs.findBundle("compose").get())
