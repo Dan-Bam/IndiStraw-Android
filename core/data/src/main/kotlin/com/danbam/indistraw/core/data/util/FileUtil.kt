@@ -9,5 +9,5 @@ fun File.toMultipartBody(): MultipartBody.Part =
     MultipartBody.Part.createFormData(
         name = "file",
         filename = this.name,
-        body = this.asRequestBody("application/json".toMediaType())
+        body = this.asRequestBody("*/*".toMediaType())
     )
