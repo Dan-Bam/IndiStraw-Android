@@ -61,10 +61,13 @@ fun WriteIntroduceScreen(
     var thumbnailUrl: String? by remember { mutableStateOf(state.thumbnailUrl) }
     var movieUrl: String? by remember { mutableStateOf(state.movieUrl) }
     var isCrowdFunding by remember { mutableStateOf(state.isFunding) }
+    var isLoading by remember { mutableStateOf(false) }
     val imageList = remember { mutableStateListOf(*state.imageList.toTypedArray()) }
     val launcher = rememberLauncher(selectFile = {
         it?.let {
+            isLoading = true
             makeMovieViewModel.uploadFile(it.toFile(context)) {
+                isLoading = false
                 movieUrl = it.split("/").last()
             }
         }
@@ -77,6 +80,7 @@ fun WriteIntroduceScreen(
     }
 
     IndiStrawColumnBackground(
+        isLoading = isLoading,
         scrollEnabled = true
     ) {
         IndiStrawHeader(
@@ -90,7 +94,9 @@ fun WriteIntroduceScreen(
             imageUrl = thumbnailUrl,
             selectGallery = {
                 it?.let {
+                    isLoading = true
                     makeMovieViewModel.uploadFile(it.toFile(context)) {
+                        isLoading = false
                         thumbnailUrl = it
                     }
                 }
@@ -158,7 +164,9 @@ fun WriteIntroduceScreen(
             imageList = imageList,
             onRemove = { imageList.removeAt(it) }) {
             it?.let {
+                isLoading = true
                 makeMovieViewModel.uploadFile(it.toFile(context)) {
+                    isLoading = false
                     imageList.add(it)
                 }
             }

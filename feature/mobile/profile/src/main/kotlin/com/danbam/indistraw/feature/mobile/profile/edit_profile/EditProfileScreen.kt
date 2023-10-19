@@ -57,6 +57,7 @@ fun EditProfileScreen(
     val context = LocalContext.current
     var name by remember { mutableStateOf(state.name) }
     var errorText by remember { mutableStateOf("") }
+    var isLoading by remember { mutableStateOf(false) }
     val nameFocusRequester = remember { FocusRequester() }
 
     val errorList = mapOf(
@@ -67,9 +68,6 @@ fun EditProfileScreen(
         when (it) {
             is EditProfileSideEffect.GetProfile -> {
                 name = it.name
-            }
-
-            is EditProfileSideEffect.SuccessUpload -> {
             }
 
             is EditProfileSideEffect.EmptyNameException -> {
@@ -84,6 +82,7 @@ fun EditProfileScreen(
     }
 
     IndiStrawColumnBackground(
+        isLoading = isLoading,
         onClickAction = {
             focusManager.clearFocus()
             keyboardController?.hide()
@@ -97,10 +96,20 @@ fun EditProfileScreen(
             paddingValues = PaddingValues(22.dp),
             imageUrl = state.profileUrl,
             selectGallery = {
-                it?.let { editProfileVieModel.setProfileImage(it.toFile(context)) }
+                it?.let {
+                    isLoading = true
+                    editProfileVieModel.setProfileImage(it.toFile(context)) {
+                        isLoading = false
+                    }
+                }
             },
             selectCamera = {
-                it?.let { editProfileVieModel.setProfileImage(it.toFile(context)) }
+                it?.let {
+                    isLoading = true
+                    editProfileVieModel.setProfileImage(it.toFile(context)) {
+                        isLoading = false
+                    }
+                }
             }) {
             Spacer(modifier = Modifier.height(64.dp))
             IndiStrawTextField(

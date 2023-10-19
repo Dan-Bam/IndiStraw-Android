@@ -36,9 +36,11 @@ fun WriteIntroduceScreen(
     var title by remember { mutableStateOf(state.title) }
     var description by remember { mutableStateOf(state.description) }
     var thumbnailUrl: String? by remember { mutableStateOf(state.thumbnailUrl) }
+    var isLoading by remember { mutableStateOf(false) }
     val imageList = remember { mutableStateListOf(*state.imageList.toTypedArray()) }
     Spacer(modifier = Modifier.height(36.dp))
     IndiStrawColumnBackground(
+        isLoading = isLoading,
         scrollEnabled = true
     ) {
         TitleRegular(
@@ -49,7 +51,9 @@ fun WriteIntroduceScreen(
             imageUrl = thumbnailUrl,
             selectGallery = {
                 it?.let {
+                    isLoading = true
                     makeFundingViewModel.uploadImage(it.toFile(context)) { thumbnail ->
+                        isLoading = false
                         thumbnailUrl = thumbnail
                     }
                 }
@@ -80,7 +84,9 @@ fun WriteIntroduceScreen(
             imageList = imageList,
             onRemove = { imageList.removeAt(it) }) {
             it?.let {
+                isLoading = true
                 makeFundingViewModel.uploadImage(it.toFile(context)) {
+                    isLoading = false
                     imageList.add(it)
                 }
             }

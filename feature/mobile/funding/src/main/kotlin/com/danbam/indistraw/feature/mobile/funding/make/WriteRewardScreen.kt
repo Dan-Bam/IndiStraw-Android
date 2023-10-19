@@ -42,8 +42,10 @@ fun WriteRewardScreen(
     var isReal by remember { mutableStateOf(false) }
     val imageList = remember { mutableStateListOf<String>() }
     var amount by remember { mutableStateOf("") }
+    var isLoading by remember { mutableStateOf(false) }
     Spacer(modifier = Modifier.height(34.dp))
     IndiStrawColumnBackground(
+        isLoading = isLoading,
         scrollEnabled = true
     ) {
         TitleRegular(
@@ -106,7 +108,9 @@ fun WriteRewardScreen(
             imageList = imageList,
             onRemove = { imageList.removeAt(it) }) {
             it?.let {
+                isLoading = true
                 makeFundingViewModel.uploadImage(it.toFile(context)) {
+                    isLoading = false
                     imageList.add(it)
                 }
             }

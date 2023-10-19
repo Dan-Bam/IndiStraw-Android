@@ -41,11 +41,11 @@ class EditProfileVieModel @Inject constructor(
         }
     }
 
-    fun setProfileImage(file: File) = intent {
+    fun setProfileImage(file: File, onUploaded: (String) -> Unit) = intent {
         viewModelScope.launch {
             sendFileUseCase(file = file).onSuccess {
-                postSideEffect(EditProfileSideEffect.SuccessUpload)
                 reduce { state.copy(profileUrl = it.file) }
+                onUploaded(it.file)
             }.onFailure {
                 it.errorHandling(unknownAction = {})
             }
