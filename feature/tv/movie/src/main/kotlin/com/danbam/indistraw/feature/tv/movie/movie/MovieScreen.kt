@@ -35,12 +35,11 @@ import androidx.tv.material3.Surface
 import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.component.IndiStrawTvBackground
 import com.danbam.indistraw.core.design_system.component.MovieGenre
-import com.danbam.indistraw.core.design_system.component.MovieTvItem
+import com.danbam.indistraw.core.ui.component.MovieTvItem
 import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.core.design_system.component.TitleSemiBold
 import com.danbam.indistraw.feature.tv.navigation.main.MainDeepLinkKey
 import com.danbam.indistraw.feature.tv.navigation.main.MainNavigationItem
-import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
@@ -135,7 +134,7 @@ fun MovieScreen(
                         verticalArrangement = Arrangement.spacedBy(30.dp)
                     ) {
                         items(pager.itemSnapshotList.items) {
-                            MovieTvItem(
+                            com.danbam.indistraw.core.ui.component.MovieTvItem(
                                 modifier = Modifier.focusRequester(if (it.movieIdx == state.currentMovieIndex) itemFocusRequester else FocusRequester()),
                                 item = it
                             ) {

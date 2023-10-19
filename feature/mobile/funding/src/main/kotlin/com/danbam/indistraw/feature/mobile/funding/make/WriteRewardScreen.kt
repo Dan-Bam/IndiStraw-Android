@@ -22,7 +22,7 @@ import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.component.IndiStrawButton
 import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
 import com.danbam.indistraw.core.design_system.R
-import com.danbam.indistraw.core.design_system.component.AddImageList
+import com.danbam.indistraw.core.ui.component.AddImageList
 import com.danbam.indistraw.core.design_system.component.ExampleTextMedium
 import com.danbam.indistraw.core.design_system.component.IndiStrawTextField
 import com.danbam.indistraw.core.design_system.component.IndiStrawToggle
@@ -42,8 +42,10 @@ fun WriteRewardScreen(
     var isReal by remember { mutableStateOf(false) }
     val imageList = remember { mutableStateListOf<String>() }
     var amount by remember { mutableStateOf("") }
+    var isLoading by remember { mutableStateOf(false) }
     Spacer(modifier = Modifier.height(34.dp))
     IndiStrawColumnBackground(
+        isLoading = isLoading,
         scrollEnabled = true
     ) {
         TitleRegular(
@@ -101,12 +103,14 @@ fun WriteRewardScreen(
             text = stringResource(id = R.string.highlight)
         )
         Spacer(modifier = Modifier.height(16.dp))
-        AddImageList(
+        com.danbam.indistraw.core.ui.component.AddImageList(
             modifier = Modifier.padding(start = 15.dp),
             imageList = imageList,
             onRemove = { imageList.removeAt(it) }) {
             it?.let {
+                isLoading = true
                 makeFundingViewModel.uploadImage(it.toFile(context)) {
+                    isLoading = false
                     imageList.add(it)
                 }
             }

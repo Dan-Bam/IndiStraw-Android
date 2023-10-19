@@ -1,3 +1,11 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -12,6 +20,7 @@ include(":core:local")
 include(":core:remote")
 include(":core:data")
 include(":core:domain")
+include(":core:ui")
 include(":core:design-system")
 include(":feature:mobile:auth")
 include(":feature:mobile:search")

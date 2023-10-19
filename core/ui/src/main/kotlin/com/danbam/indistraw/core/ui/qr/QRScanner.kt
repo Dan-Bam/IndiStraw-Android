@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.design_system.component
+package com.danbam.indistraw.core.ui.qr
 
 import android.annotation.SuppressLint
 import androidx.activity.ComponentActivity

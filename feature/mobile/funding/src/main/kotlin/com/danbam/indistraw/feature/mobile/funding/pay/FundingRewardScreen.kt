@@ -40,8 +40,8 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawTextField
 import com.danbam.indistraw.core.design_system.util.android.findActivity
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
-import com.danbam.indistraw.core.design_system.util.bootpay.bootPayCreate
-import com.danbam.indistraw.core.design_system.util.bootpay.bootPayPayload
+import com.danbam.indistraw.core.ui.bootpay.bootPayCreate
+import com.danbam.indistraw.core.ui.bootpay.bootPayPayload
 import kotlinx.coroutines.InternalCoroutinesApi
 
 sealed class Payment(val stringId: Int, val method: String) {
@@ -292,10 +292,10 @@ fun FundingRewardScreen(
         )
         IndiStrawButton(text = stringResource(id = R.string.pay)) {
             context.findActivity()?.let {
-                bootPayCreate(
+                com.danbam.indistraw.core.ui.bootpay.bootPayCreate(
                     activity = it,
                     applicationContext = it.applicationContext,
-                    payload = bootPayPayload(
+                    payload = com.danbam.indistraw.core.ui.bootpay.bootPayPayload(
                         title = rewardTitle,
                         price = (rewardPrice + addFundingMoney).toDouble(),
                         orderId = state.receiptId,

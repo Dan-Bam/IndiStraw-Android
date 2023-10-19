@@ -30,12 +30,12 @@ import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
 import com.danbam.indistraw.core.design_system.component.HeadLineBold
 import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
 import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
-import com.danbam.indistraw.core.design_system.component.IndiStrawTab
+import com.danbam.indistraw.core.ui.component.IndiStrawTab
 import com.danbam.indistraw.core.design_system.R
-import com.danbam.indistraw.core.design_system.component.FundingTab
-import com.danbam.indistraw.core.design_system.component.IndiStrawColumnTab
-import com.danbam.indistraw.core.design_system.component.IndiStrawRowTab
-import com.danbam.indistraw.core.design_system.component.MovieTab
+import com.danbam.indistraw.core.ui.component.FundingTab
+import com.danbam.indistraw.core.ui.component.IndiStrawColumnTab
+import com.danbam.indistraw.core.ui.component.IndiStrawRowTab
+import com.danbam.indistraw.core.ui.component.MovieTab
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.danbam.indistraw.feature.mobile.navigation.funding.FundingDeepLinkKey
 import com.danbam.indistraw.feature.mobile.navigation.funding.FundingNavigationItem
@@ -52,8 +52,10 @@ fun ProfileScreen(
     val state = container.stateFlow.collectAsState().value
     val sideEffect = container.sideEffectFlow
 
-    var currentMovieTab: MovieTab by remember { mutableStateOf(MovieTab.RecentMovie) }
-    var currentFundingTab: FundingTab by remember { mutableStateOf(FundingTab.ParticipantFunding) }
+    var currentMovieTab: com.danbam.indistraw.core.ui.component.MovieTab by remember { mutableStateOf(
+        com.danbam.indistraw.core.ui.component.MovieTab.RecentMovie) }
+    var currentFundingTab: com.danbam.indistraw.core.ui.component.FundingTab by remember { mutableStateOf(
+        com.danbam.indistraw.core.ui.component.FundingTab.ParticipantFunding) }
 
     LaunchedEffect(Unit) {
         profileViewModel.getProfile()
@@ -111,50 +113,53 @@ fun ProfileScreen(
             fontSize = 20,
             textAlign = TextAlign.Center
         )
-        IndiStrawRowTab(
+        com.danbam.indistraw.core.ui.component.IndiStrawRowTab(
             modifier = Modifier
                 .padding(start = 15.dp, top = 32.dp),
-            itemList = if (currentMovieTab == MovieTab.RecentMovie) state.movieHistoryList else state.movieFilmographyList,
+            itemList = if (currentMovieTab == com.danbam.indistraw.core.ui.component.MovieTab.RecentMovie) state.movieHistoryList else state.movieFilmographyList,
             tabHeader = {
-                IndiStrawTab(
+                com.danbam.indistraw.core.ui.component.IndiStrawTab(
                     text = stringResource(id = R.string.recent_watch_movie),
-                    isSelect = currentMovieTab == MovieTab.RecentMovie
+                    isSelect = currentMovieTab == com.danbam.indistraw.core.ui.component.MovieTab.RecentMovie
                 ) {
-                    currentMovieTab = MovieTab.RecentMovie
+                    currentMovieTab = com.danbam.indistraw.core.ui.component.MovieTab.RecentMovie
                 }
                 Spacer(modifier = Modifier.width(16.dp))
-                IndiStrawTab(
+                com.danbam.indistraw.core.ui.component.IndiStrawTab(
                     text = stringResource(id = R.string.participate_movie),
-                    isSelect = currentMovieTab == MovieTab.ParticipantMovie
+                    isSelect = currentMovieTab == com.danbam.indistraw.core.ui.component.MovieTab.ParticipantMovie
                 ) {
-                    currentMovieTab = MovieTab.ParticipantMovie
+                    currentMovieTab =
+                        com.danbam.indistraw.core.ui.component.MovieTab.ParticipantMovie
                 }
             }
         ) {
             navController.navigate(MovieNavigationItem.Detail.route + MovieDeepLinkKey.MOVIE_INDEX + it)
         }
-        IndiStrawColumnTab(
+        com.danbam.indistraw.core.ui.component.IndiStrawColumnTab(
             modifier = Modifier
                 .padding(start = 15.dp, top = 43.dp),
-            itemList = if (currentFundingTab == FundingTab.ParticipantFunding) state.fundingList else state.myFundingList,
+            itemList = if (currentFundingTab == com.danbam.indistraw.core.ui.component.FundingTab.ParticipantFunding) state.fundingList else state.myFundingList,
             tabHeader = {
-                IndiStrawTab(
+                com.danbam.indistraw.core.ui.component.IndiStrawTab(
                     text = stringResource(id = R.string.participate_funding),
-                    isSelect = currentFundingTab == FundingTab.ParticipantFunding
+                    isSelect = currentFundingTab == com.danbam.indistraw.core.ui.component.FundingTab.ParticipantFunding
                 ) {
-                    currentFundingTab = FundingTab.ParticipantFunding
+                    currentFundingTab =
+                        com.danbam.indistraw.core.ui.component.FundingTab.ParticipantFunding
                 }
                 if (state.myFundingList.isNotEmpty()) {
                     Spacer(modifier = Modifier.width(16.dp))
-                    IndiStrawTab(
+                    com.danbam.indistraw.core.ui.component.IndiStrawTab(
                         text = stringResource(id = R.string.my_funding),
-                        isSelect = currentFundingTab == FundingTab.MyFunding
+                        isSelect = currentFundingTab == com.danbam.indistraw.core.ui.component.FundingTab.MyFunding
                     ) {
-                        currentFundingTab = FundingTab.MyFunding
+                        currentFundingTab =
+                            com.danbam.indistraw.core.ui.component.FundingTab.MyFunding
                     }
                 }
             }) {
-            if (currentFundingTab == FundingTab.ParticipantFunding) {
+            if (currentFundingTab == com.danbam.indistraw.core.ui.component.FundingTab.ParticipantFunding) {
                 navController.navigate(FundingNavigationItem.Detail.route + FundingDeepLinkKey.FUNDING_INDEX + it)
             } else {
                 navController.navigate(FundingNavigationItem.MyDetail.route + FundingDeepLinkKey.FUNDING_INDEX + it)

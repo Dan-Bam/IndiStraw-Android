@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.design_system.component
+package com.danbam.indistraw.core.ui.component
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -34,6 +34,15 @@ import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
+import com.danbam.indistraw.core.design_system.component.ExampleTextMedium
+import com.danbam.indistraw.core.design_system.component.HeadLineBold
+import com.danbam.indistraw.core.design_system.component.ImageButton
+import com.danbam.indistraw.core.design_system.component.IndiStrawButton
+import com.danbam.indistraw.core.design_system.component.IndiStrawProgress
+import com.danbam.indistraw.core.design_system.component.PriceRegular
+import com.danbam.indistraw.core.design_system.component.Shape
+import com.danbam.indistraw.core.design_system.component.TitleRegular
+import com.danbam.indistraw.core.design_system.component.TitleSemiBold
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.danbam.indistraw.core.design_system.util.internal.toCommaString
 import com.danbam.indistraw.core.domain.entity.funding.FundingDetailEntity
@@ -203,7 +212,9 @@ fun RewardItem(
         }
 
         is RewardType.Expand -> {
-            val state = rememberPagerState()
+            val state = rememberPagerState {
+                item.imageList.size
+            }
             Box(
                 modifier = Modifier
                     .padding(horizontal = 15.dp)
@@ -225,7 +236,7 @@ fun RewardItem(
                 ) {
                     Spacer(modifier = Modifier.height(16.dp))
                     Box {
-                        HorizontalPager(pageCount = item.imageList.size, state = state) {
+                        HorizontalPager(state = state) {
                             AsyncImage(
                                 modifier = Modifier
                                     .clip(IndiStrawTheme.shapes.defaultRounded)
@@ -355,7 +366,9 @@ fun MyRewardItem(
         }
 
         is RewardType.Expand -> {
-            val state = rememberPagerState()
+            val state = rememberPagerState {
+                item.imageList.size
+            }
             Box(
                 modifier = Modifier
                     .padding(horizontal = 15.dp)
@@ -364,7 +377,7 @@ fun MyRewardItem(
                 Column {
                     Spacer(modifier = Modifier.height(16.dp))
                     Box {
-                        HorizontalPager(pageCount = item.imageList.size, state = state) {
+                        HorizontalPager(state = state) {
                             AsyncImage(
                                 modifier = Modifier
                                     .clip(IndiStrawTheme.shapes.defaultRounded)

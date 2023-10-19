@@ -25,7 +25,7 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackgrou
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
-import com.danbam.indistraw.core.design_system.component.AddFileList
+import com.danbam.indistraw.core.ui.component.AddFileList
 import com.danbam.indistraw.core.design_system.component.DatePicker
 import com.danbam.indistraw.core.design_system.component.ExampleTextMedium
 import com.danbam.indistraw.core.design_system.component.IndiStrawBottomSheetLayout
@@ -51,6 +51,7 @@ fun WriteTargetScreen(
     var year by remember { mutableStateOf(state.endDate.year) }
     var month by remember { mutableStateOf(state.endDate.monthValue) }
     var day by remember { mutableStateOf(state.endDate.dayOfMonth) }
+    var isLoading by remember { mutableStateOf(false) }
     val fileList = remember { mutableStateListOf(*state.fileList.toTypedArray()) }
 
     Spacer(modifier = Modifier.height(36.dp))
@@ -80,6 +81,7 @@ fun WriteTargetScreen(
         }
     }) { _, openSheet ->
         IndiStrawColumnBackground(
+            isLoading = isLoading,
             scrollEnabled = true
         ) {
             TitleRegular(
@@ -115,9 +117,13 @@ fun WriteTargetScreen(
                 text = stringResource(id = R.string.file)
             )
             Spacer(modifier = Modifier.height(16.dp))
-            AddFileList(fileList = fileList, onDelete = { fileList.removeAt(it) }) {
+            com.danbam.indistraw.core.ui.component.AddFileList(
+                fileList = fileList,
+                onDelete = { fileList.removeAt(it) }) {
                 it?.let {
+                    isLoading = true
                     makeFundingViewModel.uploadImage(it.toFile(context)) {
+                        isLoading = false
                         fileList.add(it)
                     }
                 }

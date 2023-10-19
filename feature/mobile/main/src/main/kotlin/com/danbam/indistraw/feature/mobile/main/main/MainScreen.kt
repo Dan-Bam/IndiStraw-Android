@@ -37,11 +37,11 @@ import com.danbam.indistraw.core.design_system.component.ImageButton
 import com.danbam.indistraw.core.design_system.component.IndiStrawBanner
 import com.danbam.indistraw.core.design_system.component.IndiStrawBottomSheetLayout
 import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
-import com.danbam.indistraw.core.design_system.component.IndiStrawColumnTab
+import com.danbam.indistraw.core.ui.component.IndiStrawColumnTab
 import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
-import com.danbam.indistraw.core.design_system.component.IndiStrawRowTab
-import com.danbam.indistraw.core.design_system.component.IndiStrawTab
-import com.danbam.indistraw.core.design_system.component.MovieTab
+import com.danbam.indistraw.core.ui.component.IndiStrawRowTab
+import com.danbam.indistraw.core.ui.component.IndiStrawTab
+import com.danbam.indistraw.core.ui.component.MovieTab
 import com.danbam.indistraw.core.design_system.component.Shape
 import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.core.design_system.component.TitleSemiBold
@@ -66,7 +66,8 @@ fun MainScreen(
     val sideEffect = container.sideEffectFlow
 
     val context = LocalContext.current
-    var currentMovieTab: MovieTab by remember { mutableStateOf(MovieTab.PopularMovie) }
+    var currentMovieTab: com.danbam.indistraw.core.ui.component.MovieTab by remember { mutableStateOf(
+        com.danbam.indistraw.core.ui.component.MovieTab.PopularMovie) }
 
     BackHandler {
         context.findActivity()?.finish()
@@ -197,30 +198,33 @@ fun MainScreen(
                 ) {
                 }
             }
-            IndiStrawRowTab(
+            com.danbam.indistraw.core.ui.component.IndiStrawRowTab(
                 modifier = Modifier
                     .padding(start = 15.dp, top = 20.dp),
                 itemList = state.movieList,
                 tabHeader = {
-                    IndiStrawTab(
+                    com.danbam.indistraw.core.ui.component.IndiStrawTab(
                         text = stringResource(id = R.string.popular),
-                        isSelect = currentMovieTab == MovieTab.PopularMovie
+                        isSelect = currentMovieTab == com.danbam.indistraw.core.ui.component.MovieTab.PopularMovie
                     ) {
-                        currentMovieTab = MovieTab.PopularMovie
+                        currentMovieTab =
+                            com.danbam.indistraw.core.ui.component.MovieTab.PopularMovie
                     }
                     Spacer(modifier = Modifier.width(16.dp))
-                    IndiStrawTab(
+                    com.danbam.indistraw.core.ui.component.IndiStrawTab(
                         text = stringResource(id = R.string.recommend),
-                        isSelect = currentMovieTab == MovieTab.RecommendMovie
+                        isSelect = currentMovieTab == com.danbam.indistraw.core.ui.component.MovieTab.RecommendMovie
                     ) {
-                        currentMovieTab = MovieTab.RecommendMovie
+                        currentMovieTab =
+                            com.danbam.indistraw.core.ui.component.MovieTab.RecommendMovie
                     }
                     Spacer(modifier = Modifier.width(16.dp))
-                    IndiStrawTab(
+                    com.danbam.indistraw.core.ui.component.IndiStrawTab(
                         text = stringResource(id = R.string.recent),
-                        isSelect = currentMovieTab == MovieTab.RecentMovie
+                        isSelect = currentMovieTab == com.danbam.indistraw.core.ui.component.MovieTab.RecentMovie
                     ) {
-                        currentMovieTab = MovieTab.RecentMovie
+                        currentMovieTab =
+                            com.danbam.indistraw.core.ui.component.MovieTab.RecentMovie
                     }
                 }, moreData = {
                     navController.navigate(MovieNavigationItem.All.route)
@@ -228,7 +232,7 @@ fun MainScreen(
             ) {
                 navController.navigate(MovieNavigationItem.Detail.route + MovieDeepLinkKey.MOVIE_INDEX + it)
             }
-            IndiStrawColumnTab(
+            com.danbam.indistraw.core.ui.component.IndiStrawColumnTab(
                 itemList = state.fundingPopularList,
                 tabHeader = {
                     TitleSemiBold(

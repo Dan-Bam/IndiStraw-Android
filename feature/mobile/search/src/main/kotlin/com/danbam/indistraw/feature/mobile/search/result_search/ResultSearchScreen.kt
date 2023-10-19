@@ -23,13 +23,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.items
 import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
-import com.danbam.indistraw.core.design_system.component.IndiStrawTab
+import com.danbam.indistraw.core.ui.component.IndiStrawTab
 import com.danbam.indistraw.core.design_system.R
-import com.danbam.indistraw.core.design_system.component.FundingItem
-import com.danbam.indistraw.core.design_system.component.MovieItem
-import com.danbam.indistraw.core.design_system.component.SearchTab
+import com.danbam.indistraw.core.ui.component.FundingItem
+import com.danbam.indistraw.core.ui.component.MovieItem
+import com.danbam.indistraw.core.ui.component.SearchTab
 import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyColumn
 import com.danbam.indistraw.feature.mobile.navigation.funding.FundingDeepLinkKey
 import com.danbam.indistraw.feature.mobile.navigation.funding.FundingNavigationItem
@@ -47,7 +46,11 @@ fun ResultSearchScreen(
     val state = container.stateFlow.collectAsState().value
     val sideEffect = container.sideEffectFlow
 
-    var currentTab: SearchTab by remember { mutableStateOf(SearchTab.Movie) }
+    var currentTab: SearchTab by remember {
+        mutableStateOf(
+            SearchTab.Movie
+        )
+    }
     val moviePager = state.moviePager?.collectAsLazyPagingItems()
     val fundingPager = state.fundingPager?.collectAsLazyPagingItems()
 
@@ -72,7 +75,7 @@ fun ResultSearchScreen(
                 currentTab = SearchTab.Movie
             }
             Spacer(modifier = Modifier.width(16.dp))
-            IndiStrawTab(
+            com.danbam.indistraw.core.ui.component.IndiStrawTab(
                 text = stringResource(id = R.string.crowd_funding),
                 isSelect = currentTab == SearchTab.Funding
             ) {
@@ -112,8 +115,8 @@ fun ResultSearchScreen(
                         else -> {
                             Spacer(modifier = Modifier.height(11.dp))
                             RemoveOverScrollLazyColumn {
-                                items(it) {
-                                    it?.let {
+                                items(it.itemCount) { index ->
+                                    it[index]?.let {
                                         FundingItem(item = it) {
                                             navController.navigate(FundingNavigationItem.Detail.route + FundingDeepLinkKey.FUNDING_INDEX + it)
                                         }

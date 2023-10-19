@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.design_system.component.exoplayer
+package com.danbam.indistraw.core.ui.exoplayer
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi

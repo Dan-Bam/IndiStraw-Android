@@ -2,7 +2,7 @@ package com.danbam.indistraw.feature.mobile.movie.make
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.core.design_system.util.danbam.errorHandling
+import com.danbam.indistraw.core.ui.handling.errorHandling
 import com.danbam.indistraw.core.domain.entity.movie.MoviePeopleEntity
 import com.danbam.indistraw.core.domain.param.movie.MovieCreateParam
 import com.danbam.indistraw.core.domain.param.movie.MoviePeopleParam

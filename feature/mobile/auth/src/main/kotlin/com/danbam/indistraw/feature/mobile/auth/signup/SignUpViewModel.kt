@@ -2,7 +2,7 @@ package com.danbam.indistraw.feature.mobile.auth.signup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.core.design_system.util.danbam.errorHandling
+import com.danbam.indistraw.core.ui.handling.errorHandling
 import com.danbam.indistraw.core.design_system.util.internal.isId
 import com.danbam.indistraw.core.design_system.util.internal.isPassword
 import com.danbam.indistraw.core.domain.param.auth.SignUpParam
@@ -39,11 +39,11 @@ class SignUpViewModel @Inject constructor(
         reduce { state.copy(phoneNumber = phoneNumber) }
     }
 
-    fun setProfile(file: File) = intent {
+    fun setProfile(file: File, onUploaded: (String) -> Unit) = intent {
         viewModelScope.launch {
             sendFileUseCase(file = file).onSuccess {
-                postSideEffect(SignUpSideEffect.SuccessUpload(it.file))
                 reduce { state.copy(profileUrl = it.file) }
+                onUploaded(it.file)
             }.onFailure {
                 it.errorHandling(unknownAction = {})
             }

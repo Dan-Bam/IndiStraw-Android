@@ -9,7 +9,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.danbam.indistraw.core.design_system.component.exoplayer.IndiStrawPlayer
+import com.danbam.indistraw.core.ui.exoplayer.IndiStrawPlayer
 import com.danbam.indistraw.core.design_system.util.android.findActivity
 import com.danbam.indistraw.core.design_system.util.androidx.getActivity
 import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
@@ -42,7 +42,7 @@ fun MoviePlayScreen(
         }
     }
 
-    IndiStrawPlayer(
+    com.danbam.indistraw.core.ui.exoplayer.IndiStrawPlayer(
         movieUrl = movieUrl,
         movieName = movieName,
         position = position,

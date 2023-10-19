@@ -25,7 +25,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.itemsIndexed
 import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
 import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
@@ -96,26 +95,26 @@ fun FindAddressScreen(
                             .fillMaxWidth()
                             .padding(start = 15.dp, end = 15.dp, top = 36.dp)
                     ) {
-                        itemsIndexed(it) { _, item ->
-                            item?.let {
+                        items(it.itemCount) { index ->
+                            it[index]?.let {
                                 Row(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .indiStrawClickable {
                                             focusManager.clearFocus()
                                             keyboardController?.hide()
-                                            navController.navigate(ProfileNavigationItem.DetailAddress.route + ProfileDeepLinkKey.ADDRESS + "${item.streetAddress} ${item.buildName}" + ProfileDeepLinkKey.ZIP_CODE + item.zipcode)
+                                            navController.navigate(ProfileNavigationItem.DetailAddress.route + ProfileDeepLinkKey.ADDRESS + "${it.streetAddress} ${it.buildName}" + ProfileDeepLinkKey.ZIP_CODE + it.zipcode)
                                         },
                                     verticalAlignment = Alignment.CenterVertically,
                                 ) {
                                     IndiStrawIcon(icon = IndiStrawIconList.Search)
                                     Spacer(modifier = Modifier.width(15.dp))
                                     Column {
-                                        DialogMedium(text = item.streetAddress)
+                                        DialogMedium(text = it.streetAddress)
                                         Spacer(modifier = Modifier.height(4.dp))
-                                        if (item.buildName.isNotEmpty()) {
+                                        if (it.buildName.isNotEmpty()) {
                                             TitleRegular(
-                                                text = item.buildName,
+                                                text = it.buildName,
                                                 fontSize = 14,
                                                 color = IndiStrawTheme.colors.gray
                                             )

@@ -18,7 +18,7 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawButton
 import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
 import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.core.design_system.R
-import com.danbam.indistraw.core.design_system.component.AddImageList
+import com.danbam.indistraw.core.ui.component.AddImageList
 import com.danbam.indistraw.core.design_system.component.IndiStrawTextField
 import com.danbam.indistraw.core.design_system.component.SelectImageButton
 import com.danbam.indistraw.core.design_system.util.android.toFile
@@ -36,9 +36,11 @@ fun WriteIntroduceScreen(
     var title by remember { mutableStateOf(state.title) }
     var description by remember { mutableStateOf(state.description) }
     var thumbnailUrl: String? by remember { mutableStateOf(state.thumbnailUrl) }
+    var isLoading by remember { mutableStateOf(false) }
     val imageList = remember { mutableStateListOf(*state.imageList.toTypedArray()) }
     Spacer(modifier = Modifier.height(36.dp))
     IndiStrawColumnBackground(
+        isLoading = isLoading,
         scrollEnabled = true
     ) {
         TitleRegular(
@@ -49,7 +51,9 @@ fun WriteIntroduceScreen(
             imageUrl = thumbnailUrl,
             selectGallery = {
                 it?.let {
+                    isLoading = true
                     makeFundingViewModel.uploadImage(it.toFile(context)) { thumbnail ->
+                        isLoading = false
                         thumbnailUrl = thumbnail
                     }
                 }
@@ -75,12 +79,14 @@ fun WriteIntroduceScreen(
             text = stringResource(id = R.string.highlight)
         )
         Spacer(modifier = Modifier.height(16.dp))
-        AddImageList(
+        com.danbam.indistraw.core.ui.component.AddImageList(
             modifier = Modifier.padding(start = 15.dp),
             imageList = imageList,
             onRemove = { imageList.removeAt(it) }) {
             it?.let {
+                isLoading = true
                 makeFundingViewModel.uploadImage(it.toFile(context)) {
+                    isLoading = false
                     imageList.add(it)
                 }
             }

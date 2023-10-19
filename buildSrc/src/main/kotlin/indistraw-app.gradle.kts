@@ -6,8 +6,8 @@ val libs = versionCatalog.named("libs")
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -19,13 +19,14 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
     buildFeatures {
+        buildConfig = true
         compose = true
     }
     composeOptions {
@@ -66,7 +67,7 @@ dependencies {
     implementation(libs.findBundle("compose").get())
     implementation(libs.findLibrary("accompanist.nav").get())
     implementation(libs.findLibrary("hilt").get())
-    kapt(libs.findLibrary("hilt.compiler").get())
+    ksp(libs.findLibrary("hilt.compiler").get())
     debugImplementation(libs.findBundle("compose.debug").get())
     androidTestImplementation(libs.findLibrary("compose.test").get())
 }
