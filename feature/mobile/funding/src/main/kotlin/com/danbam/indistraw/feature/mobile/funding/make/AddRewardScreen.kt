@@ -22,8 +22,8 @@ import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
 import com.danbam.indistraw.core.design_system.component.HeadLineBold
-import com.danbam.indistraw.core.design_system.component.RewardItem
-import com.danbam.indistraw.core.design_system.component.RewardType
+import com.danbam.indistraw.core.ui.component.RewardItem
+import com.danbam.indistraw.core.ui.component.RewardType
 import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyColumn
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
@@ -50,8 +50,8 @@ fun AddRewardScreen(
             verticalArrangement = if (state.rewardList.isEmpty()) Arrangement.Center else Arrangement.Top
         ) {
             itemsIndexed(state.rewardList) { index, item ->
-                RewardItem(
-                    rewardType = RewardType.Expand,
+                com.danbam.indistraw.core.ui.component.RewardItem(
+                    rewardType = com.danbam.indistraw.core.ui.component.RewardType.Expand,
                     item = FundingDetailEntity.RewardEntity(
                         idx = 0L,
                         title = item.title,

@@ -2,7 +2,7 @@ package com.danbam.indistraw.feature.mobile.main.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.core.design_system.component.MovieTab
+import com.danbam.indistraw.core.ui.component.MovieTab
 import com.danbam.indistraw.core.domain.usecase.account.GetProfileUseCase
 import com.danbam.indistraw.core.domain.usecase.banner.GetBannerUseCase
 import com.danbam.indistraw.core.domain.usecase.crowd_funding.FundingPopularListUseCase
@@ -52,16 +52,16 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun movieList(movieType: MovieTab) = intent {
+    fun movieList(movieType: com.danbam.indistraw.core.ui.component.MovieTab) = intent {
         viewModelScope.launch {
             when (movieType) {
-                is MovieTab.PopularMovie -> {
+                is com.danbam.indistraw.core.ui.component.MovieTab.PopularMovie -> {
                     moviePopularListUseCase().onSuccess {
                         reduce { state.copy(movieList = it) }
                     }
                 }
 
-                is MovieTab.RecommendMovie -> {
+                is com.danbam.indistraw.core.ui.component.MovieTab.RecommendMovie -> {
                     movieRecommendListUseCase().onSuccess {
                         reduce { state.copy(movieList = it) }
                     }

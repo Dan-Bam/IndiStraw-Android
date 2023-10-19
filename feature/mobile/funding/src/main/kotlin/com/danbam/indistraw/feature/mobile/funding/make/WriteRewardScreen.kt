@@ -22,7 +22,7 @@ import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.component.IndiStrawButton
 import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
 import com.danbam.indistraw.core.design_system.R
-import com.danbam.indistraw.core.design_system.component.AddImageList
+import com.danbam.indistraw.core.ui.component.AddImageList
 import com.danbam.indistraw.core.design_system.component.ExampleTextMedium
 import com.danbam.indistraw.core.design_system.component.IndiStrawTextField
 import com.danbam.indistraw.core.design_system.component.IndiStrawToggle
@@ -103,7 +103,7 @@ fun WriteRewardScreen(
             text = stringResource(id = R.string.highlight)
         )
         Spacer(modifier = Modifier.height(16.dp))
-        AddImageList(
+        com.danbam.indistraw.core.ui.component.AddImageList(
             modifier = Modifier.padding(start = 15.dp),
             imageList = imageList,
             onRemove = { imageList.removeAt(it) }) {

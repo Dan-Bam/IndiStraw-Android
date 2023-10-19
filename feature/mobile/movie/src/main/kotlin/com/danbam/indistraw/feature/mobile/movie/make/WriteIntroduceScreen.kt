@@ -26,7 +26,7 @@ import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
-import com.danbam.indistraw.core.design_system.component.AddImageList
+import com.danbam.indistraw.core.ui.component.AddImageList
 import com.danbam.indistraw.core.design_system.component.ExampleTextMedium
 import com.danbam.indistraw.core.design_system.component.IndiStrawButton
 import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
@@ -159,7 +159,7 @@ fun WriteIntroduceScreen(
             text = stringResource(id = R.string.add_image)
         )
         Spacer(modifier = Modifier.height(12.dp))
-        AddImageList(
+        com.danbam.indistraw.core.ui.component.AddImageList(
             modifier = Modifier.padding(start = 15.dp),
             imageList = imageList,
             onRemove = { imageList.removeAt(it) }) {

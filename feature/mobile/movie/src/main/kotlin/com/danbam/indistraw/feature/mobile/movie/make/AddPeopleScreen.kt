@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.danbam.indistraw.core.design_system.IndiStrawTheme
-import com.danbam.indistraw.core.design_system.component.AddPeopleList
+import com.danbam.indistraw.core.ui.component.AddPeopleList
 import com.danbam.indistraw.core.design_system.component.IndiStrawBottomSheetLayout
 import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
 import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
@@ -99,7 +99,7 @@ fun AddPeopleScreen(
                 modifier = Modifier.padding(start = 15.dp, top = 50.dp, bottom = 16.dp),
                 text = stringResource(id = R.string.add_director)
             )
-            AddPeopleList(
+            com.danbam.indistraw.core.ui.component.AddPeopleList(
                 onAddPeople = {
                     addPeopleType = PeopleType.DIRECTOR
                     openBottomSheet()
@@ -110,7 +110,7 @@ fun AddPeopleScreen(
                 modifier = Modifier.padding(start = 15.dp, top = 50.dp, bottom = 16.dp),
                 text = stringResource(id = R.string.add_actor)
             )
-            AddPeopleList(
+            com.danbam.indistraw.core.ui.component.AddPeopleList(
                 onAddPeople = {
                     addPeopleType = PeopleType.ACTOR
                     openBottomSheet()

@@ -25,11 +25,11 @@ import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
-import com.danbam.indistraw.core.design_system.component.IndiStrawTab
+import com.danbam.indistraw.core.ui.component.IndiStrawTab
 import com.danbam.indistraw.core.design_system.R
-import com.danbam.indistraw.core.design_system.component.FundingItem
-import com.danbam.indistraw.core.design_system.component.MovieItem
-import com.danbam.indistraw.core.design_system.component.SearchTab
+import com.danbam.indistraw.core.ui.component.FundingItem
+import com.danbam.indistraw.core.ui.component.MovieItem
+import com.danbam.indistraw.core.ui.component.SearchTab
 import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyColumn
 import com.danbam.indistraw.feature.mobile.navigation.funding.FundingDeepLinkKey
 import com.danbam.indistraw.feature.mobile.navigation.funding.FundingNavigationItem
@@ -47,12 +47,13 @@ fun ResultSearchScreen(
     val state = container.stateFlow.collectAsState().value
     val sideEffect = container.sideEffectFlow
 
-    var currentTab: SearchTab by remember { mutableStateOf(SearchTab.Movie) }
+    var currentTab: com.danbam.indistraw.core.ui.component.SearchTab by remember { mutableStateOf(
+        com.danbam.indistraw.core.ui.component.SearchTab.Movie) }
     val moviePager = state.moviePager?.collectAsLazyPagingItems()
     val fundingPager = state.fundingPager?.collectAsLazyPagingItems()
 
     LaunchedEffect(currentTab) {
-        if (currentTab == SearchTab.Movie) {
+        if (currentTab == com.danbam.indistraw.core.ui.component.SearchTab.Movie) {
             resultSearchViewModel.searchMovie(keyword = keyword)
         } else {
             resultSearchViewModel.searchFunding(keyword = keyword)
@@ -65,22 +66,22 @@ fun ResultSearchScreen(
         Row(
             modifier = Modifier.padding(start = 15.dp, top = 22.dp)
         ) {
-            IndiStrawTab(
+            com.danbam.indistraw.core.ui.component.IndiStrawTab(
                 text = stringResource(id = R.string.indi_movie),
-                isSelect = currentTab == SearchTab.Movie
+                isSelect = currentTab == com.danbam.indistraw.core.ui.component.SearchTab.Movie
             ) {
-                currentTab = SearchTab.Movie
+                currentTab = com.danbam.indistraw.core.ui.component.SearchTab.Movie
             }
             Spacer(modifier = Modifier.width(16.dp))
-            IndiStrawTab(
+            com.danbam.indistraw.core.ui.component.IndiStrawTab(
                 text = stringResource(id = R.string.crowd_funding),
-                isSelect = currentTab == SearchTab.Funding
+                isSelect = currentTab == com.danbam.indistraw.core.ui.component.SearchTab.Funding
             ) {
-                currentTab = SearchTab.Funding
+                currentTab = com.danbam.indistraw.core.ui.component.SearchTab.Funding
             }
         }
         when (currentTab) {
-            is SearchTab.Movie -> {
+            is com.danbam.indistraw.core.ui.component.SearchTab.Movie -> {
                 moviePager?.let {
                     when (it.loadState.refresh) {
                         is LoadState.Loading -> {}
@@ -94,7 +95,7 @@ fun ResultSearchScreen(
                                 horizontalArrangement = Arrangement.spacedBy(16.dp)
                             ) {
                                 items(it.itemSnapshotList.items) {
-                                    MovieItem(item = it) {
+                                    com.danbam.indistraw.core.ui.component.MovieItem(item = it) {
                                         navController.navigate(MovieNavigationItem.Detail.route + MovieDeepLinkKey.MOVIE_INDEX + it)
                                     }
                                 }
@@ -104,7 +105,7 @@ fun ResultSearchScreen(
                 }
             }
 
-            is SearchTab.Funding -> {
+            is com.danbam.indistraw.core.ui.component.SearchTab.Funding -> {
                 fundingPager?.let {
                     when (it.loadState.refresh) {
                         is LoadState.Loading -> {}
@@ -114,7 +115,7 @@ fun ResultSearchScreen(
                             RemoveOverScrollLazyColumn {
                                 items(it) {
                                     it?.let {
-                                        FundingItem(item = it) {
+                                        com.danbam.indistraw.core.ui.component.FundingItem(item = it) {
                                             navController.navigate(FundingNavigationItem.Detail.route + FundingDeepLinkKey.FUNDING_INDEX + it)
                                         }
                                         Spacer(modifier = Modifier.height(24.dp))

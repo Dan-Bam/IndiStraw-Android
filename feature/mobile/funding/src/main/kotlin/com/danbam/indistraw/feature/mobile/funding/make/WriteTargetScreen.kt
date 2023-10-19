@@ -25,7 +25,7 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackgrou
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
-import com.danbam.indistraw.core.design_system.component.AddFileList
+import com.danbam.indistraw.core.ui.component.AddFileList
 import com.danbam.indistraw.core.design_system.component.DatePicker
 import com.danbam.indistraw.core.design_system.component.ExampleTextMedium
 import com.danbam.indistraw.core.design_system.component.IndiStrawBottomSheetLayout
@@ -117,7 +117,9 @@ fun WriteTargetScreen(
                 text = stringResource(id = R.string.file)
             )
             Spacer(modifier = Modifier.height(16.dp))
-            AddFileList(fileList = fileList, onDelete = { fileList.removeAt(it) }) {
+            com.danbam.indistraw.core.ui.component.AddFileList(
+                fileList = fileList,
+                onDelete = { fileList.removeAt(it) }) {
                 it?.let {
                     isLoading = true
                     makeFundingViewModel.uploadImage(it.toFile(context)) {

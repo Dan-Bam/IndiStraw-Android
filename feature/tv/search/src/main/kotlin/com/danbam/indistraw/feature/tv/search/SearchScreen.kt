@@ -42,7 +42,7 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawTvTextField
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.component.ExampleTextMedium
 import com.danbam.indistraw.core.design_system.component.HeadLineBold
-import com.danbam.indistraw.core.design_system.component.MovieTvItem
+import com.danbam.indistraw.core.ui.component.MovieTvItem
 import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.feature.tv.navigation.main.MainDeepLinkKey
 import com.danbam.indistraw.feature.tv.navigation.main.MainNavigationItem
@@ -161,7 +161,7 @@ fun SearchScreen(
                             is LoadState.Error -> {}
                             else -> {
                                 items(moviePager.itemSnapshotList.items) {
-                                    MovieTvItem(item = it) {
+                                    com.danbam.indistraw.core.ui.component.MovieTvItem(item = it) {
                                         navController.navigate(MainNavigationItem.MovieDetail.route + MainDeepLinkKey.MOVIE_INDEX + it.movieIdx)
                                     }
                                 }
@@ -169,7 +169,7 @@ fun SearchScreen(
                         }
                     } else {
                         items(state.moviePopularList) {
-                            MovieTvItem(item = it) {
+                            com.danbam.indistraw.core.ui.component.MovieTvItem(item = it) {
                                 navController.navigate(MainNavigationItem.MovieDetail.route + MainDeepLinkKey.MOVIE_INDEX + it.movieIdx)
                             }
                         }

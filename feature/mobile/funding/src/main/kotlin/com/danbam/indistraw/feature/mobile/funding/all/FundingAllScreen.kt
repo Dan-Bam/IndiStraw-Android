@@ -12,7 +12,7 @@ import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import com.danbam.indistraw.core.design_system.component.FundingItem
+import com.danbam.indistraw.core.ui.component.FundingItem
 import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
 import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
 import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyColumn
@@ -53,7 +53,7 @@ fun FundingAllScreen(
                     RemoveOverScrollLazyColumn {
                         items(it) {
                             it?.let {
-                                FundingItem(
+                                com.danbam.indistraw.core.ui.component.FundingItem(
                                     item = it,
                                     onClickItem = { navController.navigate(FundingNavigationItem.Detail.route + FundingDeepLinkKey.FUNDING_INDEX + it) }
                                 )

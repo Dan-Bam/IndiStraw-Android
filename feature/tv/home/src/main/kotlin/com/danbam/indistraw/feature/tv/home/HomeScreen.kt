@@ -27,11 +27,11 @@ import androidx.tv.foundation.lazy.list.items
 import com.danbam.indistraw.core.design_system.component.ImageButton
 import com.danbam.indistraw.core.design_system.component.IndiStrawTvBackground
 import com.danbam.indistraw.core.design_system.component.IndiStrawTvBanner
-import com.danbam.indistraw.core.design_system.component.IndiStrawTvTab
+import com.danbam.indistraw.core.ui.component.IndiStrawTvTab
 import com.danbam.indistraw.core.design_system.component.Shape
 import com.danbam.indistraw.core.design_system.R
-import com.danbam.indistraw.core.design_system.component.MovieTab
-import com.danbam.indistraw.core.design_system.component.MovieTvItem
+import com.danbam.indistraw.core.ui.component.MovieTab
+import com.danbam.indistraw.core.ui.component.MovieTvItem
 import com.danbam.indistraw.feature.tv.navigation.main.MainDeepLinkKey
 import com.danbam.indistraw.feature.tv.navigation.main.MainNavigationItem
 
@@ -46,7 +46,7 @@ fun HomeScreen(
     val sideEffect = container.sideEffectFlow
 
     val itemFocusRequester = remember { FocusRequester() }
-    var homeTab: MovieTab by remember { mutableStateOf(MovieTab.PopularMovie) }
+    var homeTab: com.danbam.indistraw.core.ui.component.MovieTab by remember { mutableStateOf(com.danbam.indistraw.core.ui.component.MovieTab.PopularMovie) }
 
     LaunchedEffect(Unit) {
         homeViewModel.getBanner()
@@ -75,25 +75,25 @@ fun HomeScreen(
         Row(
             modifier = Modifier.padding(top = 20.dp)
         ) {
-            IndiStrawTvTab(
+            com.danbam.indistraw.core.ui.component.IndiStrawTvTab(
                 text = stringResource(id = R.string.popular),
-                isSelect = homeTab == MovieTab.PopularMovie
+                isSelect = homeTab == com.danbam.indistraw.core.ui.component.MovieTab.PopularMovie
             ) {
-                homeTab = MovieTab.PopularMovie
+                homeTab = com.danbam.indistraw.core.ui.component.MovieTab.PopularMovie
             }
             Spacer(modifier = Modifier.width(14.dp))
-            IndiStrawTvTab(
+            com.danbam.indistraw.core.ui.component.IndiStrawTvTab(
                 text = stringResource(id = R.string.recommend),
-                isSelect = homeTab == MovieTab.RecommendMovie
+                isSelect = homeTab == com.danbam.indistraw.core.ui.component.MovieTab.RecommendMovie
             ) {
-                homeTab = MovieTab.RecommendMovie
+                homeTab = com.danbam.indistraw.core.ui.component.MovieTab.RecommendMovie
             }
             Spacer(modifier = Modifier.width(14.dp))
-            IndiStrawTvTab(
+            com.danbam.indistraw.core.ui.component.IndiStrawTvTab(
                 text = stringResource(id = R.string.recent),
-                isSelect = homeTab == MovieTab.RecentMovie
+                isSelect = homeTab == com.danbam.indistraw.core.ui.component.MovieTab.RecentMovie
             ) {
-                homeTab = MovieTab.RecentMovie
+                homeTab = com.danbam.indistraw.core.ui.component.MovieTab.RecentMovie
             }
         }
         Spacer(modifier = Modifier.height(20.dp))
@@ -103,7 +103,7 @@ fun HomeScreen(
             contentPadding = PaddingValues(horizontal = 8.dp, vertical = 20.dp)
         ) {
             items(state.movieList) {
-                MovieTvItem(
+                com.danbam.indistraw.core.ui.component.MovieTvItem(
                     modifier = Modifier.focusRequester(if (it.movieIdx == state.currentMovieIndex) itemFocusRequester else FocusRequester()),
                     item = it
                 ) {

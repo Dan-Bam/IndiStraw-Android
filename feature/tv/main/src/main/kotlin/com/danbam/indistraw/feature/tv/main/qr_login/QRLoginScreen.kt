@@ -23,7 +23,7 @@ import com.danbam.indistraw.core.design_system.component.ExampleTextMedium
 import com.danbam.indistraw.core.design_system.component.IndiStrawTvBackground
 import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.core.design_system.R
-import com.danbam.indistraw.core.design_system.component.QRPainter
+import com.danbam.indistraw.core.ui.qr.QRPainter
 import com.danbam.indistraw.feature.tv.main.BuildConfig
 import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
 import com.danbam.indistraw.feature.tv.navigation.main.MainNavigationItem
@@ -83,7 +83,7 @@ fun QRLoginScreen(
                     icon = IndiStrawIconList.QRGrid
                 )
                 state.uuid?.let {
-                    QRPainter(
+                    com.danbam.indistraw.core.ui.qr.QRPainter(
                         modifier = Modifier
                             .align(Alignment.Center),
                         url = "${BuildConfig.QR_URL}$it"

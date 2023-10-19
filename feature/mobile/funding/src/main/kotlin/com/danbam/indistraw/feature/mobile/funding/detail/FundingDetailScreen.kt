@@ -43,8 +43,8 @@ import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
 import com.danbam.indistraw.core.design_system.component.IndiStrawBottomSheetLayout
 import com.danbam.indistraw.core.design_system.component.IndiStrawSlider
-import com.danbam.indistraw.core.design_system.component.RewardItem
-import com.danbam.indistraw.core.design_system.component.RewardType
+import com.danbam.indistraw.core.ui.component.RewardItem
+import com.danbam.indistraw.core.ui.component.RewardType
 import com.danbam.indistraw.core.design_system.util.internal.toCommaString
 import com.danbam.indistraw.core.domain.entity.funding.FundingDetailEntity
 import com.danbam.indistraw.feature.mobile.navigation.funding.FundingDeepLinkKey
@@ -70,9 +70,12 @@ fun FundingDetailScreen(
 
     IndiStrawBottomSheetLayout(sheetContent = {
         selectRewardItem?.let {
-            RewardItem(rewardType = RewardType.Expand, item = it, onClickItem = {
-                navController.navigate(FundingNavigationItem.FundingReward.route + FundingDeepLinkKey.FUNDING_INDEX + fundingIdx + FundingDeepLinkKey.REWARD_INDEX + it.idx + FundingDeepLinkKey.REWARD_TITLE + it.title + FundingDeepLinkKey.REWARD_DESCRIPTION + it.description + FundingDeepLinkKey.REWARD_PRICE + it.price)
-            })
+            com.danbam.indistraw.core.ui.component.RewardItem(
+                rewardType = com.danbam.indistraw.core.ui.component.RewardType.Expand,
+                item = it,
+                onClickItem = {
+                    navController.navigate(FundingNavigationItem.FundingReward.route + FundingDeepLinkKey.FUNDING_INDEX + fundingIdx + FundingDeepLinkKey.REWARD_INDEX + it.idx + FundingDeepLinkKey.REWARD_TITLE + it.title + FundingDeepLinkKey.REWARD_DESCRIPTION + it.description + FundingDeepLinkKey.REWARD_PRICE + it.price)
+                })
         }
     }) { _, openSheet ->
         IndiStrawColumnBackground(
@@ -219,12 +222,14 @@ fun FundingDetailScreen(
                 )
             )
             repeat(state.fundingDetailEntity.reward.size) {
-                RewardItem(item = state.fundingDetailEntity.reward[it], onClickItem = {
-                    if (!state.fundingDetailEntity.isFunding) {
-                        selectRewardItem = it
-                        openSheet()
-                    }
-                })
+                com.danbam.indistraw.core.ui.component.RewardItem(
+                    item = state.fundingDetailEntity.reward[it],
+                    onClickItem = {
+                        if (!state.fundingDetailEntity.isFunding) {
+                            selectRewardItem = it
+                            openSheet()
+                        }
+                    })
                 Spacer(modifier = Modifier.height(16.dp))
             }
             Spacer(modifier = Modifier.height(54.dp))
