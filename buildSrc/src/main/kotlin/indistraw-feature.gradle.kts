@@ -3,9 +3,9 @@ val libs = versionCatalog.named("libs")
 
 plugins {
     id("com.android.library")
-    id("kotlin-kapt")
     id("kotlin-android")
     id("dagger.hilt.android.plugin")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -44,7 +44,7 @@ dependencies {
     implementation(libs.findBundle("compose").get())
     implementation(libs.findLibrary("accompanist.nav").get())
     implementation(libs.findLibrary("hilt").get())
-    kapt(libs.findLibrary("hilt.compiler").get())
+    ksp(libs.findLibrary("hilt.compiler").get())
     implementation(libs.findBundle("orbit").get())
     implementation(libs.findLibrary("coil").get())
     debugImplementation(libs.findBundle("compose.debug").get())

@@ -4,8 +4,8 @@ val libs = versionCatalog.named("libs")
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -30,7 +30,7 @@ android {
 dependencies {
     implementation(libs.findLibrary("inject").get())
     implementation(libs.findLibrary("hilt").get())
-    kapt(libs.findLibrary("hilt.compiler").get())
+    ksp(libs.findLibrary("hilt.compiler").get())
     testImplementation(libs.findLibrary("test.junit").get())
     testImplementation(libs.findLibrary("test.mockito.kotlin").get())
     testImplementation(libs.findLibrary("test.mockito.inline").get())

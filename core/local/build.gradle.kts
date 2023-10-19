@@ -10,5 +10,5 @@ dependencies {
     implementation(project(":core:domain"))
     implementation(libs.androidx.preference)
     implementation(libs.room)
-    kapt(libs.room.compiler)
+    ksp(libs.room.compiler)
 }
