@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.design_system.util.google
+package com.danbam.indistraw.core.ui.exoplayer
 
 import android.view.KeyEvent
 import androidx.media3.common.C

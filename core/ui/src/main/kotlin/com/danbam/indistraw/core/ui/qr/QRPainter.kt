@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.design_system.component
+package com.danbam.indistraw.core.ui.qr
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable

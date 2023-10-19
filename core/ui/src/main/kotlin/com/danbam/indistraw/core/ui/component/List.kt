@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.design_system.component
+package com.danbam.indistraw.core.ui.component
 
 import android.net.Uri
 import androidx.compose.foundation.BorderStroke
@@ -25,6 +25,8 @@ import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
+import com.danbam.indistraw.core.design_system.component.TitleRegular
+import com.danbam.indistraw.core.design_system.component.TitleSemiBold
 import com.danbam.indistraw.core.design_system.util.androidx.LaunchType
 import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyRow
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
