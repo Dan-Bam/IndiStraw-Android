@@ -212,7 +212,9 @@ fun RewardItem(
         }
 
         is RewardType.Expand -> {
-            val state = rememberPagerState()
+            val state = rememberPagerState {
+                item.imageList.size
+            }
             Box(
                 modifier = Modifier
                     .padding(horizontal = 15.dp)
@@ -234,7 +236,7 @@ fun RewardItem(
                 ) {
                     Spacer(modifier = Modifier.height(16.dp))
                     Box {
-                        HorizontalPager(pageCount = item.imageList.size, state = state) {
+                        HorizontalPager(state = state) {
                             AsyncImage(
                                 modifier = Modifier
                                     .clip(IndiStrawTheme.shapes.defaultRounded)
@@ -364,7 +366,9 @@ fun MyRewardItem(
         }
 
         is RewardType.Expand -> {
-            val state = rememberPagerState()
+            val state = rememberPagerState {
+                item.imageList.size
+            }
             Box(
                 modifier = Modifier
                     .padding(horizontal = 15.dp)
@@ -373,7 +377,7 @@ fun MyRewardItem(
                 Column {
                     Spacer(modifier = Modifier.height(16.dp))
                     Box {
-                        HorizontalPager(pageCount = item.imageList.size, state = state) {
+                        HorizontalPager(state = state) {
                             AsyncImage(
                                 modifier = Modifier
                                     .clip(IndiStrawTheme.shapes.defaultRounded)

@@ -34,7 +34,9 @@ fun IndiStrawBanner(
     itemCount: Int,
     content: @Composable (page: Int) -> Unit,
 ) {
-    val state = rememberPagerState()
+    val state = rememberPagerState {
+        itemCount
+    }
     val bannerHeight = LocalConfiguration.current.screenHeightDp * 0.26
 
     LaunchedEffect(state.currentPage) {
@@ -53,7 +55,6 @@ fun IndiStrawBanner(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(bannerHeight.dp),
-            pageCount = itemCount,
             state = state
         ) {
             content(it)
@@ -101,7 +102,9 @@ fun IndiStrawTvBanner(
     itemCount: Int,
     content: @Composable (page: Int) -> Unit,
 ) {
-    val state = rememberPagerState()
+    val state = rememberPagerState {
+        itemCount
+    }
     val bannerHeight = LocalConfiguration.current.screenHeightDp * 0.4
 
     LaunchedEffect(state.currentPage) {
@@ -120,7 +123,6 @@ fun IndiStrawTvBanner(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(bannerHeight.dp),
-            pageCount = itemCount,
             state = state
         ) {
             content(it)
@@ -168,7 +170,9 @@ fun IndiStrawSlider(
     itemCount: Int,
     content: @Composable (page: Int) -> Unit,
 ) {
-    val state = rememberPagerState()
+    val state = rememberPagerState {
+        itemCount
+    }
     val sliderHeight = LocalConfiguration.current.screenHeightDp * 0.22
 
     Column(
@@ -180,7 +184,6 @@ fun IndiStrawSlider(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(sliderHeight.dp),
-            pageCount = itemCount,
             state = state
         ) {
             content(it)

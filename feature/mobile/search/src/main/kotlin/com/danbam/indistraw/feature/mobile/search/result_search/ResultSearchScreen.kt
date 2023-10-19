@@ -23,7 +23,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.items
 import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
 import com.danbam.indistraw.core.ui.component.IndiStrawTab
 import com.danbam.indistraw.core.design_system.R
@@ -47,13 +46,16 @@ fun ResultSearchScreen(
     val state = container.stateFlow.collectAsState().value
     val sideEffect = container.sideEffectFlow
 
-    var currentTab: com.danbam.indistraw.core.ui.component.SearchTab by remember { mutableStateOf(
-        com.danbam.indistraw.core.ui.component.SearchTab.Movie) }
+    var currentTab: SearchTab by remember {
+        mutableStateOf(
+            SearchTab.Movie
+        )
+    }
     val moviePager = state.moviePager?.collectAsLazyPagingItems()
     val fundingPager = state.fundingPager?.collectAsLazyPagingItems()
 
     LaunchedEffect(currentTab) {
-        if (currentTab == com.danbam.indistraw.core.ui.component.SearchTab.Movie) {
+        if (currentTab == SearchTab.Movie) {
             resultSearchViewModel.searchMovie(keyword = keyword)
         } else {
             resultSearchViewModel.searchFunding(keyword = keyword)
@@ -66,22 +68,22 @@ fun ResultSearchScreen(
         Row(
             modifier = Modifier.padding(start = 15.dp, top = 22.dp)
         ) {
-            com.danbam.indistraw.core.ui.component.IndiStrawTab(
+            IndiStrawTab(
                 text = stringResource(id = R.string.indi_movie),
-                isSelect = currentTab == com.danbam.indistraw.core.ui.component.SearchTab.Movie
+                isSelect = currentTab == SearchTab.Movie
             ) {
-                currentTab = com.danbam.indistraw.core.ui.component.SearchTab.Movie
+                currentTab = SearchTab.Movie
             }
             Spacer(modifier = Modifier.width(16.dp))
             com.danbam.indistraw.core.ui.component.IndiStrawTab(
                 text = stringResource(id = R.string.crowd_funding),
-                isSelect = currentTab == com.danbam.indistraw.core.ui.component.SearchTab.Funding
+                isSelect = currentTab == SearchTab.Funding
             ) {
-                currentTab = com.danbam.indistraw.core.ui.component.SearchTab.Funding
+                currentTab = SearchTab.Funding
             }
         }
         when (currentTab) {
-            is com.danbam.indistraw.core.ui.component.SearchTab.Movie -> {
+            is SearchTab.Movie -> {
                 moviePager?.let {
                     when (it.loadState.refresh) {
                         is LoadState.Loading -> {}
@@ -95,7 +97,7 @@ fun ResultSearchScreen(
                                 horizontalArrangement = Arrangement.spacedBy(16.dp)
                             ) {
                                 items(it.itemSnapshotList.items) {
-                                    com.danbam.indistraw.core.ui.component.MovieItem(item = it) {
+                                    MovieItem(item = it) {
                                         navController.navigate(MovieNavigationItem.Detail.route + MovieDeepLinkKey.MOVIE_INDEX + it)
                                     }
                                 }
@@ -105,7 +107,7 @@ fun ResultSearchScreen(
                 }
             }
 
-            is com.danbam.indistraw.core.ui.component.SearchTab.Funding -> {
+            is SearchTab.Funding -> {
                 fundingPager?.let {
                     when (it.loadState.refresh) {
                         is LoadState.Loading -> {}
@@ -113,9 +115,9 @@ fun ResultSearchScreen(
                         else -> {
                             Spacer(modifier = Modifier.height(11.dp))
                             RemoveOverScrollLazyColumn {
-                                items(it) {
-                                    it?.let {
-                                        com.danbam.indistraw.core.ui.component.FundingItem(item = it) {
+                                items(it.itemCount) { index ->
+                                    it[index]?.let {
+                                        FundingItem(item = it) {
                                             navController.navigate(FundingNavigationItem.Detail.route + FundingDeepLinkKey.FUNDING_INDEX + it)
                                         }
                                         Spacer(modifier = Modifier.height(24.dp))
