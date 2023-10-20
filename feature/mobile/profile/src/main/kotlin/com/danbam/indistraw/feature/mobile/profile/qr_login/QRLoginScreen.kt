@@ -23,7 +23,7 @@ import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
 import com.danbam.indistraw.core.design_system.component.HeadLineBold
 import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
 import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
-import com.danbam.indistraw.core.design_system.component.QRScanner
+import com.danbam.indistraw.core.ui.qr.QRScanner
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.component.IndiStrawButton
 import com.danbam.indistraw.core.design_system.component.TitleRegular
@@ -54,7 +54,7 @@ fun QRLoginScreen(
                     .align(Alignment.Center),
                 icon = IndiStrawIconList.QRGrid
             )
-            QRScanner(
+            com.danbam.indistraw.core.ui.qr.QRScanner(
                 modifier = Modifier
                     .align(Alignment.Center)
                     .size(265.dp)

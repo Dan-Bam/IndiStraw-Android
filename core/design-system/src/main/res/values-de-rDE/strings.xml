@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 은행 리스트 -->
+    <string name="gwangju_bank">Gwangju</string>
+    <string name="hana_bank">Hana</string>
+    <string name="nh_bank">NH Genossenschaftsbank</string>
+    <string name="post_bank">Postbank</string>
+    <string name="shinhyeop_bank">Shinhyeop</string>
+    <string name="shinhan_bank">Shinhan</string>
+    <string name="toss_bank">Toss Bank</string>
+    <string name="woori_bank">Woori</string>
+    <string name="kakao_bank">Kakao Bank</string>
+
+    <!-- 결제 방식 리스트 -->
+    <string name="payment_naver">Naver Pay (Zahlungsart)</string>
+    <string name="payment_card">ISP / App-Zahlung</string>
+    <string name="payment_account">Banküberweisung</string>
+    <string name="payment_kakao">Kakao Pay</string>
+
+    <!-- 장르 리스트 -->
+    <string name="genre_all">Alle</string>
+    <string name="genre_action">Action</string>
+    <string name="genre_romance">Romantik</string>
+    <string name="genre_comedy">Komödie</string>
+    <string name="genre_thriller">Thriller</string>
+    <string name="genre_drama">Drama</string>
+    <string name="genre_sf">Science-Fiction</string>
+    <string name="genre_animation">Animation</string>
+    <string name="genre_horror">Horror</string>
+    <string name="genre_adventure">Abenteuer</string>
+    <string name="genre_fantasy">Fantasy</string>
+
+    <!-- 세팅 리스트 -->
+    <string name="tv_setting_language">Sprache</string>
+    <string name="tv_setting_term">Nutzungsbedingungen</string>
+    <string name="tv_setting_account">Konto</string>
+    <string name="tv_setting_logout">Abmelden</string>
+    <string name="tv_setting_withdrawal">Mitgliedschaft kündigen</string>
+
+    <!-- 기타 -->
+    <string name="wrong_length_id">Bitte 6 bis 15 Zeichen eingeben.</string>
+    <string name="wrong_length_password">Bitte 8 bis 20 Zeichen eingeben.</string>
+    <string name="require_terms_of_use">[Erforderlich] Nutzungsbedingungen akzeptieren</string>
+    <string name="require_personal_information">[Erforderlich] Einwilligung zur Datensammlung und -nutzung</string>
+    <string name="app_name">Indi Straw</string>
+    <string name="qr_login">QR-Login</string>
+    <string name="require_qr">Bitte QR-Code authentifizieren.</string>
+    <string name="remain_qr_time">QR-Gültigkeitsdauer</string>
+
+    <!-- ㄱ으로 시작하는 string -->
+    <string name="movie_director">Regisseur</string>
+    <string name="enroll_director_or_actor">Regisseur/Schauspieler hinzufügen</string>
+    <string name="add_director">Regisseur hinzufügen</string>
+    <string name="reward_remain">verbleibend</string>
+    <string name="approve_personal_information">Zustimmung zur Datennutzung</string>
+    <string name="choose_gallery">Aus Galerie auswählen</string>
+    <string name="search">Suchen</string>
+    <string name="payment_method">Zahlungsmethode</string>
+    <string name="payment_detail">Zahlungsdetails</string>
+    <string name="pay">Bezahlen</string>
+    <string name="next">Weiter</string>
+    <string name="setting_account">Kontoeinstellungen</string>
+    <string name="already_sign_up">Noch kein Konto?</string>
+    <string name="account_info">Kontoinformationen</string>
+    <string name="account_number">Kontonummer</string>
+    <string name="money">Betrag</string>
+    <string name="require_money">Bitte Betrag festlegen.</string>
+    <string name="enroll_search_director">Vorhandenen Regisseur hinzufügen</string>
+    <string name="add_search_director">Vorhandenen Regisseur hinzufügen</string>
+    <string name="enroll_search_actor">Vorhandenen Schauspieler hinzufügen</string>
+    <string name="add_search_actor">Vorhandenen Schauspieler hinzufügen</string>
+
+    <!-- ㄴ으로 시작하는 string -->
+    <string name="rest_date">Verbleibende Laufzeit</string>
+
+    <!-- ㄷ으로 시작하는 string -->
+    <string name="re_send">Erneut senden</string>
+    <string name="complete">Abgeschlossen</string>
+    <string name="indi_movie">Unabhängiger Film</string>
+    <string name="make_indi_movie">Unabhängigen Film erstellen</string>
+    <string name="back">Zurück</string>
+    <string name="enroll">Hinzufügen</string>
+    <string name="wrong_not_enroll_phone_number">Ungültige Telefonnummer.</string>
+
+    <!-- ㄹ으로 시작하는 string -->
+    <string name="logout">Abmelden</string>
+    <string name="want_you_logout">Möchten Sie sich abmelden?</string>
+    <string name="login">Anmelden</string>
+    <string name="do_login">Anmelden</string>
+    <string name="choose_reward">Belohnungsart auswählen</string>
+    <string name="add_reward">Belohnung hinzufügen</string>
+    <string name="do_add_reward">Belohnung hinzufügen</string>
+    <string name="want_you_add_reward">Möchten Sie eine Belohnung hinzufügen?</string>
+
+    <!-- ㅁ으로 시작하는 string -->
+    <string name="end_date">Fälligkeitsdatum</string>
+    <string name="my_funding">Meine Finanzierung</string>
+    <string name="view_all_movie">Alle Filme anzeigen</string>
+    <string name="collect_money">Gesammeltes Geld</string>
+    <string name="target_money">Zielbetrag</string>
+    <string name="require_target_money">Bitte Zielbetrag festlegen.</string>
+    <string name="looking_for">Was suchen Sie?</string>
+
+    <!-- ㅂ으로 시작하는 string -->
+    <string name="movie_actor">Schauspieler</string>
+    <string name="add_actor">Schauspieler hinzufügen</string>
+    <string name="delivery_info">Versandinformationen</string>
+    <string name="certificate_phone_number">Telefonnummer bestätigen</string>
+    <string name="change">Ändern</string>
+    <string name="require_change_password">Bitte das zu ändernde Passwort eingeben.</string>
+    <string name="password">Passwort</string>
+    <string name="change_password">Passwort ändern</string>
+    <string name="find_password">Passwort vergessen</string>
+    <string name="check_password">Passwort bestätigen</string>
+    <string name="require_check_password">Bitte Passwort bestätigen.</string>
+    <string name="wrong_different_password">Passwörter stimmen nicht überein.</string>
+    <string name="require_password">Bitte Passwort eingeben.</string>
+    <string name="wrong_password">Ungültiges Passwort.</string>
+
+    <!-- ㅅ으로 시작하는 string -->
+    <string name="require_account_number">Bitte Ihre Kontonummer eingeben.</string>
+    <string name="edit_picture">Bild bearbeiten</string>
+    <string name="choose_camera">Kamera öffnen</string>
+    <string name="detail_address">Detailanschrift</string>
+    <string name="require_detail_address">Bitte Detailanschrift eingeben.</string>
+    <string name="reward_price">Artikelpreis</string>
+    <string name="reward_info">Artikelinformationen</string>
+    <string name="enroll_new_director">Neuen Regisseur hinzufügen</string>
+    <string name="add_new_director">Neuen Regisseur hinzufügen</string>
+    <string name="enroll_new_actor">Neuen Schauspieler hinzufügen</string>
+    <string name="add_new_actor">Neuen Schauspieler hinzufügen</string>
+    <string name="require_new_phone_number">Bitte neue Telefonnummer eingeben.</string>
+    <string name="setting">Einstellungen</string>
+    <string name="introduce">Vorstellen</string>
+    <string name="require_introduce">Bitte eine Vorstellung eingeben.</string>
+    <string name="amount">Menge</string>
+    <string name="require_amount">Bitte Menge eingeben.</string>
+    <string name="wrong_match_password">Soll Zahlen, Großbuchstaben und Sonderzeichen enthalten.</string>
+    <string name="is_real">Physische Belohnung</string>
+    <string name="is_real_reward">Handelt es sich um eine physische Belohnung?</string>
+    <string name="thumbnail">Thumbnail</string>
+
+    <!-- ㅇ으로 시작하는 string -->
+    <string name="id">ID</string>
+    <string name="find_id">ID suchen</string>
+    <string name="require_id">Bitte ID eingeben.</string>
+    <string name="change_language">Sprache ändern</string>
+    <string name="movie">Film</string>
+    <string name="require_movie">Bitte einen Film registrieren.</string>
+    <string name="money_unit">Won</string>
+    <string name="require_bank">Bitte eine Bank auswählen.</string>
+    <string name="name">Name</string>
+    <string name="require_name">Bitte Namen eingeben.</string>
+    <string name="wrong_enroll_id">ID bereits registriert.</string>
+    <string name="wrong_enroll_phone_number">Telefonnummer bereits registriert.</string>
+    <string name="upload_image">Bild hochladen</string>
+    <string name="require_thumbnail">Bitte ein Bild hochladen.</string>
+    <string name="watch_going">Weiter ansehen</string>
+    <string name="popular">Beliebt</string>
+    <string name="popular_search_movie">Beliebte Suchfilme</string>
+    <string name="popular_search">Beliebte Tags</string>
+    <string name="certificate_number">Bestätigungsnummer</string>
+    <string name="check_certificate_number">Bestätigungsnummer überprüfen</string>
+    <string name="wrong_expired_certificate_number">Bestätigungsnummer ist abgelaufen.</string>
+    <string name="already_certificate_number">Bestätigungsnummer nicht erhalten?</string>
+    <string name="wrong_certificate_number">Falsche Bestätigungsnummer.</string>
+    <string name="require_certificate_number">Bitte Bestätigungsnummer eingeben.</string>
+    <string name="finish_certificate">Bestätigung abgeschlossen</string>
+    <string name="certificate">Bestätigen</string>
+
+    <!-- ㅈ으로 시작하는 string -->
+    <string name="view_detail">Details anzeigen</string>
+    <string name="list_project">Projektliste</string>
+    <string name="wait">Bitte versuchen Sie es später erneut.</string>
+    <string name="save">Speichern</string>
+    <string name="view_all">Alle anzeigen ></string>
+    <string name="movie_all">Alle Filme</string>
+    <string name="approve_all">Alle akzeptieren</string>
+    <string name="phone_number">Telefonnummer</string>
+    <string name="wrong_match_phone_number">Ungültiges Telefonnummerformat.</string>
+    <string name="require_phone_number">Bitte Telefonnummer eingeben.</string>
+    <string name="title">Titel</string>
+    <string name="require_title">Bitte einen Titel eingeben.</string>
+    <string name="wrong_id">ID nicht vorhanden.</string>
+    <string name="finish">Beenden</string>
+    <string name="address">Adresse</string>
+    <string name="no_address">Keine Adresse vorhanden.</string>
+    <string name="require_address">Bitte Adresse eingeben.</string>
+    <string name="find_address">Adresse suchen</string>
+    <string name="mc">Moderator</string>
+
+    <!-- ㅊ으로 시작하는 string -->
+    <string name="participate_people">Teilnehmer</string>
+    <string name="watch_first">Von Anfang an ansehen</string>
+    <string name="attached_file">Angehängte Datei</string>
+    <string name="total_money">Gesamtsumme</string>
+    <string name="add_image">Bild hinzufügen</string>
+    <string name="add_funding_description">Wenn Sie einen zusätzlichen Betrag eingeben, wird zusätzliche Unterstützung geleistet.</string>
+    <string name="add">Hinzufügen</string>
+    <string name="add_funding">Zusätzliche Unterstützung</string>
+    <string name="participate_movie">Teilnehmender Film</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="recent">Aktuell</string>
+    <string name="recent_search">Kürzlich gesuchte Begriffe</string>
+    <string name="recent_watch_movie">Zuletzt angesehene Filme</string>
+    <string name="wrong_over_request_phone_number">Maximale Anzahl an Anfragen überschritten. Bitte in einer Stunde erneut versuchen.</string>
+    <string name="wrong_over_request_certificate_number">Maximale Anzahl an Überprüfungsanfragen überschritten. Bitte in einer Stunde erneut versuchen.</string>
+    <string name="recommend">Empfehlen</string>
+    <string name="actor">Schauspieler</string>
+
+    <!-- ㅋ으로 시작하는 string -->
+    <string name="crowd_funding">Crowdfunding</string>
+    <string name="make_crowd_fund">Crowdfunding erstellen</string>
+    <string name="participate_funding">Crowdfunding</string>
+    <string name="enroll_crowd_funding_thumbnail">Crowdfunding-Vorschaubild hinzufügen</string>
+    <string name="is_use_crowd_funding">Haben Sie Crowdfunding verwendet?</string>
+
+    <!-- ㅍ으로 시작하는 string -->
+    <string name="file">Datei</string>
+    <string name="require_file">Bitte eine Datei anhängen.</string>
+    <string name="add_file">Datei hinzufügen</string>
+    <string name="is_funding">Finanzierung</string>
+    <string name="do_funding">Finanzierung</string>
+    <string name="change_profile">Profilbild ändern</string>
+    <string name="require_picture">Bitte ein Profilbild auswählen.</string>
+
+    <!-- ㅎ으로 시작하는 string -->
+    <string name="highlight">Hervorheben</string>
+    <string name="go">Zur Seite gehen</string>
+    <string name="approve">Bestätigen</string>
+    <string name="check">Überprüfen</string>
+    <string name="current_id">Aktuelle ID</string>
+    <string name="current_address">Aktuelle Adresse</string>
+    <string name="sign_up">Registrieren</string>
+    <string name="fail_sign_up">Registrierung fehlgeschlagen.</string>
+    <string name="withdrawal">Konto kündigen</string>
+    <string name="want_you_withdrawal">Möchten Sie Ihr Konto kündigen?</string>
+    <string name="home">Startseite</string>
+    <string name="donate">Unterstützen</string>
+</resources>

@@ -2,7 +2,7 @@ package com.danbam.indistraw.feature.mobile.auth.find.find_id
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.core.design_system.util.danbam.errorHandling
+import com.danbam.indistraw.core.ui.handling.errorHandling
 import com.danbam.indistraw.core.domain.usecase.account.FindIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

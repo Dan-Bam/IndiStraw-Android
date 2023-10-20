@@ -24,7 +24,7 @@ import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackgrou
 import com.danbam.indistraw.core.design_system.component.IndiStrawGenreList
 import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
 import com.danbam.indistraw.core.design_system.component.MovieGenre
-import com.danbam.indistraw.core.design_system.component.MovieItem
+import com.danbam.indistraw.core.ui.component.MovieItem
 import com.danbam.indistraw.feature.mobile.navigation.movie.MovieDeepLinkKey
 import com.danbam.indistraw.feature.mobile.navigation.movie.MovieNavigationItem
 
@@ -69,7 +69,7 @@ fun MovieAllScreen(
                         horizontalArrangement = Arrangement.spacedBy(9.dp)
                     ) {
                         items(pager.itemSnapshotList.items) {
-                            MovieItem(item = it) {
+                            com.danbam.indistraw.core.ui.component.MovieItem(item = it) {
                                 navController.navigate(MovieNavigationItem.Detail.route + MovieDeepLinkKey.MOVIE_INDEX + it)
                             }
                         }

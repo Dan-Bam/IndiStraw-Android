@@ -15,6 +15,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.danbam.indistraw.core.design_system.component.HeadLineBold
@@ -96,7 +98,9 @@ fun LoginScreen(
             IndiStrawTvTextField(
                 hint = stringResource(id = R.string.password),
                 value = password,
-                onValueChange = { password = it })
+                onValueChange = { password = it },
+                visualTransformation = PasswordVisualTransformation()
+            )
 
             Spacer(modifier = Modifier.fillMaxHeight(0.09F))
             IndiStrawTvButton(text = stringResource(id = R.string.login)) {

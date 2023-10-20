@@ -2,15 +2,16 @@ package com.danbam.indistraw.feature.mobile.movie.make
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.core.design_system.util.danbam.errorHandling
-import com.danbam.indistraw.core.entity.movie.MoviePeopleEntity
-import com.danbam.indistraw.core.param.movie.MovieCreateParam
-import com.danbam.indistraw.core.param.movie.MoviePeopleParam
+import com.danbam.indistraw.core.ui.handling.errorHandling
+import com.danbam.indistraw.core.domain.entity.movie.MoviePeopleEntity
+import com.danbam.indistraw.core.domain.param.movie.MovieCreateParam
+import com.danbam.indistraw.core.domain.param.movie.MoviePeopleParam
+import com.danbam.indistraw.core.domain.usecase.account.EnrollMoviePeopleUseCase
 import com.danbam.indistraw.core.domain.usecase.file.SendFileUseCase
 import com.danbam.indistraw.core.domain.usecase.movie.AddMoviePeopleUseCase
 import com.danbam.indistraw.core.domain.usecase.movie.MovieCreateUseCase
 import com.danbam.indistraw.core.domain.usecase.movie.SearchMoviePeopleUseCase
-import com.danbam.indistraw.feature.mobile.navigation.movie.ActorType
+import com.danbam.indistraw.feature.mobile.navigation.movie.PeopleType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
@@ -26,7 +27,8 @@ class MakeMovieViewModel @Inject constructor(
     private val sendFileUseCase: SendFileUseCase,
     private val searchMoviePeopleUseCase: SearchMoviePeopleUseCase,
     private val addMoviePeopleUseCase: AddMoviePeopleUseCase,
-    private val movieCreateUseCase: MovieCreateUseCase
+    private val movieCreateUseCase: MovieCreateUseCase,
+    private val enrollMoviePeopleUseCase: EnrollMoviePeopleUseCase
 ) : ContainerHost<MakeMovieState, MakeMovieSideEffect>, ViewModel() {
     override val container = container<MakeMovieState, MakeMovieSideEffect>(MakeMovieState())
 
@@ -68,10 +70,10 @@ class MakeMovieViewModel @Inject constructor(
         }
     }
 
-    fun searchMoviePeople(actorType: String, name: String) = intent {
+    fun searchMoviePeople(peopleType: String, name: String) = intent {
         viewModelScope.launch {
             searchMoviePeopleUseCase(
-                actorType = if (actorType == ActorType.ACTOR) "actor" else "director",
+                peopleType = peopleType,
                 name = name
             ).onSuccess {
                 reduce { state.copy(searchMoviePeopleList = it) }
@@ -79,57 +81,67 @@ class MakeMovieViewModel @Inject constructor(
         }
     }
 
-    fun selectMoviePeople(actorType: String, moviePeople: MoviePeopleEntity) = intent {
-        if (actorType == ActorType.ACTOR) {
-            reduce {
-                state.copy(actorList = state.actorList.plus(moviePeople))
+    fun selectMoviePeople(peopleType: String, moviePeople: MoviePeopleEntity, isEnroll: Boolean) =
+        intent {
+            if (isEnroll) {
+                enrollMoviePeople(peopleType = peopleType, actorIdx = moviePeople.actorIdx)
+            } else {
+                if (peopleType == PeopleType.ACTOR.route) {
+                    reduce {
+                        state.copy(actorList = state.actorList.plus(moviePeople))
+                    }
+                } else reduce {
+                    state.copy(directorList = state.directorList.plus(moviePeople))
+                }
+                postSideEffect(MakeMovieSideEffect.Next)
             }
-        } else reduce {
-            state.copy(directorList = state.directorList.plus(moviePeople))
         }
-        postSideEffect(MakeMovieSideEffect.Next)
-    }
 
-    fun addMoviePeople(actorType: String, name: String, profileUrl: String?) = intent {
-        if (name.isEmpty()) return@intent
-        else if (profileUrl.isNullOrBlank()) return@intent
-        else {
-            viewModelScope.launch {
-                addMoviePeopleUseCase(
-                    actorType = if (actorType == ActorType.ACTOR) "actor" else "director",
-                    moviePeopleParam = MoviePeopleParam(name = name, profileUrl = profileUrl)
-                ).onSuccess {
-                    if (actorType == ActorType.ACTOR) {
-                        reduce {
-                            state.copy(
-                                actorList = state.actorList.plus(
-                                    MoviePeopleEntity(
-                                        actorIdx = it,
-                                        name = name,
-                                        profileUrl = profileUrl
+    fun addMoviePeople(peopleType: String, name: String, profileUrl: String?, isEnroll: Boolean) =
+        intent {
+            if (name.isEmpty()) return@intent
+            else if (profileUrl.isNullOrBlank()) return@intent
+            else {
+                viewModelScope.launch {
+                    addMoviePeopleUseCase(
+                        peopleType = peopleType,
+                        moviePeopleParam = MoviePeopleParam(name = name, profileUrl = profileUrl)
+                    ).onSuccess {
+                        if (isEnroll) {
+                            enrollMoviePeople(peopleType = peopleType, actorIdx = it)
+                        } else {
+                            if (peopleType == PeopleType.ACTOR.route) {
+                                reduce {
+                                    state.copy(
+                                        actorList = state.actorList.plus(
+                                            MoviePeopleEntity(
+                                                actorIdx = it,
+                                                name = name,
+                                                profileUrl = profileUrl
+                                            )
+                                        )
+                                    )
+                                }
+                            } else reduce {
+                                state.copy(
+                                    directorList = state.directorList.plus(
+                                        MoviePeopleEntity(
+                                            actorIdx = it,
+                                            name = name,
+                                            profileUrl = profileUrl
+                                        )
                                     )
                                 )
-                            )
+                            }
+                            postSideEffect(MakeMovieSideEffect.Next)
                         }
-                    } else reduce {
-                        state.copy(
-                            directorList = state.directorList.plus(
-                                MoviePeopleEntity(
-                                    actorIdx = it,
-                                    name = name,
-                                    profileUrl = profileUrl
-                                )
-                            )
-                        )
                     }
-                    postSideEffect(MakeMovieSideEffect.Next)
                 }
             }
         }
-    }
 
-    fun removeMoviePeople(actorType: String, index: Int) = intent {
-        if (actorType == ActorType.ACTOR) {
+    fun removeMoviePeople(peopleType: PeopleType, index: Int) = intent {
+        if (peopleType == PeopleType.ACTOR) {
             reduce {
                 state.copy(actorList = state.actorList.filterIndexed { i, _ -> i != index })
             }
@@ -157,6 +169,14 @@ class MakeMovieViewModel @Inject constructor(
                 ).onSuccess {
                     postSideEffect(MakeMovieSideEffect.SuccessCreateMovie)
                 }
+            }
+        }
+    }
+
+    fun enrollMoviePeople(peopleType: String, actorIdx: Long) = intent {
+        viewModelScope.launch {
+            enrollMoviePeopleUseCase(peopleType = peopleType, actorIdx = actorIdx).onSuccess {
+                postSideEffect(MakeMovieSideEffect.SuccessEnroll)
             }
         }
     }

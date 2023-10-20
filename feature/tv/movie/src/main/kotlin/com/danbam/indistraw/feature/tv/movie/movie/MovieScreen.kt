@@ -35,7 +35,7 @@ import androidx.tv.material3.Surface
 import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.component.IndiStrawTvBackground
 import com.danbam.indistraw.core.design_system.component.MovieGenre
-import com.danbam.indistraw.core.design_system.component.MovieTvItem
+import com.danbam.indistraw.core.ui.component.MovieTvItem
 import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.core.design_system.component.TitleSemiBold
 import com.danbam.indistraw.feature.tv.navigation.main.MainDeepLinkKey
@@ -56,12 +56,6 @@ fun MovieScreen(
     val itemFocusRequester = remember { FocusRequester() }
     var currentMovieGenre: MovieGenre by remember { mutableStateOf(MovieGenre.All) }
     val movieAllPager = state.movieAllPager?.collectAsLazyPagingItems()
-
-    LaunchedEffect(Unit) {
-        if (!isOpenDrawer) {
-            itemFocusRequester.requestFocus()
-        }
-    }
 
     LaunchedEffect(currentMovieGenre) {
         movieViewModel.movieList(movieGenre = currentMovieGenre)
@@ -127,6 +121,11 @@ fun MovieScreen(
                 is LoadState.Loading -> {}
                 is LoadState.Error -> {}
                 else -> {
+                    LaunchedEffect(state.currentMovieIndex) {
+                        if (!isOpenDrawer) {
+                            itemFocusRequester.requestFocus()
+                        }
+                    }
                     TvLazyVerticalGrid(
                         modifier = Modifier.padding(top = 20.dp, end = 40.dp),
                         columns = TvGridCells.Fixed(6),
@@ -135,7 +134,7 @@ fun MovieScreen(
                         verticalArrangement = Arrangement.spacedBy(30.dp)
                     ) {
                         items(pager.itemSnapshotList.items) {
-                            MovieTvItem(
+                            com.danbam.indistraw.core.ui.component.MovieTvItem(
                                 modifier = Modifier.focusRequester(if (it.movieIdx == state.currentMovieIndex) itemFocusRequester else FocusRequester()),
                                 item = it
                             ) {

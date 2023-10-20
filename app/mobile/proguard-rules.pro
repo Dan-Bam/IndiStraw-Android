@@ -20,8 +20,8 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keep class com.danbam.data.** {*;}
--keep interface com.danbam.data.** {*;}
-
--keep class com.danbam.domain.** {*;}
--keep interface com.danbam.domain.** {*;}
+-keep class com.danbam.indistraw.core.remote.request.** {*;}
+-keep class com.danbam.indistraw.core.remote.response.** {*;}
+-dontwarn org.conscrypt.**
+-dontwarn org.bouncycastle.**
+-dontwarn org.openjsse.**

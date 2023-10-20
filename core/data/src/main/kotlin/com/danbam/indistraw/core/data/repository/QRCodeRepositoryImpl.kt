@@ -1,8 +1,8 @@
 package com.danbam.indistraw.core.data.repository
 
-import com.danbam.indistraw.core.data.local.datasource.AuthLocalDataSource
-import com.danbam.indistraw.core.data.remote.datasource.QRCodeRemoteDataSource
+import com.danbam.indistraw.core.local.datasource.AuthLocalDataSource
 import com.danbam.indistraw.core.domain.repository.QRCodeRepository
+import com.danbam.indistraw.core.remote.datasource.QRCodeRemoteDataSource
 import java.util.UUID
 import javax.inject.Inject
 

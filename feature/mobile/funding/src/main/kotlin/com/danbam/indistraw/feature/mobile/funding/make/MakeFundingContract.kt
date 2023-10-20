@@ -1,6 +1,6 @@
 package com.danbam.indistraw.feature.mobile.funding.make
 
-import com.danbam.indistraw.core.param.funding.FundingCreateParam
+import com.danbam.indistraw.core.domain.param.funding.FundingCreateParam
 import java.time.LocalDate
 
 data class MakeFundingState(

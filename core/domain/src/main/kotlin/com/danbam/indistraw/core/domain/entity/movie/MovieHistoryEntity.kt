@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.entity.movie
+package com.danbam.indistraw.core.domain.entity.movie
 
 data class MovieHistoryEntity(
     val movieIdx: Long,

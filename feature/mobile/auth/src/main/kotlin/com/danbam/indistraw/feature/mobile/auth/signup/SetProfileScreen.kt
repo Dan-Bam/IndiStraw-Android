@@ -24,11 +24,8 @@ import com.danbam.indistraw.core.design_system.component.SelectProfileButton
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.util.android.toFile
 import com.danbam.indistraw.core.design_system.util.androidx.getActivity
-import com.danbam.indistraw.core.design_system.util.androidx.observeWithLifecycle
 import com.danbam.indistraw.feature.mobile.navigation.auth.AuthNavigationItem
-import kotlinx.coroutines.InternalCoroutinesApi
 
-@OptIn(InternalCoroutinesApi::class)
 @Composable
 fun SetProfileScreen(
     navController: NavController,
@@ -40,21 +37,16 @@ fun SetProfileScreen(
     val sideEffect = container.sideEffectFlow
 
     val context = LocalContext.current
-    var file: String? by remember { mutableStateOf(null) }
+    var profileUrl: String? by remember { mutableStateOf(null) }
+    var isLoading by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
         signUpViewModel.setPhoneNumber(phoneNumber = phoneNumber)
     }
 
-    sideEffect.observeWithLifecycle {
-        if (it is SignUpSideEffect.SuccessUpload) {
-            file = it.imageUrl
-        } else {
-
-        }
-    }
-
-    IndiStrawColumnBackground {
+    IndiStrawColumnBackground(
+        isLoading = isLoading
+    ) {
         IndiStrawHeader(pressBackBtn = {
             navController.popBackStack()
         })
@@ -69,12 +61,24 @@ fun SetProfileScreen(
                 .align(CenterHorizontally),
             paddingValues = PaddingValues(36.dp),
             isSignUp = true,
-            imageUrl = file,
+            imageUrl = profileUrl,
             selectGallery = {
-                it?.let { signUpViewModel.setProfile(it.toFile(context)) }
+                it?.let {
+                    isLoading = true
+                    signUpViewModel.setProfile(it.toFile(context)) {
+                        isLoading = false
+                        profileUrl = it
+                    }
+                }
             },
             selectCamera = {
-                it?.let { signUpViewModel.setProfile(it.toFile(context)) }
+                it?.let {
+                    isLoading = true
+                    signUpViewModel.setProfile(it.toFile(context)) {
+                        isLoading = false
+                        profileUrl = it
+                    }
+                }
             }) {
             IndiStrawButton(
                 modifier = Modifier.padding(top = 156.dp),

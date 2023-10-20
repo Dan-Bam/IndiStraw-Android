@@ -2,7 +2,7 @@ package com.danbam.indistraw.feature.mobile.main.intro
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.core.design_system.util.danbam.errorHandling
+import com.danbam.indistraw.core.ui.handling.errorHandling
 import com.danbam.indistraw.core.domain.usecase.auth.IsLoginUseCase
 import com.danbam.indistraw.core.domain.usecase.system.FetchLanguageUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

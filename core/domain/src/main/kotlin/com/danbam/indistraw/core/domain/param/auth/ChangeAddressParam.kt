@@ -1,4 +1,4 @@
-package com.danbam.indistraw.core.param.auth
+package com.danbam.indistraw.core.domain.param.auth
 
 data class ChangeAddressParam(
     val zipCode: String,

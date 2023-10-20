@@ -3,7 +3,7 @@ package com.danbam.indistraw.feature.tv.setting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.danbam.indistraw.core.design_system.util.android.Language
-import com.danbam.indistraw.core.design_system.util.danbam.errorHandling
+import com.danbam.indistraw.core.ui.handling.errorHandling
 import com.danbam.indistraw.core.domain.usecase.account.GetProfileUseCase
 import com.danbam.indistraw.core.domain.usecase.account.WithdrawUseCase
 import com.danbam.indistraw.core.domain.usecase.auth.ClearTokenUseCase

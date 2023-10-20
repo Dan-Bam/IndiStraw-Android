@@ -1,6 +1,6 @@
 package com.danbam.indistraw.core.domain.usecase.account
 
-import com.danbam.indistraw.core.param.auth.EditProfileParam
+import com.danbam.indistraw.core.domain.param.auth.EditProfileParam
 import com.danbam.indistraw.core.domain.repository.AccountRepository
 import javax.inject.Inject
 

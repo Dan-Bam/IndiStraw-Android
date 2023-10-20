@@ -1,6 +1,6 @@
 package com.danbam.indistraw.core.domain.usecase.auth
 
-import com.danbam.indistraw.core.param.auth.SignUpParam
+import com.danbam.indistraw.core.domain.param.auth.SignUpParam
 import com.danbam.indistraw.core.domain.repository.AuthRepository
 import javax.inject.Inject
 

@@ -2,8 +2,8 @@ package com.danbam.indistraw.feature.mobile.profile.edit_profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.danbam.indistraw.core.design_system.util.danbam.errorHandling
-import com.danbam.indistraw.core.param.auth.EditProfileParam
+import com.danbam.indistraw.core.ui.handling.errorHandling
+import com.danbam.indistraw.core.domain.param.auth.EditProfileParam
 import com.danbam.indistraw.core.domain.usecase.account.EditProfileUseCase
 import com.danbam.indistraw.core.domain.usecase.account.GetProfileUseCase
 import com.danbam.indistraw.core.domain.usecase.file.SendFileUseCase
@@ -41,11 +41,11 @@ class EditProfileVieModel @Inject constructor(
         }
     }
 
-    fun setProfileImage(file: File) = intent {
+    fun setProfileImage(file: File, onUploaded: (String) -> Unit) = intent {
         viewModelScope.launch {
             sendFileUseCase(file = file).onSuccess {
-                postSideEffect(EditProfileSideEffect.SuccessUpload)
                 reduce { state.copy(profileUrl = it.file) }
+                onUploaded(it.file)
             }.onFailure {
                 it.errorHandling(unknownAction = {})
             }

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Danh sách ngân hàng -->
+    <string name="gwangju_bank">Gwangju</string>
+    <string name="hana_bank">Hana</string>
+    <string name="nh_bank">NH Nông hội</string>
+    <string name="post_bank">Bưu điện</string>
+    <string name="shinhyeop_bank">Shinhyeop</string>
+    <string name="shinhan_bank">Shinhan</string>
+    <string name="toss_bank">Toss Bank</string>
+    <string name="woori_bank">Woori</string>
+    <string name="kakao_bank">Kakao Bank</string>
+
+    <!-- Danh sách phương thức thanh toán -->
+    <string name="payment_naver">Naver Pay (Thanh toán trực tiếp)</string>
+    <string name="payment_card">Thanh toán qua thẻ ISP / ứng dụng</string>
+    <string name="payment_account">Chuyển khoản tài khoản</string>
+    <string name="payment_kakao">Kakao Pay</string>
+
+    <!-- Danh sách thể loại -->
+    <string name="genre_all">Tất cả</string>
+    <string name="genre_action">Hành động</string>
+    <string name="genre_romance">Lãng mạn</string>
+    <string name="genre_comedy">Hài kịch</string>
+    <string name="genre_thriller">Kịch tính</string>
+    <string name="genre_drama">Kịch</string>
+    <string name="genre_sf">Khoa học viễn tưởng</string>
+    <string name="genre_animation">Phim hoạt hình</string>
+    <string name="genre_horror">Kinh dị</string>
+    <string name="genre_adventure">Phiêu lưu</string>
+    <string name="genre_fantasy">Phiêu lưu</string>
+
+    <!-- Danh sách cài đặt -->
+    <string name="tv_setting_language">Ngôn ngữ</string>
+    <string name="tv_setting_term">Điều khoản</string>
+    <string name="tv_setting_account">Tài khoản</string>
+    <string name="tv_setting_logout">Đăng xuất</string>
+    <string name="tv_setting_withdrawal">Hủy tài khoản</string>
+
+    <!-- Các chuỗi khác -->
+    <string name="wrong_length_id">Hãy nhập từ 6 đến 15 ký tự.</string>
+    <string name="wrong_length_password">Hãy nhập từ 8 đến 20 ký tự.</string>
+    <string name="require_terms_of_use">[Bắt buộc] Đồng ý điều khoản sử dụng</string>
+    <string name="require_personal_information">[Bắt buộc] Đồng ý thu thập và sử dụng thông tin cá nhân</string>
+    <string name="app_name">Indi Straw</string>
+    <string name="qr_login">Đăng nhập QR</string>
+    <string name="require_qr">Hãy xác minh mã QR của bạn.</string>
+    <string name="remain_qr_time">Thời gian hiệu lực của mã QR còn lại</string>
+
+    <!-- Chuỗi bắt đầu bằng "ㄱ" -->
+    <string name="movie_director">Đạo diễn</string>
+    <string name="enroll_director_or_actor">Đăng ký đạo diễn / diễn viên</string>
+    <string name="add_director">Thêm đạo diễn</string>
+    <string name="reward_remain">Còn lại</string>
+    <string name="approve_personal_information">Đồng ý thông tin cá nhân</string>
+    <string name="choose_gallery">Chọn từ thư viện</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="payment_method">Phương thức thanh toán</string>
+    <string name="payment_detail">Chi tiết thanh toán</string>
+    <string name="pay">Thanh toán</string>
+    <string name="next">Tiếp tục</string>
+    <string name="setting_account">Cài đặt tài khoản</string>
+    <string name="already_sign_up">Bạn chưa có tài khoản?</string>
+    <string name="account_info">Thông tin tài khoản</string>
+    <string name="account_number">Số tài khoản</string>
+    <string name="money">Số tiền</string>
+    <string name="require_money">Hãy đặt số tiền.</string>
+    <string name="enroll_search_director">Đăng ký đạo diễn hiện có</string>
+    <string name="add_search_director">Thêm đạo diễn hiện có</string>
+    <string name="enroll_search_actor">Đăng ký diễn viên hiện có</string>
+    <string name="add_search_actor">Thêm diễn viên hiện có</string>
+
+    <!-- Chuỗi bắt đầu bằng "ㄴ" -->
+    <string name="rest_date">Thời hạn còn lại</string>
+
+    <!-- Chuỗi bắt đầu bằng "ㄷ" -->
+    <string name="re_send">Gửi lại</string>
+    <string name="complete">Hoàn tất</string>
+    <string name="indi_movie">Phim độc lập</string>
+    <string name="make_indi_movie">Tạo phim độc lập</string>
+    <string name="back">Quay lại</string>
+    <string name="enroll">Đăng ký</string>
+    <string name="wrong_not_enroll_phone_number">Số điện thoại chưa được đăng ký.</string>
+
+    <!-- Chuỗi bắt đầu bằng "ㄹ" -->
+    <string name="logout">Đăng xuất</string>
+    <string name="want_you_logout">Bạn muốn đăng xuất không?</string>
+    <string name="login">Đăng nhập</string>
+    <string name="do_login">Đăng nhập ngay</string>
+    <string name="choose_reward">Chọn loại phần thưởng</string>
+    <string name="add_reward">Thêm phần thưởng</string>
+    <string name="do_add_reward">Thêm phần thưởng ngay</string>
+    <string name="want_you_add_reward">Bạn muốn thêm phần thưởng không?</string>
+
+    <!-- Chuỗi bắt đầu bằng "ㅁ" -->
+    <string name="end_date">Ngày kết thúc</string>
+    <string name="my_funding">Quỹ của tôi</string>
+    <string name="view_all_movie">Xem tất cả phim</string>
+    <string name="collect_money">Tổng số tiền đã thu</string>
+    <string name="target_money">Số tiền mục tiêu</string>
+    <string name="require_target_money">Hãy đặt số tiền mục tiêu.</string>
+    <string name="looking_for">Bạn đang tìm gì?</string>
+
+    <!-- Chuỗi bắt đầu bằng "ㅂ" -->
+    <string name="movie_actor">Diễn viên</string>
+    <string name="add_actor">Thêm diễn viên</string>
+    <string name="delivery_info">Thông tin vận chuyển</string>
+    <string name="certificate_phone_number">Xác minh số điện thoại</string>
+    <string name="change">Thay đổi</string>
+    <string name="require_change_password">Hãy nhập mật khẩu mới.</string>
+    <string name="password">Mật khẩu</string>
+    <string name="change_password">Thay đổi mật khẩu</string>
+    <string name="find_password">Tìm mật khẩu</string>
+    <string name="check_password">Kiểm tra mật khẩu</string>
+    <string name="require_check_password">Hãy nhập lại mật khẩu.</string>
+    <string name="wrong_different_password">Mật khẩu không khớp.</string>
+    <string name="require_password">Hãy nhập mật khẩu.</string>
+    <string name="wrong_password">Mật khẩu không hợp lệ.</string>
+
+    <!-- Chuỗi bắt đầu bằng "ㅅ" -->
+    <string name="require_account_number">Hãy nhập số tài khoản bạn muốn sử dụng.</string>
+    <string name="edit_picture">Chỉnh sửa hình ảnh</string>
+    <string name="choose_camera">Chụp ảnh</string>
+    <string name="detail_address">Địa chỉ chi tiết</string>
+    <string name="require_detail_address">Hãy nhập địa chỉ chi tiết.</string>
+    <string name="reward_price">Giá sản phẩm</string>
+    <string name="reward_info">Thông tin sản phẩm</string>
+    <string name="enroll_new_director">Đăng ký đạo diễn mới</string>
+    <string name="add_new_director">Thêm đạo diễn mới</string>
+    <string name="enroll_new_actor">Đăng ký diễn viên mới</string>
+    <string name="add_new_actor">Thêm diễn viên mới</string>
+    <string name="require_new_phone_number">Hãy nhập số điện thoại mới của bạn.</string>
+    <string name="setting">Cài đặt</string>
+    <string name="introduce">Giới thiệu</string>
+    <string name="require_introduce">Hãy nhập mô tả giới thiệu của bạn.</string>
+    <string name="amount">Số lượng</string>
+    <string name="require_amount">Hãy nhập số lượng.</string>
+    <string name="wrong_match_password">Hãy bao gồm số, chữ hoa, chữ thường và ký tự đặc biệt.</string>
+    <string name="is_real">Là sản phẩm thật</string>
+    <string name="is_real_reward">Có phải là phần thưởng vật lý không?</string>
+    <string name="thumbnail">Hình thu nhỏ</string>
+
+    <!--    ㅇ으로 시작하는 chuỗi-->
+    <string name="id">Tài khoản</string>
+    <string name="find_id">Tìm tài khoản</string>
+    <string name="require_id">Hãy nhập tài khoản.</string>
+    <string name="change_language">Thay đổi ngôn ngữ</string>
+    <string name="movie">Phim</string>
+    <string name="require_movie">Hãy đăng ký phim.</string>
+    <string name="money_unit">VNĐ</string>
+    <string name="require_bank">Hãy chọn ngân hàng.</string>
+    <string name="name">Tên</string>
+    <string name="require_name">Hãy nhập tên.</string>
+    <string name="wrong_enroll_id">Tài khoản đã được đăng ký.</string>
+    <string name="wrong_enroll_phone_number">Số điện thoại đã được đăng ký.</string>
+    <string name="upload_image">Tải hình lên</string>
+    <string name="require_thumbnail">Hãy đăng hình ảnh lên.</string>
+    <string name="watch_going">Tiếp tục xem</string>
+    <string name="popular">Phổ biến</string>
+    <string name="popular_search_movie">Phim phổ biến tìm kiếm</string>
+    <string name="popular_search">Thẻ phổ biến</string>
+    <string name="certificate_number">Số xác minh</string>
+    <string name="check_certificate_number">Xác minh số</string>
+    <string name="wrong_expired_certificate_number">Số xác minh đã hết hạn.</string>
+    <string name="already_certificate_number">Chưa nhận được số xác minh?</string>
+    <string name="wrong_certificate_number">Số xác minh không đúng.</string>
+    <string name="require_certificate_number">Hãy nhập số xác minh.</string>
+    <string name="finish_certificate">Hoàn thành xác minh</string>
+    <string name="certificate">Xác minh</string>
+
+    <!--    ㅈ으로 시작하는 chuỗi-->
+    <string name="view_detail">Xem chi tiết</string>
+    <string name="list_project">Danh sách dự án</string>
+    <string name="wait">Vui lòng thử lại sau.</string>
+    <string name="save">Lưu</string>
+    <string name="view_all">Xem tất cả ></string>
+    <string name="movie_all">Tất cả phim</string>
+    <string name="approve_all">Tất cả đồng ý</string>
+    <string name="phone_number">Số điện thoại</string>
+    <string name="wrong_match_phone_number">Định dạng số điện thoại không đúng.</string>
+    <string name="require_phone_number">Hãy nhập số điện thoại.</string>
+    <string name="title">Tiêu đề</string>
+    <string name="require_title">Hãy nhập tiêu đề.</string>
+    <string name="wrong_id">Tài khoản không tồn tại.</string>
+    <string name="finish">Kết thúc</string>
+    <string name="address">Địa chỉ</string>
+    <string name="no_address">Không có địa chỉ.</string>
+    <string name="require_address">Hãy nhập địa chỉ.</string>
+    <string name="find_address">Tìm địa chỉ</string>
+    <string name="mc">Người dẫn chương trình</string>
+
+    <!--    ㅊ으로 시작하는 chuỗi-->
+    <string name="participate_people">Số người tham gia</string>
+    <string name="watch_first">Xem từ đầu</string>
+    <string name="attached_file">Tệp đính kèm</string>
+    <string name="total_money">Tổng số tiền</string>
+    <string name="add_image">Thêm hình ảnh</string>
+    <string name="add_funding_description">Nếu bạn nhập số tiền bổ sung, bạn sẽ được hỗ trợ thêm.</string>
+    <string name="add">Thêm</string>
+    <string name="add_funding">Hỗ trợ bổ sung</string>
+    <string name="participate_movie">Dự án tham gia</string>
+    <string name="cancel">Hủy bỏ</string>
+    <string name="recent">Mới nhất</string>
+    <string name="recent_search">Tìm kiếm gần đây</string>
+    <string name="recent_watch_movie">Phim đã xem gần đây</string>
+    <string name="wrong_over_request_phone_number">Vượt quá số lần yêu cầu tối đa. Vui lòng thử lại sau 1 giờ.</string>
+    <string name="wrong_over_request_certificate_number">Vượt quá số lần yêu cầu xác minh tối đa. Vui lòng thử lại sau 1 giờ.</string>
+    <string name="recommend">Gợi ý</string>
+    <string name="actor">Diễn viên</string>
+
+    <!--    ㅋ으로 시작하는 chuỗi-->
+    <string name="crowd_funding">Quyên góp cộng đồng</string>
+    <string name="make_crowd_fund">Tạo quyên góp cộng đồng</string>
+    <string name="participate_funding">Tham gia quyên góp cộng đồng</string>
+    <string name="enroll_crowd_funding_thumbnail">Đăng ký hình ảnh quyên góp cộng đồng</string>
+    <string name="is_use_crowd_funding">Bạn đã sử dụng quyên góp cộng đồng chưa?</string>
+
+    <!--    ㅍ으로 시작하는 chuỗi-->
+    <string name="file">Tệp</string>
+    <string name="require_file">Vui lòng đính kèm tệp.</string>
+    <string name="add_file">Thêm tệp</string>
+    <string name="is_funding">Quyên góp</string>
+    <string name="do_funding">Thực hiện quyên góp</string>
+    <string name="change_profile">Thay đổi hình đại diện</string>
+    <string name="require_picture">Hãy chọn hình đại diện.</string>
+
+    <!--    ㅎ으로 시작하는 chuỗi-->
+    <string name="highlight">Nổi bật</string>
+    <string name="go">Đi đến</string>
+    <string name="approve">Xác nhận</string>
+    <string name="check">Kiểm tra</string>
+    <string name="current_id">Tài khoản hiện tại</string>
+    <string name="current_address">Địa chỉ hiện tại</string>
+    <string name="sign_up">Đăng ký</string>
+    <string name="fail_sign_up">Đăng ký không thành công.</string>
+    <string name="withdrawal">Rút khỏi tài khoản</string>
+    <string name="want_you_withdrawal">Bạn có muốn rút khỏi tài khoản không?</string>
+    <string name="home">Trang chủ</string>
+    <string name="donate">Quyên góp</string>
+</resources>

@@ -41,15 +41,15 @@ import com.danbam.indistraw.core.design_system.component.FindPasswordMedium
 import com.danbam.indistraw.core.design_system.component.IndiStrawBottomSheetLayout
 import com.danbam.indistraw.core.design_system.component.IndiStrawColumnBackground
 import com.danbam.indistraw.core.design_system.component.IndiStrawHeader
-import com.danbam.indistraw.core.design_system.component.MyRewardItem
+import com.danbam.indistraw.core.ui.component.MyRewardItem
 import com.danbam.indistraw.core.design_system.component.PriceRegular
-import com.danbam.indistraw.core.design_system.component.RewardType
+import com.danbam.indistraw.core.ui.component.RewardType
 import com.danbam.indistraw.core.design_system.component.TitleRegular
 import com.danbam.indistraw.core.design_system.component.TitleSemiBold
 import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLazyRow
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.danbam.indistraw.core.design_system.util.internal.toCommaString
-import com.danbam.indistraw.core.entity.funding.MyFundingEntity
+import com.danbam.indistraw.core.domain.entity.funding.MyFundingEntity
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -160,7 +160,10 @@ fun MyFundingScreen(
             Spacer(modifier = Modifier.height(30.dp))
         } else {
             selectedReward?.let {
-                MyRewardItem(rewardType = RewardType.Expand, item = it) {
+                com.danbam.indistraw.core.ui.component.MyRewardItem(
+                    rewardType = com.danbam.indistraw.core.ui.component.RewardType.Expand,
+                    item = it
+                ) {
 
                 }
                 Spacer(modifier = Modifier.height(45.dp))
@@ -272,7 +275,7 @@ fun MyFundingScreen(
                 )
             )
             repeat(state.myFundingEntity.reward.size) { index ->
-                MyRewardItem(item = state.myFundingEntity.reward[index]) {
+                com.danbam.indistraw.core.ui.component.MyRewardItem(item = state.myFundingEntity.reward[index]) {
                     isActor = false
                     selectedReward = it
                     openSheet()

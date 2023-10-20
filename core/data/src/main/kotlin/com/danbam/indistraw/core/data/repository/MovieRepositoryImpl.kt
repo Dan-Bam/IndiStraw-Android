@@ -2,19 +2,19 @@ package com.danbam.indistraw.core.data.repository
 
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.danbam.indistraw.core.data.remote.datasource.MovieRemoteDataSource
-import com.danbam.indistraw.core.data.remote.request.movie.toRequest
-import com.danbam.indistraw.core.data.remote.response.movie.toEntity
-import com.danbam.indistraw.core.entity.movie.DetailMovieHistoryEntity
-import com.danbam.indistraw.core.entity.movie.MovieDetailEntity
-import com.danbam.indistraw.core.entity.movie.MovieEntity
-import com.danbam.indistraw.core.entity.movie.MovieHistoryEntity
-import com.danbam.indistraw.core.entity.movie.MoviePeopleDetailEntity
-import com.danbam.indistraw.core.entity.movie.MoviePeopleEntity
-import com.danbam.indistraw.core.param.movie.MovieCreateParam
-import com.danbam.indistraw.core.param.movie.MovieHistoryParam
-import com.danbam.indistraw.core.param.movie.MoviePeopleParam
+import com.danbam.indistraw.core.domain.entity.movie.DetailMovieHistoryEntity
+import com.danbam.indistraw.core.domain.entity.movie.MovieDetailEntity
+import com.danbam.indistraw.core.domain.entity.movie.MovieEntity
+import com.danbam.indistraw.core.domain.entity.movie.MovieHistoryEntity
+import com.danbam.indistraw.core.domain.entity.movie.MoviePeopleDetailEntity
+import com.danbam.indistraw.core.domain.entity.movie.MoviePeopleEntity
+import com.danbam.indistraw.core.domain.param.movie.MovieCreateParam
+import com.danbam.indistraw.core.domain.param.movie.MovieHistoryParam
+import com.danbam.indistraw.core.domain.param.movie.MoviePeopleParam
+import com.danbam.indistraw.core.remote.datasource.MovieRemoteDataSource
+import com.danbam.indistraw.core.remote.request.movie.toRequest
 import com.danbam.indistraw.core.domain.repository.MovieRepository
+import com.danbam.indistraw.core.remote.response.movie.toEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -32,20 +32,20 @@ class MovieRepositoryImpl @Inject constructor(
         movieRemoteDataSource.movieDetail(movieIdx = movieIdx).toEntity()
 
     override suspend fun searchMoviePeople(
-        actorType: String,
+        peopleType: String,
         name: String
     ): List<MoviePeopleEntity> =
-        movieRemoteDataSource.searchMoviePeople(actorType = actorType, name = name)
+        movieRemoteDataSource.searchMoviePeople(peopleType = peopleType, name = name)
             .map { it.toEntity() }
 
-    override suspend fun addMoviePeople(actorType: String, moviePeopleParam: MoviePeopleParam) =
+    override suspend fun addMoviePeople(peopleType: String, moviePeopleParam: MoviePeopleParam) =
         movieRemoteDataSource.addMoviePeople(
-            actorType = actorType,
+            peopleType = peopleType,
             moviePeopleRequest = moviePeopleParam.toRequest()
         ).actorIdx
 
-    override suspend fun moviePeopleDetail(actorType: String, actorIdx: Long): MoviePeopleDetailEntity =
-        movieRemoteDataSource.moviePeopleDetail(actorType = actorType, actorIdx = actorIdx).toEntity()
+    override suspend fun moviePeopleDetail(peopleType: String, actorIdx: Long): MoviePeopleDetailEntity =
+        movieRemoteDataSource.moviePeopleDetail(peopleType = peopleType, actorIdx = actorIdx).toEntity()
 
     override suspend fun movieRecentList(): List<MovieEntity> =
         movieRemoteDataSource.movieRecentList().map { it.toEntity() }
@@ -64,4 +64,7 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun movieHistory(movieIdx: Long): DetailMovieHistoryEntity =
         movieRemoteDataSource.movieHistory(movieIdx = movieIdx).toEntity()
+
+    override suspend fun movieFilmography(): List<MovieEntity> =
+        movieRemoteDataSource.movieFilmography().map { it.toEntity() }
 }

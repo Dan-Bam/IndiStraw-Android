@@ -31,7 +31,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import com.danbam.indistraw.core.design_system.BuildConfig
 import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIcon
 import com.danbam.indistraw.core.design_system.attribute.IndiStrawIconList
@@ -48,7 +47,8 @@ import com.danbam.indistraw.core.design_system.util.androidx.RemoveOverScrollLaz
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 import com.danbam.indistraw.core.design_system.R
 import com.danbam.indistraw.core.design_system.util.androidx.getActivity
-import com.danbam.indistraw.core.entity.movie.MoviePeopleEntity
+import com.danbam.indistraw.core.domain.entity.movie.MoviePeopleEntity
+import com.danbam.indistraw.feature.mobile.movie.BuildConfig
 import com.danbam.indistraw.feature.mobile.navigation.movie.MovieDeepLinkKey
 import com.danbam.indistraw.feature.mobile.navigation.movie.MovieNavigationItem
 

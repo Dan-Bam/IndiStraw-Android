@@ -1,6 +1,6 @@
 package com.danbam.indistraw.feature.mobile.navigation.movie
 
-object ActorType {
-    const val ACTOR = "actor"
-    const val DIRECTOR = "director"
+sealed class PeopleType(val route: String) {
+    object ACTOR : PeopleType("actor")
+    object DIRECTOR : PeopleType("director")
 }

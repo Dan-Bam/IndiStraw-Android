@@ -2,8 +2,8 @@ package com.danbam.indistraw.core.data.repository
 
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.danbam.indistraw.core.data.remote.datasource.AddressRemoteDataSource
-import com.danbam.indistraw.core.data.remote.response.auth.toEntity
+import com.danbam.indistraw.core.remote.datasource.AddressRemoteDataSource
+import com.danbam.indistraw.core.remote.response.auth.toEntity
 import com.danbam.indistraw.core.domain.entity.auth.AddressEntity
 import com.danbam.indistraw.core.domain.repository.AddressRepository
 import kotlinx.coroutines.flow.Flow

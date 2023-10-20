@@ -12,7 +12,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import com.danbam.indistraw.core.design_system.IndiStrawTheme
 import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 
@@ -20,6 +22,7 @@ import com.danbam.indistraw.core.design_system.util.androidx.indiStrawClickable
 @Composable
 fun IndiStrawColumnBackground(
     modifier: Modifier = Modifier,
+    isLoading: Boolean = false,
     onClickAction: (() -> Unit)? = null,
     scrollEnabled: Boolean = false,
     content: @Composable ColumnScope.() -> Unit,
@@ -35,13 +38,22 @@ fun IndiStrawColumnBackground(
         } else {
             modifier.fillMaxSize()
         }
-        Column(
+        Box(
             modifier = columnModifier
                 .background(IndiStrawTheme.colors.black)
                 .indiStrawClickable {
                     onClickAction?.invoke()
                 },
-            content = content
+            content = {
+                Column {
+                    content()
+                }
+                if (isLoading) {
+                    IndiStrawLoading(
+                        modifier = Modifier.align(Alignment.Center)
+                    )
+                }
+            }
         )
     }
 }
@@ -50,6 +62,7 @@ fun IndiStrawColumnBackground(
 @Composable
 fun IndiStrawBoxBackground(
     modifier: Modifier = Modifier,
+    isLoading: Boolean = false,
     onClickAction: (() -> Unit)? = null,
     scrollEnabled: Boolean = false,
     content: @Composable BoxScope.() -> Unit,
@@ -71,7 +84,14 @@ fun IndiStrawBoxBackground(
                 .indiStrawClickable {
                     onClickAction?.invoke()
                 },
-            content = content
+            content = {
+                content()
+                if (isLoading) {
+                    IndiStrawLoading(
+                        modifier = Modifier.align(Alignment.Center)
+                    )
+                }
+            }
         )
     }
 }

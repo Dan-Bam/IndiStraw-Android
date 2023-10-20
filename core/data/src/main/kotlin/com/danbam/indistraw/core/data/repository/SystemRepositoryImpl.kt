@@ -1,6 +1,6 @@
 package com.danbam.indistraw.core.data.repository
 
-import com.danbam.indistraw.core.data.local.datasource.SystemLocalDataSource
+import com.danbam.indistraw.core.local.datasource.SystemLocalDataSource
 import com.danbam.indistraw.core.domain.repository.SystemRepository
 import javax.inject.Inject
 

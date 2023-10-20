@@ -9,6 +9,5 @@ data class EditProfileState(
 
 sealed class EditProfileSideEffect {
     object EmptyNameException : EditProfileSideEffect()
-    object SuccessUpload : EditProfileSideEffect()
     data class GetProfile(val name: String) : EditProfileSideEffect()
 }

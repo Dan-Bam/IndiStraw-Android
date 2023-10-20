@@ -7,12 +7,12 @@ import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.danbam.indistraw.feature.mobile.movie.all.MovieAllScreen
 import com.danbam.indistraw.feature.mobile.movie.detail.MovieDetailScreen
-import com.danbam.indistraw.feature.mobile.movie.make.AddActorScreen
-import com.danbam.indistraw.feature.mobile.movie.make.SearchActorScreen
-import com.danbam.indistraw.feature.mobile.movie.make.WriteActorScreen
+import com.danbam.indistraw.feature.mobile.movie.make.AddPeopleScreen
+import com.danbam.indistraw.feature.mobile.movie.make.SearchPeopleScreen
+import com.danbam.indistraw.feature.mobile.movie.make.WritePeopleScreen
 import com.danbam.indistraw.feature.mobile.movie.make.WriteIntroduceScreen
 import com.danbam.indistraw.feature.mobile.movie.play.MoviePlayScreen
-import com.danbam.indistraw.feature.mobile.navigation.movie.ActorType
+import com.danbam.indistraw.feature.mobile.navigation.movie.PeopleType
 import com.danbam.indistraw.feature.mobile.navigation.movie.MovieDeepLinkKey
 import com.danbam.indistraw.feature.mobile.navigation.movie.MovieNavigationItem
 import com.google.accompanist.navigation.animation.composable
@@ -78,39 +78,51 @@ fun NavGraphBuilder.movieGraph(
     composable(route = MovieNavigationItem.WriteIntroduce.route) {
         WriteIntroduceScreen(navController = navController)
     }
-    composable(route = MovieNavigationItem.AddActor.route) {
-        AddActorScreen(navController = navController)
+    composable(route = MovieNavigationItem.AddPeople.route) {
+        AddPeopleScreen(navController = navController)
     }
     composable(
-        route = MovieNavigationItem.WriteActor.route
-            + MovieDeepLinkKey.ADD_ACTOR_TYPE + "{${MovieDeepLinkKey.ADD_ACTOR_TYPE}}",
+        route = MovieNavigationItem.WritePeople.route
+            + MovieDeepLinkKey.PEOPLE_TYPE + "{${MovieDeepLinkKey.PEOPLE_TYPE}}"
+            + MovieDeepLinkKey.IS_ENROLL + "{${MovieDeepLinkKey.IS_ENROLL}}",
         arguments = listOf(
-            navArgument(MovieDeepLinkKey.ADD_ACTOR_TYPE) {
+            navArgument(MovieDeepLinkKey.PEOPLE_TYPE) {
                 type = NavType.StringType
+            },
+            navArgument(MovieDeepLinkKey.IS_ENROLL) {
+                type = NavType.BoolType
             }
         )
     ) {
-        val addActorType =
-            it.arguments?.getString(MovieDeepLinkKey.ADD_ACTOR_TYPE) ?: ActorType.ACTOR
-        WriteActorScreen(
+        val peopleType =
+            it.arguments?.getString(MovieDeepLinkKey.PEOPLE_TYPE) ?: PeopleType.ACTOR.route
+        val isEnroll = it.arguments?.getBoolean(MovieDeepLinkKey.IS_ENROLL) ?: false
+        WritePeopleScreen(
             navController = navController,
-            addActorType = addActorType,
+            peopleType = peopleType,
+            isEnroll = isEnroll
         )
     }
     composable(
-        route = MovieNavigationItem.SearchActor.route
-            + MovieDeepLinkKey.ADD_ACTOR_TYPE + "{${MovieDeepLinkKey.ADD_ACTOR_TYPE}}",
+        route = MovieNavigationItem.SearchPeople.route
+            + MovieDeepLinkKey.PEOPLE_TYPE + "{${MovieDeepLinkKey.PEOPLE_TYPE}}"
+            + MovieDeepLinkKey.IS_ENROLL + "{${MovieDeepLinkKey.IS_ENROLL}}",
         arguments = listOf(
-            navArgument(MovieDeepLinkKey.ADD_ACTOR_TYPE) {
+            navArgument(MovieDeepLinkKey.PEOPLE_TYPE) {
                 type = NavType.StringType
+            },
+            navArgument(MovieDeepLinkKey.IS_ENROLL) {
+                type = NavType.BoolType
             }
         )
     ) {
-        val addActorType =
-            it.arguments?.getString(MovieDeepLinkKey.ADD_ACTOR_TYPE) ?: ActorType.ACTOR
-        SearchActorScreen(
+        val addPeopleType =
+            it.arguments?.getString(MovieDeepLinkKey.PEOPLE_TYPE) ?: PeopleType.ACTOR.route
+        val isEnroll = it.arguments?.getBoolean(MovieDeepLinkKey.IS_ENROLL) ?: false
+        SearchPeopleScreen(
             navController = navController,
-            addActorType = addActorType,
+            peopleType = addPeopleType,
+            isEnroll = isEnroll
         )
     }
 }

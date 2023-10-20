@@ -1,10 +1,10 @@
 package com.danbam.indistraw.core.domain.repository
 
 import androidx.paging.PagingData
-import com.danbam.indistraw.core.entity.funding.FundingDetailEntity
-import com.danbam.indistraw.core.entity.funding.FundingEntity
-import com.danbam.indistraw.core.entity.funding.MyFundingEntity
-import com.danbam.indistraw.core.param.funding.FundingCreateParam
+import com.danbam.indistraw.core.domain.entity.funding.FundingDetailEntity
+import com.danbam.indistraw.core.domain.entity.funding.FundingEntity
+import com.danbam.indistraw.core.domain.entity.funding.MyFundingEntity
+import com.danbam.indistraw.core.domain.param.funding.FundingCreateParam
 import kotlinx.coroutines.flow.Flow
 
 interface CrowdFundingRepository {

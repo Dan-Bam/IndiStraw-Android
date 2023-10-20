@@ -1,7 +1,7 @@
 package com.danbam.indistraw.feature.mobile.profile.profile
 
-import com.danbam.indistraw.core.entity.funding.FundingEntity
-import com.danbam.indistraw.core.entity.movie.MovieEntity
+import com.danbam.indistraw.core.domain.entity.funding.FundingEntity
+import com.danbam.indistraw.core.domain.entity.movie.MovieEntity
 
 data class ProfileState(
     val id: String = "",
@@ -9,5 +9,6 @@ data class ProfileState(
     val profileUrl: String? = null,
     val myFundingList: List<FundingEntity> = listOf(),
     val fundingList: List<FundingEntity> = listOf(),
-    val movieHistoryList: List<MovieEntity> = listOf()
+    val movieHistoryList: List<MovieEntity> = listOf(),
+    val movieFilmographyList: List<MovieEntity> = listOf()
 )

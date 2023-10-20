@@ -32,24 +32,14 @@ android {
             "PATCH_IGNORE_PATH",
             gradleLocalProperties(rootDir).getProperty("PATCH_IGNORE_PATH")
         )
-        buildConfigField(
-            "String",
-            "JUSO_KEY",
-            gradleLocalProperties(rootDir).getProperty("JUSO_KEY")
-        )
     }
 }
 
 dependencies {
+    implementation(project(":core:remote"))
+    implementation(project(":core:local"))
     implementation(project(":core:domain"))
-    implementation(libs.inject)
-    implementation(libs.room)
-    kapt(libs.room.compiler)
+    implementation(libs.paging)
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.okhttp)
-    testImplementation(libs.okhttp.sse)
-    implementation(libs.paging)
-    testImplementation(libs.test.junit)
-    testImplementation(libs.test.mockito.kotlin)
-    testImplementation(libs.test.mockito.inline)
 }

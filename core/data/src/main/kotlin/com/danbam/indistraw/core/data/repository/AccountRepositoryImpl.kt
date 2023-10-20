@@ -1,15 +1,15 @@
 package com.danbam.indistraw.core.data.repository
 
-import com.danbam.indistraw.core.data.remote.datasource.AccountRemoteDataSource
-import com.danbam.indistraw.core.data.remote.request.auth.toRequest
-import com.danbam.indistraw.core.data.remote.response.auth.toEntity
-import com.danbam.indistraw.core.data.remote.response.funding.toEntity
+import com.danbam.indistraw.core.remote.datasource.AccountRemoteDataSource
+import com.danbam.indistraw.core.remote.request.auth.toRequest
+import com.danbam.indistraw.core.remote.response.auth.toEntity
 import com.danbam.indistraw.core.domain.entity.auth.FindIdEntity
 import com.danbam.indistraw.core.domain.entity.auth.ProfileEntity
-import com.danbam.indistraw.core.param.auth.ChangeAddressParam
-import com.danbam.indistraw.core.param.auth.ChangePasswordParam
-import com.danbam.indistraw.core.param.auth.EditProfileParam
+import com.danbam.indistraw.core.domain.param.auth.ChangeAddressParam
+import com.danbam.indistraw.core.domain.param.auth.ChangePasswordParam
+import com.danbam.indistraw.core.domain.param.auth.EditProfileParam
 import com.danbam.indistraw.core.domain.repository.AccountRepository
+import com.danbam.indistraw.core.remote.response.funding.toEntity
 import javax.inject.Inject
 
 class AccountRepositoryImpl @Inject constructor(
@@ -32,6 +32,9 @@ class AccountRepositoryImpl @Inject constructor(
 
     override suspend fun editProfile(editProfileParam: EditProfileParam) =
         accountRemoteDataSource.editProfile(editProfileRequest = editProfileParam.toRequest())
+
+    override suspend fun enrollMoviePeople(peopleType: String, actorIdx: Long) =
+        accountRemoteDataSource.enrollMoviePeople(peopleType = peopleType, actorIdx = actorIdx)
 
     override suspend fun withdraw() =
         accountRemoteDataSource.withdraw()
